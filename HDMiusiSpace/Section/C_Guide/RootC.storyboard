@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--RootCVC-->
+        <scene sceneID="09D-0H-9hK">
+            <objects>
+                <viewController storyboardIdentifier="HDRootCVC" id="a4P-nd-McC" customClass="HDRootCVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fEB-vB-p30"/>
+                        <viewControllerLayoutGuide type="bottom" id="YTW-6s-wiF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SGe-UG-zGS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMs-fG-Up6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hSh-c4-QqC">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpm-YE-9nO">
+                                                <rect key="frame" x="20" y="7" width="31" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="p0X-sd-9RN"/>
+                                                    <constraint firstAttribute="width" constant="31" id="pzg-s6-8VL"/>
+                                                </constraints>
+                                                <state key="normal" image="A_search"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="LxZ-Rh-gsD"/>
+                                            <constraint firstItem="gpm-YE-9nO" firstAttribute="top" secondItem="hSh-c4-QqC" secondAttribute="top" constant="7" id="sA3-VM-peL"/>
+                                            <constraint firstItem="gpm-YE-9nO" firstAttribute="leading" secondItem="hSh-c4-QqC" secondAttribute="leading" constant="20" id="uHI-w6-s8O"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="NJ0-tA-Qy2"/>
+                                    <constraint firstItem="hSh-c4-QqC" firstAttribute="leading" secondItem="kMs-fG-Up6" secondAttribute="leading" id="S8S-pB-lhe"/>
+                                    <constraint firstAttribute="trailing" secondItem="hSh-c4-QqC" secondAttribute="trailing" id="TKO-Zx-Yav"/>
+                                    <constraint firstAttribute="bottom" secondItem="hSh-c4-QqC" secondAttribute="bottom" id="UdO-P4-005"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kMs-fG-Up6" firstAttribute="leading" secondItem="QNh-ZD-r36" secondAttribute="leading" id="3fc-oS-lH8"/>
+                            <constraint firstItem="QNh-ZD-r36" firstAttribute="trailing" secondItem="kMs-fG-Up6" secondAttribute="trailing" id="c8k-GW-Mw5"/>
+                            <constraint firstItem="kMs-fG-Up6" firstAttribute="top" secondItem="SGe-UG-zGS" secondAttribute="top" id="vO7-vx-Qd9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QNh-ZD-r36"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZEJ-Qd-seW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Zg-6A-ByW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2452" y="-1041"/>
+        </scene>
+        <!--Item Base NaviVC-->
+        <scene sceneID="Bal-wx-7HG">
+            <objects>
+                <navigationController storyboardIdentifier="HDRootCNavVC" navigationBarHidden="YES" id="pza-Uh-aRa" customClass="HDItemBaseNaviVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fve-U8-Zxj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="a4P-nd-McC" kind="relationship" relationship="rootViewController" id="Xr7-Wi-oal"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qO2-Ov-Z2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="-1052"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="A_search" width="16" height="16"/>
+    </resources>
+</document>

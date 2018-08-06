@@ -1,0 +1,6 @@
+framework module JoyTool {
+  umbrella header "JoyTool-umbrella.h"
+
+  export *
+  module * { export * }
+}

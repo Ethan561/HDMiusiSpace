@@ -8,6 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6699FFC21198714006339D3 /* RootBHeaderView.swift */; };
+		D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6699FFE2119871C006339D3 /* RootBHeaderView.xib */; };
+		D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */; };
+		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
+		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
+		D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */; };
+		D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */; };
+		D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */; };
+		D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */; };
+		D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F754211A96A700A9EE57 /* RecommendHeader.swift */; };
+		D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D671F756211A96BC00A9EE57 /* RecommendHeader.xib */; };
+		D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F758211A98A600A9EE57 /* UIView+Nib.swift */; };
+		D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E225211C13CF00E1E893 /* FSPagerView.swift */; };
+		D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E226211C13CF00E1E893 /* FSPageViewTransformer.swift */; };
+		D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E227211C13CF00E1E893 /* FSPagerViewCell.swift */; };
+		D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E228211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift */; };
+		D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E229211C13CF00E1E893 /* FSPageViewLayout.swift */; };
+		D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E22A211C13CF00E1E893 /* FSPageControl.swift */; };
+		D6A1E232211C13CF00E1E893 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */; };
+		D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6A1E233211C275F00E1E893 /* builtIn.bundle */; };
+		D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E236211C299E00E1E893 /* TStrInt.swift */; };
 		D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */; };
 		D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC152117FA3A007C8E56 /* Main.storyboard */; };
 		D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC182117FA3A007C8E56 /* Assets.xcassets */; };
@@ -103,6 +124,28 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		D6699FFC21198714006339D3 /* RootBHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBHeaderView.swift; sourceTree = "<group>"; };
+		D6699FFE2119871C006339D3 /* RootBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootBHeaderView.xib; sourceTree = "<group>"; };
+		D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBMainTableView.swift; sourceTree = "<group>"; };
+		D671F745211A871D00A9EE57 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
+		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
+		D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_SubVC.swift; sourceTree = "<group>"; };
+		D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Listen_SubVC.swift; sourceTree = "<group>"; };
+		D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Newest_SubVC.swift; sourceTree = "<group>"; };
+		D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Art_SubVC.swift; sourceTree = "<group>"; };
+		D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_SubVC.swift; sourceTree = "<group>"; };
+		D671F754211A96A700A9EE57 /* RecommendHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHeader.swift; sourceTree = "<group>"; };
+		D671F756211A96BC00A9EE57 /* RecommendHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendHeader.xib; sourceTree = "<group>"; };
+		D671F758211A98A600A9EE57 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		D6A1E225211C13CF00E1E893 /* FSPagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
+		D6A1E226211C13CF00E1E893 /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
+		D6A1E227211C13CF00E1E893 /* FSPagerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewCell.swift; sourceTree = "<group>"; };
+		D6A1E228211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewLayoutAttributes.swift; sourceTree = "<group>"; };
+		D6A1E229211C13CF00E1E893 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
+		D6A1E22A211C13CF00E1E893 /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
+		D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
+		D6A1E233211C275F00E1E893 /* builtIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = builtIn.bundle; sourceTree = "<group>"; };
+		D6A1E236211C299E00E1E893 /* TStrInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TStrInt.swift; sourceTree = "<group>"; };
 		D6C9FC0E2117FA3A007C8E56 /* HDMiusiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HDMiusiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6C9FC162117FA3A007C8E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -229,6 +272,38 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D671F744211A871D00A9EE57 /* SPPageMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D671F745211A871D00A9EE57 /* SPPageMenu.m */,
+				D671F746211A871D00A9EE57 /* SPPageMenu.h */,
+			);
+			path = SPPageMenu;
+			sourceTree = "<group>";
+		};
+		D6A1E224211C13CF00E1E893 /* FSPagerView */ = {
+			isa = PBXGroup;
+			children = (
+				D6A1E225211C13CF00E1E893 /* FSPagerView.swift */,
+				D6A1E226211C13CF00E1E893 /* FSPageViewTransformer.swift */,
+				D6A1E227211C13CF00E1E893 /* FSPagerViewCell.swift */,
+				D6A1E228211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift */,
+				D6A1E229211C13CF00E1E893 /* FSPageViewLayout.swift */,
+				D6A1E22A211C13CF00E1E893 /* FSPageControl.swift */,
+				D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */,
+			);
+			path = FSPagerView;
+			sourceTree = "<group>";
+		};
+		D6A1E238211C2D3300E1E893 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D6A1E236211C299E00E1E893 /* TStrInt.swift */,
+				D6C9FC962118202A007C8E56 /* Bindable.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		D6C9FC052117FA3A007C8E56 = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +335,7 @@
 				D6C9FC4421181F05007C8E56 /* Resource */,
 				D6C9FC4121181EED007C8E56 /* Header */,
 				D6C9FC4021181EBC007C8E56 /* Extension */,
+				D6A1E238211C2D3300E1E893 /* Helper */,
 				D6C9FC3F21181EAA007C8E56 /* Vendor */,
 				D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */,
 				D6C9FCC1211825F0007C8E56 /* HDMiusiSpace-Bridging-Header.h */,
@@ -292,7 +368,8 @@
 		D6C9FC3F21181EAA007C8E56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FC962118202A007C8E56 /* Bindable.swift */,
+				D6A1E224211C13CF00E1E893 /* FSPagerView */,
+				D671F744211A871D00A9EE57 /* SPPageMenu */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -308,6 +385,7 @@
 				D6C9FC5C21181F54007C8E56 /* UIButton+GifImage.swift */,
 				D6C9FC5D21181F54007C8E56 /* UIColor+HexColor.swift */,
 				D6C9FC6221181F54007C8E56 /* UIImage+Scale.swift */,
+				D671F758211A98A600A9EE57 /* UIView+Nib.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -323,6 +401,7 @@
 		D6C9FC4421181F05007C8E56 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D6A1E233211C275F00E1E893 /* builtIn.bundle */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -517,6 +596,11 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCC7211834FF007C8E56 /* HDRootBVC.swift */,
+				D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */,
+				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
+				D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */,
+				D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */,
+				D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -665,6 +749,11 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCFE2118487B007C8E56 /* .gitignore */,
+				D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */,
+				D6699FFC21198714006339D3 /* RootBHeaderView.swift */,
+				D6699FFE2119871C006339D3 /* RootBHeaderView.xib */,
+				D671F754211A96A700A9EE57 /* RecommendHeader.swift */,
+				D671F756211A96BC00A9EE57 /* RecommendHeader.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -818,11 +907,14 @@
 				D6C9FCBE211825DC007C8E56 /* .gitignore in Resources */,
 				D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */,
 				D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */,
+				D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */,
 				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
 				D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */,
+				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
+				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
@@ -938,19 +1030,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
+				D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */,
+				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
 				D6C9FC8C21181FD1007C8E56 /* HD_LY_API.swift in Sources */,
+				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D6C9FC8721181FD1007C8E56 /* HD_ZQ_API.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
 				D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
+				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */,
 				D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */,
 				D6C9FC6C21181F54007C8E56 /* NSString+Extension.swift in Sources */,
+				D6A1E232211C13CF00E1E893 /* FSPagerCollectionView.swift in Sources */,
+				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
+				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
+				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
+				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
+				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
@@ -965,6 +1068,10 @@
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
+				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
+				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
+				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
+				D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */,
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
@@ -975,12 +1082,15 @@
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D6C9FC8A21181FD1007C8E56 /* HDCache.swift in Sources */,
+				D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */,
+				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
+				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,7 +1265,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1165,6 +1276,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c11307e9-910a-45cd-b996-dc7d248dd7f3";
+				PROVISIONING_PROFILE_SPECIFIER = All_Pro_10;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1178,7 +1291,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1188,6 +1302,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1c9d9fce-703c-4d08-8ef0-d52b8450ec6f";
+				PROVISIONING_PROFILE_SPECIFIER = Dis_All_10;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

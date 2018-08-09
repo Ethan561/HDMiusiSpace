@@ -47,7 +47,7 @@ class HD_LY_NetHelper {
     class func loadData<Tar: TargetType>(API: Tar.Type, target: Tar, cache: Bool = false, showHud: Bool = true ,showErrorTip: Bool = true,loadingVC: UIViewController , success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         
         //默认参数初始化
-        //        let provider = MoyaProvider<Tar>()
+        //let provider = MoyaProvider<Tar>()
         let provider = MoyaProvider<Tar>(plugins: [AuthPlugin()])
         //是否需要缓存操作
         var loadingView: HDLoadingView?
@@ -139,7 +139,6 @@ class HD_LY_NetHelper {
                 
             case .failure(_):
                 failureHandle(failure: failure, stateCode: nil, message: "网络异常")
-                
             }
         }
         
@@ -154,86 +153,6 @@ class HD_LY_NetHelper {
         }
     }
     
-    //显示弹窗显示在window上
-    class func loadData<Tar: TargetType>(API: Tar.Type, target: Tar, cache: Bool = false, showHud: Bool = true, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
-        
-        //默认参数初始化
-        //        let provider = MoyaProvider<Tar>()
-        let provider = MoyaProvider<Tar>(plugins: [AuthPlugin()])
-        //是否需要缓存操作
-        
-        //显示网络请求加载提醒
-        if showHud == true {
-            HDLoadingHUD.show()
-        }
-        provider.request(target) { (result) in
-            //隐藏加载提醒
-            if showHud == true {
-                HDLoadingHUD.hide()
-            }
-            switch result {
-            case let .success(response):
-                do {
-                    //这里可以统一处理错误码，统一弹出错误
-                    let _ = try response.filterSuccessfulStatusCodes()
-                    let decoder = JSONDecoder()
-                    let baseModel = try? decoder.decode(ResponseModel.self, from: response.data)
-                    guard let model = baseModel else {
-                        if let failureBlack = failure {
-                            failureBlack(nil, "解析失败")
-                        }
-                        return
-                    }
-                    //
-                    switch model.status {
-                    //请求成功
-                    case Status_Code_Success,Status_Code_Success1 :
-                        success(response.data)
-                        if cache == true {
-                            //                            let cacheKey = Tar.cacheKey
-                            
-                        }else {
-                            
-                        }
-                    //失败
-                    case Status_Code_Error:
-                        failureHandle(failure: failure, stateCode: nil, message: model.msg)
-                    //ErrorToken
-                    case Status_Code_ErrorToken:
-                        
-                        failureHandle(failure: failure, stateCode: nil, message: "登录过期，请重新登录")
-                        UserDefaults.standard.set("", forKey: kLogin_Token)
-                        HDDeclare.shared.api_token = ""
-                        HDDeclare.shared.loginStatus = .kLogin_Status_Logout
-                    case Status_Code_NoLocation,Status_Code_WrongFloor,Status_Code_ErrorId:
-                        HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: model.msg)
-                    default:
-                        //其他错误
-                        failureHandle(failure: failure, stateCode: nil, message: model.msg)
-                        break
-                    }
-                }
-                    
-                catch let error {
-                    guard let error = error as? MoyaError else { return }
-                    let statusCode = error.response?.statusCode ?? 0
-                    let errorCode = "请求出错，错误码：" + String(statusCode)
-                    failureHandle(failure: failure, stateCode: statusCode, message: error.errorDescription ?? errorCode)
-                }
-                
-            case .failure(_):
-                failureHandle(failure: failure, stateCode: nil, message: "网络异常")
-            }
-        }
-        
-        //错误处理 - 弹出错误信息
-        func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
-            HDAlert.showAlertTipWith(type: HDAlertType.error, text: message)
-            if let failureBlack = failure {
-                failureBlack(nil ,message)
-            }
-        }
-    }
 }
 
 
@@ -250,7 +169,7 @@ extension HD_LY_NetHelper {
         //如果设置options为JSONSerialization.WritingOptions.prettyPrinted，则打印格式更好阅读
         let data = try? JSONSerialization.data(withJSONObject: jsonDic, options: [])
         //Data转换成String打印输出
-        let str = String(data:data!, encoding: String.Encoding.utf8)
+        _ = String(data:data!, encoding: String.Encoding.utf8)
         //输出json字符串
         //        print("Json Str:\(str!)")
         return data

@@ -24,24 +24,6 @@ class HDAlert: NSObject {
 }
 
 
-class HDLoadingHUD {
-    
-    class func show() {
-        if let window = UIApplication.shared.delegate?.window {
-//            MBProgressHUD.showAdded(to: window!, animated: true)
-        }
-    }
-    
-    class func hide() {
-        if let window = UIApplication.shared.delegate?.window {
-//            MBProgressHUD.hide(for: window!, animated: true)
-            //MBProgressHUD.hideAllHUDs(for: window!, animated: true)
-        }
-    }
-    
-}
-
-
 
 
 

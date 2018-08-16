@@ -297,7 +297,6 @@ open class FSPageControl: UIControl {
         self.updateIndicatorsIfNecessary()
         CATransaction.commit()
     }
-    
 }
 
 extension UIControlState: Hashable {

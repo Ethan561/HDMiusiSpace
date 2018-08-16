@@ -22,12 +22,11 @@ let ScreenWidth   : CGFloat = UIScreen.main.bounds.size.width
 let NavigationHeight = (ScreenHeight == 812.0) ? 88 : 64
 
 //馆方地址
-let kWLAN_Ip_Address : String  =  "http://10.0.64.171:80"//内网
+let kWLAN_Ip_Address : String  =  "http://192.168.10.158:8667"//内网
 //let kNet_Ip_Address  : String  =  "http://59.49.25.69:65200"//外网
 //let kNet_Ip_Address  : String  =  "http://192.168.10.158:8302"//外网
-let kNet_Ip_Address  : String  =  "http://192.168.10.158:8309"//外网
+let kNet_Ip_Address  : String  =  "http://192.168.10.158:8667"//外网
 
-let kNet_Ip_YuYue : String = "http://192.168.10.158:8310"//预约IP
 
 //kCachePath
 let kCachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString
@@ -51,10 +50,14 @@ let Device_Is_iPhoneSE:Bool = (ScreenWidth == 320.0) ? true : false
 
 let kLogin_Token = "kLogin_Token"
 
+let HengDaSignKey = "HengDa2018@hDg5YhiZ^#vhb7GZ"
+
 //Socket
 let DeviceClientId = "DeviceClientId"
 let kSocketHost = "192.168.10.158"
 let kSocketPort:UInt16 = 9501
+
+let TitleFont = UIFont.init(name: "PingFangSC-Semibold", size: 18)
 
 
 //通用色值设置

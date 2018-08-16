@@ -22,6 +22,14 @@ class HDItemBaseVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          setupNavigationBar()
+        navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName:TitleFont] as [NSAttributedStringKey : Any]
+            
+            //[NSForegroundColorAttributeName:UIColor.white]
+//
+//        navigationController?.navigationBar.barTintColor = UIColor(red: 66/256.0, green: 176/256.0, blue: 216/256.0, alpha: 1)
+//
+//        navigationController?.navigationBar.isTranslucent = false
+        
     }
     
     func addLeftBarButtonItem() {

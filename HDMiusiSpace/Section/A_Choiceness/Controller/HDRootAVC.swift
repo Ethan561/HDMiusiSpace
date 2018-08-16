@@ -12,7 +12,8 @@ class HDRootAVC: HDItemBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let str:NSString = "123456"
+        LOG("\(MD5(str as String)),=== \(str.md5)")
     }
     
     override func didReceiveMemoryWarning() {

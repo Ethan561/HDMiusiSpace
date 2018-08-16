@@ -90,12 +90,12 @@ open class FSPagerViewCell: UICollectionViewCell {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+//        commonInit()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+//        commonInit()
     }
     
     fileprivate func commonInit() {

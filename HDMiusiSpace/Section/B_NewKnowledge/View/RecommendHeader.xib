@@ -35,15 +35,20 @@
                     <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBE-gY-LF9">
-                    <rect key="frame" x="248" y="-3" width="127" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBE-gY-LF9">
+                    <rect key="frame" x="248" y="0.0" width="127" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="127" id="gOo-TY-G1a"/>
+                    </constraints>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="2aE-6b-dxJ" secondAttribute="bottom" id="1Ff-8Q-BTd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4YH-QQ-KCm" secondAttribute="trailing" constant="16" id="TaS-yt-bay"/>
+                <constraint firstItem="qBE-gY-LF9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WBF-v1-kLU"/>
+                <constraint firstItem="qBE-gY-LF9" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="XKQ-rX-8Ji"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qBE-gY-LF9" secondAttribute="bottom" id="fRv-Vi-5Mg"/>
                 <constraint firstItem="2aE-6b-dxJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="n95-38-Wy7"/>
                 <constraint firstItem="4YH-QQ-KCm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sVy-Mf-m08"/>
                 <constraint firstItem="2aE-6b-dxJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="w1n-ZU-e4s"/>
@@ -54,6 +59,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="moreBtn" destination="qBE-gY-LF9" id="ZYK-Tj-cbh"/>
+                <outlet property="moreL" destination="4YH-QQ-KCm" id="7kJ-Sp-bOZ"/>
                 <outlet property="nameLabel" destination="2aE-6b-dxJ" id="fOP-Gq-RFr"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="-260"/>

@@ -13,7 +13,8 @@ class RootBHeaderView: UIView {
     @IBOutlet weak var searchBgView: UIView!
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
-            self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+//            self.pagerView.register(HDPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+            self.pagerView.register(UINib.init(nibName: "HDPagerViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
             self.pagerView.itemSize = .zero
             self.pagerView.automaticSlidingInterval = 2
             self.pagerView.transformer = FSPagerViewTransformer(type:.linear)
@@ -26,6 +27,11 @@ class RootBHeaderView: UIView {
         didSet {
             self.pageControl.contentHorizontalAlignment = .center
             self.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            self.pageControl.setImage(UIImage(named:"banner_icon_default"), for: .normal)
+            self.pageControl.setImage(UIImage(named:"banner_icon_pressed"), for: .selected)
+            self.pageControl.itemSpacing = 12
+            self.pageControl.interitemSpacing = 15
+
         }
     }
     

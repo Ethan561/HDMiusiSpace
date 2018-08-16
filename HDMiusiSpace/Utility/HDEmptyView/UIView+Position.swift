@@ -12,7 +12,7 @@ import Foundation
 extension UIView {
     
     //frame.origin.x
-    public var left: CGFloat {
+    public var ly_left: CGFloat {
         get {
             return self.frame.origin.x
         }
@@ -24,7 +24,7 @@ extension UIView {
     }
     
     //frame.origin.y
-    public var top: CGFloat {
+    public var ly_top: CGFloat {
         get {
             return self.frame.origin.y
         }
@@ -36,7 +36,7 @@ extension UIView {
     }
     
     //frame.origin.x + frame.size.width
-    public var right: CGFloat {
+    public var ly_right: CGFloat {
         get {
             return self.frame.origin.x + self.frame.size.width
         }
@@ -48,7 +48,7 @@ extension UIView {
     }
     
     //frame.origin.y + frame.size.height
-    public var bottom: CGFloat {
+    public var ly_bottom: CGFloat {
         get {
             return self.frame.origin.y + self.frame.size.height
         }
@@ -60,7 +60,7 @@ extension UIView {
     }
     
     //frame.size.width
-    public var width: CGFloat {
+    public var ly_width: CGFloat {
         get {
             return self.frame.size.width
         }
@@ -72,7 +72,7 @@ extension UIView {
     }
     
     //frame.size.height
-    public var height: CGFloat {
+    public var ly_height: CGFloat {
         get {
             return self.frame.size.height
         }
@@ -84,7 +84,7 @@ extension UIView {
     }
     
     //center.x
-    public var centerX: CGFloat {
+    public var ly_centerX: CGFloat {
         get {
             return self.center.x
         }
@@ -94,7 +94,7 @@ extension UIView {
     }
     
     //center.y
-    public var centerY: CGFloat {
+    public var ly_centerY: CGFloat {
         get {
             return self.center.y
         }
@@ -104,7 +104,7 @@ extension UIView {
     }
     
     //frame.origin
-    public var origin: CGPoint {
+    public var ly_origin: CGPoint {
         get {
             return self.frame.origin
         }
@@ -116,7 +116,7 @@ extension UIView {
     }
     
     //frame.size
-    public var size: CGSize {
+    public var ly_size: CGSize {
         get {
             return self.frame.size
         }
@@ -128,14 +128,14 @@ extension UIView {
     }
     
     //maxX
-    public var maxX: CGFloat {
+    public var ly_maxX: CGFloat {
         get {
             return self.frame.origin.x + self.frame.size.width
         }
     }
     
     //maxY
-    public var maxY: CGFloat {
+    public var ly_maxY: CGFloat {
         get {
             return self.frame.origin.y + self.frame.size.height
         }

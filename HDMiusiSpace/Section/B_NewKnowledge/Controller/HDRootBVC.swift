@@ -7,26 +7,28 @@
 //
 
 import UIKit
+import Kingfisher
 
 let PageMenuH = 45
-let HeaderViewH = (ScreenWidth*200/335.0+30)
+let HeaderViewH = (ScreenWidth*200/375.0)+100
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
-
+    
     @IBOutlet weak var myTableView: RootBMainTableView!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
     
     let titleArray:Array = ["推荐", "最新", "轻听随看", "艺术", "亲子"]
     var tabHeader: RootBHeaderView!
-    
+    var bannerArr =  [BbannerModel]()
+
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: PageMenuH), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
-  
+        
         page.setItems(titleArray, selectedItemIndex: 0)
         page.delegate = self
         page.itemTitleFont = UIFont.systemFont(ofSize: 16)
-        
+        page.dividingLine.isHidden = true
         page.selectedItemTitleColor = UIColor.HexColor(0x333333)
         page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
         page.tracker.backgroundColor = UIColor.clear
@@ -39,7 +41,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     lazy var contentScrollView: UIScrollView =  {
         let scrollView = UIScrollView.init()
-        scrollView.frame  = CGRect.init(x: 0, y: 15, width: ScreenWidth, height:  ScreenHeight-CGFloat(kTopHeight))
+        scrollView.frame  = CGRect.init(x: 0, y: 15, width: ScreenWidth, height:  ScreenHeight)
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.isScrollEnabled = true
@@ -52,9 +54,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     }()
     
     var childVCScrollView: UIScrollView?
-
+    
     //
-    fileprivate let imageNames = ["test1","test1","test1"]
+    fileprivate let imageNames = ["qzhd_img1","qzhd_img1","qzhd_img1"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +66,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         setupViews()
         //
         addContentSubViewsWithArr(titleArr: titleArray)
+        dataRequestForBanner()
+        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,7 +83,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
     }
     
     func setupViews() {
@@ -103,6 +105,32 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    func dataRequestForBanner()  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getNewKnowledgeBanner(), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+
+            let jsonDecoder = JSONDecoder()
+            let dataA:Array<Dictionary<String,Any>> = dic?["data"] as! Array<Dictionary>
+            
+            if dataA.count > 0  {
+                for  tempDic in dataA {
+                    let dataDic = tempDic as Dictionary<String, Any>
+                    //JSON转Model：
+                    let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
+                    let model:BbannerModel = try! jsonDecoder.decode(BbannerModel.self, from: dataA)
+                    self.bannerArr.append(model)
+                }
+                self.tabHeader.pagerView.reloadData()
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -123,17 +151,26 @@ extension HDRootBVC {
                 let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
                 self.addChildViewController(baseVC)
                 self.contentScrollView.addSubview(self.childViewControllers[0].view)
+                baseVC.showListenView.bind { [weak self] show in
+                    if show {
+                        guard let vc = self else {
+                            return
+                        }
+                        vc.pageMenu(vc.pageMenu, itemSelectedFrom: 0, to: 2)
+                        vc.pageMenu.selectedItemIndex = 2
+                    }
+                }
             case 1://最新
-                let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
+                let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 self.addChildViewController(baseVC)
             case 2://轻听随看
                 let baseVC:HDLY_Listen_SubVC = HDLY_Listen_SubVC.init()
                 self.addChildViewController(baseVC)
             case 3://艺术
-                let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
+                let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 self.addChildViewController(baseVC)
             case 4://亲子
-                let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
+                let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 self.addChildViewController(baseVC)
             default: break
                 
@@ -202,7 +239,6 @@ extension HDRootBVC {
         tableView.deselectRow(at: indexPath, animated: true)
 
     }
-
 }
 
 //滑动显示控制
@@ -225,7 +261,7 @@ extension HDRootBVC {
     
     //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        LOG("*****:\(scrollView.contentOffset.y)")
+//        LOG("*****:\(scrollView.contentOffset.y)")
         if self.myTableView == scrollView {
             if self.childVCScrollView != nil {
                 if self.childVCScrollView!.contentOffset.y > 0 {
@@ -248,15 +284,22 @@ extension HDRootBVC {
     // MARK:- FSPagerView DataSource
     
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return self.imageNames.count
+        return self.bannerArr.count
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.image = UIImage(named: self.imageNames[index])
-        cell.imageView?.contentMode = .scaleAspectFill
-        cell.imageView?.clipsToBounds = true
-        cell.textLabel?.text = index.description+index.description
+        let cell:HDPagerViewCell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index) as! HDPagerViewCell
+        let model = bannerArr[index]
+        if  model.img != nil  {
+            cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: "banner_img_1"), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+        cell.titleL.text = model.title
+        cell.authorL.text = model.des
+        cell.countL.text = "\(String(describing: model.views?.string))人在学"
+//        cell.imgV?.image = UIImage(named: self.imageNames[index])
+//        cell.imgV?.contentMode = .scaleAspectFill
+//        cell.imgV?.clipsToBounds = true
+//        cell.textLabel?.text = index.description+index.description
         return cell
     }
     

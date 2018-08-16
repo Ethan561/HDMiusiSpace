@@ -30,4 +30,8 @@ pod 'UMengUShare/Social/ReducedSina'
 # 集成新浪微博(完整版25.3M)
 # pod ‘UMengUShare/Social/Sina'
 
+pod 'ZFPlayer', '~> 3.0'
+pod 'ZFPlayer/ControlView', '~> 3.0'
+pod 'ZFPlayer/AVPlayer', '~> 3.0'
+
  end

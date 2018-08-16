@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HDPagerViewCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="278" height="169"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="278" height="169"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vg1-Aa-Yjh">
+                        <rect key="frame" x="0.0" y="0.0" width="278" height="169"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4cJ-rA-UzH">
+                                <rect key="frame" x="0.0" y="0.0" width="278" height="169"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彭林 清华教授" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbA-K1-ASp">
+                                <rect key="frame" x="45" y="76.5" width="188" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="oPj-zt-rty"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="660人在学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzT-4x-dXn">
+                                <rect key="frame" x="69" y="109" width="179" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="yEf-1U-04w"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xinzhi_icon_video_white_default" translatesAutoresizingMaskIntoConstraints="NO" id="arz-j6-eYI">
+                                <rect key="frame" x="45" y="112.5" width="12" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="arz-j6-eYI" secondAttribute="height" multiplier="6:5" id="I0b-WD-LTt"/>
+                                    <constraint firstAttribute="width" constant="12" id="rks-y7-OEt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文物精品与文化中国" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huG-bd-r3d">
+                                <rect key="frame" x="45" y="47" width="225" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RNc-Zz-m1b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4cJ-rA-UzH" firstAttribute="top" secondItem="vg1-Aa-Yjh" secondAttribute="top" id="2he-40-di6"/>
+                            <constraint firstItem="RbA-K1-ASp" firstAttribute="top" secondItem="huG-bd-r3d" secondAttribute="bottom" constant="8" id="5qo-tH-cmW"/>
+                            <constraint firstAttribute="trailing" secondItem="RbA-K1-ASp" secondAttribute="trailing" constant="45" id="Bjf-jq-mED"/>
+                            <constraint firstAttribute="trailing" secondItem="bzT-4x-dXn" secondAttribute="trailing" constant="30" id="Fjs-Mk-2w0"/>
+                            <constraint firstItem="bzT-4x-dXn" firstAttribute="leading" secondItem="arz-j6-eYI" secondAttribute="trailing" constant="12" id="GOM-9Q-H6e"/>
+                            <constraint firstItem="huG-bd-r3d" firstAttribute="leading" secondItem="RbA-K1-ASp" secondAttribute="leading" id="KeY-ra-vCZ"/>
+                            <constraint firstItem="bzT-4x-dXn" firstAttribute="centerY" secondItem="arz-j6-eYI" secondAttribute="centerY" id="OiO-xX-3s9"/>
+                            <constraint firstAttribute="trailing" secondItem="4cJ-rA-UzH" secondAttribute="trailing" id="SJa-WE-yvL"/>
+                            <constraint firstAttribute="bottom" secondItem="4cJ-rA-UzH" secondAttribute="bottom" id="bHy-NG-6r9"/>
+                            <constraint firstItem="arz-j6-eYI" firstAttribute="top" secondItem="RbA-K1-ASp" secondAttribute="bottom" constant="20" id="cyp-IJ-iJi"/>
+                            <constraint firstItem="RbA-K1-ASp" firstAttribute="centerY" secondItem="vg1-Aa-Yjh" secondAttribute="centerY" id="gcg-Xe-oUv"/>
+                            <constraint firstItem="RbA-K1-ASp" firstAttribute="leading" secondItem="vg1-Aa-Yjh" secondAttribute="leading" constant="45" id="hZN-07-gsI"/>
+                            <constraint firstAttribute="trailing" secondItem="huG-bd-r3d" secondAttribute="trailing" constant="8" id="mfk-jj-ddh"/>
+                            <constraint firstItem="4cJ-rA-UzH" firstAttribute="leading" secondItem="vg1-Aa-Yjh" secondAttribute="leading" id="sfm-ef-fDI"/>
+                            <constraint firstItem="arz-j6-eYI" firstAttribute="leading" secondItem="RbA-K1-ASp" secondAttribute="leading" id="w5V-HT-EM7"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vg1-Aa-Yjh" secondAttribute="bottom" id="VFd-sk-7vc"/>
+                <constraint firstItem="vg1-Aa-Yjh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aKO-ra-3L8"/>
+                <constraint firstItem="vg1-Aa-Yjh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dNX-em-yb7"/>
+                <constraint firstAttribute="trailing" secondItem="vg1-Aa-Yjh" secondAttribute="trailing" id="nt7-UU-QXP"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="278" height="169"/>
+            <connections>
+                <outlet property="authorL" destination="RbA-K1-ASp" id="GDz-T8-3gG"/>
+                <outlet property="bgView" destination="vg1-Aa-Yjh" id="lNX-b4-knW"/>
+                <outlet property="countL" destination="bzT-4x-dXn" id="pck-bQ-8Eq"/>
+                <outlet property="imgV" destination="4cJ-rA-UzH" id="u2z-Zk-Hbe"/>
+                <outlet property="titleL" destination="huG-bd-r3d" id="Bqv-xg-RT7"/>
+            </connections>
+            <point key="canvasLocation" x="148" y="113.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="xinzhi_icon_video_white_default" width="12" height="10"/>
+    </resources>
+</document>

@@ -57,12 +57,12 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-LJ-JYR" customClass="FSPagerView" customModule="HDMiusiSpace" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="61" width="375" height="209"/>
+                    <rect key="frame" x="0.0" y="61" width="375" height="186"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAO-Ca-vOY" customClass="FSPageControl" customModule="HDMiusiSpace" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="255" width="375" height="30"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="0.083047945205479451" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="3mx-Ao-QIu"/>
                     </constraints>
@@ -70,12 +70,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="v3t-Do-1gB" firstAttribute="bottom" secondItem="Xqi-LJ-JYR" secondAttribute="bottom" constant="15" id="26I-Oq-CIu"/>
                 <constraint firstItem="v3t-Do-1gB" firstAttribute="bottom" secondItem="RAO-Ca-vOY" secondAttribute="bottom" id="4o8-qB-TGd"/>
                 <constraint firstItem="Xqi-LJ-JYR" firstAttribute="top" secondItem="oHf-gX-T0b" secondAttribute="bottom" constant="15" id="Kpo-Nr-zGV"/>
                 <constraint firstAttribute="trailing" secondItem="oHf-gX-T0b" secondAttribute="trailing" constant="20" id="OzN-h8-zSA"/>
                 <constraint firstItem="oHf-gX-T0b" firstAttribute="leading" secondItem="WPU-jP-qfA" secondAttribute="leading" constant="20" id="cIY-N6-B2O"/>
                 <constraint firstItem="v3t-Do-1gB" firstAttribute="trailing" secondItem="RAO-Ca-vOY" secondAttribute="trailing" id="eYb-7T-912"/>
+                <constraint firstItem="RAO-Ca-vOY" firstAttribute="top" secondItem="Xqi-LJ-JYR" secondAttribute="bottom" constant="8" id="fub-hP-NkZ"/>
                 <constraint firstItem="Xqi-LJ-JYR" firstAttribute="leading" secondItem="v3t-Do-1gB" secondAttribute="leading" id="lX3-LQ-7Ay"/>
                 <constraint firstItem="oHf-gX-T0b" firstAttribute="top" secondItem="WPU-jP-qfA" secondAttribute="top" constant="10" id="njZ-hF-2Gi"/>
                 <constraint firstItem="Xqi-LJ-JYR" firstAttribute="trailing" secondItem="v3t-Do-1gB" secondAttribute="trailing" id="u7s-Dh-7jr"/>

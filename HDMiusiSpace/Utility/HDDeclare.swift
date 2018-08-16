@@ -254,6 +254,28 @@ extension HDDeclare {
         return imageData!
         
     }
+    
+    //get Sign Key 
+    class func getSignKey(_ params: Dictionary<String, Any>) -> String {
+        var signKey = ""
+        let paramsSort = params.sorted { (str1, str2) -> Bool in
+            return str1.0 < str2.0
+        }
+        for (key,value) in paramsSort {
+            let tempStr = "\(key)=\(value)&"
+            signKey += tempStr
+        }
+//        LOG("signKey:\(signKey)")
+        signKey.removeLast()
+//        LOG("signKey_removeLast:\(signKey)")
+        let signKey1:String = MD5(signKey)+HengDaSignKey
+        return MD5(signKey1)
+    }
+    /*
+     var exc = "Steve"
+     exc.uppercased()  //转大写
+     exc.lowercased()  // 转小写
+     */
 }
 
 

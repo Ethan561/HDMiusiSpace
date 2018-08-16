@@ -12,6 +12,7 @@ class RecommendHeader: UIView {
 
     @IBOutlet weak var imgV: UIImageView!
     
+    @IBOutlet weak var moreL: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
     

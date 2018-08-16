@@ -7,6 +7,11 @@
 #import <UShareUI/UShareUI.h>
 #import <Bugly/Bugly.h>
 #import "SPPageMenu.h"
+#import "NSString+hash.h"
+
+#import <ZFPlayer/ZFPlayer.h>
+#import <ZFPlayer/ZFAVPlayerManager.h>
+#import <ZFPlayer/ZFPlayerControlView.h>
 
 
 

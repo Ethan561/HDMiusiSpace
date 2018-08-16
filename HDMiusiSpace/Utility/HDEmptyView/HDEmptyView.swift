@@ -317,7 +317,7 @@ extension HDEmptyView {
         self.promptImageView.frame = CGRect.init(x: 0, y: 0, width: imgViewWidth, height: imgViewHeight)
         self.promptImageView.center = CGPoint.init(x: self.centerX, y: self.centerY-imgViewHeight*0.5)
         contentWidth = self.promptImageView.width
-        contentHeight = self.promptImageView.maxY
+        contentHeight = self.promptImageView.ly_maxY
         
     }
     //titleLabel
@@ -330,7 +330,7 @@ extension HDEmptyView {
         titleLabel.textColor = titleLabTextColor
         titleLabel.text = self._titleStr! as String
         contentWidth = (Float(width) > Float(contentWidth!)) ? width : contentWidth
-        contentHeight = titleLabel.maxY
+        contentHeight = titleLabel.ly_maxY
         
     }
     
@@ -349,7 +349,7 @@ extension HDEmptyView {
         detailLabel.text = self._detailStr! as String
         detailLabel.textColor = detailLabTextColor
         contentWidth = (Float(width) > Float(contentWidth!)) ? width : contentWidth
-        contentHeight = detailLabel.maxY
+        contentHeight = detailLabel.ly_maxY
         
     }
     

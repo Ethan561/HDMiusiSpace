@@ -23,18 +23,19 @@ class HDLY_Listen_SubVC: UIViewController,UICollectionViewDelegate,UICollectionV
         let layout = UICollectionViewFlowLayout()
         let itemW = (ScreenWidth-20*3)/2.0
         let itemH = itemW*232/155.0
-
+        
         layout.itemSize = CGSize(width: itemW, height: itemH)
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
 
-        collectionView.backgroundColor = UIColor.gray
+        collectionView.backgroundColor = UIColor.white
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(self.collectionView)
         
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(UINib.init(nibName: HDLY_Listen_CollectionCell.className, bundle: nil), forCellWithReuseIdentifier: HDLY_Listen_CollectionCell.className)
+        
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
         }else {
@@ -78,10 +79,8 @@ class HDLY_Listen_SubVC: UIViewController,UICollectionViewDelegate,UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        let imgV = UIImageView.init(frame: cell.bounds)
-        imgV.image = UIImage.init(named: "test2")
-        cell.addSubview(imgV)
+        let cell:HDLY_Listen_CollectionCell = HDLY_Listen_CollectionCell.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
+
         
         return cell
     }
@@ -94,7 +93,7 @@ class HDLY_Listen_SubVC: UIViewController,UICollectionViewDelegate,UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemW = (ScreenWidth-20*3)/2.0
-        let itemH = itemW*232/155.0
+        let itemH = itemW*232/155.0+60
         
         return CGSize.init(width: itemW, height: itemH)
     }

@@ -8,8 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		D614DFA6211EC75900A4D459 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA5211EC75900A4D459 /* MD5.swift */; };
+		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
+		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
+		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6699FFC21198714006339D3 /* RootBHeaderView.swift */; };
 		D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6699FFE2119871C006339D3 /* RootBHeaderView.xib */; };
+		D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */; };
+		D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */; };
+		D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */; };
+		D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */; };
+		D670D3822125092D0064750A /* HDLY_ListenDes_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */; };
 		D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */; };
 		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
 		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
@@ -20,6 +29,24 @@
 		D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F754211A96A700A9EE57 /* RecommendHeader.swift */; };
 		D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D671F756211A96BC00A9EE57 /* RecommendHeader.xib */; };
 		D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F758211A98A600A9EE57 /* UIView+Nib.swift */; };
+		D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6724623211D1FE300239109 /* HDPagerViewCell.swift */; };
+		D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724624211D1FE300239109 /* HDPagerViewCell.xib */; };
+		D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6724627211D5C8F00239109 /* HDLY_Recommend_Cell1.swift */; };
+		D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */; };
+		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
+		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
+		D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */; };
+		D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */; };
+		D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */; };
+		D6884E5E211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */; };
+		D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */; };
+		D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */; };
+		D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */; };
+		D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E64211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib */; };
+		D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */; };
+		D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */; };
+		D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */; };
+		D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */; };
 		D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E225211C13CF00E1E893 /* FSPagerView.swift */; };
 		D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E226211C13CF00E1E893 /* FSPageViewTransformer.swift */; };
 		D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E227211C13CF00E1E893 /* FSPagerViewCell.swift */; };
@@ -29,6 +56,8 @@
 		D6A1E232211C13CF00E1E893 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */; };
 		D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6A1E233211C275F00E1E893 /* builtIn.bundle */; };
 		D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E236211C299E00E1E893 /* TStrInt.swift */; };
+		D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */; };
+		D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */; };
 		D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */; };
 		D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC152117FA3A007C8E56 /* Main.storyboard */; };
 		D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC182117FA3A007C8E56 /* Assets.xcassets */; };
@@ -54,14 +83,10 @@
 		D6C9FC6C21181F54007C8E56 /* NSString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC6321181F54007C8E56 /* NSString+Extension.swift */; };
 		D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC6421181F54007C8E56 /* JudgeNumbers.swift */; };
 		D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */; };
-		D6C9FC8521181FD1007C8E56 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7121181FD1007C8E56 /* HDItemAPI.swift */; };
 		D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7221181FD1007C8E56 /* HDAlert.swift */; };
-		D6C9FC8721181FD1007C8E56 /* HD_ZQ_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7321181FD1007C8E56 /* HD_ZQ_API.swift */; };
 		D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7421181FD1007C8E56 /* HDLoadingView.swift */; };
-		D6C9FC8921181FD1007C8E56 /* HD_HSP_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7521181FD1007C8E56 /* HD_HSP_API.swift */; };
 		D6C9FC8A21181FD1007C8E56 /* HDCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7621181FD1007C8E56 /* HDCache.swift */; };
 		D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7721181FD1007C8E56 /* HD_LY_NetHelper.swift */; };
-		D6C9FC8C21181FD1007C8E56 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7821181FD1007C8E56 /* HD_LY_API.swift */; };
 		D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC7921181FD1007C8E56 /* HDLoadingView.xib */; };
 		D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7B21181FD1007C8E56 /* NSObject+HDTopVC.swift */; };
 		D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC7C21181FD1007C8E56 /* HDFloatingButtonView.swift */; };
@@ -124,8 +149,19 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		D614DFA5211EC75900A4D459 /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
+		D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemAPI.swift; sourceTree = "<group>"; };
+		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
+		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D6699FFC21198714006339D3 /* RootBHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBHeaderView.swift; sourceTree = "<group>"; };
 		D6699FFE2119871C006339D3 /* RootBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootBHeaderView.xib; sourceTree = "<group>"; };
+		D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewKnowledgeModel.swift; sourceTree = "<group>"; };
+		D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSectionCell.swift; sourceTree = "<group>"; };
+		D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendSectionCell.xib; sourceTree = "<group>"; };
+		D66C7ABD212420DF00B34221 /* ZFPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZFPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RecmdMore_VC.swift; sourceTree = "<group>"; };
+		D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenDes_VC.swift; sourceTree = "<group>"; };
 		D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBMainTableView.swift; sourceTree = "<group>"; };
 		D671F745211A871D00A9EE57 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -137,6 +173,24 @@
 		D671F754211A96A700A9EE57 /* RecommendHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHeader.swift; sourceTree = "<group>"; };
 		D671F756211A96BC00A9EE57 /* RecommendHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendHeader.xib; sourceTree = "<group>"; };
 		D671F758211A98A600A9EE57 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		D6724623211D1FE300239109 /* HDPagerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPagerViewCell.swift; sourceTree = "<group>"; };
+		D6724624211D1FE300239109 /* HDPagerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDPagerViewCell.xib; sourceTree = "<group>"; };
+		D6724627211D5C8F00239109 /* HDLY_Recommend_Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell1.swift; sourceTree = "<group>"; };
+		D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell1.xib; sourceTree = "<group>"; };
+		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
+		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
+		D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_Cell1.swift; sourceTree = "<group>"; };
+		D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Kids_Cell1.xib; sourceTree = "<group>"; };
+		D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_Cell2.swift; sourceTree = "<group>"; };
+		D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Kids_Cell2.xib; sourceTree = "<group>"; };
+		D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Listen_CollectionCell.swift; sourceTree = "<group>"; };
+		D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Listen_CollectionCell.xib; sourceTree = "<group>"; };
+		D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Topic_CollectionCell.swift; sourceTree = "<group>"; };
+		D6884E64211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Topic_CollectionCell.xib; sourceTree = "<group>"; };
+		D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Listen_Cell.swift; sourceTree = "<group>"; };
+		D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Listen_Cell.xib; sourceTree = "<group>"; };
+		D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Topic_Cell.swift; sourceTree = "<group>"; };
+		D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Topic_Cell.xib; sourceTree = "<group>"; };
 		D6A1E225211C13CF00E1E893 /* FSPagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
 		D6A1E226211C13CF00E1E893 /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		D6A1E227211C13CF00E1E893 /* FSPagerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +200,8 @@
 		D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		D6A1E233211C275F00E1E893 /* builtIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = builtIn.bundle; sourceTree = "<group>"; };
 		D6A1E236211C299E00E1E893 /* TStrInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TStrInt.swift; sourceTree = "<group>"; };
+		D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseDes_VC.swift; sourceTree = "<group>"; };
+		D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_VC.swift; sourceTree = "<group>"; };
 		D6C9FC0E2117FA3A007C8E56 /* HDMiusiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HDMiusiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6C9FC162117FA3A007C8E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -177,14 +233,10 @@
 		D6C9FC6321181F54007C8E56 /* NSString+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Extension.swift"; sourceTree = "<group>"; };
 		D6C9FC6421181F54007C8E56 /* JudgeNumbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgeNumbers.swift; sourceTree = "<group>"; };
 		D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDDeclare.swift; sourceTree = "<group>"; };
-		D6C9FC7121181FD1007C8E56 /* HDItemAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemAPI.swift; sourceTree = "<group>"; };
 		D6C9FC7221181FD1007C8E56 /* HDAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDAlert.swift; sourceTree = "<group>"; };
-		D6C9FC7321181FD1007C8E56 /* HD_ZQ_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HD_ZQ_API.swift; sourceTree = "<group>"; };
 		D6C9FC7421181FD1007C8E56 /* HDLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLoadingView.swift; sourceTree = "<group>"; };
-		D6C9FC7521181FD1007C8E56 /* HD_HSP_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HD_HSP_API.swift; sourceTree = "<group>"; };
 		D6C9FC7621181FD1007C8E56 /* HDCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDCache.swift; sourceTree = "<group>"; };
 		D6C9FC7721181FD1007C8E56 /* HD_LY_NetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HD_LY_NetHelper.swift; sourceTree = "<group>"; };
-		D6C9FC7821181FD1007C8E56 /* HD_LY_API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
 		D6C9FC7921181FD1007C8E56 /* HDLoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDLoadingView.xib; sourceTree = "<group>"; };
 		D6C9FC7B21181FD1007C8E56 /* NSObject+HDTopVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+HDTopVC.swift"; sourceTree = "<group>"; };
 		D6C9FC7C21181FD1007C8E56 /* HDFloatingButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDFloatingButtonView.swift; sourceTree = "<group>"; };
@@ -258,6 +310,7 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D66C7ABD212420DF00B34221 /* ZFPlayer.framework */,
 				125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */,
 			);
 			name = Frameworks;
@@ -270,6 +323,23 @@
 				567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D614DFA7211EC9E800A4D459 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D614DFAC211EDB9500A4D459 /* MD5 */ = {
+			isa = PBXGroup;
+			children = (
+				D614DFAD211EDB9500A4D459 /* NSString+Hash.m */,
+				D614DFAE211EDB9500A4D459 /* NSString+Hash.h */,
+			);
+			path = MD5;
 			sourceTree = "<group>";
 		};
 		D671F744211A871D00A9EE57 /* SPPageMenu */ = {
@@ -298,6 +368,8 @@
 		D6A1E238211C2D3300E1E893 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D614DFAC211EDB9500A4D459 /* MD5 */,
+				D614DFA5211EC75900A4D459 /* MD5.swift */,
 				D6A1E236211C299E00E1E893 /* TStrInt.swift */,
 				D6C9FC962118202A007C8E56 /* Bindable.swift */,
 			);
@@ -329,6 +401,7 @@
 		D6C9FC102117FA3A007C8E56 /* HDMiusiSpace */ = {
 			isa = PBXGroup;
 			children = (
+				D614DFA7211EC9E800A4D459 /* API */,
 				D6C9FC98211825DC007C8E56 /* Section */,
 				D6C9FC6E21181FD1007C8E56 /* Utility */,
 				D6C9FC4521181F28007C8E56 /* Public */,
@@ -468,15 +541,12 @@
 		D6C9FC7021181FD1007C8E56 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FC7121181FD1007C8E56 /* HDItemAPI.swift */,
+				D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */,
 				D6C9FC7221181FD1007C8E56 /* HDAlert.swift */,
-				D6C9FC7321181FD1007C8E56 /* HD_ZQ_API.swift */,
 				D6C9FC7421181FD1007C8E56 /* HDLoadingView.swift */,
-				D6C9FC7521181FD1007C8E56 /* HD_HSP_API.swift */,
+				D6C9FC7921181FD1007C8E56 /* HDLoadingView.xib */,
 				D6C9FC7621181FD1007C8E56 /* HDCache.swift */,
 				D6C9FC7721181FD1007C8E56 /* HD_LY_NetHelper.swift */,
-				D6C9FC7821181FD1007C8E56 /* HD_LY_API.swift */,
-				D6C9FC7921181FD1007C8E56 /* HDLoadingView.xib */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -597,10 +667,14 @@
 			children = (
 				D6C9FCC7211834FF007C8E56 /* HDRootBVC.swift */,
 				D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */,
-				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
 				D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */,
 				D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */,
+				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
 				D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */,
+				D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */,
+				D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */,
+				D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */,
+				D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -754,6 +828,26 @@
 				D6699FFE2119871C006339D3 /* RootBHeaderView.xib */,
 				D671F754211A96A700A9EE57 /* RecommendHeader.swift */,
 				D671F756211A96BC00A9EE57 /* RecommendHeader.xib */,
+				D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */,
+				D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */,
+				D6724623211D1FE300239109 /* HDPagerViewCell.swift */,
+				D6724624211D1FE300239109 /* HDPagerViewCell.xib */,
+				D6724627211D5C8F00239109 /* HDLY_Recommend_Cell1.swift */,
+				D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */,
+				D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */,
+				D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */,
+				D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */,
+				D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */,
+				D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */,
+				D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */,
+				D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */,
+				D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */,
+				D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */,
+				D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */,
+				D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */,
+				D6884E64211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib */,
+				D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */,
+				D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -762,6 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FD002118487B007C8E56 /* .gitignore */,
+				D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -901,9 +996,12 @@
 				D6C9FCF82118486A007C8E56 /* .gitignore in Resources */,
 				D6C9FCF92118486A007C8E56 /* .gitignore in Resources */,
 				D6C9FCE821184840007C8E56 /* .gitignore in Resources */,
+				D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */,
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
+				D6884E5E211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib in Resources */,
 				D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */,
 				D6C9FD012118487B007C8E56 /* .gitignore in Resources */,
+				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D6C9FCBE211825DC007C8E56 /* .gitignore in Resources */,
 				D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */,
 				D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */,
@@ -911,9 +1009,14 @@
 				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
 				D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
+				D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
+				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
+				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
+				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
+				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
@@ -924,8 +1027,10 @@
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
 				D6C9FCE721184840007C8E56 /* .gitignore in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
+				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
 				D6C9FC5A21181F28007C8E56 /* .gitignore in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
+				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
 				D6C9FCF02118485B007C8E56 /* .gitignore in Resources */,
 				D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */,
 				D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */,
@@ -1003,6 +1108,7 @@
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ZFPlayer/ZFPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1016,6 +1122,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1031,15 +1138,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
+				D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */,
 				D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
-				D6C9FC8C21181FD1007C8E56 /* HD_LY_API.swift in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
-				D6C9FC8721181FD1007C8E56 /* HD_ZQ_API.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
 				D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */,
+				D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */,
+				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
+				D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
@@ -1051,14 +1160,18 @@
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
+				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
+				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
+				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
-				D6C9FC8921181FD1007C8E56 /* HD_HSP_API.swift in Sources */,
+				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
+				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
 				D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
@@ -1066,17 +1179,22 @@
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
+				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
+				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
 				D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */,
+				D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */,
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
+				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
-				D6C9FC8521181FD1007C8E56 /* HDItemAPI.swift in Sources */,
+				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
+				D670D3822125092D0064750A /* HDLY_ListenDes_VC.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
@@ -1086,11 +1204,15 @@
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
+				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
+				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,
+				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
+				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,10 +1392,7 @@
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c11307e9-910a-45cd-b996-dc7d248dd7f3";
@@ -1296,10 +1415,7 @@
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c9d9fce-703c-4d08-8ef0-d52b8450ec6f";
@@ -1318,11 +1434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1339,11 +1451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1359,11 +1467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1379,11 +1483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

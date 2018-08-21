@@ -17,8 +17,30 @@
 		D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */; };
 		D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */; };
 		D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */; };
+		D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C88272127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift */; };
+		D66C882A2127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66C88282127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib */; };
 		D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */; };
-		D670D3822125092D0064750A /* HDLY_ListenDes_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */; };
+		D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EDF91212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift */; };
+		D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66EDF92212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib */; };
+		D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EDF95212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift */; };
+		D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66EDF96212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib */; };
+		D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EDF9B212AB16A004DACE0 /* CourseListen.swift */; };
+		D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EDF9D212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift */; };
+		D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66EDF9F212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift */; };
+		D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66EDFA0212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib */; };
+		D670D384212575970064750A /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D383212575970064750A /* CourseModel.swift */; };
+		D670D389212585A00064750A /* HDLY_CourseTitle_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D387212585A00064750A /* HDLY_CourseTitle_Cell.swift */; };
+		D670D38A212585A00064750A /* HDLY_CourseTitle_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D388212585A00064750A /* HDLY_CourseTitle_Cell.xib */; };
+		D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D38B212585BA0064750A /* HDLY_CourseWeb_Cell.swift */; };
+		D670D38E212585BA0064750A /* HDLY_CourseWeb_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D38C212585BA0064750A /* HDLY_CourseWeb_Cell.xib */; };
+		D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D38F2125864C0064750A /* HDLY_CourseTeacher_Cell.swift */; };
+		D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D3902125864C0064750A /* HDLY_CourseTeacher_Cell.xib */; };
+		D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D393212586870064750A /* HDLY_CourseComment_Cell.swift */; };
+		D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D394212586870064750A /* HDLY_CourseComment_Cell.xib */; };
+		D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D397212586D10064750A /* HDLY_BuyNote_Cell.swift */; };
+		D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */; };
+		D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */; };
+		D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */; };
 		D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */; };
 		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
 		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
@@ -35,6 +57,18 @@
 		D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */; };
 		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
 		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
+		D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A472126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift */; };
+		D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A482126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib */; };
+		D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A4B2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift */; };
+		D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A4C2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib */; };
+		D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A512126A1360044EEAA /* HDLY_CourseList_SubVC3.swift */; };
+		D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A522126A1360044EEAA /* HDLY_CourseList_SubVC3.xib */; };
+		D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A552126A1460044EEAA /* HDLY_CourseList_SubVC4.swift */; };
+		D6866A582126A1460044EEAA /* HDLY_CourseList_SubVC4.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A562126A1460044EEAA /* HDLY_CourseList_SubVC4.xib */; };
+		D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A5A2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift */; };
+		D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A5B2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib */; };
+		D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A5E2126CA5C0044EEAA /* HDLY_CourseList_Header.swift */; };
+		D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A602126CA680044EEAA /* HDLY_CourseList_Header.xib */; };
 		D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */; };
 		D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */; };
 		D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */; };
@@ -160,8 +194,30 @@
 		D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSectionCell.swift; sourceTree = "<group>"; };
 		D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendSectionCell.xib; sourceTree = "<group>"; };
 		D66C7ABD212420DF00B34221 /* ZFPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ZFPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D66C88272127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenTags_CollectionCell.swift; sourceTree = "<group>"; };
+		D66C88282127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ListenTags_CollectionCell.xib; sourceTree = "<group>"; };
 		D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RecmdMore_VC.swift; sourceTree = "<group>"; };
-		D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenDes_VC.swift; sourceTree = "<group>"; };
+		D66EDF91212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LeaveMsg_Cell.swift; sourceTree = "<group>"; };
+		D66EDF92212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_LeaveMsg_Cell.xib; sourceTree = "<group>"; };
+		D66EDF95212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionNotice_Cell.swift; sourceTree = "<group>"; };
+		D66EDF96212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionNotice_Cell.xib; sourceTree = "<group>"; };
+		D66EDF9B212AB16A004DACE0 /* CourseListen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListen.swift; sourceTree = "<group>"; };
+		D66EDF9D212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenDetail_VC.swift; sourceTree = "<group>"; };
+		D66EDF9F212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenPlayer_Cell.swift; sourceTree = "<group>"; };
+		D66EDFA0212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ListenPlayer_Cell.xib; sourceTree = "<group>"; };
+		D670D383212575970064750A /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		D670D387212585A00064750A /* HDLY_CourseTitle_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseTitle_Cell.swift; sourceTree = "<group>"; };
+		D670D388212585A00064750A /* HDLY_CourseTitle_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseTitle_Cell.xib; sourceTree = "<group>"; };
+		D670D38B212585BA0064750A /* HDLY_CourseWeb_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseWeb_Cell.swift; sourceTree = "<group>"; };
+		D670D38C212585BA0064750A /* HDLY_CourseWeb_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseWeb_Cell.xib; sourceTree = "<group>"; };
+		D670D38F2125864C0064750A /* HDLY_CourseTeacher_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseTeacher_Cell.swift; sourceTree = "<group>"; };
+		D670D3902125864C0064750A /* HDLY_CourseTeacher_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseTeacher_Cell.xib; sourceTree = "<group>"; };
+		D670D393212586870064750A /* HDLY_CourseComment_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Cell.swift; sourceTree = "<group>"; };
+		D670D394212586870064750A /* HDLY_CourseComment_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseComment_Cell.xib; sourceTree = "<group>"; };
+		D670D397212586D10064750A /* HDLY_BuyNote_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_BuyNote_Cell.swift; sourceTree = "<group>"; };
+		D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_BuyNote_Cell.xib; sourceTree = "<group>"; };
+		D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseRecmd_Cell.swift; sourceTree = "<group>"; };
+		D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseRecmd_Cell.xib; sourceTree = "<group>"; };
 		D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBMainTableView.swift; sourceTree = "<group>"; };
 		D671F745211A871D00A9EE57 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -179,6 +235,18 @@
 		D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell1.xib; sourceTree = "<group>"; };
 		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
 		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
+		D6866A472126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC1.swift; sourceTree = "<group>"; };
+		D6866A482126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_SubVC1.xib; sourceTree = "<group>"; };
+		D6866A4B2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC2.swift; sourceTree = "<group>"; };
+		D6866A4C2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_SubVC2.xib; sourceTree = "<group>"; };
+		D6866A512126A1360044EEAA /* HDLY_CourseList_SubVC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC3.swift; sourceTree = "<group>"; };
+		D6866A522126A1360044EEAA /* HDLY_CourseList_SubVC3.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_SubVC3.xib; sourceTree = "<group>"; };
+		D6866A552126A1460044EEAA /* HDLY_CourseList_SubVC4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC4.swift; sourceTree = "<group>"; };
+		D6866A562126A1460044EEAA /* HDLY_CourseList_SubVC4.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_SubVC4.xib; sourceTree = "<group>"; };
+		D6866A5A2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_Cell.swift; sourceTree = "<group>"; };
+		D6866A5B2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_Cell.xib; sourceTree = "<group>"; };
+		D6866A5E2126CA5C0044EEAA /* HDLY_CourseList_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_Header.swift; sourceTree = "<group>"; };
+		D6866A602126CA680044EEAA /* HDLY_CourseList_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_Header.xib; sourceTree = "<group>"; };
 		D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_Cell1.swift; sourceTree = "<group>"; };
 		D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Kids_Cell1.xib; sourceTree = "<group>"; };
 		D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_Cell2.swift; sourceTree = "<group>"; };
@@ -342,6 +410,88 @@
 			path = MD5;
 			sourceTree = "<group>";
 		};
+		D66EDF8F212A4DE9004DACE0 /* HomePageSub */ = {
+			isa = PBXGroup;
+			children = (
+				D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */,
+				D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */,
+				D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */,
+				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
+				D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */,
+			);
+			path = HomePageSub;
+			sourceTree = "<group>";
+		};
+		D66EDF90212A4E1D004DACE0 /* CourseListSub */ = {
+			isa = PBXGroup;
+			children = (
+				D6866A472126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift */,
+				D6866A482126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib */,
+				D6866A4B2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift */,
+				D6866A4C2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib */,
+				D6866A512126A1360044EEAA /* HDLY_CourseList_SubVC3.swift */,
+				D6866A522126A1360044EEAA /* HDLY_CourseList_SubVC3.xib */,
+				D6866A552126A1460044EEAA /* HDLY_CourseList_SubVC4.swift */,
+				D6866A562126A1460044EEAA /* HDLY_CourseList_SubVC4.xib */,
+			);
+			path = CourseListSub;
+			sourceTree = "<group>";
+		};
+		D670D38521257BB40064750A /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */,
+				D6699FFC21198714006339D3 /* RootBHeaderView.swift */,
+				D6699FFE2119871C006339D3 /* RootBHeaderView.xib */,
+				D671F754211A96A700A9EE57 /* RecommendHeader.swift */,
+				D671F756211A96BC00A9EE57 /* RecommendHeader.xib */,
+				D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */,
+				D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */,
+				D6724623211D1FE300239109 /* HDPagerViewCell.swift */,
+				D6724624211D1FE300239109 /* HDPagerViewCell.xib */,
+				D6724627211D5C8F00239109 /* HDLY_Recommend_Cell1.swift */,
+				D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */,
+				D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */,
+				D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */,
+				D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */,
+				D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */,
+				D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */,
+				D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */,
+				D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */,
+				D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */,
+				D66C88272127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift */,
+				D66C88282127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib */,
+				D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */,
+				D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */,
+				D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */,
+				D6884E64211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib */,
+				D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */,
+				D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		D670D38621257C4A0064750A /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				D670D387212585A00064750A /* HDLY_CourseTitle_Cell.swift */,
+				D670D388212585A00064750A /* HDLY_CourseTitle_Cell.xib */,
+				D670D38B212585BA0064750A /* HDLY_CourseWeb_Cell.swift */,
+				D670D38C212585BA0064750A /* HDLY_CourseWeb_Cell.xib */,
+				D670D38F2125864C0064750A /* HDLY_CourseTeacher_Cell.swift */,
+				D670D3902125864C0064750A /* HDLY_CourseTeacher_Cell.xib */,
+				D670D393212586870064750A /* HDLY_CourseComment_Cell.swift */,
+				D670D394212586870064750A /* HDLY_CourseComment_Cell.xib */,
+				D670D397212586D10064750A /* HDLY_BuyNote_Cell.swift */,
+				D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */,
+				D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */,
+				D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */,
+				D66EDF9F212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift */,
+				D66EDFA0212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
 		D671F744211A871D00A9EE57 /* SPPageMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +499,21 @@
 				D671F746211A871D00A9EE57 /* SPPageMenu.h */,
 			);
 			path = SPPageMenu;
+			sourceTree = "<group>";
+		};
+		D6866A592126B1370044EEAA /* CourseList */ = {
+			isa = PBXGroup;
+			children = (
+				D6866A5A2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift */,
+				D6866A5B2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib */,
+				D6866A5E2126CA5C0044EEAA /* HDLY_CourseList_Header.swift */,
+				D6866A602126CA680044EEAA /* HDLY_CourseList_Header.xib */,
+				D66EDF91212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift */,
+				D66EDF92212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib */,
+				D66EDF95212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift */,
+				D66EDF96212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib */,
+			);
+			path = CourseList;
 			sourceTree = "<group>";
 		};
 		D6A1E224211C13CF00E1E893 /* FSPagerView */ = {
@@ -666,15 +831,12 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCC7211834FF007C8E56 /* HDRootBVC.swift */,
-				D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */,
-				D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */,
-				D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */,
-				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
-				D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */,
+				D66EDF8F212A4DE9004DACE0 /* HomePageSub */,
 				D66D002C212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift */,
 				D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */,
 				D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */,
-				D670D3812125092D0064750A /* HDLY_ListenDes_VC.swift */,
+				D66EDF9D212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift */,
+				D66EDF90212A4E1D004DACE0 /* CourseListSub */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -822,32 +984,10 @@
 		D6C9FCFD2118487B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D6866A592126B1370044EEAA /* CourseList */,
+				D670D38621257C4A0064750A /* Course */,
+				D670D38521257BB40064750A /* Recommend */,
 				D6C9FCFE2118487B007C8E56 /* .gitignore */,
-				D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */,
-				D6699FFC21198714006339D3 /* RootBHeaderView.swift */,
-				D6699FFE2119871C006339D3 /* RootBHeaderView.xib */,
-				D671F754211A96A700A9EE57 /* RecommendHeader.swift */,
-				D671F756211A96BC00A9EE57 /* RecommendHeader.xib */,
-				D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */,
-				D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */,
-				D6724623211D1FE300239109 /* HDPagerViewCell.swift */,
-				D6724624211D1FE300239109 /* HDPagerViewCell.xib */,
-				D6724627211D5C8F00239109 /* HDLY_Recommend_Cell1.swift */,
-				D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */,
-				D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */,
-				D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */,
-				D6884E57211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift */,
-				D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */,
-				D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */,
-				D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */,
-				D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */,
-				D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */,
-				D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */,
-				D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */,
-				D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */,
-				D6884E64211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib */,
-				D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */,
-				D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -857,6 +997,8 @@
 			children = (
 				D6C9FD002118487B007C8E56 /* .gitignore */,
 				D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */,
+				D670D383212575970064750A /* CourseModel.swift */,
+				D66EDF9B212AB16A004DACE0 /* CourseListen.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -994,24 +1136,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C9FCF82118486A007C8E56 /* .gitignore in Resources */,
+				D66C882A2127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib in Resources */,
 				D6C9FCF92118486A007C8E56 /* .gitignore in Resources */,
 				D6C9FCE821184840007C8E56 /* .gitignore in Resources */,
 				D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */,
+				D670D38A212585A00064750A /* HDLY_CourseTitle_Cell.xib in Resources */,
+				D6866A582126A1460044EEAA /* HDLY_CourseList_SubVC4.xib in Resources */,
+				D670D38E212585BA0064750A /* HDLY_CourseWeb_Cell.xib in Resources */,
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
+				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
 				D6884E5E211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib in Resources */,
 				D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */,
 				D6C9FD012118487B007C8E56 /* .gitignore in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
+				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
 				D6C9FCBE211825DC007C8E56 /* .gitignore in Resources */,
 				D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */,
+				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
+				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
 				D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */,
 				D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */,
 				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
+				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */,
+				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */,
+				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
+				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
+				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
@@ -1019,6 +1174,7 @@
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
+				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
 				D6C9FCE621184840007C8E56 /* .gitignore in Resources */,
@@ -1028,6 +1184,8 @@
 				D6C9FCE721184840007C8E56 /* .gitignore in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
+				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
+				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
 				D6C9FC5A21181F28007C8E56 /* .gitignore in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
@@ -1139,17 +1297,20 @@
 			files = (
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
 				D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */,
+				D670D389212585A00064750A /* HDLY_CourseTitle_Cell.swift in Sources */,
 				D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
+				D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
 				D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */,
 				D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */,
 				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
 				D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
+				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */,
@@ -1160,28 +1321,38 @@
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
+				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
+				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
+				D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
+				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
+				D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
+				D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */,
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
 				D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
+				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
+				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
+				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
+				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
@@ -1192,16 +1363,19 @@
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
+				D670D384212575970064750A /* CourseModel.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
-				D670D3822125092D0064750A /* HDLY_ListenDes_VC.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
+				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
+				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D6C9FC8A21181FD1007C8E56 /* HDCache.swift in Sources */,
 				D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
+				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
@@ -1210,9 +1384,11 @@
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
 				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,
+				D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */,
 				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
+				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,7 +1568,10 @@
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c11307e9-910a-45cd-b996-dc7d248dd7f3";
@@ -1415,7 +1594,10 @@
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c9d9fce-703c-4d08-8ef0-d52b8450ec6f";
@@ -1434,7 +1616,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1451,7 +1637,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1467,7 +1657,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1483,7 +1677,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				INFOPLIST_FILE = HDMiusiSpaceUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

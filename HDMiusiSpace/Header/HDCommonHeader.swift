@@ -59,6 +59,7 @@ let kSocketPort:UInt16 = 9501
 
 let TitleFont = UIFont.init(name: "PingFangSC-Semibold", size: 18)
 
+let TestToken = "ee683ca5892d31ba175ff8682c25a18e"
 
 //通用色值设置
 struct BaseColor {

@@ -9,25 +9,26 @@
 import UIKit
 import Kingfisher
 
-let PageMenuH = 45
-let HeaderViewH = (ScreenWidth*200/375.0)+100
+let PageMenuH = 45.0
+let HeaderViewH = (ScreenWidth*200/375.0)+80
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
     
+    @IBOutlet weak var tabVBottomCons: NSLayoutConstraint!
     @IBOutlet weak var myTableView: RootBMainTableView!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
+    @IBOutlet weak var searchBtn: UIButton!
     
-    let titleArray:Array = ["推荐", "最新", "轻听随看", "艺术", "亲子"]
+    var menuArr = [CourseMenuModel]()
     var tabHeader: RootBHeaderView!
     var bannerArr =  [BbannerModel]()
 
     lazy var pageMenu: SPPageMenu = {
-        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: PageMenuH), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
-        page.setItems(titleArray, selectedItemIndex: 0)
         page.delegate = self
-        page.itemTitleFont = UIFont.systemFont(ofSize: 16)
+        page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
         page.dividingLine.isHidden = true
         page.selectedItemTitleColor = UIColor.HexColor(0x333333)
         page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
@@ -41,7 +42,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     lazy var contentScrollView: UIScrollView =  {
         let scrollView = UIScrollView.init()
-        scrollView.frame  = CGRect.init(x: 0, y: 15, width: ScreenWidth, height:  ScreenHeight)
+        scrollView.frame  = CGRect.init(x: 0, y: 15+CGFloat(PageMenuH), width: ScreenWidth, height:  ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-CGFloat(PageMenuH)-15)
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         scrollView.isScrollEnabled = true
@@ -55,18 +56,19 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     var childVCScrollView: UIScrollView?
     
-    //
-    fileprivate let imageNames = ["qzhd_img1","qzhd_img1","qzhd_img1"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabVBottomCons.constant = CGFloat(kTabBarHeight)
         navbarCons.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
         setupViews()
         //
-        addContentSubViewsWithArr(titleArr: titleArray)
+
         dataRequestForBanner()
+        dataRequestForMenu()
+
+        searchBtn.isHidden = true
+        
         
     }
     
@@ -96,13 +98,14 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as! RootBHeaderView
         tabHeader.pagerView.dataSource = self
         tabHeader.pagerView.delegate = self
-        tabHeader.pageControl.numberOfPages = self.imageNames.count
         tabHeader.pagerView.isInfinite = true
         //
         myTableView.tableHeaderView = tabHeader
-        myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth*200/335.0+30);
+        myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH)
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        myTableView.backgroundColor = UIColor.white
+  
     }
     
     func dataRequestForBanner()  {
@@ -110,7 +113,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
-
             let jsonDecoder = JSONDecoder()
             let dataA:Array<Dictionary<String,Any>> = dic?["data"] as! Array<Dictionary>
             
@@ -122,6 +124,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
                     let model:BbannerModel = try! jsonDecoder.decode(BbannerModel.self, from: dataA)
                     self.bannerArr.append(model)
                 }
+                self.tabHeader.pageControl.numberOfPages = self.bannerArr.count
                 self.tabHeader.pagerView.reloadData()
             }
             
@@ -130,6 +133,25 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         }
     }
     
+    func dataRequestForMenu() {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            let model:CourseMenu = try! jsonDecoder.decode(CourseMenu.self, from: result)
+            self.menuArr = model.data
+            
+            var menuTitleArr = Array<String>()
+            for model in self.menuArr {
+                menuTitleArr.append(model.cateName)
+            }
+            self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
+            self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -146,7 +168,9 @@ extension HDRootBVC {
         self.contentScrollView.isScrollEnabled = true
         
         for (i, _) in titleArr.enumerated() {
+            let model  = self.menuArr[i]
             switch i {
+                
             case 0://推荐
                 let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
                 self.addChildViewController(baseVC)
@@ -162,15 +186,20 @@ extension HDRootBVC {
                 }
             case 1://最新
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
+                baseVC.isNewest = true
+                baseVC.cateID = "0"
                 self.addChildViewController(baseVC)
             case 2://轻听随看
                 let baseVC:HDLY_Listen_SubVC = HDLY_Listen_SubVC.init()
                 self.addChildViewController(baseVC)
             case 3://艺术
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
+                baseVC.cateID = "\(model.cateID)"
                 self.addChildViewController(baseVC)
             case 4://亲子
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
+                baseVC.cateID = "\(model.cateID)"
+
                 self.addChildViewController(baseVC)
             default: break
                 
@@ -194,7 +223,7 @@ extension HDRootBVC {
         if targetViewController.isViewLoaded == true {
             return;
         }
-        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight)
+        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight))
         let s: UIScrollView = targetViewController.view.subviews[0] as! UIScrollView
         var contentOffset:CGPoint = s.contentOffset
         if contentOffset.y >= CGFloat(HeaderViewH) {
@@ -223,17 +252,36 @@ extension HDRootBVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.selectionStyle = .none
+        cell?.addSubview(self.pageMenu)
         cell?.addSubview(self.contentScrollView)
+        cell?.backgroundColor = UIColor.white
+        self.contentScrollView.backgroundColor = UIColor.white
         
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: PageMenuH))
-        headerV.addSubview(self.pageMenu)
-        pageMenu.backgroundColor = UIColor.white
-        return headerV
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: Int(PageMenuH)))
+//        headerV.addSubview(self.pageMenu)
+//        pageMenu.backgroundColor = UIColor.white
+//        return nil
+//    }
+    
+    //header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    //footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -252,10 +300,13 @@ extension HDRootBVC {
             notiScrollView.contentOffset = CGPoint.zero
             notiScrollView.showsVerticalScrollIndicator = false
             myTableView.showsVerticalScrollIndicator = true
+            searchBtn.isHidden = true
 
         }else {
             notiScrollView.showsVerticalScrollIndicator = true
             myTableView.showsVerticalScrollIndicator = false
+            searchBtn.isHidden = false
+
         }
     }
     
@@ -268,14 +319,16 @@ extension HDRootBVC {
                     self.myTableView.contentOffset = CGPoint.init(x: 0, y: HeaderViewH)
                 }
             }
-            if self.myTableView.contentOffset.y < HeaderViewH {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
+            let offSetY = scrollView.contentOffset.y
+            if offSetY >= HeaderViewH {
+                self.myTableView.contentOffset = CGPoint.init(x: 0, y: HeaderViewH )// myTableView 不滚动
             }else {
-                self.myTableView.contentOffset = CGPoint.init(x: 0, y: HeaderViewH)// myTableView 不滚动
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
             }
         }
     }
 }
+
 
 // FSPagerView
 
@@ -291,7 +344,7 @@ extension HDRootBVC {
         let cell:HDPagerViewCell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index) as! HDPagerViewCell
         let model = bannerArr[index]
         if  model.img != nil  {
-            cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: "banner_img_1"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
         }
         cell.titleL.text = model.title
         cell.authorL.text = model.des

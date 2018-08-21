@@ -42,6 +42,7 @@ struct BRecmdModel:Codable {
     var price: TStrInt?
     var is_top: TStrInt?
     var is_big: TStrInt?
+    var is_card: TStrInt?
     var views: TStrInt?
     var classnum: TStrInt?
 
@@ -57,6 +58,50 @@ struct BbannerModel:Codable {
     var cate_id: TStrInt?
     var mid: TStrInt?
 }
+
+struct RecmdMoreModel:Codable {
+    let status: Int
+    let msg: String
+    let data: [CourseListModel]
+}
+
+struct CourseListModel: Codable {
+    let classID, uid: Int
+    let title: String
+    let price, isFree: Int
+    let img: String
+    let classNum, purchases, isBigImg: Int
+    let author: String
+    
+    enum CodingKeys: String, CodingKey {
+        case classID = "class_id"
+        case uid, title, price
+        case isFree = "is_free"
+        case img, author
+        case classNum = "class_num"
+        case purchases
+        case isBigImg = "is_big_img"
+    }
+}
+
+
+
+struct CourseMenu: Codable {
+    let status: Int
+    let msg: String
+    let data: [CourseMenuModel]
+}
+
+struct CourseMenuModel: Codable {
+    let cateID: Int
+    let cateName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case cateID = "cate_id"
+        case cateName = "cate_name"
+    }
+}
+
 
 
 

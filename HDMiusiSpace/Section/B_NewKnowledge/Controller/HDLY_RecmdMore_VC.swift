@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_RecmdMore_VC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
+class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
     //tableView
     lazy var tableView: UITableView = {
@@ -22,17 +22,15 @@ class HDLY_RecmdMore_VC: UIViewController,UITableViewDataSource,UITableViewDeleg
         return tableView
     }()
     
-    let sectionHeader:Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
+    var dataArr =  [CourseListModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hd_navigationBarHidden = false
-
         self.tableView.rowHeight = 120
 //        self.tableView.frame = view.bounds
         self.view.addSubview(self.tableView)
         // Do any additional setup after loading the view.
-        //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        // tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.title = "精选推荐"
         
         if #available(iOS 11.0, *) {
@@ -40,10 +38,30 @@ class HDLY_RecmdMore_VC: UIViewController,UITableViewDataSource,UITableViewDeleg
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        dataRequest()
     }
 
-
-
+    func dataRequest()  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "0", take: "10", type: "1", cate_id: "0"), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            let model:RecmdMoreModel = try! jsonDecoder.decode(RecmdMoreModel.self, from: result)
+            self.dataArr = model.data
+            if self.dataArr.count > 0 {
+                self.tableView.reloadData()
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,11 +80,6 @@ extension HDLY_RecmdMore_VC {
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = RecommendHeader.createViewFromNib() as? RecommendHeader
-        header?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45)
-        header!.nameLabel.text =  sectionHeader[section]
-        header?.backgroundColor = UIColor.white
         return nil
     }
     //footer
@@ -80,13 +93,12 @@ extension HDLY_RecmdMore_VC {
     //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.dataArr.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let sec = indexPath.section;
-        let row = indexPath.row;
-        if (row == 3) {
+        let model = dataArr[indexPath.row]
+        if model.isBigImg == 1 {
             return 208*ScreenWidth/375.0
         }
         return 126*ScreenWidth/375.0
@@ -94,30 +106,36 @@ extension HDLY_RecmdMore_VC {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let section = indexPath.section
-        let row = indexPath.row
-        
-        if section == 0 {
-            if row == 3 {
-                let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
-                //                cell?.imgURLArray = self.topImgArr
-                //                cell?.delegate = self as HD_RootA_Top_Cell_Delegate
-                
-                return cell!
-            } else {
-                let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
-                //                cell?.delegate = self as HD_RootA_4_Btn_CellDelegate
-                return cell!
-            }
+        let model = dataArr[indexPath.row]
+        if model.isBigImg == 1 {
+            let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
+            cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell?.titleL.text = model.title
+            cell?.authorL.text = model.author
+
+            cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
+            cell?.courseL.text = "\(model.classNum)" + "课时"
+            return cell!
+            
+        } else {
+            let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
+            cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell?.titleL.text = model.title
+            cell?.authorL.text = model.author
+            cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
+            cell?.courseL.text = "\(model.classNum)" + "课时"
+            cell?.priceL.text = "¥" + "\(model.price)"
+            
+            return cell!
         }
-        return UITableViewCell.init()
+        
+//        return UITableViewCell.init()
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-    
-    
+
 }
 

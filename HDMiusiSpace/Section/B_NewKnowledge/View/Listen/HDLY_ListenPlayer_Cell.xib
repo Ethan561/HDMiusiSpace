@@ -28,7 +28,7 @@
                         </constraints>
                         <state key="normal" image="icon_paly_white"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:54 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN7-AE-oPU">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN7-AE-oPU">
                         <rect key="frame" x="94" y="64" width="133" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="133" id="N1N-PN-I5t"/>
@@ -47,6 +47,10 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="playerBtn" destination="U6I-lF-PSg" id="fQB-qm-cT8"/>
+                <outlet property="timeL" destination="WN7-AE-oPU" id="7bU-Jt-VEH"/>
+            </connections>
             <point key="canvasLocation" x="34" y="79"/>
         </tableViewCell>
     </objects>

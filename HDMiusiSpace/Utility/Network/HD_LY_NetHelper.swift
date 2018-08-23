@@ -145,7 +145,7 @@ class HD_LY_NetHelper {
         //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             if showErrorTip {
-                HDAlert.showAlertTipWith(type: HDAlertType.error, text: message)
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: message)
             }
             if let failureBlack = failure {
                 failureBlack(nil ,message)

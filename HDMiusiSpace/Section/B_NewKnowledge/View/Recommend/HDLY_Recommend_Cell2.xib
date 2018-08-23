@@ -69,6 +69,7 @@
                 <outlet property="courseL" destination="5fP-lh-uoi" id="57H-Gj-WFH"/>
                 <outlet property="imgV" destination="wih-tr-jph" id="dtK-7t-diP"/>
                 <outlet property="titleL" destination="7VE-KP-Hye" id="xjp-RF-OCV"/>
+                <outlet property="typeImgV" destination="cAq-n6-flz" id="5Gv-be-dmv"/>
             </connections>
             <point key="canvasLocation" x="34" y="121.5"/>
         </tableViewCell>

@@ -8,25 +8,31 @@
 
 import UIKit
 
+protocol HDLY_Kids_Cell2_Delegate:NSObjectProtocol {
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2)
+}
+    
 class HDLY_Kids_Cell2: UITableViewCell {
 
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var countL: UILabel!
     @IBOutlet weak var priceL: UILabel!
+    @IBOutlet weak var tapBtn1: UIButton!
     
     @IBOutlet weak var imgV1: UIImageView!
     @IBOutlet weak var titleL1: UILabel!
     @IBOutlet weak var countL1: UILabel!
     @IBOutlet weak var priceL1: UILabel!
+    @IBOutlet weak var tapBtn2: UIButton!
     
+    weak var delegate: HDLY_Kids_Cell2_Delegate?
     
     var dataArray: Array<BRecmdModel>? {
         didSet{
             showViewData()
         }
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,8 +58,24 @@ class HDLY_Kids_Cell2: UITableViewCell {
             countL1.text = model1?.views?.string == nil ? "0" :(model1?.views?.string)! + "人在学"
             priceL1.text = "¥" + (model1?.classnum?.string == nil ? "0" : (model1?.classnum?.string)!)
         }
+        
+        
     }
     
+    @IBAction func tapAction(_ sender: UIButton) {
+        
+        if dataArray != nil {
+            if sender.tag == 101 {
+                let model = dataArray?.first
+                delegate?.didSelectItemAt(model!, self)
+            }
+            else if sender.tag == 102 {
+                let model1 = dataArray?.last
+                delegate?.didSelectItemAt(model1!, self)
+            }
+        }
+        
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

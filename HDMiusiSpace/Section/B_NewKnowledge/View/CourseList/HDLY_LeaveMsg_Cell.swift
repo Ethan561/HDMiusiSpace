@@ -10,15 +10,22 @@ import UIKit
 
 class HDLY_LeaveMsg_Cell: UITableViewCell {
 
+    @IBOutlet weak var avaImgV: UIImageView!
+    @IBOutlet weak var nameL: UILabel!
+    @IBOutlet weak var contentL: UILabel!
+    @IBOutlet weak var timeL: UILabel!
+    @IBOutlet weak var likeBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        avaImgV.layer.cornerRadius = 15
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     

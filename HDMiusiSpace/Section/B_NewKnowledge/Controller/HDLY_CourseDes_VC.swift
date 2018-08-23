@@ -17,6 +17,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var listenBgView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
+    var courseId:String?
+    
     var infoModel: CourseModel?
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     
@@ -99,7 +101,10 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     }
     
     func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: "1"), showHud: false, loadingVC: self, success: { (result) in
+        guard let idnum = self.courseId else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

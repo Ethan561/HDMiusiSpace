@@ -44,24 +44,66 @@ struct ListenList: Codable {
     }
 }
 
+//  ListenDetail
 struct ListenDetail: Codable {
-    let listenID: Int
-    let title, img, voice: String
-    let timelong, likes, teacherID: Int
-    let url, teacherImg: String
-    let isFavorite, isFocus, isLike: Int
-    let teacherName, teacherTitle: String
+    var listenID: TStrInt?
+    var title, img, voice: String?
+    var timelong, likes, teacherID, isComment: TStrInt?
+    var comments: Int?
+    var url, teacherImg: String?
+    var isFavorite, isFocus, isLike: Int?
+    var teacherName, teacherTitle: String?
+    var commentList: [ListenCommentList]?
     
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
         case title, img, voice, timelong, likes
         case teacherID = "teacher_id"
-        case url
+        case isComment = "is_comment"
+        case comments, url
         case teacherImg = "teacher_img"
         case isFavorite = "is_favorite"
         case isFocus = "is_focus"
         case isLike = "is_like"
         case teacherName = "teacher_name"
         case teacherTitle = "teacher_title"
+        case commentList = "comment_list"
     }
 }
+
+
+struct ListenCommentList: Codable {
+    var uid: Int?
+    var comment: String?
+    var likeNum: TStrInt?
+    var createdAt: String?
+    var commentID: Int?
+    var avatar, nickname: String?
+    var isLike: Int?
+    var list: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case uid, comment
+        case likeNum = "like_num"
+        case createdAt = "created_at"
+        case commentID = "comment_id"
+        case avatar, nickname
+        case isLike = "is_like"
+        case list
+    }
+}
+
+
+struct LikeModel: Codable {
+    var is_like: TStrInt?
+    var like_num: TStrInt?
+    
+}
+
+struct FavoriteModel: Codable {
+    var is_favorite: TStrInt?
+    var favorite_num: TStrInt?
+}
+
+
+

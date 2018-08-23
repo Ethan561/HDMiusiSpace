@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol HDLY_Listen_Cell_Delegate:NSObjectProtocol {
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell)
+}
+
 class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
+    
+    weak var delegate: HDLY_Listen_Cell_Delegate?
+    
     var listArray: Array<BRecmdModel>? {
         didSet{
             myCollectionView.reloadData()
@@ -90,6 +97,8 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = listArray![indexPath.row]
+        delegate?.didSelectItemAt(model, self)
         
     }
     

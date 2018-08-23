@@ -45,7 +45,12 @@ struct BRecmdModel:Codable {
     var is_card: TStrInt?
     var views: TStrInt?
     var classnum: TStrInt?
-
+    var file_type: TStrInt?//1是MP3;2是MP4
+    var is_free: TStrInt?//1免费，0不免费
+    
+    var teacher_name: String?
+    var teacher_title: String?
+    
 }
 
 
@@ -68,7 +73,7 @@ struct RecmdMoreModel:Codable {
 struct CourseListModel: Codable {
     let classID, uid: Int
     let title: String
-    let price, isFree: Int
+    let price, isFree ,fileType: Int
     let img: String
     let classNum, purchases, isBigImg: Int
     let author: String
@@ -81,6 +86,8 @@ struct CourseListModel: Codable {
         case classNum = "class_num"
         case purchases
         case isBigImg = "is_big_img"
+        case fileType = "file_type"
+        
     }
 }
 

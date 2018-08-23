@@ -63,7 +63,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         self.hd_navigationBarHidden = true
         setupViews()
         //
-
+        
         dataRequestForBanner()
         dataRequestForMenu()
 
@@ -296,23 +296,22 @@ extension HDRootBVC {
         //切换显示 ScrollIndicator
         let notiScrollView: UIScrollView = noti.object as! UIScrollView
         self.childVCScrollView = notiScrollView
+        //
         if self.myTableView.contentOffset.y < HeaderViewH {
             notiScrollView.contentOffset = CGPoint.zero
             notiScrollView.showsVerticalScrollIndicator = false
             myTableView.showsVerticalScrollIndicator = true
             searchBtn.isHidden = true
-
-        }else {
+        } else {
             notiScrollView.showsVerticalScrollIndicator = true
             myTableView.showsVerticalScrollIndicator = false
             searchBtn.isHidden = false
-
         }
     }
     
     //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        LOG("*****:\(scrollView.contentOffset.y)")
+//       LOG("*****:\(scrollView.contentOffset.y)")
         if self.myTableView == scrollView {
             if self.childVCScrollView != nil {
                 if self.childVCScrollView!.contentOffset.y > 0 {
@@ -346,13 +345,7 @@ extension HDRootBVC {
         if  model.img != nil  {
             cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
         }
-        cell.titleL.text = model.title
-        cell.authorL.text = model.des
-        cell.countL.text = "\(String(describing: model.views?.string))人在学"
-//        cell.imgV?.image = UIImage(named: self.imageNames[index])
-//        cell.imgV?.contentMode = .scaleAspectFill
-//        cell.imgV?.clipsToBounds = true
-//        cell.textLabel?.text = index.description+index.description
+        
         return cell
     }
     

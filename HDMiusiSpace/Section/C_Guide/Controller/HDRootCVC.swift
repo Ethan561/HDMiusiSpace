@@ -12,6 +12,7 @@ class HDRootCVC: HDItemBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hd_navigationBarHidden = true
 
         // Do any additional setup after loading the view.
     }

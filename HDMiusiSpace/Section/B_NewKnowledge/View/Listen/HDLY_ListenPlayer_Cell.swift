@@ -10,11 +10,15 @@ import UIKit
 
 class HDLY_ListenPlayer_Cell: UITableViewCell {
 
+    @IBOutlet weak var playerBtn: UIButton!
+    @IBOutlet weak var timeL: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -33,5 +37,11 @@ class HDLY_ListenPlayer_Cell: UITableViewCell {
     }
     
     
-    
 }
+
+
+
+
+
+
+

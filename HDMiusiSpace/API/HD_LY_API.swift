@@ -33,6 +33,20 @@ enum HD_LY_API {
     //轻听随看详情
     case courseListenDetail(listen_id: String, api_token: String)
 
+    //comment - 提交评论
+    case commentDocomment(api_token:String, comment: String, id: String, return_id: String, cate_id: String)
+
+    //like - 点赞/取消点赞   (用户不登录可以给资讯点赞，cate_id=2且未登录时必须上传deviceno;cate_id!=2时必须登录才能点赞)
+    case doLikeRequest( id: String, cate_id: String,api_token:String, deviceno: String)
+    
+    //favorites - 收藏/取消
+    case doFavoriteRequest( id: String, cate_id: String,api_token:String)
+
+    //focus - 关注/取消
+    case doFocusRequest( id: String, cate_id: String,api_token:String)
+
+
+
     
 }
 
@@ -74,8 +88,21 @@ extension HD_LY_API: TargetType {
         case .courseListenDetail(listen_id: _, api_token: _):
             return "/api/course/detail"
             
+        //comment - 提交评论
+        case .commentDocomment(api_token:_,comment: _, id: _, return_id: _, cate_id: _):
+            return "/api/comment/docomment"
             
+        //like - 点赞/取消点赞   (用户不登录可以给资讯点赞，cate_id=2且未登录时必须上传deviceno;cate_id!=2时必须登录才能点赞)
+        case .doLikeRequest( id: _, cate_id: _,api_token:_, deviceno: _):
+            return "/api/like/do_like"
             
+        //favorites - 收藏/取消
+        case .doFavoriteRequest( id: _, cate_id: _,api_token:_):
+            return "/api/favorites/do_favorite"
+            
+        //focus - 关注/取消
+        case .doFocusRequest( id: _, cate_id: _,api_token:_):
+            return "/api/focus/dofocus"
             
             
             
@@ -86,8 +113,11 @@ extension HD_LY_API: TargetType {
     //--- 请求类型 ---
     var method: Moya.Method {
         switch self {
-//        case .uploadTimeLineImg(img: _, api_token: _, type: _),
-//            return .post
+        case .commentDocomment(api_token:_,comment: _, id: _, return_id: _, cate_id: _),
+             .doLikeRequest( id: _, cate_id: _,api_token:_, deviceno: _),
+             .doFavoriteRequest( id: _, cate_id: _,api_token:_),
+             .doFocusRequest( id: _, cate_id: _,api_token:_):
+            return  .post
         default:
             return .get
         }
@@ -153,6 +183,42 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        //comment - 提交评论
+        case .commentDocomment(api_token: let api_token ,comment: let comment , id: let id, return_id: let return_id, cate_id: let cate_id):
+            
+            params = params.merging(["api_token":api_token,"comment":comment,"id":id,"return_id":return_id,"cate_id":cate_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+
+        //like - 点赞/取消点赞   (用户不登录可以给资讯点赞，cate_id=2且未登录时必须上传deviceno;cate_id!=2时必须登录才能点赞)
+        case .doLikeRequest( id: let id, cate_id:  let cate_id ,api_token: let api_token, deviceno: let deviceno):
+            params = params.merging(["api_token":api_token,"id":id,"deviceno":deviceno,"cate_id":cate_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+
+        //favorites - 收藏/取消
+        case .doFavoriteRequest( id: let id, cate_id: let cate_id ,api_token: let api_token):
+            params = params.merging(["api_token":api_token,"id":id,"cate_id":cate_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+
+        //focus - 关注/取消
+        case .doFocusRequest( id: let id, cate_id: let cate_id ,api_token: let api_token):
+            params = params.merging(["api_token":api_token,"id":id,"cate_id":cate_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         default:
             return .requestPlain//无参数

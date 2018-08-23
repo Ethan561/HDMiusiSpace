@@ -13,6 +13,7 @@
 #import <ZFPlayer/ZFAVPlayerManager.h>
 #import <ZFPlayer/ZFPlayerControlView.h>
 
+#import "STKAudioPlayer.h"
 
 
 

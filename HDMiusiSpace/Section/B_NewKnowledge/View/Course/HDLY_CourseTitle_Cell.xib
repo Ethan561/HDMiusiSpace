@@ -32,7 +32,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fld-tO-OcO">
                         <rect key="frame" x="20" y="61" width="280" height="100.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_img" translatesAutoresizingMaskIntoConstraints="NO" id="aoS-DT-TZ5">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_img" translatesAutoresizingMaskIntoConstraints="NO" id="aoS-DT-TZ5">
                                 <rect key="frame" x="25" y="30" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="V8r-9u-UeH"/>
@@ -48,7 +48,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEp-jV-Hie">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEp-jV-Hie">
                                 <rect key="frame" x="194" y="35.5" width="66" height="30"/>
                                 <color key="backgroundColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -84,7 +84,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="fld-tO-OcO" secondAttribute="trailing" constant="20" id="C3K-7x-veu"/>
                     <constraint firstItem="01r-8c-LqI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="CRs-Sh-85z"/>
@@ -98,6 +98,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImgV" destination="aoS-DT-TZ5" id="S9W-FV-SbD"/>
+                <outlet property="bgView" destination="fld-tO-OcO" id="hZl-ny-osV"/>
                 <outlet property="desL" destination="8sV-rI-jeh" id="fLu-5a-IBf"/>
                 <outlet property="focusBtn" destination="HEp-jV-Hie" id="yi7-nJ-KXU"/>
                 <outlet property="nameL" destination="yYU-BQ-0Oa" id="bl2-cv-IAH"/>

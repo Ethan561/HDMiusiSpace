@@ -9,7 +9,7 @@
 import UIKit
 
 class HDLY_CourseWeb_Cell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

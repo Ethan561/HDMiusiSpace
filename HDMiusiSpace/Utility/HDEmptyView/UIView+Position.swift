@@ -140,16 +140,6 @@ extension UIView {
             return self.frame.origin.y + self.frame.size.height
         }
     }
-    
-    class func createViewFromNib() -> AnyObject! {
-        return self.createViewFromNibName(nibName: self.className)
-    }
-    
-    class func createViewFromNibName(nibName: String) -> AnyObject! {
-        let nibArr = Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
-        return nibArr?.first as AnyObject
-    }
-    
 }
 
 

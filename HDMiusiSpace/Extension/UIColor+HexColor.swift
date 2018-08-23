@@ -35,7 +35,15 @@ extension UIColor {
     }
 }
 
-
+extension UIColor {
+    
+    convenience init(rgb: (r: CGFloat, g: CGFloat, b: CGFloat)) {
+        self.init(red: rgb.r/255, green: rgb.g/255, blue: rgb.b/255, alpha: 1)
+    }
+    convenience init(rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)) {
+        self.init(red: rgba.r/255, green: rgba.g/255, blue: rgba.b/255, alpha: rgba.a)
+    }
+}
 
 
 

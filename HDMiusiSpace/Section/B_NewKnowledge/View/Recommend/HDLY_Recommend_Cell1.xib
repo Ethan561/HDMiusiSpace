@@ -111,6 +111,7 @@
                 <outlet property="imgV" destination="8cL-jz-Iba" id="R5U-Dp-VfH"/>
                 <outlet property="priceL" destination="V31-cU-waC" id="o7V-eJ-oxN"/>
                 <outlet property="titleL" destination="dwZ-2g-Hce" id="Fp2-pW-rVd"/>
+                <outlet property="typeImgV" destination="vSE-BT-Ogw" id="P6O-at-smD"/>
             </connections>
             <point key="canvasLocation" x="62.5" y="104"/>
         </tableViewCell>

@@ -14,6 +14,8 @@
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6699FFC21198714006339D3 /* RootBHeaderView.swift */; };
 		D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6699FFE2119871C006339D3 /* RootBHeaderView.xib */; };
+		D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A8A59212E3B81009A879F /* HDLY_ListenComment_Header.swift */; };
+		D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66A8A5B212E3B8D009A879F /* HDLY_ListenComment_Header.xib */; };
 		D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */; };
 		D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */; };
 		D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */; };
@@ -57,6 +59,19 @@
 		D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */; };
 		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
 		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
+		D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */; };
+		D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */; };
+		D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */; };
+		D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF72212BAD4700276CDE /* STKCoreFoundationDataSource.m */; };
+		D67ABF81212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF73212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m */; };
+		D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF76212BAD4700276CDE /* STKAudioPlayer.m */; };
+		D67ABF83212BAD4700276CDE /* STKDataSourceWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF77212BAD4700276CDE /* STKDataSourceWrapper.m */; };
+		D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF79212BAD4700276CDE /* STKDataSource.m */; };
+		D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF7B212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m */; };
+		D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */; };
+		D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A36212D35850037B371 /* KeyboardTextField.swift */; };
+		D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */; };
+		D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */; };
 		D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A472126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift */; };
 		D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6866A482126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib */; };
 		D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6866A4B2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift */; };
@@ -190,6 +205,8 @@
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D6699FFC21198714006339D3 /* RootBHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBHeaderView.swift; sourceTree = "<group>"; };
 		D6699FFE2119871C006339D3 /* RootBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootBHeaderView.xib; sourceTree = "<group>"; };
+		D66A8A59212E3B81009A879F /* HDLY_ListenComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenComment_Header.swift; sourceTree = "<group>"; };
+		D66A8A5B212E3B8D009A879F /* HDLY_ListenComment_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ListenComment_Header.xib; sourceTree = "<group>"; };
 		D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewKnowledgeModel.swift; sourceTree = "<group>"; };
 		D66C7AB72123F68B00B34221 /* RecommendSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSectionCell.swift; sourceTree = "<group>"; };
 		D66C7AB82123F68B00B34221 /* RecommendSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendSectionCell.xib; sourceTree = "<group>"; };
@@ -235,6 +252,29 @@
 		D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell1.xib; sourceTree = "<group>"; };
 		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
 		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
+		D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
+		D67ABF6B212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
+		D67ABF6C212BAD4700276CDE /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
+		D67ABF6D212BAD4700276CDE /* STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAudioPlayer.h; sourceTree = "<group>"; };
+		D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKHTTPDataSource.m; sourceTree = "<group>"; };
+		D67ABF6F212BAD4700276CDE /* STKDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSource.h; sourceTree = "<group>"; };
+		D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLocalFileDataSource.m; sourceTree = "<group>"; };
+		D67ABF71212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+STKAudioPlayer.h"; sourceTree = "<group>"; };
+		D67ABF72212BAD4700276CDE /* STKCoreFoundationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKCoreFoundationDataSource.m; sourceTree = "<group>"; };
+		D67ABF73212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAutoRecoveringHTTPDataSource.m; sourceTree = "<group>"; };
+		D67ABF74212BAD4700276CDE /* STKQueueEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKQueueEntry.h; sourceTree = "<group>"; };
+		D67ABF75212BAD4700276CDE /* STKHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKHTTPDataSource.h; sourceTree = "<group>"; };
+		D67ABF76212BAD4700276CDE /* STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKAudioPlayer.m; sourceTree = "<group>"; };
+		D67ABF77212BAD4700276CDE /* STKDataSourceWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSourceWrapper.m; sourceTree = "<group>"; };
+		D67ABF78212BAD4700276CDE /* STKLocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLocalFileDataSource.h; sourceTree = "<group>"; };
+		D67ABF79212BAD4700276CDE /* STKDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKDataSource.m; sourceTree = "<group>"; };
+		D67ABF7A212BAD4700276CDE /* STKCoreFoundationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKCoreFoundationDataSource.h; sourceTree = "<group>"; };
+		D67ABF7B212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STKAudioPlayer.m"; sourceTree = "<group>"; };
+		D67ABF7C212BAD4700276CDE /* StreamingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StreamingKit-Prefix.pch"; sourceTree = "<group>"; };
+		D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_AudioPlayer.swift; sourceTree = "<group>"; };
+		D6865A36212D35850037B371 /* KeyboardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTextField.swift; sourceTree = "<group>"; };
+		D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenDetailViewModel.swift; sourceTree = "<group>"; };
+		D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_KeyboardView.swift; sourceTree = "<group>"; };
 		D6866A472126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC1.swift; sourceTree = "<group>"; };
 		D6866A482126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseList_SubVC1.xib; sourceTree = "<group>"; };
 		D6866A4B2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_SubVC2.swift; sourceTree = "<group>"; };
@@ -457,10 +497,6 @@
 				D6884E58211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib */,
 				D6884E5B211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift */,
 				D6884E5C211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib */,
-				D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */,
-				D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */,
-				D66C88272127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift */,
-				D66C88282127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib */,
 				D6884E67211E816200ABDE5E /* HDLY_Listen_Cell.swift */,
 				D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */,
 				D6884E63211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift */,
@@ -486,8 +522,6 @@
 				D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */,
 				D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */,
 				D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */,
-				D66EDF9F212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift */,
-				D66EDFA0212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -499,6 +533,56 @@
 				D671F746211A871D00A9EE57 /* SPPageMenu.h */,
 			);
 			path = SPPageMenu;
+			sourceTree = "<group>";
+		};
+		D67ABF64212B9AA100276CDE /* Listen */ = {
+			isa = PBXGroup;
+			children = (
+				D66EDF9F212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift */,
+				D66EDFA0212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib */,
+				D6884E5F211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift */,
+				D6884E60211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib */,
+				D66C88272127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift */,
+				D66C88282127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib */,
+				D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */,
+				D66A8A59212E3B81009A879F /* HDLY_ListenComment_Header.swift */,
+				D66A8A5B212E3B8D009A879F /* HDLY_ListenComment_Header.xib */,
+			);
+			path = Listen;
+			sourceTree = "<group>";
+		};
+		D67ABF69212BAD4700276CDE /* StreamingKit */ = {
+			isa = PBXGroup;
+			children = (
+				D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */,
+				D67ABF6B212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.h */,
+				D67ABF6C212BAD4700276CDE /* STKDataSourceWrapper.h */,
+				D67ABF6D212BAD4700276CDE /* STKAudioPlayer.h */,
+				D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */,
+				D67ABF6F212BAD4700276CDE /* STKDataSource.h */,
+				D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */,
+				D67ABF71212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.h */,
+				D67ABF72212BAD4700276CDE /* STKCoreFoundationDataSource.m */,
+				D67ABF73212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m */,
+				D67ABF74212BAD4700276CDE /* STKQueueEntry.h */,
+				D67ABF75212BAD4700276CDE /* STKHTTPDataSource.h */,
+				D67ABF76212BAD4700276CDE /* STKAudioPlayer.m */,
+				D67ABF77212BAD4700276CDE /* STKDataSourceWrapper.m */,
+				D67ABF78212BAD4700276CDE /* STKLocalFileDataSource.h */,
+				D67ABF79212BAD4700276CDE /* STKDataSource.m */,
+				D67ABF7A212BAD4700276CDE /* STKCoreFoundationDataSource.h */,
+				D67ABF7B212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m */,
+				D67ABF7C212BAD4700276CDE /* StreamingKit-Prefix.pch */,
+			);
+			path = StreamingKit;
+			sourceTree = "<group>";
+		};
+		D6865A35212D35850037B371 /* KeyboardTextField */ = {
+			isa = PBXGroup;
+			children = (
+				D6865A36212D35850037B371 /* KeyboardTextField.swift */,
+			);
+			path = KeyboardTextField;
 			sourceTree = "<group>";
 		};
 		D6866A592126B1370044EEAA /* CourseList */ = {
@@ -606,6 +690,8 @@
 		D6C9FC3F21181EAA007C8E56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D6865A35212D35850037B371 /* KeyboardTextField */,
+				D67ABF69212BAD4700276CDE /* StreamingKit */,
 				D6A1E224211C13CF00E1E893 /* FSPagerView */,
 				D671F744211A871D00A9EE57 /* SPPageMenu */,
 			);
@@ -696,6 +782,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
+				D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */,
 				D6C9FC7021181FD1007C8E56 /* Network */,
 				D6C9FC7A21181FD1007C8E56 /* HDFloatingButton */,
 				D6C9FC7E21181FD1007C8E56 /* HDEmptyView */,
@@ -977,6 +1064,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCFC2118487B007C8E56 /* .gitignore */,
+				D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -984,6 +1072,7 @@
 		D6C9FCFD2118487B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D67ABF64212B9AA100276CDE /* Listen */,
 				D6866A592126B1370044EEAA /* CourseList */,
 				D670D38621257C4A0064750A /* Course */,
 				D670D38521257BB40064750A /* Recommend */,
@@ -1190,6 +1279,7 @@
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
 				D6C9FCF02118485B007C8E56 /* .gitignore in Resources */,
+				D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */,
 				D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */,
 				D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */,
 			);
@@ -1302,9 +1392,12 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
+				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
+				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
 				D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
+				D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */,
 				D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */,
 				D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */,
 				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
@@ -1317,6 +1410,7 @@
 				D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */,
 				D6C9FC6C21181F54007C8E56 /* NSString+Extension.swift in Sources */,
 				D6A1E232211C13CF00E1E893 /* FSPagerCollectionView.swift in Sources */,
+				D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */,
 				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
@@ -1341,12 +1435,17 @@
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
 				D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
+				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
+				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
+				D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */,
+				D67ABF83212BAD4700276CDE /* STKDataSourceWrapper.m in Sources */,
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
+				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
 				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
@@ -1357,6 +1456,7 @@
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
+				D67ABF81212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */,
 				D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */,
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
@@ -1365,10 +1465,12 @@
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
+				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
+				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
@@ -1377,6 +1479,7 @@
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
+				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
@@ -1388,6 +1491,7 @@
 				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
+				D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */,
 				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1572,7 +1676,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c11307e9-910a-45cd-b996-dc7d248dd7f3";
 				PROVISIONING_PROFILE_SPECIFIER = All_Pro_10;
@@ -1591,17 +1695,17 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = B5K9YR6DRJ;
+				DEVELOPMENT_TEAM = VU2Q8T3ABN;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1c9d9fce-703c-4d08-8ef0-d52b8450ec6f";
-				PROVISIONING_PROFILE_SPECIFIER = Dis_All_10;
+				PROVISIONING_PROFILE = "5b3f27b4-529f-47de-924d-70e26b52145b";
+				PROVISIONING_PROFILE_SPECIFIER = Enter_HDMiusiSpace;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -20,7 +20,7 @@ struct DataClass: Codable {
     let comment: Int
     let buynotice: String
     let isFree: Int
-    let video: String
+    let video: String?
     let yprice, price: Int
     let timg, teacher, tdes, tcontent: String
     let isFavorite, isFocus, isLike: Int
@@ -47,4 +47,5 @@ struct Recommend: Codable {
         case title, img
     }
 }
+
 

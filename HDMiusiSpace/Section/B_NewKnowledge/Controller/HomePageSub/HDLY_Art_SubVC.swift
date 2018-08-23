@@ -24,7 +24,6 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
     var dataArr =  [CourseListModel]()
     var isNewest: Bool = false
     var cateID: String = "0"
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +41,6 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
             dataRequest(type: "2", cate_id: cateID)
         }else {
             dataRequest(type: "3", cate_id: cateID)
-
         }
     }
     
@@ -83,7 +81,6 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 
@@ -134,6 +131,12 @@ extension HDLY_Art_SubVC {
             
             cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
+            if model.fileType == 1 {//mp3
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
+            }else {
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
+            }
+            
             return cell!
             
         } else {
@@ -143,18 +146,39 @@ extension HDLY_Art_SubVC {
             cell?.authorL.text = model.author
             cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
-            cell?.priceL.text = "¥" + "\(model.price)"
+//            cell?.priceL.text = "¥" + "\(model.price)"
+            if model.fileType == 1 {//mp3
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
+            }else {
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
+            }
+            if model.isFree == 0 {
+                cell?.priceL.text = "¥" + "\(model.price)"
+                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
+
+            }else {
+                cell?.priceL.text = "免费"
+                cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
+            }
             
             return cell!
         }
         
-        //        return UITableViewCell.init()
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let model = dataArr[indexPath.row]
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = "\(model.classID)"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
+
+
+
+
+
+
+
 

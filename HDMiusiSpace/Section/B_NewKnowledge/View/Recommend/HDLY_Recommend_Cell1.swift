@@ -16,6 +16,7 @@ class HDLY_Recommend_Cell1: UITableViewCell {
     @IBOutlet weak var countL: UILabel!
     @IBOutlet weak var priceL: UILabel!
     @IBOutlet weak var courseL: UILabel!
+    @IBOutlet weak var typeImgV: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

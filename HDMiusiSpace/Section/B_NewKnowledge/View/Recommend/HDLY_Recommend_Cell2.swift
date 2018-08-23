@@ -15,7 +15,8 @@ class HDLY_Recommend_Cell2: UITableViewCell {
     @IBOutlet weak var authorL: UILabel!
     @IBOutlet weak var countL: UILabel!
     @IBOutlet weak var courseL: UILabel!
-    
+    @IBOutlet weak var typeImgV: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,7 +24,6 @@ class HDLY_Recommend_Cell2: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

@@ -12,9 +12,7 @@ class HDPagerViewCell: FSPagerViewCell {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var imgV: UIImageView!
-    @IBOutlet weak var titleL: UILabel!
-    @IBOutlet weak var authorL: UILabel!
-    @IBOutlet weak var countL: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

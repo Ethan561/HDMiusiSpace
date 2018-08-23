@@ -10,7 +10,7 @@ import UIKit
 
 let PushTo_HDLY_RecmdMore_VC_Line = "PushTo_HDLY_RecmdMore_VC_Line"
 
-class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
+class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
     
     let showListenView: Bindable = Bindable(false)
     let showKidsView: Bindable = Bindable(false)
@@ -164,11 +164,22 @@ extension HDLY_Recommend_SubVC {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.boutiquelist?.title
-            cell?.authorL.text = model.boutiquelist?.des
-            
+            cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
             cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0" :(model.boutiquelist?.views?.string)! + "人在学"
             cell?.courseL.text = model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)! + "课时"
-            cell?.priceL.text = "¥" + (model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)!)
+            if model.boutiquelist?.file_type?.int == 1 {//mp3
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
+            }else {
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
+            }
+            if model.boutiquelist?.is_free?.int == 0 {
+                cell?.priceL.text = "¥" + (model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)!)
+                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
+
+            }else {
+                cell?.priceL.text = "免费"
+                cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
+            }
             
             return cell!
         }else if model.type?.int == 2 {
@@ -177,15 +188,20 @@ extension HDLY_Recommend_SubVC {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquecard!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.boutiquecard?.title
-            cell?.authorL.text = model.boutiquecard?.des
-            
+            cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
             cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0" :(model.boutiquecard?.views?.string)! + "人在学"
             cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0" :(model.boutiquecard?.classnum?.string)! + "课时"
-   
+            if model.boutiquecard?.file_type?.int == 1 {//mp3
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
+            }else {
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
+            }
             return cell!
         }else if model.type?.int == 3 {//轻听随看
             let cell = HDLY_Listen_Cell.getMyTableCell(tableV: tableView)
             cell?.listArray = model.listen
+            cell?.delegate = self
+            
             return cell!
         }else if model.type?.int == 4 {
             let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
@@ -200,6 +216,7 @@ extension HDLY_Recommend_SubVC {
         }else if model.type?.int == 5 {
             let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
             cell?.dataArray = model.interactionlist
+            cell?.delegate = self
             
             return cell!
         }
@@ -214,6 +231,25 @@ extension HDLY_Recommend_SubVC {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        
+        let model = dataArr[indexPath.row]
+        if model.type?.int == 0 {
+            
+        }else if model.type?.int == 1 {
+            vc.courseId = model.boutiquelist?.article_id?.string
+        }else if model.type?.int == 2 {
+            vc.courseId = model.boutiquecard?.article_id?.string
+        }else if model.type?.int == 3 {//轻听随看
+            
+        }else if model.type?.int == 4 {
+            vc.courseId = model.interactioncard?.article_id?.string
+            
+        }else if model.type?.int == 5 {
+            
+        }
+        else if model.type?.int == 6 {
+            
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -229,7 +265,6 @@ extension HDLY_Recommend_SubVC {
         }
         else if model.category?.type == 3 {
             self.showListenView.value = true
-            
         }
         else if model.category?.type == 4 {
             
@@ -237,7 +272,6 @@ extension HDLY_Recommend_SubVC {
         else if model.category?.type == 6 {//换一批
             courseTopicsRequest()
         }
-        
     }
     
     func courseTopicsRequest()  {
@@ -268,4 +302,28 @@ extension HDLY_Recommend_SubVC {
     }
     
 }
+
+extension HDLY_Recommend_SubVC {
+    
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+        vc.listen_id = model.article_id?.string
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = model.article_id?.string
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = model.article_id?.string
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+
+}
+
 

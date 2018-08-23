@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HDLY_Topic_Cell_Delegate:NSObjectProtocol {
+    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell)
+}
+    
 class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -16,7 +20,8 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
             myCollectionView.reloadData()
         }
     }
-    
+    weak var delegate: HDLY_Topic_Cell_Delegate?
+
     //类方法生成cell
     class  func getMyTableCell(tableV: UITableView) -> HDLY_Topic_Cell! {
         var cell: HDLY_Topic_Cell? = tableV.dequeueReusableCell(withIdentifier: HDLY_Topic_Cell.className) as? HDLY_Topic_Cell
@@ -89,7 +94,8 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let model = listArray![indexPath.row]
+        delegate?.didSelectItemAt(model, self)
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------

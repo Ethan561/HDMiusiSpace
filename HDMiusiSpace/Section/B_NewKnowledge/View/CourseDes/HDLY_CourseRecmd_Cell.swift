@@ -11,7 +11,7 @@ import UIKit
 class HDLY_CourseRecmd_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
-    var listArray: Array<Recommend>? {
+    var listArray: Array<CourseInfoRecommends>? {
         didSet{
             myCollectionView.reloadData()
         }

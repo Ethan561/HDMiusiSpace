@@ -11,41 +11,53 @@ import UIKit
 struct CourseModel: Codable {
     let status: Int
     let msg: String
-    let data: DataClass
+    var data: CourseInfoModel
 }
 
-struct DataClass: Codable {
-    let articleID: Int
-    let img, title, url, notice: String
-    let comment: Int
-    let buynotice: String
-    let isFree: Int
-    let video: String?
-    let yprice, price: Int
-    let timg, teacher, tdes, tcontent: String
-    let isFavorite, isFocus, isLike: Int
-    let recommend: [Recommend]
+struct CourseInfoModel: Codable {
+    var articleID: Int
+    var img, title, buynotice: String
+    var isFree: Int
+    var video: String
+    var yprice, price, teacherID: TStrInt
+    var url: String
+    var fileType: Int
+    var timg, teacherName, teacherTitle, teacherContent: String
+    var isFavorite, isFocus, isBuy: Int
+    var recommendsMessage: [ListenCommentList]?
+    var recommendsList: [CourseInfoRecommends]
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
-        case img, title, url, notice, comment, buynotice
+        case img, title, buynotice
         case isFree = "is_free"
-        case video, yprice, price, timg, teacher, tdes, tcontent
+        case video, yprice, price
+        case teacherID = "teacher_id"
+        case url
+        case fileType = "file_type"
+        case timg
+        case teacherName = "teacher_name"
+        case teacherTitle = "teacher_title"
+        case teacherContent = "teacher_content"
         case isFavorite = "is_favorite"
         case isFocus = "is_focus"
-        case isLike = "is_like"
-        case recommend
+        case isBuy = "is_buy"
+        case recommendsMessage = "recommends_message"
+        case recommendsList = "recommends_list"
     }
 }
 
-struct Recommend: Codable {
+struct CourseInfoRecommends: Codable {
     let articleID: Int
-    let title, img: String
+    let img, title: String
+    let cateID: Int
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
-        case title, img
+        case img, title
+        case cateID = "cate_id"
     }
 }
+
 
 

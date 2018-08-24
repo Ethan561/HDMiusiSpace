@@ -10,6 +10,8 @@ import UIKit
 
 class HDLY_CourseWeb_Cell: UITableViewCell {
     
+    @IBOutlet weak var webView: UIWebView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

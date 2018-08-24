@@ -7,59 +7,69 @@
 //
 
 import UIKit
-import WebKit
 
-class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate {
+class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate {
 
     @IBOutlet weak var statusBarHCons: NSLayoutConstraint!
     @IBOutlet weak var myTableView: UITableView!
+    
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomHCons: NSLayoutConstraint!
+    @IBOutlet weak var buyBtn: UIButton!
     
     @IBOutlet weak var listenBgView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
     var courseId:String?
-    
+    @IBOutlet weak var timeL: UILabel!
+    var focusBtn: UIButton!
+
     var infoModel: CourseModel?
-    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+    var isMp3Course = false
     
+    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+
     lazy var controlView:ZFPlayerControlView = {
         let controlV = ZFPlayerControlView.init()
         controlV.fastViewAnimated = true
         return controlV
     }()
     
-    lazy var player:ZFPlayerController =  {
+    let audioPlayer = HDLY_AudioPlayer.shared
+    lazy var videoPlayer:ZFPlayerController =  {
         let playerC = ZFPlayerController.init(playerManager: ZFAVPlayerManager(), containerView: self.containerView)
         return playerC
     }()
     
-    var webView = WKWebView()
-    var webViewH:CGFloat = 0
-    
-    lazy var testWebV: WKWebView = {
-        let webV = WKWebView.init(frame: CGRect.zero)
-        webV.navigationDelegate = self
+    lazy var testWebV: UIWebView = {
+        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+        webV.isOpaque = false
         return webV
     }()
+    
+    var webViewH:CGFloat = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         statusBarHCons.constant = kStatusBarHeight+24
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
-        listenBgView.layer.cornerRadius = 25
+//        listenBgView.layer.cornerRadius = 25
+        buyBtn.layer.cornerRadius = 27
+        listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
         //
-        self.player.controlView = self.controlView
+        self.videoPlayer.controlView = self.controlView
         // 设置退到后台继续播放
-        self.player.pauseWhenAppResignActive = false
+        self.videoPlayer.pauseWhenAppResignActive = false
         
         weak var _self = self
-        self.player.orientationWillChange = { (player,isFullScreen) -> (Void) in
+        self.videoPlayer.orientationWillChange = { (player,isFullScreen) -> (Void) in
             _self?.setNeedsStatusBarAppearanceUpdate()
         }
         
         // 播放完自动播放下一个
-        self.player.playerDidToEnd = { (asset) -> () in
+        self.videoPlayer.playerDidToEnd = { (asset) -> () in
             
         }
         dataRequest()
@@ -67,16 +77,16 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.player.isViewControllerDisappear = false
+        self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.player.isViewControllerDisappear = true
+        self.videoPlayer.isViewControllerDisappear = true
         UIApplication.shared.statusBarStyle = .default
-
+        audioPlayer.stop()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -88,13 +98,33 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     
     
     @IBAction func playClick(_ sender: UIButton) {
-        self.player.assetURL = NSURL.init(string: "http://192.168.10.158/__video/2_0001.mp4")! as URL
-        self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+        guard let course = infoModel?.data else {
+            return
+        }
+        if isMp3Course {
+            audioPlayOrPauseAction()
+        }else {
+            if course.video.isEmpty == false && course.video.contains(".mp4") {
+                self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
+        }
     }
     
     @IBAction func listenBtnAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
     }
+    
+    @IBAction func bugBtnAction(_ sender: UIButton) {
+        if  self.infoModel?.data  != nil {
+            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
+            }else {
+                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
+            }
+        }
+    }
+    
     
     @IBAction func backAction(_ sender: Any) {
         self.back()
@@ -111,6 +141,19 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             let jsonDecoder = JSONDecoder()
             let model:CourseModel = try! jsonDecoder.decode(CourseModel.self, from: result)
             self.infoModel = model
+            if self.infoModel?.data.fileType == 1 {
+                //1是MP3;2是MP4
+                self.isMp3Course = true
+                self.audioPlayer.delegate = self
+                
+            }else {
+                self.isMp3Course = false
+            }
+            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+                self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+            }else {
+                self.buyBtn.setTitle("立即学习", for: .normal)
+            }
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
                 self.getWebHeight()
@@ -125,8 +168,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let url = self.infoModel?.data.url else {
             return
         }
-        self.testWebV.load(URLRequest.init(url: URL.init(string: url)!))
-        self.myTableView.reloadData()
+        self.testWebV.delegate = self
+        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,45 +182,98 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 extension HDLY_CourseDes_VC {
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 4
     }
     
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            guard let count = infoModel?.data.recommendsMessage?.count else {
+                return 0.01
+            }
+            if count > 0 {
+                return 120
+            }
+        }
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            guard let count = infoModel?.data.recommendsMessage?.count else {
+                return nil
+            }
+            if count > 0 {
+                return HDLY_CourseComment_Header.createViewFromNib() as! HDLY_CourseComment_Header
+            }
+        }
         return nil
     }
     //footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            guard let count = infoModel?.data.recommendsMessage?.count else {
+                return 0.01
+            }
+            if count > 0 {
+                return 60
+            }
+        }
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            guard let count = infoModel?.data.recommendsMessage?.count else {
+                return nil
+            }
+            if count > 0 {
+                return HDLY_CourseComment_Footer.createViewFromNib() as! HDLY_CourseComment_Footer
+            }
+        }
         return nil
     }
     
     //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if section == 0 {
+            return 3
+        }
+        if section == 1 {
+            guard let count = infoModel?.data.recommendsMessage?.count else {
+                return 0
+            }
+            return count
+        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let index = indexPath.row
-        if index == 0 {
-            return 182*ScreenWidth/375.0
-        }else if index == 1 {
-            return webViewH
-        }else if index == 2 {
-            return 200*ScreenWidth/375.0
-        }else if index == 3 {
+        if indexPath.section == 0 {
+            if index == 0 {
+                return 182*ScreenWidth/375.0
+            }else if index == 1 {
+                return webViewH
+            }else if index == 2 {
+                if infoModel?.data.teacherContent != nil {
+                    let textH = infoModel?.data.teacherContent.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
+                    return textH! + 145
+                }
+                return 140
+            }
+        }
+        else if indexPath.section == 1 {
+//            return 0.01
             return 280*ScreenWidth/375.0
-        }else if index == 4 {
+        }
+        else if indexPath.section == 2 {
             return 145*ScreenWidth/375.0
-        }else if index == 5 {
+        }
+        else if indexPath.section == 3 {
             return 220*ScreenWidth/375.0
         }
+        
+        
         return 0.01
     }
     
@@ -185,43 +281,58 @@ extension HDLY_CourseDes_VC {
         let index = indexPath.row
         let model = infoModel?.data
         
-        if index == 0 {
-            let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
-            cell?.titleL.text = model?.title
-            cell?.nameL.text = model?.teacher
-            cell?.desL.text = model?.tdes
-            
-            return cell!
-        }
-        else if index == 1 {
-            let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
-            self.webView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height:CGFloat(webViewH))
-            cell?.addSubview(webView)
-            guard let url = self.infoModel?.data.url else {
+        if indexPath.section == 0 {
+            if index == 0 {
+                let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
+                if model?.timg != nil {
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                }
+                cell?.titleL.text = model?.title
+                cell?.nameL.text = model?.teacherName
+                cell?.desL.text = model?.teacherTitle
+                cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                focusBtn = cell?.focusBtn
+                if model?.isFocus == 1 {
+                    focusBtn.setTitle("已关注", for: .normal)
+                }else {
+                    focusBtn.setTitle("+关注", for: .normal)
+                }
+                
                 return cell!
             }
-            self.webView.load(URLRequest.init(url: URL.init(string: url)!))
-
-            return cell!
+            else if index == 1 {
+                let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+                guard let url = self.infoModel?.data.url else {
+                    return cell!
+                }
+                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+                return cell!
+            }
+            else if index == 2 {
+                let cell = HDLY_CourseTeacher_Cell.getMyTableCell(tableV: tableView)
+                if model?.timg != nil {
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                }
+                cell?.nameL.text = model?.teacherName
+                cell?.desL.text = model?.teacherTitle
+                cell?.introduceL.text = model?.teacherContent
+                return cell!
+            }
         }
-        else if index == 2 {
-            let cell = HDLY_CourseTeacher_Cell.getMyTableCell(tableV: tableView)
-            cell?.introduceL.text = model?.tcontent
-            cell?.nameL.text = model?.teacher
-            cell?.desL.text = model?.tdes
+        else if indexPath.section == 1 {
+            let cell = HDLY_CourseComment_Cell.getMyTableCell(tableV: tableView)
             
             return cell!
-        }else if index == 3 {
-            let cell = HDLY_CourseComment_Cell.getMyTableCell(tableV: tableView)
-
-            return cell!
-        }else if index == 4 {
+        }
+        else if indexPath.section == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
             cell?.contentL.text = model?.buynotice
+            
             return cell!
-        }else if index == 5 {
+        }
+        else if indexPath.section == 3 {
             let cell = HDLY_CourseRecmd_Cell.getMyTableCell(tableV: tableView)
-            cell?.listArray = model?.recommend
+            cell?.listArray = model?.recommendsList
             return cell!
         }
         
@@ -234,45 +345,88 @@ extension HDLY_CourseDes_VC {
     }
 }
 
-//MARK: ---- WKNavigationDelegate ----
-
 extension HDLY_CourseDes_VC {
-    //开始加载
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("_____开始加载_____")
-    }
-    
-    //完成加载
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("_____完成加载_____")
-        //禁止长按手势操作
-        webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none';", completionHandler: nil)
-        webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none';", completionHandler: nil)
-        //js方法获取高度
-        webView.evaluateJavaScript("Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)") { (result, error) in
-            let height = result
-            self.webViewH = CGFloat(height as! Float)
+ 
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if (webView == self.testWebV) {
+            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
+            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
+            LOG("\(webViewH)")
         }
+        self.myTableView.reloadData()
     }
-    //加载失败
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("_____加载失败_____")
-        
-    }
-    
-    
     
 }
 
 
 extension HDLY_CourseDes_VC {
-    
     
     @objc func moreBtnAction(_ sender: UIButton) {
-
         
     }
     
+    @objc func focusBtnAction()  {
+        if let idnum = infoModel?.data.teacherID.string {
+            doFocusRequest(api_token: TestToken, id: idnum, cate_id: "2")
+        }
+    }
+    
+    //关注
+    func doFocusRequest(api_token: String, id: String, cate_id: String)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.infoModel!.data.isFocus = 1
+                    self.focusBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.infoModel!.data.isFocus  = 0
+                    self.focusBtn.setTitle("+关注", for: .normal)
+                }
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 
+
+extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
+    
+    func audioPlayOrPauseAction() {
+        let course = infoModel!.data
+        if course.video.isEmpty == false && course.video.contains(".mp3") {
+            if audioPlayer.state == .playing {
+                audioPlayer.pause()
+                playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControlState.normal)
+            } else {
+                if audioPlayer.state == .paused {
+                    audioPlayer.play()
+                }else {
+                    audioPlayer.play(file: Music.init(name: "", url:URL.init(string: course.video)!))
+                }
+                playBtn.setImage(UIImage.init(named: "xz_daoxue_pause"), for: UIControlState.normal)
+            }
+        }
+    }
+    
+    // === HDLY_AudioPlayer_Delegate ===
+    
+    func finishPlaying() {
+        playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControlState.normal)
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        timeL.text = "\(currentTime)/\(totalTime)"
+        //LOG(" progress: \(progress)")
+    }
+    
+}

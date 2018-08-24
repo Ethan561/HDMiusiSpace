@@ -76,18 +76,17 @@ struct CourseListModel: Codable {
     let price, isFree ,fileType: Int
     let img: String
     let classNum, purchases, isBigImg: Int
-    let author: String
-    
+    let teacher_name, teacher_title: String
+
     enum CodingKeys: String, CodingKey {
         case classID = "class_id"
         case uid, title, price
         case isFree = "is_free"
-        case img, author
+        case img, teacher_name, teacher_title
         case classNum = "class_num"
         case purchases
         case isBigImg = "is_big_img"
         case fileType = "file_type"
-        
     }
 }
 

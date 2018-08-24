@@ -33,7 +33,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     let viewModel: ListenDetailViewModel = ListenDetailViewModel()
     
     lazy var testWebV: WKWebView = {
-        let webV = WKWebView.init(frame: CGRect.zero)
+        let webV = WKWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.navigationDelegate = self
         return webV
     }()
@@ -98,7 +98,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     func showViewData() {
         self.infoModel = viewModel.listenDetail.value
-        self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        if infoModel?.img != nil {
+            self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        }
         self.getWebHeight()
         //点赞
         likeNumL.text = infoModel?.likes?.string
@@ -243,10 +245,10 @@ extension HDLY_ListenDetail_VC {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            guard let cmtNum = infoModel?.comments else {
-                return 0
+            if  let commentList = infoModel?.commentList {
+                return commentList.count
             }
-            return cmtNum
+            return 0
         }
         return 3
     }
@@ -283,6 +285,9 @@ extension HDLY_ListenDetail_VC {
         if indexPath.section == 0 {
             if index == 0 {
                 let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
+                if model?.teacherImg != nil {
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.teacherImg!)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                }
                 cell?.titleL.text = model?.title
                 cell?.nameL.text = model?.teacherName
                 cell?.desL.text = model?.teacherTitle
@@ -327,7 +332,9 @@ extension HDLY_ListenDetail_VC {
                 guard let commentModel = model?.commentList![index] else {
                     return  cell!
                 }
-                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                if commentModel.avatar != nil {
+                    cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                }
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
                 cell?.likeBtn.setTitle(commentModel.likeNum?.string, for: UIControlState.normal)

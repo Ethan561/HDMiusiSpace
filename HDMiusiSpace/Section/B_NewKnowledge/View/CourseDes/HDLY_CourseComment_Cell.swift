@@ -9,13 +9,16 @@
 import UIKit
 
 class HDLY_CourseComment_Cell: UITableViewCell {
-    @IBOutlet weak var moreBtn: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-    
+
+    @IBOutlet weak var avaImgV: UIImageView!
+    @IBOutlet weak var nameL: UILabel!
+    @IBOutlet weak var contentL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        avaImgV.layer.cornerRadius = 20
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

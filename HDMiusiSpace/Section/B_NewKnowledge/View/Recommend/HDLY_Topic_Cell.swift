@@ -87,7 +87,6 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
-                
             }
         }
         return cell

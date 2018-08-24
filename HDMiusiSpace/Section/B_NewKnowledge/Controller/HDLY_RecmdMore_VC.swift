@@ -111,7 +111,7 @@ extension HDLY_RecmdMore_VC {
             let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
             cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.titleL.text = model.title
-            cell?.authorL.text = model.author
+            cell?.authorL.text = String.init(format: "%@  %@",model.teacher_name, model.teacher_title)
 
             cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
@@ -127,7 +127,8 @@ extension HDLY_RecmdMore_VC {
             let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
             cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.titleL.text = model.title
-            cell?.authorL.text = model.author
+            cell?.authorL.text = String.init(format: "%@  %@",model.teacher_name, model.teacher_title)
+
             cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
             if model.fileType == 1 {//mp3

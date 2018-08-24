@@ -18,7 +18,7 @@ enum HD_LY_API {
     //新知轮播图
     case getNewKnowledgeBanner()
 
-    //课程详情
+    //课程导读详情
     case courseInfo(api_token: String, id: String)
     
     //course - 精选推荐更多/最新/艺术/亲子互动
@@ -44,8 +44,15 @@ enum HD_LY_API {
 
     //focus - 关注/取消
     case doFocusRequest( id: String, cate_id: String,api_token:String)
+    
+    //课程详情
+    case courseDetailInfo(api_token: String, id: String)
+    
+    //课程章节
+    case courseChapterInfo(api_token: String, id: String)
 
-
+    //获得课程购买信息
+    case courseBuyInfo(api_token: String, id: String)
 
     
 }
@@ -75,7 +82,7 @@ extension HD_LY_API: TargetType {
         //course - 精选推荐更多/最新/艺术/亲子互动
         case .courseBoutique(skip: _, take: _, type: _, cate_id: _):
             return "/api/course/boutique"
-        //课程详情
+        //课程导读详情
         case .courseInfo(api_token: _, id: _):
             return "/api/course/courseinfo"
         //精选专题换一换
@@ -104,7 +111,17 @@ extension HD_LY_API: TargetType {
         case .doFocusRequest( id: _, cate_id: _,api_token:_):
             return "/api/focus/dofocus"
             
+        //课程详情
+        case .courseDetailInfo(api_token: _, id: _):
+            return "/api/course/course_info"
             
+        //课程章节
+        case .courseChapterInfo(api_token: _, id: _):
+            return "/api/course/chapter"
+            
+        //获得课程购买信息
+        case .courseBuyInfo(api_token: let api_token, id: let id):
+            return "/api/course/get_buy_info"
             
         }
         
@@ -148,7 +165,7 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-        //课程详情
+            //课程导读详情
         case .courseInfo(api_token: let api_token , id: let id):
             
             params = params.merging(["api_token":api_token,"id":id], uniquingKeysWith: {$1})
@@ -219,6 +236,31 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+            
+        //课程详情
+        case .courseDetailInfo(api_token: let api_token , id: let id):
+            
+            params = params.merging(["api_token":api_token,"id":id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //课程章节
+        case .courseChapterInfo(api_token: let api_token , id: let id ):
+            
+            params = params.merging(["api_token":api_token,"id":id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //获得课程购买信息
+        case .courseBuyInfo(api_token: let api_token, id: let id):
+            params = params.merging(["api_token":api_token,"id":id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
             
         default:
             return .requestPlain//无参数

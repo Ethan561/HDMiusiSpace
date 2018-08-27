@@ -12,6 +12,24 @@
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
+		D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6694731212F8E9C0068945A /* CourseDetail.swift */; };
+		D6694734212FA97A0068945A /* CourseChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6694733212FA97A0068945A /* CourseChapter.swift */; };
+		D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6694735212FE62D0068945A /* HDLY_LeaveMsg_VC.swift */; };
+		D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6694736212FE62D0068945A /* HDLY_LeaveMsg_VC.xib */; };
+		D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6694739212FE6610068945A /* HDLY_LeaveQuestion_VC.swift */; };
+		D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = D669473A212FE6610068945A /* HDLY_LeaveQuestion_VC.xib */; };
+		D669473E212FEBAF0068945A /* HDPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D669473D212FEBAF0068945A /* HDPlaceholderTextView.swift */; };
+		D6694740213005390068945A /* CourseQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D669473F213005390068945A /* CourseQuestion.swift */; };
+		D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66991BB2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift */; };
+		D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66991BC2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib */; };
+		D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66991BF2130E959002568B2 /* HDLY_QuestionTip_Header.swift */; };
+		D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66991C12130E964002568B2 /* HDLY_QuestionTip_Header.xib */; };
+		D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66991C32130EA7A002568B2 /* HDLY_QuestionContent_Header.swift */; };
+		D66991C62130EA84002568B2 /* HDLY_QuestionContent_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66991C52130EA84002568B2 /* HDLY_QuestionContent_Header.xib */; };
+		D66991C92130EDD5002568B2 /* HDLY_AnswerText_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66991C72130EDD5002568B2 /* HDLY_AnswerText_Cell.swift */; };
+		D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66991C82130EDD5002568B2 /* HDLY_AnswerText_Cell.xib */; };
+		D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66991CB2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift */; };
+		D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66991CC2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib */; };
 		D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6699FFC21198714006339D3 /* RootBHeaderView.swift */; };
 		D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6699FFE2119871C006339D3 /* RootBHeaderView.xib */; };
 		D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A8A59212E3B81009A879F /* HDLY_ListenComment_Header.swift */; };
@@ -175,7 +193,6 @@
 		D6C9FCF92118486A007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCF52118486A007C8E56 /* .gitignore */; };
 		D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCF72118486A007C8E56 /* .gitignore */; };
 		D6C9FD012118487B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCFC2118487B007C8E56 /* .gitignore */; };
-		D6C9FD022118487B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCFE2118487B007C8E56 /* .gitignore */; };
 		D6C9FD032118487B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD002118487B007C8E56 /* .gitignore */; };
 		D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD052118488F007C8E56 /* .gitignore */; };
 		D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD072118488F007C8E56 /* .gitignore */; };
@@ -207,6 +224,24 @@
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		D6694731212F8E9C0068945A /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
+		D6694733212FA97A0068945A /* CourseChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseChapter.swift; sourceTree = "<group>"; };
+		D6694735212FE62D0068945A /* HDLY_LeaveMsg_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LeaveMsg_VC.swift; sourceTree = "<group>"; };
+		D6694736212FE62D0068945A /* HDLY_LeaveMsg_VC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_LeaveMsg_VC.xib; sourceTree = "<group>"; };
+		D6694739212FE6610068945A /* HDLY_LeaveQuestion_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LeaveQuestion_VC.swift; sourceTree = "<group>"; };
+		D669473A212FE6610068945A /* HDLY_LeaveQuestion_VC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_LeaveQuestion_VC.xib; sourceTree = "<group>"; };
+		D669473D212FEBAF0068945A /* HDPlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDPlaceholderTextView.swift; sourceTree = "<group>"; };
+		D669473F213005390068945A /* CourseQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseQuestion.swift; sourceTree = "<group>"; };
+		D66991BB2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionNumTitle_Cell.swift; sourceTree = "<group>"; };
+		D66991BC2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionNumTitle_Cell.xib; sourceTree = "<group>"; };
+		D66991BF2130E959002568B2 /* HDLY_QuestionTip_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionTip_Header.swift; sourceTree = "<group>"; };
+		D66991C12130E964002568B2 /* HDLY_QuestionTip_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionTip_Header.xib; sourceTree = "<group>"; };
+		D66991C32130EA7A002568B2 /* HDLY_QuestionContent_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionContent_Header.swift; sourceTree = "<group>"; };
+		D66991C52130EA84002568B2 /* HDLY_QuestionContent_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionContent_Header.xib; sourceTree = "<group>"; };
+		D66991C72130EDD5002568B2 /* HDLY_AnswerText_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_AnswerText_Cell.swift; sourceTree = "<group>"; };
+		D66991C82130EDD5002568B2 /* HDLY_AnswerText_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_AnswerText_Cell.xib; sourceTree = "<group>"; };
+		D66991CB2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_AnswerAudio_Cell.swift; sourceTree = "<group>"; };
+		D66991CC2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_AnswerAudio_Cell.xib; sourceTree = "<group>"; };
 		D6699FFC21198714006339D3 /* RootBHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBHeaderView.swift; sourceTree = "<group>"; };
 		D6699FFE2119871C006339D3 /* RootBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootBHeaderView.xib; sourceTree = "<group>"; };
 		D66A8A59212E3B81009A879F /* HDLY_ListenComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ListenComment_Header.swift; sourceTree = "<group>"; };
@@ -389,7 +424,6 @@
 		D6C9FCF52118486A007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FCF72118486A007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FCFC2118487B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCFE2118487B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FD002118487B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FD052118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FD072118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -458,6 +492,23 @@
 			path = MD5;
 			sourceTree = "<group>";
 		};
+		D66991BA2130E62E002568B2 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				D66991BB2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift */,
+				D66991BC2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib */,
+				D66991BF2130E959002568B2 /* HDLY_QuestionTip_Header.swift */,
+				D66991C12130E964002568B2 /* HDLY_QuestionTip_Header.xib */,
+				D66991C32130EA7A002568B2 /* HDLY_QuestionContent_Header.swift */,
+				D66991C52130EA84002568B2 /* HDLY_QuestionContent_Header.xib */,
+				D66991C72130EDD5002568B2 /* HDLY_AnswerText_Cell.swift */,
+				D66991C82130EDD5002568B2 /* HDLY_AnswerText_Cell.xib */,
+				D66991CB2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift */,
+				D66991CC2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
 		D66EDF8F212A4DE9004DACE0 /* HomePageSub */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +532,10 @@
 				D6866A522126A1360044EEAA /* HDLY_CourseList_SubVC3.xib */,
 				D6866A552126A1460044EEAA /* HDLY_CourseList_SubVC4.swift */,
 				D6866A562126A1460044EEAA /* HDLY_CourseList_SubVC4.xib */,
+				D6694735212FE62D0068945A /* HDLY_LeaveMsg_VC.swift */,
+				D6694736212FE62D0068945A /* HDLY_LeaveMsg_VC.xib */,
+				D6694739212FE6610068945A /* HDLY_LeaveQuestion_VC.swift */,
+				D669473A212FE6610068945A /* HDLY_LeaveQuestion_VC.xib */,
 			);
 			path = CourseListSub;
 			sourceTree = "<group>";
@@ -776,6 +831,7 @@
 				D6C9FC5021181F28007C8E56 /* EmptyConfigView.swift */,
 				D6C9FC5121181F28007C8E56 /* .gitignore */,
 				D6C9FC5221181F28007C8E56 /* SwiftNotice.swift */,
+				D669473D212FEBAF0068945A /* HDPlaceholderTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1084,11 +1140,11 @@
 		D6C9FCFD2118487B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D66991BA2130E62E002568B2 /* Question */,
 				D67ABF64212B9AA100276CDE /* Listen */,
 				D6866A592126B1370044EEAA /* CourseList */,
 				D670D38621257C4A0064750A /* CourseDes */,
 				D670D38521257BB40064750A /* Recommend */,
-				D6C9FCFE2118487B007C8E56 /* .gitignore */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1100,6 +1156,9 @@
 				D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */,
 				D670D383212575970064750A /* CourseModel.swift */,
 				D66EDF9B212AB16A004DACE0 /* CourseListen.swift */,
+				D6694731212F8E9C0068945A /* CourseDetail.swift */,
+				D6694733212FA97A0068945A /* CourseChapter.swift */,
+				D669473F213005390068945A /* CourseQuestion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1260,13 +1319,16 @@
 				D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */,
 				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
+				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
 				D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
+				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
 				D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */,
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
+				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
@@ -1276,13 +1338,13 @@
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
+				D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */,
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
 				D6C9FCE621184840007C8E56 /* .gitignore in Resources */,
 				D69B15BC212EB25800E9BCA0 /* HDLY_CourseComment_Footer.xib in Resources */,
 				D6C9FCF12118485B007C8E56 /* .gitignore in Resources */,
-				D6C9FD022118487B007C8E56 /* .gitignore in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
 				D6C9FCE721184840007C8E56 /* .gitignore in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
@@ -1290,8 +1352,11 @@
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
 				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
 				D6C9FC5A21181F28007C8E56 /* .gitignore in Resources */,
+				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
+				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
+				D66991C62130EA84002568B2 /* HDLY_QuestionContent_Header.xib in Resources */,
 				D6C9FCF02118485B007C8E56 /* .gitignore in Resources */,
 				D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */,
 				D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */,
@@ -1400,9 +1465,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
+				D66991C92130EDD5002568B2 /* HDLY_AnswerText_Cell.swift in Sources */,
 				D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */,
 				D670D389212585A00064750A /* HDLY_CourseTitle_Cell.swift in Sources */,
 				D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */,
+				D6694740213005390068945A /* CourseQuestion.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
@@ -1418,9 +1485,12 @@
 				D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
 				D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */,
+				D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */,
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
+				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
+				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
 				D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */,
 				D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */,
 				D6C9FC6C21181F54007C8E56 /* NSString+Extension.swift in Sources */,
@@ -1431,6 +1501,7 @@
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
+				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
@@ -1441,11 +1512,13 @@
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
 				D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
+				D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
+				D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
 				D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */,
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
@@ -1468,6 +1541,7 @@
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
+				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
@@ -1477,6 +1551,7 @@
 				D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */,
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
+				D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
@@ -1492,6 +1567,7 @@
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D6C9FC8A21181FD1007C8E56 /* HDCache.swift in Sources */,
 				D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */,
+				D669473E212FEBAF0068945A /* HDPlaceholderTextView.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,

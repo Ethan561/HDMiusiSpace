@@ -12,35 +12,51 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomView: UIView!
     
+    var infoModel: CourseMessageList?
+    var courseId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        bgView.layer.cornerRadius = 19
+        bottomView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         
+        dataRequest()
     }
 
+    func dataRequest()  {
+        guard let idnum = self.courseId else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseMessageList(skip: "0", take: "100", api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+
+            let jsonDecoder = JSONDecoder()
+            let model:CourseMessageList = try! jsonDecoder.decode(CourseMessageList.self, from: result)
+            self.infoModel = model
+            self.tableView.reloadData()
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     @IBAction func leaveMsgBtnAction(_ sender: Any) {
-        
+        let vc:HDLY_LeaveMsg_VC = HDLY_LeaveMsg_VC.init()
+        vc.courseId = self.courseId
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -67,31 +83,50 @@ extension HDLY_CourseList_SubVC4 {
     }
     
     //row
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if infoModel?.data != nil {
+            return infoModel!.data.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 145*ScreenWidth/375.0
+        if infoModel?.data != nil {
+            guard let commentModel:CourseMessageModel = self.infoModel?.data[indexPath.row] else {
+                return  0.01
+            }
+            if let text = commentModel.content {
+                let textH = text.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
+                return textH + 90
+            }
+        }
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
-        //        let model = infoModel?.data
         let cell = HDLY_LeaveMsg_Cell.getMyTableCell(tableV: tableView)
-        
-        //            cell?.titleL.text = model?.title
-        //            cell?.nameL.text = model?.teacher
-        //            cell?.desL.text = model?.tdes
-        
+        if self.infoModel?.data != nil {
+            guard let commentModel:CourseMessageModel = self.infoModel?.data[index] else {
+                return  cell!
+            }
+            if commentModel.avatar != nil {
+                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            cell?.contentL.text = commentModel.content
+            cell?.timeL.text = commentModel.time
+            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+            if commentModel.isLike == 0 {
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+            }else {
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+            }
+        }
         return cell!
- 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        //        self.navigationController?.pushViewController(vc, animated: true)
+ 
     }
 }

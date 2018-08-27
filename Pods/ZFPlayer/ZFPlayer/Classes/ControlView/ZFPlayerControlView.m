@@ -400,7 +400,11 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
     if (state == ZFPlayerLoadStatePrepare) {
         self.coverImageView.hidden = NO;
     } else if (state == ZFPlayerLoadStatePlaythroughOK) {
-        self.coverImageView.hidden = YES;
+        if (self.coverImageHidden) {
+            self.coverImageView.hidden = YES;
+        }else {
+            self.coverImageView.hidden = NO;
+        }
     }
     if (state == ZFPlayerLoadStateStalled || state == ZFPlayerLoadStatePrepare) {
         [self.activity startAnimating];

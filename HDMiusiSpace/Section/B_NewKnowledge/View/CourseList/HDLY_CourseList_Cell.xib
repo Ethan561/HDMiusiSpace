@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +21,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="900" verticalCompressionResistancePriority="900" text="文献所见原始渡河工具  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5St-Rs-gQ3">
-                        <rect key="frame" x="79" y="12" width="150.5" height="21"/>
+                        <rect key="frame" x="79" y="12" width="180" height="21"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="180" id="bUl-0P-7yd"/>
                             <constraint firstAttribute="height" constant="21" id="x0I-Tx-28L"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -38,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试听" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jod-1h-kXw">
-                        <rect key="frame" x="237.5" y="14.5" width="28" height="16"/>
+                        <rect key="frame" x="267" y="14.5" width="28" height="16"/>
                         <color key="backgroundColor" red="0.75686274509803919" green="0.71372549019607845" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="EJw-iP-fWj"/>
@@ -62,9 +62,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Btf-7J-ql8" secondAttribute="trailing" id="7FG-aa-kAV"/>
                     <constraint firstItem="5St-Rs-gQ3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Gd1-pJ-IIV"/>
-                    <constraint firstItem="5St-Rs-gQ3" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" priority="700" id="P0y-UQ-Eii"/>
                     <constraint firstItem="jod-1h-kXw" firstAttribute="leading" secondItem="5St-Rs-gQ3" secondAttribute="trailing" constant="8" id="Tz1-tH-VCm"/>
-                    <constraint firstItem="Btf-7J-ql8" firstAttribute="leading" secondItem="jod-1h-kXw" secondAttribute="trailing" priority="500" constant="52" id="YgJ-Ht-7eu"/>
                     <constraint firstItem="jod-1h-kXw" firstAttribute="centerY" secondItem="5St-Rs-gQ3" secondAttribute="centerY" id="hHn-gr-ofi"/>
                     <constraint firstItem="WZf-wt-zua" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hcT-7x-HvL"/>
                     <constraint firstItem="5St-Rs-gQ3" firstAttribute="leading" secondItem="WZf-wt-zua" secondAttribute="trailing" constant="14" id="rxu-q8-dnV"/>
@@ -75,8 +73,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="nameL" destination="5St-Rs-gQ3" id="FN4-Uf-4kH"/>
+                <outlet property="nameWidthCons" destination="bUl-0P-7yd" id="UIo-kV-peC"/>
                 <outlet property="tagL" destination="jod-1h-kXw" id="bkt-Tr-S50"/>
-                <outlet property="tagTrailCons" destination="YgJ-Ht-7eu" id="BRF-NV-E0N"/>
                 <outlet property="timeL" destination="Btf-7J-ql8" id="tw8-4D-qNU"/>
                 <outlet property="tipImgV" destination="WZf-wt-zua" id="Rle-Sd-V84"/>
             </connections>

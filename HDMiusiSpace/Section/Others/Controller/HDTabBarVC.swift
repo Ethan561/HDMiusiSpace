@@ -43,13 +43,15 @@ class HDTabBarVC: UITabBarController {
         self.selectedIndex = 0
         self.tabBar.addSubview(tabBar)
         self.tabBar.tintColor = TabBarSelectedColor
-        self.tabBar.backgroundColor = UIColor.HexColor(0xE8E8E8)
+        self.tabBar.backgroundColor = UIColor.white
         self.tabBar.backgroundImage = UIImage.init()
         self.tabBar.shadowImage = UIImage.init()
         //
-//        let bgView = UIView.init(frame: self.tabBar.bounds)
-//        bgView.backgroundColor = UIColor.lightGray
-//        self.tabBar.insertSubview(bgView, at: 0)
+        let bgView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: kTabBarHeight))
+        bgView.backgroundColor = UIColor.white
+        self.tabBar.insertSubview(bgView, at: 0)
+        bgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
+
         //
         HDDeclare.shared.tabBarVC = self
         

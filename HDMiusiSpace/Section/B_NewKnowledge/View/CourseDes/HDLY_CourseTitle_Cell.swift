@@ -45,6 +45,7 @@ class HDLY_CourseTitle_Cell: UITableViewCell {
     }
     
     class  func getMyTableCell(tableV: UITableView) -> HDLY_CourseTitle_Cell! {
+        
         var cell: HDLY_CourseTitle_Cell? = tableV.dequeueReusableCell(withIdentifier: HDLY_CourseTitle_Cell.className) as? HDLY_CourseTitle_Cell
         if cell == nil {
             //注册cell

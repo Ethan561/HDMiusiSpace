@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDLY_CourseList_SubVC4" customModule="HDMiusiSpace" customModuleProvider="target">
             <connections>
                 <outlet property="bgView" destination="sqj-4o-N81" id="h6E-fR-cpM"/>
+                <outlet property="bottomView" destination="NwE-9v-KW2" id="D3r-WH-KFb"/>
                 <outlet property="tableView" destination="DFg-Ml-tzs" id="OTf-ee-OlV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -39,12 +40,6 @@
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-hF-CaP">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                            <connections>
-                                <action selector="leaveMsgBtnAction:" destination="-1" eventType="touchUpInside" id="9zY-Vi-xMf"/>
-                            </connections>
-                        </button>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqj-4o-N81">
                             <rect key="frame" x="20" y="9" width="253" height="38"/>
                             <subviews>
@@ -62,6 +57,12 @@
                                 <constraint firstAttribute="height" constant="38" id="Tro-Q9-WHT"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-hF-CaP">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                            <connections>
+                                <action selector="leaveMsgBtnAction:" destination="-1" eventType="touchUpInside" id="9zY-Vi-xMf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

@@ -26,7 +26,7 @@ enum HD_LY_API {
     
     //精选专题换一换
     case courseTopics()
-
+    
     //轻听随看列表
     case courseListen(skip: String, take: String, cate_id: String)
     
@@ -53,7 +53,20 @@ enum HD_LY_API {
 
     //获得课程购买信息
     case courseBuyInfo(api_token: String, id: String)
+    
+    //留言发布
+    case courseLeaveMessage(api_token: String, id: String, content: String)
 
+    //留言列表
+    case courseMessageList(skip: String, take: String, api_token: String, id: String)
+
+    //问题提交
+    case courseQuestion(api_token: String, id: String,title: String, content: String)
+
+    //问题列表
+    case courseQuestionList(skip: String, take: String, api_token: String, id: String)
+
+    
     
 }
 
@@ -120,8 +133,26 @@ extension HD_LY_API: TargetType {
             return "/api/course/chapter"
             
         //获得课程购买信息
-        case .courseBuyInfo(api_token: let api_token, id: let id):
+        case .courseBuyInfo(api_token:  _, id:  _):
             return "/api/course/get_buy_info"
+            
+        //留言发布
+        case .courseLeaveMessage(api_token: _, id: _, content: _):
+            return "/api/course/message"
+            
+        //留言列表
+        case .courseMessageList(skip: _, take: _, api_token: _, id: _):
+            return "/api/course/messagelist"
+            
+        //问题提交
+        case .courseQuestion(api_token: _, id: _,title: _, content: _):
+            return "/api/course/question"
+            
+        //问题列表
+        case .courseQuestionList(skip: _, take: _, api_token: _, id: _):
+            return "/api/course/questionlist"
+            
+            
             
         }
         
@@ -133,7 +164,11 @@ extension HD_LY_API: TargetType {
         case .commentDocomment(api_token:_,comment: _, id: _, return_id: _, cate_id: _),
              .doLikeRequest( id: _, cate_id: _,api_token:_, deviceno: _),
              .doFavoriteRequest( id: _, cate_id: _,api_token:_),
-             .doFocusRequest( id: _, cate_id: _,api_token:_):
+             .doFocusRequest( id: _, cate_id: _,api_token:_),
+             .courseLeaveMessage(api_token: _, id: _, content: _),
+             .courseQuestion(api_token: _, id: _,title: _, content: _):
+            
+            
             return  .post
         default:
             return .get
@@ -260,11 +295,46 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        
             
+        //留言发布
+        case .courseLeaveMessage(api_token: let api_token , id: let id, content: let content):
+            params = params.merging(["api_token": api_token, "id": id, "content": content], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //留言列表
+        case .courseMessageList(skip: let skip, take: let take, api_token: let api_token , id: let id):
+            
+            params = params.merging(["api_token": api_token, "id": id, "skip": skip, "take": take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        //问题提交
+        case .courseQuestion(api_token: let api_token, id: let id,title: let title, content: let content):
+            params = params.merging(["api_token": api_token, "id": id, "title": title, "content": content], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //问题列表
+        case .courseQuestionList(skip: let skip, take: let take, api_token: let api_token , id: let id):
+            params = params.merging(["api_token": api_token, "id": id, "skip": skip, "take": take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
         default:
             return .requestPlain//无参数
         }
+        
         return .requestParameters(parameters: params, encoding: URLEncoding.default)
     }
     

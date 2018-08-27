@@ -56,6 +56,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="moreBtn" destination="T8U-r5-02c" id="de0-Oh-4Gc"/>
+            </connections>
             <point key="canvasLocation" x="33.5" y="-219"/>
         </view>
     </objects>

@@ -201,7 +201,7 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
         timeL.text = "\(currentTime)/\(totalTime)"
-//        LOG(" progress: \(progress)")
+//      LOG(" progress: \(progress)")
     }
     
 }
@@ -418,6 +418,7 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
         keyboardTextField.isHidden = false
         keyboardTextField.show()
     }
+    
     //隐藏评论显示
     @objc func closeKeyBoardView() {
         keyboardTextField.textView.text = ""

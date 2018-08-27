@@ -8,15 +8,21 @@
 
 import UIKit
 
-class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate{
+class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate, ChapterListPlayDelegate{
     
     @IBOutlet weak var statusBarHCons: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
-    var infoModel: CourseModel?
+    
+    var infoModel: CourseDetail?
+    var isMp3Course = false
+    var showLeaveMsg = false
+
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+    
+    var courseId:String?
     
     lazy var controlView:ZFPlayerControlView = {
         let controlV = ZFPlayerControlView.init()
@@ -65,9 +71,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var childVCScrollView: UIScrollView?
     let courseListTopH = (kStatusBarHeight+24+60+ScreenWidth*9/16.0)
     
-    //
-    fileprivate let imageNames = ["qzhd_img1","qzhd_img1","qzhd_img1"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         statusBarHCons.constant = kStatusBarHeight+24
@@ -77,7 +80,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.contentScrollView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
         contentView.addSubview(contentScrollView)
         menuView.addSubview(self.pageMenu)
-
+        
         // 设置退到后台继续播放
         self.player.pauseWhenAppResignActive = false
         
@@ -98,7 +101,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         super.viewWillAppear(animated)
         self.player.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -114,25 +117,61 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     }
     
     @IBAction func playClick(_ sender: UIButton) {
-        self.player.assetURL = NSURL.init(string: "http://192.168.10.158/__video/2_0001.mp4")! as URL
-        self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+        
+        guard let course = infoModel?.data else {
+            return
+        }
+        
+        if isMp3Course {
+            if course.video.isEmpty == false && course.video.contains(".mp3") {
+                self.player.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.coverImageHidden = false
+            }
+        }else {
+            if course.video.isEmpty == false && course.video.contains(".mp4") {
+                self.player.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
+        }
     }
     
-    @IBAction func backAction(_ sender: Any) {
-        self.back()
+    func playWithCurrentPlayUrl(_ video: String) {
+        if video.isEmpty == false && video.contains(".mp3") {
+            self.player.assetURL = NSURL.init(string: video)! as URL
+            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            self.controlView.coverImageHidden = false
+        }
+        else if video.isEmpty == false && video.contains(".mp4") {
+            self.player.assetURL = NSURL.init(string: video)! as URL
+            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+        }
+        
     }
-    
     func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: "1"), showHud: false, loadingVC: self, success: { (result) in
+        guard let idnum = self.courseId else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-//            let model:CourseModel = try! jsonDecoder.decode(CourseModel.self, from: result)
-//            self.infoModel = model
-//            if self.infoModel != nil {
-//                self.kVideoCover = self.infoModel!.data.img
-//            }
+            let model:CourseDetail = try! jsonDecoder.decode(CourseDetail.self, from: result)
+            self.infoModel = model
+            
+            if self.infoModel?.data.fileType == 1 {
+                //1是MP3;2是MP4
+                self.isMp3Course = true
+            }else {
+                self.isMp3Course = false
+            }
+            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+            }else {
+            }
+            if self.infoModel != nil {
+                self.kVideoCover = self.infoModel!.data.img
+            }
             
         }) { (errorCode, msg) in
             
@@ -141,7 +180,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    @IBAction func backAction(_ sender: Any) {
+        self.back()
     }
 }
 
@@ -159,21 +200,30 @@ extension HDLY_CourseList_VC {
             switch i {
             case 0://
                 let baseVC:HDLY_CourseList_SubVC1 = HDLY_CourseList_SubVC1.init()
+                baseVC.courseId = self.courseId
                 self.addChildViewController(baseVC)
+                baseVC.delegate = self
                 baseVC.view.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
                 self.contentScrollView.addSubview(self.childViewControllers[0].view)
             case 1://
                 let baseVC:HDLY_CourseList_SubVC2 = HDLY_CourseList_SubVC2.init()
+                baseVC.courseId = self.courseId
                 self.addChildViewController(baseVC)
             case 2://
                 let baseVC:HDLY_CourseList_SubVC3 = HDLY_CourseList_SubVC3.init()
+                baseVC.courseId = self.courseId
                 self.addChildViewController(baseVC)
             case 3://
                 let baseVC:HDLY_CourseList_SubVC4 = HDLY_CourseList_SubVC4.init()
+                baseVC.courseId = self.courseId
                 self.addChildViewController(baseVC)
             default: break
                 
             }
+        }
+        if showLeaveMsg == true {
+            self.pageMenu(self.pageMenu, itemSelectedFrom: 0, to: 3)
+            self.pageMenu.selectedItemIndex = 2
         }
     }
     
@@ -195,12 +245,6 @@ extension HDLY_CourseList_VC {
         }
         
         targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
-//        let s: UIScrollView = targetViewController.view.subviews[0] as! UIScrollView
-//        var contentOffset:CGPoint = s.contentOffset
-//        if contentOffset.y >= CGFloat(HeaderViewH) {
-//            contentOffset.y = CGFloat(HeaderViewH)
-//        }
-//        s.contentOffset = contentOffset
         self.contentScrollView.addSubview(targetViewController.view)
     }
 }

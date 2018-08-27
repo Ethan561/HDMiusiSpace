@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDLY_CourseList_SubVC1" customModule="HDMiusiSpace" customModuleProvider="target">
             <connections>
-                <outlet property="buyBtn" destination="ZwT-xn-CeD" id="EOc-rF-x3F"/>
+                <outlet property="bottomHCons" destination="dXZ-t6-frn" id="6HE-Sa-Ee8"/>
+                <outlet property="bottomView" destination="I8v-5c-Ql6" id="ht5-hR-Txg"/>
+                <outlet property="buyBtn" destination="gWZ-HD-gdS" id="OhP-O4-Fdh"/>
                 <outlet property="tableView" destination="ebo-5f-1dx" id="PSy-Ge-hcb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,33 +24,46 @@
             <rect key="frame" x="0.0" y="0.0" width="313" height="552"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwT-xn-CeD">
-                    <rect key="frame" x="20" y="476" width="273" height="56"/>
-                    <color key="backgroundColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="0.85108090753424659" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="56" id="g0H-lm-94s"/>
-                    </constraints>
-                    <state key="normal" title="会员价¥199">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="buyBtnAction:" destination="-1" eventType="touchUpInside" id="LxL-Je-e5o"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ebo-5f-1dx">
-                    <rect key="frame" x="0.0" y="20" width="313" height="436"/>
+                    <rect key="frame" x="0.0" y="20" width="313" height="458"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8v-5c-Ql6">
+                    <rect key="frame" x="0.0" y="478" width="313" height="74"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWZ-HD-gdS">
+                            <rect key="frame" x="20" y="10" width="273" height="54"/>
+                            <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="会员价¥139">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="buyBtnAction:" destination="-1" eventType="touchUpInside" id="ENT-Br-Lm4"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="gWZ-HD-gdS" firstAttribute="centerY" secondItem="I8v-5c-Ql6" secondAttribute="centerY" id="2gr-m7-9Jc"/>
+                        <constraint firstItem="gWZ-HD-gdS" firstAttribute="centerX" secondItem="I8v-5c-Ql6" secondAttribute="centerX" id="Eij-so-dMY"/>
+                        <constraint firstItem="gWZ-HD-gdS" firstAttribute="leading" secondItem="I8v-5c-Ql6" secondAttribute="leading" constant="20" id="HPh-gm-cIi"/>
+                        <constraint firstItem="gWZ-HD-gdS" firstAttribute="top" secondItem="I8v-5c-Ql6" secondAttribute="top" constant="10" id="P8E-Fa-CE0"/>
+                        <constraint firstAttribute="height" constant="74" id="dXZ-t6-frn"/>
+                        <constraint firstAttribute="trailing" secondItem="gWZ-HD-gdS" secondAttribute="trailing" constant="20" id="ePz-C5-joG"/>
+                        <constraint firstAttribute="bottom" secondItem="gWZ-HD-gdS" secondAttribute="bottom" constant="10" id="r0H-xl-M0v"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="I8v-5c-Ql6" secondAttribute="trailing" id="1zv-31-xLd"/>
                 <constraint firstItem="ebo-5f-1dx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Wm-NB-ZoH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ebo-5f-1dx" secondAttribute="trailing" id="KC9-NB-vA2"/>
                 <constraint firstItem="ebo-5f-1dx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Oeg-5y-Oec"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZwT-xn-CeD" secondAttribute="trailing" constant="20" id="gvy-WK-SWU"/>
-                <constraint firstItem="ZwT-xn-CeD" firstAttribute="top" secondItem="ebo-5f-1dx" secondAttribute="bottom" constant="20" id="hki-mK-CcH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ZwT-xn-CeD" secondAttribute="bottom" constant="20" id="kGA-4r-gax"/>
-                <constraint firstItem="ZwT-xn-CeD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pbb-Sl-AK7"/>
+                <constraint firstItem="I8v-5c-Ql6" firstAttribute="top" secondItem="ebo-5f-1dx" secondAttribute="bottom" id="Wxi-Em-Pxx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="I8v-5c-Ql6" secondAttribute="bottom" id="dVv-jM-moj"/>
+                <constraint firstItem="I8v-5c-Ql6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mjo-Vx-XaE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

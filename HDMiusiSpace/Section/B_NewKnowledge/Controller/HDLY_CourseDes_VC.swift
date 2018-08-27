@@ -28,7 +28,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var isMp3Course = false
     
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-
+    
     lazy var controlView:ZFPlayerControlView = {
         let controlV = ZFPlayerControlView.init()
         controlV.fastViewAnimated = true
@@ -49,13 +49,11 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     
     var webViewH:CGFloat = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         statusBarHCons.constant = kStatusBarHeight+24
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
-//        listenBgView.layer.cornerRadius = 25
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
         //
@@ -73,6 +71,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             
         }
         dataRequest()
+        self.bottomHCons.constant = 0
+        self.listenBgView.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -112,15 +112,15 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func listenBtnAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
+        self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
     }
     
     @IBAction func bugBtnAction(_ sender: UIButton) {
         if  self.infoModel?.data  != nil {
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
-                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
+                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
             }else {
-                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: nil)
+                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
             }
         }
     }
@@ -150,10 +150,19 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.isMp3Course = false
             }
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
-                self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+                if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
+                    self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+                    self.listenBgView.isHidden = false
+
+                }else {
+                    self.buyBtn.setTitle("立即学习", for: .normal)
+                    self.listenBgView.isHidden = true
+                }
             }else {
                 self.buyBtn.setTitle("立即学习", for: .normal)
+                self.listenBgView.isHidden = true
             }
+            self.bottomHCons.constant = 74
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
                 self.getWebHeight()
@@ -171,6 +180,20 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.testWebV.delegate = self
         self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
     }
+    
+    
+     // MARK: - Navigation
+    
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PushTo_HDLY_CourseList_VC_line" {
+            guard let idnum:String = sender as? String else {
+                return
+            }
+            let vc:HDLY_CourseList_VC = segue.destination as! HDLY_CourseList_VC
+            vc.courseId = idnum
+        }
+     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -203,7 +226,9 @@ extension HDLY_CourseDes_VC {
                 return nil
             }
             if count > 0 {
-                return HDLY_CourseComment_Header.createViewFromNib() as! HDLY_CourseComment_Header
+                let header = HDLY_CourseComment_Header.createViewFromNib() as! HDLY_CourseComment_Header
+                header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                return header
             }
         }
         return nil
@@ -362,6 +387,10 @@ extension HDLY_CourseDes_VC {
 extension HDLY_CourseDes_VC {
     
     @objc func moreBtnAction(_ sender: UIButton) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+        vc.courseId = self.courseId
+        vc.showLeaveMsg = true
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     

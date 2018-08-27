@@ -9,26 +9,67 @@
 import UIKit
 import WebKit
 
-class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate {
+class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    var focusBtn: UIButton!
+
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomHCons: NSLayoutConstraint!
     @IBOutlet weak var buyBtn: UIButton!
     
-    var webView = WKWebView()
-    var webViewH: CGFloat = 100
-    
-    lazy var testWebV: WKWebView = {
-        let webV = WKWebView.init(frame: CGRect.zero)
-        webV.navigationDelegate = self
+    //
+    lazy var testWebV: UIWebView = {
+        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+        webV.isOpaque = false
         return webV
     }()
+    
+    var webViewH:CGFloat = 0
+    
+    var infoModel: CourseDetail?
+    var courseId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //
-        buyBtn.layer.cornerRadius = 28
+        buyBtn.layer.cornerRadius = 27
         tableView.dataSource = self
         tableView.delegate = self
+        dataRequest()
+        self.bottomHCons.constant = 0
+
+    }
+    
+    func dataRequest()  {
+        guard let idnum = self.courseId else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            let model:CourseDetail = try! jsonDecoder.decode(CourseDetail.self, from: result)
+            self.infoModel = model
+            
+            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+                if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
+                    self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+                    self.bottomHCons.constant = 74
+                }else {
+                    self.bottomHCons.constant = 0
+                    self.bottomView.isHidden = true
+                }
+            }else {
+                self.bottomHCons.constant = 0
+                self.bottomView.isHidden = true
+            }
+            self.getWebHeight()
+            
+        }) { (errorCode, msg) in
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,17 +80,6 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     @IBAction func buyBtnAction(_ sender: Any) {
         
     }
-    
-    /*
-    // MARK: - Navigation
-     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
@@ -94,30 +124,38 @@ extension HDLY_CourseList_SubVC2 {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
-//        let model = infoModel?.data
-        
+        let model = infoModel?.data
         if index == 0 {
             let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
-//            cell?.titleL.text = model?.title
-//            cell?.nameL.text = model?.teacher
-//            cell?.desL.text = model?.tdes
+            if model?.timg != nil {
+                cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            cell?.titleL.text = model?.title
+            cell?.nameL.text = model?.teacherName
+            cell?.desL.text = model?.teacherTitle
+            cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+            focusBtn = cell?.focusBtn
+            if model?.isFocus == 1 {
+                focusBtn.setTitle("已关注", for: .normal)
+            }else {
+                focusBtn.setTitle("+关注", for: .normal)
+            }
             
             return cell!
         }
         else if index == 1 {
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
-            self.webView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height:CGFloat(webViewH))
-            cell?.addSubview(webView)
-//            guard let url = self.infoModel?.data.url else {
-//                return cell!
-//            }
-//            self.webView.load(URLRequest.init(url: URL.init(string: url)!))
+            guard let url = self.infoModel?.data.url else {
+                return cell!
+            }
+            cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
             
             return cell!
         }
         else if index == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
-//            cell?.contentL.text = model?.buynotice
+            cell?.contentL.text = model?.buynotice
+            
             return cell!
         }
         
@@ -125,37 +163,62 @@ extension HDLY_CourseList_SubVC2 {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        //        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
 
 //MARK: ---- WKNavigationDelegate ----
 
-extension HDLY_CourseList_SubVC2 {
-    //开始加载
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("_____开始加载_____")
+extension HDLY_CourseList_SubVC2: UIWebViewDelegate {
+    
+    func getWebHeight() {
+        guard let url = self.infoModel?.data.url else {
+            return
+        }
+        self.testWebV.delegate = self
+        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
     }
     
-    //完成加载
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("_____完成加载_____")
-        //禁止长按手势操作
-        webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none';", completionHandler: nil)
-        webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none';", completionHandler: nil)
-        //js方法获取高度
-        webView.evaluateJavaScript("Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)") { (result, error) in
-            let height = result
-            self.webViewH = CGFloat(height as! Float)
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if (webView == self.testWebV) {
+            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
+            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
+            LOG("\(webViewH)")
+        }
+        self.tableView.reloadData()
+    }
+    
+    @objc func focusBtnAction()  {
+        if let idnum = infoModel?.data.teacherID.string {
+            doFocusRequest(api_token: TestToken, id: idnum, cate_id: "2")
         }
     }
-    //加载失败
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("_____加载失败_____")
+    
+    //关注
+    func doFocusRequest(api_token: String, id: String, cate_id: String)  {
         
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.infoModel!.data.isFocus = 1
+                    self.focusBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.infoModel!.data.isFocus  = 0
+                    self.focusBtn.setTitle("+关注", for: .normal)
+                }
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
     }
     
-    
-    
+
 }

@@ -259,14 +259,6 @@ extension HDRootBVC {
         
         return cell!
     }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: Int(PageMenuH)))
-//        headerV.addSubview(self.pageMenu)
-//        pageMenu.backgroundColor = UIColor.white
-//        return nil
-//    }
-    
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01

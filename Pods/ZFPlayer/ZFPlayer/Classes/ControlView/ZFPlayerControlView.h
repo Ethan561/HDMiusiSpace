@@ -54,6 +54,8 @@
 /// 快进视图是否显示动画，默认NO。
 @property (nonatomic, assign) BOOL fastViewAnimated;
 
+@property (nonatomic, assign) BOOL coverImageHidden;
+
 /// 设置标题、封面、全屏模式
 - (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(ZFFullScreenMode)fullScreenMode;
 

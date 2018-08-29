@@ -39,8 +39,11 @@ class HDLY_LeaveMsg_VC: HDItemBaseVC,UITextViewDelegate {
             return
         }
         if textView.text.isEmpty == true {return}
-        
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseLeaveMessage(api_token: TestToken, id: idnum, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseLeaveMessage(api_token: HDDeclare.shared.api_token!, id: idnum, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "留言提交成功")

@@ -81,8 +81,8 @@ class HDItemBaseVC: UIViewController {
     }
     
     func pushToLoginVC(vc: UIViewController) {
-//        let logVC = UIStoryboard(name: "Login_Section", bundle: nil).instantiateViewController(withIdentifier: "HD_HSP_LogInVC") as! HDItemBaseVC
-//        vc.navigationController?.pushViewController(logVC, animated: true)
+        let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
+        vc.navigationController?.pushViewController(logVC, animated: true)
     }
     
     func pushToWKWebVC(vc: UIViewController, url:String, titleName: String ) {

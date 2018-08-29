@@ -37,6 +37,11 @@ class HDLY_Kids_Cell2: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgV.layer.cornerRadius = 8
+        imgV.layer.masksToBounds = true
+        
+        imgV1.layer.cornerRadius = 8
+        imgV1.layer.masksToBounds = true
     }
 
     func showViewData() {
@@ -47,7 +52,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
             }
             titleL.text = model?.title
             countL.text = model?.views?.string == nil ? "0" :(model?.views?.string)! + "人在学"
-            priceL.text = "¥" + (model?.classnum?.string == nil ? "0" : (model?.classnum?.string)!)
+            priceL.text = "¥" + (model?.price?.string == nil ? "0" : (model?.price?.string)!)
             //
             
             let model1 = dataArray?.last

@@ -29,8 +29,10 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     var playerBtn: UIButton!
     var timeL: UILabel!
     var commentText = ""
+    
     //MVVM
     let viewModel: ListenDetailViewModel = ListenDetailViewModel()
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
     lazy var testWebV: WKWebView = {
         let webV = WKWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
@@ -71,11 +73,11 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             weakSelf?.showViewData()
         }
         //评论
-        viewModel.commentSuccess.bind { (flag) in
+        publicViewModel.commentSuccess.bind { (flag) in
             weakSelf?.closeKeyBoardView()
         }
         //
-        viewModel.likeModel.bind { (model) in
+        publicViewModel.likeModel.bind { (model) in
             weakSelf?.likeNumL.text = model.like_num?.string
             if model.is_like?.int == 0 {
                 weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
@@ -84,14 +86,14 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             }
         }
         
-        viewModel.isCollection.bind { (flag) in
+        publicViewModel.isCollection.bind { (flag) in
             if flag == false {
                 weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
             } else {
                 weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
             }
         }
-        viewModel.isFocus.bind { (flag) in
+        publicViewModel.isFocus.bind { (flag) in
             weakSelf?.showFocusView(flag)
         }
     }
@@ -147,19 +149,31 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     @IBAction func likeBtnAction(_ sender: UIButton) {
         if let idnum = infoModel?.listenID?.string {
-            viewModel.doLikeRequest(api_token: TestToken, deviceno: "", id: idnum, cate_id: "4", self)
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.doLikeRequest(id: idnum, cate_id: "4", self)
         }
     }
     
     @IBAction func collectionBtnAction(_ sender: UIButton) {
         if let idnum = infoModel?.listenID?.string {
-            viewModel.doFavoriteRequest(api_token: TestToken, id: idnum, cate_id: "4", self)
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "4", self)
         }
     }
     
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.teacherID?.string {
-            viewModel.doFocusRequest(api_token: TestToken, id: idnum, cate_id: "2", self)
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.doFocusRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "2", self)
         }
     }
     
@@ -229,6 +243,7 @@ extension HDLY_ListenDetail_VC {
         if cmtNum > 0 && section == 1{
             let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
             titleV.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50)
+            titleV.titleL.text = "评论"
             return titleV
         }
         
@@ -430,14 +445,22 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
     func keyboardTextFieldPressReturnButton(_ keyboardTextField: KeyboardTextField) {
        commentText =  keyboardTextField.textView.text
         if commentText.isEmpty == false && infoModel?.listenID != nil {
-            viewModel.commentCommitRequest(api_token: TestToken, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
         }
     }
     
     func keyboardTextFieldPressRightButton(_ keyboardTextField :KeyboardTextField) {
         commentText =  keyboardTextField.textView.text
         if commentText.isEmpty == false && infoModel?.listenID != nil {
-            viewModel.commentCommitRequest(api_token: TestToken, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
         }
     }
     
@@ -446,11 +469,3 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
     }
     
 }
-
-
-
-
-
-
-
-

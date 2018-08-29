@@ -114,6 +114,16 @@
 		D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */; };
 		D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */; };
 		D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */; };
+		D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54102133868C000CD258 /* ReplicatorAnimation.swift */; };
+		D68D5415213386C8000CD258 /* UIView+ScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5413213386C8000CD258 /* UIView+ScreenShot.swift */; };
+		D68D5416213386C8000CD258 /* HDAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5414213386C8000CD258 /* HDAnimate.swift */; };
+		D68D54182133A9CD000CD258 /* HDLY_UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */; };
+		D68D541B2133D173000CD258 /* HDLY_SmsLogin_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D541A2133D173000CD258 /* HDLY_SmsLogin_VC.swift */; };
+		D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D541C2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift */; };
+		D68D541F2133D1D2000CD258 /* HDLY_Register_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D541E2133D1D2000CD258 /* HDLY_Register_VC.swift */; };
+		D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68D54202133D1ED000CD258 /* LogInSection.storyboard */; };
+		D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */; };
+		D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */; };
 		D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */; };
 		D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */; };
 		D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */; };
@@ -129,6 +139,13 @@
 		D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E236211C299E00E1E893 /* TStrInt.swift */; };
 		D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */; };
 		D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */; };
+		D6AA0AF92134DED00036320F /* HDLY_ModifyName_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0AF82134DED00036320F /* HDLY_ModifyName_VC.swift */; };
+		D6AA0AFB2134FA2A0036320F /* HDLY_TopicDectail_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0AFA2134FA2A0036320F /* HDLY_TopicDectail_VC.swift */; };
+		D6AA0AFD2134FBB30036320F /* TopicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0AFC2134FBB30036320F /* TopicModel.swift */; };
+		D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0AFE21351D610036320F /* CoursePublicViewModel.swift */; };
+		D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0B002135210A0036320F /* TopicDetailViewModel.swift */; };
+		D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AA0B02213530C60036320F /* HDLY_TopicRecmd_Cell.swift */; };
+		D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6AA0B03213530C60036320F /* HDLY_TopicRecmd_Cell.xib */; };
 		D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */; };
 		D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC152117FA3A007C8E56 /* Main.storyboard */; };
 		D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC182117FA3A007C8E56 /* Assets.xcassets */; };
@@ -338,6 +355,16 @@
 		D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Listen_Cell.xib; sourceTree = "<group>"; };
 		D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Topic_Cell.swift; sourceTree = "<group>"; };
 		D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Topic_Cell.xib; sourceTree = "<group>"; };
+		D68D54102133868C000CD258 /* ReplicatorAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicatorAnimation.swift; sourceTree = "<group>"; };
+		D68D5413213386C8000CD258 /* UIView+ScreenShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ScreenShot.swift"; sourceTree = "<group>"; };
+		D68D5414213386C8000CD258 /* HDAnimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDAnimate.swift; sourceTree = "<group>"; };
+		D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_UserModel.swift; sourceTree = "<group>"; };
+		D68D541A2133D173000CD258 /* HDLY_SmsLogin_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SmsLogin_VC.swift; sourceTree = "<group>"; };
+		D68D541C2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PswdLogin_VC.swift; sourceTree = "<group>"; };
+		D68D541E2133D1D2000CD258 /* HDLY_Register_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Register_VC.swift; sourceTree = "<group>"; };
+		D68D54202133D1ED000CD258 /* LogInSection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInSection.storyboard; sourceTree = "<group>"; };
+		D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_UserInfo_VC.swift; sourceTree = "<group>"; };
+		D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Setting_VC.swift; sourceTree = "<group>"; };
 		D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Header.swift; sourceTree = "<group>"; };
 		D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseComment_Header.xib; sourceTree = "<group>"; };
 		D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Footer.swift; sourceTree = "<group>"; };
@@ -353,6 +380,13 @@
 		D6A1E236211C299E00E1E893 /* TStrInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TStrInt.swift; sourceTree = "<group>"; };
 		D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseDes_VC.swift; sourceTree = "<group>"; };
 		D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_VC.swift; sourceTree = "<group>"; };
+		D6AA0AF82134DED00036320F /* HDLY_ModifyName_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ModifyName_VC.swift; sourceTree = "<group>"; };
+		D6AA0AFA2134FA2A0036320F /* HDLY_TopicDectail_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_TopicDectail_VC.swift; sourceTree = "<group>"; };
+		D6AA0AFC2134FBB30036320F /* TopicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicModel.swift; sourceTree = "<group>"; };
+		D6AA0AFE21351D610036320F /* CoursePublicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePublicViewModel.swift; sourceTree = "<group>"; };
+		D6AA0B002135210A0036320F /* TopicDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailViewModel.swift; sourceTree = "<group>"; };
+		D6AA0B02213530C60036320F /* HDLY_TopicRecmd_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_TopicRecmd_Cell.swift; sourceTree = "<group>"; };
+		D6AA0B03213530C60036320F /* HDLY_TopicRecmd_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_TopicRecmd_Cell.xib; sourceTree = "<group>"; };
 		D6C9FC0E2117FA3A007C8E56 /* HDMiusiSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HDMiusiSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C9FC112117FA3A007C8E56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6C9FC162117FA3A007C8E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -667,6 +701,27 @@
 			path = CourseList;
 			sourceTree = "<group>";
 		};
+		D68D5412213386C8000CD258 /* AnimationTool */ = {
+			isa = PBXGroup;
+			children = (
+				D68D54102133868C000CD258 /* ReplicatorAnimation.swift */,
+				D68D5413213386C8000CD258 /* UIView+ScreenShot.swift */,
+				D68D5414213386C8000CD258 /* HDAnimate.swift */,
+			);
+			path = AnimationTool;
+			sourceTree = "<group>";
+		};
+		D68D54192133D03B000CD258 /* LogInSection */ = {
+			isa = PBXGroup;
+			children = (
+				D68D541A2133D173000CD258 /* HDLY_SmsLogin_VC.swift */,
+				D68D541C2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift */,
+				D68D541E2133D1D2000CD258 /* HDLY_Register_VC.swift */,
+				D68D54202133D1ED000CD258 /* LogInSection.storyboard */,
+			);
+			path = LogInSection;
+			sourceTree = "<group>";
+		};
 		D6A1E224211C13CF00E1E893 /* FSPagerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +739,7 @@
 		D6A1E238211C2D3300E1E893 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D68D5412213386C8000CD258 /* AnimationTool */,
 				D614DFAC211EDB9500A4D459 /* MD5 */,
 				D614DFA5211EC75900A4D459 /* MD5.swift */,
 				D6A1E236211C299E00E1E893 /* TStrInt.swift */,
@@ -991,6 +1047,7 @@
 				D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */,
 				D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */,
 				D66EDF9D212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift */,
+				D6AA0AFA2134FA2A0036320F /* HDLY_TopicDectail_VC.swift */,
 				D66EDF90212A4E1D004DACE0 /* CourseListSub */,
 			);
 			path = Controller;
@@ -1019,6 +1076,7 @@
 		D6C9FCB2211825DC007C8E56 /* E_Mine */ = {
 			isa = PBXGroup;
 			children = (
+				D68D54192133D03B000CD258 /* LogInSection */,
 				D6C9FCB4211825DC007C8E56 /* Controller */,
 				D6C9FCE421184840007C8E56 /* ViewModel */,
 				D6C9FCE021184840007C8E56 /* Model */,
@@ -1032,6 +1090,9 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCCD2118354E007C8E56 /* HDRootEVC.swift */,
+				D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */,
+				D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */,
+				D6AA0AF82134DED00036320F /* HDLY_ModifyName_VC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1060,6 +1121,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCE121184840007C8E56 /* .gitignore */,
+				D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1133,6 +1195,8 @@
 			children = (
 				D6C9FCFC2118487B007C8E56 /* .gitignore */,
 				D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */,
+				D6AA0AFE21351D610036320F /* CoursePublicViewModel.swift */,
+				D6AA0B002135210A0036320F /* TopicDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1145,6 +1209,8 @@
 				D6866A592126B1370044EEAA /* CourseList */,
 				D670D38621257C4A0064750A /* CourseDes */,
 				D670D38521257BB40064750A /* Recommend */,
+				D6AA0B02213530C60036320F /* HDLY_TopicRecmd_Cell.swift */,
+				D6AA0B03213530C60036320F /* HDLY_TopicRecmd_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1159,6 +1225,7 @@
 				D6694731212F8E9C0068945A /* CourseDetail.swift */,
 				D6694733212FA97A0068945A /* CourseChapter.swift */,
 				D669473F213005390068945A /* CourseQuestion.swift */,
+				D6AA0AFC2134FBB30036320F /* TopicModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1305,6 +1372,7 @@
 				D670D38E212585BA0064750A /* HDLY_CourseWeb_Cell.xib in Resources */,
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
+				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D6884E5E211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */,
@@ -1332,6 +1400,7 @@
 				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
+				D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */,
 				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
 				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
@@ -1464,6 +1533,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6AA0AF92134DED00036320F /* HDLY_ModifyName_VC.swift in Sources */,
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
 				D66991C92130EDD5002568B2 /* HDLY_AnswerText_Cell.swift in Sources */,
 				D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */,
@@ -1473,6 +1543,7 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
+				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
@@ -1509,6 +1580,9 @@
 				D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
+				D68D5416213386C8000CD258 /* HDAnimate.swift in Sources */,
+				D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */,
+				D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */,
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
 				D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
@@ -1518,12 +1592,15 @@
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
+				D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */,
 				D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
 				D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */,
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
 				D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */,
+				D68D541F2133D1D2000CD258 /* HDLY_Register_VC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
+				D68D5415213386C8000CD258 /* UIView+ScreenShot.swift in Sources */,
 				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
@@ -1532,6 +1609,7 @@
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
+				D68D541B2133D173000CD258 /* HDLY_SmsLogin_VC.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
@@ -1540,10 +1618,12 @@
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
+				D6AA0AFD2134FBB30036320F /* TopicModel.swift in Sources */,
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
+				D68D54182133A9CD000CD258 /* HDLY_UserModel.swift in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
 				D67ABF81212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m in Sources */,
@@ -1553,6 +1633,7 @@
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
 				D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
+				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDectail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
@@ -1565,9 +1646,11 @@
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
+				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
 				D6C9FC8A21181FD1007C8E56 /* HDCache.swift in Sources */,
 				D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */,
 				D669473E212FEBAF0068945A /* HDPlaceholderTextView.swift in Sources */,
+				D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
@@ -1584,6 +1667,7 @@
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
 				D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */,
+				D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */,
 				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -41,8 +41,11 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
         }
         if textView.text.isEmpty == true {return}
         if titleTextView.text.isEmpty == true {return}
-
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestion(api_token: TestToken, id: idnum, title: titleTextView.text, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestion(api_token: HDDeclare.shared.api_token!, id: idnum, title: titleTextView.text, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "问题提交成功")

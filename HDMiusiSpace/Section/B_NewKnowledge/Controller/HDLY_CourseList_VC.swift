@@ -152,7 +152,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         guard let idnum = self.courseId else {
             return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: HDDeclare.shared.api_token!, id: idnum), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

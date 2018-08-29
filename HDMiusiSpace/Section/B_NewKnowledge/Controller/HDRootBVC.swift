@@ -134,7 +134,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     }
     
     func dataRequestForMenu() {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

@@ -44,7 +44,7 @@ let netReacMhanager = NetworkReachabilityManager.init()
 class HD_LY_NetHelper {
     
     //显示弹窗显示在VC上
-    class func loadData<Tar: TargetType>(API: Tar.Type, target: Tar, cache: Bool = false, showHud: Bool = true ,showErrorTip: Bool = true,loadingVC: UIViewController , success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
+    class func loadData<Tar: TargetType>(API: Tar.Type, target: Tar, cache: Bool = false, showHud: Bool = true ,showErrorTip: Bool = true, loadingVC:UIViewController? = nil , success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         
         //默认参数初始化
         //let provider = MoyaProvider<Tar>()
@@ -54,9 +54,12 @@ class HD_LY_NetHelper {
         //显示网络请求加载提醒
         if showHud == true {
             DispatchQueue.main.async {
+                guard let vc = loadingVC else {
+                    return
+                }
                 loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
-                loadingView?.frame = loadingVC.view.bounds
-                loadingVC.view.addSubview(loadingView!)
+                loadingView?.frame = vc.view.bounds
+                vc.view.addSubview(loadingView!)
             }
         }
         

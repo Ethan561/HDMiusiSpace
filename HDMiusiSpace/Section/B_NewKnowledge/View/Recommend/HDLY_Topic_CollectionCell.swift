@@ -16,6 +16,9 @@ class HDLY_Topic_CollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgV.layer.cornerRadius = 8
+        imgV.layer.masksToBounds = true
+        
     }
 
     //类方法，创建cell

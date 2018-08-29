@@ -134,7 +134,11 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let idnum = self.courseId else {
             return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: TestToken, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: HDDeclare.shared.api_token!, id: idnum), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -245,6 +249,7 @@ extension HDLY_CourseDes_VC {
         }
         return 0.01
     }
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
             guard let count = infoModel?.data.recommendsMessage?.count else {
@@ -396,7 +401,11 @@ extension HDLY_CourseDes_VC {
     
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.data.teacherID.string {
-            doFocusRequest(api_token: TestToken, id: idnum, cate_id: "2")
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            doFocusRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "2")
         }
     }
     

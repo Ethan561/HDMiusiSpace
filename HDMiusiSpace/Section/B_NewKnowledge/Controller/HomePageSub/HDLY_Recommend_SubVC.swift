@@ -173,7 +173,7 @@ extension HDLY_Recommend_SubVC {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }
             if model.boutiquelist?.is_free?.int == 0 {
-                cell?.priceL.text = "¥" + (model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)!)
+                cell?.priceL.text = "¥" + (model.boutiquelist?.price?.string == nil ? "0" :(model.boutiquelist?.price?.string)!)
                 cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
 
             }else {
@@ -210,7 +210,7 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.titleL.text = model.interactioncard?.title
             cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"
-            cell?.priceL.text = "¥" + (model.interactioncard?.classnum?.string == nil ? "0" :(model.interactioncard?.classnum?.string)!)
+            cell?.priceL.text = "¥" + (model.interactioncard?.price?.string == nil ? "0" :(model.interactioncard?.price?.string)!)
 
             return cell!
         }else if model.type?.int == 5 {
@@ -223,6 +223,8 @@ extension HDLY_Recommend_SubVC {
         else if model.type?.int == 6 {
             let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
             cell?.listArray = model.topic
+            cell?.delegate = self
+            
             return cell!
         }
         
@@ -312,8 +314,9 @@ extension HDLY_Recommend_SubVC {
     }
     
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = model.article_id?.string
+        
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDectail_VC
+        vc.topic_id = model.article_id?.string
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -21,6 +21,8 @@ class HDLY_Recommend_Cell1: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgV.layer.cornerRadius = 8
+        imgV.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

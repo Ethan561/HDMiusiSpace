@@ -11,8 +11,8 @@ import UIKit
 //本地数据存储
 
 let deviceNumberKey = "deviceNumberKey"
-let userInfoKey = "userInfoKey"
-
+//let userInfoKey = "userInfoKey"
+let userInfoTokenKey = "userInfoTokenKey"
 
 //屏幕高度
 let ScreenHeight  : CGFloat = UIScreen.main.bounds.size.height
@@ -38,7 +38,8 @@ let kStatusBarHeight = UIApplication.shared.statusBarFrame.size.height
 let kTabBarHeight = kStatusBarHeight > 20 ? 83 : 49
 let kBottomHeight = kStatusBarHeight > 20 ? 34 : 0
 //NavBarHeight
-let kTopHeight =  Float(kNavBarHeight) + Float(kStatusBarHeight)
+let kTopHeight:CGFloat =  CGFloat(Float(kNavBarHeight) + Float(kStatusBarHeight))
+
 //kAppDelegate
 let kAppDelegate = UIApplication.shared.delegate
 //kKeyWindow
@@ -59,7 +60,7 @@ let kSocketPort:UInt16 = 9501
 
 let TitleFont = UIFont.init(name: "PingFangSC-Semibold", size: 18)
 
-let TestToken = "ee683ca5892d31ba175ff8682c25a18e"
+//let TestToken = "ee683ca5892d31ba175ff8682c25a18e"
 
 //通用色值设置
 struct BaseColor {

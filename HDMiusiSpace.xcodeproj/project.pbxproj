@@ -180,7 +180,6 @@
 		D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E229211C13CF00E1E893 /* FSPageViewLayout.swift */; };
 		D6A1E231211C13CF00E1E893 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E22A211C13CF00E1E893 /* FSPageControl.swift */; };
 		D6A1E232211C13CF00E1E893 /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */; };
-		D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6A1E233211C275F00E1E893 /* builtIn.bundle */; };
 		D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A1E236211C299E00E1E893 /* TStrInt.swift */; };
 		D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */; };
 		D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */; };
@@ -468,7 +467,6 @@
 		D6A1E229211C13CF00E1E893 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		D6A1E22A211C13CF00E1E893 /* FSPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		D6A1E22B211C13CF00E1E893 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
-		D6A1E233211C275F00E1E893 /* builtIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = builtIn.bundle; sourceTree = "<group>"; };
 		D6A1E236211C299E00E1E893 /* TStrInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TStrInt.swift; sourceTree = "<group>"; };
 		D6A9FB3E21227B3C0087972E /* HDLY_CourseDes_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseDes_VC.swift; sourceTree = "<group>"; };
 		D6A9FB4021227BA80087972E /* HDLY_CourseList_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseList_VC.swift; sourceTree = "<group>"; };
@@ -1050,7 +1048,7 @@
 		D6C9FC4421181F05007C8E56 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D6A1E233211C275F00E1E893 /* builtIn.bundle */,
+				D6C9FC5121181F28007C8E56 /* .gitignore */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1087,7 +1085,6 @@
 			children = (
 				D6C9FC4C21181F28007C8E56 /* HD_LY_TipView */,
 				D6C9FC5021181F28007C8E56 /* EmptyConfigView.swift */,
-				D6C9FC5121181F28007C8E56 /* .gitignore */,
 				D6C9FC5221181F28007C8E56 /* SwiftNotice.swift */,
 				D669473D212FEBAF0068945A /* HDPlaceholderTextView.swift */,
 				D62277AF21367F12008F1416 /* HDLY_PhotoCell.swift */,
@@ -1596,7 +1593,6 @@
 				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
 				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
 				D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */,
-				D6A1E234211C275F00E1E893 /* builtIn.bundle in Resources */,
 				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,

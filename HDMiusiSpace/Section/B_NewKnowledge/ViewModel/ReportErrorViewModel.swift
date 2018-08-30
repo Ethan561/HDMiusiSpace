@@ -37,7 +37,7 @@ class ReportErrorViewModel: NSObject {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1, execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 vc.navigationController?.popViewController(animated: true)
             })
             

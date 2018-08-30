@@ -32,6 +32,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     var textNum:Int = 0
     var articleID: String?
+    var typeID: String?
+    
     var imgPathArr: Array<String> = Array.init()
     var errorModel: ReportErrorModel?
     //MVVM
@@ -49,8 +51,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         
         //MVVM
         bindViewModel()
-        if articleID != nil {
-            viewModel.dataRequestWithListenID(id: articleID!, cate_id: "4", self)
+        if articleID != nil && typeID != nil {
+            viewModel.dataRequestWithListenID(id: articleID!, cate_id: typeID!, self)
         }
     }
     
@@ -266,7 +268,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                         if self.imgPathArr.count == self.photoSelectorView.photos.count {
 //                            hud.hide()
                             loadingView?.removeFromSuperview()
-                            self.viewModel.sendErrorWithID(api_token: HDDeclare.shared.api_token!, option_id_str: optionIdStr, parent_id: self.articleID!, cate_id: "4", content: self.textView.text, uoload_img: self.imgPathArr, self)
+                            self.viewModel.sendErrorWithID(api_token: HDDeclare.shared.api_token!, option_id_str: optionIdStr, parent_id: self.articleID!, cate_id: self.typeID!, content: self.textView.text, uoload_img: self.imgPathArr, self)
                         }
                     }) { (errorCode, msg) in
 //                        hud.hide()
@@ -358,7 +360,6 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
             
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

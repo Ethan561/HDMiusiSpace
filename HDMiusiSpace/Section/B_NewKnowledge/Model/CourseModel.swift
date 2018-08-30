@@ -15,7 +15,7 @@ struct CourseModel: Codable {
 }
 
 struct CourseInfoModel: Codable {
-    var articleID: Int
+    var articleID: TStrInt
     var img, title, buynotice: String
     var isFree: Int
     var video: String

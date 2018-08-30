@@ -16,6 +16,13 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
     
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var errorBtn: UIButton!
+    
+    var feedbackChooseTip: HDLY_FeedbackChoose_View?
+    var showFeedbackChooseTip = false
     var infoModel: CourseDetail?
     var isMp3Course = false
     var showLeaveMsg = false
@@ -70,6 +77,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     
     var childVCScrollView: UIScrollView?
     let courseListTopH = (kStatusBarHeight+24+60+ScreenWidth*9/16.0)
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +103,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         dataRequest()
         addContentSubViewsWithArr(titleArr: titleArray)
-        
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +124,39 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    //MVVM
+    
+    func bindViewModel() {
+        weak var weakSelf = self
+        //收藏
+        publicViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+            } else {
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+            }
+        }
+        
+    }
+    
+    @IBAction func likeBtnAction(_ sender: UIButton) {
+        if self.infoModel?.data.articleID.string != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: infoModel!.data.articleID.string, cate_id: "3", self)
+        }
+    }
+    
+    @IBAction func shareBtnAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func errorBtnAction(_ sender: UIButton) {
+        tapErrorBtnAction()
+    }
+    
     
     @IBAction func playClick(_ sender: UIButton) {
         
@@ -176,6 +218,11 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
+                if self.infoModel?.data.isFavorite == 1 {
+                    self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+                }else {
+                    self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+                }
             }
             
         }) { (errorCode, msg) in
@@ -253,5 +300,51 @@ extension HDLY_CourseList_VC {
         self.contentScrollView.addSubview(targetViewController.view)
     }
 }
+
+extension HDLY_CourseList_VC {
+    
+    func tapErrorBtnAction() {
+        if showFeedbackChooseTip == false {
+            let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
+            feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 45, width: 120, height: 100)
+            feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
+            feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
+            
+            self.topView.addSubview(feedbackChooseTip!)
+            showFeedbackChooseTip = true
+            weak var weakS = self
+            feedbackChooseTip?.tapBlock = { (index) in
+                weakS?.feedbackChooseAction(index: index)
+            }
+        } else {
+            closeFeedbackChooseTip()
+        }
+    }
+    
+    func closeFeedbackChooseTip() {
+        feedbackChooseTip?.tapBlock = nil
+        feedbackChooseTip?.removeFromSuperview()
+        showFeedbackChooseTip = false
+    }
+    
+    func feedbackChooseAction(index: Int) {
+        if index == 1 {
+            //反馈
+            
+        }else {
+            //报错
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+            if infoModel?.data.articleID.string != nil {
+                vc.articleID = infoModel!.data.articleID.string
+                vc.typeID = "1"
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+            closeFeedbackChooseTip()
+        }
+    }
+    
+}
+
 
 

@@ -448,6 +448,7 @@ extension HDLY_TopicDectail_VC {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             vc.articleID = infoModel?.articleID.string
+            vc.typeID = "4"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }

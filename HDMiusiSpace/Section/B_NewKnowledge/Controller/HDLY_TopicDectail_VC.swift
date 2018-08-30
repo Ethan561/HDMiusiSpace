@@ -18,6 +18,9 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
     
+    var feedbackChooseTip: HDLY_FeedbackChoose_View?
+    var showFeedbackChooseTip = false
+    
     //
     var infoModel: TopicModelData?
     var topic_id:String?
@@ -48,6 +51,7 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         myTableView.separatorStyle = .none
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
+        setupBarBtn()
         
         //MVVM
         bindViewModel()
@@ -400,5 +404,54 @@ extension HDLY_TopicDectail_VC : KeyboardTextFieldDelegate {
     
 }
 
-
+extension HDLY_TopicDectail_VC {
+    
+    func setupBarBtn() {
+        //
+        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
+        rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
+        rightBarBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
+        rightBarBtn.setTitleColor(UIColor.HexColor(0x333333), for: .normal)
+        rightBarBtn.addTarget(self, action: #selector(tapRightBarBtnAction(_:)), for: UIControlEvents.touchUpInside)
+        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
+        self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
+        
+    }
+    
+    @objc func tapRightBarBtnAction(_ sender: UIButton) {
+        if showFeedbackChooseTip == false {
+            let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
+            feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 10, width: 120, height: 100)
+            self.view.addSubview(feedbackChooseTip!)
+            showFeedbackChooseTip = true
+            weak var weakS = self
+            feedbackChooseTip?.tapBlock = { (index) in
+                weakS?.feedbackChooseAction(index: index)
+            }
+        } else {
+            closeFeedbackChooseTip()
+        }
+    }
+    
+    func closeFeedbackChooseTip() {
+        feedbackChooseTip?.tapBlock = nil
+        feedbackChooseTip?.removeFromSuperview()
+        showFeedbackChooseTip = false
+    }
+    
+    func feedbackChooseAction(index: Int) {
+        if index == 1 {
+            //分享
+            
+        }else {
+            //报错
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+            vc.articleID = infoModel?.articleID.string
+            self.navigationController?.pushViewController(vc, animated: true)
+            closeFeedbackChooseTip()
+        }
+    }
+    
+}
 

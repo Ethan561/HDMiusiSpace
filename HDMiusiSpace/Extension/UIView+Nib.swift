@@ -60,4 +60,13 @@ extension UIView {
         self.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleWidth]
     }
     
+    func getViewFrameToWindow() -> CGRect {
+        let window = UIApplication.shared.keyWindow
+        if self.superview != nil {
+            return (self.convert(self.frame, to: window))
+        }
+        return .zero
+    }
 }
+
+

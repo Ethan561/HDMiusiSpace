@@ -11,6 +11,7 @@ import WebKit
 
 class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate{
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var statusBarHCons: NSLayoutConstraint!
     @IBOutlet weak var myTableView: UITableView!
@@ -33,6 +34,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     //MVVM
     let viewModel: ListenDetailViewModel = ListenDetailViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    
+    var feedbackChooseTip: HDLY_FeedbackChoose_View?
+    var showFeedbackChooseTip = false
     
     lazy var testWebV: WKWebView = {
         let webV = WKWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
@@ -142,6 +146,40 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     }
     
 
+    @IBAction func errorBtnAction(_ sender: UIButton) {
+        if showFeedbackChooseTip == false {
+            let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
+            feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 40, width: 120, height: 100)
+            self.topView.addSubview(feedbackChooseTip!)
+            showFeedbackChooseTip = true
+            weak var weakS = self
+            feedbackChooseTip?.tapBlock = { (index) in
+                weakS?.feedbackChooseAction(index: index)
+            }
+        } else {
+            closeFeedbackChooseTip()
+        }
+    }
+    
+    func closeFeedbackChooseTip() {
+        feedbackChooseTip?.tapBlock = nil
+        feedbackChooseTip?.removeFromSuperview()
+        showFeedbackChooseTip = false
+    }
+    
+    func feedbackChooseAction(index: Int) {
+        if index == 1 {
+            //分享
+            
+        }else {
+            //报错
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+            vc.articleID = infoModel?.listenID?.string
+            self.navigationController?.pushViewController(vc, animated: true)
+            closeFeedbackChooseTip()
+        }
+    }
     
     @IBAction func commentBtnAction(_ sender: UIButton) {
         showKeyBoardView()

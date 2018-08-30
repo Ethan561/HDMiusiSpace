@@ -51,6 +51,16 @@ class HDItemBaseVC: UIViewController {
         navigationBar.tintColor = UIColor.white
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        //1.设置阴影颜色
+        navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        
+        //2.设置阴影偏移范围
+        navigationBar.layer.shadowOffset = CGSize.init(width: 0, height: 10)
+        
+        //3.设置阴影颜色的透明度
+        navigationBar.layer.shadowOpacity = 0.2
+        
     }
 
 

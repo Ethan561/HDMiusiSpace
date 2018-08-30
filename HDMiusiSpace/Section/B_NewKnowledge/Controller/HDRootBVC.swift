@@ -23,7 +23,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     var menuArr = [CourseMenuModel]()
     var tabHeader: RootBHeaderView!
     var bannerArr =  [BbannerModel]()
-
+    
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -355,4 +355,6 @@ extension HDRootBVC {
         tabHeader.pageControl.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
     }
 }
+
+
 

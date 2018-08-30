@@ -76,7 +76,7 @@ enum HD_LY_API {
     case userLogout(api_token: String)
     //昵称修改
     case modifyNickname(api_token: String, nickname: String)
-    //昵称修改
+    //头像修改
     case modifyAvatar(api_token: String, avatar: Data)
     //获取机器号
     case requestDeviceno()
@@ -86,8 +86,17 @@ enum HD_LY_API {
     //精选专题详情
     case courseTopicsInfo(api_token: String, id: String)
     
+    //图片上传
+    case uploadImg(api_token: String, uoload_img: Data)
     
+    //报错/举报选项获取接口
+    case getErrorOption( id: String, cate_id: String)
     
+    //报错提交
+    case sendError(api_token: String, option_id_str: String, parent_id: String , cate_id: String, content:String, uoload_img: Array<String>)
+
+    //意见反馈
+    case sendFeedback(api_token: String, cate_id: String, content:String)
 }
 
 extension HD_LY_API: TargetType {
@@ -201,7 +210,21 @@ extension HD_LY_API: TargetType {
         case .courseTopicsInfo(api_token: _, id: _):
             return "/api/course/topics_info"
     
+        //图片上传
+        case .uploadImg(api_token: _, uoload_img: _):
+            return "/api/deviceno/uploadimg"
             
+        //报错/举报选项获取接口
+        case .getErrorOption( id: _, cate_id: _):
+            return "/api/deviceno/get_error_option"
+            
+        //报错提交
+        case .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _):
+            return "/api/deviceno/send_error"
+            
+        //意见反馈
+        case .sendFeedback(api_token: _, cate_id: _ , content:_ ):
+            return "/api/deviceno/feedback"
         }
         
     }
@@ -219,7 +242,10 @@ extension HD_LY_API: TargetType {
              .usersLogin(username: _, password: _,smscode: _, deviceno: _),
              .modifyNickname(api_token: _, nickname: _),
              .modifyAvatar(api_token: _, avatar: _),
-             .sendSmsForCheck(username: _):
+             .sendSmsForCheck(username: _),
+             .uploadImg(api_token: _, uoload_img: _),
+             .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
+             .sendFeedback(api_token: _, cate_id: _ , content:_ ):
             
             return  .post
         default:
@@ -465,6 +491,50 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //图片上传
+        case .uploadImg(api_token: let api_token, uoload_img: let uoload_img):
+            let formatter:DateFormatter =  DateFormatter.init()
+            formatter.dateFormat = "yyyyMMddHHmmss"
+            let fileName:String = formatter.string(from: Date.init()) + ".png"
+            
+            let imgData = MultipartFormData(provider: .data(uoload_img), name: "uoload_img", fileName: fileName, mimeType: "image/png")
+            let multipartData = [imgData]
+            
+            params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
+            //let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": "RootSign"]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .uploadCompositeMultipart(multipartData, urlParameters: params)
+            
+        //报错/举报选项获取接口
+        case .getErrorOption( id: let id, cate_id: let cate_id):
+            params = params.merging(["id": id, "cate_id": cate_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+
+        //报错提交
+        case .sendError(api_token: let api_token, option_id_str: let option_id_str, parent_id: let parent_id , cate_id: let cate_id , content: let content , uoload_img: let uoload_img):
+            params = params.merging(["api_token": api_token, "option_id_str": option_id_str, "parent_id": parent_id, "cate_id": cate_id, "content": content, "uoload_img": uoload_img], uniquingKeysWith: {$1})
+//            let signKey =  HDDeclare.getSignKey(params)
+//            let dic2 = ["Sign": signKey]
+            let dic2 = ["Sign": "RootSign"]
+
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //意见反馈
+        case .sendFeedback(api_token: let api_token , cate_id: let cate_id , content: let content):
+            params = params.merging(["api_token": api_token,"cate_id":cate_id, "content": content], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
             
         default:
             return .requestPlain//无参数

@@ -777,7 +777,7 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRH-ro-U9u">
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRH-ro-U9u">
                                         <rect key="frame" x="26" y="59" width="126" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="126" id="qT4-0e-Abb"/>
@@ -789,8 +789,11 @@
                                         <state key="normal" title="位置信息错误" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="sa8-dd-rxs"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
+                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
                                         <rect key="frame" x="26" y="93" width="126" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -798,8 +801,11 @@
                                         <state key="normal" title="文字内容错误" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="fKB-Cd-X9f"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
+                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
                                         <rect key="frame" x="26" y="127" width="126" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -807,8 +813,11 @@
                                         <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="4S3-rI-aYb"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
+                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
                                         <rect key="frame" x="225" y="59" width="150" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -816,8 +825,11 @@
                                         <state key="normal" title="内容错误" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="SA3-kY-Gg1"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
+                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
                                         <rect key="frame" x="225" y="93" width="150" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -825,8 +837,11 @@
                                         <state key="normal" title="其他" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="4jz-1x-fHL"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-rv-F1u">
+                                    <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-rv-F1u">
                                         <rect key="frame" x="225" y="127" width="150" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -834,6 +849,9 @@
                                         <state key="normal" image="bc_icon_choose_gray">
                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="rVo-sk-8Nc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -982,6 +1000,7 @@
                         <outlet property="errorBtn4" destination="m0C-jm-KVu" id="4Qo-Cq-0Bh"/>
                         <outlet property="errorBtn5" destination="79H-Ab-zsG" id="fIV-20-8tH"/>
                         <outlet property="errorBtn6" destination="4Xy-rv-F1u" id="h4p-rJ-yrY"/>
+                        <outlet property="errorBtnView" destination="nMz-Km-Jxs" id="Arj-6R-5yM"/>
                         <outlet property="imgBgView" destination="I6i-pB-TNV" id="ytl-ih-tPp"/>
                         <outlet property="imgV" destination="iKY-cg-yfq" id="vzf-Am-LJ2"/>
                         <outlet property="textBgView" destination="Wge-Uj-cf7" id="AVi-6W-hMe"/>

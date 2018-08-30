@@ -10,17 +10,17 @@ import UIKit
 import AVFoundation
 import AssetsLibrary
 
-let imgWidth :CGFloat  = 90 //高宽相等
+let imgWidth :CGFloat  = (ScreenWidth-kSpace*5)/4.0 //高宽相等
 let kSpace :CGFloat   = 10
 
 class HDLY_PhotoSelectorView: UICollectionView {
-
+    
     /// 最大照片数量
     var maxCount = 9
     /// 照片数组
     var photos = [UIImage]()
     var originalPhotos = [UIImage]()
-    var addBtnImg:UIImage = UIImage.init(named: "icon_addphoto_kuang")!
+    var addBtnImg:UIImage = UIImage.init(named: "icon_pandalist_add2_normal")!
     
     /// 外部 NavigationController 用于弹出 UIImagePickerController
     var nav: UINavigationController?

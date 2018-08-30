@@ -29,6 +29,22 @@ class ReportErrorViewModel: NSObject {
         }
     }
     
+    //cate_id: 操作类型1课程,2轻听随看,3看展,4资讯
+    func sendErrorWithID(api_token: String, option_id_str: String, parent_id: String, cate_id: String, content: String, uoload_img: Array<String>, _ vc: HDItemBaseVC)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendError(api_token: api_token, option_id_str: option_id_str, parent_id: parent_id, cate_id: cate_id, content: content, uoload_img: uoload_img), showHud: true, loadingVC: vc, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1, execute: {
+                vc.navigationController?.popViewController(animated: true)
+            })
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
 }
 
 

@@ -102,6 +102,10 @@ class HDItemBaseVC: UIViewController {
 //        vc.navigationController?.pushViewController(webVC, animated: true)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

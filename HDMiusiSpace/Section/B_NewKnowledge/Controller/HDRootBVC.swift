@@ -69,6 +69,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
 
         searchBtn.isHidden = true
         
+//        HDFloatingButtonManager.manager.floatingBtnView.show = true
+        
         
     }
     
@@ -132,7 +134,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             
         }
     }
-    
+
     func dataRequestForMenu() {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
@@ -199,7 +201,7 @@ extension HDRootBVC {
             case 4://亲子
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 baseVC.cateID = "\(model.cateID)"
-
+                
                 self.addChildViewController(baseVC)
             default: break
                 

@@ -109,6 +109,7 @@
 		D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */; };
 		D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */; };
 		D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */; };
+		D670FC772138EAD200870F40 /* HDFloatingButtonBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670FC762138EAD200870F40 /* HDFloatingButtonBgView.swift */; };
 		D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */; };
 		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
 		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
@@ -261,6 +262,7 @@
 		D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD052118488F007C8E56 /* .gitignore */; };
 		D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD072118488F007C8E56 /* .gitignore */; };
 		D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD092118488F007C8E56 /* .gitignore */; };
+		D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,6 +390,7 @@
 		D670D398212586D10064750A /* HDLY_BuyNote_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_BuyNote_Cell.xib; sourceTree = "<group>"; };
 		D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseRecmd_Cell.swift; sourceTree = "<group>"; };
 		D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseRecmd_Cell.xib; sourceTree = "<group>"; };
+		D670FC762138EAD200870F40 /* HDFloatingButtonBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDFloatingButtonBgView.swift; sourceTree = "<group>"; };
 		D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBMainTableView.swift; sourceTree = "<group>"; };
 		D671F745211A871D00A9EE57 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -558,6 +561,7 @@
 		D6C9FD052118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FD072118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FD092118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Feedback_VC.swift; sourceTree = "<group>"; };
 		DE5220120C8482CA6BBD2EF2 /* Pods-HDMiusiSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1137,6 +1141,7 @@
 		D6C9FC7A21181FD1007C8E56 /* HDFloatingButton */ = {
 			isa = PBXGroup;
 			children = (
+				D670FC762138EAD200870F40 /* HDFloatingButtonBgView.swift */,
 				D6C9FC7B21181FD1007C8E56 /* NSObject+HDTopVC.swift */,
 				D6C9FC7C21181FD1007C8E56 /* HDFloatingButtonView.swift */,
 				D6C9FC7D21181FD1007C8E56 /* HDFloatingButtonManager.swift */,
@@ -1304,6 +1309,7 @@
 				D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */,
 				D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */,
 				D6AA0AF82134DED00036320F /* HDLY_ModifyName_VC.swift */,
+				D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1776,6 +1782,7 @@
 				D6884E5D211E7D9800ABDE5E /* HDLY_Kids_Cell2.swift in Sources */,
 				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
 				D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */,
+				D670FC772138EAD200870F40 /* HDFloatingButtonBgView.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
 				D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */,
 				D62277DF21368069008F1416 /* FlashAlertView.swift in Sources */,
@@ -1819,6 +1826,7 @@
 				D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */,
 				D62277E6213696ED008F1416 /* ReportErrorViewModel.swift in Sources */,
 				D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */,
+				D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */,
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
 				D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,

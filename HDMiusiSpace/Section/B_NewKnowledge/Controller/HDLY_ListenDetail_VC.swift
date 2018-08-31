@@ -58,7 +58,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         player.delegate = self
-        
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         
@@ -104,6 +104,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     func showViewData() {
         self.infoModel = viewModel.listenDetail.value
+        HDFloatingButtonManager.manager.infoModel = infoModel
         if infoModel?.img != nil {
             self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
         }
@@ -113,7 +114,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if ((infoModel?.isLike) != nil) {
             if infoModel!.isLike == 0 {
                 likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
-            }else {
+            } else {
                 likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
             }
         }

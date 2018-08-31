@@ -331,6 +331,10 @@ extension HDLY_CourseList_VC {
     func feedbackChooseAction(index: Int) {
         if index == 1 {
             //反馈
+            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
+            vc.typeID = "1"
+            self.navigationController?.pushViewController(vc, animated: true)
+            closeFeedbackChooseTip()
             
         }else {
             //报错

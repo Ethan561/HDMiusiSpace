@@ -147,6 +147,9 @@ final class HDLY_AudioPlayer: NSObject {
             
             delegate?.playerTime!(currentTimeStr, totalTimeStr, Float(currentTime/totalTime))
             
+            let isPlaying = true
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+
         }
     }
     
@@ -198,6 +201,8 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
         updateNowPlayingInfoCenter()
         if state == .stopped {
             delegate?.finishPlaying!()
+            let isPlaying = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
         }
     }
     
@@ -218,10 +223,14 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
         if stopReason == .eof {
 //            next()
             delegate?.finishPlaying!()
+            let isPlaying = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
 
         } else if stopReason == .error {
             stop()
             resetAudioPlayer()
+            let isPlaying = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
         }
     }
     

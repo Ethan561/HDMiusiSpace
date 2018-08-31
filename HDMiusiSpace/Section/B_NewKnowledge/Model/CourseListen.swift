@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct CourseListen: Codable {
     let status: Int
     let msg: String
@@ -47,7 +46,7 @@ struct ListenList: Codable {
 //  ListenDetail
 struct ListenDetail: Codable {
     var listenID: TStrInt?
-    var title, img, voice: String?
+    var title, img , icon, voice: String?
     var timelong, likes, teacherID, isComment: TStrInt?
     var comments: Int?
     var url, teacherImg: String?
@@ -57,7 +56,7 @@ struct ListenDetail: Codable {
     
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
-        case title, img, voice, timelong, likes
+        case title, img, voice, timelong, likes, icon
         case teacherID = "teacher_id"
         case isComment = "is_comment"
         case comments, url
@@ -75,6 +74,7 @@ struct ListenDetail: Codable {
 struct ListenCommentList: Codable {
     var uid: Int?
     var comment: String?
+    var content: String?
     var likeNum: TStrInt?
     var createdAt: String?
     var commentID: Int?
@@ -87,17 +87,15 @@ struct ListenCommentList: Codable {
         case likeNum = "like_num"
         case createdAt = "created_at"
         case commentID = "comment_id"
-        case avatar, nickname
+        case avatar, nickname, content
         case isLike = "is_like"
         case list
     }
 }
 
-
 struct LikeModel: Codable {
     var is_like: TStrInt?
     var like_num: TStrInt?
-    
 }
 
 struct FavoriteModel: Codable {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
+		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
+		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
 		D614DFA6211EC75900A4D459 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA5211EC75900A4D459 /* MD5.swift */; };
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
@@ -280,6 +283,9 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
+		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
+		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
 		D614DFA5211EC75900A4D459 /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemAPI.swift; sourceTree = "<group>"; };
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
@@ -1197,6 +1203,8 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCA1211825DC007C8E56 /* HDTabBarVC.swift */,
+				A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */,
+				A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */,
 				D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */,
 			);
 			path = Controller;
@@ -1214,6 +1222,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCA5211825DC007C8E56 /* HDTabBar */,
+				A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1772,6 +1781,7 @@
 				D62277DF21368069008F1416 /* FlashAlertView.swift in Sources */,
 				D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */,
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
+				A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */,
 				D62277A221367D4D008F1416 /* PhotoBrowserPresentationController.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
@@ -1857,6 +1867,7 @@
 				D622779C21367D4D008F1416 /* PhotoBrowserPlugin.swift in Sources */,
 				D622779E21367D4D008F1416 /* PhotoBrowserCellPlugin.swift in Sources */,
 				D6AA0AFD2134FBB30036320F /* TopicModel.swift in Sources */,
+				A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */,
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D62277DB21368069008F1416 /* MTImagePickerDataSource.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
@@ -1905,6 +1916,7 @@
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
+				A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */,
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,

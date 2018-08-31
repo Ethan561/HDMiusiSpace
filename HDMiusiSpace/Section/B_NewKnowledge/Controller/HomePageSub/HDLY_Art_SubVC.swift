@@ -56,7 +56,7 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func dataRequest(type: String , cate_id: String)  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "0", take: "10", type: "1", cate_id: "0"), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "0", take: "10", type: type, cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -107,7 +107,6 @@ extension HDLY_Art_SubVC {
     }
     
     //row
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArr.count
     }

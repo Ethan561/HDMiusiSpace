@@ -13,6 +13,12 @@ final class HDFloatingButtonManager: NSObject {
     //需要显示悬浮按钮的界面
     var showFloatingBtnVCs:[String] = [String]()
     lazy var floatingBtnView = HDFloatingButtonView()
+    //
+    var infoModel: ListenDetail? {
+        didSet {
+            showViewImg()
+        }
+    }
     
     private override init() {
         super.init()
@@ -22,7 +28,7 @@ final class HDFloatingButtonManager: NSObject {
     
     func setup() {
         //
-        floatingBtnView.frame = kFloatingBtnRect
+        floatingBtnView.frame = CGRect.init(x: ScreenWidth - PlayWidth - 10, y: ScreenHeight * 0.3, width: PlayWidth, height: FolderHeight)
         floatingBtnView.delegate = self
         floatingBtnView.floatingButtonDidSelect = {
             self.pushToPlayerVC()
@@ -36,23 +42,18 @@ final class HDFloatingButtonManager: NSObject {
         
     }
     
-    func pushToPlayerVC()  {
-        /*
-        let vc = HDZQExhibitDetailVC.init(nibName: "HDZQExhibitDetailVC", bundle: nil)
-        let entrance = UserDefaults.standard.value(forKey: "CurrentPlayEntrance") as? Int
-        let roadId = UserDefaults.standard.value(forKey: "CurrentPlayRoadId") as? Int
-        if  let exhibitId = UserDefaults.standard.value(forKey: "CurrentPlayExhibitId") as? Int {
-            vc.exhibitID = exhibitId
-            vc.roadId = roadId
-            if entrance == 0 {
-                vc.enrtance = ExhibitDetailEntrance.SearchEntrance
-            } else if entrance == 1 {
-                vc.enrtance = ExhibitDetailEntrance.MapEntrance
-            } else {
-                vc.enrtance = ExhibitDetailEntrance.ListEntrance
-            }
+    func showViewImg() {
+        guard let url = infoModel?.icon else {
+            return
         }
-        vc.hidesBottomBarWhenPushed = true
+        self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil);
+    }
+    
+    func pushToPlayerVC()  {
+        
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+        vc.listen_id = infoModel?.listenID?.string
+        
         //防止恶意点击
         UIApplication.shared.beginIgnoringInteractionEvents()
         let currentVC = self.topViewController()
@@ -61,19 +62,33 @@ final class HDFloatingButtonManager: NSObject {
         }
         UIApplication.shared.endIgnoringInteractionEvents()
         self.floatingBtnView.show = false
- */
         
     }
     
     @objc func avplayerIsPlayOrPause(noti:Notification) {
-        /*
+    
         guard let topVC =  self.topViewController() else {
             return
         }
-        if (topVC.isKind(of: HDZQExhibitDetailVC.self)) {
+        if (topVC.isKind(of: HDLY_ListenDetail_VC.self)) {
             return
         }
         LOG("vcname: \(topVC.className)")
+        
+        if let obj = noti.object as? Bool {
+            if obj {
+                floatingBtnView.showType = .FloatingButtonPlay
+                floatingBtnView.playBtn.image = UIImage.init(named: "float_icon_pause")
+                floatingBtnView.showView()
+            } else {
+                if HDLY_AudioPlayer.shared.state == .paused {
+                    floatingBtnView.showType = .FloatingButtonPause
+                    floatingBtnView.showView()
+                }
+            }
+        }
+        
+        /*
         if self.showFloatingBtnVCs.contains(topVC.className) {
             if let obj = noti.object as? Bool {
                 if obj {
@@ -84,8 +99,8 @@ final class HDFloatingButtonManager: NSObject {
             }
         }else {
             floatingBtnView.show = false
-        }
- */
+        }*/
+ 
     }
 }
 

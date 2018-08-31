@@ -67,6 +67,35 @@ extension UIView {
         }
         return .zero
     }
+    
+     func hdtopViewController() -> UIViewController? {
+        guard let rootVc = UIApplication.shared.delegate?.window??.rootViewController else {
+            return nil
+        }
+        
+        var resultVC: UIViewController? = self.hdcurrentViewController(rootVC: rootVc)
+        while ((resultVC?.presentedViewController) != nil) {
+            resultVC = self.hdcurrentViewController(rootVC: (resultVC?.presentedViewController)!)
+        }
+        return resultVC
+    }
+    
+    fileprivate func hdcurrentViewController(rootVC:AnyObject)
+        -> UIViewController? {
+            
+            if rootVC.isKind(of: UINavigationController.self) {
+                let vc = rootVC as? UINavigationController
+                return self.hdcurrentViewController(rootVC:(vc?.topViewController)!)
+                
+            }else if rootVC.isKind(of: UITabBarController.self) {
+                let vc = rootVC as? UITabBarController
+                return self.hdcurrentViewController(rootVC:(vc?.selectedViewController)!)
+            }else if rootVC.isKind(of: UIViewController.self) {
+                let vc = rootVC as? UIViewController
+                return vc
+            }
+            return  nil
+    }
 }
 
 

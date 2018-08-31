@@ -334,22 +334,32 @@ extension HDLY_CourseDes_VC {
             }else if index == 2 {
                 if infoModel?.data.teacherContent != nil {
                     let textH = infoModel?.data.teacherContent.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
-                    return textH! + 145
+                    return textH! + 145 + 10
                 }
                 return 140
             }
         }
         else if indexPath.section == 1 {
-//            return 0.01
-            return 280*ScreenWidth/375.0
+            guard let recommendsMessage = infoModel?.data.recommendsMessage else {
+                return 0.01
+            }
+            let  model  = recommendsMessage[index]
+            if model.content != nil {
+                let textH = model.content!.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-125)
+                return textH + 50
+            }
+            return 0.01
         }
         else if indexPath.section == 2 {
-            return 145*ScreenWidth/375.0
+            guard let buynotice = infoModel?.data.buynotice else {
+                return 80
+            }
+            let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
+            return textH + 80 + 15
         }
         else if indexPath.section == 3 {
             return 220*ScreenWidth/375.0
         }
-        
         
         return 0.01
     }
@@ -398,7 +408,15 @@ extension HDLY_CourseDes_VC {
         }
         else if indexPath.section == 1 {
             let cell = HDLY_CourseComment_Cell.getMyTableCell(tableV: tableView)
-            
+            guard let recommendsMessage = infoModel?.data.recommendsMessage else {
+                return cell!
+            }
+            let  model  = recommendsMessage[index]
+            cell?.contentL.text = model.content
+            cell?.nameL.text = model.nickname
+            if model.avatar != nil {
+                cell?.avaImgV.kf.setImage(with: URL.init(string:(model.avatar)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+            }
             return cell!
         }
         else if indexPath.section == 2 {
@@ -545,7 +563,10 @@ extension HDLY_CourseDes_VC {
     func feedbackChooseAction(index: Int) {
         if index == 1 {
             //反馈
-            
+            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
+            vc.typeID = "1"
+            self.navigationController?.pushViewController(vc, animated: true)
+            closeFeedbackChooseTip()
         }else {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC

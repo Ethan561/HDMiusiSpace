@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum TagViewType: Int {
+    case TagViewTypeSingleSelection = 0            //单选返回数据
+    case TagViewTypeMultipleSelection = 1          //多选返回数据
+}
+
 typealias TapTagBlock = (_ itemArray: Array<Any>) -> Void
 
 class HD_SSL_TagView: UIView {
@@ -19,6 +24,7 @@ class HD_SSL_TagView: UIView {
     var lastTagSize: CGSize?
     var recordBtn: UIButton? = UIButton.init(type: .custom)
     
+    var tagViewType : TagViewType?
     var blockTapTag : TapTagBlock?
     
     override init(frame: CGRect) {
@@ -48,13 +54,24 @@ class HD_SSL_TagView: UIView {
         
         self.reloadSelectedArray(String(sender.tag))
         
+        
+        if tagViewType!.rawValue == 0 {
+            getBackSelectedTags()
+        }
+        
+    }
+    
+    //返回数据
+    public func getBackSelectedTags() {
+        
         weak var weakSelf = self
         
         if weakSelf?.blockTapTag != nil {
             weakSelf?.blockTapTag!(selctedArray)
         }
+        
     }
-    
+    //刷新选择数组
     func reloadSelectedArray(_ indexStr: String) -> Void {
         //
         var array = selctedArray
@@ -68,7 +85,6 @@ class HD_SSL_TagView: UIView {
         
         selctedArray = array
         
-        print(selctedArray)
     }
     
     //MARK: -- 创建tags
@@ -92,21 +108,21 @@ class HD_SSL_TagView: UIView {
                 let rect = tagTitle.boundingRect(with: CGSize.init(width: self.frame.size.width-20, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
                 
                 let BtnW = rect.size.width + 20
-                let BtnH = rect.size.height + 5
+                let BtnH = rect.size.height + 10
                 
                 btn.layer.masksToBounds = true
-                btn.layer.cornerRadius = 5
-                btn.layer.borderWidth = 1.0
+                btn.layer.cornerRadius = (rect.size.height + 10) / 2
+                btn.layer.borderWidth = 0.5
                 
                 //布局
                 if i == 0 {
-                    btn.frame = CGRect.init(x: 10, y: 5, width: BtnW, height: BtnH)
+                    btn.frame = CGRect.init(x: 10, y: 10, width: BtnW, height: BtnH)
                 } else {
                     let yuWidth = self.frame.size.width - 20 - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
-                    if yuWidth >= rect.size.width {
-                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 5, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
+                    if yuWidth >= (BtnW + 10) {
+                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 10, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
                     }else {
-                        btn.frame = CGRect.init(x: 10, y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + 5, width: BtnW, height: BtnH) //另起一行
+                        btn.frame = CGRect.init(x: 10, y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + 10, width: BtnW, height: BtnH) //另起一行
                     }
                     
                 }

@@ -19,7 +19,20 @@ class HDTagChooseCareerVC: UIViewController {
 
         tagArray = ["学生","初入职场","创业者","职场精英","管理层","自由职业者"]
         
+        loadTagView()
+        
+    }
+    
+    func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: TagBgView.bounds)
+        tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
+        
+        tagView.BlockFunc { (array) in
+            //1、保存选择标签
+            print(array)
+            //2、跳转vc
+            self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
+        }
         tagView.titleArray = tagArray
         
         TagBgView.addSubview(tagView)

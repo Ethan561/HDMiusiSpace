@@ -11,13 +11,33 @@ import UIKit
 class HDTagChooseStateVC: UIViewController {
 
     @IBOutlet weak var tagBgView: UIView!
-    
+    public var tagArray : [String] = Array.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tagArray = ["单身","热恋中","已婚","辣妈奶爸"]
+        
+        loadTagView()
+        
     }
+    
+    func loadTagView() {
+        let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
+        tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
+        
+        tagView.BlockFunc { (array) in
+            //1、保存选择的标签
+            print(array)
+            //2、跳转vc
+            self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
+        }
+        tagView.titleArray = tagArray
+        
+        tagBgView.addSubview(tagView)
+        tagView.loadTagsView()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

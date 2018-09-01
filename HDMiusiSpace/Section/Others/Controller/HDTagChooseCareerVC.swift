@@ -1,35 +1,31 @@
 //
-//  HDTagChooseVC.swift
+//  HDTagChooseCareerVC.swift
 //  HDMiusiSpace
 //
-//  Created by liuyi on 2018/8/6.
+//  Created by SSLong on 2018/8/31.
 //  Copyright © 2018年 hengdawb. All rights reserved.
 //
 
 import UIKit
 
-class HDTagChooseVC: UIViewController {
+class HDTagChooseCareerVC: UIViewController {
 
-    @IBOutlet weak var tagBgView: UIView!
+    @IBOutlet weak var TagBgView: UIView!
     
     public var tagArray : [String] = Array.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tagArray = ["学生","初入职场","创业者","职场精英","管理层","自由职业者"]
         
+        let tagView = HD_SSL_TagView.init(frame: TagBgView.bounds)
+        tagView.titleArray = tagArray
+        
+        TagBgView.addSubview(tagView)
+        tagView.loadTagsView()
     }
-    
-    @IBAction func action_back(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func SureAction(_ sender: Any) {
-        self.performSegue(withIdentifier: "HD_PushToTabBarVCLine", sender: nil)
 
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -119,8 +119,8 @@ class HD_SSL_TagView: UIView {
                     btn.frame = CGRect.init(x: 10, y: 10, width: BtnW, height: BtnH)
                 } else {
                     let yuWidth = self.frame.size.width - 20 - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
-                    if yuWidth >= rect.size.width {
-                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 5, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
+                    if yuWidth >= (BtnW + 10) {
+                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 10, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
                     }else {
                         btn.frame = CGRect.init(x: 10, y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + 10, width: BtnW, height: BtnH) //另起一行
                     }

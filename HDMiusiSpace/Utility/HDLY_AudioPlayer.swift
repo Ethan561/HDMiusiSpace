@@ -45,7 +45,8 @@ final class HDLY_AudioPlayer: NSObject {
     var timer:Timer!
     
     var url:String = ""
-    
+    var showFloatingBtn: Bool = false
+
     weak var delegate:HDLY_AudioPlayer_Delegate?
     
     private override init() {
@@ -150,8 +151,10 @@ final class HDLY_AudioPlayer: NSObject {
             delegate?.playerTime!(currentTimeStr, totalTimeStr, Float(currentTime/totalTime))
             
             let isPlaying = true
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
-
+            if showFloatingBtn == true {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            }
         }
     }
     
@@ -204,7 +207,10 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
         if state == .stopped {
             delegate?.finishPlaying!()
             let isPlaying = false
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            if showFloatingBtn == true {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            }
         }
     }
     
@@ -226,13 +232,18 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
 //            next()
             delegate?.finishPlaying!()
             let isPlaying = false
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            if showFloatingBtn == true {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+                
+            }
 
         } else if stopReason == .error {
             stop()
             resetAudioPlayer()
             let isPlaying = false
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            if showFloatingBtn == true {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+            }
         }
     }
     

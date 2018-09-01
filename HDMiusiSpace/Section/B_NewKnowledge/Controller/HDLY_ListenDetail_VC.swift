@@ -68,6 +68,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)
         }
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+        player.showFloatingBtn = true
 
     }
 

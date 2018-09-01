@@ -101,6 +101,19 @@ enum HD_LY_API {
     //轻听随看收听+1
     case courseListenedNumAdd(listen_id: String)
     
+    //精选首页轮播图
+    case getChoicenessHomeBanner()
+    
+    //精选首页
+    case choicenessHomeRequest(api_token: String, deviceno: String)
+
+    //首页资讯上拉加载
+    case choicenessHomeMoreRequest(api_token: String, deviceno: String, num: String)
+
+    
+    
+    
+    
 }
 
 extension HD_LY_API: TargetType {
@@ -233,8 +246,18 @@ extension HD_LY_API: TargetType {
         //轻听随看收听+1
         case .courseListenedNumAdd(listen_id: _):
             return "/api/course/listen_in"
+
+        //精选首页轮播图
+        case .getChoicenessHomeBanner():
+            return "/api/index/banner"
             
+        //精选首页
+        case .choicenessHomeRequest(api_token: _, deviceno: _):
+            return "/api/index/index"
             
+        //首页资讯上拉加载
+        case .choicenessHomeMoreRequest(api_token: _, deviceno: _, num: _):
+            return "/api/index/get_more_news"
             
             
         }
@@ -554,6 +577,26 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        //精选首页轮播图
+        case .getChoicenessHomeBanner():
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //精选首页
+        case .choicenessHomeRequest(api_token: let api_token, deviceno: let deviceno):
+            params = params.merging(["api_token": api_token, "deviceno": deviceno], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        //首页资讯上拉加载
+        case .choicenessHomeMoreRequest(api_token: let api_token , deviceno: let deviceno, num: let num):
+            params = params.merging(["api_token": api_token, "deviceno": deviceno, "num": num], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
             
             

@@ -163,6 +163,10 @@
 		D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */; };
 		D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */; };
 		D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */; };
+		D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */; };
+		D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */; };
+		D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */; };
+		D68D50DA213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D68D50D8213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib */; };
 		D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54102133868C000CD258 /* ReplicatorAnimation.swift */; };
 		D68D5415213386C8000CD258 /* UIView+ScreenShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5413213386C8000CD258 /* UIView+ScreenShot.swift */; };
 		D68D5416213386C8000CD258 /* HDAnimate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D5414213386C8000CD258 /* HDAnimate.swift */; };
@@ -455,6 +459,10 @@
 		D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Listen_Cell.xib; sourceTree = "<group>"; };
 		D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Topic_Cell.swift; sourceTree = "<group>"; };
 		D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Topic_Cell.xib; sourceTree = "<group>"; };
+		D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoicenessModel.swift; sourceTree = "<group>"; };
+		D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAViewModel.swift; sourceTree = "<group>"; };
+		D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootACard_Cell.swift; sourceTree = "<group>"; };
+		D68D50D8213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_RootACard_Cell.xib; sourceTree = "<group>"; };
 		D68D54102133868C000CD258 /* ReplicatorAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplicatorAnimation.swift; sourceTree = "<group>"; };
 		D68D5413213386C8000CD258 /* UIView+ScreenShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ScreenShot.swift"; sourceTree = "<group>"; };
 		D68D5414213386C8000CD258 /* HDAnimate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDAnimate.swift; sourceTree = "<group>"; };
@@ -1455,6 +1463,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FD052118488F007C8E56 /* .gitignore */,
+				D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1463,6 +1472,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FD072118488F007C8E56 /* .gitignore */,
+				D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1471,6 +1481,8 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FD092118488F007C8E56 /* .gitignore */,
+				D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */,
+				D68D50D8213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1650,6 +1662,7 @@
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
+				D68D50DA213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib in Resources */,
 				D66991C62130EA84002568B2 /* HDLY_QuestionContent_Header.xib in Resources */,
 				D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */,
 				D6C9FCF02118485B007C8E56 /* .gitignore in Resources */,
@@ -1769,6 +1782,7 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
+				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
@@ -1904,6 +1918,7 @@
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
+				D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
@@ -1921,6 +1936,7 @@
 				D62277A021367D4D008F1416 /* ProgressView.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
+				D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,

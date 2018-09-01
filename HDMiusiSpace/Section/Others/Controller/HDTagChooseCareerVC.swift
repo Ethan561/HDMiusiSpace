@@ -20,6 +20,12 @@ class HDTagChooseCareerVC: UIViewController {
         tagArray = ["学生","初入职场","创业者","职场精英","管理层","自由职业者"]
         
         let tagView = HD_SSL_TagView.init(frame: TagBgView.bounds)
+        tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
+        
+        tagView.BlockFunc { (array) in
+            //
+            print(array)
+        }
         tagView.titleArray = tagArray
         
         TagBgView.addSubview(tagView)

@@ -132,7 +132,7 @@ extension HDLY_CourseList_SubVC2 {
         if index == 0 {
             let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
             if model?.timg != nil {
-                cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model?.title
             cell?.nameL.text = model?.teacherName

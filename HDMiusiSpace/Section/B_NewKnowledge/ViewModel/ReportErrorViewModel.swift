@@ -14,7 +14,7 @@ class ReportErrorViewModel: NSObject {
     
     //(cate_id):报错分类1课程,2轻听随看,3看展,4资讯,5评论举报
     func dataRequestWithListenID(id: String, cate_id: String, _ vc: HDItemBaseVC)  {
-
+        
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: id, cate_id: cate_id), showHud: true, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

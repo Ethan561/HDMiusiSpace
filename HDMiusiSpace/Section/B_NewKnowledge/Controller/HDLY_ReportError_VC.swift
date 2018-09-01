@@ -133,7 +133,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     }
     func showViewData() {
         titleL.text = errorModel?.data?.title
-        imgV.kf.setImage(with: URL.init(string: "img"), placeholder: UIImage.init(named: "qtsk_course_img3"), options: nil, progressBlock: nil, completionHandler: nil)
+        imgV.kf.setImage(with: URL.init(string: (errorModel?.data?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     func showErrorOptionListView() {

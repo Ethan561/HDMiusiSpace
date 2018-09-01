@@ -53,16 +53,28 @@
                                     <constraint firstAttribute="height" constant="64" id="xkr-Qr-zTu"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FiB-eH-qWf">
+                                <rect key="frame" x="67" y="269.5" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="tpQ-pt-r0u"/>
+                                    <constraint firstAttribute="height" constant="128" id="uoM-h4-9BK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gEy-w2-PtB" firstAttribute="top" secondItem="GHf-Oz-mSc" secondAttribute="top" id="FT0-qs-q9f"/>
                             <constraint firstItem="gEy-w2-PtB" firstAttribute="leading" secondItem="MAo-5t-9NT" secondAttribute="leading" id="dRV-Oq-MT6"/>
+                            <constraint firstItem="FiB-eH-qWf" firstAttribute="centerX" secondItem="GHf-Oz-mSc" secondAttribute="centerX" id="ebx-gt-bTP"/>
                             <constraint firstItem="MAo-5t-9NT" firstAttribute="trailing" secondItem="gEy-w2-PtB" secondAttribute="trailing" id="lSP-a5-wP7"/>
+                            <constraint firstItem="FiB-eH-qWf" firstAttribute="centerY" secondItem="GHf-Oz-mSc" secondAttribute="centerY" id="mDR-US-Gzc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MAo-5t-9NT"/>
                     </view>
                     <navigationItem key="navigationItem" id="DGN-5V-Nh7"/>
+                    <connections>
+                        <outlet property="imgV" destination="FiB-eH-qWf" id="zhS-hK-WL6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXx-dM-Dm1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

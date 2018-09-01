@@ -176,11 +176,11 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let idnum = self.courseId else {
             return
         }
-        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-            self.pushToLoginVC(vc: self)
-            return
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: HDDeclare.shared.api_token!, id: idnum), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: token, id: idnum), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -220,7 +220,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }
             
         }) { (errorCode, msg) in
-            
+            self.myTableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.myTableView.ly_showEmptyView()
         }
     }
     
@@ -372,7 +373,7 @@ extension HDLY_CourseDes_VC {
             if index == 0 {
                 let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
                 if model?.timg != nil {
-                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell?.titleL.text = model?.title
                 cell?.nameL.text = model?.teacherName
@@ -398,7 +399,7 @@ extension HDLY_CourseDes_VC {
             else if index == 2 {
                 let cell = HDLY_CourseTeacher_Cell.getMyTableCell(tableV: tableView)
                 if model?.timg != nil {
-                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.timg)!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell?.nameL.text = model?.teacherName
                 cell?.desL.text = model?.teacherTitle
@@ -415,7 +416,7 @@ extension HDLY_CourseDes_VC {
             cell?.contentL.text = model.content
             cell?.nameL.text = model.nickname
             if model.avatar != nil {
-                cell?.avaImgV.kf.setImage(with: URL.init(string:(model.avatar)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.avaImgV.kf.setImage(with: URL.init(string:(model.avatar)!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             return cell!
         }

@@ -46,7 +46,7 @@ final class HDFloatingButtonManager: NSObject {
         guard let url = infoModel?.icon else {
             return
         }
-        self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil);
+        self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.grayImage(sourceImageV: self.floatingBtnView.imgBtn), options: nil, progressBlock: nil, completionHandler: nil);
     }
     
     func pushToPlayerVC()  {

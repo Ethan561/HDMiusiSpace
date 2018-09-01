@@ -10,9 +10,13 @@ import UIKit
 
 class HDRootAVC: HDItemBaseVC {
     
+    @IBOutlet weak var imgV: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        
+        imgV.kf.setImage(with: URL.init(string: ""), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         
     }
     

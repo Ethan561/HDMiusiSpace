@@ -106,8 +106,15 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         self.infoModel = viewModel.listenDetail.value
         HDFloatingButtonManager.manager.infoModel = infoModel
         if infoModel?.img != nil {
-            self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.grayImage(sourceImageV: self.imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
+        
+        if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains(".mp3"))! {
+            if player.url != self.infoModel?.voice {
+                player.stop()
+            }
+        }
+
         self.getWebHeight()
         //点赞
         likeNumL.text = infoModel?.likes?.string
@@ -240,6 +247,10 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
                     player.play()
                 }else {
                     player.play(file: Music.init(name: "", url:URL.init(string: self.infoModel!.voice!)!))
+                    player.url = self.infoModel!.voice!
+                    if self.infoModel?.listenID?.string != nil {
+                        viewModel.listenedNumAdd(listenID: self.infoModel!.listenID!.string)
+                    }
                 }
                 playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
             }
@@ -340,7 +351,7 @@ extension HDLY_ListenDetail_VC {
             if index == 0 {
                 let cell = HDLY_CourseTitle_Cell.getMyTableCell(tableV: tableView)
                 if model?.teacherImg != nil {
-                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.teacherImg!)!), placeholder: UIImage.init(named: "teacher_img"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.avatarImgV.kf.setImage(with: URL.init(string: (model?.teacherImg!)!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell?.titleL.text = model?.title
                 cell?.nameL.text = model?.teacherName
@@ -387,7 +398,7 @@ extension HDLY_ListenDetail_VC {
                     return  cell!
                 }
                 if commentModel.avatar != nil {
-                    cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt

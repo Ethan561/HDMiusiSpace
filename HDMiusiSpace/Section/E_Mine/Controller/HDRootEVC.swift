@@ -43,7 +43,7 @@ class HDRootEVC: HDItemBaseVC {
             nameL.text = declare.nickname
             signatureL.text = declare.sign
             if declare.avatar != nil {
-                avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "user_img1"), options: nil, progressBlock: nil, completionHandler: nil)
+                avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
         }else {
             //未登录

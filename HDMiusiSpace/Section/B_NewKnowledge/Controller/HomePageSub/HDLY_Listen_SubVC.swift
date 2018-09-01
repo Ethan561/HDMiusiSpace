@@ -152,7 +152,7 @@ class HDLY_Listen_SubVC:                                                        
         let cell:HDLY_Listen_CollectionCell = HDLY_Listen_CollectionCell.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
         if self.listArr.count > 0 {
             let model = self.listArr[indexPath.row]
-            cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             cell.titleL.text = model.title
             cell.countL.text = "\(model.listening)人听过"
         }

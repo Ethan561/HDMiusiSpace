@@ -107,7 +107,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         myTableView.backgroundColor = UIColor.white
-  
+        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+
     }
     
     func dataRequestForBanner()  {
@@ -117,7 +118,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             
             let jsonDecoder = JSONDecoder()
             let dataA:Array<Dictionary<String,Any>> = dic?["data"] as! Array<Dictionary>
-            
+            self.bannerArr.removeAll()
             if dataA.count > 0  {
                 for  tempDic in dataA {
                     let dataDic = tempDic as Dictionary<String, Any>
@@ -139,7 +140,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.myTableView.ly_hideEmptyView()
+
             let jsonDecoder = JSONDecoder()
             let model:CourseMenu = try! jsonDecoder.decode(CourseMenu.self, from: result)
             self.menuArr = model.data
@@ -151,8 +153,13 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
             self.addContentSubViewsWithArr(titleArr: menuTitleArr)
         }) { (errorCode, msg) in
-            
+            self.myTableView.ly_showEmptyView()
         }
+    }
+    
+    @objc func refreshAction() {
+        dataRequestForMenu()
+        dataRequestForBanner()
     }
     
     override func didReceiveMemoryWarning() {
@@ -337,7 +344,7 @@ extension HDRootBVC {
         let cell:HDPagerViewCell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index) as! HDPagerViewCell
         let model = bannerArr[index]
         if  model.img != nil  {
-            cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
         
         return cell

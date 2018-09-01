@@ -97,6 +97,10 @@ enum HD_LY_API {
 
     //意见反馈
     case sendFeedback(api_token: String, cate_id: String, content:String)
+    
+    //轻听随看收听+1
+    case courseListenedNumAdd(listen_id: String)
+    
 }
 
 extension HD_LY_API: TargetType {
@@ -225,6 +229,14 @@ extension HD_LY_API: TargetType {
         //意见反馈
         case .sendFeedback(api_token: _, cate_id: _ , content:_ ):
             return "/api/deviceno/feedback"
+            
+        //轻听随看收听+1
+        case .courseListenedNumAdd(listen_id: _):
+            return "/api/course/listen_in"
+            
+            
+            
+            
         }
         
     }
@@ -534,6 +546,15 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //轻听随看收听+1
+        case .courseListenedNumAdd(listen_id: let listen_id ):
+            params = params.merging(["listen_id": listen_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
             
             
         default:

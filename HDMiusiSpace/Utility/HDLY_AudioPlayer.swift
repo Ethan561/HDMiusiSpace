@@ -44,6 +44,8 @@ final class HDLY_AudioPlayer: NSObject {
     //更新进度条定时器
     var timer:Timer!
     
+    var url:String = ""
+    
     weak var delegate:HDLY_AudioPlayer_Delegate?
     
     private override init() {

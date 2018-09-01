@@ -17,7 +17,7 @@ extension UIScrollView {
         set {
             objc_setAssociatedObject(self, RuntimeKey.kEmptyViewKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             for view in self.subviews {
-                if view.isKind(of: HDEmptyView.classForCoder()) {
+                if view.isKind(of: HDEmptyView.self) {
                     view.removeFromSuperview()
                 }
             }
@@ -55,7 +55,7 @@ extension UIScrollView {
     //MARK: - Private Method
     fileprivate func totalDataCount() -> NSInteger {
         var totalCount: NSInteger = 0
-        if self.isKind(of: UITableView.classForCoder()) {
+        if self.isKind(of: UITableView.self) {
             let tableView = self as? UITableView
             if (tableView?.numberOfSections)! >= 1 {
                 for section in 0...(tableView?.numberOfSections)!-1 {

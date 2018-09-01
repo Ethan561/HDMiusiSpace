@@ -84,7 +84,7 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
             if self.listArray!.count > 0 {
                 let model = listArray![indexPath.row]
                 if  model.img != nil  {
-                    cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
             }

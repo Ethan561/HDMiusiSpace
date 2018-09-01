@@ -33,20 +33,19 @@ class ListenDetailViewModel: NSObject {
         }
     }
     
+    func listenedNumAdd(listenID : String)  {
+
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListenedNumAdd(listen_id: listenID), showHud: false,showErrorTip: false, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

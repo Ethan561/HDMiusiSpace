@@ -132,7 +132,7 @@ extension HDLY_CourseList_SubVC3 {
             header.likeBtn.setTitle(secModel.likes!.string, for: UIControlState.normal)
             header.nameL.text = secModel.nickname
             if secModel.avatar.isEmpty == false {
-                header.avaImgV.kf.setImage(with: URL.init(string: secModel.avatar), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                header.avaImgV.kf.setImage(with: URL.init(string: secModel.avatar), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             if secModel.isLike?.int == 0 {
                 header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
@@ -227,7 +227,7 @@ extension HDLY_CourseList_SubVC3 {
                     if returnInfo.type == 1 {//1文字2语音
                         let cell = HDLY_AnswerText_Cell.getMyTableCell(tableV: tableView)
                         if returnInfo.teacherImg.isEmpty == false {
-                            cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                            cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                             cell?.nameL.text = returnInfo.teacherName
                             cell?.contentL.text = returnInfo.content
                             cell?.timeL.text = returnInfo.createdAt
@@ -235,7 +235,7 @@ extension HDLY_CourseList_SubVC3 {
                         return cell!
                     }else {
                         let cell = HDLY_AnswerAudio_Cell.getMyTableCell(tableV: tableView)
-                        cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                        cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                         cell?.nameL.text = returnInfo.teacherName
                         cell?.timeL.text = returnInfo.createdAt
                         cell?.audioTimeL.text = returnInfo.timeLong

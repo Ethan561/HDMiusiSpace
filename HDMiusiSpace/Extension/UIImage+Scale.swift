@@ -6,7 +6,11 @@
 //  Copyright © 2018年 liuyi. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import QuartzCore
+import CoreGraphics
+import Accelerate
 
 // MARK: - UIImage扩展,等比例缩小图片到指定的宽度
 
@@ -117,16 +121,25 @@ extension UIImage {
         
     }
     
+    //生成灰色占位图
+    class func grayImage(sourceImageV: UIImageView) -> UIImage? {
+        let width = sourceImageV.size.width
+        let height = sourceImageV.size.height
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(UIColor.HexColor(0xEEEEEE).cgColor)
+        context?.fill(rect)
+        
+        guard let img = UIGraphicsGetImageFromCurrentImageContext() else {
+            return UIImage.init(named: "img_nothing")
+        }
+        UIGraphicsEndImageContext()
+        
+        return UIImage.init(cgImage: img.cgImage!)
+    }
     
 }
-
-
-
-
-
-
-
-
-
 
 

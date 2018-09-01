@@ -49,7 +49,7 @@ public class HDEmptyView: HDEmptyBaseView {
         return detailL
     }()
     //
-    fileprivate  lazy var actionButton: UIButton = {
+    lazy var actionButton: UIButton = {
         let btn = UIButton()
         btn.layer.masksToBounds = true
         return btn
@@ -71,13 +71,13 @@ public class HDEmptyView: HDEmptyBaseView {
     //内容物-垂直方向偏移 (此属性与contentViewY 互斥，只有一个会有效)
     public var contentViewOffset: CGFloat = 0 {
         didSet {
-            self.contentView.centerY += contentViewOffset
+            self.contentView.ly_centerY += contentViewOffset
         }
     }
     // 内容物-Y坐标 (此属性与contentViewOffset 互斥，只有一个会有效)
     public var contentViewY: CGFloat = 0 {
         didSet {
-            self.contentView.top = self.contentViewY
+            self.contentView.ly_top = self.contentViewY
         }
     }
     //图片可设置固定大小 (default=图片实际大小)
@@ -190,14 +190,14 @@ public class HDEmptyView: HDEmptyBaseView {
     //MARK: ----- 初始化方法 ----
     override func prepare() {
         super.prepare()
-        self.centerY = 1000//默认值，用来判断是否设置过content的Y值
+        self.ly_centerY = 1000//默认值，用来判断是否设置过content的Y值
     }
     
     override func setupSubviews() {
         super.setupSubviews()
         
         //最大宽度（ScrollView 的宽 - 30）
-        contentMaxWidth = self.width - CGFloat(kActionBtnHorizontalMargin)
+        contentMaxWidth = self.ly_width - CGFloat(kActionBtnHorizontalMargin)
         contentWidth = 0
         contentHeight = 0
         subViweMargin = self.subViewMargin
@@ -255,8 +255,8 @@ public class HDEmptyView: HDEmptyBaseView {
     
     func setSubViewFrame() {
         //获取self原始宽高
-        let scrollViewWidth = self.width
-        let scrollViewHeight = self.height
+        let scrollViewWidth = self.ly_width
+        let scrollViewHeight = self.ly_height
         //重新设置self的frame（大小为content的大小）
         self.size = CGSize.init(width: contentWidth!, height: contentHeight!)
         self.center = CGPoint.init(x: scrollViewWidth*0.5, y: scrollViewHeight*0.5)
@@ -265,11 +265,13 @@ public class HDEmptyView: HDEmptyBaseView {
         self.contentView?.frame = self.bounds
         
         //子控件的centerX设置
-        let centerX = self.centerX
+        let myCenterX:CGFloat = self.contentView.ly_centerX
+        
         if self._customView != nil {
             self._customView?.frame = self.bounds
-            self.contentView!.addSubview(_customView!)
+            self.contentView!.addSubview(_customView!)//自定义界面
         }else {
+            
             if promptImageView.image != nil {
                 self.contentView?.addSubview(promptImageView)
             }
@@ -277,21 +279,20 @@ public class HDEmptyView: HDEmptyBaseView {
             self.contentView!.addSubview(detailLabel)
             self.contentView!.addSubview(actionButton)
             //
-            self.promptImageView.centerX = centerX
-            self.promptImageView.centerY = self.centerY
-            self.titleLabel.centerX = centerX
-            detailLabel.centerX = centerX
-            actionButton.centerX = centerX
+            self.promptImageView.center = CGPoint.init(x: myCenterX, y: self.promptImageView.ly_centerY)
+            self.titleLabel.center = CGPoint.init(x: myCenterX, y: self.detailLabel.ly_centerY)
+            detailLabel.center = CGPoint.init(x: myCenterX, y: self.detailLabel.ly_centerY)
+            actionButton.center = CGPoint.init(x: myCenterX, y: self.actionButton.ly_centerY)
         }
         
         //有无偏移
         if self.contentViewOffset > 0 {
-            self.contentView.centerY += self.contentViewOffset
+            self.contentView.ly_centerY += self.contentViewOffset
         }
         
         //有无设置Y坐标
         if self.contentViewY < 1000 {
-            self.contentView.top = self.contentViewY
+            self.contentView.ly_top = self.contentViewY
         }
     }
 }
@@ -315,8 +316,8 @@ extension HDEmptyView {
         }
         
         self.promptImageView.frame = CGRect.init(x: 0, y: 0, width: imgViewWidth, height: imgViewHeight)
-        self.promptImageView.center = CGPoint.init(x: self.centerX, y: self.centerY-imgViewHeight*0.5)
-        contentWidth = self.promptImageView.width
+        self.promptImageView.center = CGPoint.init(x: self.contentView.ly_centerX, y: self.contentView.ly_centerY-imgViewHeight*0.5)
+        contentWidth = self.promptImageView.ly_width
         contentHeight = self.promptImageView.ly_maxY
         
     }
@@ -325,7 +326,7 @@ extension HDEmptyView {
         let fontSize: CGFloat = self.titleLabFont.pointSize
         let width: CGFloat = self.getTextWidth(text: titleStr, size: CGSize.init(width: contentMaxWidth!, height: fontSize), font: self.titleLabFont).width
         titleLabel.frame = CGRect.init(x: 0, y: contentHeight!+subViweMargin!, width: width, height: fontSize)
-        self.titleLabel.center = CGPoint.init(x: self.centerX, y: titleLabel.centerY)
+        self.titleLabel.center = CGPoint.init(x: self.ly_centerX, y: titleLabel.ly_centerY)
         titleLabel.font = self.titleLabFont
         titleLabel.textColor = titleLabTextColor
         titleLabel.text = self._titleStr! as String
@@ -343,7 +344,7 @@ extension HDEmptyView {
             width = contentMaxWidth!
         }
         detailLabel.frame = CGRect.init(x: contentMaxWidth!/2.0, y: contentHeight!+subViweMargin!, width: width, height: size.height+5)
-        detailLabel.center = CGPoint.init(x: self.centerX, y: detailLabel.centerY)
+        detailLabel.center = CGPoint.init(x: self.ly_centerX, y: detailLabel.ly_centerY)
         
         detailLabel.font = self.titleLabFont
         detailLabel.text = self._detailStr! as String
@@ -363,7 +364,7 @@ extension HDEmptyView {
             btnWidth = self.actionBtnWidth
         }
         actionButton.frame = CGRect.init(x: 0, y: contentHeight!+subViewMargin, width: btnWidth, height: btnHeight)
-        actionButton.center = CGPoint.init(x: self.centerX, y: actionButton.centerY)
+        actionButton.center = CGPoint.init(x: self.ly_centerX, y: actionButton.ly_centerY)
 
         actionButton.setTitle(btnTitle as String, for: .normal)
         actionButton.setTitleColor(self.actionBtnTitleColor, for: .normal)
@@ -382,6 +383,8 @@ extension HDEmptyView {
             actionButton.addTarget(self, action: #selector(actionBtnClick(_:)), for: UIControlEvents.touchUpInside)
 
         }
+        contentHeight = actionButton.ly_maxY
+
     }
     
     //MARK: ----

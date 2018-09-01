@@ -161,7 +161,7 @@ extension HDLY_Recommend_SubVC {
         }else if model.type?.int == 1 {
             let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
             if  model.boutiquelist?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.grayImage(sourceImageV: (cell?.imgV)!), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
@@ -185,7 +185,7 @@ extension HDLY_Recommend_SubVC {
         }else if model.type?.int == 2 {
             let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
             if  model.boutiquecard?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquecard!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquecard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.boutiquecard?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
@@ -206,7 +206,7 @@ extension HDLY_Recommend_SubVC {
         }else if model.type?.int == 4 {
             let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
             if  model.interactioncard?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.interactioncard?.title
             cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"

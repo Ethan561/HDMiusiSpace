@@ -14,7 +14,7 @@ class EmptyConfigView: HDEmptyView {
     public class func NoDataEmptyView() -> EmptyConfigView {
         
         let emptyView:EmptyConfigView = EmptyConfigView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        emptyView.creatEmptyViewWithImageStr(imageStr: "noData", titleStr: "暂时没有数据", detailStr: "")
+        emptyView.creatEmptyViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "暂时没有数据", detailStr: "")
         emptyView.contentViewY = -50
         emptyView.titleLabTextColor = UIColor.lightGray
         
@@ -25,13 +25,13 @@ class EmptyConfigView: HDEmptyView {
     public class func NoNetworkEmptyWithTarget(target:AnyObject, action: Selector) -> EmptyConfigView {
         
         let emptyView:EmptyConfigView = EmptyConfigView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        emptyView.creatEmptyViewWithImageStr(imageStr: "net_error", titleStr: "加载失败..刷新试试吧", detailStr: "", btnTitleStr: "刷新", target: target, action: action)
-        emptyView.contentViewY = -100
-        emptyView.titleLabTextColor = UIColor.gray
+        emptyView.creatEmptyViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "数据获取失败，试试重新加载吧～", detailStr: "", btnTitleStr: "重新加载", target: target, action: action)
+        emptyView.contentViewY = 0
+        emptyView.titleLabTextColor = UIColor.HexColor(0x9B9B9B)
         emptyView.actionBtnWidth = 60
         emptyView.actionBtnCornerRadius = 15
         emptyView.actionBtnTitleColor = UIColor.white
-        emptyView.actionBtnBackGroundColor = UIColor.HexColor(0x3FA3FE)
+        emptyView.actionBtnBackGroundColor = UIColor.HexColor(0xE8593E)
         
         return emptyView
     }

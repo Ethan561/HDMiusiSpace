@@ -48,7 +48,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
         if dataArray != nil {
             let model = dataArray?.first
             if  model?.img != nil  {
-                imgV.kf.setImage(with: URL.init(string: (model?.img)!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                imgV.kf.setImage(with: URL.init(string: (model?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL.text = model?.title
             countL.text = model?.views?.string == nil ? "0" :(model?.views?.string)! + "人在学"
@@ -57,7 +57,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
             
             let model1 = dataArray?.last
             if  model1?.img != nil  {
-                imgV1.kf.setImage(with: URL.init(string: (model1?.img)!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                imgV1.kf.setImage(with: URL.init(string: (model1?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL1.text = model1?.title
             countL1.text = model1?.views?.string == nil ? "0" :(model1?.views?.string)! + "人在学"

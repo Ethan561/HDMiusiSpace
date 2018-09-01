@@ -77,7 +77,7 @@ class HDLY_CourseRecmd_Cell: UITableViewCell,UICollectionViewDelegate,UICollecti
         if self.listArray != nil {
             if self.listArray!.count > 0 {
                 let model = listArray![indexPath.row]
-                cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 cell.titleL.text = model.title
             }
         }

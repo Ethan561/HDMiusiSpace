@@ -36,7 +36,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         signatureL.text = declare.sign
         genderL.text = declare.gender
         if declare.avatar != nil {
-            avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "user_img1"), options: nil, progressBlock: nil, completionHandler: nil)
+            avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
 

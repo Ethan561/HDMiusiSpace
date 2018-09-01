@@ -278,7 +278,7 @@ extension HDLY_TopicDectail_VC {
             let cell = HDLY_TopicRecmd_Cell.getMyTableCell(tableV: tableView)
             if model?.recommendsList != nil {
                 let model = model!.recommendsList[index]
-                cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.titleL.text = model.title
                 cell?.desL.text = "\(model.keywords)|\(model.plat_title)"
                 cell?.commentBtn.setTitle(model.comments.string, for: .normal)
@@ -292,7 +292,7 @@ extension HDLY_TopicDectail_VC {
                 guard let commentModel = model?.commentList[index] else {
                     return  cell!
                 }
-                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar), placeholder: UIImage.init(named: "user_img2"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)

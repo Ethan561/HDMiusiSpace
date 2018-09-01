@@ -280,7 +280,7 @@ public class HDEmptyView: HDEmptyBaseView {
             self.contentView!.addSubview(actionButton)
             //
             self.promptImageView.center = CGPoint.init(x: myCenterX, y: self.promptImageView.ly_centerY)
-            self.titleLabel.center = CGPoint.init(x: myCenterX, y: self.detailLabel.ly_centerY)
+            self.titleLabel.center = CGPoint.init(x: myCenterX, y: self.titleLabel.ly_centerY)
             detailLabel.center = CGPoint.init(x: myCenterX, y: self.detailLabel.ly_centerY)
             actionButton.center = CGPoint.init(x: myCenterX, y: self.actionButton.ly_centerY)
         }

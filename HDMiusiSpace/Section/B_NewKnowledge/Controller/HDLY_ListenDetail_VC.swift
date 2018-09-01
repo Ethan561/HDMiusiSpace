@@ -67,8 +67,16 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if listen_id != nil {
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)
         }
+        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+
     }
 
+    @objc func refreshAction() {
+        if listen_id != nil {
+            viewModel.dataRequestWithListenID(listenID: listen_id!, self)
+        }
+    }
+    
     //MVVM
     
     func bindViewModel() {
@@ -76,6 +84,14 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         viewModel.listenDetail.bind { (_) in
             weakSelf?.showViewData()
         }
+        viewModel.showEmptyView.bind() { (show) in
+            if show {
+                weakSelf?.myTableView.ly_showEmptyView()
+            }else {
+                weakSelf?.myTableView.ly_hideEmptyView()
+            }
+        }
+        
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
             weakSelf?.closeKeyBoardView()

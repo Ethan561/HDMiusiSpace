@@ -84,10 +84,14 @@ class HDLY_Listen_SubVC:                                                        
             }
             
         }) { (errorCode, msg) in
-            
+            self.collectionView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.collectionView.ly_showEmptyView()
         }
     }
     
+    @objc func refreshAction() {
+        dataRequest(cate_id: "-1")
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

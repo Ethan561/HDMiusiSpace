@@ -220,9 +220,13 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }
             
         }) { (errorCode, msg) in
-            self.myTableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.myTableView.ly_showEmptyView()
         }
+    }
+    
+    @objc func refreshAction() {
+        dataRequest()
     }
     
     func getWebHeight() {

@@ -69,8 +69,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
 
         searchBtn.isHidden = true
         
-//        HDFloatingButtonManager.manager.floatingBtnView.show = true
-        
         
     }
     
@@ -107,7 +105,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         myTableView.backgroundColor = UIColor.white
-        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
 
     }
     
@@ -153,6 +150,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
             self.addContentSubViewsWithArr(titleArr: menuTitleArr)
         }) { (errorCode, msg) in
+            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.myTableView.ly_showEmptyView()
         }
     }

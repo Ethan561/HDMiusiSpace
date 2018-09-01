@@ -11,7 +11,8 @@ import UIKit
 class TopicDetailViewModel: NSObject {
     
     var topicDetail: Bindable = Bindable(TopicModel())
-    
+    let showEmptyView: Bindable = Bindable(false)
+
     func dataRequestWithTopicID(listenID : String, _ vc: HDItemBaseVC)  {
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
@@ -20,6 +21,8 @@ class TopicDetailViewModel: NSObject {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseTopicsInfo(api_token: token, id: listenID), showHud: true, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
+            self.showEmptyView.value = false
+
             let jsonDecoder = JSONDecoder()
             
             //JSON转Model：
@@ -27,7 +30,8 @@ class TopicDetailViewModel: NSObject {
             self.topicDetail.value = model
             
         }) { (errorCode, msg) in
-            
+            self.showEmptyView.value = true
+
         }
     }
     

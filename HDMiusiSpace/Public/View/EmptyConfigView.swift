@@ -26,6 +26,8 @@ class EmptyConfigView: HDEmptyView {
         
         let emptyView:EmptyConfigView = EmptyConfigView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
         emptyView.creatEmptyViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "数据获取失败，试试重新加载吧～", detailStr: "", btnTitleStr: "重新加载", target: target, action: action)
+        emptyView.backgroundColor = UIColor.clear
+        emptyView.contentView.backgroundColor = UIColor.clear
         emptyView.contentViewY = 0
         emptyView.titleLabTextColor = UIColor.HexColor(0x9B9B9B)
         emptyView.actionBtnWidth = 60

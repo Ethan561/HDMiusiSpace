@@ -54,8 +54,13 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
             }
             
         }) { (errorCode, msg) in
-            
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
         }
+    }
+    
+    @objc func refreshAction() {
+        dataRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {

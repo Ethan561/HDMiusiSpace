@@ -11,6 +11,7 @@ import UIKit
 class ListenDetailViewModel: NSObject {
     
     var listenDetail: Bindable = Bindable(ListenDetail())
+    let showEmptyView: Bindable = Bindable(false)
 
     func dataRequestWithListenID(listenID : String, _ vc: HDItemBaseVC)  {
         var token:String = ""
@@ -20,7 +21,8 @@ class ListenDetailViewModel: NSObject {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListenDetail(listen_id: listenID, api_token: token), showHud: true, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.showEmptyView.value = false
+
             let jsonDecoder = JSONDecoder()
             let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
             //JSON转Model：
@@ -29,7 +31,7 @@ class ListenDetailViewModel: NSObject {
             self.listenDetail.value = model
             
         }) { (errorCode, msg) in
-            
+            self.showEmptyView.value = true
         }
     }
     

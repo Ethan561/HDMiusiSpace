@@ -71,11 +71,11 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         guard let idnum = self.courseId else {
             return
         }
-        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-            self.pushToLoginVC(vc: self)
-            return
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestionList(skip: "0", take: "100", api_token: HDDeclare.shared.api_token!, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestionList(skip: "0", take: "100", api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -87,8 +87,13 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             self.tableView.reloadData()
             
         }) { (errorCode, msg) in
-            
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
         }
+    }
+    
+    @objc func refreshAction() {
+        dataRequest()
     }
     
     override func didReceiveMemoryWarning() {

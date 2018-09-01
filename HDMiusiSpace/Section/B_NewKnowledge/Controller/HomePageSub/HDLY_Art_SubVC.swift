@@ -55,7 +55,7 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         
     }
     
-    func dataRequest(type: String , cate_id: String)  {
+     @objc func dataRequest(type: String , cate_id: String)  {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "0", take: "10", type: type, cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -68,9 +68,19 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
             
         }) { (errorCode, msg) in
-            
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
         }
     }
+    
+    @objc func refreshAction() {
+        if isNewest == true {
+            dataRequest(type: "2", cate_id: cateID)
+        }else {
+            dataRequest(type: "3", cate_id: cateID)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         //

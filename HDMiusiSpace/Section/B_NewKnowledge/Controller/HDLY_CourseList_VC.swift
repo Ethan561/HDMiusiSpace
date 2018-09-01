@@ -226,7 +226,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             
         }) { (errorCode, msg) in
-            
+  
         }
     }
     

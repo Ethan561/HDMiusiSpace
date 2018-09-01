@@ -15,6 +15,8 @@ class HDRootAVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        imgV.layer.cornerRadius = 8
+        imgV.layer.masksToBounds = true
         
         imgV.kf.setImage(with: URL.init(string: ""), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         

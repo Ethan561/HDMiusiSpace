@@ -58,6 +58,14 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if topic_id != nil {
             viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
         }
+        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+
+    }
+    
+    @objc func refreshAction() {
+        if topic_id != nil {
+            viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
+        }
     }
     
     //MVVM
@@ -67,6 +75,15 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         viewModel.topicDetail.bind { (_) in
             weakSelf?.showViewData()
         }
+        
+        viewModel.showEmptyView.bind() { (show) in
+            if show {
+                weakSelf?.myTableView.ly_showEmptyView()
+            }else {
+                weakSelf?.myTableView.ly_hideEmptyView()
+            }
+        }
+        
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
             weakSelf?.closeKeyBoardView()

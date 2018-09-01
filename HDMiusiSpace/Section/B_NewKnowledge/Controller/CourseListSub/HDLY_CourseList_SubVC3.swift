@@ -46,7 +46,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-        
+        audioPlayer.showFloatingBtn = false
+
         dataRequest()
 //        audioPlayer.delegate = self
     }
@@ -308,6 +309,8 @@ extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
         
         cell.startAnimating()
         audioPlayer.play(file: Music.init(name: "", url: URL.init(string: model.video)!))
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+
     }
     
     func pause(_ cell: HDLY_AnswerAudio_Cell, _ model: QuestionReturnInfo) {

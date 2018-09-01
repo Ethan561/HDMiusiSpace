@@ -163,7 +163,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         guard let course = infoModel?.data else {
             return
         }
-        
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+
         if isMp3Course {
             if course.video.isEmpty == false && course.video.contains(".mp3") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
@@ -179,6 +180,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     }
     
     func playWithCurrentPlayUrl(_ video: String) {
+        
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+
         if video.isEmpty == false && video.contains(".mp3") {
             self.player.assetURL = NSURL.init(string: video)! as URL
             self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)

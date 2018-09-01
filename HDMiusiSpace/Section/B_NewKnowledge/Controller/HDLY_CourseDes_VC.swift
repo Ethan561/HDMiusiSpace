@@ -83,7 +83,10 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.bottomHCons.constant = 0
         self.listenBgView.isHidden = true
         bindViewModel()
-        
+        if audioPlayer.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+        }
+        audioPlayer.showFloatingBtn = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +115,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let course = infoModel?.data else {
             return
         }
+        
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
         }else {

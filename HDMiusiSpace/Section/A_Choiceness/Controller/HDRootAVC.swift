@@ -46,7 +46,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     }
     
     //MVVM
-    
     func bindViewModel() {
         weak var weakSelf = self
         viewModel.rootAData.bind { (_) in

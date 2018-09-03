@@ -17,7 +17,6 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
     
     var textNum: Int = 0
     var typeID: String? //操作类型0用户设置中心 1课程,2轻听随看,3看展,4资讯
-
     
     override func viewDidLoad() {
         super.viewDidLoad()

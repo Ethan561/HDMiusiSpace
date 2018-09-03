@@ -29,14 +29,14 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="teacher_img" translatesAutoresizingMaskIntoConstraints="NO" id="yWv-0g-pMC">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWv-0g-pMC">
                         <rect key="frame" x="20" y="55" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="yWv-0g-pMC" secondAttribute="height" id="PkN-Pc-LUk"/>
                             <constraint firstAttribute="width" constant="60" id="XHa-YC-abF"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="澎临 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qH7-Ln-jZA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qH7-Ln-jZA">
                         <rect key="frame" x="100" y="70.5" width="200" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="Uak-in-SlX"/>
@@ -51,7 +51,7 @@
                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清华系大学历史系教授 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tH-GE-pcc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tH-GE-pcc">
                         <rect key="frame" x="100" y="97" width="200" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="fgo-kX-HIS"/>
@@ -89,7 +89,4 @@
             <point key="canvasLocation" x="34" y="134"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="teacher_img" width="40" height="40"/>
-    </resources>
 </document>

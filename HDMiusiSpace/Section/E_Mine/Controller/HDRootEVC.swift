@@ -49,6 +49,7 @@ class HDRootEVC: HDItemBaseVC {
             //未登录
             userInfoView.isHidden  = true
             loginView.isHidden = false
+            avatarImgV.image = UIImage.init(named: "wd_img_tx")
         }
     }
     

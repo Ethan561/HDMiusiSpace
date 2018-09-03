@@ -11,11 +11,11 @@ import UIKit
 class RootAViewModel: NSObject {
     
     var rootAData: Bindable = Bindable(ChoicenessModel())
-    let showEmptyView: Bindable = Bindable(false)
+//    let showEmptyView: Bindable = Bindable(false)
     var bannerArr =  Bindable([BbannerModel]())
 
     //
-    func dataRequest(deviceno : String, _ vc: HDItemBaseVC)  {
+    func dataRequest(deviceno : String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
@@ -23,14 +23,41 @@ class RootAViewModel: NSObject {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessHomeRequest(api_token: token, deviceno: deviceno), showHud: true, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            self.showEmptyView.value = false
-            
+            myTableView.ly_hideEmptyView()
             let jsonDecoder = JSONDecoder()
             let model:ChoicenessModel = try! jsonDecoder.decode(ChoicenessModel.self, from: result)
             self.rootAData.value = model
-            
+            myTableView.es.stopPullToRefresh()
+            myTableView.es.stopLoadingMore()
+
         }) { (errorCode, msg) in
-            self.showEmptyView.value = true
+            myTableView.ly_showEmptyView()
+            myTableView.es.stopPullToRefresh()
+        }
+    }
+    
+    func dataRequestGetMoreNews(deviceno : String, num: String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessHomeMoreRequest(api_token: token, deviceno: deviceno, num: num), showHud: true, loadingVC: vc, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            let model:ChoicenessModel = try! jsonDecoder.decode(ChoicenessModel.self, from: result)
+            if model.data != nil && self.rootAData.value.data != nil {
+                if (model.data?.count)! > 0 {
+                    self.rootAData.value.data! += model.data!
+                    myTableView.es.stopLoadingMore()
+                } else {
+                    myTableView.es.noticeNoMoreData()
+                }
+            } else {
+            }
+        }) { (errorCode, msg) in
+            myTableView.es.stopLoadingMore()
         }
     }
     
@@ -58,7 +85,6 @@ class RootAViewModel: NSObject {
             
         }
     }
-    
     
 }
 

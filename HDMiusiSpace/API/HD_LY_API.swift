@@ -110,8 +110,9 @@ enum HD_LY_API {
     //首页资讯上拉加载
     case choicenessHomeMoreRequest(api_token: String, deviceno: String, num: String)
 
-    
-    
+    //资讯详情接口
+    case choicenessNewsInfo(api_token: String, article_id: String)
+
     
     
 }
@@ -258,6 +259,11 @@ extension HD_LY_API: TargetType {
         //首页资讯上拉加载
         case .choicenessHomeMoreRequest(api_token: _, deviceno: _, num: _):
             return "/api/index/get_more_news"
+            
+        //资讯详情接口
+        case .choicenessNewsInfo(api_token: _, article_id: _):
+            return "/api/index/news_info"
+            
             
             
         }
@@ -597,6 +603,14 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //资讯详情接口
+        case .choicenessNewsInfo(api_token: let api_token , article_id: let article_id):
+            params = params.merging(["api_token": api_token, "article_id": article_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
             
             
         default:

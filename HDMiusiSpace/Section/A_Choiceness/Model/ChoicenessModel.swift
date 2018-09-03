@@ -65,7 +65,7 @@ struct ChoicenessItemClass: Codable {
 }
 
 struct ChoicenessItemList: Codable {
-    let articleID: Int
+    let articleID: TStrInt
     let img, title, platTitle, keywords: String
     let likes, comments: TStrInt
     
@@ -76,4 +76,7 @@ struct ChoicenessItemList: Codable {
         case keywords, likes, comments
     }
 }
+
+
+
 

@@ -15,7 +15,7 @@ struct CourseChapter: Codable {
 }
 
 struct ChapterData: Codable {
-    let articleID: Int
+    let articleID: TStrInt
     let img: String
     let isFree: Int
     let video: String

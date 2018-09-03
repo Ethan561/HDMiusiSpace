@@ -10,6 +10,7 @@ import UIKit
 
 class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate {
     
+    var fromRootAChoiceness = false
     var reloadFlag = true
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var commentBgView: UIView!
@@ -20,7 +21,6 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
-    
     //
     var infoModel: TopicModelData?
     var topic_id:String?
@@ -55,16 +55,20 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         
         //MVVM
         bindViewModel()
-        if topic_id != nil {
-            viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
-        }
+        refreshAction()
+        
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
 
     }
     
     @objc func refreshAction() {
+        
         if topic_id != nil {
-            viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
+            if fromRootAChoiceness == true {
+                viewModel.dataRequestWithArticleID(article_id: topic_id!, self)
+            }else {
+                viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
+            }
         }
     }
     
@@ -139,7 +143,11 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     @IBAction func likeBtnAction(_ sender: UIButton) {
         if let idnum = infoModel?.articleID.string {
-            publicViewModel.doLikeRequest(id: idnum, cate_id: "9", self)
+            if fromRootAChoiceness == true {
+                publicViewModel.doLikeRequest(id: idnum, cate_id: "2", self)
+            }else {
+                publicViewModel.doLikeRequest(id: idnum, cate_id: "9", self)
+            }
         }
     }
     
@@ -149,7 +157,11 @@ class HDLY_TopicDectail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
                 self.pushToLoginVC(vc: self)
                 return
             }
-            publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "6", self)
+            if fromRootAChoiceness == true {
+                publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "2", self)
+            }else {
+                publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "6", self)
+            }
         }
     }
     

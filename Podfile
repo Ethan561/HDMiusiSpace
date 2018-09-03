@@ -8,7 +8,6 @@
  pod 'Moya'
  pod 'SnapKit'
  pod 'Kingfisher'
- pod 'MJRefresh'
  pod 'Cache'
  pod 'ZZCircleProgress'
  pod 'Bugly'
@@ -33,5 +32,7 @@ pod 'UMengUShare/Social/ReducedSina'
 pod 'ZFPlayer', '~> 3.0'
 pod 'ZFPlayer/ControlView', '~> 3.0'
 pod 'ZFPlayer/AVPlayer', '~> 3.0'
+
+pod 'ESPullToRefresh'
 
  end

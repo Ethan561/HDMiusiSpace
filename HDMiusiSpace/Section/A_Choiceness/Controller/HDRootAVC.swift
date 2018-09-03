@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate  {
     
@@ -30,19 +31,52 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         
         //MVVM
         bindViewModel()
-        viewModel.dataRequestForBanner()
-        if HDDeclare.shared.deviceno != nil {
-            viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, self)
-        }
-        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-        self.myTableView.ly_hideEmptyView()
+        let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+        self.myTableView.ly_emptyView = empV
         
+        addRefresh()
+        refreshAction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.myTableView.ly_hideEmptyView()
+    }
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+
+        self.myTableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.myTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.myTableView.refreshIdentifier = String.init(describing: self)
+        self.myTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        if HDDeclare.shared.deviceno != nil {
+            self.viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, myTableView: self.myTableView , self)
+        }
+        self.viewModel.dataRequestForBanner()
+    }
+    
+    private func loadMore() {
+        if HDDeclare.shared.deviceno != nil && infoModel?.data != nil {
+            self.viewModel.dataRequestGetMoreNews(deviceno: HDDeclare.shared.deviceno!, num: "10", myTableView: myTableView, self)
+        }
     }
     
     @objc func refreshAction() {
         if HDDeclare.shared.deviceno != nil {
-            viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, self)
+            self.viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, myTableView: self.myTableView , self)
         }
+        self.viewModel.dataRequestForBanner()
     }
     
     //MVVM
@@ -50,13 +84,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         weak var weakSelf = self
         viewModel.rootAData.bind { (_) in
             weakSelf?.showViewData()
-        }
-        viewModel.showEmptyView.bind() { (show) in
-            if show {
-                weakSelf?.myTableView.ly_showEmptyView()
-            }else {
-                weakSelf?.myTableView.ly_hideEmptyView()
-            }
         }
         viewModel.bannerArr.bind { (banner) in
             weakSelf?.bannerArr = banner
@@ -200,14 +227,11 @@ extension HDRootAVC {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = infoModel!.data![indexPath.row]
-        if model.type.int == 0 {
-            
-        }else if model.type.int == 1 {
-            
-        }else if model.type.int == 2 {
-
-        }else if model.type.int == 3 {//轻听随看
-            
+        if model.type.int == 1 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDectail_VC
+            vc.topic_id = model.itemList?.articleID.string
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -215,17 +239,21 @@ extension HDRootAVC {
 extension HDRootAVC {
     
     @objc func moreBtnAction(_ sender: UIButton) {
-        
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
 }
 
 extension HDRootAVC : HDLY_Topic_Cell_Delegate {
 
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
-        
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = model.article_id?.string
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
+
 
 // FSPagerView
 extension HDRootAVC {

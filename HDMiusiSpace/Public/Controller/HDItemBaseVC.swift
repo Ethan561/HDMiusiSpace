@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import MJRefresh
 
 class HDItemBaseVC: UIViewController {
     
-    var refreshHeader: MJRefreshNormalHeader?
-    var refreshFooter: MJRefreshAutoNormalFooter?
+//    var refreshHeader: MJRefreshNormalHeader?
+//    var refreshFooter: MJRefreshAutoNormalFooter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +67,7 @@ class HDItemBaseVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    /*
     //MARK:  --- refresh ---
     func setupRefreshHeader(header: MJRefreshNormalHeader) {
         // 设置自动切换透明度(在导航栏下面自动隐藏)
@@ -81,7 +81,7 @@ class HDItemBaseVC: UIViewController {
     }
     
     func setupRefreshFooter(footer: MJRefreshAutoNormalFooter) {
-        footer.setTitle("点击或上拉加载更多", for: .refreshing)
+//        footer.setTitle("点击或上拉加载更多", for: .refreshing)
         footer.setTitle("加载更多 ...", for: .refreshing)
         footer.setTitle("没有更多内容了", for: .noMoreData)
 //        footer.isAutomaticallyChangeAlpha = true
@@ -89,6 +89,7 @@ class HDItemBaseVC: UIViewController {
 //        footer.triggerAutomaticallyRefreshPercent = 0.5;
         
     }
+ */
     
     func pushToLoginVC(vc: UIViewController) {
         let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC

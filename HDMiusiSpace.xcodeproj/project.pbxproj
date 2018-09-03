@@ -137,6 +137,8 @@
 		D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF79212BAD4700276CDE /* STKDataSource.m */; };
 		D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF7B212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m */; };
 		D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */; };
+		D67E3AA5213CE7920058FBA6 /* HDRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */; };
+		D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */; };
 		D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A36212D35850037B371 /* KeyboardTextField.swift */; };
 		D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */; };
 		D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */; };
@@ -434,6 +436,8 @@
 		D67ABF7B212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+STKAudioPlayer.m"; sourceTree = "<group>"; };
 		D67ABF7C212BAD4700276CDE /* StreamingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StreamingKit-Prefix.pch"; sourceTree = "<group>"; };
 		D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_AudioPlayer.swift; sourceTree = "<group>"; };
+		D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDRefreshFooterAnimator.swift; sourceTree = "<group>"; };
+		D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
 		D6865A36212D35850037B371 /* KeyboardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTextField.swift; sourceTree = "<group>"; };
 		D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenDetailViewModel.swift; sourceTree = "<group>"; };
 		D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_KeyboardView.swift; sourceTree = "<group>"; };
@@ -1110,6 +1114,8 @@
 				D669473D212FEBAF0068945A /* HDPlaceholderTextView.swift */,
 				D62277AF21367F12008F1416 /* HDLY_PhotoCell.swift */,
 				D62277AE21367F12008F1416 /* HDLY_PhotoSelectorView.swift */,
+				D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */,
+				D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1739,9 +1745,9 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/ESPullToRefresh/ESPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/JoyTool/JoyTool.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -1753,9 +1759,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ESPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JoyTool.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -1802,6 +1808,7 @@
 				D670FC772138EAD200870F40 /* HDFloatingButtonBgView.swift in Sources */,
 				D6C9FC6B21181F54007C8E56 /* UIImage+Scale.swift in Sources */,
 				D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */,
+				D67E3AA5213CE7920058FBA6 /* HDRefreshFooterAnimator.swift in Sources */,
 				D62277DF21368069008F1416 /* FlashAlertView.swift in Sources */,
 				D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */,
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
@@ -1833,6 +1840,7 @@
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
+				D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
 				D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */,
 				D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */,

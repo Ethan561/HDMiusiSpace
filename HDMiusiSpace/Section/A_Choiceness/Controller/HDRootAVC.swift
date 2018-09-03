@@ -223,9 +223,6 @@ extension HDRootAVC : HDLY_Topic_Cell_Delegate {
 
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
         
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDectail_VC
-//        vc.topic_id = model.article_id?.string
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -260,7 +257,8 @@ extension HDRootAVC {
         guard tabHeader.pageControl.currentPage != pagerView.currentIndex else {
             return
         }
-        tabHeader.pageControl.currentPage = pagerView.currentIndex // Or Use KVO with property "currentIndex"
+        tabHeader.pageControl.currentPage = pagerView.currentIndex
+        // Or Use KVO with property "currentIndex"
     }
 }
 

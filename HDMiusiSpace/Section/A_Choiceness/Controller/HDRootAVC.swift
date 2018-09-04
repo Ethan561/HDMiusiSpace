@@ -108,12 +108,18 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         tabHeader.pagerView.dataSource = self
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
+        tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
         //
         myTableView.tableHeaderView = tabHeader
         myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH)
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         myTableView.backgroundColor = UIColor.white
+        
+    }
+    
+    //跳转搜索入口
+    @objc func searchAction(_ sender: UIButton) {
         
     }
     
@@ -279,6 +285,10 @@ extension HDRootAVC {
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
         tabHeader.pageControl.currentPage = index
+        
+        let model = bannerArr[index]
+        self.didSelectItemAtPagerViewCell(model: model, vc: self)
+        
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {

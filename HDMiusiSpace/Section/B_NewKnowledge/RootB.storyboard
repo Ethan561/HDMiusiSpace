@@ -37,6 +37,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="Iwb-Dx-ci5"/>
                                                 </constraints>
                                                 <state key="normal" image="search_icon_search_big_default"/>
+                                                <connections>
+                                                    <action selector="searchAction:" destination="i6Q-m9-rFh" eventType="touchUpInside" id="hu2-G9-l0x"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxC-Pn-zB9">
                                                 <rect key="frame" x="19" y="0.0" width="120" height="44"/>

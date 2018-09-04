@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import ESPullToRefresh
 
 let PageMenuH = 45.0
 let HeaderViewH = (ScreenWidth*200/375.0)+80
@@ -63,12 +64,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         self.hd_navigationBarHidden = true
         setupViews()
         //
-        
         dataRequestForBanner()
         dataRequestForMenu()
-
         searchBtn.isHidden = true
-        
         
     }
     
@@ -87,6 +85,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         super.viewDidDisappear(animated)
     }
     
+    
     func setupViews() {
         if #available(iOS 11.0, *) {
             self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
@@ -99,6 +98,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader.pagerView.dataSource = self
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
+        tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
+        
         //
         myTableView.tableHeaderView = tabHeader
         myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH)
@@ -158,6 +159,11 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     @objc func refreshAction() {
         dataRequestForMenu()
         dataRequestForBanner()
+    }
+    
+    //跳转搜索入口
+    @IBAction func searchAction(_ sender: UIButton) {
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -320,7 +326,7 @@ extension HDRootBVC {
             let offSetY = scrollView.contentOffset.y
             if offSetY >= HeaderViewH {
                 self.myTableView.contentOffset = CGPoint.init(x: 0, y: HeaderViewH )// myTableView 不滚动
-            }else {
+            } else {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
             }
         }
@@ -353,6 +359,9 @@ extension HDRootBVC {
         pagerView.deselectItem(at: index, animated: true)
         pagerView.scrollToItem(at: index, animated: true)
         tabHeader.pageControl.currentPage = index
+        let model = bannerArr[index]
+        self.didSelectItemAtPagerViewCell(model: model, vc: self)
+        
     }
     
     func pagerViewDidScroll(_ pagerView: FSPagerView) {

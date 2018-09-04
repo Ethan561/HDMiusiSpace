@@ -103,6 +103,33 @@ class HDItemBaseVC: UIViewController {
 //        vc.navigationController?.pushViewController(webVC, animated: true)
     }
     
+    func didSelectItemAtPagerViewCell(model: BbannerModel , vc: UIViewController) {
+        //cate_id: 轮播图类型1课程，2轻听随看，3资讯，4展览，5活动
+        if model.cate_id?.int == 1 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+            desVC.courseId = model.mid?.string
+            vc.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if model.cate_id?.int == 2 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            desVC.listen_id = model.mid?.string
+            vc.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if model.cate_id?.int == 3 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDectail_VC
+            desVC.topic_id = model.mid?.string
+            desVC.fromRootAChoiceness = true
+            vc.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if model.cate_id?.int == 4 {
+            
+        }
+        else if model.cate_id?.int == 5 {
+            
+        }
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 let PushTo_HDLY_RecmdMore_VC_Line = "PushTo_HDLY_RecmdMore_VC_Line"
 
@@ -28,7 +29,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         return tableView
     }()
     
-    let sectionHeader:Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
+    let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         self.tableView.frame = view.bounds
         self.view.addSubview(self.tableView)
         self.hd_navigationBarHidden = true
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
@@ -44,7 +45,18 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
             self.automaticallyAdjustsScrollViewInsets = false
         }
         self.dataRequest()
-        
+        addRefresh()
+    }
+    
+    func addRefresh() {
+        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+    }
+    
+    private func loadMore() {
+        self.tableView.es.noticeNoMoreData()
     }
     
     @objc func pageTitleViewToTop() {

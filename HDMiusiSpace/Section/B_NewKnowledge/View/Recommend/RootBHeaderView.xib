@@ -43,17 +43,24 @@
                             <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bma-26-vyt">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="36"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.40485873290000002" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="U4H-FL-m7e" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="5TA-3C-t1J"/>
                         <constraint firstAttribute="height" constant="36" id="678-5v-yjF"/>
+                        <constraint firstItem="bma-26-vyt" firstAttribute="leading" secondItem="oHf-gX-T0b" secondAttribute="leading" id="76g-RO-2ss"/>
                         <constraint firstItem="CHH-wu-oYJ" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="8IR-le-fcs"/>
+                        <constraint firstAttribute="trailing" secondItem="bma-26-vyt" secondAttribute="trailing" id="CMJ-he-MXD"/>
                         <constraint firstItem="U4H-FL-m7e" firstAttribute="leading" secondItem="oHf-gX-T0b" secondAttribute="leading" constant="10" id="FmO-6o-pFB"/>
                         <constraint firstItem="CHH-wu-oYJ" firstAttribute="leading" secondItem="U4H-FL-m7e" secondAttribute="trailing" constant="8" id="Ou5-dZ-vS4"/>
                         <constraint firstItem="Gl4-dC-KNz" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="Td0-TP-iHT"/>
                         <constraint firstAttribute="trailing" secondItem="Gl4-dC-KNz" secondAttribute="trailing" constant="8" id="msP-12-VGZ"/>
                         <constraint firstItem="Gl4-dC-KNz" firstAttribute="leading" secondItem="CHH-wu-oYJ" secondAttribute="trailing" constant="8" id="nJ3-4s-ein"/>
+                        <constraint firstItem="bma-26-vyt" firstAttribute="top" secondItem="oHf-gX-T0b" secondAttribute="top" id="vb2-jk-97M"/>
+                        <constraint firstAttribute="bottom" secondItem="bma-26-vyt" secondAttribute="bottom" id="wPk-v6-CYK"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-LJ-JYR" customClass="FSPagerView" customModule="HDMiusiSpace" customModuleProvider="target">
@@ -87,6 +94,7 @@
                 <outlet property="pageControl" destination="RAO-Ca-vOY" id="Urx-hC-gXM"/>
                 <outlet property="pagerView" destination="Xqi-LJ-JYR" id="hRr-7F-AVg"/>
                 <outlet property="searchBgView" destination="oHf-gX-T0b" id="3Vr-Uy-2rf"/>
+                <outlet property="searchBtn" destination="bma-26-vyt" id="55A-e5-lKp"/>
             </connections>
             <point key="canvasLocation" x="351.5" y="-137.5"/>
         </view>

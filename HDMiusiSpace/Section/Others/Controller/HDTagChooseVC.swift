@@ -10,33 +10,92 @@ import UIKit
 
 class HDTagChooseVC: UIViewController {
 
+
+    @IBOutlet weak var labTitle : UILabel!
+    @IBOutlet weak var labDes   : UILabel!
     @IBOutlet weak var tagBgView: UIView!
     
     var tagView : HD_SSL_TagView?
     
     public var tagArray : [String] = Array.init()
     
+    var tagStrArray : [String] = Array.init()        //标签字符串数组
+    var selectedtagArray = [HDSSL_Tag]()             //已选标签字符串数组
+    var dataArr = [HDSSL_TagData]()                  //标签类别数组
+    var tagList = [HDSSL_Tag]()                      //标签数组
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tagArray = ["互联网行业","历史","艺术","亲子","文化","科技","美术","教育","文物","展览","文艺","博物馆","音乐","生活娱乐","电影","其他"]
+        loadMyDatas()
         
         loadTagView()
         
     }
-    
+    //初始化标签数组
+    func loadMyDatas() {
+        //
+        dataArr = HDDeclare.shared.allTagsArray!
+        
+        let tagdatamodel = dataArr[2] //第三页多选
+        
+        self.labTitle.text = String.init(format: "%@", tagdatamodel.title!)
+        self.labDes.text   = String.init(format: "%@", tagdatamodel.des!)
+        self.tagList       = tagdatamodel.list!
+        
+        //标签标题
+        for i:Int in 0..<tagList.count {
+            let tagmodel = tagList[i]
+            tagStrArray.append(tagmodel.title!)
+        }
+    }
     func loadTagView() {
         tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
         tagView?.tagViewType = TagViewType.TagViewTypeMultipleSelection
         
         tagView?.BlockFunc { (array) in
-            //
-            print(array)
+            
+            //保存选择标签
+            for i: Int in 0..<array.count {
+                
+                let index : Int = Int(array[i] as! String)!       //标签下标
+                
+                self.selectedtagArray.append(self.tagList[index]) //保存选择标签
+            }
+            
+            HDDeclare.shared.selectedTagArray = self.selectedtagArray //本地保存已选标签
+            
+            self.uploadMyTags() //调接口保存选择的标签
         }
-        tagView?.titleArray = tagArray
+        tagView?.titleArray = tagStrArray
         
         tagBgView.addSubview(tagView!)
         tagView?.loadTagsView()
+    }
+    //MARK: - 上传已选标签
+    func uploadMyTags() {
+        //
+        
+        if HDDeclare.shared.deviceno != nil {
+            
+        }
+        
+        if self.selectedtagArray.count > 0 {
+            
+            var tagIds: String? = ""
+            
+            for i in 0..<self.selectedtagArray.count {
+                
+                let model: HDSSL_Tag = self.selectedtagArray[i] as HDSSL_Tag
+                
+                tagIds = tagIds! + String(model.label_id!) + "#"
+                
+            }
+            
+            //调用接口
+            HDSSL_TagViewModel().request_saveSelectedTags(deviceno: HDDeclare.shared.deviceno!, label_id_str: tagIds!, self)
+            
+        }
     }
     
     @IBAction func action_back(_ sender: UIButton) {

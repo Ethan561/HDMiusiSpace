@@ -10,21 +10,42 @@ import UIKit
 
 class HDTagChooseStateVC: UIViewController {
 
+    @IBOutlet weak var labTitle: UILabel!
+    @IBOutlet weak var labDes: UILabel!
+    
     @IBOutlet weak var tagBgView: UIView!
-    public var tagArray : [String] = Array.init()
     
     var tagStrArray : [String] = Array.init()        //标签字符串数组
-    var selectedtagArray : [String] = Array.init()   //已选标签字符串数组
+    var selectedtagArray = [HDSSL_Tag]()             //已选标签字符串数组
     var dataArr = [HDSSL_TagData]()                  //标签类别数组
     var tagList = [HDSSL_Tag]()                      //标签数组
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tagArray = ["单身","热恋中","已婚","辣妈奶爸"]
+        //加载数据
+        loadMyDatas()
         
+        //加载标签
         loadTagView()
         
+    }
+    
+    func loadMyDatas() {
+        //
+        dataArr = HDDeclare.shared.allTagsArray!
+        
+        let tagdatamodel = dataArr[1]
+        
+        self.labTitle.text = String.init(format: "%@", tagdatamodel.title!)
+        self.labDes.text   = String.init(format: "%@", tagdatamodel.des!)
+        self.tagList       = tagdatamodel.list!
+        
+        //标签标题
+        for i:Int in 0..<tagList.count {
+            let tagmodel = tagList[i]
+            tagStrArray.append(tagmodel.title!)
+        }
     }
     
     func loadTagView() {
@@ -34,10 +55,17 @@ class HDTagChooseStateVC: UIViewController {
         tagView.BlockFunc { (array) in
             //1、保存选择的标签
             print(array)
+            for i: Int in 0..<array.count {
+                
+                let index : Int = Int(array[i] as! String)!       //标签下标
+                
+                self.selectedtagArray.append(self.tagList[index]) //保存选择标签
+            }
+            
             //2、跳转vc
             self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
         }
-        tagView.titleArray = tagArray
+        tagView.titleArray = tagStrArray
         
         tagBgView.addSubview(tagView)
         tagView.loadTagsView()
@@ -56,14 +84,14 @@ class HDTagChooseStateVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "HD_PushToChooseVCLine" {
+            
+            let vc:HDTagChooseVC = segue.destination as! HDTagChooseVC
+            vc.selectedtagArray = selectedtagArray
+        }
     }
-    */
 
 }

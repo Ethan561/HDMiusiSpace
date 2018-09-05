@@ -78,6 +78,10 @@ final class HDDeclare: NSObject {
     var loginStatus     : Login_Status    = .kLogin_Status_Unknown
     var net_Status_Type : Net_Status_Type = .kNet_Status_Unkown
     
+    //标签
+    var allTagsArray : [HDSSL_TagData]? //所有标签数据
+    var selectedTagArray : [HDSSL_Tag]? //已选标签数组
+    
     //保存地图信息
 //    public var mapInfoArray : []?
 //    // 保持路线信息

@@ -15,7 +15,7 @@ class HDTagChooseCareerVC: UIViewController {
     @IBOutlet weak var TagBgView: UIView!
     
     var tagStrArray : [String] = Array.init()        //标签字符串数组
-    var selectedtagArray : [String] = Array.init()   //已选标签字符串数组
+    var selectedtagArray = [HDSSL_Tag]()             //已选标签字符串数组
     var dataArr = [HDSSL_TagData]()                  //标签类别数组
     var tagList = [HDSSL_Tag]()                      //标签数组
     
@@ -38,7 +38,8 @@ class HDTagChooseCareerVC: UIViewController {
         viewModel.tagModel.bind { (tagDataArray) in
             
             weakSelf?.dataArr = tagDataArray  //返回标签数据，需要保存到本地
-//            print(weakSelf?.dataArr)
+            
+            HDDeclare.shared.allTagsArray = tagDataArray //保存标签
             
             let tagdatamodel = weakSelf?.dataArr[0]
             
@@ -47,6 +48,7 @@ class HDTagChooseCareerVC: UIViewController {
             weakSelf?.lab_des.text = String.init(format: "%@", (tagdatamodel?.des)!)
             weakSelf?.tagList = (tagdatamodel?.list)!
             
+            //显示标签标题
             for i:Int in 0..<(weakSelf?.tagList.count)! {
                 let tagmodel = weakSelf?.tagList[i]
                 weakSelf?.tagStrArray.append((tagmodel?.title)!)
@@ -63,17 +65,17 @@ class HDTagChooseCareerVC: UIViewController {
             //1、保存选择标签
             print(array)
             for i: Int in 0..<array.count {
-                let index : Int = Int(array[i] as! String)!
-                let str : String = self.tagStrArray[index]
+                let index : Int = Int(array[i] as! String)! //标签下标
+//                let str : String = self.tagStrArray[index] //
                 
-                self.selectedtagArray.append(str)
+                self.selectedtagArray.append(self.tagList[index]) //保存选择标签
             }
             
             
             //2、跳转vc
             self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
         }
-        tagView.titleArray = tagStrArray
+        tagView.titleArray = tagStrArray  //
         
         TagBgView.addSubview(tagView)
         tagView.loadTagsView()

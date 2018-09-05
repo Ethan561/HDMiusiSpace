@@ -157,6 +157,8 @@
                         <viewLayoutGuide key="safeArea" id="WJu-EL-eUr"/>
                     </view>
                     <connections>
+                        <outlet property="labDes" destination="6V6-t2-dee" id="Qpw-Qg-uR9"/>
+                        <outlet property="labTitle" destination="44g-99-kTn" id="TBa-jH-JfU"/>
                         <outlet property="tagBgView" destination="OSz-1P-IFy" id="SXY-wU-52T"/>
                     </connections>
                 </viewController>
@@ -270,6 +272,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="labDes" destination="ERf-qX-T22" id="mua-cu-z6I"/>
+                        <outlet property="labTitle" destination="b7S-CU-k2v" id="bTO-NJ-PNc"/>
                         <outlet property="tagBgView" destination="FzJ-zj-66p" id="Wue-8u-pa0"/>
                         <segue destination="RID-x2-jwm" kind="show" identifier="HD_PushToTabBarVCLine" id="63a-hJ-TPQ"/>
                     </connections>

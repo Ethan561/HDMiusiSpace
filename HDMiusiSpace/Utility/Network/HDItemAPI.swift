@@ -8,7 +8,7 @@
 
 import Foundation
 import Moya
-
+import Result
 
 enum  HDItemAPI {
     
@@ -427,8 +427,74 @@ struct AuthPlugin: PluginType {
         request.setValue("application/json", forHTTPHeaderField: "accept")
         return request
     }
+
+
 }
 
+
+/** 5分钟的cache过期时间 */
+public let kCacheOutdateTimeSeconds = 5 * 60
+
+/** 是否缓存 */
+public let kShouldCache             = true
+
+/** 线上线下标识*/
+public let kServiceIsOnline         = true
+
+/** 超时时间 */
+public let kRequestTimeoutInterval:TimeInterval  = 20
+
+/** 缓存数据最大条数 */
+public let kCacheCountMaxNumber     = 1000
+public let kCacheStatusCode = 200
+
+
+final class RequestCachePlugin:PluginType{
+    var url:String = ""
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        print("request")
+        var request = request
+        request.timeoutInterval = kRequestTimeoutInterval
+        //        request.cachePolicy = .useProtocolCachePolicy
+        return request
+    }
+    func willSend(_ request: RequestType, target: TargetType) {
+        print("willSend")
+        url = "\(request)"
+    }
+    func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+        print("didReceive")
+        if case let .success(response) = result{
+            if response.statusCode == 200 {
+                HD_LY_Cache.saveDataCache(response.data, forKey: url)
+            }
+        }
+    }
+    func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {
+        print("process")
+        let result = result
+        switch result {
+        case .success(let response):
+            if response.statusCode != 200{
+                return readCache(result)
+            }else{
+                return result
+            }
+        case .failure(_):
+            return readCache(result)
+        }
+    }
+    private func readCache(_ result: Result<Response, MoyaError>)->Result<Response, MoyaError>{
+        if kShouldCache {
+            let resData:Data? = HD_LY_Cache.readDataCache(url) as? Data
+            if  resData != nil {
+                let response = Response(statusCode: kCacheStatusCode, data: resData!)
+                return .success(response)
+            }
+        }
+        return result
+    }
+}
 
 
 

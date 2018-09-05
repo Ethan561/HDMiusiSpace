@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HDLY_MineCourse_CollectionCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="205" height="124"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="205" height="124"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img3" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-sU-pYe">
+                        <rect key="frame" x="0.0" y="0.0" width="205" height="91"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面“精选-精选推荐”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fba-N6-iqS">
+                        <rect key="frame" x="0.0" y="96" width="205" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="vGq-xl-TGK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fba-N6-iqS" secondAttribute="trailing" id="CtY-gM-7jd"/>
+                <constraint firstItem="pw3-sU-pYe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="I6g-IQ-JDt"/>
+                <constraint firstAttribute="trailing" secondItem="pw3-sU-pYe" secondAttribute="trailing" id="cJy-aJ-4mK"/>
+                <constraint firstItem="fba-N6-iqS" firstAttribute="top" secondItem="pw3-sU-pYe" secondAttribute="bottom" constant="5" id="czN-d4-1dR"/>
+                <constraint firstItem="fba-N6-iqS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pTL-rc-SQW"/>
+                <constraint firstAttribute="bottom" secondItem="fba-N6-iqS" secondAttribute="bottom" constant="8" id="rao-vf-jXb"/>
+                <constraint firstItem="pw3-sU-pYe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vjo-PM-m4Z"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="205" height="124"/>
+            <connections>
+                <outlet property="imgV" destination="pw3-sU-pYe" id="XoI-Pt-YHV"/>
+                <outlet property="nameL" destination="fba-N6-iqS" id="C4P-0H-u6P"/>
+            </connections>
+            <point key="canvasLocation" x="115.5" y="74"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="jxtj_img3" width="140" height="100"/>
+    </resources>
+</document>

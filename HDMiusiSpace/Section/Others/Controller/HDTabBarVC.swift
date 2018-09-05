@@ -13,7 +13,6 @@ class HDTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadControllers()
-
     }
     
     func loadControllers() {
@@ -23,8 +22,6 @@ class HDTabBarVC: UITabBarController {
         let nav4: HDItemBaseNaviVC = UIStoryboard.init(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDRootDNavVC") as! HDItemBaseNaviVC
         let nav5: HDItemBaseNaviVC = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDRootENavVC") as! HDItemBaseNaviVC
         self.viewControllers = [nav1, nav2, nav3, nav4, nav5]
-        
-        
         //
         setupTabbar()
     }

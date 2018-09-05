@@ -77,11 +77,12 @@ class HD_LY_NetHelper {
                 do {
                     //这里可以统一处理错误码，统一弹出错误
 //                    let _ = try response.filterSuccessfulStatusCodes()
+                    
                     let decoder = JSONDecoder()
                     let baseModel = try? decoder.decode(ResponseModel.self, from: response.data)
                     guard let model = baseModel else {
                         if let failureBlack = failure {
-                            failureBlack(nil, "解析失败")
+                            failureBlack(response.statusCode, "解析失败")
                         }
                         return
                     }
@@ -104,7 +105,7 @@ class HD_LY_NetHelper {
                         
                     default:
                         //其他错误
-                        failureHandle(failure: failure, stateCode: nil, message: model.msg)
+                        failureHandle(failure: failure, stateCode: response.statusCode, message: model.msg)
                         break
                     }
                     
@@ -136,7 +137,6 @@ class HD_LY_NetHelper {
 
 
 extension HD_LY_NetHelper {
-    
     
     //Dictionary转Data 的方法
     public class func jsonToData(jsonDic:Dictionary<String, Any>) ->Data?{
@@ -188,7 +188,6 @@ extension HD_LY_NetHelper {
         Alamofire.request(url, method: httpMethod, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON(completionHandler: resultCallBack)
         
     }
-    
 }
 
 // -- alamofireRequest 请求示例 ----
@@ -220,42 +219,4 @@ extension HD_LY_NetHelper {
  }
  }
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

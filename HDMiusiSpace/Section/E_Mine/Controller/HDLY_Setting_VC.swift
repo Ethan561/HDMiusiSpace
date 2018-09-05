@@ -13,7 +13,6 @@ class HDLY_Setting_VC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"
-        
     }
     
     @IBAction func logoutAction(_ sender: UIButton) {

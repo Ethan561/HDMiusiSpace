@@ -78,5 +78,10 @@ struct ChoicenessItemList: Codable {
 }
 
 
+struct ChoicenessModelTest: Codable {
+    var status: Int?
+    var msg: String?
+    var data: [ChoicenessModelData]
+}
 
 

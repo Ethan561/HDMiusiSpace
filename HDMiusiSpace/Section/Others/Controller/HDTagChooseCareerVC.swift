@@ -72,12 +72,12 @@ extension HDTagChooseCareerVC {
             LOG("\(String(describing: dic))")
 //            self.showEmptyView.value = false
             
-//            let jsonDecoder = JSONDecoder()
-//            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
+            let jsonDecoder = JSONDecoder()
+            let model:ChoicenessModelTest = try! jsonDecoder.decode(ChoicenessModelTest.self, from: result)
+            print("\(model.status)")
             
             //JSON转Model：
 //            let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
-//            let model:ListenDetail = try! jsonDecoder.decode(ListenDetail.self, from: dataA)
 //            self.listenDetail.value = model
             
         }) { (errorCode, msg) in

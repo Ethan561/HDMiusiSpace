@@ -10,22 +10,18 @@ import UIKit
 
 class HDRootEVC: HDItemBaseVC {
 
-    @IBOutlet weak var avatarImgV: UIImageView!
     @IBOutlet weak var navBar: UIView!
-    @IBOutlet weak var navbarCons: NSLayoutConstraint!
-    @IBOutlet weak var userInfoView: UIView!
-    @IBOutlet weak var nameL: UILabel!
-    @IBOutlet weak var signatureL: UILabel!
-    @IBOutlet weak var loginView: UIView!
-    
+    @IBOutlet weak var navbarCons: NSLayoutConstraint!    
+    @IBOutlet weak var myTableView: UITableView!
     let declare:HDDeclare = HDDeclare.shared
-
+    
+    let tabHeader:HDLY_MineHome_Header = HDLY_MineHome_Header.createViewFromNib() as! HDLY_MineHome_Header
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navbarCons.constant = kTopHeight
-        avatarImgV.layer.cornerRadius = 30
-        
+        setupViews()
         
     }
 
@@ -34,33 +30,49 @@ class HDRootEVC: HDItemBaseVC {
         refreshUserInfo()
     }
     
-    
+    func setupViews() {
+        if #available(iOS 11.0, *) {
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
+        //
+        myTableView.tableHeaderView = tabHeader
+        myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 140)
+        tabHeader.loginBtn.addTarget(self, action: #selector(loginBtnAction), for: UIControlEvents.touchUpInside)
+        tabHeader.userInfoBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
+        
+        myTableView.separatorStyle = .none
+        myTableView.backgroundColor = UIColor.white
+        
+    }
+
     func refreshUserInfo() {
         if declare.loginStatus == .kLogin_Status_Login {
             //已登录
-            userInfoView.isHidden  = false
-            loginView.isHidden = true
-            nameL.text = declare.nickname
-            signatureL.text = declare.sign
+            tabHeader.userInfoView.isHidden  = false
+            tabHeader.loginView.isHidden = true
+            tabHeader.nameL.text = declare.nickname
+            tabHeader.signatureL.text = declare.sign
             if declare.avatar != nil {
-                avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                tabHeader.avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
         }else {
             //未登录
-            userInfoView.isHidden  = true
-            loginView.isHidden = false
-            avatarImgV.image = UIImage.init(named: "wd_img_tx")
+            tabHeader.userInfoView.isHidden  = true
+            tabHeader.loginView.isHidden = false
+            tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
         }
     }
     
 
     
-    @IBAction func loginBtnAction(_ sender: UIButton) {
+    @objc func loginBtnAction(_ sender: UIButton) {
         self.pushToLoginVC(vc: self)
     }
     
     
-    @IBAction func showUserInfoAction(_ sender: UIButton) {
+    @objc func showUserInfoAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: "PushTo_HDLY_UserInfo_VC_Line", sender: nil)
 
     }
@@ -91,3 +103,115 @@ class HDRootEVC: HDItemBaseVC {
     */
 
 }
+
+
+// MARK:--- myTableView -----
+extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    //header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+    //footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    //row
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 6
+        }
+        if section == 1 {
+            return 3
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let section = indexPath.section
+        let index = indexPath.row
+        
+        if section == 0 {
+            if index == 0 {//会员
+                return 120*ScreenWidth/375.0
+            }else if index == 1 {//我的钱包
+                return 60
+            }else if index == 2 {//我的订单
+                return 60
+            }else if index == 3 {//我的课程
+                return 60
+            }else if index == 4 {//
+                return 160
+            }else if index == 5 {//我的动态
+                return 80
+            }
+        }
+        if section == 1 {
+            return 80
+        }
+        return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let section = indexPath.section
+        let index = indexPath.row
+        if section == 0 {
+            if index == 0 {//会员
+                let cell = HDLY_Membership_Cell.getMyTableCell(tableV: tableView)
+                
+                return cell!
+            }else if index == 1 {//我的钱包
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.nameL.text = "我的钱包"
+                return cell!
+            }else if index == 2 {//我的订单
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.nameL.text = "我的订单"
+                return cell!
+            }else if index == 3 {//我的课程
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.bottomLine.isHidden = true
+                cell?.nameL.text = "我的课程"
+                return cell!
+            }else if index == 4 {//
+                let cell = HDLY_MineCourse_Cell.getMyTableCell(tableV: tableView)
+
+                return cell!
+            }else if index == 5 {//我的动态
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.bottomLine.isHidden = true
+                cell?.moreImgV.isHidden = true
+                cell?.nameL.text = "我的动态"
+                return cell!
+            }
+        }
+        if section == 1 {
+            let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
+            
+            return cell!
+        }
+        return UITableViewCell.init()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+}
+
+
+

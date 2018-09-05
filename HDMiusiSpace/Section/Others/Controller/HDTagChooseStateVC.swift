@@ -13,6 +13,11 @@ class HDTagChooseStateVC: UIViewController {
     @IBOutlet weak var tagBgView: UIView!
     public var tagArray : [String] = Array.init()
     
+    var tagStrArray : [String] = Array.init()        //标签字符串数组
+    var selectedtagArray : [String] = Array.init()   //已选标签字符串数组
+    var dataArr = [HDSSL_TagData]()                  //标签类别数组
+    var tagList = [HDSSL_Tag]()                      //标签数组
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

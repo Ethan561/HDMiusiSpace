@@ -10,21 +10,51 @@ import UIKit
 
 class HDTagChooseCareerVC: UIViewController {
 
+    @IBOutlet weak var lab_title: UILabel!
+    @IBOutlet weak var lab_des  : UILabel!
     @IBOutlet weak var TagBgView: UIView!
     
-    public var tagArray : [String] = Array.init()
+    var tagStrArray : [String] = Array.init()        //标签字符串数组
+    var selectedtagArray : [String] = Array.init()   //已选标签字符串数组
+    var dataArr = [HDSSL_TagData]()                  //标签类别数组
+    var tagList = [HDSSL_Tag]()                      //标签数组
+    
+    //MVVM
+    let viewModel: HDSSL_TagViewModel = HDSSL_TagViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tagArray = ["学生","初入职场","创业者","职场精英","管理层","自由职业者"]
         
-        request_getLaunchTagList()
-        
-        loadTagView()
+        //MVVM
+        bindViewModel()
+        //获取启动标签
+        self.viewModel.request_getLaunchTagList(self)
         
     }
-    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        
+        viewModel.tagModel.bind { (tagDataArray) in
+            
+            weakSelf?.dataArr = tagDataArray  //返回标签数据，需要保存到本地
+//            print(weakSelf?.dataArr)
+            
+            let tagdatamodel = weakSelf?.dataArr[0]
+            
+            
+            weakSelf?.lab_title.text = String.init(format: "%@", (tagdatamodel?.title)!)
+            weakSelf?.lab_des.text = String.init(format: "%@", (tagdatamodel?.des)!)
+            weakSelf?.tagList = (tagdatamodel?.list)!
+            
+            for i:Int in 0..<(weakSelf?.tagList.count)! {
+                let tagmodel = weakSelf?.tagList[i]
+                weakSelf?.tagStrArray.append((tagmodel?.title)!)
+            }
+            
+            weakSelf?.loadTagView() //加载tag view
+        }
+    }
     func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: TagBgView.bounds)
         tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
@@ -32,10 +62,18 @@ class HDTagChooseCareerVC: UIViewController {
         tagView.BlockFunc { (array) in
             //1、保存选择标签
             print(array)
+            for i: Int in 0..<array.count {
+                let index : Int = Int(array[i] as! String)!
+                let str : String = self.tagStrArray[index]
+                
+                self.selectedtagArray.append(str)
+            }
+            
+            
             //2、跳转vc
             self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
         }
-        tagView.titleArray = tagArray
+        tagView.titleArray = tagStrArray
         
         TagBgView.addSubview(tagView)
         tagView.loadTagsView()
@@ -47,41 +85,20 @@ class HDTagChooseCareerVC: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "HD_PushToChooseSateVCLine" {
+
+            let vc:HDTagChooseStateVC = segue.destination as! HDTagChooseStateVC
+            vc.selectedtagArray = selectedtagArray
+        }
     }
-    */
+ 
 
 }
-extension HDTagChooseCareerVC {
-    
-    func request_getLaunchTagList()  {
-        var token:String = ""
-        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
-            token = HDDeclare.shared.api_token!
-        }
-        
-        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getLaunchTagList(api_token: token), showHud: true, loadingVC: self, success: { (result) in
-            
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG("\(String(describing: dic))")
-//            self.showEmptyView.value = false
-            
-//            let jsonDecoder = JSONDecoder()
-//            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
-            
-            //JSON转Model：
-//            let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
-//            let model:ListenDetail = try! jsonDecoder.decode(ListenDetail.self, from: dataA)
-//            self.listenDetail.value = model
-            
-        }) { (errorCode, msg) in
-//            self.showEmptyView.value = true
-        }
-    }
-}
+

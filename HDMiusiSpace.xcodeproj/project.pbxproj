@@ -12,6 +12,8 @@
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
 		A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */; };
+		A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */; };
+		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
 		D614DFA6211EC75900A4D459 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA5211EC75900A4D459 /* MD5.swift */; };
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
@@ -296,6 +298,8 @@
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
 		A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_API.swift; sourceTree = "<group>"; };
+		A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagViewModel.swift; sourceTree = "<group>"; };
+		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
 		D614DFA5211EC75900A4D459 /* MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MD5.swift; sourceTree = "<group>"; };
 		D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemAPI.swift; sourceTree = "<group>"; };
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
@@ -621,6 +625,14 @@
 				567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7F1C50B213E51CE009039D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D614DFA7211EC9E800A4D459 /* API */ = {
@@ -1214,6 +1226,7 @@
 		D6C9FC9E211825DC007C8E56 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				A7F1C50B213E51CE009039D8 /* ViewModel */,
 				D6C9FC9F211825DC007C8E56 /* Controller */,
 				D6C9FCA2211825DC007C8E56 /* Model */,
 				D6C9FCA4211825DC007C8E56 /* View */,
@@ -1236,6 +1249,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCA3211825DC007C8E56 /* .gitignore */,
+				A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1874,6 +1888,7 @@
 				D62277DD21368069008F1416 /* MTImagePickerFlowLayout.swift in Sources */,
 				D68D541F2133D1D2000CD258 /* HDLY_Register_VC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
+				A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */,
 				D68D5415213386C8000CD258 /* UIView+ScreenShot.swift in Sources */,
 				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
@@ -1893,6 +1908,7 @@
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
 				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
+				A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */,
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D622779D21367D4D008F1416 /* TopMostViewControllerGetter.swift in Sources */,

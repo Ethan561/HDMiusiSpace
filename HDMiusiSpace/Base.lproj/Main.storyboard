@@ -73,6 +73,8 @@
                     </view>
                     <connections>
                         <outlet property="TagBgView" destination="kju-eZ-A4b" id="EUD-FH-d4B"/>
+                        <outlet property="lab_des" destination="Y8N-w9-dPb" id="MyC-Bq-WhO"/>
+                        <outlet property="lab_title" destination="KcZ-Sx-Pje" id="epp-dC-cGV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNK-dQ-bP0" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -30,12 +30,12 @@ class HDTagChooseStateVC: UIViewController {
         loadTagView()
         
     }
-    
+    //初始化标签数据
     func loadMyDatas() {
         //
         dataArr = HDDeclare.shared.allTagsArray!
         
-        let tagdatamodel = dataArr[1]
+        let tagdatamodel = dataArr[1] //第二页单选
         
         self.labTitle.text = String.init(format: "%@", tagdatamodel.title!)
         self.labDes.text   = String.init(format: "%@", tagdatamodel.des!)

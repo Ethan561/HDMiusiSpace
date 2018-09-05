@@ -32,11 +32,12 @@ class HDTagChooseVC: UIViewController {
         loadTagView()
         
     }
+    //初始化标签数组
     func loadMyDatas() {
         //
         dataArr = HDDeclare.shared.allTagsArray!
         
-        let tagdatamodel = dataArr[2]
+        let tagdatamodel = dataArr[2] //第三页多选
         
         self.labTitle.text = String.init(format: "%@", tagdatamodel.title!)
         self.labDes.text   = String.init(format: "%@", tagdatamodel.des!)
@@ -71,7 +72,7 @@ class HDTagChooseVC: UIViewController {
         tagBgView.addSubview(tagView!)
         tagView?.loadTagsView()
     }
-    
+    //MARK: - 上传已选标签
     func uploadMyTags() {
         //
         

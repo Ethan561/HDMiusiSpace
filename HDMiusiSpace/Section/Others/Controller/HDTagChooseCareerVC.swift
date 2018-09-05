@@ -41,7 +41,7 @@ class HDTagChooseCareerVC: UIViewController {
             
             HDDeclare.shared.allTagsArray = tagDataArray //保存标签
             
-            let tagdatamodel = weakSelf?.dataArr[0]
+            let tagdatamodel = weakSelf?.dataArr[0]  //第一页单选
             
             
             weakSelf?.lab_title.text = String.init(format: "%@", (tagdatamodel?.title)!)

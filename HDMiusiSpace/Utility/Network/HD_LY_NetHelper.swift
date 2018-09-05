@@ -48,7 +48,8 @@ class HD_LY_NetHelper {
         
         //默认参数初始化
         //let provider = MoyaProvider<Tar>()
-        let provider = MoyaProvider<Tar>(plugins: [AuthPlugin()])
+        let provider = MoyaProvider<Tar>(plugins: [RequestCachePlugin()])
+        
         //是否需要缓存操作
         var loadingView: HDLoadingView?
         //显示网络请求加载提醒
@@ -64,25 +65,8 @@ class HD_LY_NetHelper {
         }
         
         if netReacMhanager!.isReachable == false {
-            //
-            LOG("没有网络，查看是否有缓存")
-            if cache == true {
-                /*
-                let url = target.baseURL.appendingPathComponent(target.path).absoluteString
-                let key = HDCache.default.cacheKey(url, nil)
-                HDCache.default.object(forKey: key) { (result) in
-                    switch result {
-                    case .value(let objectData):
-                        success(objectData)
-                    case .error(let error):
-                        return
-                    }
-                    return
-                }
-                */
-            }
+            
         }
-        
         
         provider.request(target) { (result) in
             //隐藏加载提醒
@@ -92,7 +76,7 @@ class HD_LY_NetHelper {
             case let .success(response):
                 do {
                     //这里可以统一处理错误码，统一弹出错误
-                    let _ = try response.filterSuccessfulStatusCodes()
+//                    let _ = try response.filterSuccessfulStatusCodes()
                     let decoder = JSONDecoder()
                     let baseModel = try? decoder.decode(ResponseModel.self, from: response.data)
                     guard let model = baseModel else {
@@ -106,14 +90,6 @@ class HD_LY_NetHelper {
                     //请求成功
                     case Status_Code_Success,Status_Code_Success1 :
                         success(response.data)
-                        if cache == true {
-                            /*
-                            let url = target.baseURL.appendingPathComponent(target.path).absoluteString
-                            let key = HDCache.default.cacheKey(url, nil)
-                            HDCache.default.setObject(response.data, forKey: key)
-                            LOG("缓存成功：\(url)")
-                             */
-                        }
                     //失败
                     case Status_Code_Error:
                         

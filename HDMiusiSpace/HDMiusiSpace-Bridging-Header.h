@@ -14,6 +14,8 @@
 #import <ZFPlayer/ZFPlayerControlView.h>
 
 #import "STKAudioPlayer.h"
+#import "HD_LY_Cache.h"
+#import "YYCache.h"
 
 
 

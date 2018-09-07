@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */; };
 		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
@@ -311,6 +312,7 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchVC.swift; sourceTree = "<group>"; };
 		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
@@ -1285,6 +1287,7 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCC5211834E8007C8E56 /* HDRootAVC.swift */,
+				A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1938,6 +1941,7 @@
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
+				A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
 				D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */,
 				D66C35D6213FB14B00363D7C /* HDLY_MyDynamicCell.swift in Sources */,

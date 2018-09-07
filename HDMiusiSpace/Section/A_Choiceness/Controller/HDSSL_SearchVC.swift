@@ -240,17 +240,12 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = Mine_Root_Cell.getMyTableCell(tableV: tableView)
-//
-//
-//        cell?.cell_img.image = UIImage.init(named: String.init(format: "icon_userCell%d", indexPath.section))
-//        cell!.cell_title.text = titleArray[indexPath.section] as? String
         
         let str: String = historyArray[indexPath.row]
         
         let cell = UITableViewCell.init()
         cell.textLabel?.text = String.init(format: "%@", str)
-        
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
         
         return cell
     }
@@ -258,9 +253,11 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
         
-        
+        let str: String = historyArray[indexPath.row]
+        self.viewModel.request_search(str, vc: self)
+        //保存搜索历史
+        self.func_saveHistory(str)
     }
     
     

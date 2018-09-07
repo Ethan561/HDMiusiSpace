@@ -16,8 +16,11 @@ class HDLY_MineCourse_CollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imgV.layer.cornerRadius = 8
+        
     }
-
+    
+    
     //类方法，创建cell
     class func getMyCollectionCell(collectionView : UICollectionView, indexPath : IndexPath) -> HDLY_MineCourse_CollectionCell {
         let cell : HDLY_MineCourse_CollectionCell = (collectionView.dequeueReusableCell(withReuseIdentifier: HDLY_MineCourse_CollectionCell.className, for: indexPath) as! HDLY_MineCourse_CollectionCell)

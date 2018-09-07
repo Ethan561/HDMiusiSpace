@@ -113,7 +113,8 @@ enum HD_LY_API {
     //资讯详情接口
     case choicenessNewsInfo(api_token: String, article_id: String)
 
-    
+    //个人简介修改
+    case usersProfile(api_token: String, profile: String)
     
 }
 
@@ -264,6 +265,9 @@ extension HD_LY_API: TargetType {
         case .choicenessNewsInfo(api_token: _, article_id: _):
             return "/api/index/news_info"
             
+        //个人简介修改
+        case .usersProfile(api_token: _, profile: _):
+            return "/api/users/profile"
             
             
         }
@@ -286,7 +290,8 @@ extension HD_LY_API: TargetType {
              .sendSmsForCheck(username: _),
              .uploadImg(api_token: _, uoload_img: _),
              .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
-             .sendFeedback(api_token: _, cate_id: _ , content:_ ):
+             .sendFeedback(api_token: _, cate_id: _ , content:_ ),
+             .usersProfile(api_token: _, profile: _):
             
             return  .post
         default:
@@ -504,8 +509,10 @@ extension HD_LY_API: TargetType {
             let multipartData = [imgData]
             
             params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
-            //let signKey =  HDDeclare.getSignKey(params)
+            let signKey =  HDDeclare.getSignKey(params)
+            //let dic2 = ["Sign": signKey]
             let dic2 = ["Sign": "RootSign"]
+
             params.merge(dic2, uniquingKeysWith: { $1 })
 
             return .uploadCompositeMultipart(multipartData, urlParameters: params)
@@ -611,6 +618,14 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        //个人简介修改
+        case .usersProfile(api_token: let api_token , profile: let profile):
+            params = params.merging(["api_token": api_token, "profile": profile], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
             
         default:

@@ -20,8 +20,8 @@ enum Validate {
     
     case URL(_: String)
     case IP(_: String)
-    
-    
+    case verifyNumber(_: String) //四位数字验证码
+
     var isRight: Bool {
         var predicateStr:String!
         var currObject:String!
@@ -50,6 +50,12 @@ enum Validate {
         case let .IP(str):
             predicateStr = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
             currObject = str
+            
+    
+        case .verifyNumber(let str):
+            predicateStr = "^[0-9]{4}"
+            currObject = str
+            
         }
         
         let predicate =  NSPredicate(format: "SELF MATCHES %@" ,predicateStr)

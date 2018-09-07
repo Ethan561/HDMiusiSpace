@@ -102,7 +102,7 @@ class HDLY_MineCourse_Cell: UITableViewCell,UICollectionViewDelegate,UICollectio
     //MARK ----- UICollectionViewDelegateFlowLayout ------
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height:CGFloat  = 140 * ScreenWidth/375.0
-        let width:CGFloat   = height * 10 / 7.0
+        let width:CGFloat   = height * 7 / 6.0
         
         return CGSize.init(width: width, height: height)
     }

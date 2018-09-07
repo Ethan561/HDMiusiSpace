@@ -8,15 +8,23 @@
 
 import UIKit
 
-class HDLY_PswdLogin_VC: HDItemBaseVC {
+class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var pwdTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     
+    let declare:HDDeclare = HDDeclare.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "账号密码登录"
         loginBtn.layer.cornerRadius = 23
         setupBarBtn()
+        phoneTF.keyboardType = .numberPad
+        phoneTF.returnKeyType = .done
+        phoneTF.delegate = self
+        pwdTF.returnKeyType = .done
+        pwdTF.delegate = self
         
     }
     
@@ -38,7 +46,56 @@ class HDLY_PswdLogin_VC: HDItemBaseVC {
     }
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
+        if declare.deviceno == nil {
+            HDLY_UserModel.shared.getDeviceNum()
+            return
+        }
         
+        if phoneTF.text?.isEmpty == false && pwdTF.text?.isEmpty == false {
+            guard  Validate.phoneNum(phoneTF.text!).isRight  else {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
+                return
+            }
+            guard  Validate.password(pwdTF.text!).isRight  else {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的密码")
+                return
+            }
+            
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: pwdTF.text!, smscode: "", deviceno: declare.deviceno!), showHud: true, loadingVC: self , success: { (result) in
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                LOG(" dic ： \(String(describing: dic))")
+                let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                self.declare.api_token = dataDic["api_token"] as? String
+                self.declare.uid      = dataDic["uid"] as? Int
+                self.declare.phone    = dataDic["phone"] as? String
+                self.declare.email    = dataDic["email"] as? String
+                self.declare.nickname = dataDic["nickname"] as? String
+                
+                let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
+                self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+                
+                self.declare.loginStatus = .kLogin_Status_Login
+                //
+                let defaults = UserDefaults.standard
+                defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+                
+                HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                    self.backToRootEVC()
+                })
+                
+            }) { (errorCode, msg) in
+                
+            }
+        }
+    }
+    
+    func backToRootEVC() {
+        for controller in (self.navigationController?.viewControllers)! {
+            if controller.isKind(of: HDRootEVC.self) {
+                self.navigationController?.popToViewController(controller, animated: true)
+            }
+        }
     }
     
     @IBAction func forgetPwdBAction(_ sender: UIButton) {
@@ -51,6 +108,15 @@ class HDLY_PswdLogin_VC: HDItemBaseVC {
     
     @IBAction func thridLoginAction(_ sender: UIButton) {
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
     
     

@@ -35,21 +35,33 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9o-CS-P0Q">
-                        <rect key="frame" x="20" y="19.5" width="250" height="20"/>
+                        <rect key="frame" x="20" y="19.5" width="120" height="20"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="120" id="VSj-rm-Xtl"/>
                             <constraint firstAttribute="height" constant="20" id="Yxf-Wh-0Xt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSg-73-3Ef">
+                        <rect key="frame" x="160" y="19" width="140" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="VGy-sA-bQj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="p9o-CS-P0Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="2oa-Al-Wl2"/>
-                    <constraint firstItem="3Xq-Nd-Wzr" firstAttribute="leading" secondItem="p9o-CS-P0Q" secondAttribute="trailing" constant="20" id="Axm-xw-rp7"/>
+                    <constraint firstItem="BSg-73-3Ef" firstAttribute="top" secondItem="p9o-CS-P0Q" secondAttribute="top" id="IQE-o0-SHm"/>
+                    <constraint firstItem="BSg-73-3Ef" firstAttribute="leading" secondItem="p9o-CS-P0Q" secondAttribute="trailing" constant="20" id="Lud-rR-slh"/>
                     <constraint firstAttribute="bottom" secondItem="XWB-eS-gRc" secondAttribute="bottom" id="Sc2-V5-i0t"/>
                     <constraint firstItem="XWB-eS-gRc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="X46-G4-f32"/>
                     <constraint firstItem="3Xq-Nd-Wzr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ceB-6J-aP0"/>
+                    <constraint firstAttribute="trailing" secondItem="BSg-73-3Ef" secondAttribute="trailing" constant="20" id="fgZ-d7-7DW"/>
                     <constraint firstAttribute="trailing" secondItem="3Xq-Nd-Wzr" secondAttribute="trailing" constant="20" id="kxS-4z-EJe"/>
                     <constraint firstAttribute="trailing" secondItem="XWB-eS-gRc" secondAttribute="trailing" constant="20" id="nY2-mN-GBK"/>
                     <constraint firstItem="p9o-CS-P0Q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sP6-eT-i2T"/>
@@ -60,6 +72,8 @@
                 <outlet property="bottomLine" destination="XWB-eS-gRc" id="oHk-qR-3Jt"/>
                 <outlet property="moreImgV" destination="3Xq-Nd-Wzr" id="KDJ-Pp-MTC"/>
                 <outlet property="nameL" destination="p9o-CS-P0Q" id="cWN-3R-Wc0"/>
+                <outlet property="subNameL" destination="BSg-73-3Ef" id="Pfu-Eq-Np6"/>
+                <outlet property="subNameLTrainingCons" destination="fgZ-d7-7DW" id="8fg-TH-Bs9"/>
             </connections>
         </tableViewCell>
     </objects>

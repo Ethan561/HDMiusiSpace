@@ -154,13 +154,14 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }else if index == 3 {//我的课程
                 return 60
             }else if index == 4 {//
-                return 160
+                return 140 * ScreenWidth/375.0
+
             }else if index == 5 {//我的动态
-                return 80
+                return 60
             }
         }
         if section == 1 {
-            return 80
+            return 100
         }
         return 0.01
     }

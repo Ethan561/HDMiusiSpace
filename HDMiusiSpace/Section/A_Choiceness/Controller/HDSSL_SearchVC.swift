@@ -8,13 +8,17 @@
 
 import UIKit
 
+let SearchHistory : String = "SearchHistory"
+
 class HDSSL_SearchVC: HDItemBaseVC {
 
     var textFeild: UITextField!  //输入框
     @IBOutlet weak var tagBgView: UIView! //标签背景页
+    @IBOutlet weak var dTableView: UITableView!
     
     var searchTypeArray: [HDSSL_SearchTag] = Array.init() //搜索类型数组
-    var typeTitleArray : [String] = Array.init()
+    var typeTitleArray : [String] = Array.init()  //类型标题
+    var historyArray   : [String] = Array.init()  //搜索历史
     
     //mvvm
     var viewModel: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
@@ -35,7 +39,11 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         loadSearchBar()
         
+        loadSearchHistory()
+        
         self.viewModel.request_getTags(vc: self)
+        
+        self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     //MVVM
@@ -57,6 +65,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
             weakSelf?.loadTagView() //加载tag view
         }
     }
+    //MARK: - 加载类型标签
     func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
         tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
@@ -76,7 +85,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         tagBgView.addSubview(tagView)
         tagView.loadNormalTagsView()
     }
-    //MARK: -- 自定义导航栏
+    //MARK: - 自定义导航栏
     func loadSearchBar() {
         //搜索btn
         let rightBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 40, height: 40))
@@ -116,6 +125,48 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.navigationItem.titleView = view
         
     }
+    
+    //MARK: - 加载搜搜历史
+    func loadSearchHistory() {
+        let manager = UserDefaults()
+        let arr: [Any]? =  manager.array(forKey: SearchHistory)
+        
+        guard arr != nil else {
+            return
+        }
+        
+        if (arr?.count)! > 0 {
+            historyArray = Array(arr!) as! [String]
+        }
+        
+    }
+    
+    //MARK: - 本地保存搜索历史
+    func func_saveHistory(_ searchStr: String) -> Void {
+        //去重、最多保存10条
+        var array = historyArray
+        
+        if array.contains(searchStr) {
+            let inde = array.index(of: searchStr)
+            array.remove(at: inde!)
+        }
+        
+        array.insert(searchStr, at: 0)
+        
+        if array.count > 10 {
+            
+            let lastedArray = Array(array[0..<10])
+            historyArray = lastedArray
+        }else {
+            historyArray = array
+        }
+        print(historyArray)
+        
+        UserDefaults().set(historyArray, forKey: SearchHistory)
+        
+        self.dTableView.reloadData()
+    }
+    
     //MARK: - actions
     //搜索
     @objc func action_search(_ sender: UIButton) {
@@ -125,6 +176,12 @@ class HDSSL_SearchVC: HDItemBaseVC {
     @objc func action_voice(_ sender: UIButton) {
         
     }
+    @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
+        historyArray.removeAll()
+        self.dTableView.reloadData()
+        UserDefaults().set(historyArray, forKey: SearchHistory)
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -156,19 +213,55 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
         if string == "\n" {
             textFeild.resignFirstResponder()
             
-            self.request_search(textField.text!)
+            if (textField.text?.count)! > 0 {
+                self.viewModel.request_search(textField.text!, vc: self)
+                //保存搜索历史
+                self.func_saveHistory(textField.text!)
+            }
+            
         }
         
         return true
     }
 }
-//MARK: API
-extension HDSSL_SearchVC {
-    //
-    
-    
-    //
-    func request_search(_ str: String) {
-         print(str)
+//MARK: UITableView
+extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
+    //MARK: ----- myTableView ----
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return historyArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = Mine_Root_Cell.getMyTableCell(tableV: tableView)
+//
+//
+//        cell?.cell_img.image = UIImage.init(named: String.init(format: "icon_userCell%d", indexPath.section))
+//        cell!.cell_title.text = titleArray[indexPath.section] as? String
+        
+        let str: String = historyArray[indexPath.row]
+        
+        let cell = UITableViewCell.init()
+        cell.textLabel?.text = String.init(format: "%@", str)
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath.row)
+        
+        
+    }
+    
+    
 }

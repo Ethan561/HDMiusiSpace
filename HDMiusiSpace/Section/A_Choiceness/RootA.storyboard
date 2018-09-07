@@ -149,10 +149,10 @@
                                     <constraint firstItem="BvT-El-aQa" firstAttribute="top" secondItem="yrD-zg-pQL" secondAttribute="bottom" constant="5" id="xho-5r-Edq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Gm-b1W">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhK-Gm-b1W">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="hpe-08-da7">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="hpe-08-da7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -162,7 +162,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="c6R-n9-Z5E"/>
                                                 <constraint firstAttribute="width" constant="191" id="xT4-q9-hzW"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -173,6 +173,9 @@
                                                 <constraint firstAttribute="height" constant="30" id="hZJ-2m-Rsn"/>
                                             </constraints>
                                             <state key="normal" image="icon_delete"/>
+                                            <connections>
+                                                <action selector="action_cleanSearchHistory:" destination="Y4W-Xw-XeR" eventType="touchUpInside" id="5TC-MJ-M9k"/>
+                                            </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liZ-LE-Ilx">
                                             <rect key="frame" x="16" y="43" width="343" height="1"/>
@@ -192,6 +195,10 @@
                                         <constraint firstItem="yQs-LW-Mht" firstAttribute="leading" secondItem="hpe-08-da7" secondAttribute="leading" constant="16" id="jDt-h6-oFj"/>
                                     </constraints>
                                 </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y4W-Xw-XeR" id="F1D-4Q-wim"/>
+                                    <outlet property="delegate" destination="Y4W-Xw-XeR" id="G6l-qg-VP3"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,6 +214,7 @@
                         <viewLayoutGuide key="safeArea" id="xEN-dm-Lry"/>
                     </view>
                     <connections>
+                        <outlet property="dTableView" destination="XhK-Gm-b1W" id="ehY-xI-lDJ"/>
                         <outlet property="tagBgView" destination="nYr-Qm-kDd" id="yXo-fM-opg"/>
                     </connections>
                 </viewController>

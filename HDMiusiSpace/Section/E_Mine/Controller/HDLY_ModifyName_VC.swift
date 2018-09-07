@@ -32,7 +32,7 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             nicknameVIew.isHidden = false
             signatureView.isHidden = true
         }else {
-            self.title = "编辑个人资料"
+            self.title = "个人简介"
             signatureTextView.text = declare.sign
             nicknameVIew.isHidden = true
             signatureView.isHidden = false
@@ -59,7 +59,9 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
                 modifyNicknameRequest()
             }
         }else {
-            
+            if signatureTextView.text.isEmpty == false {
+                modifyProfileRequest()
+            }
         }
     }
     
@@ -73,6 +75,24 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             let nickname: String = dic!["data"] as! String
             self.declare.nickname = nickname
             HDAlert.showAlertTipWith(type: .onlyText, text: "昵称更新成功")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                self.back()
+            })
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    func modifyProfileRequest() {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .usersProfile(api_token: HDDeclare.shared.api_token!, profile: signatureTextView.text), showHud: true, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let sign: String = dic!["data"] as! String
+            self.declare.sign = sign
+            HDAlert.showAlertTipWith(type: .onlyText, text: "个人简介更新成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.back()
             })

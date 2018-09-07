@@ -39,7 +39,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         }
     }
-
+    
     @IBAction func changeAvatarAction(_ sender: UIButton) {
         let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         // 2 命令（样式：退出Cancel，警告Destructive-按钮标题为红色，默认Default）
@@ -103,8 +103,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             pickedAvatarImage = pickedImage
             uploadImgsAction(img: pickedImage)
         }
-        else
-        {
+        else {
             picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -126,7 +125,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         }) { (errorCode, msg) in
             
         }
-
+        
     }
     
     

@@ -19,7 +19,6 @@ class HDLY_LeaveMsg_VC: HDItemBaseVC,UITextViewDelegate {
     
     var courseId: String?
     var textNum:Int = 0
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,6 @@ class HDLY_LeaveMsg_VC: HDItemBaseVC,UITextViewDelegate {
         navHCons.constant = CGFloat(kTopHeight)
         textView.delegate = self
         textView.returnKeyType = .done
-        
     }
 
     @IBAction func cancleBtnAction(_ sender: UIButton) {

@@ -75,14 +75,11 @@ class HD_LY_NetHelper {
             switch result {
             case let .success(response):
                 do {
-                    //这里可以统一处理错误码，统一弹出错误
-//                    let _ = try response.filterSuccessfulStatusCodes()
-                    
                     let decoder = JSONDecoder()
                     let baseModel = try? decoder.decode(ResponseModel.self, from: response.data)
                     guard let model = baseModel else {
                         if let failureBlack = failure {
-                            failureBlack(response.statusCode, "解析失败")
+                            failureHandle(failure: failure, stateCode: response.statusCode, message: "接口异常:\(response.statusCode)")
                         }
                         return
                     }

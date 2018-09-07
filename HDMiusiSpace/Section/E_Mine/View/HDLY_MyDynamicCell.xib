@@ -52,6 +52,14 @@
                         <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzE-LW-vc8">
+                        <rect key="frame" x="20" y="117.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="433-Dg-tbb"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="Gbz-MO-YT2"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="NWe-Mv-NSQ" secondAttribute="trailing" constant="20" id="83S-fi-smb"/>
@@ -59,6 +67,9 @@
                     <constraint firstItem="Zzb-L1-acu" firstAttribute="leading" secondItem="OJX-Rw-agy" secondAttribute="trailing" constant="10" id="B7c-hQ-RnU"/>
                     <constraint firstItem="NWe-Mv-NSQ" firstAttribute="top" secondItem="tSn-96-qBZ" secondAttribute="bottom" constant="8" id="GN9-OI-UNh"/>
                     <constraint firstItem="Zzb-L1-acu" firstAttribute="centerY" secondItem="OJX-Rw-agy" secondAttribute="centerY" constant="-8" id="Iya-tL-DXd"/>
+                    <constraint firstAttribute="bottom" secondItem="BzE-LW-vc8" secondAttribute="bottom" id="Kek-LJ-6c8"/>
+                    <constraint firstItem="BzE-LW-vc8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="M83-zZ-vUE"/>
+                    <constraint firstAttribute="trailing" secondItem="BzE-LW-vc8" secondAttribute="trailing" constant="20" id="Myo-oC-eQA"/>
                     <constraint firstItem="tSn-96-qBZ" firstAttribute="leading" secondItem="OJX-Rw-agy" secondAttribute="trailing" constant="10" id="a9p-dD-dRp"/>
                     <constraint firstItem="tSn-96-qBZ" firstAttribute="top" secondItem="Zzb-L1-acu" secondAttribute="bottom" constant="5" id="bdi-d7-gD3"/>
                     <constraint firstItem="OJX-Rw-agy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gSL-qV-esb"/>

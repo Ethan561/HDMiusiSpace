@@ -11,6 +11,9 @@ import UIKit
 class HDLY_MineInfo_Cell: UITableViewCell {
     
     @IBOutlet weak var nameL: UILabel!
+    @IBOutlet weak var subNameL: UILabel!
+    
+    @IBOutlet weak var subNameLTrainingCons: NSLayoutConstraint!
     @IBOutlet weak var moreImgV: UIImageView!
     @IBOutlet weak var bottomLine: UIView!
     

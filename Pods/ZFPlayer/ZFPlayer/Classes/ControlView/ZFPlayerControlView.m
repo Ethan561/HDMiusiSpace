@@ -77,6 +77,7 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
 
 @property (nonatomic, strong) ZFVolumeBrightnessView *volumeBrightnessView;
 
+
 @end
 
 @implementation ZFPlayerControlView
@@ -400,7 +401,7 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
     if (state == ZFPlayerLoadStatePrepare) {
         self.coverImageView.hidden = NO;
     } else if (state == ZFPlayerLoadStatePlaythroughOK) {
-        if (self.coverImageHidden) {
+        if (self.coverImageHidden ){
             self.coverImageView.hidden = YES;
         }else {
             self.coverImageView.hidden = NO;
@@ -675,6 +676,11 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
         _placeholderImage = [ZFUtilities imageWithColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] size:CGSizeMake(1, 1)];
     }
     return _placeholderImage;
+}
+
+- (void)setBackBtnClickCallback:(void (^)(void))backBtnClickCallback {
+    _backBtnClickCallback = [backBtnClickCallback copy];
+    self.landScapeControlView.backBtnClickCallback = _backBtnClickCallback;
 }
 
 @end

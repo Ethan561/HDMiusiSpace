@@ -116,6 +116,16 @@ enum HD_LY_API {
     //个人简介修改
     case usersProfile(api_token: String, profile: String)
     
+    //修手机号/邮箱 短信验证
+    case usersVerify(username: String, smscode: String)
+    
+    //忘记（修改）密码
+    case usersPassword(api_token: String, password: String)
+
+    //绑定新手机号/邮箱
+    case usersChangeusername(api_token: String, username: String, smscode: String)
+
+    
 }
 
 extension HD_LY_API: TargetType {
@@ -269,9 +279,21 @@ extension HD_LY_API: TargetType {
         case .usersProfile(api_token: _, profile: _):
             return "/api/users/profile"
             
+        //修手机号/邮箱 短信验证
+        case .usersVerify(username: _, smscode: _):
+            return "/api/users/verify"
+        
+        //忘记（修改）密码
+        case .usersPassword(api_token: _, password: _):
+            return "/api/users/password"
+            
+            
+        //绑定新手机号/邮箱
+        case .usersChangeusername(api_token: _, username: _, smscode: _):
+            return "/api/users/changeusername"
+            
             
         }
-        
     }
     
     //--- 请求类型 ---
@@ -291,7 +313,10 @@ extension HD_LY_API: TargetType {
              .uploadImg(api_token: _, uoload_img: _),
              .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
              .sendFeedback(api_token: _, cate_id: _ , content:_ ),
-             .usersProfile(api_token: _, profile: _):
+             .usersProfile(api_token: _, profile: _),
+             .usersVerify,
+             .usersPassword(api_token: _, password: _),
+             .usersChangeusername(api_token: _, username: _, smscode: _):
             
             return  .post
         default:
@@ -467,8 +492,11 @@ extension HD_LY_API: TargetType {
             
         //登录
         case .usersLogin(username: let username , password: let password ,smscode: let smscode , deviceno: let deviceno):
-            
-            params = params.merging(["username": username, "password": password, "smscode": smscode, "deviceno": deviceno], uniquingKeysWith: {$1})
+            if password.count > 1 {
+                params = params.merging(["username": username, "password": password, "deviceno": deviceno], uniquingKeysWith: {$1})
+            }else if smscode.count > 1 {
+                params = params.merging(["username": username, "smscode": smscode, "deviceno": deviceno], uniquingKeysWith: {$1})
+            }
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -509,14 +537,9 @@ extension HD_LY_API: TargetType {
             let multipartData = [imgData]
             
             params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
-            let signKey =  HDDeclare.getSignKey(params)
-            //let dic2 = ["Sign": signKey]
-            let dic2 = ["Sign": "RootSign"]
-
-            params.merge(dic2, uniquingKeysWith: { $1 })
-
+            
             return .uploadCompositeMultipart(multipartData, urlParameters: params)
-
+            
         //获取机器号
         case .requestDeviceno():
             
@@ -550,9 +573,6 @@ extension HD_LY_API: TargetType {
             let multipartData = [imgData]
             
             params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
-            //let signKey =  HDDeclare.getSignKey(params)
-            let dic2 = ["Sign": "RootSign"]
-            params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .uploadCompositeMultipart(multipartData, urlParameters: params)
             
@@ -621,6 +641,33 @@ extension HD_LY_API: TargetType {
         //个人简介修改
         case .usersProfile(api_token: let api_token , profile: let profile):
             params = params.merging(["api_token": api_token, "profile": profile], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .usersVerify(username: let username, smscode: let smscode):
+            params = params.merging(["username": username, "smscode": smscode], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //忘记（修改）密码
+        case .usersPassword(api_token: let api_token, password: let password):
+            params = params.merging(["api_token": api_token, "password": password], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+            
+        //绑定新手机号/邮箱
+        case .usersChangeusername(api_token: let api_token, username: let username, smscode: let smscode):
+            params = params.merging(["api_token": api_token, "username": username, "smscode": smscode], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

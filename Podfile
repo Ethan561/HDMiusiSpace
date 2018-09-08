@@ -10,7 +10,7 @@
  pod 'Kingfisher'
  pod 'Cache'
  pod 'ZZCircleProgress'
- pod 'Bugly'
+
 # U-Share SDK UI模块（分享面板，建议添加）
 pod 'UMengUShare/UI'
 # 集成微信(精简版0.2M)
@@ -34,5 +34,6 @@ pod 'ZFPlayer/ControlView', '~> 3.0'
 pod 'ZFPlayer/AVPlayer', '~> 3.0'
 
 pod 'ESPullToRefresh'
+pod 'Bugly', '~> 2.5.0'
 
  end

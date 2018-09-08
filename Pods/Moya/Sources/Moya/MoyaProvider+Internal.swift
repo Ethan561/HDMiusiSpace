@@ -69,7 +69,7 @@ public extension MoyaProvider {
             let networkCompletion: Moya.Completion = { result in
               if self.trackInflights {
                 self.inflightRequests[endpoint]?.forEach { $0(result) }
-
+                
                 objc_sync_enter(self)
                 self.inflightRequests.removeValue(forKey: endpoint)
                 objc_sync_exit(self)

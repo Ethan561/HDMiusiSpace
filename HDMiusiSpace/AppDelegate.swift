@@ -15,10 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Bugly.start(withAppId: "c72887a81c")
         
         localDataInit()
         configUSharePlatforms()
-        Bugly.start(withAppId: "055e0c5ed7")
         
         return true
     }

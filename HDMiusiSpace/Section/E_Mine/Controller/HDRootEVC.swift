@@ -24,7 +24,7 @@ class HDRootEVC: HDItemBaseVC {
         setupViews()
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshUserInfo()
@@ -57,15 +57,13 @@ class HDRootEVC: HDItemBaseVC {
             if declare.avatar != nil {
                 tabHeader.avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
-        }else {
+        } else {
             //未登录
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
         }
     }
-    
-
     
     @objc func loginBtnAction(_ sender: UIButton) {
         self.pushToLoginVC(vc: self)

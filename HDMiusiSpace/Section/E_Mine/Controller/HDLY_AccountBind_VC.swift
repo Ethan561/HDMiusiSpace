@@ -38,15 +38,16 @@ class HDLY_AccountBind_VC: HDItemBaseVC {
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PushTo_HDLY_SafetyVerifi_VC_Line" {
+            let vc:HDLY_SafetyVerifi_VC = segue.destination as! HDLY_SafetyVerifi_VC
+            let type :String = sender as! String
+            vc.segueType = type
+        }
     }
-    */
+    
 
 }
 
@@ -138,7 +139,23 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
         let section = indexPath.section
         let index = indexPath.row
         if section == 0 {
-            
+            if index == 0 {//修改密码
+                self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifi_VC_Line", sender: "1")
+            }else if index == 1 {//手机号
+                self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifi_VC_Line", sender: "2")
+            }else if index == 2 {//邮箱
+                
+            }
+        }
+        
+        if section == 1 {
+            if index == 0 {//微信
+      
+            }else if index == 1 {//新浪微博
+    
+            }else if index == 2 {//邮箱
+
+            }
         }
     }
     

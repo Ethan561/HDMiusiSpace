@@ -120,7 +120,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     //跳转搜索入口
     @objc func searchAction(_ sender: UIButton) {
+        let vc: HDSSL_SearchVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

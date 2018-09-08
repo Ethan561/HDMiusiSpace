@@ -14,6 +14,8 @@ enum HD_SSL_API {
     case getLaunchTagList(api_token: String)
     //保存标签
     case saveSelectedTags(api_token: String,label_id_str: String,deviceno: String)
+    //请求搜索类型
+    case getSearchTypes()
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -33,8 +35,15 @@ extension HD_SSL_API: TargetType {
         case .saveSelectedTags(api_token: _,label_id_str: _,deviceno: _):
             return "/api/index/labelsave"
             
+        //请求搜索类型
+        case .getSearchTypes():
+            return  "/api/search/search_type"
+            
+            
+        //...
+            
+            
         }
-        
     }
     
     
@@ -75,6 +84,15 @@ extension HD_SSL_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //请求搜索类型
+        case .getSearchTypes():
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        //...
+            
             
         default:
             return .requestPlain//无参数

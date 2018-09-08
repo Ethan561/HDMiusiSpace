@@ -109,6 +109,10 @@ class HDTagChooseVC: UIViewController {
         self.performSegue(withIdentifier: "HD_PushToTabBarVCLine", sender: nil)
 
     }
+    @IBAction func action_showTabVC(_ sender: UIButton) {
+        //2、跳转vc
+        self.performSegue(withIdentifier: "HD_PushToTabBarVCLine", sender: nil)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

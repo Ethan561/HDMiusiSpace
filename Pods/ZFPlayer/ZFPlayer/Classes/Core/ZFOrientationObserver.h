@@ -39,6 +39,19 @@ typedef NS_ENUM(NSUInteger, ZFRotateType) {
     ZFRotateTypeCellSmall       // Cell mode small window
 };
 
+/**
+ Rotation of support direction
+ */
+typedef NS_OPTIONS(NSUInteger, ZFInterfaceOrientationMask) {
+    ZFInterfaceOrientationMaskPortrait = (1 << 0),
+    ZFInterfaceOrientationMaskLandscapeLeft = (1 << 1),
+    ZFInterfaceOrientationMaskLandscapeRight = (1 << 2),
+    ZFInterfaceOrientationMaskPortraitUpsideDown = (1 << 3),
+    ZFInterfaceOrientationMaskLandscape = (ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight),
+    ZFInterfaceOrientationMaskAll = (ZFInterfaceOrientationMaskPortrait | ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight | ZFInterfaceOrientationMaskPortraitUpsideDown),
+    ZFInterfaceOrientationMaskAllButUpsideDown = (ZFInterfaceOrientationMaskPortrait | ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight),
+};
+
 @interface ZFOrientationObserver : NSObject
 
 - (void)updateRotateView:(UIView *)rotateView
@@ -74,7 +87,7 @@ typedef NS_ENUM(NSUInteger, ZFRotateType) {
 /// Full screen mode, the default landscape into full screen
 @property (nonatomic) ZFFullScreenMode fullScreenMode;
 
-/// rotate duration, default is 0.25
+/// rotate duration, default is 0.30
 @property (nonatomic) float duration;
 
 /// The statusbar hidden.
@@ -87,6 +100,9 @@ typedef NS_ENUM(NSUInteger, ZFRotateType) {
 /// Whether allow the video orientation rotate.
 /// default is YES.
 @property (nonatomic) BOOL allowOrentitaionRotation;
+
+/// The support Interface Orientation,default is ZFInterfaceOrientationMaskAllButUpsideDown
+@property (nonatomic, assign) ZFInterfaceOrientationMask supportInterfaceOrientation;
 
 /// Add the device orientation observer.
 - (void)addDeviceOrientationObserver;

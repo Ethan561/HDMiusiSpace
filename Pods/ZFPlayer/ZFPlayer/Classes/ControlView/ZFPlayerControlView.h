@@ -53,6 +53,10 @@
 @property (nonatomic, strong) UIImage *placeholderImage;
 /// 快进视图是否显示动画，默认NO。
 @property (nonatomic, assign) BOOL fastViewAnimated;
+/// 直接进入全屏模式，只支持全屏模式
+@property (nonatomic, assign) BOOL fullScreenOnly;
+/// 返回按钮点击回调
+@property (nonatomic, copy) void(^backBtnClickCallback)(void);
 
 @property (nonatomic, assign) BOOL coverImageHidden;
 

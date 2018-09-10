@@ -48,7 +48,7 @@ class HD_LY_NetHelper {
         
         //默认参数初始化
         //let provider = MoyaProvider<Tar>()
-        let provider = MoyaProvider<Tar>(plugins: [RequestCachePlugin()])
+        let provider = MoyaProvider<Tar>(plugins: [AuthPlugin()])
         
         //是否需要缓存操作
         var loadingView: HDLoadingView?
@@ -95,7 +95,7 @@ class HD_LY_NetHelper {
                     //ErrorToken
                     case Status_Code_ErrorToken:
                         
-                        failureHandle(failure: failure, stateCode: nil, message: "登录过期，请重新登录")
+                        failureHandle(failure: failure, stateCode: Status_Code_ErrorToken, message: "登录过期，请重新登录")
                         UserDefaults.standard.set("", forKey: kLogin_Token)
                         HDDeclare.shared.api_token = ""
                         HDDeclare.shared.loginStatus = .kLogin_Status_Logout

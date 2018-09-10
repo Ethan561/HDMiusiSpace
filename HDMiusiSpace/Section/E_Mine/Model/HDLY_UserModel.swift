@@ -64,7 +64,7 @@ class HDLY_UserModel: NSObject {
                 
             }) { (errorCode, msg) in
                 declare.loginStatus = Login_Status.kLogin_Status_Logout
-                declare.removeUserMessage()
+//                declare.removeUserMessage()
             }
         }
     }

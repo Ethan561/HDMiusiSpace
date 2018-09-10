@@ -449,7 +449,7 @@ final class RequestCachePlugin: PluginType {
     var url:String = ""
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-        print("request")
+        //print("request")
         var request = request
         request.timeoutInterval = kRequestTimeoutInterval
         //request.cachePolicy = .useProtocolCachePolicy
@@ -457,26 +457,29 @@ final class RequestCachePlugin: PluginType {
     }
     
     func willSend(_ request: RequestType, target: TargetType) {
-        print("willSend")
+        //print("willSend")
         url = "\(request)"
     }
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        print("didReceive")
+       // print("didReceive")
         if case let .success(response) = result{
             if response.statusCode == 200 {
                 HD_LY_Cache.saveDataCache(response.data, forKey: url)
             }
         }
-        print("target.path: \(target.path)")
+        //print("target.path: \(target.path)")
     }
     
     func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {
-        print("process")
+        //print("process")
         let result = result
         switch result {
         case .success(let response):
-            if response.statusCode != 200{
+            if response.statusCode != 200 {
+                if response.statusCode == 405 || response.statusCode == 404 {
+                    return result
+                }
                 return readCache(result)
             }else{
                 return result
@@ -488,9 +491,11 @@ final class RequestCachePlugin: PluginType {
     
     private func readCache(_ result: Result<Response, MoyaError>)->Result<Response, MoyaError>{
         if kShouldCache {
+            
             let resData:Data? = HD_LY_Cache.readDataCache(url) as? Data
             if  resData != nil {
                 let response = Response(statusCode: kCacheStatusCode, data: resData!)
+                print("===== 接口缓存数据返回：\(String(describing: response.request))")
                 return .success(response)
             }
         }

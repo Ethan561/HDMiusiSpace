@@ -73,7 +73,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(subTableViewDidScroll(noti:)), name: NSNotification.Name.init(rawValue: "SubTableViewDidScroll"), object: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,7 +83,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
-    
     
     func setupViews() {
         if #available(iOS 11.0, *) {

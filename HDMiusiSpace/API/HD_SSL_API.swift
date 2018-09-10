@@ -16,6 +16,8 @@ enum HD_SSL_API {
     case saveSelectedTags(api_token: String,label_id_str: String,deviceno: String)
     //请求搜索类型
     case getSearchTypes()
+    //搜索
+    case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -39,6 +41,9 @@ extension HD_SSL_API: TargetType {
         case .getSearchTypes():
             return  "/api/search/search_type"
             
+            //搜索
+        case .startSearchWith(keyword: _, skip: _, take: _, searchType: _):
+            return "/api/search/index"
             
         //...
             
@@ -71,8 +76,6 @@ extension HD_SSL_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-//            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-            
         //保存启动标签
         case .saveSelectedTags(api_token: let api_token, label_id_str: let label_id_str, deviceno: let deviceno):
             params = params.merging(["api_token": api_token,
@@ -87,6 +90,17 @@ extension HD_SSL_API: TargetType {
             
         //请求搜索类型
         case .getSearchTypes():
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        
+        //搜索
+        case .startSearchWith(keyword: let keyword, skip: let skip, take: let take, searchType: let searchType):
+            params = params.merging(["keyword": keyword,
+                                     "skip":skip,
+                                     "take":take,
+                                     "type":searchType], uniquingKeysWith: {$1})
+            
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

@@ -255,6 +255,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let str: String = historyArray[indexPath.row]
+        textFeild.text = str
         self.viewModel.request_search(str, vc: self)
         //保存搜索历史
         self.func_saveHistory(str)

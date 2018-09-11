@@ -16,6 +16,10 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var smsBtn: UIButton!
     let declare:HDDeclare = HDDeclare.shared
     
+    @IBOutlet weak var wxBtn: UIButton!
+    @IBOutlet weak var wbBtn: UIButton!
+    @IBOutlet weak var qqBtn: UIButton!
+    
     var seconds:Int32 = 59
     lazy var timer: Timer = { () ->Timer in
         let currTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.minus), userInfo: nil, repeats: true)
@@ -33,6 +37,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         smsTF.keyboardType = .numberPad
         smsTF.returnKeyType = .done
         smsTF.delegate = self
+        
     }
     
     func setupBarBtn() {
@@ -138,8 +143,95 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         self.timer.fireDate = Date.distantFuture
     }
     
-    @IBAction func thridLoginAction(_ sender: UIButton) {
+    //MARK: 三方登录
+    func setupThridLogin() {
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false {
+            qqBtn.isHidden = true
+        }
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false {
+            wxBtn.isHidden = true
+        }
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+            wbBtn.isHidden = true
+        }
         
+    }
+    
+    @IBAction func thridLoginAction(_ sender: UIButton) {
+        let index = sender.tag - 100
+        if index == 1 {//微信
+            self.getAuthWithUserInfoWithType(type: .wechatSession)
+        }
+        else if index == 2 {//QQ
+            self.getAuthWithUserInfoWithType(type: .QQ)
+        }
+        else if index == 3 {//微博
+            self.getAuthWithUserInfoWithType(type: .sina)
+        }
+        
+    }
+    
+    func getAuthWithUserInfoWithType(type: UMSocialPlatformType) {
+        
+        var from = "qq"
+        if type == .wechatSession {
+            from = "wx"
+        }else if type == .sina {
+            from = "wb"
+        }
+        
+        UMSocialManager.default().getUserInfo(with: type, currentViewController: self) { (result, error) in
+            if error != nil {
+                LOG("\(String(describing: error?.localizedDescription))")
+            }else {
+                let resp:UMSocialUserInfoResponse = result as! UMSocialUserInfoResponse
+                LOG("name:\(resp.name)")
+                LOG("uid:\(resp.uid)")
+                LOG("iconurl:\(resp.iconurl)")
+                //
+                self.thirdLoginRequestWithInfo(resp: resp, from: from)
+            }
+        }
+    }
+    
+    func thirdLoginRequestWithInfo(resp:UMSocialUserInfoResponse, from: String) {
+        let deviceID = HDDeclare.shared.deviceno ?? ""
+        let openid   = resp.uid!
+        let b_nickname = resp.name!
+        let b_avatar = resp.iconurl ?? ""
+        let params: [String: Any] = ["openid": openid,
+                                     "b_from": from,
+                                     "b_nickname": b_nickname,
+                                     "b_avatar": b_avatar,
+                                     "deviceno": deviceID,
+                                     ]
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" dic ： \(String(describing: dic))")
+            let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+            self.declare.api_token = dataDic["api_token"] as? String
+            self.declare.uid      = dataDic["uid"] as? Int
+            self.declare.phone    = dataDic["phone"] as? String
+            self.declare.email    = dataDic["email"] as? String
+            self.declare.nickname = dataDic["nickname"] as? String
+            
+            let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
+            self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+            
+            self.declare.loginStatus = .kLogin_Status_Login
+            //
+            let defaults = UserDefaults.standard
+            defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+            
+            HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                self.back()
+            })
+            
+        }) { (errorCode, msg) in
+            HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

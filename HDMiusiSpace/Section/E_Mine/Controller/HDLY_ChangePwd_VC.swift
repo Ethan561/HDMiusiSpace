@@ -13,6 +13,8 @@ class HDLY_ChangePwd_VC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var pwdTF: UITextField!
     
+    let declare:HDDeclare = HDDeclare.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "修改密码"
@@ -32,10 +34,20 @@ class HDLY_ChangePwd_VC: HDItemBaseVC, UITextFieldDelegate {
                 
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
+                let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                self.declare.api_token = dataDic["api_token"] as? String
+                self.declare.loginStatus = .kLogin_Status_Login
+                let defaults = UserDefaults.standard
+                defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+                
                 HDAlert.showAlertTipWith(type: .onlyText, text: "密码修改成功")
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                     for vc in self.navigationController!.viewControllers {
                         if vc.isKind(of: HDLY_AccountBind_VC.self) {
+                            self.navigationController?.popToViewController(vc, animated: true)
+                        }
+                        else if vc.isKind(of: HDLY_PswdLogin_VC.self) {
                             self.navigationController?.popToViewController(vc, animated: true)
                         }
                     }

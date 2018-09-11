@@ -16,6 +16,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var signatureL: UILabel!
     
     var pickedAvatarImage: UIImage?
+    lazy var genderTipView: HDLY_GenderTip_View = HDLY_GenderTip_View.createViewFromNib() as! HDLY_GenderTip_View
     
     let declare:HDDeclare = HDDeclare.shared
     
@@ -134,8 +135,31 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     }
     
     @IBAction func changeGenderAction(_ sender: UIButton) {
-        
+        if kWindow != nil {
+            self.genderTipView.frame = kWindow!.bounds
+            kWindow!.addSubview(self.genderTipView)
+            weak var weakS = self
+            self.genderTipView.sureBlock = { (type) in
+                weakS?.changeGenderRequest(type)
+            }
+        }
     }
+    
+    func changeGenderRequest(_ type: Int) {
+        if HDDeclare.shared.api_token == nil { return }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .usersChangeGender(api_token: HDDeclare.shared.api_token!, sex: "\(type)"), showHud: true, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let sex: String = dic!["data"] as! String
+          
+             self.genderTipView.sureBlock = nil
+        }) { (errorCode, msg) in
+            self.genderTipView.sureBlock = nil
+        }
+    }
+    
     
     @IBAction func changeSignatureAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: "PushTo_HDLY_ModifyName_VC_Line", sender: 2)

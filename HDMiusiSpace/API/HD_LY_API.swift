@@ -17,7 +17,7 @@ enum HD_LY_API {
     
     //新知轮播图
     case getNewKnowledgeBanner()
-
+    
     //课程导读详情
     case courseInfo(api_token: String, id: String)
     
@@ -125,7 +125,12 @@ enum HD_LY_API {
     //绑定新手机号/邮箱
     case usersChangeusername(api_token: String, username: String, smscode: String)
 
-    
+    //修改性别
+    case usersChangeGender(api_token: String, sex: String)
+
+    //第三方账号绑定注册
+    case register_bind(params:Dictionary<String, Any>)
+
 }
 
 extension HD_LY_API: TargetType {
@@ -292,6 +297,18 @@ extension HD_LY_API: TargetType {
         case .usersChangeusername(api_token: _, username: _, smscode: _):
             return "/api/users/changeusername"
             
+        //修改性别
+        case .usersChangeGender(api_token: _, sex: _):
+            return "/api/users/sex"
+            
+         //第三方账号绑定注册
+        case .register_bind(params: _):
+            return "/api/users/register_bind"
+      
+            
+            
+            
+            
             
         }
     }
@@ -314,9 +331,12 @@ extension HD_LY_API: TargetType {
              .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
              .sendFeedback(api_token: _, cate_id: _ , content:_ ),
              .usersProfile(api_token: _, profile: _),
-             .usersVerify,
+             .usersVerify(username: _, smscode: _),
              .usersPassword(api_token: _, password: _),
-             .usersChangeusername(api_token: _, username: _, smscode: _):
+             .usersChangeusername(api_token: _, username: _, smscode: _),
+             .usersChangeGender(api_token: _, sex: _),
+             .register_bind(params: _):
+
             
             return  .post
         default:
@@ -674,11 +694,27 @@ extension HD_LY_API: TargetType {
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
+        //修改性别
+        case .usersChangeGender(api_token: let api_token, sex: let sex):
+            params = params.merging(["api_token": api_token, "sex": sex], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
-        default:
-            return .requestPlain//无参数
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        //第三方账号绑定注册
+        case .register_bind(params: let paramsTemp):
+            params = params.merging(paramsTemp, uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
         }
         
+        //GET 请求返回
         return .requestParameters(parameters: params, encoding: URLEncoding.default)
     }
     

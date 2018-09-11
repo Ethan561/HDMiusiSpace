@@ -24,7 +24,7 @@ class HDLY_ChangePhone_VC: HDItemBaseVC, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "修改手机号码"
         loginBtn.layer.cornerRadius = 23
         phoneTF.keyboardType = .numberPad
         phoneTF.returnKeyType = .done
@@ -41,8 +41,9 @@ class HDLY_ChangePhone_VC: HDItemBaseVC, UITextFieldDelegate {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
                 return
             }
-
-            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: "", smscode: smsTF.text!, deviceno: declare.deviceno!), showHud: true, loadingVC: self , success: { (result) in
+            if HDDeclare.shared.api_token == nil {return}
+            
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersChangeusername(api_token: HDDeclare.shared.api_token!, username: phoneTF.text!, smscode: smsTF.text!), showHud: true, loadingVC: self , success: { (result) in
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
                 let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary

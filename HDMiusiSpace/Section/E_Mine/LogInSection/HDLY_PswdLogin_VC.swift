@@ -99,7 +99,10 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     }
     
     @IBAction func forgetPwdBAction(_ sender: UIButton) {
-        
+        let desVC = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SafetyVerifi_VC") as! HDLY_SafetyVerifi_VC
+        desVC.segueType = "1"
+        desVC.isFindPwd = true
+        self.navigationController?.pushViewController(desVC, animated: true)
     }
     
     @IBAction func smsLoginAction(_ sender: UIButton) {

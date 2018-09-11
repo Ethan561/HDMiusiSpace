@@ -25,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configUSharePlatforms()  {
         // 友盟
-        UMSocialManager.default().umSocialAppkey = "5b2b4712a40fa323f9000015"
-        UMSocialManager.default().setPlaform(.wechatSession, appKey: "wx6103d36ef011b95c", appSecret: "ae4c79fa510102a0cb6f6394804fb0d0", redirectURL: "http://mobile.umeng.com/social")
-        UMSocialManager.default().setPlaform(.QQ, appKey: "101479719", appSecret: nil, redirectURL: "http://mobile.umeng.com/social")
-        UMSocialManager.default().setPlaform(.sina, appKey: "4147125496", appSecret: "dd9b779609591e5901c1f649fdfdd7b0", redirectURL: "http://sns.whalecloud.com/sina2/callback")
+        UMSocialManager.default().umSocialAppkey = "5b6d5e77a40fa3255f0000d3"
+        UMSocialManager.default().setPlaform(.wechatSession, appKey: "wx9ca30fef57bc6b2c", appSecret: "4e9f7919fc56d67cfab5f8623e955e01", redirectURL: "http://www.wenbozaixian.com")
+        UMSocialManager.default().setPlaform(.QQ, appKey: "1107710751", appSecret: "QkR5CsAp4zF8Vv6a", redirectURL: "http://www.wenbozaixian.com")
+        UMSocialManager.default().setPlaform(.sina, appKey: "1098762141", appSecret: "00004c4f1dc6241353460db57d556475", redirectURL: "http://www.wenbozaixian.com")
         UMSocialGlobal.shareInstance().isUsingHttpsWhenShareContent = false
     }
     

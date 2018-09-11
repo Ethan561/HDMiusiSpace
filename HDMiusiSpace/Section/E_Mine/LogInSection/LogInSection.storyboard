@@ -160,7 +160,7 @@
                                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-lO-O3u">
+                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-lO-O3u">
                                         <rect key="frame" x="61" y="12" width="63" height="63"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="dl_icon_wc"/>
@@ -168,7 +168,7 @@
                                             <action selector="thridLoginAction:" destination="iJS-qq-LDt" eventType="touchUpInside" id="9UL-ae-3VG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4t-M1-jvN">
+                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4t-M1-jvN">
                                         <rect key="frame" x="136" y="12" width="63" height="63"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -179,7 +179,7 @@
                                             <action selector="thridLoginAction:" destination="iJS-qq-LDt" eventType="touchUpInside" id="9Cj-yJ-3f1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz4-xr-2E1">
+                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz4-xr-2E1">
                                         <rect key="frame" x="211" y="12" width="63" height="63"/>
                                         <state key="normal" image="dl_icon_wb"/>
                                         <connections>
@@ -231,8 +231,11 @@
                     <connections>
                         <outlet property="loginBtn" destination="yg5-gH-qFh" id="J8H-kW-u6i"/>
                         <outlet property="phoneTF" destination="38h-bD-VH3" id="rNL-6x-JKu"/>
+                        <outlet property="qqBtn" destination="S4t-M1-jvN" id="rO4-jr-hhI"/>
                         <outlet property="smsBtn" destination="cJB-qL-cb1" id="a9H-1I-cRQ"/>
                         <outlet property="smsTF" destination="a0s-yF-guC" id="F4a-sN-zn3"/>
+                        <outlet property="wbBtn" destination="pz4-xr-2E1" id="mzc-gG-K3x"/>
+                        <outlet property="wxBtn" destination="e3z-lO-O3u" id="8gw-WT-AD7"/>
                         <segue destination="8Pl-c5-VXd" kind="show" id="SZm-JR-rpQ"/>
                     </connections>
                 </viewController>

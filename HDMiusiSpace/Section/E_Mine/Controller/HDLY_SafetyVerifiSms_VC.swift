@@ -15,7 +15,7 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var smsTF: UITextField!
     @IBOutlet weak var smsBtn: UIButton!
     var segueType:String = "1"
-
+    var phone: String?
     let declare:HDDeclare = HDDeclare.shared
     
     var seconds:Int32 = 59
@@ -33,7 +33,12 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
         smsTF.keyboardType = .numberPad
         smsTF.returnKeyType = .done
         smsTF.delegate = self
-        if declare.phone != nil {
+        if phone != nil {
+            self.title = "找回密码"
+            HDLY_UserModel.shared.sendSmsForCheck(username: phone!, vc: self)
+            beginCount()
+            tipL.text = "短信验证码已发送至" + phone!
+        } else if declare.phone != nil {
             HDLY_UserModel.shared.sendSmsForCheck(username: declare.phone!, vc: self)
             beginCount()
             tipL.text = "短信验证码已发送至" + HDDeclare.shared.phone!
@@ -46,16 +51,26 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请输入验证码")
             return
         }
-        if declare.phone != nil {
-            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersVerify(username: HDDeclare.shared.phone!, smscode: smsTF.text!), showHud: true, loadingVC: self , success: { (result) in
-                
-                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-                LOG(" dic ： \(String(describing: dic))")
-                self.showChangeVC()
-                
-            }) { (errorCode, msg) in
-                
-            }
+        var username = ""
+        if phone != nil {
+            username = phone!
+        } else if declare.phone != nil {
+            username = declare.phone!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersVerify(username: username, smscode: smsTF.text!), showHud: true, loadingVC: self , success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" dic ： \(String(describing: dic))")
+            let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+            self.declare.api_token = dataDic["api_token"] as? String
+//            self.declare.nickname = dataDic["nickname"] as? String
+            self.declare.loginStatus = .kLogin_Status_Login
+            let defaults = UserDefaults.standard
+            defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+            self.showChangeVC()
+            
+        }) { (errorCode, msg) in
+            
         }
 
     }
@@ -70,11 +85,16 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
     
     
     @IBAction func getSmsAction(_ sender: UIButton) {
-        if declare.phone != nil {
+        if phone != nil {
+            HDLY_UserModel.shared.sendSmsForCheck(username: phone!, vc: self)
+            beginCount()
+            tipL.text = "短信验证码已发送至" + phone!
+        } else if declare.phone != nil {
             HDLY_UserModel.shared.sendSmsForCheck(username: declare.phone!, vc: self)
             beginCount()
             tipL.text = "短信验证码已发送至" + HDDeclare.shared.phone!
         }
+        
     }
     
     
@@ -107,14 +127,14 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 

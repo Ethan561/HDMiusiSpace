@@ -214,7 +214,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
-                self.viewModel.request_search(textField.text!, vc: self)
+                self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: 0, vc: self)
                 //保存搜索历史
                 self.func_saveHistory(textField.text!)
             }
@@ -255,7 +255,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let str: String = historyArray[indexPath.row]
-        self.viewModel.request_search(str, vc: self)
+        textFeild.text = str
+        self.viewModel.request_search(str: str, skip: 0, take: 10, type: 0, vc: self)
         //保存搜索历史
         self.func_saveHistory(str)
     }

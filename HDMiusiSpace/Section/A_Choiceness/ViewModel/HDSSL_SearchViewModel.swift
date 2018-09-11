@@ -30,7 +30,15 @@ class HDSSL_SearchViewModel: NSObject {
         }
     }
     //搜索
-    func request_search(_ str: String,vc: HDItemBaseVC) {
+    func request_search(str: String,skip: Int,take: Int,type: Int,vc: HDItemBaseVC) {
         print(str)
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .startSearchWith(keyword: str, skip: skip, take: take, searchType: type), success: { (result) in
+            //
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+        }) { (errorCode, msg) in
+            //
+        }
     }
 }

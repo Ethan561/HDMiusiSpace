@@ -200,14 +200,27 @@
                                     <outlet property="delegate" destination="Y4W-Xw-XeR" id="G6l-qg-VP3"/>
                                 </connections>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AES-CV-V5W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y4W-Xw-XeR" id="XY2-Wo-i6m"/>
+                                    <outlet property="delegate" destination="Y4W-Xw-XeR" id="Jnb-fl-hGK"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xEN-dm-Lry" firstAttribute="bottom" secondItem="XhK-Gm-b1W" secondAttribute="bottom" id="0Yp-0Q-vfY"/>
+                            <constraint firstItem="AES-CV-V5W" firstAttribute="top" secondItem="ghl-pS-vXI" secondAttribute="top" id="4Rz-ga-VIN"/>
                             <constraint firstItem="XhK-Gm-b1W" firstAttribute="leading" secondItem="xEN-dm-Lry" secondAttribute="leading" id="KLB-HS-3om"/>
                             <constraint firstItem="czZ-Tz-OfE" firstAttribute="leading" secondItem="xEN-dm-Lry" secondAttribute="leading" id="SzV-Kp-ivR"/>
+                            <constraint firstItem="AES-CV-V5W" firstAttribute="leading" secondItem="xEN-dm-Lry" secondAttribute="leading" id="T4V-54-2Og"/>
                             <constraint firstItem="xEN-dm-Lry" firstAttribute="trailing" secondItem="XhK-Gm-b1W" secondAttribute="trailing" id="UCT-mC-0UF"/>
                             <constraint firstItem="czZ-Tz-OfE" firstAttribute="trailing" secondItem="xEN-dm-Lry" secondAttribute="trailing" id="bGh-hQ-hSh"/>
+                            <constraint firstItem="AES-CV-V5W" firstAttribute="trailing" secondItem="xEN-dm-Lry" secondAttribute="trailing" id="dhc-o3-QNf"/>
+                            <constraint firstItem="AES-CV-V5W" firstAttribute="bottom" secondItem="xEN-dm-Lry" secondAttribute="bottom" id="fqt-kX-JvS"/>
                             <constraint firstItem="czZ-Tz-OfE" firstAttribute="top" secondItem="ghl-pS-vXI" secondAttribute="top" id="noX-ui-1as"/>
                             <constraint firstItem="XhK-Gm-b1W" firstAttribute="top" secondItem="czZ-Tz-OfE" secondAttribute="bottom" id="rop-UV-f4J"/>
                         </constraints>
@@ -215,6 +228,7 @@
                     </view>
                     <connections>
                         <outlet property="dTableView" destination="XhK-Gm-b1W" id="ehY-xI-lDJ"/>
+                        <outlet property="resultTableView" destination="AES-CV-V5W" id="qLC-uy-1Wm"/>
                         <outlet property="tagBgView" destination="nYr-Qm-kDd" id="yXo-fM-opg"/>
                     </connections>
                 </viewController>

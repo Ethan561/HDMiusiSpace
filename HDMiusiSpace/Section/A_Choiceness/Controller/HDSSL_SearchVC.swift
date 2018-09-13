@@ -15,8 +15,15 @@ class HDSSL_SearchVC: HDItemBaseVC {
     var textFeild: UITextField!  //输入框
     @IBOutlet weak var tagBgView: UIView! //标签背景页
     @IBOutlet weak var dTableView: UITableView!
+    @IBOutlet weak var resultTableView: UITableView!
     
     var searchTypeArray: [HDSSL_SearchTag] = Array.init() //搜索类型数组
+    var resultArray: [HDSSL_SearchType] = Array.init() //搜索类型数组
+    var newsArray: [HDSSL_SearchNews] = Array.init()
+    var classArray: [HDSSL_SearchCourse] = Array.init()
+    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()
+    var museumArray: [HDSSL_SearchMuseum] = Array.init()
+    
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
     
@@ -44,12 +51,16 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.viewModel.request_getTags(vc: self)
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        self.resultTableView.isHidden = true
+        
     }
     
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
         
+        //标签数组
         viewModel.tagArray.bind { (typeArray) in
             
             weakSelf?.searchTypeArray = typeArray  //返回标签数据，需要保存到本地
@@ -64,7 +75,50 @@ class HDSSL_SearchVC: HDItemBaseVC {
             
             weakSelf?.loadTagView() //加载tag view
         }
+        
+        //搜索结果数组
+        viewModel.resultArray.bind { (resultArray) in
+            
+            weakSelf?.resultArray = resultArray
+            weakSelf?.dealSearchResultData()
+            
+            //显示搜索结果
+            self.resultTableView.isHidden = false
+            self.textFeild.resignFirstResponder()
+            self.resultTableView.reloadData()
+        }
     }
+    //MARK: - 处理搜索结果
+    func dealSearchResultData(){
+        for  i: Int in 0..<self.resultArray.count {
+            let model: HDSSL_SearchType = self.resultArray[i]
+            
+            let modelType: Int = model.type!
+            
+            switch modelType {
+            case 0:
+                
+                newsArray = model.news_list!
+            case 1:
+                
+                classArray = model.course_list!
+            case 2:
+                
+                exhibitionArray = model.exhibition_list!
+            case 3:
+                
+                museumArray = model.museum_list!
+            default:
+                return
+            }
+        }
+    }
+    //MARK: - 隐藏搜索结果
+    func hideSearchResultView() {
+        //
+        resultTableView.isHidden = true
+    }
+    
     //MARK: - 加载类型标签
     func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
@@ -207,7 +261,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
 }
 //MARK: TextfeildDelegate
 extension HDSSL_SearchVC: UITextFieldDelegate {
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.hideSearchResultView()
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string == "\n" {
@@ -226,28 +282,79 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
 }
 //MARK: UITableView
 extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
+    
+    //获取cell数量
+    func getTableViewCells(index: Int) -> Int {
+        let model: HDSSL_SearchType = self.resultArray[index]
+        
+        let modelType: Int = model.type!
+        
+        switch modelType {
+        case 0:
+            
+            return min(3, model.news_num!)
+        case 1:
+        
+            return min(3, model.course_num!)
+        case 2:
+        
+            return min(3, model.exhibition_num!)
+        case 3:
+        
+            return min(3, model.museum_num!)
+        default:
+            return 0
+        }
+        
+    }
+    
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if tableView == dTableView {
+            return 1
+        }else {
+            return resultArray.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyArray.count
+        if tableView == dTableView {
+            return historyArray.count
+        }else {
+            return self.getTableViewCells(index: section)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        if tableView == dTableView {
+            return 44
+        }else {
+            return 80
+        }
+        
     }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        <#code#>
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == dTableView {
+            let str: String = historyArray[indexPath.row]
+            
+            let cell = UITableViewCell.init()
+            cell.textLabel?.text = String.init(format: "%@", str)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
+            
+            return cell
+        }else {
+            let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView)
+            
+            return cell!
+        }
         
-        let str: String = historyArray[indexPath.row]
         
-        let cell = UITableViewCell.init()
-        cell.textLabel?.text = String.init(format: "%@", str)
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -12,14 +12,80 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="HDSSL_MuseumCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HDSSL_MuseumCell" id="KGk-i7-Jjw" customClass="HDSSL_MuseumCell" customModule="HDMiusiSpace" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="HDSSL_MuseumCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HDSSL_MuseumCell" rowHeight="90" id="KGk-i7-Jjw" customClass="HDSSL_MuseumCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_nothing" translatesAutoresizingMaskIntoConstraints="NO" id="5RE-uN-9JI">
+                        <rect key="frame" x="20" y="11" width="94" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="NBe-dl-KFX"/>
+                            <constraint firstAttribute="width" constant="94" id="xjc-r1-9Ag"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n62-wt-YpS">
+                        <rect key="frame" x="124" y="10" width="176" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="V30-FX-lHI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="东城区长安街16号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRr-eC-Hhi">
+                        <rect key="frame" x="124" y="37" width="166" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="4LD-7Z-J3V"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_daolan" translatesAutoresizingMaskIntoConstraints="NO" id="T9p-zt-1zF">
+                        <rect key="frame" x="124" y="62" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="k6Z-UO-xB4"/>
+                            <constraint firstAttribute="width" constant="12" id="wSU-CE-DPD"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_study" translatesAutoresizingMaskIntoConstraints="NO" id="cis-jP-v1G">
+                        <rect key="frame" x="138" y="62" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="06n-iL-NHb"/>
+                            <constraint firstAttribute="width" constant="12" id="BhQ-bs-Yi1"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lRr-eC-Hhi" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="EuR-n8-qCx"/>
+                    <constraint firstItem="T9p-zt-1zF" firstAttribute="top" secondItem="lRr-eC-Hhi" secondAttribute="bottom" constant="10" id="Jcp-pU-1MY"/>
+                    <constraint firstItem="5RE-uN-9JI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ld1-tx-ZgV"/>
+                    <constraint firstItem="n62-wt-YpS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="V6s-dr-1oR"/>
+                    <constraint firstItem="n62-wt-YpS" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="Wur-vO-VWy"/>
+                    <constraint firstAttribute="trailing" secondItem="n62-wt-YpS" secondAttribute="trailing" constant="20" id="acY-RN-fJZ"/>
+                    <constraint firstItem="T9p-zt-1zF" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="c1s-NR-jRW"/>
+                    <constraint firstItem="cis-jP-v1G" firstAttribute="leading" secondItem="T9p-zt-1zF" secondAttribute="trailing" constant="2" id="hdP-6H-HMQ"/>
+                    <constraint firstAttribute="trailing" secondItem="lRr-eC-Hhi" secondAttribute="trailing" constant="30" id="oa1-Zr-nrw"/>
+                    <constraint firstItem="lRr-eC-Hhi" firstAttribute="centerY" secondItem="5RE-uN-9JI" secondAttribute="centerY" id="qOh-Mf-brm"/>
+                    <constraint firstItem="5RE-uN-9JI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="umu-JZ-zm3"/>
+                    <constraint firstItem="cis-jP-v1G" firstAttribute="centerY" secondItem="T9p-zt-1zF" secondAttribute="centerY" id="wu2-tI-qeR"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="34" y="77"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img_nothing" width="250" height="140"/>
+        <image name="zl_icon_daolan" width="16" height="12"/>
+        <image name="zl_icon_study" width="12" height="12"/>
+    </resources>
 </document>

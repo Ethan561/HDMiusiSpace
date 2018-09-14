@@ -20,5 +20,15 @@ class HDSSL_ClassCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    class  func getMyTableCell(tableV: UITableView) -> HDSSL_ClassCell! {
+        var cell: HDSSL_ClassCell? = tableV.dequeueReusableCell(withIdentifier: HDSSL_ClassCell.className) as? HDSSL_ClassCell
+        if cell == nil {
+            //注册cell
+            tableV.register(UINib.init(nibName: HDSSL_ClassCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_ClassCell.className)
+            cell = Bundle.main.loadNibNamed(HDSSL_ClassCell.className, owner: nil, options: nil)?.first as? HDSSL_ClassCell
+        }
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        return cell!
+    }
     
 }

@@ -54,6 +54,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         self.resultTableView.isHidden = true
         
+        self.resultTableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     //MVVM
@@ -308,6 +309,13 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    func getResultModel(section: Int) -> HDSSL_SearchType {
+        
+        let model: HDSSL_SearchType = self.resultArray[section]
+        
+        return model
+    }
+    
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == dTableView {
@@ -331,13 +339,68 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         if tableView == dTableView {
             return 44
         }else {
-            return 80
+            return 90
         }
         
     }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == dTableView {
+            return 0
+        }else {
+            return 44
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == dTableView {
+            return nil
+        }else {
+            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+            
+            let headerTitle = UILabel.init(frame: CGRect.init(x: 20, y: 7, width: 200, height: 30))
+            
+            var title: String?
+            
+            switch self.getResultModel(section: section).type {
+            case 0:
+                title = "资讯"
+            case 1:
+                title = "新知"
+            case 2:
+                title = "展览"
+            case 3:
+                title = "博物馆"
+            default:
+                return nil
+                
+            }
+            
+            headerTitle.text = title
+            view.addSubview(headerTitle)
+            
+            let line = UIView.init(frame: CGRect.init(x: 20, y: 43, width: ScreenWidth-40, height: 0.5))
+            line.backgroundColor = UIColor.RGBColor(245, 245, 245)
+            view.addSubview(line)
+            
+            return view
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        //
+        if tableView == dTableView {
+            return 0
+        }else {
+            return 8
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if tableView == dTableView {
+            return nil
+        }else {
+            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 8))
+            view.backgroundColor = UIColor.RGBColor(238, 238, 238)
+            return view
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == dTableView {
@@ -349,9 +412,31 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             
             return cell
         }else {
-            let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView)
             
-            return cell!
+            var cell = UITableViewCell()
+            
+            let model = self.getResultModel(section: indexPath.section)
+            
+            switch model.type {
+            
+            case 0:
+                cell = HDSSL_newsCell.getMyTableCell(tableV: tableView)
+                break
+            case 1:
+                cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
+                break
+            case 2:
+                cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
+                break
+            case 3:
+                cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
+                break
+            default:
+                break
+                
+            }
+            
+            return cell
         }
         
         

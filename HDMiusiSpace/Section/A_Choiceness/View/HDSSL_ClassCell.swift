@@ -10,6 +10,14 @@ import UIKit
 
 class HDSSL_ClassCell: UITableViewCell {
 
+    @IBOutlet weak var cell_imgView: UIImageView!
+    @IBOutlet weak var cell_titleLab: UILabel!
+    @IBOutlet weak var cell_teacherNameLab: UILabel!
+    @IBOutlet weak var cell_typeImgView: UIImageView!
+    @IBOutlet weak var cell_peopleAndTimeLab: UILabel!
+    @IBOutlet weak var cell_priceLab: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

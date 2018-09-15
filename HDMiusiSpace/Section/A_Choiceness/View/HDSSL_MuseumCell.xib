@@ -29,6 +29,7 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
                                 <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n62-wt-YpS">
@@ -49,43 +50,39 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_daolan" translatesAutoresizingMaskIntoConstraints="NO" id="T9p-zt-1zF">
-                        <rect key="frame" x="124" y="62" width="12" height="12"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NlP-84-Yss">
+                        <rect key="frame" x="122" y="60" width="178" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="k6Z-UO-xB4"/>
-                            <constraint firstAttribute="width" constant="12" id="wSU-CE-DPD"/>
+                            <constraint firstAttribute="height" constant="18" id="hpE-tl-N9Y"/>
                         </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_study" translatesAutoresizingMaskIntoConstraints="NO" id="cis-jP-v1G">
-                        <rect key="frame" x="138" y="62" width="12" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="06n-iL-NHb"/>
-                            <constraint firstAttribute="width" constant="12" id="BhQ-bs-Yi1"/>
-                        </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="NlP-84-Yss" firstAttribute="top" secondItem="lRr-eC-Hhi" secondAttribute="bottom" constant="8" id="7mZ-rs-Duh"/>
                     <constraint firstItem="lRr-eC-Hhi" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="EuR-n8-qCx"/>
-                    <constraint firstItem="T9p-zt-1zF" firstAttribute="top" secondItem="lRr-eC-Hhi" secondAttribute="bottom" constant="10" id="Jcp-pU-1MY"/>
+                    <constraint firstAttribute="trailing" secondItem="NlP-84-Yss" secondAttribute="trailing" constant="20" id="Inh-s7-TNg"/>
                     <constraint firstItem="5RE-uN-9JI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ld1-tx-ZgV"/>
                     <constraint firstItem="n62-wt-YpS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="V6s-dr-1oR"/>
                     <constraint firstItem="n62-wt-YpS" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="Wur-vO-VWy"/>
                     <constraint firstAttribute="trailing" secondItem="n62-wt-YpS" secondAttribute="trailing" constant="20" id="acY-RN-fJZ"/>
-                    <constraint firstItem="T9p-zt-1zF" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="10" id="c1s-NR-jRW"/>
-                    <constraint firstItem="cis-jP-v1G" firstAttribute="leading" secondItem="T9p-zt-1zF" secondAttribute="trailing" constant="2" id="hdP-6H-HMQ"/>
+                    <constraint firstItem="NlP-84-Yss" firstAttribute="leading" secondItem="5RE-uN-9JI" secondAttribute="trailing" constant="8" id="g1F-Z1-vx1"/>
                     <constraint firstAttribute="trailing" secondItem="lRr-eC-Hhi" secondAttribute="trailing" constant="30" id="oa1-Zr-nrw"/>
                     <constraint firstItem="lRr-eC-Hhi" firstAttribute="centerY" secondItem="5RE-uN-9JI" secondAttribute="centerY" id="qOh-Mf-brm"/>
                     <constraint firstItem="5RE-uN-9JI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="umu-JZ-zm3"/>
-                    <constraint firstItem="cis-jP-v1G" firstAttribute="centerY" secondItem="T9p-zt-1zF" secondAttribute="centerY" id="wu2-tI-qeR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cell_imgView" destination="5RE-uN-9JI" id="b19-rB-5Ov"/>
+                <outlet property="cell_loacationLab" destination="lRr-eC-Hhi" id="ucE-JX-D3j"/>
+                <outlet property="cell_tipBgView" destination="NlP-84-Yss" id="ohX-UP-DCW"/>
+                <outlet property="cell_titleLab" destination="n62-wt-YpS" id="Yc3-6a-gCb"/>
+            </connections>
             <point key="canvasLocation" x="34" y="77"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="img_nothing" width="250" height="140"/>
-        <image name="zl_icon_daolan" width="16" height="12"/>
-        <image name="zl_icon_study" width="12" height="12"/>
     </resources>
 </document>

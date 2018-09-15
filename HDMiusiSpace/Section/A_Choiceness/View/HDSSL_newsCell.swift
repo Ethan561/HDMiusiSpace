@@ -9,7 +9,12 @@
 import UIKit
 
 class HDSSL_newsCell: UITableViewCell {
-
+    @IBOutlet weak var cell_imgView: UIImageView!
+    @IBOutlet weak var cell_titleLab: UILabel!
+    @IBOutlet weak var cell_tipsLab: UILabel!
+    @IBOutlet weak var cell_commentBtn: UIButton!
+    @IBOutlet weak var cell_likeBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

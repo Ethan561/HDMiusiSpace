@@ -413,33 +413,116 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             return cell
         }else {
             
-            var cell = UITableViewCell()
-            
             let model = self.getResultModel(section: indexPath.section)
             
             switch model.type {
             
             case 0:
-                cell = HDSSL_newsCell.getMyTableCell(tableV: tableView)
-                break
+                let list = model.news_list
+                let news: HDSSL_SearchNews = list![indexPath.row]
+                
+                let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
+                cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell.cell_titleLab.text = String.init(format: "%@", news.title!)
+                
+                let plat = news.platform == nil ? "" : "|"+news.platform!
+                cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
+                
+                cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
+                
+                cell.cell_likeBtn.setTitle(String.init(format: "%d", news.likes!), for: .normal)
+                
+                return cell
+                
             case 1:
-                cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
-                break
+                let list = model.course_list
+                let course: HDSSL_SearchCourse = list![indexPath.row]
+                
+                let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: course.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.cell_titleLab.text = String.init(format: "%@", course.title!)
+                cell?.cell_teacherNameLab.text = String.init(format: "%@", course.teacher_name!)
+                
+                let typeimgName = course.file_type == 1 ? "xz_icon_audio_black_default":"xz_icon_video_black_default"
+                cell?.cell_typeImgView.image = UIImage.init(named: typeimgName)
+                cell?.cell_peopleAndTimeLab.text = String.init(format: "%d在学 %d课时", course.purchases!,course.class_num!)
+                if course.is_free == 1 {
+                    cell?.cell_priceLab.text = "免费"
+                    cell?.cell_priceLab.textColor = UIColor.black
+                }else {
+                    cell?.cell_priceLab.text = String.init(format: "¥%.1f", course.price!)
+                }
+                
+                return cell!
+                
             case 2:
-                cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
-                break
+                let list = model.exhibition_list
+                let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
+                
+                let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: exhibition.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                //标题
+                cell?.cell_titleLab.text = String.init(format: "%@", exhibition.title!)
+                //位置价格
+                var priceStr: String?
+                if exhibition.is_free == 1 {
+                    priceStr = "|免费"
+                }else {
+                    priceStr = String.init(format: "|%.1f", exhibition.price!)
+                }
+                cell?.cell_locationLab.text = String.init(format: "%@%@", exhibition.address!,priceStr!)
+                //标签
+                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                //评分
+                cell?.cell_scoreLab.text = String.init(format: "%.1f", exhibition.star!)
+                
+                return cell!
+                
             case 3:
-                cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
-                break
+                let list = model.museum_list
+                let museum: HDSSL_SearchMuseum = list![indexPath.row]
+                
+                let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: museum.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                //标题
+                cell?.cell_titleLab.text = String.init(format: "%@", museum.title!)
+                //地址
+                cell?.cell_loacationLab.text = String.init(format: "%@", museum.address!)
+                //标签
+                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                
+                return cell!
+                
             default:
                 break
                 
             }
             
-            return cell
+            
         }
         
+        return UITableViewCell()
+    }
+    
+    func getImagesWith(arr: [String],frame: CGRect) -> UIView {
+        //
+        let bgView = UIView.init(frame: frame)
+        for i in 0..<arr.count {
+            //
+            var size1 = CGSize.zero
+            
+            if i > 0 {
+                size1 = UIImage.getImageSize(arr[i-1])
+            }
+            let size = UIImage.getImageSize(arr[i])
+            
+            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width: size.width/2, height: size.height/2))
+            imgView.kf.setImage(with: URL.init(string: arr[i]))
+            imgView.centerY = bgView.centerY
+            bgView.addSubview(imgView)
+        }
         
+        return bgView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

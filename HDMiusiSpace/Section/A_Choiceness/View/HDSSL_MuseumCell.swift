@@ -10,6 +10,13 @@ import UIKit
 
 class HDSSL_MuseumCell: UITableViewCell {
 
+    @IBOutlet weak var cell_imgView: UIImageView!
+    @IBOutlet weak var cell_titleLab: UILabel!
+    @IBOutlet weak var cell_loacationLab: UILabel!
+    @IBOutlet weak var cell_tipBgView: UIView!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

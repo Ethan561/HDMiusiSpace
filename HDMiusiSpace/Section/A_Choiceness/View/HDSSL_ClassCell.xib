@@ -29,6 +29,7 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
                                 <integer key="value" value="5"/>
                             </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPS-5N-XKp">
@@ -95,6 +96,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cell_imgView" destination="nbB-oy-pWh" id="nHn-4Q-qxl"/>
+                <outlet property="cell_peopleAndTimeLab" destination="5cy-gF-CAt" id="yVk-DI-seW"/>
+                <outlet property="cell_priceLab" destination="VYO-gY-PMl" id="2eN-t9-w8i"/>
+                <outlet property="cell_teacherNameLab" destination="zws-4g-0NB" id="DJx-D2-iq4"/>
+                <outlet property="cell_titleLab" destination="KPS-5N-XKp" id="ohg-XD-0mj"/>
+                <outlet property="cell_typeImgView" destination="asG-JH-Wy4" id="qGW-GN-hfn"/>
+            </connections>
             <point key="canvasLocation" x="34" y="77"/>
         </tableViewCell>
     </objects>

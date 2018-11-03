@@ -243,12 +243,10 @@
 		D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC4221181EED007C8E56 /* HDCommonHeader.swift */; };
 		D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC4721181F28007C8E56 /* HDItemBaseVC.swift */; };
 		D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC4821181F28007C8E56 /* HDItemBaseNaviVC.swift */; };
-		D6C9FC5521181F28007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC4A21181F28007C8E56 /* .gitignore */; };
 		D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC4D21181F28007C8E56 /* TipContentView.xib */; };
 		D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC4E21181F28007C8E56 /* HD_LY_TipView.swift */; };
 		D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC4F21181F28007C8E56 /* TipContentView.swift */; };
 		D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC5021181F28007C8E56 /* EmptyConfigView.swift */; };
-		D6C9FC5A21181F28007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FC5121181F28007C8E56 /* .gitignore */; };
 		D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC5221181F28007C8E56 /* SwiftNotice.swift */; };
 		D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC5C21181F54007C8E56 /* UIButton+GifImage.swift */; };
 		D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC5D21181F54007C8E56 /* UIColor+HexColor.swift */; };
@@ -272,7 +270,6 @@
 		D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC8321181FD1007C8E56 /* HDEmptyBaseView.swift */; };
 		D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FC962118202A007C8E56 /* Bindable.swift */; };
 		D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCA1211825DC007C8E56 /* HDTabBarVC.swift */; };
-		D6C9FCBE211825DC007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCA3211825DC007C8E56 /* .gitignore */; };
 		D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCA6211825DC007C8E56 /* HDTabBar.swift */; };
 		D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCA7211825DC007C8E56 /* HDTabBarItem.swift */; };
 		D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCC5211834E8007C8E56 /* HDRootAVC.swift */; };
@@ -287,20 +284,6 @@
 		D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCDA211839A8007C8E56 /* RootE.storyboard */; };
 		D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */; };
 		D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCDE21183C4E007C8E56 /* UIView+Position.swift */; };
-		D6C9FCE621184840007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCE121184840007C8E56 /* .gitignore */; };
-		D6C9FCE721184840007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCE321184840007C8E56 /* .gitignore */; };
-		D6C9FCE821184840007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCE521184840007C8E56 /* .gitignore */; };
-		D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCEA2118485B007C8E56 /* .gitignore */; };
-		D6C9FCF02118485B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCEC2118485B007C8E56 /* .gitignore */; };
-		D6C9FCF12118485B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCEE2118485B007C8E56 /* .gitignore */; };
-		D6C9FCF82118486A007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCF32118486A007C8E56 /* .gitignore */; };
-		D6C9FCF92118486A007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCF52118486A007C8E56 /* .gitignore */; };
-		D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCF72118486A007C8E56 /* .gitignore */; };
-		D6C9FD012118487B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCFC2118487B007C8E56 /* .gitignore */; };
-		D6C9FD032118487B007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD002118487B007C8E56 /* .gitignore */; };
-		D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD052118488F007C8E56 /* .gitignore */; };
-		D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD072118488F007C8E56 /* .gitignore */; };
-		D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FD092118488F007C8E56 /* .gitignore */; };
 		D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */; };
 /* End PBXBuildFile section */
 
@@ -585,12 +568,10 @@
 		D6C9FC4221181EED007C8E56 /* HDCommonHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDCommonHeader.swift; sourceTree = "<group>"; };
 		D6C9FC4721181F28007C8E56 /* HDItemBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemBaseVC.swift; sourceTree = "<group>"; };
 		D6C9FC4821181F28007C8E56 /* HDItemBaseNaviVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemBaseNaviVC.swift; sourceTree = "<group>"; };
-		D6C9FC4A21181F28007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FC4D21181F28007C8E56 /* TipContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipContentView.xib; sourceTree = "<group>"; };
 		D6C9FC4E21181F28007C8E56 /* HD_LY_TipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HD_LY_TipView.swift; sourceTree = "<group>"; };
 		D6C9FC4F21181F28007C8E56 /* TipContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipContentView.swift; sourceTree = "<group>"; };
 		D6C9FC5021181F28007C8E56 /* EmptyConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyConfigView.swift; sourceTree = "<group>"; };
-		D6C9FC5121181F28007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FC5221181F28007C8E56 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		D6C9FC5C21181F54007C8E56 /* UIButton+GifImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+GifImage.swift"; sourceTree = "<group>"; };
 		D6C9FC5D21181F54007C8E56 /* UIColor+HexColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexColor.swift"; sourceTree = "<group>"; };
@@ -614,7 +595,6 @@
 		D6C9FC8321181FD1007C8E56 /* HDEmptyBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDEmptyBaseView.swift; sourceTree = "<group>"; };
 		D6C9FC962118202A007C8E56 /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D6C9FCA1211825DC007C8E56 /* HDTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDTabBarVC.swift; sourceTree = "<group>"; };
-		D6C9FCA3211825DC007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6C9FCA6211825DC007C8E56 /* HDTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDTabBar.swift; sourceTree = "<group>"; };
 		D6C9FCA7211825DC007C8E56 /* HDTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDTabBarItem.swift; sourceTree = "<group>"; };
 		D6C9FCC1211825F0007C8E56 /* HDMiusiSpace-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDMiusiSpace-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -630,20 +610,6 @@
 		D6C9FCDA211839A8007C8E56 /* RootE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RootE.storyboard; sourceTree = "<group>"; };
 		D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseVC.swift; sourceTree = "<group>"; };
 		D6C9FCDE21183C4E007C8E56 /* UIView+Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Position.swift"; sourceTree = "<group>"; };
-		D6C9FCE121184840007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCE321184840007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCE521184840007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCEA2118485B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCEC2118485B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCEE2118485B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCF32118486A007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCF52118486A007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCF72118486A007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FCFC2118487B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FD002118487B007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FD052118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FD072118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		D6C9FD092118488F007C8E56 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Feedback_VC.swift; sourceTree = "<group>"; };
 		DE5220120C8482CA6BBD2EF2 /* Pods-HDMiusiSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1177,7 +1143,6 @@
 		D6C9FC4421181F05007C8E56 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FC5121181F28007C8E56 /* .gitignore */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1204,7 +1169,6 @@
 		D6C9FC4921181F28007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FC4A21181F28007C8E56 /* .gitignore */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1341,7 +1305,6 @@
 		D6C9FCA2211825DC007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCA3211825DC007C8E56 /* .gitignore */,
 				A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */,
 			);
 			path = Model;
@@ -1467,7 +1430,6 @@
 		D6C9FCE021184840007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCE121184840007C8E56 /* .gitignore */,
 				D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */,
 			);
 			path = Model;
@@ -1476,7 +1438,6 @@
 		D6C9FCE221184840007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCE321184840007C8E56 /* .gitignore */,
 				D66C35C0213F804B00363D7C /* HDLY_MineHome_Header.swift */,
 				D66C35C2213F805300363D7C /* HDLY_MineHome_Header.xib */,
 				D66C35C4213FA6D000363D7C /* HDLY_Membership_Cell.swift */,
@@ -1500,7 +1461,6 @@
 		D6C9FCE421184840007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCE521184840007C8E56 /* .gitignore */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1508,7 +1468,6 @@
 		D6C9FCE92118485B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCEA2118485B007C8E56 /* .gitignore */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1516,7 +1475,6 @@
 		D6C9FCEB2118485B007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCEC2118485B007C8E56 /* .gitignore */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1524,7 +1482,6 @@
 		D6C9FCED2118485B007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCEE2118485B007C8E56 /* .gitignore */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1532,7 +1489,6 @@
 		D6C9FCF22118486A007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCF32118486A007C8E56 /* .gitignore */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1540,7 +1496,6 @@
 		D6C9FCF42118486A007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCF52118486A007C8E56 /* .gitignore */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1548,7 +1503,6 @@
 		D6C9FCF62118486A007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCF72118486A007C8E56 /* .gitignore */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1556,7 +1510,6 @@
 		D6C9FCFB2118487B007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FCFC2118487B007C8E56 /* .gitignore */,
 				D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */,
 				D6AA0AFE21351D610036320F /* CoursePublicViewModel.swift */,
 				D6AA0B002135210A0036320F /* TopicDetailViewModel.swift */,
@@ -1584,7 +1537,6 @@
 		D6C9FCFF2118487B007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FD002118487B007C8E56 /* .gitignore */,
 				D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */,
 				D670D383212575970064750A /* CourseModel.swift */,
 				D66EDF9B212AB16A004DACE0 /* CourseListen.swift */,
@@ -1600,7 +1552,6 @@
 		D6C9FD042118488F007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FD052118488F007C8E56 /* .gitignore */,
 				D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */,
 				A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */,
 			);
@@ -1610,7 +1561,6 @@
 		D6C9FD062118488F007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FD072118488F007C8E56 /* .gitignore */,
 				D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */,
 				A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */,
 			);
@@ -1620,7 +1570,6 @@
 		D6C9FD082118488F007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D6C9FD092118488F007C8E56 /* .gitignore */,
 				D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */,
 				D68D50D8213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib */,
 			);
@@ -1737,11 +1686,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6C9FCF82118486A007C8E56 /* .gitignore in Resources */,
 				D66C35C7213FA6D000363D7C /* HDLY_Membership_Cell.xib in Resources */,
 				D66C882A2127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib in Resources */,
-				D6C9FCF92118486A007C8E56 /* .gitignore in Resources */,
-				D6C9FCE821184840007C8E56 /* .gitignore in Resources */,
 				D66C7ABA2123F68B00B34221 /* RecommendSectionCell.xib in Resources */,
 				D670D38A212585A00064750A /* HDLY_CourseTitle_Cell.xib in Resources */,
 				D6866A582126A1460044EEAA /* HDLY_CourseList_SubVC4.xib in Resources */,
@@ -1753,22 +1699,15 @@
 				D6884E5E211E7D9800ABDE5E /* HDLY_Kids_Cell2.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
-				D6C9FCFA2118486A007C8E56 /* .gitignore in Resources */,
-				D6C9FD012118487B007C8E56 /* .gitignore in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
-				D6C9FCBE211825DC007C8E56 /* .gitignore in Resources */,
-				D6C9FD0B2118488F007C8E56 /* .gitignore in Resources */,
 				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
 				D66C35D7213FB14B00363D7C /* HDLY_MyDynamicCell.xib in Resources */,
 				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
-				D6C9FD0C2118488F007C8E56 /* .gitignore in Resources */,
-				D6C9FC5521181F28007C8E56 /* .gitignore in Resources */,
 				D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
-				D6C9FCEF2118485B007C8E56 /* .gitignore in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
@@ -1777,7 +1716,6 @@
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
-				D6C9FD032118487B007C8E56 /* .gitignore in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
@@ -1792,18 +1730,14 @@
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
-				D6C9FCE621184840007C8E56 /* .gitignore in Resources */,
 				D69B15BC212EB25800E9BCA0 /* HDLY_CourseComment_Footer.xib in Resources */,
-				D6C9FCF12118485B007C8E56 /* .gitignore in Resources */,
 				D66C35CB213FA80600363D7C /* HDLY_MineInfo_Cell.xib in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
-				D6C9FCE721184840007C8E56 /* .gitignore in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
 				D66C35C3213F805300363D7C /* HDLY_MineHome_Header.xib in Resources */,
 				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
-				D6C9FC5A21181F28007C8E56 /* .gitignore in Resources */,
 				D62277E121368069008F1416 /* MTImagePicker.strings in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
@@ -1814,9 +1748,7 @@
 				D66A2ABB2140D09100427425 /* HDLY_LogoutTip_View.xib in Resources */,
 				D66C35D3213FABC200363D7C /* HDLY_MineCourse_CollectionCell.xib in Resources */,
 				D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */,
-				D6C9FCF02118485B007C8E56 /* .gitignore in Resources */,
 				D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */,
-				D6C9FD0A2118488F007C8E56 /* .gitignore in Resources */,
 				D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

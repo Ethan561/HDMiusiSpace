@@ -105,8 +105,8 @@ class HD_LY_NetHelper {
                         failureHandle(failure: failure, stateCode: response.statusCode, message: model.msg)
                         break
                     }
-                    
                 }
+                    
                 catch let error {
                     guard let error = error as? MoyaError else { return }
                     let statusCode = error.response?.statusCode ?? 0

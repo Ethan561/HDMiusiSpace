@@ -265,9 +265,7 @@ extension HDRootAVC : HDLY_Topic_Cell_Delegate {
 
 // FSPagerView
 extension HDRootAVC {
-    
     // MARK:- FSPagerView DataSource
-    
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
         return self.bannerArr.count
     }

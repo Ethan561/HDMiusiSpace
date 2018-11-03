@@ -10,6 +10,7 @@ import Foundation
 class HDSSL_SearchViewModel: NSObject {
     //标签数组
     var tagArray: Bindable = Bindable([HDSSL_SearchTag]())
+    var resultArray: Bindable = Bindable([HDSSL_SearchType]())
     
     //请求标签
     func request_getTags(vc: HDItemBaseVC) {
@@ -36,6 +37,11 @@ class HDSSL_SearchViewModel: NSObject {
             //
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            let model: HDSSL_SearchResultModel = try! jsonDecoder.decode(HDSSL_SearchResultModel.self, from: result)
+            self.resultArray.value = model.data!
             
         }) { (errorCode, msg) in
             //

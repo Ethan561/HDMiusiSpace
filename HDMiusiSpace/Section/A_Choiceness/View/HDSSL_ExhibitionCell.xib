@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="HDSSL_ExhibitionCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HDSSL_ExhibitionCell" rowHeight="90" id="KGk-i7-Jjw" customClass="HDSSL_ExhibitionCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_nothing" translatesAutoresizingMaskIntoConstraints="NO" id="NZP-je-ZzZ">
+                        <rect key="frame" x="20" y="11" width="94" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="IkC-F4-s73"/>
+                            <constraint firstAttribute="width" constant="94" id="t9H-1e-QpM"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.CornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wW-WY-k5T">
+                        <rect key="frame" x="124" y="10" width="176" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="DHx-BZ-W4j"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家博物馆3号展厅|免费" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9j-Zr-Rcj">
+                        <rect key="frame" x="124" y="38" width="166" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="tB5-e3-ANR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-XB-FbT">
+                        <rect key="frame" x="284" y="61" width="20" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="OSn-oC-V8N"/>
+                            <constraint firstAttribute="width" constant="20" id="gOf-kA-x48"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_half" translatesAutoresizingMaskIntoConstraints="NO" id="70O-c0-t6Y">
+                        <rect key="frame" x="269" y="62.5" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="2sO-gG-Phh"/>
+                            <constraint firstAttribute="width" constant="12" id="P05-p2-CGU"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mow-ND-lNr">
+                        <rect key="frame" x="124" y="59.5" width="137" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="LXC-3P-hpV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="W9j-Zr-Rcj" firstAttribute="centerY" secondItem="NZP-je-ZzZ" secondAttribute="centerY" id="2Z4-2n-Agt"/>
+                    <constraint firstAttribute="trailing" secondItem="2z1-XB-FbT" secondAttribute="trailing" constant="16" id="3al-te-NLx"/>
+                    <constraint firstItem="NZP-je-ZzZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="95J-3I-F5z"/>
+                    <constraint firstItem="2z1-XB-FbT" firstAttribute="top" secondItem="W9j-Zr-Rcj" secondAttribute="bottom" constant="8" id="DKG-4A-bDX"/>
+                    <constraint firstItem="2z1-XB-FbT" firstAttribute="leading" secondItem="70O-c0-t6Y" secondAttribute="trailing" constant="3" id="Fbt-0M-yhb"/>
+                    <constraint firstItem="6wW-WY-k5T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OTS-jb-2RH"/>
+                    <constraint firstItem="70O-c0-t6Y" firstAttribute="centerY" secondItem="mow-ND-lNr" secondAttribute="centerY" id="Osw-H3-VPd"/>
+                    <constraint firstItem="6wW-WY-k5T" firstAttribute="leading" secondItem="NZP-je-ZzZ" secondAttribute="trailing" constant="10" id="apJ-h4-Jxm"/>
+                    <constraint firstItem="70O-c0-t6Y" firstAttribute="leading" secondItem="mow-ND-lNr" secondAttribute="trailing" constant="8" id="fOC-XM-ItZ"/>
+                    <constraint firstItem="NZP-je-ZzZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fzW-lb-L8X"/>
+                    <constraint firstAttribute="trailing" secondItem="6wW-WY-k5T" secondAttribute="trailing" constant="20" id="iPZ-nD-K0f"/>
+                    <constraint firstAttribute="trailing" secondItem="W9j-Zr-Rcj" secondAttribute="trailing" constant="30" id="m1I-ae-Uhc"/>
+                    <constraint firstItem="2z1-XB-FbT" firstAttribute="centerY" secondItem="70O-c0-t6Y" secondAttribute="centerY" id="nJD-zj-mwc"/>
+                    <constraint firstItem="W9j-Zr-Rcj" firstAttribute="leading" secondItem="NZP-je-ZzZ" secondAttribute="trailing" constant="10" id="tns-Vz-AW3"/>
+                    <constraint firstItem="mow-ND-lNr" firstAttribute="leading" secondItem="NZP-je-ZzZ" secondAttribute="trailing" constant="10" id="z2e-Dp-HuI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cell_imgView" destination="NZP-je-ZzZ" id="SxP-Ox-odt"/>
+                <outlet property="cell_locationLab" destination="W9j-Zr-Rcj" id="drO-j2-tol"/>
+                <outlet property="cell_scoreLab" destination="2z1-XB-FbT" id="kdA-vF-5Pl"/>
+                <outlet property="cell_starImgView" destination="70O-c0-t6Y" id="Ges-Ol-oNN"/>
+                <outlet property="cell_tipBgView" destination="mow-ND-lNr" id="oDb-JR-CY1"/>
+                <outlet property="cell_titleLab" destination="6wW-WY-k5T" id="lvF-fe-CeJ"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="77"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_nothing" width="250" height="140"/>
+        <image name="zl_icon_star_half" width="12" height="12"/>
+    </resources>
+</document>

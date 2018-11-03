@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="HDSSL_newsCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HDSSL_newsCell" rowHeight="90" id="KGk-i7-Jjw" customClass="HDSSL_newsCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_nothing" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-R3-Kcc">
+                        <rect key="frame" x="20" y="11" width="94" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="Har-dA-or7"/>
+                            <constraint firstAttribute="width" constant="94" id="zTg-xd-L9c"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师是怎样练成的艺术中国古画修复大师是" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85b-nI-tlD">
+                        <rect key="frame" x="124" y="10" width="176" height="33.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gQ-MV-KdL">
+                        <rect key="frame" x="264" y="64.5" width="40" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="Flv-1z-xoh"/>
+                            <constraint firstAttribute="width" constant="40" id="U3f-3r-X1k"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="0" image="jx_icon_zan">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udl-LN-YX2">
+                        <rect key="frame" x="222" y="67.5" width="40" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="3wD-6p-5Mw"/>
+                            <constraint firstAttribute="height" constant="12" id="ibe-hi-oZi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="0" image="jx_iocn_pl">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修复|文博在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysG-62-fua">
+                        <rect key="frame" x="124" y="57.5" width="93" height="32"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="85b-nI-tlD" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="08d-Fy-sz5"/>
+                    <constraint firstAttribute="bottom" secondItem="2gQ-MV-KdL" secondAttribute="bottom" constant="10" id="57c-tB-Ig4"/>
+                    <constraint firstAttribute="bottom" secondItem="ysG-62-fua" secondAttribute="bottom" id="KYR-qU-P72"/>
+                    <constraint firstAttribute="bottom" secondItem="Udl-LN-YX2" secondAttribute="bottom" constant="10" id="bXy-Wc-2Vn"/>
+                    <constraint firstItem="gpj-R3-Kcc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="crI-GX-uUX"/>
+                    <constraint firstItem="ysG-62-fua" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="gVs-QX-dYn"/>
+                    <constraint firstItem="85b-nI-tlD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="h89-5j-8YS"/>
+                    <constraint firstItem="2gQ-MV-KdL" firstAttribute="leading" secondItem="Udl-LN-YX2" secondAttribute="trailing" constant="2" id="hkI-J6-dQy"/>
+                    <constraint firstItem="gpj-R3-Kcc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ntr-eY-sBi"/>
+                    <constraint firstAttribute="trailing" secondItem="85b-nI-tlD" secondAttribute="trailing" constant="20" id="oNq-xb-PnL"/>
+                    <constraint firstItem="Udl-LN-YX2" firstAttribute="leading" secondItem="ysG-62-fua" secondAttribute="trailing" constant="5" id="qa0-8l-rv7"/>
+                    <constraint firstItem="Udl-LN-YX2" firstAttribute="centerY" secondItem="ysG-62-fua" secondAttribute="centerY" id="rMR-aC-iaK"/>
+                    <constraint firstAttribute="trailing" secondItem="2gQ-MV-KdL" secondAttribute="trailing" constant="16" id="zIL-gE-bdS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cell_commentBtn" destination="Udl-LN-YX2" id="q9B-H7-dCQ"/>
+                <outlet property="cell_imgView" destination="gpj-R3-Kcc" id="GaL-S5-Iyf"/>
+                <outlet property="cell_likeBtn" destination="2gQ-MV-KdL" id="pcs-ow-KzU"/>
+                <outlet property="cell_tipsLab" destination="ysG-62-fua" id="e55-Cn-ahp"/>
+                <outlet property="cell_titleLab" destination="85b-nI-tlD" id="Pyy-7s-UyN"/>
+            </connections>
+            <point key="canvasLocation" x="-320" y="77"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_nothing" width="250" height="140"/>
+        <image name="jx_icon_zan" width="12" height="12"/>
+        <image name="jx_iocn_pl" width="12" height="12"/>
+    </resources>
+</document>

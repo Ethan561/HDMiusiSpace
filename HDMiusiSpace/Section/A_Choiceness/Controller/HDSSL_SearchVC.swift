@@ -15,8 +15,15 @@ class HDSSL_SearchVC: HDItemBaseVC {
     var textFeild: UITextField!  //输入框
     @IBOutlet weak var tagBgView: UIView! //标签背景页
     @IBOutlet weak var dTableView: UITableView!
+    @IBOutlet weak var resultTableView: UITableView!
     
     var searchTypeArray: [HDSSL_SearchTag] = Array.init() //搜索类型数组
+    var resultArray: [HDSSL_SearchType] = Array.init() //搜索类型数组
+    var newsArray: [HDSSL_SearchNews] = Array.init()
+    var classArray: [HDSSL_SearchCourse] = Array.init()
+    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()
+    var museumArray: [HDSSL_SearchMuseum] = Array.init()
+    
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
     
@@ -44,12 +51,17 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.viewModel.request_getTags(vc: self)
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        self.resultTableView.isHidden = true
+        
+        self.resultTableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
         
+        //标签数组
         viewModel.tagArray.bind { (typeArray) in
             
             weakSelf?.searchTypeArray = typeArray  //返回标签数据，需要保存到本地
@@ -64,7 +76,50 @@ class HDSSL_SearchVC: HDItemBaseVC {
             
             weakSelf?.loadTagView() //加载tag view
         }
+        
+        //搜索结果数组
+        viewModel.resultArray.bind { (resultArray) in
+            
+            weakSelf?.resultArray = resultArray
+            weakSelf?.dealSearchResultData()
+            
+            //显示搜索结果
+            self.resultTableView.isHidden = false
+            self.textFeild.resignFirstResponder()
+            self.resultTableView.reloadData()
+        }
     }
+    //MARK: - 处理搜索结果
+    func dealSearchResultData(){
+        for  i: Int in 0..<self.resultArray.count {
+            let model: HDSSL_SearchType = self.resultArray[i]
+            
+            let modelType: Int = model.type!
+            
+            switch modelType {
+            case 0:
+                
+                newsArray = model.news_list!
+            case 1:
+                
+                classArray = model.course_list!
+            case 2:
+                
+                exhibitionArray = model.exhibition_list!
+            case 3:
+                
+                museumArray = model.museum_list!
+            default:
+                return
+            }
+        }
+    }
+    //MARK: - 隐藏搜索结果
+    func hideSearchResultView() {
+        //
+        resultTableView.isHidden = true
+    }
+    
     //MARK: - 加载类型标签
     func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
@@ -207,7 +262,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
 }
 //MARK: TextfeildDelegate
 extension HDSSL_SearchVC: UITextFieldDelegate {
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.hideSearchResultView()
+    }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string == "\n" {
@@ -226,28 +283,246 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
 }
 //MARK: UITableView
 extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
+    
+    //获取cell数量
+    func getTableViewCells(index: Int) -> Int {
+        let model: HDSSL_SearchType = self.resultArray[index]
+        
+        let modelType: Int = model.type!
+        
+        switch modelType {
+        case 0:
+            
+            return min(3, model.news_num!)
+        case 1:
+        
+            return min(3, model.course_num!)
+        case 2:
+        
+            return min(3, model.exhibition_num!)
+        case 3:
+        
+            return min(3, model.museum_num!)
+        default:
+            return 0
+        }
+        
+    }
+    
+    func getResultModel(section: Int) -> HDSSL_SearchType {
+        
+        let model: HDSSL_SearchType = self.resultArray[section]
+        
+        return model
+    }
+    
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if tableView == dTableView {
+            return 1
+        }else {
+            return resultArray.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyArray.count
+        if tableView == dTableView {
+            return historyArray.count
+        }else {
+            return self.getTableViewCells(index: section)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        if tableView == dTableView {
+            return 44
+        }else {
+            return 90
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == dTableView {
+            return 0
+        }else {
+            return 44
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == dTableView {
+            return nil
+        }else {
+            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+            
+            let headerTitle = UILabel.init(frame: CGRect.init(x: 20, y: 7, width: 200, height: 30))
+            
+            var title: String?
+            
+            switch self.getResultModel(section: section).type {
+            case 0:
+                title = "资讯"
+            case 1:
+                title = "新知"
+            case 2:
+                title = "展览"
+            case 3:
+                title = "博物馆"
+            default:
+                return nil
+                
+            }
+            
+            headerTitle.text = title
+            view.addSubview(headerTitle)
+            
+            let line = UIView.init(frame: CGRect.init(x: 20, y: 43, width: ScreenWidth-40, height: 0.5))
+            line.backgroundColor = UIColor.RGBColor(245, 245, 245)
+            view.addSubview(line)
+            
+            return view
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        //
+        if tableView == dTableView {
+            return 0
+        }else {
+            return 8
+        }
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if tableView == dTableView {
+            return nil
+        }else {
+            let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 8))
+            view.backgroundColor = UIColor.RGBColor(238, 238, 238)
+            return view
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == dTableView {
+            let str: String = historyArray[indexPath.row]
+            
+            let cell = UITableViewCell.init()
+            cell.textLabel?.text = String.init(format: "%@", str)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
+            
+            return cell
+        }else {
+            
+            let model = self.getResultModel(section: indexPath.section)
+            
+            switch model.type {
+            
+            case 0:
+                let list = model.news_list
+                let news: HDSSL_SearchNews = list![indexPath.row]
+                
+                let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
+                cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell.cell_titleLab.text = String.init(format: "%@", news.title!)
+                
+                let plat = news.platform == nil ? "" : "|"+news.platform!
+                cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
+                
+                cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
+                
+                cell.cell_likeBtn.setTitle(String.init(format: "%d", news.likes!), for: .normal)
+                
+                return cell
+                
+            case 1:
+                let list = model.course_list
+                let course: HDSSL_SearchCourse = list![indexPath.row]
+                
+                let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: course.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.cell_titleLab.text = String.init(format: "%@", course.title!)
+                cell?.cell_teacherNameLab.text = String.init(format: "%@", course.teacher_name!)
+                
+                let typeimgName = course.file_type == 1 ? "xz_icon_audio_black_default":"xz_icon_video_black_default"
+                cell?.cell_typeImgView.image = UIImage.init(named: typeimgName)
+                cell?.cell_peopleAndTimeLab.text = String.init(format: "%d在学 %d课时", course.purchases!,course.class_num!)
+                if course.is_free == 1 {
+                    cell?.cell_priceLab.text = "免费"
+                    cell?.cell_priceLab.textColor = UIColor.black
+                }else {
+                    cell?.cell_priceLab.text = String.init(format: "¥%.1f", course.price!)
+                }
+                
+                return cell!
+                
+            case 2:
+                let list = model.exhibition_list
+                let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
+                
+                let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: exhibition.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                //标题
+                cell?.cell_titleLab.text = String.init(format: "%@", exhibition.title!)
+                //位置价格
+                var priceStr: String?
+                if exhibition.is_free == 1 {
+                    priceStr = "|免费"
+                }else {
+                    priceStr = String.init(format: "|%.1f", exhibition.price!)
+                }
+                cell?.cell_locationLab.text = String.init(format: "%@%@", exhibition.address!,priceStr!)
+                //标签
+                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                //评分
+                cell?.cell_scoreLab.text = String.init(format: "%.1f", exhibition.star!)
+                
+                return cell!
+                
+            case 3:
+                let list = model.museum_list
+                let museum: HDSSL_SearchMuseum = list![indexPath.row]
+                
+                let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
+                cell?.cell_imgView.kf.setImage(with: URL.init(string: museum.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                //标题
+                cell?.cell_titleLab.text = String.init(format: "%@", museum.title!)
+                //地址
+                cell?.cell_loacationLab.text = String.init(format: "%@", museum.address!)
+                //标签
+                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                
+                return cell!
+                
+            default:
+                break
+                
+            }
+            
+            
+        }
         
-        let str: String = historyArray[indexPath.row]
+        return UITableViewCell()
+    }
+    
+    func getImagesWith(arr: [String],frame: CGRect) -> UIView {
+        //
+        let bgView = UIView.init(frame: frame)
+        for i in 0..<arr.count {
+            //
+            var size1 = CGSize.zero
+            
+            if i > 0 {
+                size1 = UIImage.getImageSize(arr[i-1])
+            }
+            let size = UIImage.getImageSize(arr[i])
+            
+            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width: size.width/2, height: size.height/2))
+            imgView.kf.setImage(with: URL.init(string: arr[i]))
+            imgView.centerY = bgView.centerY
+            bgView.addSubview(imgView)
+        }
         
-        let cell = UITableViewCell.init()
-        cell.textLabel?.text = String.init(format: "%@", str)
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
-        
-        return cell
+        return bgView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

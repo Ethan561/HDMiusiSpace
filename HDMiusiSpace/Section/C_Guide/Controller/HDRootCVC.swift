@@ -8,15 +8,57 @@
 
 import UIKit
 
-class HDRootCVC: HDItemBaseVC {
+class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
 
+    @IBOutlet weak var navBar: UIView!
+    @IBOutlet weak var navbarCons: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var contentScrollView: UIScrollView!
+    @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
+    
+    lazy var pageMenu: SPPageMenu = {
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:95, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        
+        page.delegate = self
+        page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
+        page.dividingLine.isHidden = true
+        page.selectedItemTitleColor = UIColor.HexColor(0x333333)
+        page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
+        page.tracker.backgroundColor = UIColor.red
+        page.backgroundColor = UIColor.white
+        page.permutationWay = SPPageMenuPermutationWay.notScrollEqualWidths
+        page.bridgeScrollView = self.contentScrollView
+        
+        return page
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollVBottomCons.constant = CGFloat(kTabBarHeight)
+        navbarCons.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
-
-        // Do any additional setup after loading the view.
+                
+        setupScrollView()
+        menuView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.init(width: 0, height: 5))
+        
+        let menuTitleArr = ["最近","最火"]
+        self.menuView.addSubview(self.pageMenu)
+        self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
+        self.addContentSubViewsWithArr(titleArr: menuTitleArr)
     }
-
+    
+    func setupScrollView() {
+        contentScrollView.delegate = self
+        contentScrollView.isPagingEnabled = true
+        contentScrollView.isScrollEnabled = true
+        contentScrollView.bounces = false
+        contentScrollView.showsVerticalScrollIndicator = false
+        contentScrollView.showsHorizontalScrollIndicator = false
+        contentScrollView.backgroundColor = UIColor.white
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -34,3 +76,59 @@ class HDRootCVC: HDItemBaseVC {
     */
 
 }
+
+
+// PageMenu
+extension HDRootCVC {
+    
+    // ContentSubViews
+    func addContentSubViewsWithArr(titleArr:Array<String>) {
+        
+        self.contentScrollView.contentSize = CGSize.init(width: Int(ScreenWidth)*titleArr.count, height: 0)
+        self.contentScrollView.isScrollEnabled = true
+        
+        for (i, _) in titleArr.enumerated() {
+//            let model  = self.menuArr[i]
+            switch i {
+                
+            case 0://最近
+                let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
+                self.addChildViewController(baseVC)
+                self.contentScrollView.addSubview(self.childViewControllers[0].view)
+            case 1://最火
+                let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
+                self.addChildViewController(baseVC)
+                
+            default: break
+                
+            }
+        }
+    }
+    
+    
+    //MARK: ---- SPPageMenuDelegate -----
+    func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
+        if self.childViewControllers.count == 0 {
+            return
+        }
+        // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
+        if (labs(toIndex - fromIndex) >= 2) {
+            self.contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
+        }else {
+            self.contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
+        }
+        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        if targetViewController.isViewLoaded == true {
+            return;
+        }
+        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight))
+        let s: UIScrollView = targetViewController.view.subviews[0] as! UIScrollView
+        var contentOffset:CGPoint = s.contentOffset
+        if contentOffset.y >= CGFloat(HeaderViewH) {
+            contentOffset.y = CGFloat(HeaderViewH)
+        }
+        s.contentOffset = contentOffset
+        self.contentScrollView.addSubview(targetViewController.view)
+    }
+}
+

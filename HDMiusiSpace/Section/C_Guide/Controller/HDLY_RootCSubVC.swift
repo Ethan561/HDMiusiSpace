@@ -1,18 +1,16 @@
 //
-//  HDLY_Recommend_SubVC.swift
+//  HDLY_RootCSubVC.swift
 //  HDMiusiSpace
 //
-//  Created by liuyi on 2018/8/8.
-//  Copyright © 2018年 hengdawb. All rights reserved.
+//  Created by liuyi on 2018/11/5.
+//  Copyright © 2018 hengdawb. All rights reserved.
 //
 
 import UIKit
 import ESPullToRefresh
 
-let PushTo_HDLY_RecmdMore_VC_Line = "PushTo_HDLY_RecmdMore_VC_Line"
 
-class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
-    
+class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
     
     let showListenView: Bindable = Bindable(false)
     let showKidsView: Bindable = Bindable(false)
@@ -47,6 +45,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         }
         self.dataRequest()
         addRefresh()
+
     }
     
     func addRefresh() {
@@ -107,7 +106,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     
 }
 
-extension HDLY_Recommend_SubVC {
+extension HDLY_RootCSubVC {
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -131,115 +130,79 @@ extension HDLY_Recommend_SubVC {
     //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArr.count
+        return 4
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = dataArr[indexPath.row]
-        if model.type?.int == 0 {
-            return 45
-        }else if model.type?.int == 1 {
-            return 126*ScreenWidth/375.0
-        }else if model.type?.int == 2 {
-            return 208*ScreenWidth/375.0
-        }else if model.type?.int == 3 {
-            return 240*ScreenWidth/375.0
-        }else if model.type?.int == 4 {
-            return 280*ScreenWidth/375.0
-        }else if model.type?.int == 5 {
-            return 260*ScreenWidth/375.0
-        }
-        else if model.type?.int == 6 {
-            return 160*ScreenWidth/375.0
+        let index = indexPath.row
+        if index == 0 {
+            return 70
+        }else if index == 1 {
+            return 223*ScreenWidth/375.0
+        }else if index == 2 {
+            return 70
+        }else if index == 3 {
+            return 300*ScreenWidth/320.0
         }
         return 0.01
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model = dataArr[indexPath.row]
-        if model.type?.int == 0 {
-            let cell = RecommendSectionCell.getMyTableCell(tableV: tableView)
-            cell?.nameLabel.text = model.category?.title
-            if model.category?.type == 4 {
-                cell?.moreL.text = ""
-            } else if model.category?.type == 6 {
-                cell?.moreL.text = "换一换"
-            }else {
-                cell?.moreL.text = "更多"
-            }
+        let index = indexPath.row
+        if index == 0 {
+            let cell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
             cell?.moreBtn.tag = 100 + indexPath.row
             cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
             return cell!
-        }else if model.type?.int == 1 {
-            let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
-            if  model.boutiquelist?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.grayImage(sourceImageV: (cell?.imgV)!), options: nil, progressBlock: nil, completionHandler: nil)
-            }
-            cell?.titleL.text = model.boutiquelist?.title
-            cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
-            cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0" :(model.boutiquelist?.views?.string)! + "人在学"
-            cell?.courseL.text = model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)! + "课时"
-            if model.boutiquelist?.file_type?.int == 1 {//mp3
-                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
-            }else {
-                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
-            }
-            if model.boutiquelist?.is_free?.int == 0 {
-                cell?.priceL.text = "¥" + (model.boutiquelist?.price?.string == nil ? "0" :(model.boutiquelist?.price?.string)!)
-                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
-
-            }else {
-                cell?.priceL.text = "免费"
-                cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
-            }
-            
-            return cell!
-        }else if model.type?.int == 2 {
-            let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
-            if  model.boutiquecard?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquecard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
-            }
-            cell?.titleL.text = model.boutiquecard?.title
-            cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
-            cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0" :(model.boutiquecard?.views?.string)! + "人在学"
-            cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0" :(model.boutiquecard?.classnum?.string)! + "课时"
-            if model.boutiquecard?.file_type?.int == 1 {//mp3
-                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
-            }else {
-                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
-            }
-            return cell!
-        }else if model.type?.int == 3 {//轻听随看
-            let cell = HDLY_Listen_Cell.getMyTableCell(tableV: tableView)
-            cell?.listArray = model.listen
-            cell?.delegate = self
-            
-            return cell!
-        }else if model.type?.int == 4 {
-            let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
-            if  model.interactioncard?.img != nil  {
-                cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
-            }
-            cell?.titleL.text = model.interactioncard?.title
-            cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"
-            cell?.priceL.text = "¥" + (model.interactioncard?.price?.string == nil ? "0" :(model.interactioncard?.price?.string)!)
+        }else if index == 1 {
+            let cell = HDLY_GuideCard2Cell.getMyTableCell(tableV: tableView)
 
             return cell!
-        }else if model.type?.int == 5 {
-            let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
-            cell?.dataArray = model.interactionlist
-            cell?.delegate = self
+        }else if index == 2 {
+            let cell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
+            cell?.moreBtn.tag = 100 + indexPath.row
+            cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
+//            cell?.moreBtn.isHidden = true
             
             return cell!
         }
-        else if model.type?.int == 6 {
-            let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
-            cell?.listArray = model.topic
-            cell?.delegate = self
+        else if index == 3 {
+            let cell = HDLY_GuideMapCell.getMyTableCell(tableV: tableView)
             
             return cell!
         }
+        
+//        else if model.type?.int == 3 {//轻听随看
+//            let cell = HDLY_Listen_Cell.getMyTableCell(tableV: tableView)
+//            cell?.listArray = model.listen
+//            cell?.delegate = self
+//
+//            return cell!
+//        }else if model.type?.int == 4 {
+//            let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
+//            if  model.interactioncard?.img != nil  {
+//                cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+//            }
+//            cell?.titleL.text = model.interactioncard?.title
+//            cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"
+//            cell?.priceL.text = "¥" + (model.interactioncard?.price?.string == nil ? "0" :(model.interactioncard?.price?.string)!)
+//
+//            return cell!
+//        }else if model.type?.int == 5 {
+//            let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
+//            cell?.dataArray = model.interactionlist
+//            cell?.delegate = self
+//
+//            return cell!
+//        }
+//        else if model.type?.int == 6 {
+//            let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
+//            cell?.listArray = model.topic
+//            cell?.delegate = self
+//
+//            return cell!
+//        }
         
         return UITableViewCell.init()
     }
@@ -269,7 +232,7 @@ extension HDLY_Recommend_SubVC {
     }
 }
 
-extension HDLY_Recommend_SubVC {
+extension HDLY_RootCSubVC {
     
     @objc func moreBtnAction(_ sender: UIButton) {
         let index = sender.tag - 100
@@ -318,7 +281,7 @@ extension HDLY_Recommend_SubVC {
     
 }
 
-extension HDLY_Recommend_SubVC {
+extension HDLY_RootCSubVC {
     
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
@@ -339,7 +302,29 @@ extension HDLY_Recommend_SubVC {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    
 }
 
 
+
+
+//class HDLY_RootCSubVC: UIViewController {
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        // Do any additional setup after loading the view.
+//    }
+//
+//
+//    /*
+//    // MARK: - Navigation
+//
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destination.
+//        // Pass the selected object to the new view controller.
+//    }
+//    */
+//
+//}

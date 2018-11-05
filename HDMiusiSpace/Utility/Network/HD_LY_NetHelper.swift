@@ -9,7 +9,6 @@
 import UIKit
 import Moya
 import Alamofire
-import Cache
 
 //错误码 根据台数据确定
 let Status_Code_Success = 1

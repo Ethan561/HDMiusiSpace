@@ -9,9 +9,11 @@
 #import "SPPageMenu.h"
 #import "NSString+hash.h"
 
-#import <ZFPlayer/ZFPlayer.h>
-#import <ZFPlayer/ZFAVPlayerManager.h>
-#import <ZFPlayer/ZFPlayerControlView.h>
+#import "ZFPlayer.h"
+#import "ZFAVPlayerManager.h"
+#import "ZFPlayerControlView.h"
+#import "UIView+ZFFrame.h"
+
 
 #import "STKAudioPlayer.h"
 #import "HD_LY_Cache.h"

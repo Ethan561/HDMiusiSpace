@@ -236,7 +236,7 @@ extension HDRootAVC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = infoModel!.data![indexPath.row]
         if model.type.int == 1 {
-            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDectail_VC
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
             vc.topic_id = model.itemList?.articleID.string
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)

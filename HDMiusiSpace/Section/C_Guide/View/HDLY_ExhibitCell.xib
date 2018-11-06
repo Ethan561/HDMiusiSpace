@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="Snd-C5-G4n" customClass="HDLY_ExhibitCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="57"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Snd-C5-G4n" id="NQm-ST-25g">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="56.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="900" verticalCompressionResistancePriority="900" text="文献所见原始渡河工具  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovb-FX-q72">
+                        <rect key="frame" x="68" y="18" width="235" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5Md-V9-b2H"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.85108090749999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_icon_default" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-o0-hhz">
+                        <rect key="frame" x="20" y="11.5" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Mn3-o0-hhz" secondAttribute="height" id="LZ3-Er-loW"/>
+                            <constraint firstAttribute="width" constant="34" id="ljh-J2-epI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:30 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQU-6M-j0r">
+                        <rect key="frame" x="315" y="18" width="55" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="OP1-D3-S1h"/>
+                            <constraint firstAttribute="height" constant="21" id="OUc-35-BRT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="0.85108090749999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Mn3-o0-hhz" firstAttribute="leading" secondItem="NQm-ST-25g" secondAttribute="leading" constant="20" id="9eX-J9-3ET"/>
+                    <constraint firstItem="Ovb-FX-q72" firstAttribute="centerY" secondItem="NQm-ST-25g" secondAttribute="centerY" id="OUp-J5-OF0"/>
+                    <constraint firstItem="Mn3-o0-hhz" firstAttribute="centerY" secondItem="NQm-ST-25g" secondAttribute="centerY" id="Tb5-Yo-HGq"/>
+                    <constraint firstItem="SQU-6M-j0r" firstAttribute="centerY" secondItem="NQm-ST-25g" secondAttribute="centerY" id="ZMo-rr-GWp"/>
+                    <constraint firstItem="SQU-6M-j0r" firstAttribute="leading" secondItem="Ovb-FX-q72" secondAttribute="trailing" constant="12" id="kJ2-Z0-lwH"/>
+                    <constraint firstItem="Ovb-FX-q72" firstAttribute="leading" secondItem="Mn3-o0-hhz" secondAttribute="trailing" constant="14" id="kxK-VC-7M6"/>
+                    <constraint firstAttribute="trailing" secondItem="SQU-6M-j0r" secondAttribute="trailing" id="sh5-6g-Sja"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="fTN-CA-7dd"/>
+            <connections>
+                <outlet property="nameL" destination="Ovb-FX-q72" id="6hp-SM-aEh"/>
+                <outlet property="timeL" destination="SQU-6M-j0r" id="Uk3-HD-DHk"/>
+                <outlet property="tipImgV" destination="Mn3-o0-hhz" id="tKX-6q-Pfg"/>
+            </connections>
+            <point key="canvasLocation" x="57.600000000000001" y="59.820089955022496"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="dl_icon_default" width="34" height="34"/>
+    </resources>
+</document>

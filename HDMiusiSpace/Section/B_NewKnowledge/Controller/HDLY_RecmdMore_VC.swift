@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     

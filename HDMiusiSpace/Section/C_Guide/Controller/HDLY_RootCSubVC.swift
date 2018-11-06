@@ -10,7 +10,7 @@ import UIKit
 import ESPullToRefresh
 
 
-class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
+class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     
     let showListenView: Bindable = Bindable(false)
     let showKidsView: Bindable = Bindable(false)
@@ -157,7 +157,8 @@ extension HDLY_RootCSubVC {
             return cell!
         }else if index == 1 {
             let cell = HDLY_GuideCard2Cell.getMyTableCell(tableV: tableView)
-
+            cell?.delegate = self
+            
             return cell!
         }else if index == 2 {
             let cell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
@@ -208,26 +209,7 @@ extension HDLY_RootCSubVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        
-        let model = dataArr[indexPath.row]
-        if model.type?.int == 0 {
-            
-        }else if model.type?.int == 1 {
-            vc.courseId = model.boutiquelist?.article_id?.string
-        }else if model.type?.int == 2 {
-            vc.courseId = model.boutiquecard?.article_id?.string
-        }else if model.type?.int == 3 {//轻听随看
-            
-        }else if model.type?.int == 4 {
-            vc.courseId = model.interactioncard?.article_id?.string
-            
-        }else if model.type?.int == 5 {
-            
-        }
-        else if model.type?.int == 6 {
-            
-        }
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -281,27 +263,13 @@ extension HDLY_RootCSubVC {
     
 }
 
-extension HDLY_RootCSubVC {
+extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
     
-    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
-        vc.listen_id = model.article_id?.string
+    func didSelectItemAt(_ model:Int, _ cell: HDLY_GuideCard2Cell) {
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
-        
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-        vc.topic_id = model.article_id?.string
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = model.article_id?.string
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
+
     
 }
 

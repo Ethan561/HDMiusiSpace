@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HDLY_GuideCard2Cell_Delegate:NSObjectProtocol {
-    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_GuideCard2Cell)
+    func didSelectItemAt(_ model:Int, _ cell: HDLY_GuideCard2Cell)
 }
 //
 class HDLY_GuideCard2Cell: UITableViewCell {
@@ -74,15 +74,15 @@ class HDLY_GuideCard2Cell: UITableViewCell {
     
     @IBAction func tapAction(_ sender: UIButton) {
         
+        if sender.tag == 101 {
+            //let model = dataArray?.first
+            delegate?.didSelectItemAt(1, self)
+        }
+        else if sender.tag == 102 {
+            //let model1 = dataArray?.last
+            delegate?.didSelectItemAt(2, self)
+        }
         if dataArray != nil {
-            if sender.tag == 101 {
-                let model = dataArray?.first
-                delegate?.didSelectItemAt(model!, self)
-            }
-            else if sender.tag == 102 {
-                let model1 = dataArray?.last
-                delegate?.didSelectItemAt(model1!, self)
-            }
         }
         
     }

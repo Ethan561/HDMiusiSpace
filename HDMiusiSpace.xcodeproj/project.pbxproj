@@ -32,6 +32,10 @@
 		D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */; };
 		D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */; };
 		D60E85732191661400072BF9 /* HDLY_QRGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */; };
+		D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */; };
+		D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */; };
+		D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */; };
+		D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */; };
 		D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAB218FD490004A05DA /* ZFPlayerGestureControl.m */; };
 		D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAC218FD490004A05DA /* ZFPlayerController.m */; };
 		D6115AE7218FD490004A05DA /* ZFOrientationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAF218FD490004A05DA /* ZFOrientationObserver.m */; };
@@ -378,6 +382,10 @@
 		D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MapGuideVC.swift; sourceTree = "<group>"; };
 		D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumGuideVC.swift; sourceTree = "<group>"; };
 		D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QRGuideVC.swift; sourceTree = "<group>"; };
+		D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionCell.swift; sourceTree = "<group>"; };
+		D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ExhibitionCell.xib; sourceTree = "<group>"; };
+		D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitCell.swift; sourceTree = "<group>"; };
+		D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ExhibitCell.xib; sourceTree = "<group>"; };
 		D6115AAA218FD490004A05DA /* ZFPlayerNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerNotification.h; sourceTree = "<group>"; };
 		D6115AAB218FD490004A05DA /* ZFPlayerGestureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerGestureControl.m; sourceTree = "<group>"; };
 		D6115AAC218FD490004A05DA /* ZFPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerController.m; sourceTree = "<group>"; };
@@ -1738,6 +1746,10 @@
 				D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */,
 				D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */,
 				D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */,
+				D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */,
+				D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */,
+				D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */,
+				D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1940,6 +1952,7 @@
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
 				D66C35CF213FAA8600363D7C /* HDLY_MineCourse_Cell.xib in Resources */,
+				D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
@@ -1956,6 +1969,7 @@
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
+				D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
@@ -2202,6 +2216,7 @@
 				D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */,
 				D622779B21367D4D008F1416 /* ScalePresentationController.swift in Sources */,
 				D6115AF3218FD490004A05DA /* UIView+ZFFrame.m in Sources */,
+				D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D6115AFA218FD490004A05DA /* ZFSmallFloatControlView.m in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
@@ -2306,6 +2321,7 @@
 				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDetail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
+				D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
 				D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */,

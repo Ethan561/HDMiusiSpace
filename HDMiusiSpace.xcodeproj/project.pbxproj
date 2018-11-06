@@ -28,6 +28,15 @@
 		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
 		D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */; };
 		D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */; };
+		D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */; };
+		D60E856D2191651E00072BF9 /* HDLY_ExhibitListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856C2191651E00072BF9 /* HDLY_ExhibitListVC.swift */; };
+		D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */; };
+		D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */; };
+		D60E85732191661400072BF9 /* HDLY_QRGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */; };
+		D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */; };
+		D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */; };
+		D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */; };
+		D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */; };
 		D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAB218FD490004A05DA /* ZFPlayerGestureControl.m */; };
 		D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAC218FD490004A05DA /* ZFPlayerController.m */; };
 		D6115AE7218FD490004A05DA /* ZFOrientationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = D6115AAF218FD490004A05DA /* ZFOrientationObserver.m */; };
@@ -370,6 +379,15 @@
 		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
 		D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GenderTip_View.swift; sourceTree = "<group>"; };
 		D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GenderTip_View.xib; sourceTree = "<group>"; };
+		D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionListVC.swift; sourceTree = "<group>"; };
+		D60E856C2191651E00072BF9 /* HDLY_ExhibitListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitListVC.swift; sourceTree = "<group>"; };
+		D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MapGuideVC.swift; sourceTree = "<group>"; };
+		D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumGuideVC.swift; sourceTree = "<group>"; };
+		D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QRGuideVC.swift; sourceTree = "<group>"; };
+		D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionCell.swift; sourceTree = "<group>"; };
+		D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ExhibitionCell.xib; sourceTree = "<group>"; };
+		D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitCell.swift; sourceTree = "<group>"; };
+		D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ExhibitCell.xib; sourceTree = "<group>"; };
 		D6115AAA218FD490004A05DA /* ZFPlayerNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerNotification.h; sourceTree = "<group>"; };
 		D6115AAB218FD490004A05DA /* ZFPlayerGestureControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerGestureControl.m; sourceTree = "<group>"; };
 		D6115AAC218FD490004A05DA /* ZFPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerController.m; sourceTree = "<group>"; };
@@ -1588,6 +1606,11 @@
 			children = (
 				D6C9FCC921183515007C8E56 /* HDRootCVC.swift */,
 				D6EEDD9C218FEFE700F730BA /* HDLY_RootCSubVC.swift */,
+				D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */,
+				D60E856C2191651E00072BF9 /* HDLY_ExhibitListVC.swift */,
+				D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */,
+				D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */,
+				D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1726,6 +1749,10 @@
 				D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */,
 				D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */,
 				D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */,
+				D60E85762191769E00072BF9 /* HDLY_ExhibitionCell.swift */,
+				D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */,
+				D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */,
+				D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1928,6 +1955,7 @@
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
 				D66C35CF213FAA8600363D7C /* HDLY_MineCourse_Cell.xib in Resources */,
+				D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
@@ -1944,6 +1972,7 @@
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
+				D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
@@ -2111,10 +2140,12 @@
 				D6115AFF218FD490004A05DA /* KSMediaPlayerManager.m in Sources */,
 				D6694740213005390068945A /* CourseQuestion.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
+				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
 				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
+				D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
@@ -2122,6 +2153,7 @@
 				D6115AF2218FD490004A05DA /* ZFUtilities.m in Sources */,
 				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
 				D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */,
+				D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */,
 				D6EEDDB12190202D00F730BA /* HDLY_GuideCard2Cell.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
 				D6115AEF218FD490004A05DA /* UIViewController+ZFPlayerRotation.m in Sources */,
@@ -2187,6 +2219,7 @@
 				D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */,
 				D622779B21367D4D008F1416 /* ScalePresentationController.swift in Sources */,
 				D6115AF3218FD490004A05DA /* UIView+ZFFrame.m in Sources */,
+				D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D6115AFA218FD490004A05DA /* ZFSmallFloatControlView.m in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
@@ -2207,6 +2240,7 @@
 				D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */,
 				D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
+				D60E856D2191651E00072BF9 /* HDLY_ExhibitListVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
@@ -2290,6 +2324,7 @@
 				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDetail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
+				D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
 				D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */,
@@ -2323,6 +2358,7 @@
 				A7AC35BB214A51F6004E8BC1 /* HDSSL_ExhibitionCell.swift in Sources */,
 				D6115AF1218FD490004A05DA /* ZFAVPlayerManager.m in Sources */,
 				D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */,
+				D60E85732191661400072BF9 /* HDLY_QRGuideVC.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				A756C8382191858600C1747A /* RootDViewModel.swift in Sources */,
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,

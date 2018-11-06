@@ -64,6 +64,13 @@ class HDTagChooseVC: UIViewController {
             }
             
             HDDeclare.shared.selectedTagArray = self.selectedtagArray //本地保存已选标签
+            //保存
+            if self.selectedtagArray.count > 0 {
+                //正式开始
+                let userDefaults = UserDefaults.standard
+                userDefaults.set("1", forKey: "saveTags")
+                userDefaults.synchronize()
+            }
             
             self.uploadMyTags() //调接口保存选择的标签
         }

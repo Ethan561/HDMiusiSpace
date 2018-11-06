@@ -10,8 +10,13 @@ import UIKit
 
 class HDRootDVC: HDItemBaseVC {
 
+    @IBOutlet weak var bavBarView: UIView!
+    @IBOutlet weak var navBarHeight: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navBarHeight.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
 
         // Do any additional setup after loading the view.

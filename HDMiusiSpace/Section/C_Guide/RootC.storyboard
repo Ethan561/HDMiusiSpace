@@ -330,7 +330,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img1" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-Oj-d5d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_img_tj1" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-Oj-d5d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MFM-Oj-d5d" secondAttribute="height" multiplier="375:280" id="2oU-HQ-xCr"/>
@@ -439,6 +439,6 @@
     <resources>
         <image name="dl_icon_szjp_gb" width="16" height="16"/>
         <image name="nav_back_white" width="12" height="20"/>
-        <image name="qtsk_course_img1" width="375" height="210"/>
+        <image name="zl_img_tj1" width="335" height="188"/>
     </resources>
 </document>

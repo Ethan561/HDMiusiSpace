@@ -18,6 +18,8 @@
 #import "STKAudioPlayer.h"
 #import "HD_LY_Cache.h"
 #import "YYCache.h"
+#import "HDMapKit.h"
+
 
 
 

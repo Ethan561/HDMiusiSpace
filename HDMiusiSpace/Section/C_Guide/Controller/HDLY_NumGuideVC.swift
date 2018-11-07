@@ -16,6 +16,8 @@ class HDLY_NumGuideVC: HDItemBaseVC {
     @IBOutlet weak var cleanBtn: UIButton!
     @IBOutlet weak var numL: UILabel!
     
+    var numStr = ""
+    
     var isFolder = false
     var tagsSelectIndex = 0
     var listArr = [ListenList]()
@@ -44,13 +46,12 @@ class HDLY_NumGuideVC: HDItemBaseVC {
     }
 
     @IBAction func cleanAction(_ sender: Any) {
-        
+        numStr = ""
     }
     
     @IBAction func sliderValueChangeAction(_ sender: UISlider) {
         
     }
-    
     
     @objc func pageTitleViewToTop() {
         self.collectionView.contentOffset = CGPoint.zero
@@ -122,7 +123,9 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
             let cell:HDLY_NumCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! HDLY_NumCollectionCell
 
             cell.titleL.text = dataArr[indexPath.row]
-            
+            if indexPath.row < 9 {
+                cell.tagBtn.isHidden = true
+            }
             if indexPath.row == 9{
                 cell.tagBtn.setImage(UIImage.init(named: "dl_icon_sc"), for: UIControlState.normal)
             }
@@ -147,26 +150,19 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if indexPath.section == 0 {
-//            if indexPath.row != 4 {
-//                tagsSelectIndex = indexPath.row
-//                collectionView.reloadData()
-//                if self.tagsArr.count > 0 && indexPath.row < 4 {
-//                    let model = self.tagsArr[indexPath.row]
-//                    dataRequest(cate_id: "\(model.cateID)")
-//                }
-//                if self.tagsArr.count > 0 &&  indexPath.row > 4 {
-//                    let model = self.tagsArr[indexPath.row-1]
-//                    dataRequest(cate_id: "\(model.cateID)")
-//                }
-//            }
-//        }
-//        if indexPath.section == 1 {
-//            let model = self.listArr[indexPath.row]
-//            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
-//            vc.listen_id = "\(model.listenID)"
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        if indexPath.row < 9 {
+            numStr.append("\(indexPath.row+1)")
+        }
+        if indexPath.row == 10 {
+            numStr.append("0")
+        }
+        if indexPath.row == 9 && numStr.count > 0{
+            numStr.removeLast()
+        }
+        if numStr.count > 4 {
+            numStr =  String(numStr.prefix(4))
+        }
+        numL.text = numStr
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------
@@ -183,7 +179,7 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let width:CGFloat   = 90
         let space = (ScreenWidth-3*width)/4.0
-        let spaceH = (ScreenWidth*0.5 - 4 * 60)/5.0
+        let spaceH:CGFloat = 20.0
         
         return UIEdgeInsets.init(top: spaceH, left: space, bottom: spaceH, right: space)
     }

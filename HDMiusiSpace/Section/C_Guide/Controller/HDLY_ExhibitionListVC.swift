@@ -157,9 +157,17 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 //        let model = dataArr[indexPath.row]
-        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
-//        vc.courseId = "\(model.classID)"
-        self.navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row == 0 {
+            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
+            //        vc.courseId = "\(model.classID)"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if indexPath.row == 1 {
+            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
+            //        vc.courseId = "\(model.classID)"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
 
 }

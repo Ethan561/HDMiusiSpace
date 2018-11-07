@@ -75,6 +75,35 @@
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
+		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
+		D61E94BC2192D12400C5299F /* HD_NKM_Big_Ann_View.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94812192D12400C5299F /* HD_NKM_Big_Ann_View.m */; };
+		D61E94BD2192D12400C5299F /* HDAnnotationView+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94822192D12400C5299F /* HDAnnotationView+Method.m */; };
+		D61E94BE2192D12400C5299F /* HD_NKM_Big_Ann_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E94832192D12400C5299F /* HD_NKM_Big_Ann_View.xib */; };
+		D61E94BF2192D12400C5299F /* HDMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94882192D12400C5299F /* HDMapView.m */; };
+		D61E94C02192D12400C5299F /* HDTiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E948B2192D12400C5299F /* HDTiledView.m */; };
+		D61E94C12192D12400C5299F /* HDAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E948E2192D12400C5299F /* HDAnnotation.m */; };
+		D61E94C22192D12400C5299F /* HDAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E948F2192D12400C5299F /* HDAnnotationView.m */; };
+		D61E94C32192D12400C5299F /* HDRouteDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94922192D12400C5299F /* HDRouteDrawingView.m */; };
+		D61E94C42192D12400C5299F /* HDMapView+AnnView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94932192D12400C5299F /* HDMapView+AnnView.m */; };
+		D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94952192D12400C5299F /* HDMapView+Download.m */; };
+		D61E94C62192D12400C5299F /* HDMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94962192D12400C5299F /* HDMapModel.m */; };
+		D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94982192D12400C5299F /* HDBaseModel.m */; };
+		D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E949A2192D12400C5299F /* UIImage+WebP.m */; };
+		D61E94C92192D12400C5299F /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E949B2192D12400C5299F /* MKAnnotationView+WebCache.m */; };
+		D61E94CA2192D12400C5299F /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E949E2192D12400C5299F /* SDWebImageManager.m */; };
+		D61E94CB2192D12400C5299F /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E949F2192D12400C5299F /* SDWebImageDecoder.m */; };
+		D61E94CC2192D12400C5299F /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A12192D12400C5299F /* UIImageView+HighlightedWebCache.m */; };
+		D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A32192D12400C5299F /* SDWebImageDownloader.m */; };
+		D61E94CE2192D12400C5299F /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A42192D12400C5299F /* UIImage+GIF.m */; };
+		D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A62192D12400C5299F /* UIImage+MultiFormat.m */; };
+		D61E94D02192D12400C5299F /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A72192D12400C5299F /* SDWebImageCompat.m */; };
+		D61E94D12192D12400C5299F /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94A82192D12400C5299F /* SDWebImagePrefetcher.m */; };
+		D61E94D22192D12400C5299F /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94AC2192D12400C5299F /* SDImageCache.m */; };
+		D61E94D32192D12400C5299F /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94AE2192D12400C5299F /* SDWebImageDownloaderOperation.m */; };
+		D61E94D42192D12400C5299F /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B12192D12400C5299F /* NSData+ImageContentType.m */; };
+		D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B22192D12400C5299F /* UIImageView+WebCache.m */; };
+		D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B52192D12400C5299F /* UIView+WebCacheOperation.m */; };
+		D61E94D72192D12400C5299F /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B92192D12400C5299F /* UIButton+WebCache.m */; };
 		D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */; };
 		D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */; };
 		D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */; };
@@ -462,6 +491,64 @@
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
+		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
+		D61E94802192D12400C5299F /* HDAnnotationView+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HDAnnotationView+Method.h"; sourceTree = "<group>"; };
+		D61E94812192D12400C5299F /* HD_NKM_Big_Ann_View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HD_NKM_Big_Ann_View.m; sourceTree = "<group>"; };
+		D61E94822192D12400C5299F /* HDAnnotationView+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HDAnnotationView+Method.m"; sourceTree = "<group>"; };
+		D61E94832192D12400C5299F /* HD_NKM_Big_Ann_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HD_NKM_Big_Ann_View.xib; sourceTree = "<group>"; };
+		D61E94842192D12400C5299F /* HDMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMapKit.h; sourceTree = "<group>"; };
+		D61E94852192D12400C5299F /* HD_NKM_Big_Ann_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HD_NKM_Big_Ann_View.h; sourceTree = "<group>"; };
+		D61E94872192D12400C5299F /* HDAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnnotationView.h; sourceTree = "<group>"; };
+		D61E94882192D12400C5299F /* HDMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMapView.m; sourceTree = "<group>"; };
+		D61E94892192D12400C5299F /* HDMapModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMapModel.h; sourceTree = "<group>"; };
+		D61E948A2192D12400C5299F /* HDMapView+Download.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HDMapView+Download.h"; sourceTree = "<group>"; };
+		D61E948B2192D12400C5299F /* HDTiledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDTiledView.m; sourceTree = "<group>"; };
+		D61E948C2192D12400C5299F /* HDMapView+AnnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HDMapView+AnnView.h"; sourceTree = "<group>"; };
+		D61E948D2192D12400C5299F /* HDRouteDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDRouteDrawingView.h; sourceTree = "<group>"; };
+		D61E948E2192D12400C5299F /* HDAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnnotation.m; sourceTree = "<group>"; };
+		D61E948F2192D12400C5299F /* HDAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAnnotationView.m; sourceTree = "<group>"; };
+		D61E94902192D12400C5299F /* HDMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDMapView.h; sourceTree = "<group>"; };
+		D61E94912192D12400C5299F /* HDAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAnnotation.h; sourceTree = "<group>"; };
+		D61E94922192D12400C5299F /* HDRouteDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDRouteDrawingView.m; sourceTree = "<group>"; };
+		D61E94932192D12400C5299F /* HDMapView+AnnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HDMapView+AnnView.m"; sourceTree = "<group>"; };
+		D61E94942192D12400C5299F /* HDTiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDTiledView.h; sourceTree = "<group>"; };
+		D61E94952192D12400C5299F /* HDMapView+Download.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HDMapView+Download.m"; sourceTree = "<group>"; };
+		D61E94962192D12400C5299F /* HDMapModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDMapModel.m; sourceTree = "<group>"; };
+		D61E94982192D12400C5299F /* HDBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDBaseModel.m; sourceTree = "<group>"; };
+		D61E949A2192D12400C5299F /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		D61E949B2192D12400C5299F /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
+		D61E949C2192D12400C5299F /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		D61E949D2192D12400C5299F /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		D61E949E2192D12400C5299F /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		D61E949F2192D12400C5299F /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		D61E94A02192D12400C5299F /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		D61E94A12192D12400C5299F /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		D61E94A22192D12400C5299F /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		D61E94A32192D12400C5299F /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		D61E94A42192D12400C5299F /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		D61E94A52192D12400C5299F /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		D61E94A62192D12400C5299F /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		D61E94A72192D12400C5299F /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		D61E94A82192D12400C5299F /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		D61E94A92192D12400C5299F /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		D61E94AA2192D12400C5299F /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
+		D61E94AB2192D12400C5299F /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		D61E94AC2192D12400C5299F /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		D61E94AD2192D12400C5299F /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		D61E94AE2192D12400C5299F /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		D61E94AF2192D12400C5299F /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		D61E94B02192D12400C5299F /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		D61E94B12192D12400C5299F /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		D61E94B22192D12400C5299F /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		D61E94B32192D12400C5299F /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		D61E94B42192D12400C5299F /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		D61E94B52192D12400C5299F /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		D61E94B62192D12400C5299F /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		D61E94B72192D12400C5299F /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		D61E94B82192D12400C5299F /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		D61E94B92192D12400C5299F /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		D61E94BA2192D12400C5299F /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		D61E94BB2192D12400C5299F /* HDBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDBaseModel.h; sourceTree = "<group>"; };
 		D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_FeedbackChoose_View.swift; sourceTree = "<group>"; };
 		D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_FeedbackChoose_View.xib; sourceTree = "<group>"; };
 		D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ReportError_VC.swift; sourceTree = "<group>"; };
@@ -930,6 +1017,102 @@
 				D614DFAE211EDB9500A4D459 /* NSString+Hash.h */,
 			);
 			path = MD5;
+			sourceTree = "<group>";
+		};
+		D61E947C2192CA0200C5299F /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				D61E947D2192CA0200C5299F /* QRCode_View.swift */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		D61E947F2192D12400C5299F /* MapKit2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				D61E94802192D12400C5299F /* HDAnnotationView+Method.h */,
+				D61E94822192D12400C5299F /* HDAnnotationView+Method.m */,
+				D61E94852192D12400C5299F /* HD_NKM_Big_Ann_View.h */,
+				D61E94812192D12400C5299F /* HD_NKM_Big_Ann_View.m */,
+				D61E94832192D12400C5299F /* HD_NKM_Big_Ann_View.xib */,
+				D61E94842192D12400C5299F /* HDMapKit.h */,
+				D61E94862192D12400C5299F /* Base */,
+				D61E94972192D12400C5299F /* Vendor */,
+			);
+			path = MapKit2.0;
+			sourceTree = "<group>";
+		};
+		D61E94862192D12400C5299F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				D61E94872192D12400C5299F /* HDAnnotationView.h */,
+				D61E94882192D12400C5299F /* HDMapView.m */,
+				D61E94892192D12400C5299F /* HDMapModel.h */,
+				D61E948A2192D12400C5299F /* HDMapView+Download.h */,
+				D61E948B2192D12400C5299F /* HDTiledView.m */,
+				D61E948C2192D12400C5299F /* HDMapView+AnnView.h */,
+				D61E948D2192D12400C5299F /* HDRouteDrawingView.h */,
+				D61E948E2192D12400C5299F /* HDAnnotation.m */,
+				D61E948F2192D12400C5299F /* HDAnnotationView.m */,
+				D61E94902192D12400C5299F /* HDMapView.h */,
+				D61E94912192D12400C5299F /* HDAnnotation.h */,
+				D61E94922192D12400C5299F /* HDRouteDrawingView.m */,
+				D61E94932192D12400C5299F /* HDMapView+AnnView.m */,
+				D61E94942192D12400C5299F /* HDTiledView.h */,
+				D61E94952192D12400C5299F /* HDMapView+Download.m */,
+				D61E94962192D12400C5299F /* HDMapModel.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		D61E94972192D12400C5299F /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D61E94982192D12400C5299F /* HDBaseModel.m */,
+				D61E94992192D12400C5299F /* SDWebImage */,
+				D61E94BB2192D12400C5299F /* HDBaseModel.h */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		D61E94992192D12400C5299F /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				D61E949A2192D12400C5299F /* UIImage+WebP.m */,
+				D61E949B2192D12400C5299F /* MKAnnotationView+WebCache.m */,
+				D61E949C2192D12400C5299F /* UIImageView+WebCache.h */,
+				D61E949D2192D12400C5299F /* NSData+ImageContentType.h */,
+				D61E949E2192D12400C5299F /* SDWebImageManager.m */,
+				D61E949F2192D12400C5299F /* SDWebImageDecoder.m */,
+				D61E94A02192D12400C5299F /* SDWebImageDownloaderOperation.h */,
+				D61E94A12192D12400C5299F /* UIImageView+HighlightedWebCache.m */,
+				D61E94A22192D12400C5299F /* SDImageCache.h */,
+				D61E94A32192D12400C5299F /* SDWebImageDownloader.m */,
+				D61E94A42192D12400C5299F /* UIImage+GIF.m */,
+				D61E94A52192D12400C5299F /* UIButton+WebCache.h */,
+				D61E94A62192D12400C5299F /* UIImage+MultiFormat.m */,
+				D61E94A72192D12400C5299F /* SDWebImageCompat.m */,
+				D61E94A82192D12400C5299F /* SDWebImagePrefetcher.m */,
+				D61E94A92192D12400C5299F /* UIView+WebCacheOperation.h */,
+				D61E94AA2192D12400C5299F /* MKAnnotationView+WebCache.h */,
+				D61E94AB2192D12400C5299F /* UIImage+WebP.h */,
+				D61E94AC2192D12400C5299F /* SDImageCache.m */,
+				D61E94AD2192D12400C5299F /* UIImageView+HighlightedWebCache.h */,
+				D61E94AE2192D12400C5299F /* SDWebImageDownloaderOperation.m */,
+				D61E94AF2192D12400C5299F /* SDWebImageDecoder.h */,
+				D61E94B02192D12400C5299F /* SDWebImageManager.h */,
+				D61E94B12192D12400C5299F /* NSData+ImageContentType.m */,
+				D61E94B22192D12400C5299F /* UIImageView+WebCache.m */,
+				D61E94B32192D12400C5299F /* SDWebImageOperation.h */,
+				D61E94B42192D12400C5299F /* SDWebImageDownloader.h */,
+				D61E94B52192D12400C5299F /* UIView+WebCacheOperation.m */,
+				D61E94B62192D12400C5299F /* SDWebImagePrefetcher.h */,
+				D61E94B72192D12400C5299F /* SDWebImageCompat.h */,
+				D61E94B82192D12400C5299F /* UIImage+MultiFormat.h */,
+				D61E94B92192D12400C5299F /* UIButton+WebCache.m */,
+				D61E94BA2192D12400C5299F /* UIImage+GIF.h */,
+			);
+			path = SDWebImage;
 			sourceTree = "<group>";
 		};
 		D622778721367D4D008F1416 /* PhotoBrowser */ = {
@@ -1449,6 +1632,8 @@
 		D6C9FC6E21181FD1007C8E56 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D61E947F2192D12400C5299F /* MapKit2.0 */,
+				D61E947C2192CA0200C5299F /* QRCode */,
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
 				D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */,
 				D6C9FC7021181FD1007C8E56 /* Network */,
@@ -2006,6 +2191,7 @@
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
+				D61E94BE2192D12400C5299F /* HD_NKM_Big_Ann_View.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
 				D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */,
 				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
@@ -2165,13 +2351,16 @@
 				D6115AFF218FD490004A05DA /* KSMediaPlayerManager.m in Sources */,
 				D6694740213005390068945A /* CourseQuestion.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
+				D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */,
 				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
+				D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
 				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
 				D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
+				D61E94CC2192D12400C5299F /* UIImageView+HighlightedWebCache.m in Sources */,
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
@@ -2195,6 +2384,7 @@
 				D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */,
 				D67E3AA5213CE7920058FBA6 /* HDRefreshFooterAnimator.swift in Sources */,
 				D62277DF21368069008F1416 /* FlashAlertView.swift in Sources */,
+				D61E94D12192D12400C5299F /* SDWebImagePrefetcher.m in Sources */,
 				D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */,
 				D6115AF4218FD490004A05DA /* ZFVolumeBrightnessView.m in Sources */,
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
@@ -2203,9 +2393,12 @@
 				D62277A221367D4D008F1416 /* PhotoBrowserPresentationController.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
+				D61E94D32192D12400C5299F /* SDWebImageDownloaderOperation.m in Sources */,
+				D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
+				D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */,
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
@@ -2222,11 +2415,14 @@
 				D6115AFC218FD490004A05DA /* ZFSpeedLoadingView.m in Sources */,
 				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,
 				D62277DC21368069008F1416 /* VideoPickerPreviewCell.swift in Sources */,
+				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D62277A821367D4D008F1416 /* FadeAnimator.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
+				D61E94BF2192D12400C5299F /* HDMapView.m in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
+				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
@@ -2264,11 +2460,14 @@
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
 				D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */,
 				D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */,
+				D61E94C12192D12400C5299F /* HDAnnotation.m in Sources */,
+				D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */,
 				D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
 				D60E856D2191651E00072BF9 /* HDLY_ExhibitListVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
+				D61E94D02192D12400C5299F /* SDWebImageCompat.m in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */,
@@ -2286,11 +2485,13 @@
 				D62277DD21368069008F1416 /* MTImagePickerFlowLayout.swift in Sources */,
 				D68D541F2133D1D2000CD258 /* HDLY_Register_VC.swift in Sources */,
 				D6C9FC5721181F28007C8E56 /* HD_LY_TipView.swift in Sources */,
+				D61E94BD2192D12400C5299F /* HDAnnotationView+Method.m in Sources */,
 				A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */,
 				D68D5415213386C8000CD258 /* UIView+ScreenShot.swift in Sources */,
 				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
+				D61E94C32192D12400C5299F /* HDRouteDrawingView.m in Sources */,
 				D62277DA21368069008F1416 /* MTImagePickerModel.swift in Sources */,
 				D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */,
 				D67ABF83212BAD4700276CDE /* STKDataSourceWrapper.m in Sources */,
@@ -2307,12 +2508,14 @@
 				D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */,
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
+				D61E94D22192D12400C5299F /* SDImageCache.m in Sources */,
 				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
 				A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */,
 				D6115AEA218FD490004A05DA /* ZFPlayerNotification.m in Sources */,
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D622779D21367D4D008F1416 /* TopMostViewControllerGetter.swift in Sources */,
+				D61E94C62192D12400C5299F /* HDMapModel.m in Sources */,
 				D66C35BD213F5E2100363D7C /* HD_LY_Cache.m in Sources */,
 				A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
@@ -2324,6 +2527,7 @@
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D66C35BC213F5E2100363D7C /* YYMemoryCache.m in Sources */,
 				D6115AFD218FD490004A05DA /* ZFPortraitControlView.m in Sources */,
+				D61E94C42192D12400C5299F /* HDMapView+AnnView.m in Sources */,
 				D62277DB21368069008F1416 /* MTImagePickerDataSource.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
 				D66C35C1213F804B00363D7C /* HDLY_MineHome_Header.swift in Sources */,
@@ -2331,8 +2535,10 @@
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
 				D68D54182133A9CD000CD258 /* HDLY_UserModel.swift in Sources */,
+				D61E94CE2192D12400C5299F /* UIImage+GIF.m in Sources */,
 				D6115AF9218FD490004A05DA /* ZFPlayerControlView.m in Sources */,
 				D62277AD21367D4D008F1416 /* ProgressViewPlugin.swift in Sources */,
+				D61E94D42192D12400C5299F /* NSData+ImageContentType.m in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				D6115AF8218FD490004A05DA /* ZFSliderView.m in Sources */,
 				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
@@ -2346,10 +2552,12 @@
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,
+				D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */,
 				A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */,
 				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDetail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
+				D61E94CB2192D12400C5299F /* SDWebImageDecoder.m in Sources */,
 				D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
@@ -2362,6 +2570,7 @@
 				D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
+				D61E94BC2192D12400C5299F /* HD_NKM_Big_Ann_View.m in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
@@ -2379,6 +2588,7 @@
 				D62277DE21368069008F1416 /* MTImagePickerCell.swift in Sources */,
 				D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */,
 				D62277AA21367D4D008F1416 /* PhotoBrowserCell.swift in Sources */,
+				D61E94CA2192D12400C5299F /* SDWebImageManager.m in Sources */,
 				D62277A021367D4D008F1416 /* ProgressView.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
@@ -2392,18 +2602,22 @@
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
 				D668CFA121435CD40024BBCE /* HDLY_ChangePwd_VC.swift in Sources */,
+				D61E94C02192D12400C5299F /* HDTiledView.m in Sources */,
 				A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */,
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
+				D61E94C22192D12400C5299F /* HDAnnotationView.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
 				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,
+				D61E94D72192D12400C5299F /* UIButton+WebCache.m in Sources */,
 				D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */,
 				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
+				D61E94C92192D12400C5299F /* MKAnnotationView+WebCache.m in Sources */,
 				D62277D521368069008F1416 /* MTImagePickerController.swift in Sources */,
 				D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */,
 				D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */,

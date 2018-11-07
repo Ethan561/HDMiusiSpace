@@ -138,7 +138,6 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
             var listModel = sectionModel.chapterList[indexPath.row]
             listModel.isNeedBuy = self.isNeedBuy
             cell?.model = listModel
-            
         }
         return cell!
     }

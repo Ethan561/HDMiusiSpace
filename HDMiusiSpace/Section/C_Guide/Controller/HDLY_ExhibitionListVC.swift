@@ -168,6 +168,13 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
+        if indexPath.row == 2 {
+            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
+            // vc.courseId = "\(model.classID)"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
     }
 
 }

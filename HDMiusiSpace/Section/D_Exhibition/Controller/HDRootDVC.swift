@@ -10,24 +10,40 @@ import UIKit
 
 class HDRootDVC: HDItemBaseVC {
 
-    @IBOutlet weak var bavBarView: UIView!
+    @IBOutlet weak var bavBarView  : UIView!
     @IBOutlet weak var navBarHeight: NSLayoutConstraint!
-    @IBOutlet weak var navBar_btn1: UIButton!
-    @IBOutlet weak var navBar_btn2: UIButton!
-    @IBOutlet weak var dTableView: UITableView!
+    @IBOutlet weak var navBar_btn1 : UIButton!
+    @IBOutlet weak var navBar_btn2 : UIButton!
+    @IBOutlet weak var menu_btn1   : UIButton!
+    @IBOutlet weak var menu_btn2   : UIButton!
+    @IBOutlet weak var menu_btn3   : UIButton!
+    
+    @IBOutlet weak var dTableView  : UITableView!
     
     var condition1: Int! //1展览，2博物馆
-    var condition2: Int! //1热门推荐，2全部，最近
+    var condition2: Int! //1热门推荐，2全部，3最近
+    
+    //mvvm
+    var viewModel: RootDViewModel = RootDViewModel()
+    
+    var exhibitionArr: [HDSSL_dExhibition] = Array.init() //展览数组
+    var museumArr    : [HDSSL_dMuseum]     = Array.init() //博物馆数组
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navBarHeight.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
 
+        //MVVM
+        bindViewModel()
+        
         navBar_btn1.isSelected = true
         condition1 = 1
-        condition2 = 2
+        condition2 = 1
+        menu_btn1.isSelected = true
+        menu_btn2.isSelected = false
         
+        self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         loadMyViews()
     }
@@ -51,6 +67,24 @@ class HDRootDVC: HDItemBaseVC {
         
     }
 
+    //MARK: - MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        
+        //展览数组
+        viewModel.exhibitionArray.bind { (Array) in
+            
+            weakSelf?.exhibitionArr = Array
+            
+        }
+        
+        //博物馆数组
+        viewModel.museumArray.bind { (Array) in
+            
+            weakSelf?.museumArr = Array
+            
+        }
+    }
 
     //MARK: - 展览、博物馆切换
     @IBAction func action_changeMainType(_ sender: UIButton) {
@@ -61,6 +95,9 @@ class HDRootDVC: HDItemBaseVC {
         condition1 = sender.tag + 1 //保存大页面状态
         
         loadMyViews()
+        
+        dTableView.reloadData()
+        
     }
     
     //MARK: - 搜索
@@ -79,6 +116,18 @@ class HDRootDVC: HDItemBaseVC {
     @IBAction func action_changeMenu(_ sender: UIButton) {
         //tag=0 热门推荐、tag=1全部、tag=2最近
         print(sender.tag)
+        sender.isSelected = true
+        
+        if sender.tag == 0 {
+            menu_btn2.isSelected = false
+            menu_btn3.isSelected = false
+        }else if sender.tag == 1 {
+            menu_btn1.isSelected = false
+            menu_btn3.isSelected = false
+        }else if sender.tag == 2 {
+            menu_btn1.isSelected = false
+            menu_btn2.isSelected = false
+        }
     }
     
     
@@ -96,4 +145,37 @@ class HDRootDVC: HDItemBaseVC {
     }
     */
 
+}
+
+extension HDRootDVC:UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if condition1 == 1 {
+            return (ScreenWidth-40)*188/335 + 110
+        }
+        return 110
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if condition1 == 1 {
+            let cell = HDSSL_dExhibitionCell.getMyTableCell(tableV: tableView) as HDSSL_dExhibitionCell
+            
+            
+            return cell
+        } else {
+            let cell = HDSSL_dMuseumCell.getMyTableCell(tableV: tableView) as HDSSL_dMuseumCell
+            
+            
+            return cell
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+    }
+    
 }

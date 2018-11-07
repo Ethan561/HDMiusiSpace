@@ -67,6 +67,8 @@
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
+		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
+		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */; };
 		D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */; };
 		D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */; };
@@ -446,6 +448,8 @@
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
+		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_FeedbackChoose_View.swift; sourceTree = "<group>"; };
 		D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_FeedbackChoose_View.xib; sourceTree = "<group>"; };
 		D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ReportError_VC.swift; sourceTree = "<group>"; };
@@ -1750,6 +1754,8 @@
 				D60E85772191769E00072BF9 /* HDLY_ExhibitionCell.xib */,
 				D60E857A21918B3400072BF9 /* HDLY_ExhibitCell.swift */,
 				D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */,
+				D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */,
+				D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2006,6 +2012,7 @@
 				D62277E121368069008F1416 /* MTImagePicker.strings in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
+				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
 				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
 				D68D50DA213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib in Resources */,
@@ -2342,6 +2349,7 @@
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
 				D62277D921368069008F1416 /* MTImagePickerAssetsModel.swift in Sources */,
 				D66C35CE213FAA8600363D7C /* HDLY_MineCourse_Cell.swift in Sources */,
+				D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */,
 				D62277A721367D4D008F1416 /* NumberPageControlPlugin.swift in Sources */,
 				D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */,
 				D669473E212FEBAF0068945A /* HDPlaceholderTextView.swift in Sources */,

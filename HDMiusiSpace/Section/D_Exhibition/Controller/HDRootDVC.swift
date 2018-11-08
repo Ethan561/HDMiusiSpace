@@ -14,6 +14,7 @@ class HDRootDVC: HDItemBaseVC {
     @IBOutlet weak var navBarHeight: NSLayoutConstraint!
     @IBOutlet weak var navBar_btn1 : UIButton!
     @IBOutlet weak var navBar_btn2 : UIButton!
+    @IBOutlet weak var btn_location: UIButton!
     @IBOutlet weak var menu_btn1   : UIButton!
     @IBOutlet weak var menu_btn2   : UIButton!
     @IBOutlet weak var menu_btn3   : UIButton!
@@ -42,6 +43,11 @@ class HDRootDVC: HDItemBaseVC {
         condition2 = 1
         menu_btn1.isSelected = true
         menu_btn2.isSelected = false
+        
+        //定位按钮设置
+        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
@@ -110,6 +116,9 @@ class HDRootDVC: HDItemBaseVC {
     
     @IBAction func action_location(_ sender: Any) {
         
+        let vc: HDSSL_getLocationVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_getLocationVC") as! HDSSL_getLocationVC
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - 热门推荐、全部、最近

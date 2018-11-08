@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define Placeholder_PIN             @"placeholder_Ann"
+#define Placeholder_PIN             @"dl_icon_map_dw"
 #define Successive_PIN              @"my_location"
 
 @class HD_NKM_Big_Ann_View,HDAnnotation,HDMapView;

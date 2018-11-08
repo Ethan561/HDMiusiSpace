@@ -278,6 +278,7 @@
 		D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */; };
 		D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */; };
 		D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */; };
+		D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D689DDA02193DB9A007DF948 /* HDLY_MapExhibitModel.swift */; };
 		D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */; };
 		D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */; };
 		D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */; };
@@ -741,6 +742,7 @@
 		D6884E68211E816200ABDE5E /* HDLY_Listen_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Listen_Cell.xib; sourceTree = "<group>"; };
 		D6884E6B211E817800ABDE5E /* HDLY_Topic_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Topic_Cell.swift; sourceTree = "<group>"; };
 		D6884E6C211E817800ABDE5E /* HDLY_Topic_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Topic_Cell.xib; sourceTree = "<group>"; };
+		D689DDA02193DB9A007DF948 /* HDLY_MapExhibitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_MapExhibitModel.swift; sourceTree = "<group>"; };
 		D68D50D3213A438B000F80E6 /* ChoicenessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoicenessModel.swift; sourceTree = "<group>"; };
 		D68D50D5213A5C23000F80E6 /* RootAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAViewModel.swift; sourceTree = "<group>"; };
 		D68D50D7213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootACard_Cell.swift; sourceTree = "<group>"; };
@@ -1940,6 +1942,7 @@
 		D6C9FCF42118486A007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D689DDA02193DB9A007DF948 /* HDLY_MapExhibitModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2424,6 +2427,7 @@
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
+				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
@@ -2824,7 +2828,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
@@ -2852,7 +2856,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				ENABLE_BITCODE = NO;
@@ -2865,7 +2869,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = Dis_All_10;
+				PROVISIONING_PROFILE_SPECIFIER = All_Pro_10;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

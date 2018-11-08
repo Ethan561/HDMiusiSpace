@@ -130,6 +130,16 @@ enum HD_LY_API {
 
     //第三方账号绑定注册
     case register_bind(params:Dictionary<String, Any>)
+    
+    
+    //地图展品接口
+    case getMapExhibitListA(map_id: String,language: String)
+    
+    //地图信息接口
+    case getMapListAll(floorNum: Int,language: String)
+
+    
+    
 
 }
 
@@ -137,7 +147,14 @@ extension HD_LY_API: TargetType {
     
     //--- 服务器地址 ---
     var baseURL: URL {
-        return URL.init(string: HDDeclare.IP_Request_Header())!
+        
+        switch self {
+        case .getMapListAll(floorNum: _, language: _),
+             .getMapExhibitListA(map_id: _, language: _):
+            return URL.init(string: HD_MapTest_IP)!
+        default:
+            return URL.init(string: HDDeclare.IP_Request_Header())!
+        }
     }
     
     //--- 各个请求的具体路径 ---
@@ -308,6 +325,10 @@ extension HD_LY_API: TargetType {
             
             
             
+        case .getMapExhibitListA(_,_):
+            return "/api/map_exhibit"
+        case .getMapListAll(_):
+            return "/api/map_list"
             
             
         }
@@ -711,6 +732,19 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+            
+        case .getMapExhibitListA(let floorNum,let language):
+            params = ["p":"i",
+                      "language": language,
+                      "map_id": floorNum,
+                      "is_app": "1"]
+            
+            
+        case .getMapListAll(let floorNum,let language):
+            params = ["p":"i",
+                      "language": language,
+                      "floor_id":floorNum]
             
         }
         

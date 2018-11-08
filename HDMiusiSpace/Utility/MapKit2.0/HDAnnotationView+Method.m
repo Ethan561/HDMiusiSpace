@@ -41,7 +41,7 @@
     }
     
     if (annotation.annType == kAnnotationType_More) {
-        [self setImage:[UIImage imageNamed:@"A_map_cluster"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"dl_icon_map_dw"] forState:UIControlStateNormal];
         UILabel *numL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         numL.textAlignment = NSTextAlignmentCenter;
         numL.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height/2.0);
@@ -66,6 +66,56 @@
         nameL.text = annotation.title;
         nameL.backgroundColor = [UIColor clearColor];
         [self addSubview:nameL];
+        
+//        self.imageView.layer.shadowOpacity = 0.8;
+//        self.imageView.layer.shadowColor = UIColor.blackColor.CGColor;
+//        self.imageView.layer.shadowOffset = CGSizeMake(1, 1);
+        
+//                let maskLayer =CALayer()
+//
+//
+//
+//                maskLayer.frame =CGRect(x:0, y:0, width:150, height:150)
+//
+//
+//
+//                maskLayer.contents =UIImage(named:"mask.psd")?.cgImage
+//
+//                //这个UIImage不重要，关键是形状重要。
+//
+//
+//
+//                imgView.layer.mask = maskLayer
+
+        
+//        CAShapeLayer
+        //添加边框
+        CALayer * layer = [[CALayer alloc] init];
+        //阴影颜色
+        layer.shadowColor = [[UIColor colorWithRed:1.0 green:0 blue:0 alpha:1] CGColor];
+        //阴影offset
+        layer.shadowOffset = CGSizeMake(0, 3);
+        
+       
+        
+        //阴影path
+        layer.shadowPath =  (__bridge CGPathRef _Nullable)([self.imageView.image accessibilityPath]);
+        //不透明度
+        layer.shadowOpacity = 0.6;
+        //阴影圆角半径
+        layer.shadowRadius = 3;
+        
+//        layer.frame = self.bounds;
+//        layer.contents = (__bridge id _Nullable)([self.imageView.image CGImage]);
+        [self.imageView.layer addSublayer:layer];
+//        layer.backgroundColor = [UIColor blackColor].CGColor;
+//        layer.borderWidth = 5.0f;
+//        //添加四个边阴影
+//         self.imageView.layer.shadowColor = [UIColor greenColor].CGColor;//阴影颜色
+//         self.imageView.layer.shadowOffset = CGSizeMake(0, 0);//偏移距离
+//         self.imageView.layer.shadowOpacity = 0.5;//不透明度
+//         self.imageView.layer.shadowRadius = 10.0;//半径
+        
         
     }
     

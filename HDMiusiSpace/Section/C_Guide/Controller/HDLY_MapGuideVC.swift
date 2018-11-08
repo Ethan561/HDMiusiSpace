@@ -8,24 +8,24 @@
 
 import UIKit
 
+let HD_MapTest_IP = "http://192.168.10.158:8316"
+
 class HDLY_MapGuideVC: HDItemBaseVC {
     private var mapView : HDMapView?
     public  var currentFloor = "1"
-//    private var poiArray : Array<MapExhibitData>?
+    private var poiArray : Array<MapExhibitData>?
     private var currRouteID:Int = 0
     private var isRouteShow:Bool = false
-//    private var mapArray = [MapModel]()
+    private var mapArray = [MapModel]()
     
     @IBOutlet weak var mapBgView: UIView!
-    @IBOutlet weak var routeBtn: UIButton!
-    @IBOutlet weak var serviceBtn: UIButton!
+    @IBOutlet weak var errorBtn: UIButton!
     @IBOutlet weak var locBtn: UIButton!
-    @IBOutlet weak var floorChooseView: UIView!
     
-    @IBOutlet weak var floorBtn: UIButton!
-    @IBOutlet weak var btn1F: UIButton!
-    @IBOutlet weak var btn2F: UIButton!
-    @IBOutlet weak var btn3F: UIButton!
+    @IBOutlet weak var btnBig: UIButton!
+    @IBOutlet weak var btnSmall: UIButton!
+    @IBOutlet weak var scaleBgView: UIView!
+    
     var isShowServiceAnn  = false
     var isShowChooseView = false
     var player = HDLY_AudioPlayer.shared
@@ -34,8 +34,13 @@ class HDLY_MapGuideVC: HDItemBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hd_navigationBarHidden = true
         self.title = "地图导览"
-//        getAllMapInformation()
+        getAllMapInformation()
+        errorBtn.configShadow(cornerRadius: 22, shadowColor: UIColor.HexColor(0x000000, 0.3), shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.init(width: 0, height: 5))
+        
+        scaleBgView.configShadow(cornerRadius: 22, shadowColor: UIColor.HexColor(0x000000, 0.3), shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.init(width: 0, height: 5))
+        
 //        setupNavBarItem()
 //        floorChooseView.isHidden = true
 //        setFloorChooseBtn()
@@ -77,6 +82,10 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         //        self.avplayer.pauseAction()
     }
 
+    @IBAction func backAction(_ sender: Any) {
+        self.back()
+    }
+    
 }
 
 extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
@@ -93,7 +102,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             
             //
             let mapPath:String = self.getMapPath(floorId: self.currentFloor)
-            let urlPrefix:String   = HDDeclare.IP_Request_Header() + mapPath
+            let urlPrefix:String   = HD_MapTest_IP + mapPath
             let mapItemCachePath:String = String.init(format: "%@/Resource/WebMap/%@", kCachePath, self.currentFloor)
             mapV!.initMinMapImage(withUrlPrefix: urlPrefix, mapItemCachePath: mapItemCachePath)
             
@@ -102,7 +111,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             
             self.mapView = mapV
             //请求点位信息
-//            self.requestMapPoiInfo()
+            self.requestMapPoiInfo()
             
         }
     }
@@ -156,13 +165,11 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
 extension HDLY_MapGuideVC {
     
     private func showAllAnn(mapTemp : HDMapView) -> Void {
-        /*
         if self.poiArray == nil {
             return
         }
         
         if (self.poiArray?.count)! > 0 {
-            routeBtn.isSelected = false
             DispatchQueue.main.async {
                 self.mapView?.removeAllAnnatations(false)
                 
@@ -175,8 +182,8 @@ extension HDLY_MapGuideVC {
                     let ann : HDAnnotation = HDAnnotation.annotation(with: CGPoint(x: x, y: y)) as! HDAnnotation
                     if mapData.exhibit.count == 1 {
                         guard let model:MapExhibit = mapData.exhibit.first else {return}
-                        ann.poiImgPath = HDDeclare.IP_Request_Header() + model.exhibitIcon1!
-                        ann.audio = HDDeclare.IP_Request_Header() + model.audio
+                        ann.poiImgPath = HD_MapTest_IP + model.exhibitIcon1!
+                        ann.audio = HD_MapTest_IP + model.audio
                         ann.title = model.exhibitName
                         ann.annType = kAnnotationType_One
                         ann.identify = String(model.exhibitID)
@@ -199,67 +206,42 @@ extension HDLY_MapGuideVC {
                     mapTemp.add(ann, animated: true)
                 })
             }
-        }*/
-        
+        }
     }
     
-    /*
-    private func showServiceAnn(pointArray: Array<MapServiceModel>, mapTemp: HDMapView) {
-        if pointArray.count > 0 {
-            DispatchQueue.main.async {
-                self.mapView?.removeAllAnnatations(false)
-                
-                pointArray.forEach({ (model) in
-                    let x = CGFloat(model.x / 8) * mapTemp.zoomScale
-                    let y = CGFloat(model.y / 8) * mapTemp.zoomScale
-                    let ann : HDAnnotation = HDAnnotation.annotation(with: CGPoint(x: x, y: y)) as! HDAnnotation
-                    ann.annType = kAnnotationType_ServiceInfo
-                    ann.poiImgPath = HDDeclare.IP_Request_Header() + model.img!
-                    ann.size = CGSize.init(width: 40, height: 40)
-                    mapTemp.add(ann, animated: true)
-                })
-            }
-    }
-     }*/
-    
-    func showMapRoadImg(path: String) {
-        routeBtn.isSelected = true
-        let url = HDDeclare.IP_Request_Header() + path
-        self.mapView?.initRouteImage(url)
-    }
 
     private func getMapSize(floorId:String) -> CGSize {
         let floor = Int(floorId)
         var size = CGSize.zero
-//        if self.mapArray.count < 1 {
-//            return size
-//        }
-//        self.mapArray.forEach { (map) in
-//            if map.map_id == floor {
-//                size = CGSize(width: ceil(Double(map.width)/8), height: ceil(Double(map.height)/8))
-//            }
-//        }
+        if self.mapArray.count < 1 {
+            return size
+        }
+        self.mapArray.forEach { (map) in
+            if map.map_id == floor {
+                size = CGSize(width: ceil(Double(map.width)/8), height: ceil(Double(map.height)/8))
+            }
+        }
         return size
     }
     private func getMapPath(floorId:String) -> String {
         let floor = Int(floorId)
         var path = ""
-//        if self.mapArray.count < 1 {
-//            return ""
-//        }
-//        self.mapArray.forEach { (map) in
-//            if map.map_id == floor {
-//                path = map.map_path ?? ""
-//            }
-//        }
+        if self.mapArray.count < 1 {
+            return ""
+        }
+        self.mapArray.forEach { (map) in
+            if map.map_id == floor {
+                path = map.map_path ?? ""
+            }
+        }
         return path
     }
-        /*
+  
     
     
     private func getAllMapInformation() {
         //获取各楼层地图尺寸等信息
-        HD_LY_NetHelper.loadData(API: HDLY_API.self, target: .getMapListAll(floorNum: 0, language: "1"), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getMapListAll(floorNum: 0, language: "1"), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -281,7 +263,7 @@ extension HDLY_MapGuideVC {
         if apiToken == nil  {
             apiToken = ""
         }
-        HD_LY_NetHelper.loadData(API: HDLY_API.self, target: .getMapExhibitListA(map_id: self.currentFloor, language: "1"), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getMapExhibitListA(map_id: self.currentFloor, language: "1"), success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -299,7 +281,7 @@ extension HDLY_MapGuideVC {
         }
     }
     
-    
+          /*
     private func requestMapServiceInfo() -> Void {
         HD_LY_NetHelper.loadData(API: HDLY_API.self, target: .getMapServicePoint(map_id: self.currentFloor), success: { (result) in
             let jsonDecoder = JSONDecoder()

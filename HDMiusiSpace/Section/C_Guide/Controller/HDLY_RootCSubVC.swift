@@ -209,8 +209,15 @@ extension HDLY_RootCSubVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+        
+       if indexPath.row == 3 {
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_MapGuideVC") as! HDLY_MapGuideVC
         self.navigationController?.pushViewController(vc, animated: true)
+        
+       }else {
+            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 

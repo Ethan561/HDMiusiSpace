@@ -9,7 +9,6 @@
 import UIKit
 
 class HDLY_MapGuideVC: HDItemBaseVC {
-
     private var mapView : HDMapView?
     public  var currentFloor = "1"
 //    private var poiArray : Array<MapExhibitData>?

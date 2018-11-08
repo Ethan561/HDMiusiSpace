@@ -9,7 +9,6 @@
 import UIKit
 
 class HDLY_QRGuideVC: HDItemBaseVC {
-
     
     lazy var codeView:QRCode_View = {
         let curr = QRCode_View.init(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))

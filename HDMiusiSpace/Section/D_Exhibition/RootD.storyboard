@@ -140,14 +140,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-CG-vDm">
-                                        <rect key="frame" x="20" y="56" width="46" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQ5-CG-vDm">
+                                        <rect key="frame" x="20" y="56" width="60" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Ovz-Wc-u7f"/>
-                                            <constraint firstAttribute="width" constant="46" id="cn9-u9-56t"/>
+                                            <constraint firstAttribute="width" constant="60" id="cn9-u9-56t"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="北京⌵">
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                        <state key="normal" title="内蒙古" image="zl_icon_arrow">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -155,10 +155,10 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gRO-UM-s08">
-                                        <rect key="frame" x="76" y="56" width="284" height="40"/>
+                                        <rect key="frame" x="90" y="56" width="270" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VK-D3-R1k">
-                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="40"/>
                                                 <state key="normal" title="热门推荐">
                                                     <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -170,7 +170,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YK-ic-3IS">
-                                                <rect key="frame" x="94.5" y="0.0" width="95" height="40"/>
+                                                <rect key="frame" x="90" y="0.0" width="90" height="40"/>
                                                 <state key="normal" title="全部">
                                                     <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -182,7 +182,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baJ-iZ-eqk">
-                                                <rect key="frame" x="189.5" y="0.0" width="94.5" height="40"/>
+                                                <rect key="frame" x="180" y="0.0" width="90" height="40"/>
                                                 <state key="normal" title="最近">
                                                     <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -271,5 +271,6 @@
     <resources>
         <image name="d_search_icon" width="14" height="14"/>
         <image name="d_search_icon_Voice" width="12" height="19"/>
+        <image name="zl_icon_arrow" width="10" height="8"/>
     </resources>
 </document>

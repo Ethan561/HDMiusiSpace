@@ -11,6 +11,14 @@
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
 		A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */; };
+		A738B1F52194073800B78D21 /* CurrentCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */; };
+		A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */; };
+		A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F42194073800B78D21 /* RecentCitiesableViewCell.swift */; };
+		A738B1F92194089C00B78D21 /* HD_locationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F82194089C00B78D21 /* HD_locationHeader.swift */; };
+		A738B1FC2194094300B78D21 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1FA2194094300B78D21 /* UIColor+Hex.swift */; };
+		A738B1FD2194094300B78D21 /* String+SoolyCitySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */; };
+		A738B1FF2194146800B78D21 /* HDSSL_locationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */; };
+		A738B201219418F700B78D21 /* CityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B200219418F700B78D21 /* CityDataModel.swift */; };
 		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
@@ -399,6 +407,14 @@
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
 		A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchVC.swift; sourceTree = "<group>"; };
+		A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCityTableViewCell.swift; sourceTree = "<group>"; };
+		A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityTableViewCell.swift; sourceTree = "<group>"; };
+		A738B1F42194073800B78D21 /* RecentCitiesableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentCitiesableViewCell.swift; sourceTree = "<group>"; };
+		A738B1F82194089C00B78D21 /* HD_locationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_locationHeader.swift; sourceTree = "<group>"; };
+		A738B1FA2194094300B78D21 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SoolyCitySelector.swift"; sourceTree = "<group>"; };
+		A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_locationViewModel.swift; sourceTree = "<group>"; };
+		A738B200219418F700B78D21 /* CityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataModel.swift; sourceTree = "<group>"; };
 		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
@@ -1551,6 +1567,8 @@
 		D6C9FC4021181EBC007C8E56 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */,
+				A738B1FA2194094300B78D21 /* UIColor+Hex.swift */,
 				D6C9FC5E21181F54007C8E56 /* HDFullScreenPopGesture.swift */,
 				D6C9FC6421181F54007C8E56 /* JudgeNumbers.swift */,
 				D6C9FC5F21181F54007C8E56 /* NSObject+Extension.swift */,
@@ -1909,10 +1927,14 @@
 		D6C9FCE92118485B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */,
+				A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */,
+				A738B1F42194073800B78D21 /* RecentCitiesableViewCell.swift */,
 				A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */,
 				A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */,
 				A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */,
 				A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */,
+				A738B1F82194089C00B78D21 /* HD_locationHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1921,6 +1943,7 @@
 			isa = PBXGroup;
 			children = (
 				A7676BF32192B414004C7F8A /* ExhibitionModel.swift */,
+				A738B200219418F700B78D21 /* CityDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1929,6 +1952,7 @@
 			isa = PBXGroup;
 			children = (
 				A756C8372191858600C1747A /* RootDViewModel.swift */,
+				A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2368,6 +2392,7 @@
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D6115AF2218FD490004A05DA /* ZFUtilities.m in Sources */,
+				A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */,
 				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
 				D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */,
 				D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */,
@@ -2458,6 +2483,7 @@
 				D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */,
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
 				D670D38D212585BA0064750A /* HDLY_CourseWeb_Cell.swift in Sources */,
+				A738B1FD2194094300B78D21 /* String+SoolyCitySelector.swift in Sources */,
 				D6EEDDAD21901FF000F730BA /* HDLY_Kids_Cell2.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
@@ -2513,7 +2539,9 @@
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
 				D61E94D22192D12400C5299F /* SDImageCache.m in Sources */,
 				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
+				A738B1F52194073800B78D21 /* CurrentCityTableViewCell.swift in Sources */,
 				A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */,
+				A738B1FF2194146800B78D21 /* HDSSL_locationViewModel.swift in Sources */,
 				D6115AEA218FD490004A05DA /* ZFPlayerNotification.m in Sources */,
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
@@ -2540,11 +2568,13 @@
 				D68D54182133A9CD000CD258 /* HDLY_UserModel.swift in Sources */,
 				D61E94CE2192D12400C5299F /* UIImage+GIF.m in Sources */,
 				D6115AF9218FD490004A05DA /* ZFPlayerControlView.m in Sources */,
+				A738B1FC2194094300B78D21 /* UIColor+Hex.swift in Sources */,
 				D62277AD21367D4D008F1416 /* ProgressViewPlugin.swift in Sources */,
 				D61E94D42192D12400C5299F /* NSData+ImageContentType.m in Sources */,
 				D6A1E22F211C13CF00E1E893 /* FSPagerViewLayoutAttributes.swift in Sources */,
 				D6115AF8218FD490004A05DA /* ZFSliderView.m in Sources */,
 				D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */,
+				A738B1F92194089C00B78D21 /* HD_locationHeader.swift in Sources */,
 				D67ABF81212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.m in Sources */,
 				D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */,
 				D66A2AB92140D07F00427425 /* HDLY_LogoutTip_View.swift in Sources */,
@@ -2575,12 +2605,14 @@
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
 				D61E94BC2192D12400C5299F /* HD_NKM_Big_Ann_View.m in Sources */,
+				A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
 				A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
+				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
 				A7676BFB2192B937004C7F8A /* HDSSL_dMuseumCell.swift in Sources */,
 				D62277D921368069008F1416 /* MTImagePickerAssetsModel.swift in Sources */,

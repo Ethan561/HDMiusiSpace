@@ -19,6 +19,7 @@ class HDLY_ExhibitListVC: HDItemBaseVC {
     var isNeedBuy = false
     var infoModel: CourseChapter?
     var courseId: String?
+    var exhibition_id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

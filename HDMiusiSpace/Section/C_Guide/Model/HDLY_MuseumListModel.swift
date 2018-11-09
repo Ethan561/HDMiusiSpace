@@ -1,0 +1,94 @@
+//
+//  HDLY_MuseumListModel.swift
+//  HDMiusiSpace
+//
+//  Created by liuyi on 2018/11/9.
+//  Copyright © 2018 hengdawb. All rights reserved.
+//
+
+import UIKit
+
+
+struct HDLY_MuseumListModel: Codable {
+    let status: Int
+    let msg: String
+    let data: [MuseumListData]
+}
+
+struct MuseumListData: Codable {
+    let type: Int
+    let list: MuseumListCard?
+    let map: MuseumMapModel?
+}
+
+struct MuseumListCard: Codable {
+    let count: Int
+    let distance, title: String
+    let museumID: Int
+    let list: [MuseumListModel]
+    
+    enum CodingKeys: String, CodingKey {
+        case count, distance, title
+        case museumID = "museum_id"
+        case list
+    }
+}
+
+struct MuseumListModel: Codable {
+    let id: Int
+    let img: String
+    let title: String
+    let type, priceType, price, vipPrice: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case id, img, title, type
+        case priceType = "price_type"
+        case price
+        case vipPrice = "vip_price"
+    }
+}
+
+struct MuseumMapModel: Codable {
+    let museumID, count: Int
+    let distance, title: String
+    let id: Int
+    let img: String
+    let priceType, price, vipPrice: Int
+    let version: String
+    
+    enum CodingKeys: String, CodingKey {
+        case museumID = "museum_id"
+        case count, distance, title, id, img
+        case priceType = "price_type"
+        case price
+        case vipPrice = "vip_price"
+        case version
+    }
+}
+
+//exhibition_list
+
+struct HDLY_ExhibitionListM: Codable {
+    let status: Int
+    let msg: String
+    let data: [HDLY_ExhibitionListData]
+}
+
+struct HDLY_ExhibitionListData: Codable {
+    var exhibitionID: Int = 0
+    var title: String?
+    let img: String?
+    var type: Int, priceType: Int, price: Int, vipPrice: Int = 0
+    var isLock: Int, isTz: Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case exhibitionID = "exhibition_id"
+        case title, img, type
+        case priceType = "price_type"
+        case price
+        case vipPrice = "vip_price"
+        case isLock = "is_lock"
+        case isTz = "is_tz"
+    }
+}
+

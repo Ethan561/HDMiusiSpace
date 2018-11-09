@@ -94,9 +94,11 @@ extension HDRootCVC {
             case 0://最近
                 let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
                 self.addChildViewController(baseVC)
+                baseVC.type = 1
                 self.contentScrollView.addSubview(self.childViewControllers[0].view)
             case 1://最火
                 let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
+                baseVC.type = 2
                 self.addChildViewController(baseVC)
                 
             default: break

@@ -12,7 +12,7 @@ class ListenDetailViewModel: NSObject {
     
     var listenDetail: Bindable = Bindable(ListenDetail())
     let showEmptyView: Bindable = Bindable(false)
-
+    
     func dataRequestWithListenID(listenID : String, _ vc: HDItemBaseVC)  {
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {

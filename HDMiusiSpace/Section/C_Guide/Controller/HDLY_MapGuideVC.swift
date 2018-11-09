@@ -29,7 +29,7 @@ class HDLY_MapGuideVC: HDItemBaseVC {
     var isShowServiceAnn  = false
     var isShowChooseView = false
     var player = HDLY_AudioPlayer.shared
-    
+    var museum_id = 0
     var mapImgPath = ""
     
     override func viewDidLoad() {

@@ -13,6 +13,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleL: UILabel!
     
+    @IBOutlet weak var lockView: UIView!
     @IBOutlet weak var vipPriceL: UILabel!
     @IBOutlet weak var priceL: UILabel!
     
@@ -20,11 +21,59 @@ class HDLY_ExhibitionCell: UITableViewCell {
     @IBOutlet weak var typeL: UILabel!
     @IBOutlet weak var typeImgV: UIImageView!
     
+    var modelA:HDLY_ExhibitionListData? {
+        didSet {
+            showViewData()
+            
+        }
+    }
+    func showViewData() {
+        guard let model = modelA else {
+            return
+        }
+        if  model.img != nil  {
+            imgV.kf.setImage(with: URL.init(string: (model.img ?? "")), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+        titleL.text = model.title
+        if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
+            typeL.text = "数字编号版"
+        }else if model.type == 1 {
+            typeL.text = "列表版"
+        }else if model.type == 2 {
+            typeL.text = "扫一扫版"
+        }
+        if model.isLock == 0 {
+            lockView.isHidden = true
+        }else {
+            lockView.isHidden = false
+        }
+        //0限时免费1SVIP免费2收费
+        if model.priceType == 0 {
+            vipPriceL.text = "限时免费"
+            vipPriceL.textColor = UIColor.HexColor(0x4A4A4A)
+        }else if model.type == 1 {
+            vipPriceL.text = "SVIP免费"
+            vipPriceL.textColor = UIColor.HexColor(0xD8B98D)
+
+        }else if model.type == 2 {
+            priceL.isHidden = false
+            priceL.text = "￥\(model.price)"
+            priceL.textColor = UIColor.HexColor(0xE8593E)
+            vipPriceL.text = "SVIP￥\(model.vipPrice)"
+            vipPriceL.textColor = UIColor.HexColor(0xCCCCCC)
+        }
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         imgV.layer.cornerRadius = 8
         imgV.layer.masksToBounds = true
+        lockView.layer.cornerRadius = 8
+        lockView.layer.masksToBounds = true
+        priceL.isHidden = true
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

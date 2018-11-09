@@ -17,6 +17,7 @@ class HDLY_NumGuideVC: HDItemBaseVC {
     @IBOutlet weak var numL: UILabel!
     
     var numStr = ""
+    var exhibit_num = 0
     
     var isFolder = false
     var tagsSelectIndex = 0
@@ -44,7 +45,7 @@ class HDLY_NumGuideVC: HDItemBaseVC {
         }
         dataRequest(cate_id: "-1")
     }
-
+    
     @IBAction func cleanAction(_ sender: Any) {
         numStr = ""
     }

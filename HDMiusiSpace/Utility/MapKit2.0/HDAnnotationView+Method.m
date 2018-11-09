@@ -89,25 +89,25 @@
 
         
 //        CAShapeLayer
-        //添加边框
-        CALayer * layer = [[CALayer alloc] init];
-        //阴影颜色
-        layer.shadowColor = [[UIColor colorWithRed:1.0 green:0 blue:0 alpha:1] CGColor];
-        //阴影offset
-        layer.shadowOffset = CGSizeMake(0, 3);
-        
-       
-        
-        //阴影path
-        layer.shadowPath =  (__bridge CGPathRef _Nullable)([self.imageView.image accessibilityPath]);
-        //不透明度
-        layer.shadowOpacity = 0.6;
-        //阴影圆角半径
-        layer.shadowRadius = 3;
-        
-//        layer.frame = self.bounds;
-//        layer.contents = (__bridge id _Nullable)([self.imageView.image CGImage]);
-        [self.imageView.layer addSublayer:layer];
+//        //添加边框
+//        CALayer * layer = [[CALayer alloc] init];
+//        //阴影颜色
+//        layer.shadowColor = [[UIColor colorWithRed:1.0 green:0 blue:0 alpha:1] CGColor];
+//        //阴影offset
+//        layer.shadowOffset = CGSizeMake(0, 3);
+//
+//
+//
+//        //阴影path
+//        layer.shadowPath =  (__bridge CGPathRef _Nullable)([self.imageView.image accessibilityPath]);
+//        //不透明度
+//        layer.shadowOpacity = 0.6;
+//        //阴影圆角半径
+//        layer.shadowRadius = 3;
+//
+////        layer.frame = self.bounds;
+////        layer.contents = (__bridge id _Nullable)([self.imageView.image CGImage]);
+//        [self.imageView.layer addSublayer:layer];
 //        layer.backgroundColor = [UIColor blackColor].CGColor;
 //        layer.borderWidth = 5.0f;
 //        //添加四个边阴影
@@ -116,6 +116,35 @@
 //         self.imageView.layer.shadowOpacity = 0.5;//不透明度
 //         self.imageView.layer.shadowRadius = 10.0;//半径
         
+        
+//        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.imageView.bounds];
+        UIBezierPath *path = [UIBezierPath bezierPath];
+//        [path moveToPoint:CGPointMake(10, 5)];
+//        [path addLineToPoint:CGPointMake(self.frame.size.width-10, 5)];
+//        [path addLineToPoint:CGPointMake(self.frame.size.width / 2, self.frame.size.height-5)];
+        
+        path.lineCapStyle = kCGLineCapRound;
+        path.lineJoinStyle = kCGLineJoinRound;
+
+        [path moveToPoint:CGPointMake(0, 0)];
+        [path addQuadCurveToPoint:CGPointMake(self.frame.size.width, 0) controlPoint:CGPointMake(self.frame.size.width / 2, self.frame.size.height+40)];
+        [path stroke];
+        
+        // 最后的闭合线是可以通过调用closePath方法来自动生成的，也可以调用-addLineToPoint:方法来添加
+        //  [path addLineToPoint:CGPointMake(20, 20)];
+        
+        [path closePath];
+        
+                        self.imageView.layer.masksToBounds = NO;
+        
+                        self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        
+                        self.imageView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+        
+                        self.imageView.layer.shadowOpacity = 0.5f;
+        
+                        self.imageView.layer.shadowPath = path.CGPath;
+
         
     }
     

@@ -132,15 +132,31 @@ enum HD_LY_API {
     case register_bind(params:Dictionary<String, Any>)
     
     
+    
     //地图展品接口
     case getMapExhibitListA(map_id: String,language: String)
     
     //地图信息接口
     case getMapListAll(floorNum: Int,language: String)
 
-    
-    
+    //获取博物馆列表
+    case guideMuseumList(city_id: String, longitude: String, latitude: String, type:Int, skip:Int, take:Int)
 
+    //展览列表
+    case guideExhibitionList(museum_id: Int, skip:Int, take:Int, token: String)
+    
+    //展品列表
+    case guideExhibitList(exhibition_id: Int, skip:Int, take:Int)
+    
+    //展品详情
+    case guideExhibitInfo(exhibit_num: Int)
+    
+    //地图导览
+    case guideMapGuide(museum_id: Int)
+    
+    
+    
+    
 }
 
 extension HD_LY_API: TargetType {
@@ -323,12 +339,28 @@ extension HD_LY_API: TargetType {
             return "/api/users/register_bind"
       
             
-            
-            
         case .getMapExhibitListA(_,_):
             return "/api/map_exhibit"
         case .getMapListAll(_):
             return "/api/map_list"
+            
+            
+        case .guideMuseumList(city_id: _, longitude: _, latitude: _, type: _, skip: _, take: _):
+            return "/api/guide/museum_list"
+            
+            
+        case .guideExhibitionList(museum_id: _, skip: _, take: _, token: _):
+            return "/api/guide/exhibition_list"
+            
+        case .guideExhibitList(exhibition_id: _, skip: _, take: _):
+            return "/api/guide/exhibit_list"
+            
+        case .guideExhibitInfo(exhibit_num: _):
+            return "/api/guide/exhibit_info"
+            
+        case .guideMapGuide(museum_id: _):
+            return "/api/guide/map_guide"
+            
             
             
         }
@@ -745,6 +777,44 @@ extension HD_LY_API: TargetType {
             params = ["p":"i",
                       "language": language,
                       "floor_id":floorNum]
+            
+            
+        case .guideMuseumList(let city_id, let longitude, let latitude, let type, let skip, let take):
+            
+            params = params.merging(["city_id": city_id, "longitude": longitude, "latitude": latitude, "type": type, "skip": skip, "take": take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .guideExhibitionList(let museum_id, let skip, let take, let token):
+            
+            params = params.merging(["museum_id": museum_id, "skip": skip, "take": take, "api_token": token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .guideExhibitList(let exhibition_id, let skip, let take):
+            
+            params = params.merging(["exhibition_id": exhibition_id, "skip": skip, "take": take ], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .guideExhibitInfo(let exhibit_num):
+            
+            params = params.merging(["exhibit_num": exhibit_num], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .guideMapGuide(let museum_id):
+            
+            params = params.merging(["museum_id": museum_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
         }
         

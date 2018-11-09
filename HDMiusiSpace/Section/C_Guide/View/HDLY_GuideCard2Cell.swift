@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HDLY_GuideCard2Cell_Delegate:NSObjectProtocol {
-    func didSelectItemAt(_ model:Int, _ cell: HDLY_GuideCard2Cell)
+    func didSelectItemAt(_ model:MuseumListModel, _ cell: HDLY_GuideCard2Cell)
 }
 //
 class HDLY_GuideCard2Cell: UITableViewCell {
@@ -32,7 +32,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
     
     weak var delegate: HDLY_GuideCard2Cell_Delegate?
     
-    var dataArray: Array<BRecmdModel>? {
+    var dataArray: Array<MuseumListModel>? {
         didSet{
             showViewData()
         }
@@ -51,38 +51,74 @@ class HDLY_GuideCard2Cell: UITableViewCell {
 
     func showViewData() {
         if dataArray != nil {
-            let model = dataArray?.first
-            if  model?.img != nil  {
-                imgV.kf.setImage(with: URL.init(string: (model?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+            guard let model = dataArray?.first else {
+                return
             }
-//            titleL.text = model?.title
-//            countL.text = model?.views?.string == nil ? "0" :(model?.views?.string)! + "人在学"
-//            priceL.text = "¥" + (model?.price?.string == nil ? "0" : (model?.price?.string)!)
-//            //
-//
-//            let model1 = dataArray?.last
-//            if  model1?.img != nil  {
-//                imgV1.kf.setImage(with: URL.init(string: (model1?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
-//            }
-//            titleL1.text = model1?.title
-//            countL1.text = model1?.views?.string == nil ? "0" :(model1?.views?.string)! + "人在学"
-//            priceL1.text = "¥" + (model1?.classnum?.string == nil ? "0" : (model1?.classnum?.string)!)
+            if  model.img != nil  {
+                imgV.kf.setImage(with: URL.init(string: (model.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            titleL.text = model.title
+            if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
+                typeL.text = "数字编号版"
+            }else if model.type == 1 {
+                typeL.text = "列表版"
+            }else if model.type == 2 {
+                typeL.text = "扫一扫版"
+            }
+            
+            //0限时免费1SVIP免费2收费
+            if model.priceType == 0 {
+                priceL.text = "限时免费"
+            }else if model.type == 1 {
+                priceL.text = "SVIP免费"
+            }else if model.type == 2 {
+                priceL.text = "收费"
+            }
+            
+          
+
+            
+            guard let model1 = dataArray?.last else {
+                return
+            }
+            
+            if  model1.img != nil  {
+                imgV1.kf.setImage(with: URL.init(string: (model1.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            titleL1.text = model1.title
+            //0数字编号版 1列表版 2扫一扫版
+            if model1.type == 0 {
+                typeL1.text = "数字编号版"
+            }else if model1.type == 1 {
+                typeL1.text = "列表版"
+            }else if model1.type == 1 {
+                typeL1.text = "扫一扫版"
+            }
+            
+            //0限时免费1SVIP免费2收费
+            if model1.priceType == 0 {
+                priceL1.text = "限时免费"
+            }else if model1.type == 1 {
+                priceL1.text = "SVIP免费"
+            }else if model1.type == 2 {
+                priceL1.text = "收费"
+            }
+   
         }
         
         
     }
     
     @IBAction func tapAction(_ sender: UIButton) {
-        
-        if sender.tag == 101 {
-            //let model = dataArray?.first
-            delegate?.didSelectItemAt(1, self)
-        }
-        else if sender.tag == 102 {
-            //let model1 = dataArray?.last
-            delegate?.didSelectItemAt(2, self)
-        }
         if dataArray != nil {
+            if sender.tag == 101 {
+                let model = dataArray!.first
+                delegate?.didSelectItemAt(model!, self)
+            }
+            else if sender.tag == 102 {
+                let model1 = dataArray!.last
+                delegate?.didSelectItemAt(model1!, self)
+            }
         }
         
     }

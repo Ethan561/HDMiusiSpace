@@ -278,7 +278,7 @@
         <!--Num GuideVC-->
         <scene sceneID="ceU-X7-Szy">
             <objects>
-                <viewController storyboardIdentifier="HDLY_NumGuideVC" id="bPj-gW-flg" customClass="HDLY_NumGuideVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDLY_NumGuideVC" hidesBottomBarWhenPushed="YES" id="bPj-gW-flg" customClass="HDLY_NumGuideVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xqb-QK-far">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,7 +428,7 @@
         <!--Exhibit ListVC-->
         <scene sceneID="mNU-VZ-igf">
             <objects>
-                <viewController storyboardIdentifier="HDLY_ExhibitListVC" id="Dur-ym-2ot" customClass="HDLY_ExhibitListVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDLY_ExhibitListVC" hidesBottomBarWhenPushed="YES" id="Dur-ym-2ot" customClass="HDLY_ExhibitListVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V4R-R6-E56">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

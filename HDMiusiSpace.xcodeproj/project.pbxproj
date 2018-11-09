@@ -226,6 +226,7 @@
 		D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */; };
 		D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */; };
 		D670FC772138EAD200870F40 /* HDFloatingButtonBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D670FC762138EAD200870F40 /* HDFloatingButtonBgView.swift */; };
+		D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671C64921951112007C6E1A /* HDLY_MuseumListModel.swift */; };
 		D671F743211A7F2B00A9EE57 /* RootBMainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */; };
 		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
 		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
@@ -680,6 +681,7 @@
 		D670D39B212588C20064750A /* HDLY_CourseRecmd_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseRecmd_Cell.swift; sourceTree = "<group>"; };
 		D670D39C212588C20064750A /* HDLY_CourseRecmd_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseRecmd_Cell.xib; sourceTree = "<group>"; };
 		D670FC762138EAD200870F40 /* HDFloatingButtonBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDFloatingButtonBgView.swift; sourceTree = "<group>"; };
+		D671C64921951112007C6E1A /* HDLY_MuseumListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumListModel.swift; sourceTree = "<group>"; };
 		D671F742211A7F2B00A9EE57 /* RootBMainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBMainTableView.swift; sourceTree = "<group>"; };
 		D671F745211A871D00A9EE57 /* SPPageMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPageMenu.m; sourceTree = "<group>"; };
 		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
@@ -1946,6 +1948,7 @@
 			isa = PBXGroup;
 			children = (
 				D689DDA02193DB9A007DF948 /* HDLY_MapExhibitModel.swift */,
+				D671C64921951112007C6E1A /* HDLY_MuseumListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2616,6 +2619,7 @@
 				D61E94C22192D12400C5299F /* HDAnnotationView.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
+				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,

@@ -15,6 +15,14 @@ class HDLY_GuideMapCell: UITableViewCell {
     @IBOutlet weak var vipPriceL: UILabel!
     @IBOutlet weak var bgView: UIView!
     
+    var model:MuseumMapModel? {
+        didSet {
+            showData()
+        }
+    }
+    
+    
+    
     class  func getMyTableCell(tableV: UITableView) -> HDLY_GuideMapCell! {
         var cell: HDLY_GuideMapCell? = tableV.dequeueReusableCell(withIdentifier: HDLY_GuideMapCell.className) as? HDLY_GuideMapCell
         if cell == nil {
@@ -33,6 +41,18 @@ class HDLY_GuideMapCell: UITableViewCell {
         
 //        imgV.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 50, height: 50))
         
+    }
+    
+    func showData() {
+        guard let model1 = model else {
+            return
+        }
+        if  model1.img != nil  {
+            imgV.kf.setImage(with: URL.init(string: (model1.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+        typeL.text = model1.version
+        vipPriceL.text = "\(model1.vipPrice)"
+        priceL.text = "\(model1.price)"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

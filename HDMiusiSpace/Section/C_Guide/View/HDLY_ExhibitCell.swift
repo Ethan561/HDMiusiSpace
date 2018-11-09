@@ -30,7 +30,7 @@ class HDLY_ExhibitCell: UITableViewCell {
         if let listModel = model {
             nameL.text = listModel.title
             timeL.text = listModel.timeLong
-   
+            
             tipImgV.image = UIImage.init(named: "dl_icon_default")
         }
     }

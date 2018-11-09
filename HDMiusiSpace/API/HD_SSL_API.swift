@@ -18,6 +18,9 @@ enum HD_SSL_API {
     case getSearchTypes()
     //搜索
     case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
+    
+    //获取城市列表1=全部城市，2=有博物馆部分城市
+    case getCityList(type: Int)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -45,6 +48,8 @@ extension HD_SSL_API: TargetType {
         case .startSearchWith(keyword: _, skip: _, take: _, searchType: _):
             return "/api/search/index"
             
+        case .getCityList(type: _):
+            return "/api/guide/city_list"
         //...
             
             
@@ -100,6 +105,13 @@ extension HD_SSL_API: TargetType {
                                      "skip":skip,
                                      "take":take,
                                      "type":searchType], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .getCityList(type: let type):
+            params = params.merging(["kind":type], uniquingKeysWith: {$1})
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]

@@ -39,6 +39,8 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     /// 表格
     lazy var dTableView: UITableView = UITableView(frame: dBgView.bounds, style: .plain)
     
+    /// 国际/港澳台
+    lazy var worldLocView: HDSSL_worldLocView = HDSSL_worldLocView.init(frame: dBgView.bounds)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,6 +53,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         dTableView.frame = dBgView.bounds
+        worldLocView.frame = dBgView.bounds
     }
     
     override func viewDidLoad() {
@@ -62,6 +65,8 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         
         //UI
         loadMyViews()
+        
+        setupWorldLocView()
         setupTableView()
         
         //data
@@ -86,17 +91,12 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         recentArray.append(city2)
         recentArray.append(city3)
         
-        hotArray.append(city1)
-        hotArray.append(city2)
-        hotArray.append(city3)
-        hotArray.append(city4)
-        
     }
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
         
-        //
+        //所有城市
         viewModel.cityArray.bind { (typeArray) in
             
             guard typeArray.count > 0 else {
@@ -107,9 +107,18 @@ class HDSSL_getLocationVC: HDItemBaseVC {
             
             weakSelf?.initTitleArrayWith(typeArray)
             
-            //刷新列表
-            weakSelf?.dTableView.reloadData()
         }
+        
+        //热门城市
+        viewModel.hotAray.bind { (hots) in
+            guard hots.count > 0 else {
+                return
+            }
+            weakSelf?.hotArray = hots
+        }
+        
+        //刷新列表
+        weakSelf?.dTableView.reloadData()
         
     }
     
@@ -131,6 +140,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         dTableView.reloadData()
     }
     
+    //国内
     private func setupTableView() {
         // 设置tableView
         dTableView.delegate = self
@@ -146,6 +156,12 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         dTableView.sectionIndexBackgroundColor = UIColor.clear
         dBgView.addSubview(dTableView)
     }
+    
+    //国际/港澳台
+    private func setupWorldLocView() {
+        dBgView.addSubview(worldLocView)
+    }
+    
     func loadMyViews() {
         menu_btn1.isSelected = true
         menu_btn2.isSelected = false
@@ -170,8 +186,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         sender.isSelected = !sender.isSelected
         if sender.tag == 0 {
             menu_btn2.isSelected = false
+            dBgView.bringSubview(toFront: dTableView)
         }else {
             menu_btn1.isSelected = false
+            dBgView.bringSubview(toFront: worldLocView)
         }
         refreshMenu()
     }

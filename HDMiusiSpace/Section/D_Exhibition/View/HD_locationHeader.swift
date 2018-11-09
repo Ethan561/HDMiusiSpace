@@ -23,5 +23,5 @@ let sectionMargin: CGFloat = 44
 
 /// 热门城市btn
 let btnMargin: CGFloat = 15
-let btnWidth: CGFloat = (ScreenWidth - 90) / 3
+//let btnWidth: CGFloat = (ScreenWidth - 90) / 3
 let btnHeight: CGFloat = 36

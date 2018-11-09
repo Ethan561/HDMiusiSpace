@@ -10,6 +10,7 @@ import Foundation
 class HDSSL_locationViewModel: NSObject {
     //城市数组
     var cityArray: Bindable = Bindable([CitiesModel]())
+    var hotAray:Bindable = Bindable([CityModel]())
     
     //请求城市列表
     func request_getCityList(type: Int,vc: HDItemBaseVC) {
@@ -21,8 +22,11 @@ class HDSSL_locationViewModel: NSObject {
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
             let model: CityDataModel = try! jsonDecoder.decode(CityDataModel.self, from: result)
-            self.cityArray.value = model.data!
             
+            let dictionary:CityDataSecModel? = model.data!
+            
+            self.cityArray.value = dictionary!.city_list!
+            self.hotAray.value = model.data!.hot_city!
             
         }) { (errorCode, msg) in
             //

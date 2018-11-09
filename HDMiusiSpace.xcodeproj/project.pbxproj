@@ -29,6 +29,8 @@
 		A7676BFB2192B937004C7F8A /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */; };
 		A7676BFC2192B937004C7F8A /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */; };
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
+		A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */; };
+		A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */; };
 		A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */; };
 		A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */; };
 		A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */; };
@@ -427,6 +429,8 @@
 		A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
+		A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_worldLocView.swift; sourceTree = "<group>"; };
+		A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_worldLocView.xib; sourceTree = "<group>"; };
 		A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_API.swift; sourceTree = "<group>"; };
 		A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_newsCell.swift; sourceTree = "<group>"; };
 		A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_newsCell.xib; sourceTree = "<group>"; };
@@ -1939,6 +1943,8 @@
 				A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */,
 				A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */,
 				A738B1F82194089C00B78D21 /* HD_locationHeader.swift */,
+				A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */,
+				A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2220,6 +2226,7 @@
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
+				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
@@ -2640,6 +2647,7 @@
 				D6115AF1218FD490004A05DA /* ZFAVPlayerManager.m in Sources */,
 				D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */,
 				D60E85732191661400072BF9 /* HDLY_QRGuideVC.swift in Sources */,
+				A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */,
 				D6C9FCCC21183536007C8E56 /* HDRootDVC.swift in Sources */,
 				A756C8382191858600C1747A /* RootDViewModel.swift in Sources */,
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,

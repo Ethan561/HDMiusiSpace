@@ -14,7 +14,7 @@ class HDLY_ExhibitCell: UITableViewCell {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var timeL: UILabel!
         
-    var model: ChapterList? {
+    var model: HDLY_ExhibitListM? {
         didSet {
             showCellData()
         }
@@ -29,55 +29,24 @@ class HDLY_ExhibitCell: UITableViewCell {
     func showCellData() {
         if let listModel = model {
             nameL.text = listModel.title
-            timeL.text = listModel.timeLong
+            timeL.text = listModel.longTime
             
-            tipImgV.image = UIImage.init(named: "dl_icon_default")
+//            tipImgV.image = UIImage.init(named: "dl_icon_default")
         }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         if let listModel = model {
-            
-            if listModel.isNeedBuy == true {
-                //0收费 1免费 2vip免费
-                if listModel.freeType == 0 {
-                    tipImgV.image = UIImage.init(named: "dl_icon_paly")
-                }
-                else if listModel.freeType == 1 {
-                    if selected == true {
-                        tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                        nameL.textColor = UIColor.HexColor(0xE8593E)
-                        timeL.textColor = UIColor.HexColor(0xE8593E)
-                    } else {
-                        tipImgV.image = UIImage.init(named: "dl_icon_default")
-                        nameL.textColor = UIColor.HexColor(0x4A4A4A)
-                        timeL.textColor = UIColor.HexColor(0x9B9B9B)
-                    }
-                }
-                else if listModel.freeType == 2 {
-                    if selected == true {
-                        tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                        nameL.textColor = UIColor.HexColor(0xE8593E)
-                        timeL.textColor = UIColor.HexColor(0xE8593E)
-                        
-                    } else {
-                        tipImgV.image = UIImage.init(named: "dl_icon_default")
-                        nameL.textColor = UIColor.HexColor(0x4A4A4A)
-                        timeL.textColor = UIColor.HexColor(0x9B9B9B)
-                    }
-                }
-            }else {//免费或已购买
-                if selected == true {
-                    tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                    nameL.textColor = UIColor.HexColor(0xE8593E)
-                    timeL.textColor = UIColor.HexColor(0xE8593E)
-                    
-                } else {
-                    tipImgV.image = UIImage.init(named: "dl_icon_default")
-                    nameL.textColor = UIColor.HexColor(0x4A4A4A)
-                    timeL.textColor = UIColor.HexColor(0x9B9B9B)
-                }
+            if selected == true {
+                tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                nameL.textColor = UIColor.HexColor(0xE8593E)
+                timeL.textColor = UIColor.HexColor(0xE8593E)
+                
+            } else {
+                tipImgV.image = UIImage.init(named: "dl_icon_default")
+                nameL.textColor = UIColor.HexColor(0x4A4A4A)
+                timeL.textColor = UIColor.HexColor(0x9B9B9B)
             }
         }
     }

@@ -146,13 +146,13 @@ enum HD_LY_API {
     case guideExhibitionList(museum_id: Int, skip:Int, take:Int, token: String)
     
     //展品列表
-    case guideExhibitList(exhibition_id: Int, skip:Int, take:Int)
+    case guideExhibitList(exhibition_id: Int, skip:Int, take:Int , api_token: String)
     
     //展品详情
-    case guideExhibitInfo(exhibit_num: Int)
+    case guideExhibitInfo(exhibit_num: Int, api_token: String)
     
     //地图导览
-    case guideMapGuide(museum_id: Int)
+    case guideMapGuide(museum_id: Int, api_token: String)
     
     
     
@@ -352,13 +352,13 @@ extension HD_LY_API: TargetType {
         case .guideExhibitionList(museum_id: _, skip: _, take: _, token: _):
             return "/api/guide/exhibition_list"
             
-        case .guideExhibitList(exhibition_id: _, skip: _, take: _):
+        case .guideExhibitList(exhibition_id: _, skip: _, take: _, api_token: _):
             return "/api/guide/exhibit_list"
             
-        case .guideExhibitInfo(exhibit_num: _):
+        case .guideExhibitInfo(exhibit_num: _, api_token: _):
             return "/api/guide/exhibit_info"
             
-        case .guideMapGuide(museum_id: _):
+        case .guideMapGuide(museum_id: _, api_token: _):
             return "/api/guide/map_guide"
             
             
@@ -794,24 +794,24 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-        case .guideExhibitList(let exhibition_id, let skip, let take):
+        case .guideExhibitList(let exhibition_id, let skip, let take, let api_token):
             
-            params = params.merging(["exhibition_id": exhibition_id, "skip": skip, "take": take ], uniquingKeysWith: {$1})
+            params = params.merging(["exhibition_id": exhibition_id, "skip": skip, "take": take, "api_token": api_token ], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-        case .guideExhibitInfo(let exhibit_num):
+        case .guideExhibitInfo(let exhibit_num, let api_token):
             
-            params = params.merging(["exhibit_num": exhibit_num], uniquingKeysWith: {$1})
+            params = params.merging(["exhibit_num": exhibit_num, "api_token": api_token], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             
-        case .guideMapGuide(let museum_id):
+        case .guideMapGuide(let museum_id, let api_token):
             
-            params = params.merging(["museum_id": museum_id], uniquingKeysWith: {$1})
+            params = params.merging(["museum_id": museum_id, "api_token": api_token], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

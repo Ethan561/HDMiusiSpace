@@ -92,3 +92,40 @@ struct HDLY_ExhibitionListData: Codable {
     }
 }
 
+//exhibit_list
+struct HDLY_ExhibitList: Codable {
+    let status: Int
+    let msg: String
+    let data: HDLY_ExhibitListD
+}
+
+struct HDLY_ExhibitListD: Codable {
+    let img: String
+    let exhibitionID: String
+    let exhibitList: [HDLY_ExhibitListM]
+    
+    enum CodingKeys: String, CodingKey {
+        case img
+        case exhibitionID = "exhibition_id"
+        case exhibitList = "exhibit_list"
+    }
+}
+
+struct HDLY_ExhibitListM: Codable {
+    var exhibitID: Int = 0
+    var title: String?
+    var audio: String?
+    var longTime: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case exhibitID = "exhibit_id"
+        case title, audio
+        case longTime = "long_time"
+    }
+}
+
+
+
+
+
+

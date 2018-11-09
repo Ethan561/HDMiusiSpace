@@ -16,36 +16,31 @@ class HDLY_ExhibitListVC: HDItemBaseVC {
     @IBOutlet weak var topImgV: UIImageView!
     
     let player = HDLY_AudioPlayer.shared
-    var isNeedBuy = false
-    var infoModel: CourseChapter?
-    var courseId: String?
+    var infoModel: HDLY_ExhibitList?
     var exhibition_id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
-        self.courseId = "25"
         dataRequest()
         
     }
     
     func dataRequest()  {
-        guard let idnum = self.courseId else {
-            return
-        }
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseChapterInfo(api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: 0, take: 20, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:CourseChapter = try! jsonDecoder.decode(CourseChapter.self, from: result)
+            let model:HDLY_ExhibitList = try! jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
             self.infoModel = model
             self.tableView.reloadData()
+            self.topImgV.kf.setImage(with: URL.init(string: model.data.img), placeholder: UIImage.grayImage(sourceImageV: self.topImgV), options: nil, progressBlock: nil, completionHandler: nil)
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
@@ -80,10 +75,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
-        if infoModel?.data.sectionList != nil {
-            return infoModel!.data.sectionList.count
-        }
-        return 0
+        return 1
     }
     
     //header
@@ -91,18 +83,6 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50))
-        let listHeader:HDLY_CourseList_Header = HDLY_CourseList_Header.createViewFromNib() as! HDLY_CourseList_Header
-        listHeader.frame = headerV.bounds
-        headerV.addSubview(listHeader)
-        if infoModel?.data.sectionList != nil {
-            guard let model = infoModel?.data.sectionList[section] else {
-                return headerV
-            }
-            listHeader.titleL.text = model.title
-            listHeader.subTitleL.text = "共\(model.chapterNum.string)小节"
-        }
-        
         return nil
     }
     
@@ -117,13 +97,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     
     //row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if infoModel?.data.sectionList != nil {
-            guard let model = infoModel?.data.sectionList[section] else {
-                return 0
-            }
-            return model.chapterList.count
-        }
-        return 0
+        return infoModel?.data.exhibitList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,23 +106,19 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = HDLY_ExhibitCell.getMyTableCell(tableV: tableView, indexP: indexPath)
-        if infoModel?.data.sectionList != nil {
-            guard let sectionModel = infoModel?.data.sectionList[indexPath.section] else {
-                return cell!
-            }
-            var listModel = sectionModel.chapterList[indexPath.row]
-            listModel.isNeedBuy = self.isNeedBuy
+        if infoModel?.data.exhibitList != nil {
+            let listModel = infoModel!.data.exhibitList[indexPath.row]
             cell?.model = listModel
         }
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let sectionModel = infoModel?.data.sectionList[indexPath.section] else {
+
+        let listModel = infoModel!.data.exhibitList[indexPath.row]
+        guard let video = listModel.audio else {
             return
         }
-        let listModel = sectionModel.chapterList[indexPath.row]
-        let video = listModel.video
         if video.isEmpty == false && video.contains(".mp3") {
             player.play(file: Music.init(name: "", url:URL.init(string: video)!))
             player.url = video

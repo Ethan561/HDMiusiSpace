@@ -142,7 +142,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         
         // 右边索引
         dTableView.sectionIndexColor = mainColor
-//        tableView.sectionIndexTrackingBackgroundColor = UIColor.white
+        dTableView.sectionIndexTrackingBackgroundColor = UIColor.HexColor(0x999999)
         dTableView.sectionIndexBackgroundColor = UIColor.clear
         dBgView.addSubview(dTableView)
     }

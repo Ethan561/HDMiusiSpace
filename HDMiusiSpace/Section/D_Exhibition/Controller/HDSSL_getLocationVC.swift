@@ -266,9 +266,26 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         title.font = UIFont.boldSystemFont(ofSize: 18)
         view.addSubview(title)
         view.backgroundColor = UIColor.white
-        if section > 2 {
-            view.backgroundColor = mainColor
-            title.textColor = UIColor.white
+        
+        if section == 0 {
+            let locString = "北京市" //GPS获取当前城市
+            let gps = " GPS定位"
+            
+            let string = locString + gps
+            
+            let myAttribute = [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
+                               NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)] as [NSAttributedStringKey : Any]
+            let attString = NSMutableAttributedString(string: string)
+            attString.addAttributes(myAttribute, range: NSRange.init(location: locString.count, length: gps.count))
+            
+            title.attributedText = attString
+            
+        }
+        
+        if section == 1 || section == 2 {
+            view.backgroundColor = cellColor
+            title.textColor = UIColor.lightGray
+            title.font = UIFont.systemFont(ofSize: 18)
         }
 
         return view
@@ -281,9 +298,9 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
     // MARK: row高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return btnHeight + 2 * btnMargin
+            return 0.01 //btnHeight + 2 * btnMargin
         }else if indexPath.section == 1 {
-//            return btnHeight + 2 * btnMargin
+
             let row = (recentArray.count - 1) / 3
             return (btnHeight + 2 * btnMargin) + (btnMargin + btnHeight) * CGFloat(row)
         }else if indexPath.section == 2 {

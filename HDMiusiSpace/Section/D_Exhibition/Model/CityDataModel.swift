@@ -10,9 +10,12 @@ import Foundation
 struct CityDataModel: Codable {
     var status      : Int?
     var msg         : String?
-    var data        : [CitiesModel]?
+    var data        : CityDataSecModel?
 }
-
+struct CityDataSecModel: Codable {
+    var hot_city  : [CityModel]?
+    var city_list : [CitiesModel]?
+}
 struct CitiesModel: Codable {
     var key_name  : String?
     var city_list : [CityModel]?

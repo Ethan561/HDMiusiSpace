@@ -11,6 +11,7 @@ import UIKit
 class RecentCitiesTableViewCell: UITableViewCell {
     
     var recentArray  : [CityModel]   = Array.init() //最近
+    var viewWidth    : CGFloat  = ScreenWidth
     
     // 使用tableView.dequeueReusableCell会自动调用这个方法
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -25,6 +26,8 @@ class RecentCitiesTableViewCell: UITableViewCell {
     func setupUI() {
         
         self.backgroundColor = cellColor
+        
+        let btnWidth:CGFloat = (viewWidth - 90) / 3
         
         // 动态创建城市btn
         for i in 0..<recentArray.count {

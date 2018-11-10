@@ -152,7 +152,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         }
         
         //刷新国际页面
-        weakSelf?.worldLocView.refreshTable(2)
+//        weakSelf?.worldLocView.refreshTable(2)
         
     }
     
@@ -292,6 +292,15 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
             cell.setupUI()
             cell.BlockTapHomeRecentItemFunc { (city) in
                 print(city.city_name!) //点击最近城市，本地保存，返回首页
+                //本地保存国家，返回首页
+                var c = HDSSL_selectedCity()
+                c.city_id = city.city_id
+                c.city_name = city.city_name
+                
+                
+                UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+                UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+                UserDefaults.standard.synchronize()
             }
             return cell
         }else if indexPath.section == 2 {
@@ -301,6 +310,15 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
             cell.setupUI()
             cell.BlockTapHomeHotItemFunc { (city) in
                 print(city.city_name!) //点击热门城市，本地保存，返回首页
+                //本地保存国家，返回首页
+                var c = HDSSL_selectedCity()
+                c.city_id = city.city_id
+                c.city_name = city.city_name
+                
+                
+                UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+                UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+                UserDefaults.standard.synchronize()
             }
             return cell
         }else {
@@ -320,6 +338,17 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
         let cell = tableView.cellForRow(at: indexPath)
         print("点击了 \(cell?.textLabel?.text ?? "")") //点击列表城市，本地保存，返回首页
+        
+        let citiesModel: CitiesModel = cityDataArray[indexPath.section-3]
+        let city:CityModel = citiesModel.city_list![indexPath.row]
+        //本地保存国家，返回首页
+        var c = HDSSL_selectedCity()
+        c.city_id = city.city_id
+        c.city_name = city.city_name
+        
+        UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+        UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+        UserDefaults.standard.synchronize()
     }
 
     // MARK: 右边索引

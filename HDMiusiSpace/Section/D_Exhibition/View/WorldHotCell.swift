@@ -14,7 +14,12 @@ typealias TapHotItemBlock = (_ county: CountyListModel) -> Void //
 class WorldHotCell: UITableViewCell {
 
     var hotArray  : [CountyListModel]   = Array.init() //热门
-    var viewWidth    : CGFloat  = ScreenWidth
+    {
+        didSet{
+            setupUI()
+        }
+    }
+    var viewWidth    : CGFloat?
     var blockTapHotitem : TapHotItemBlock?
     
     
@@ -33,11 +38,16 @@ class WorldHotCell: UITableViewCell {
     }
     
     func setupUI() {
-        
+        if hotArray.count == 0 {
+            return
+        }
+        for v in self.subviews {
+            v.removeFromSuperview()
+        }
         
         self.backgroundColor = cellColor
         
-        let btnWidth:CGFloat = (viewWidth - 50) / 2
+        let btnWidth:CGFloat = (viewWidth! - 50) / 2
         
         // 动态创建城市btn
         for i in 0..<hotArray.count {

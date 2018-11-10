@@ -32,7 +32,9 @@ class RecentCitiesTableViewCell: UITableViewCell {
     }
     
     func setupUI() {
-        
+        for v in self.subviews {
+            v.removeFromSuperview()
+        }
         self.backgroundColor = cellColor
         
         let btnWidth:CGFloat = (viewWidth - 90) / 3

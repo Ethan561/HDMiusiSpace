@@ -338,7 +338,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crS-dv-n28">
                                 <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:40/01:15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bth-iQ-6QR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00/00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bth-iQ-6QR">
                                         <rect key="frame" x="232" y="10" width="123" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="123" id="Acu-GQ-2Ic"/>
@@ -383,7 +383,7 @@
                                     <constraint firstItem="bth-iQ-6QR" firstAttribute="top" secondItem="crS-dv-n28" secondAttribute="top" constant="10" id="e2H-Af-bfQ"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dpX-4x-byZ">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dpX-4x-byZ">
                                 <rect key="frame" x="-2" y="286" width="379" height="29"/>
                                 <color key="tintColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

@@ -8,22 +8,20 @@
 
 import UIKit
 
-class HDLY_NumGuideVC: HDItemBaseVC {
+class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var timeL: UILabel!
     @IBOutlet weak var slide: UISlider!
     @IBOutlet weak var cleanBtn: UIButton!
     @IBOutlet weak var numL: UILabel!
+    let player = HDLY_AudioPlayer.shared
     
     var numStr = ""
     var exhibit_num = 0
-    
-    var isFolder = false
-    var tagsSelectIndex = 0
-    var listArr = [ListenList]()
-    var tagsArr = [ListenTags]()
     var dataArr = ["1","2","3","4","5","6","7","8","9","","0",""]
+    var exhibitInfo: HDLY_ExhibitListM?
+    var isPlaying = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +41,41 @@ class HDLY_NumGuideVC: HDItemBaseVC {
         }else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        dataRequest(cate_id: "-1")
+        setupNavBarItem()
+        self.collectionView.reloadData()
+
+        if exhibit_num != 0 {
+            dataRequest(exhibit_num: exhibit_num)
+            numL.text = "\(exhibit_num)"
+        }
+        player.delegate = self
+
+    }
+    
+    func setupNavBarItem() {
+        let rightBtn = UIButton.init(type: UIButton.ButtonType.custom)
+        rightBtn.addTarget(self, action: #selector(helpAlertShow), for: UIControl.Event.touchUpInside)
+        rightBtn.setImage(UIImage.init(named: "dl_icon_help"), for: UIControl.State.normal)
+        let rightBtnItem = UIBarButtonItem.init(customView: rightBtn)
+        
+        self.navigationItem.rightBarButtonItems = [rightBtnItem]
+    }
+    
+    @objc func helpAlertShow() {
+        let tipView:HDLY_NumGuideHelpView = HDLY_NumGuideHelpView.createViewFromNib() as! HDLY_NumGuideHelpView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
     }
     
     @IBAction func cleanAction(_ sender: Any) {
         numStr = ""
+        numL.text = numStr
+        player.stop()
+        slide.value = 0
+        timeL.text = "00:00/00:00"
+        self.collectionView.reloadData()
     }
     
     @IBAction func sliderValueChangeAction(_ sender: UISlider) {
@@ -62,40 +90,69 @@ class HDLY_NumGuideVC: HDItemBaseVC {
         super.viewDidLayoutSubviews()
     }
     
-    func dataRequest(cate_id: String) {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "10", cate_id: cate_id), showHud: false, loadingVC: self, success: { (result) in
+    func dataRequest(exhibit_num: Int) {
+        player.stop()
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitInfo(exhibit_num: exhibit_num, api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            let dataDic:Dictionary<String,Any> = dic!["data"] as! Dictionary<String,Any>
+            let data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)
             let jsonDecoder = JSONDecoder()
-            let model:CourseListen = try! jsonDecoder.decode(CourseListen.self, from: result)
-            self.tagsArr = model.data.cates
-            self.listArr = model.data.list
-            if cate_id == "-1" {
-                self.collectionView.reloadData()
-            }else {
-                self.collectionView.reloadSections(IndexSet.init(integer: 1))
-            }
+            let model:HDLY_ExhibitListM = try! jsonDecoder.decode(HDLY_ExhibitListM.self, from: data!)
+            self.exhibitInfo = model
+            self.title = model.title
+            self.playAction()
             
         }) { (errorCode, msg) in
-            self.collectionView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            self.collectionView.ly_showEmptyView()
+
         }
     }
     
-    @objc func refreshAction() {
-        dataRequest(cate_id: "-1")
+    func playAction() {
+        if player.state == .playing {
+            player.pause()
+            isPlaying = false
+        } else {
+            if player.state == .paused {
+                player.play()
+                isPlaying = true
+            }else {
+                if self.exhibitInfo?.audio != nil {
+                    player.play(file: Music.init(name: "", url:URL.init(string: self.exhibitInfo!.audio!)!))
+                    player.url = self.exhibitInfo!.audio!
+                    player.fileno = numStr
+                    isPlaying = true
+                }
+
+            }
+        }
+        self.collectionView.reloadData()
     }
     
+    //MARK: -- HDLY_AudioPlayer_Delegate --
+    func finishPlaying() {
+        isPlaying = false
+        self.collectionView.reloadData()
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        slide.value = progress
+        timeL.text = "\(currentTime)/\(totalTime)"
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            player.stop()
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @objc func folderBtnAction(_ sender: UIButton)  {
-        sender.isSelected = !sender.isSelected
-        isFolder = sender.isSelected
-        collectionView.reloadData()
     }
     
 }
@@ -133,37 +190,52 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
             
             if indexPath.row == 11{
                 cell.tagBtn.setImage(UIImage.init(named: "dl_icon_paly_red"), for: UIControlState.normal)
+                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_pause_red"), for: UIControlState.selected)
+                if isPlaying == true {
+                    cell.tagBtn.isSelected = true
+                }else {
+                    cell.tagBtn.isSelected = false
+                }
             }
             
             
             return cell
         }
         
-//        let cell:HDLY_Listen_CollectionCell = HDLY_Listen_CollectionCell.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
-//        if self.listArr.count > 0 {
-//            let model = self.listArr[indexPath.row]
-//            cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
-//            cell.titleL.text = model.title
-//            cell.countL.text = "\(model.listening)人听过"
-//        }
-        
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row < 9 {
-            numStr.append("\(indexPath.row+1)")
+        if isPlaying == true {
+            if indexPath.row == 11{
+                playAction()
+            }
+        }else {
+            if indexPath.row < 11 {
+                if indexPath.row < 9 {
+                    numStr.append("\(indexPath.row+1)")
+                }
+                if indexPath.row == 10 {
+                    numStr.append("0")
+                }
+                if indexPath.row == 9 && numStr.count > 0{
+                    numStr.removeLast()
+                }
+                if numStr.count > 4 {
+                    numStr =  String(numStr.prefix(4))
+                }
+                numL.text = numStr
+            }
+            
+            if indexPath.row == 11 {
+                if player.fileno != numStr && numStr.count > 0 {
+                    dataRequest(exhibit_num: Int(numStr) ?? 0)
+                }else {
+                    playAction()
+                }
+            }
+            
         }
-        if indexPath.row == 10 {
-            numStr.append("0")
-        }
-        if indexPath.row == 9 && numStr.count > 0{
-            numStr.removeLast()
-        }
-        if numStr.count > 4 {
-            numStr =  String(numStr.prefix(4))
-        }
-        numL.text = numStr
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------

@@ -14,6 +14,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
     var dataArr =  [HDLY_ExhibitionListData]()
     var museum_id = 0
     var titleName = ""
+    var vipTipView:HDLY_OpenVipTipView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +112,28 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let model = dataArr[indexPath.row]
+        if model.isLock == 1 {
+            let tipView:HDLY_OpenVipTipView = HDLY_OpenVipTipView.createViewFromNib() as! HDLY_OpenVipTipView
+            tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+            tipView.model = model
+            if kWindow != nil {
+                kWindow!.addSubview(tipView)
+            }
+            weak var weakS = self
+            tipView.sureBlock = { model in
+                weakS?.showDetailVC(model)
+            }
+            vipTipView = tipView
+            return
+        }
+        showDetailVC(model)
+        
+    }
+    
+    
+    func showDetailVC(_ model:HDLY_ExhibitionListData) {
+        vipTipView?.removeFromSuperview()
+        vipTipView?.sureBlock = nil
         
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
@@ -119,15 +142,16 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
             
         }else if model.type == 1 {
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
-                vc.exhibition_id = model.exhibitionID
+            vc.exhibition_id = model.exhibitionID
             self.navigationController?.pushViewController(vc, animated: true)
             
         }else if model.type == 2 {
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
+    
+    
 
 }
 

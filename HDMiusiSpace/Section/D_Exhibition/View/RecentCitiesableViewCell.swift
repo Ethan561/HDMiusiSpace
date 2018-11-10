@@ -8,10 +8,13 @@
 
 import UIKit
 
+typealias TapHomeRecentItemBlock = (_ county: CityModel) -> Void //
+
 class RecentCitiesTableViewCell: UITableViewCell {
     
     var recentArray  : [CityModel]   = Array.init() //最近
     var viewWidth    : CGFloat  = ScreenWidth
+    var blockTapHomeRecentCity : TapHomeRecentItemBlock?
     
     // 使用tableView.dequeueReusableCell会自动调用这个方法
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -21,6 +24,11 @@ class RecentCitiesTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //回调
+    func BlockTapHomeRecentItemFunc(block: @escaping TapHomeRecentItemBlock) {
+        blockTapHomeRecentCity = block
     }
     
     func setupUI() {
@@ -56,6 +64,11 @@ class RecentCitiesTableViewCell: UITableViewCell {
     
     @objc private func btnClick(btn: UIButton) {
         print(btn.titleLabel?.text!)
+        let city: CityModel = recentArray[btn.tag]
+        weak var weakSelf = self
+        if weakSelf?.blockTapHomeRecentCity != nil {
+            weakSelf?.blockTapHomeRecentCity!(city)
+        }
     }
 
 }

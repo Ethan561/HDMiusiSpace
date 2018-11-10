@@ -287,18 +287,24 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         }else if indexPath.section == 1 {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: recentCell, for: indexPath) as! RecentCitiesTableViewCell
+            
             cell.recentArray = recentArray
             cell.setupUI()
+            cell.BlockTapHomeRecentItemFunc { (city) in
+                print(city.city_name!) //点击最近城市，本地保存，返回首页
+            }
             return cell
         }else if indexPath.section == 2 {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: hotCityCell, for: indexPath) as! HotCityTableViewCell
             cell.hotArray = hotArray
             cell.setupUI()
+            cell.BlockTapHomeHotItemFunc { (city) in
+                print(city.city_name!) //点击热门城市，本地保存，返回首页
+            }
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: nomalCell, for: indexPath)
-            //            cell.backgroundColor = cellColor
             
             let citiesModel: CitiesModel = cityDataArray[indexPath.section-3]
             let city:CityModel = citiesModel.city_list![indexPath.row]
@@ -313,7 +319,7 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
 
         tableView.deselectRow(at: indexPath, animated: false)
         let cell = tableView.cellForRow(at: indexPath)
-        print("点击了 \(cell?.textLabel?.text ?? "")")
+        print("点击了 \(cell?.textLabel?.text ?? "")") //点击列表城市，本地保存，返回首页
     }
 
     // MARK: 右边索引

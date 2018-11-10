@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias TapHomeHotItemBlock = (_ county: CityModel) -> Void //
+
 class HotCityTableViewCell: UITableViewCell {
 
     /// 懒加载 热门城市
@@ -19,6 +21,7 @@ class HotCityTableViewCell: UITableViewCell {
     
     var hotArray     : [CityModel]   = Array.init() //热门
     var viewWidth    : CGFloat  = ScreenWidth
+    var blockTapHomeCity : TapHomeHotItemBlock?
     
     /// 使用tableView.dequeueReusableCell会自动调用这个方法
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -28,6 +31,11 @@ class HotCityTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //回调
+    func BlockTapHomeHotItemFunc(block: @escaping TapHomeHotItemBlock) {
+        blockTapHomeCity = block
     }
     
     func setupUI() {
@@ -53,6 +61,7 @@ class HotCityTableViewCell: UITableViewCell {
 //            btn.layer.borderColor = mainColor.cgColor
 //            btn.layer.borderWidth = 0.5
             btn.layer.cornerRadius = 1
+            btn.tag = i
             btn.setBackgroundImage(btnHighlightImage, for: .highlighted)
             btn .addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
             self.addSubview(btn)
@@ -62,6 +71,12 @@ class HotCityTableViewCell: UITableViewCell {
     
     @objc private func btnClick(btn: UIButton) {
         print(btn.titleLabel?.text!)
+        
+        let city: CityModel = hotArray[btn.tag]
+        weak var weakSelf = self
+        if weakSelf?.blockTapHomeCity != nil {
+            weakSelf?.blockTapHomeCity!(city)
+        }
     }
 
 }

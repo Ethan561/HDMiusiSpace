@@ -43,6 +43,7 @@
 		A7B982E92196699600AF0266 /* WorldRecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982E82196699600AF0266 /* WorldRecentCell.swift */; };
 		A7B982EB2196715F00AF0266 /* WorldHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EA2196715F00AF0266 /* WorldHotCell.swift */; };
 		A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EC2196766A00AF0266 /* CountyDataModel.swift */; };
+		A7B982EF2196B85E00AF0266 /* WorldHot1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EE2196B85E00AF0266 /* WorldHot1Cell.swift */; };
 		A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */; };
 		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
 		D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */; };
@@ -446,6 +447,7 @@
 		A7B982E82196699600AF0266 /* WorldRecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldRecentCell.swift; sourceTree = "<group>"; };
 		A7B982EA2196715F00AF0266 /* WorldHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHotCell.swift; sourceTree = "<group>"; };
 		A7B982EC2196766A00AF0266 /* CountyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyDataModel.swift; sourceTree = "<group>"; };
+		A7B982EE2196B85E00AF0266 /* WorldHot1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHot1Cell.swift; sourceTree = "<group>"; };
 		A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagViewModel.swift; sourceTree = "<group>"; };
 		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
 		D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GenderTip_View.swift; sourceTree = "<group>"; };
@@ -1953,6 +1955,7 @@
 				A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */,
 				A7B982E82196699600AF0266 /* WorldRecentCell.swift */,
 				A7B982EA2196715F00AF0266 /* WorldHotCell.swift */,
+				A7B982EE2196B85E00AF0266 /* WorldHot1Cell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2391,6 +2394,7 @@
 			files = (
 				D668CF9F21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift in Sources */,
 				D6AA0AF92134DED00036320F /* HDLY_ModifyName_VC.swift in Sources */,
+				A7B982EF2196B85E00AF0266 /* WorldHot1Cell.swift in Sources */,
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
 				A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */,
 				D66991C92130EDD5002568B2 /* HDLY_AnswerText_Cell.swift in Sources */,

@@ -9,8 +9,12 @@
 import UIKit
 
 private let hotCityCell = "hotCityCell"
+private let hot1CityCell = "hot1CityCell"
 private let recentCell = "rencentCityCell"
 private let currentCell = "currentCityCell"
+
+typealias TapLeftTableCellBlock = (_ index: Int) -> Void //返回事件,点击左侧列表，改变大洲
+typealias TapRightTableItemBlock = (_ dic: Dictionary<String, Any>) -> Void //返回事件,点击右侧item，返回["name":"英国"，“id”： 11]
 
 @IBDesignable         //可视化的关键字
 class HDSSL_worldLocView: UIView {
@@ -20,13 +24,14 @@ class HDSSL_worldLocView: UIView {
     @IBOutlet weak var rightTable: UITableView!
     
     var isRecomand: Bool? = true //是否是推荐
-    var leftTitleArray   : [String]      = Array.init() //大洲数组
+    var leftTitleArray   : [CountyTypeListModel]      = Array.init() //大洲数组
     var rightTitleArray  : [String]      = Array.init() //右侧标题
     var recentArray  : [CityModel]   = Array.init() //最近
-    var hotArray     : [CityModel]   = Array.init() //热门
+    var hotArray     : [CountyListModel]   = Array.init() //热门
     
-    var currentType: Int = 0 //当前大洲类型
     
+    var blockTapLeftTableCell : TapLeftTableCellBlock? //点击事件
+    var blockTapRightTableItem : TapRightTableItemBlock? //点击事件
     
     //MARK：实现初始化构造器
     //使用代码构造此自定义视图时调用
@@ -55,10 +60,19 @@ class HDSSL_worldLocView: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
+    //
+    //回调
+    func BlockLeftFunc(block: @escaping TapLeftTableCellBlock) {
+        blockTapLeftTableCell = block
+    }
+    func BlockRightFunc(block: @escaping TapRightTableItemBlock) {
+        blockTapRightTableItem = block
+    }
     
     //
     func loadMyViews(){
     
+        self.isUserInteractionEnabled = true
         //leftTable
         leftTable.delegate = self
         leftTable.dataSource = self
@@ -72,6 +86,7 @@ class HDSSL_worldLocView: UIView {
         rightTable.register(WorldRecentCell.self, forCellReuseIdentifier: recentCell)
         rightTable.register(CurrentCityTableViewCell.self, forCellReuseIdentifier: currentCell)
         rightTable.register(WorldHotCell.self, forCellReuseIdentifier: hotCityCell)
+        rightTable.register(WorldHot1Cell.self, forCellReuseIdentifier: hot1CityCell)
         
         //右侧数据
         //最近
@@ -92,20 +107,20 @@ class HDSSL_worldLocView: UIView {
         recentArray.append(city2)
         recentArray.append(city3)
         
-        hotArray.append(city1)
-        hotArray.append(city2)
-        hotArray.append(city3)
-        
-        //左侧标题
-        let arr = ["推荐","港澳台","亚洲","欧洲","北美洲","南美洲","大洋洲","非洲"]
-        leftTitleArray += arr
-        
         //右侧标题
         let arr1 = ["定位","最近访问","热门"]
         rightTitleArray += arr1
         
         
         leftTable.reloadData()
+        rightTable.reloadData()
+    }
+    
+    //刷新方法
+    public func refreshTable(_ type: Int) {
+        if type == 1 {
+            leftTable.reloadData()
+        }
         rightTable.reloadData()
     }
 
@@ -160,7 +175,9 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
             cell?.textLabel?.textAlignment = .center
             cell?.textLabel?.textColor = UIColor.black
             cell?.textLabel?.highlightedTextColor = UIColor.HexColor(0xE8593E) //选中文字颜色
-            cell?.textLabel?.text = leftTitleArray[indexPath.row]
+            
+            let model = leftTitleArray[indexPath.row]
+            cell?.textLabel?.text = String.init(format: "%@", model.type_name!)
             
             //选中背景修改成绿色
             cell?.selectedBackgroundView = UIView()
@@ -186,30 +203,72 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                 }else if indexPath.section == 1 {
                     //最近
                     let cell = tableView.dequeueReusableCell(withIdentifier: recentCell, for: indexPath) as! WorldRecentCell
+                    cell.BlockTapItemFunc { (city) in
+                        print(city.city_name!)  //返回选中的城市
+                        
+                        //本地保存选中的城市，返回首页
+                        var c = HDSSL_selectedCity()
+                        c.city_id = city.city_id
+                        c.city_name = city.city_name
+                        
+                        UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+                        UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+                        UserDefaults.standard.synchronize()
+                    }
                     cell.recentArray = recentArray
                     cell.viewWidth = ScreenWidth - 100
                     cell.setupUI()
                     cell.backgroundColor = UIColor.white
+                    cell.selectionStyle = .none
                     return cell
                 }else {
-                    //热门
+                    //推荐热门
                     let cell = tableView.dequeueReusableCell(withIdentifier: hotCityCell, for: indexPath) as! WorldHotCell
+                    cell.BlockTapHotItemFunc { (city) in
+                        print(city.city_name!) // 返回选中国家
+                        
+                        //本地保存国家，返回首页
+                        var c = HDSSL_selectedCity()
+                        c.city_id = city.city_id
+                        c.city_name = city.city_name
+                        
+                        
+                        UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+                        UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+                        UserDefaults.standard.synchronize()
+                    }
                     cell.hotArray = hotArray
                     cell.viewWidth = ScreenWidth - 100
                     cell.setupUI()
                     cell.backgroundColor = UIColor.white
+                    cell.selectionStyle = .none
                     return cell
                     
                 }
                 
             } else {
                 
-                //热门
-                let cell = tableView.dequeueReusableCell(withIdentifier: hotCityCell, for: indexPath) as! WorldHotCell
+                //其他热门
+                let cell = tableView.dequeueReusableCell(withIdentifier: hot1CityCell, for: indexPath) as! WorldHot1Cell
+                cell.BlockTapHot1ItemFunc { (city) in
+                    print(city.city_name!) // 返回选中国家
+                    
+                    //本地保存国家，返回首页
+                    var c = HDSSL_selectedCity()
+                    c.city_id = city.city_id
+                    c.city_name = city.city_name
+                    
+                    UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
+                    UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+                    UserDefaults.standard.synchronize()
+                }
+                
                 cell.hotArray = hotArray
                 cell.viewWidth = ScreenWidth - 100
                 cell.setupUI()
                 cell.backgroundColor = UIColor.white
+                cell.selectionStyle = .none
+                
                 return cell
             }
             
@@ -228,7 +287,12 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                 isRecomand = true
             }
             
-            rightTable.reloadData()
+            //回调，改变大洲
+            weak var weakSelf = self
+            if weakSelf?.blockTapLeftTableCell != nil {
+                weakSelf?.blockTapLeftTableCell!(indexPath.row)
+            }
+            
         }
         
     }

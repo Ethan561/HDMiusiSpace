@@ -8,10 +8,14 @@
 
 import UIKit
 
+typealias TapRecentItemBlock = (_ city: CityModel) -> Void //
+
 class WorldRecentCell: UITableViewCell {
 
     var recentArray  : [CityModel]   = Array.init() //最近
     var viewWidth    : CGFloat  = ScreenWidth
+    
+    var blockTapRecentItem :TapRecentItemBlock? //回调
     
     // 使用tableView.dequeueReusableCell会自动调用这个方法
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -21,6 +25,10 @@ class WorldRecentCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    //回调
+    func BlockTapItemFunc(block: @escaping TapRecentItemBlock) {
+        blockTapRecentItem = block
     }
     
     func setupUI() {
@@ -39,6 +47,8 @@ class WorldRecentCell: UITableViewCell {
             let row = i / 2
             
             let btn = UIButton(frame: CGRect(x: btnMargin + CGFloat(column) * (btnWidth + btnMargin), y: 15 + CGFloat(row) * (btnHeight + btnMargin), width: btnWidth, height: btnHeight))
+            
+            btn.tag = i
             btn.setTitle(city.city_name!, for: .normal)
             btn.setTitleColor(mainColor, for: .normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -56,6 +66,13 @@ class WorldRecentCell: UITableViewCell {
     
     @objc private func btnClick(btn: UIButton) {
         print(btn.titleLabel?.text!)
+        
+        let model = recentArray[btn.tag]
+        
+        weak var weakSelf = self
+        if weakSelf?.blockTapRecentItem != nil {
+            weakSelf?.blockTapRecentItem!(model)
+        }
     }
 
 }

@@ -30,6 +30,12 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     var hotArray     : [CityModel]   = Array.init() //热门
     var titleArray   : [String]      = Array.init() //索引标题
     
+    //国际
+    var worldTypeArray : [CountyTypeListModel]    = Array.init() //大洲
+    var countyArray    : [CountyListModel]    = Array.init() //国家
+    var currentLeftType: Int = 0 //当前类型
+    
+    
     //mvvm
     var viewModel: HDSSL_locationViewModel = HDSSL_locationViewModel()
     
@@ -60,6 +66,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         super.viewDidLoad()
         navBarHeight.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
+        dBgView.isUserInteractionEnabled = true
         //MVVM
         bindViewModel()
         
@@ -71,7 +78,8 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         
         //data
         loadMyDatas()
-        viewModel.request_getCityList(type: 1, vc: self)
+        viewModel.request_getCityList(type: 1, vc: self) //请求国内城市数据
+        viewModel.request_getWorldCityList(kind: 1, type: 0, isrecommand: true, vc: self) //请求国际数据
     }
     func loadMyDatas() {
         var city1 = CityModel()
@@ -120,6 +128,32 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         //刷新列表
         weakSelf?.dTableView.reloadData()
         
+        /////国际城市
+        viewModel.leftTableList.bind { (leftTitles) in
+            //大洲
+            guard leftTitles.count > 0 else {
+                return
+            }
+            
+            weakSelf?.worldLocView.leftTitleArray = leftTitles
+            
+            weakSelf?.worldLocView.refreshTable(1)
+        }
+        
+        viewModel.countyList.bind { (counties) in
+            //国家
+            guard counties.count > 0 else {
+                return
+            }
+            
+            weakSelf?.worldLocView.hotArray = counties
+            //刷新国际页面
+            weakSelf?.worldLocView.refreshTable(2)
+        }
+        
+        //刷新国际页面
+        weakSelf?.worldLocView.refreshTable(2)
+        
     }
     
     //标题数组
@@ -159,7 +193,23 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     
     //国际/港澳台
     private func setupWorldLocView() {
+        
         dBgView.addSubview(worldLocView)
+        weak var weakSelf = self
+        
+        worldLocView.BlockLeftFunc { (index) in
+            print(index)
+            //切换左侧类型
+            if weakSelf?.currentLeftType == index {
+                return
+            }
+            weakSelf?.currentLeftType = index
+            weakSelf?.viewModel.request_getWorldCityList(kind: 1, type: index, isrecommand: index == 0 ? true : false, vc: self)
+        }
+        
+        worldLocView.BlockRightFunc { (dic) in
+            print(dic)
+        }
     }
     
     func loadMyViews() {

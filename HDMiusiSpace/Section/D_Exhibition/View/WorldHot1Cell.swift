@@ -1,5 +1,5 @@
 //
-//  WorldHotCell.swift
+//  WorldHot1Cell.swift
 //  HDMiusiSpace
 //
 //  Created by SSLong on 2018/11/10.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-typealias TapHotItemBlock = (_ county: CountyListModel) -> Void //
+typealias TapHot1ItemBlock = (_ county: CountyListModel) -> Void //
 
 
-class WorldHotCell: UITableViewCell {
-
+class WorldHot1Cell: UITableViewCell {
+    
     var hotArray  : [CountyListModel]   = Array.init() //热门
     var viewWidth    : CGFloat  = ScreenWidth
-    var blockTapHotitem : TapHotItemBlock?
+    var blockTapHot1item : TapHot1ItemBlock?
     
     
     // 使用tableView.dequeueReusableCell会自动调用这个方法
@@ -28,8 +28,8 @@ class WorldHotCell: UITableViewCell {
     }
     
     //回调
-    func BlockTapHotItemFunc(block: @escaping TapHotItemBlock) {
-        blockTapHotitem = block
+    func BlockTapHot1ItemFunc(block: @escaping TapHot1ItemBlock) {
+        blockTapHot1item = block
     }
     
     func setupUI() {
@@ -56,7 +56,7 @@ class WorldHotCell: UITableViewCell {
             btn.layer.borderWidth = 0.5
             btn.layer.cornerRadius = 1
             
-//            btn.setBackgroundImage(btnHighlightImage, for: .highlighted)
+            //            btn.setBackgroundImage(btnHighlightImage, for: .highlighted)
             btn.kf.setImage(with: URL.init(string: city.img!), for: .normal, placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
             
             btn.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
@@ -87,8 +87,8 @@ class WorldHotCell: UITableViewCell {
         print(btn.tag)
         let city: CountyListModel = hotArray[btn.tag]
         weak var weakSelf = self
-        if weakSelf?.blockTapHotitem != nil {
-            weakSelf?.blockTapHotitem!(city)
+        if weakSelf?.blockTapHot1item != nil {
+            weakSelf?.blockTapHot1item!(city)
         }
     }
 

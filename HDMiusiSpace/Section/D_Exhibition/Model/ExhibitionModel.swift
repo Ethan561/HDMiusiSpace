@@ -23,3 +23,8 @@ struct HDSSL_dMuseum: Codable {
     var address           : String?  //博物馆地址
     var icon_list         : [String]?//服务图标地址
 }
+//本地保存选中的城市
+struct HDSSL_selectedCity:Codable {
+    var city_id          : Int?     //选择城市id
+    var city_name        : String?  //名字
+}

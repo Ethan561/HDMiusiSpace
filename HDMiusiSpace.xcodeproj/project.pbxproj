@@ -308,6 +308,10 @@
 		D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68D54202133D1ED000CD258 /* LogInSection.storyboard */; };
 		D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */; };
 		D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */; };
+		D69451882196755E00E7DA44 /* HDLY_OpenVipTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69451872196755E00E7DA44 /* HDLY_OpenVipTipView.swift */; };
+		D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69451892196757900E7DA44 /* HDLY_OpenVipTipView.xib */; };
+		D694518C219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D694518B219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib */; };
+		D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */; };
 		D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */; };
 		D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */; };
 		D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */; };
@@ -787,6 +791,10 @@
 		D68D54202133D1ED000CD258 /* LogInSection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInSection.storyboard; sourceTree = "<group>"; };
 		D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_UserInfo_VC.swift; sourceTree = "<group>"; };
 		D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Setting_VC.swift; sourceTree = "<group>"; };
+		D69451872196755E00E7DA44 /* HDLY_OpenVipTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_OpenVipTipView.swift; sourceTree = "<group>"; };
+		D69451892196757900E7DA44 /* HDLY_OpenVipTipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_OpenVipTipView.xib; sourceTree = "<group>"; };
+		D694518B219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumGuideHelpView.xib; sourceTree = "<group>"; };
+		D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumGuideHelpView.swift; sourceTree = "<group>"; };
 		D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Header.swift; sourceTree = "<group>"; };
 		D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseComment_Header.xib; sourceTree = "<group>"; };
 		D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Footer.swift; sourceTree = "<group>"; };
@@ -2007,6 +2015,10 @@
 				D60E857B21918B3400072BF9 /* HDLY_ExhibitCell.xib */,
 				D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */,
 				D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */,
+				D69451872196755E00E7DA44 /* HDLY_OpenVipTipView.swift */,
+				D69451892196757900E7DA44 /* HDLY_OpenVipTipView.xib */,
+				D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */,
+				D694518B219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2210,11 +2222,13 @@
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
 				D66C35CF213FAA8600363D7C /* HDLY_MineCourse_Cell.xib in Resources */,
 				D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */,
+				D694518C219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
 				A7676BFC2192B937004C7F8A /* HDSSL_dMuseumCell.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
+				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
 				D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
@@ -2450,6 +2464,7 @@
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
 				D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */,
+				D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */,
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
@@ -2677,6 +2692,7 @@
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
 				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,
 				D61E94D72192D12400C5299F /* UIButton+WebCache.m in Sources */,
+				D69451882196755E00E7DA44 /* HDLY_OpenVipTipView.swift in Sources */,
 				D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */,
 				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,

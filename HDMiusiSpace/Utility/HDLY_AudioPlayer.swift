@@ -43,7 +43,7 @@ final class HDLY_AudioPlayer: NSObject {
     
     //更新进度条定时器
     var timer:Timer!
-    
+    var fileno: String = ""
     var url:String = ""
     var showFloatingBtn: Bool = false
 

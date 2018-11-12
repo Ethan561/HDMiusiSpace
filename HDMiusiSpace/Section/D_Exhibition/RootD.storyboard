@@ -285,23 +285,24 @@
                                                     <constraint firstAttribute="width" constant="18" id="zCd-VG-mfm"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门搜索：北京" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-KY-kP7">
-                                                <rect key="frame" x="43" y="5" width="248" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="热门搜索：北京" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Oq4-gL-0xT">
+                                                <rect key="frame" x="43" y="5" width="238" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Cu3-cc-0Hi"/>
+                                                    <constraint firstAttribute="height" constant="30" id="c19-cb-XJ2"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="lWN-1m-a9A" firstAttribute="leading" secondItem="jI0-4y-2wB" secondAttribute="leading" constant="15" id="3v1-va-geI"/>
                                             <constraint firstItem="lWN-1m-a9A" firstAttribute="centerY" secondItem="jI0-4y-2wB" secondAttribute="centerY" id="5Qq-lD-CkO"/>
-                                            <constraint firstItem="nMV-KY-kP7" firstAttribute="centerY" secondItem="jI0-4y-2wB" secondAttribute="centerY" id="GzN-Zu-3qC"/>
-                                            <constraint firstAttribute="trailing" secondItem="nMV-KY-kP7" secondAttribute="trailing" id="TKz-pj-ZBn"/>
-                                            <constraint firstItem="nMV-KY-kP7" firstAttribute="leading" secondItem="lWN-1m-a9A" secondAttribute="trailing" constant="10" id="myx-nn-BG3"/>
+                                            <constraint firstItem="Oq4-gL-0xT" firstAttribute="centerY" secondItem="jI0-4y-2wB" secondAttribute="centerY" id="BHM-Uh-RD6"/>
+                                            <constraint firstItem="Oq4-gL-0xT" firstAttribute="leading" secondItem="lWN-1m-a9A" secondAttribute="trailing" constant="10" id="UeZ-ww-D0c"/>
+                                            <constraint firstAttribute="trailing" secondItem="Oq4-gL-0xT" secondAttribute="trailing" constant="10" id="Xrz-R2-VLq"/>
                                             <constraint firstAttribute="height" constant="40" id="yZq-l5-Mzh"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -411,6 +412,7 @@
                         <outlet property="menu_line2" destination="lKS-0S-bkW" id="7XG-lp-G5k"/>
                         <outlet property="navBarHeight" destination="xlg-YP-le3" id="RP2-Zw-QKx"/>
                         <outlet property="navBarView" destination="wxq-Tj-Liv" id="QpW-TU-EF4"/>
+                        <outlet property="seaarchT" destination="Oq4-gL-0xT" id="Gql-k6-Ew0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKV-aq-vFU" userLabel="First Responder" sceneMemberID="firstResponder"/>

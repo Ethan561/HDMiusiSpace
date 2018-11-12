@@ -24,6 +24,9 @@ enum HD_SSL_API {
     
     //获取城市列表1=全部城市，2=有博物馆部分城市
     case getWorldCityList(kind: Int,type: Int)
+    
+    //城市搜索
+    case searchCityByString(keyname: String,kind: Int)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -57,6 +60,8 @@ extension HD_SSL_API: TargetType {
         case .getWorldCityList(kind: _, type: _):
             return "/api/guide/country_list"
             
+        case .searchCityByString(keyname: _,kind: _):
+            return "/api/guide/city_select"
         //...
             
             
@@ -126,6 +131,13 @@ extension HD_SSL_API: TargetType {
             
         case .getWorldCityList(kind: let kind, type: let type):
             params = params.merging(["kind":kind,"type":type], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .searchCityByString(keyname: let keyname,kind: let kind):
+            params = params.merging(["keyname":keyname,"kind":kind], uniquingKeysWith: {$1})
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]

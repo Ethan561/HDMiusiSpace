@@ -10,6 +10,8 @@
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
+		A72E308E21997996004E3735 /* HD_searchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E308D21997996004E3735 /* HD_searchResultView.swift */; };
+		A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A72E308F2199799F004E3735 /* HD_searchResultView.xib */; };
 		A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */; };
 		A738B1F52194073800B78D21 /* CurrentCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */; };
 		A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */; };
@@ -417,6 +419,8 @@
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
+		A72E308D21997996004E3735 /* HD_searchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_searchResultView.swift; sourceTree = "<group>"; };
+		A72E308F2199799F004E3735 /* HD_searchResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HD_searchResultView.xib; sourceTree = "<group>"; };
 		A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchVC.swift; sourceTree = "<group>"; };
 		A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCityTableViewCell.swift; sourceTree = "<group>"; };
 		A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityTableViewCell.swift; sourceTree = "<group>"; };
@@ -1961,6 +1965,8 @@
 				A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */,
 				A7B982E82196699600AF0266 /* WorldRecentCell.swift */,
 				A7B982EA2196715F00AF0266 /* WorldHotCell.swift */,
+				A72E308D21997996004E3735 /* HD_searchResultView.swift */,
+				A72E308F2199799F004E3735 /* HD_searchResultView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2273,6 +2279,7 @@
 				D66C35CB213FA80600363D7C /* HDLY_MineInfo_Cell.xib in Resources */,
 				A7AC35BC214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
+				A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
@@ -2442,6 +2449,7 @@
 				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
 				D6884E6D211E817800ABDE5E /* HDLY_Topic_Cell.swift in Sources */,
 				D670FC772138EAD200870F40 /* HDFloatingButtonBgView.swift in Sources */,
+				A72E308E21997996004E3735 /* HD_searchResultView.swift in Sources */,
 				D6115AE9218FD490004A05DA /* UIScrollView+ZFPlayer.m in Sources */,
 				A7B982EB2196715F00AF0266 /* WorldHotCell.swift in Sources */,
 				A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */,

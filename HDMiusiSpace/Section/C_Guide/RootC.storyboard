@@ -70,13 +70,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwU-9I-vMs">
                                 <rect key="frame" x="0.0" y="64" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2s-ua-4dn">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2s-ua-4dn">
                                         <rect key="frame" x="17" y="15" width="45" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cKF-O6-hT5"/>
                                             <constraint firstAttribute="width" constant="45" id="qk0-PD-ZZj"/>
                                         </constraints>
-                                        <state key="normal" title="北京"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="北京">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="action_location:" destination="a4P-nd-McC" eventType="touchUpInside" id="uDz-cP-l4n"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,6 +113,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZEJ-Qd-seW"/>
                     <connections>
+                        <outlet property="btn_location" destination="g2s-ua-4dn" id="A7i-Ok-md4"/>
                         <outlet property="contentScrollView" destination="ENm-UY-r1J" id="GxO-yv-0Mf"/>
                         <outlet property="menuView" destination="gwU-9I-vMs" id="hTh-t1-hNc"/>
                         <outlet property="navBar" destination="LSv-ax-UiO" id="n5W-Ux-3CF"/>

@@ -9,8 +9,6 @@
 import UIKit
 import CoreLocation
 
-let HD_MapTest_IP = "http://192.168.10.158:8316"
-
 class HDLY_MapGuideVC: HDItemBaseVC {
     private var mapView : HDMapView?
     private var poiArray : Array<HDLY_MapList>?
@@ -26,7 +24,7 @@ class HDLY_MapGuideVC: HDItemBaseVC {
     @IBOutlet weak var playerBgView: UIView!
     @IBOutlet weak var playerBtn: UIButton!
     @IBOutlet weak var playerTitleL: UILabel!
-    
+
     var player = HDLY_AudioPlayer.shared
     var museum_id = 0
     private var locationManager = CLLocationManager()
@@ -50,6 +48,8 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         
         playerBgView.layer.cornerRadius = 22
         playerBgView.layer.masksToBounds = true
+        //
+
         
     }
     
@@ -233,6 +233,8 @@ extension HDLY_MapGuideVC {
             playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
         }
     }
+    
+
     
     @IBAction func locBtnAction(_ sender: Any) {
         if (self.chooseAnn != nil) {

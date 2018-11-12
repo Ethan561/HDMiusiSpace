@@ -132,12 +132,8 @@ enum HD_LY_API {
     case register_bind(params:Dictionary<String, Any>)
     
     
-    
-    //地图展品接口
-    case getMapExhibitListA(map_id: String,language: String)
-    
     //地图信息接口
-    case getMapListAll(floorNum: Int,language: String)
+    case getMapListAll(museum_id: Int, api_token: String)
 
     //获取博物馆列表
     case guideMuseumList(city_id: String, longitude: String, latitude: String, type:Int, skip:Int, take:Int)
@@ -165,9 +161,9 @@ extension HD_LY_API: TargetType {
     var baseURL: URL {
         
         switch self {
-        case .getMapListAll(floorNum: _, language: _),
-             .getMapExhibitListA(map_id: _, language: _):
-            return URL.init(string: HD_MapTest_IP)!
+//        case .getMapListAll(floorNum: _, language: _),
+//             .getMapExhibitListA(map_id: _, language: _):
+//            return URL.init(string: HD_MapTest_IP)!
         default:
             return URL.init(string: HDDeclare.IP_Request_Header())!
         }
@@ -339,10 +335,8 @@ extension HD_LY_API: TargetType {
             return "/api/users/register_bind"
       
             
-        case .getMapExhibitListA(_,_):
-            return "/api/map_exhibit"
-        case .getMapListAll(_):
-            return "/api/map_list"
+        case .getMapListAll(museum_id: _, api_token: _):
+            return "/api/guide/map_guide"
             
             
         case .guideMuseumList(city_id: _, longitude: _, latitude: _, type: _, skip: _, take: _):
@@ -765,18 +759,16 @@ extension HD_LY_API: TargetType {
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
+
             
-        case .getMapExhibitListA(let floorNum,let language):
+        case .getMapListAll(museum_id: let museum_id, api_token: let api_token):
             params = ["p":"i",
-                      "language": language,
-                      "map_id": floorNum,
-                      "is_app": "1"]
-            
-            
-        case .getMapListAll(let floorNum,let language):
-            params = ["p":"i",
-                      "language": language,
-                      "floor_id":floorNum]
+                      "museum_id": museum_id,
+                      "api_token":api_token]
+            params = params.merging(["museum_id": museum_id, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
             
         case .guideMuseumList(let city_id, let longitude, let latitude, let type, let skip, let take):

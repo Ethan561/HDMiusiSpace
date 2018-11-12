@@ -12,7 +12,9 @@
 #import "UIImageView+WebCache.h"
 #import "HDMapView.h"
 #import "HDAnnotation.h"
-#import "HD_NKM_Big_Ann_View.h"
+#import "HDBigAnnView.h"
+#import "HDCallOutView.h"
+
 
 @implementation HDAnnotationView (Method)
 
@@ -135,17 +137,6 @@
         
         [path closePath];
         
-                        self.imageView.layer.masksToBounds = NO;
-        
-                        self.imageView.layer.shadowColor = [UIColor blackColor].CGColor;
-        
-                        self.imageView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-        
-                        self.imageView.layer.shadowOpacity = 0.5f;
-        
-                        self.imageView.layer.shadowPath = path.CGPath;
-
-        
     }
     
     if (annotation.annType == kAnnotationType_ServiceInfo) {
@@ -168,27 +159,28 @@
 - (void)bigPicture
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self setImage:nil forState:UIControlStateNormal];
+        self.userInteractionEnabled = NO;
+
+        //
+        self.bigAnn = [[[NSBundle mainBundle] loadNibNamed:@"HDBigAnnView" owner:self options:nil] lastObject];
+        self.bigAnn.imgView.image = [UIImage imageNamed:Placeholder_PIN_Playing];
         
-        self.bigAnn = [[[NSBundle mainBundle] loadNibNamed:@"HD_NKM_Big_Ann_View" owner:self options:nil] lastObject];
-        NSURL *poiImgURL = [NSURL URLWithString:self.annotation.poiImgPath];
-        [self.bigAnn.imgView sd_setImageWithURL:poiImgURL];
-        if (self.annotation.annType == kAnnotationType_Loc) {
-            self.bigAnn.imgView.image = [UIImage imageNamed:@"placeholder_ann"];
-        }
-        
-//        HDLY_AudioPlayer *player = [HDLY_AudioPlayer shared];
-//        if (player.state == STKAudioPlayerStatePlaying && player.fileno == self.annotation.identify) {
-//            self.bigAnn.playBtn.selected = YES;
-//        }
-        self.bigAnn.titleLabel.text = self.annotation.title;
-        self.bigAnn.subTitleLabel.text = self.annotation.title;
+//      self.bigAnn.nameLabel.text = self.annotation.title;
         self.bigAnn.myAnn = self.annotation;
         self.bigAnn.myAnnView = self;
-        self.userInteractionEnabled = NO;
         [self frameForBigAnn];
         [self addSubview:self.bigAnn];
         
         self.isBig = YES;
+        
+        if (self.annotation.type == 1) {
+            self.callOutView = [[[NSBundle mainBundle] loadNibNamed:@"HDCallOutView" owner:self options:nil] lastObject];
+            self.callOutView.nameL.text = self.annotation.title;
+            CGSize callOutSize = CGSizeMake(160, 76);
+            self.callOutView.frame = CGRectMake((self.frame.size.width - callOutSize.width)/2.0, self.bigAnn.frame.origin.y-callOutSize.height, callOutSize.width, callOutSize.height);
+            [self addSubview:self.callOutView];
+        }
         
         //开启跳动动画
         //[self popJumpAnimationView:bigAnn];
@@ -199,13 +191,13 @@
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
     if (view == nil && self.bigAnn != nil) {
-        CGPoint tempoint = [self.bigAnn.playBtn convertPoint:point fromView:self];
-        if (CGRectContainsPoint(self.bigAnn.playBtn.bounds, tempoint)) {
-            return view = self.bigAnn.playBtn;
-        }
-        CGPoint tempoint1 = [self.bigAnn.detailBtn convertPoint:point fromView:self];
-        if (CGRectContainsPoint(self.bigAnn.detailBtn.bounds, tempoint1)) {
-            return view = self.bigAnn.detailBtn;
+//        CGPoint tempoint = [self.bigAnn.playBtn convertPoint:point fromView:self];
+//        if (CGRectContainsPoint(self.bigAnn.playBtn.bounds, tempoint)) {
+//            return view = self.bigAnn.playBtn;
+//        }
+        CGPoint tempoint1 = [self.callOutView convertPoint:point fromView:self];
+        if (CGRectContainsPoint(self.callOutView.bounds, tempoint1)) {
+            return view = self.callOutView;
         }
         CGPoint tempoint2 = [self.bigAnn convertPoint:point fromView:self];
         if (CGRectContainsPoint(self.bigAnn.bounds, tempoint2)) {
@@ -217,10 +209,9 @@
 
 - (void)frameForBigAnn
 {
-    CGSize frameSize = self.bigAnn.frame.size;
-    CGSize size = self.frame.size;
-    
-    self.bigAnn.frame = CGRectMake((size.width - frameSize.width)/2, (-frameSize.height-8), frameSize.width, frameSize.height);
+    CGSize annSize = self.frame.size;
+    CGSize bigAnnSize = CGSizeMake(64*0.7, 76*0.7);
+    self.bigAnn.frame = CGRectMake((annSize.width - bigAnnSize.width)/2.0, (-annSize.height), bigAnnSize.width, bigAnnSize.height);
     
 }
 
@@ -245,7 +236,10 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self.bigAnn];
         self.bigAnn = nil;
         self.isBig = NO;
+        [self.callOutView removeFromSuperview];
+        self.callOutView = nil;
         self.userInteractionEnabled = YES;
+        
     });
 }
 

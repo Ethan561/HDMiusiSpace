@@ -8,6 +8,11 @@
 
 #import "HDAnnotationView.h"
 
+#define Placeholder_PIN              @"dl_icon_map_white" //默认点位图片
+#define Placeholder_PIN_Playing      @"dl_icon_map_dw" //定位
+#define Placeholder_PIN_G            @"dl_icon_map_white" //已读
+#define Successive_PIN               @"my_location" //连续定位图标
+
 @interface HDAnnotationView (Method)
 
 //自定义视图布局

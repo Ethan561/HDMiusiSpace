@@ -12,7 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "HDMapView.h"
 #import "HDAnnotation.h"
-#import "HD_NKM_Big_Ann_View.h"
+#import "HDBigAnnView.h"
 #import "HDAnnotationView+Method.h"
 
 

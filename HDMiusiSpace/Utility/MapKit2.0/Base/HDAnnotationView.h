@@ -8,18 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-#define Placeholder_PIN             @"dl_icon_map_dw"
-#define Successive_PIN              @"my_location"
 
-@class HD_NKM_Big_Ann_View,HDAnnotation,HDMapView;
+@class HDBigAnnView,HDCallOutView,HDAnnotation,HDMapView;
 
 @interface HDAnnotationView : UIButton
 
 @property (nonatomic, assign) BOOL         isAnimating;
 @property (nonatomic, assign) BOOL         isBig; // 图片是否放大显示
 @property (nonatomic, strong) HDAnnotation *annotation;
-@property (nonatomic, strong) HD_NKM_Big_Ann_View *bigAnn;
-
+@property (nonatomic, strong) HDBigAnnView *bigAnn;
+@property (nonatomic, strong) HDCallOutView *callOutView;
 
 - (instancetype)initWithAnnotation:(HDAnnotation *)annotation
                             onView:(HDMapView *)mapView

@@ -15,7 +15,8 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
-    
+    @IBOutlet weak var btn_location: UIButton!
+
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:95, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -46,6 +47,10 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         self.menuView.addSubview(self.pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+        //定位按钮设置
+        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
     }
     
     func setupScrollView() {
@@ -57,6 +62,15 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         contentScrollView.showsHorizontalScrollIndicator = false
         contentScrollView.backgroundColor = UIColor.white
         
+    }
+    
+    //MARK: - 定位
+    
+    @IBAction func action_location(_ sender: Any) {
+        
+        let vc: HDSSL_getLocationVC = UIStoryboard.init(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_getLocationVC") as! HDSSL_getLocationVC
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

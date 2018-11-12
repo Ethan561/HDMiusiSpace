@@ -51,8 +51,8 @@ class HDLY_GuideMapCell: UITableViewCell {
             imgV.kf.setImage(with: URL.init(string: (model1.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
         typeL.text = model1.version
-        vipPriceL.text = "\(model1.vipPrice)"
-        priceL.text = "\(model1.price)"
+        priceL.text = "￥\(model1.price)"
+        vipPriceL.text = "SVIP￥\(model1.vipPrice)"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -89,6 +89,7 @@
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
+		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -531,6 +532,7 @@
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -1909,6 +1911,7 @@
 				D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */,
 				D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */,
 				D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */,
+				D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2617,6 +2620,7 @@
 				D668CFA321435D0A0024BBCE /* HDLY_ChangePhone_VC.swift in Sources */,
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
+				D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */,
 				D62277B121367F12008F1416 /* HDLY_PhotoCell.swift in Sources */,
 				D6115AE8218FD490004A05DA /* ZFPlayerLogManager.m in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,

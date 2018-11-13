@@ -75,6 +75,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         player.stop()
         slide.value = 0
         timeL.text = "00:00/00:00"
+        isPlaying = false
         self.collectionView.reloadData()
     }
     

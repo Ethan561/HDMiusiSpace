@@ -19,16 +19,25 @@ class HDLY_QRGuideVC: HDItemBaseVC {
         weak var weakSelf = self
         curr.tellMeString(backBlock: { (str) in
             let currID:Int = Int(str)!
-//            weakSelf?.goTo_detialVC(exhibit_id: String(currID), theType: 1)
+           weakSelf?.showWebVC(url: "")
         })
         return curr
     }()
     
+    public var titleName: String?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.codeView)
-        
+        self.title = self.titleName
+    }
+    
+    func showWebVC(url: String) {
+        let webVC =  HDLY_WKWebVC()
+        webVC.urlPath = url
+        webVC.titleName = self.titleName
+        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
 

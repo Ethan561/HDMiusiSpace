@@ -147,7 +147,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
         if annView.annotation.annType == kAnnotationType_More {
             //self.showMapList(ann: annView.annotation)
         }
-        else if annView.annotation.annType == kAnnotationType_One {
+        else if annView.annotation.annType == kAnnotationType_One || annView.annotation.annType == kAnnotationType_ReadOne {
             annView.bigPicture()
             self.chooseAnn = annView.annotation
             self.playerTitleL.text = annView.annotation.title
@@ -173,7 +173,7 @@ extension HDLY_MapGuideVC {
         if self.poiArray == nil {
             return
         }
-        
+        let userDef = UserDefaults.standard
         DispatchQueue.main.async {
             self.mapView?.removeAllAnnatations(false)
             
@@ -189,6 +189,11 @@ extension HDLY_MapGuideVC {
                 ann.audio = model.audio
                 ann.title = model.title
                 ann.annType = kAnnotationType_One
+                let key = "annIsRead_\(model.exhibitionID)"
+                let isRead: Bool = userDef.bool(forKey: key)
+                if isRead == true {
+                    ann.annType = kAnnotationType_ReadOne
+                }
                 ann.star = String(model.star)
                 ann.type = model.type
                 ann.identify = String(model.exhibitionID)
@@ -240,6 +245,9 @@ extension HDLY_MapGuideVC {
             }else if ann.audio.contains(".mp3") {
                 player.play(file: Music.init(name: "", url:URL.init(string: ann.audio)!))
                 player.fileno = ann.identify
+                ann.annType = kAnnotationType_ReadOne
+                let key = "annIsRead_" + ann.identify
+                UserDefaults.standard.set(true, forKey: key)
             }
             playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
         }

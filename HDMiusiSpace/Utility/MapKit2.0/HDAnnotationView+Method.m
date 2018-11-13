@@ -20,26 +20,15 @@
 
 //自定义视图布局
 - (void)setupAnnView:(HDAnnotation *)annotation {
+    
     if (annotation.annType == kAnnotationType_One) {
         UIImage *myImage = [UIImage imageNamed:Placeholder_PIN];
         [self setImage:myImage forState:UIControlStateNormal];
-
-//        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 16)];
-//        bgView.center = CGPointMake(self.frame.size.width/2.0, self.frame.size.height+10);
-//        bgView.backgroundColor = [UIColor blackColor];
-//        bgView.alpha = 0.5;
-//        bgView.layer.cornerRadius = 8;
-//        bgView.layer.masksToBounds = YES;
-//        [self addSubview:bgView];
-//
-//        UILabel *nameL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 70, 16)];
-//        nameL.center = bgView.center;
-//        nameL.font = [UIFont systemFontOfSize:12];
-//        nameL.textColor = [UIColor whiteColor];
-//        nameL.text = annotation.title;
-//        nameL.backgroundColor = [UIColor clearColor];
-//        [self addSubview:nameL];
-        
+    }
+    
+    if (annotation.annType == kAnnotationType_ReadOne) {
+        UIImage *myImage = [UIImage imageNamed:Placeholder_PIN_G];
+        [self setImage:myImage forState:UIControlStateNormal];
     }
     
     if (annotation.annType == kAnnotationType_More) {
@@ -219,7 +208,9 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *myImage = [UIImage imageNamed:Placeholder_PIN];
-        
+        if (self.annotation.annType == kAnnotationType_ReadOne) {
+            myImage = [UIImage imageNamed:Placeholder_PIN_G];
+        }
         NSString *imgStr = self.annotation.poiImgPath;
         //连续定位过滤
         if (self.annotation.annType == kAnnotationType_Successive) {
@@ -305,6 +296,7 @@
 - (void)changePOIImageWithPath:(NSString *)imgPath
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         UIImage *myImage = [UIImage imageNamed:Placeholder_PIN];
         NSString *imgStr = imgPath;
         NSURL *poiImgURL = [NSURL URLWithString:imgStr];

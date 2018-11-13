@@ -11,6 +11,7 @@ class HDSSL_locationViewModel: NSObject {
     //城市数组
     var cityArray: Bindable = Bindable([CitiesModel]())
     var hotAray:Bindable = Bindable([CityModel]())
+    var searchResultA: Bindable = Bindable([CityModel]())
     
     var leftTableList: Bindable = Bindable([CountyTypeListModel]())
     var countyList: Bindable = Bindable ([CountyListModel]())
@@ -54,6 +55,27 @@ class HDSSL_locationViewModel: NSObject {
             }
             
             self.countyList.value = dictionary!.country_list!
+            
+        }) { (errorCode, msg) in
+            //
+        }
+        
+    }
+    
+    //搜索
+    func request_searchCityString(string: String,kind: Int,vc: HDItemBaseVC) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .searchCityByString(keyname: string, kind: kind), showHud: true, loadingVC: vc, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            let model: SearchCityModel = try! jsonDecoder.decode(SearchCityModel.self, from: result)
+            
+            let arr:[CityModel]? = model.data!
+            
+            self.searchResultA.value = arr!
             
         }) { (errorCode, msg) in
             //

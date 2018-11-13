@@ -19,6 +19,9 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     @IBOutlet weak var navBarView: UIView!
     @IBOutlet weak var navBarHeight: NSLayoutConstraint!
     
+    //search
+    @IBOutlet weak var seaarchT: UITextField!
+    
     @IBOutlet weak var dBgView: UIView!
     @IBOutlet weak var menu_btn1: UIButton!
     @IBOutlet weak var menu_btn2: UIButton!
@@ -29,6 +32,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     var recentArray  : [CityModel]   = Array.init() //最近
     var hotArray     : [CityModel]   = Array.init() //热门
     var titleArray   : [String]      = Array.init() //索引标题
+    var searchArray  : [CityModel]   = Array.init() //搜索结果城市
     
     //国际
     var worldTypeArray : [CountyTypeListModel]    = Array.init() //大洲
@@ -48,6 +52,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     /// 国际/港澳台
     lazy var worldLocView: HDSSL_worldLocView = HDSSL_worldLocView.init(frame: dBgView.bounds)
     
+    //搜索结果
+    lazy var searchresultView = HD_searchResultView.init(frame: CGRect.init(x: 0, y: kTopHeight, width: ScreenWidth, height: ScreenHeight-kTopHeight))
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -60,6 +68,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         super.viewWillLayoutSubviews()
         dTableView.frame = dBgView.bounds
         worldLocView.frame = dBgView.bounds
+        searchresultView.frame = CGRect.init(x: 0, y: kTopHeight, width: ScreenWidth, height: ScreenHeight-kTopHeight)
     }
     
     override func viewDidLoad() {
@@ -72,9 +81,12 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         
         //UI
         loadMyViews()
+        setupWorldLocView()   //国际
+        setupTableView()      //国内
+        setSearchResultView() //搜索结果
         
-        setupWorldLocView()
-        setupTableView()
+        //search
+        seaarchT.delegate = self
         
         //data
         loadMyDatas()
@@ -151,8 +163,19 @@ class HDSSL_getLocationVC: HDItemBaseVC {
             weakSelf?.worldLocView.refreshTable(2)
         }
         
-        //刷新国际页面
-//        weakSelf?.worldLocView.refreshTable(2)
+        //搜索结果
+        viewModel.searchResultA.bind { (array) in
+            //城市
+            guard array.count > 0 else {
+                return
+            }
+            
+            weakSelf?.searchArray = array
+            weakSelf?.searchresultView.cityArray = array
+            //刷新搜索结果页面
+            weakSelf?.searchresultView.dTableView.reloadData()
+            
+        }
         
     }
     
@@ -207,8 +230,20 @@ class HDSSL_getLocationVC: HDItemBaseVC {
             weakSelf?.viewModel.request_getWorldCityList(kind: 1, type: index, isrecommand: index == 0 ? true : false, vc: self)
         }
         
-        worldLocView.BlockRightFunc { (dic) in
-            print(dic)
+        worldLocView.BlockRightFunc { (city) in
+            print(city)
+            //保存选中城市，返回首页
+            self.backUP()
+        }
+    }
+    
+    //搜索结果
+    func setSearchResultView()  {
+        self.view.addSubview(searchresultView)
+        searchresultView.isHidden = true
+        searchresultView.BlockDidFunc { (index) in
+            //保存选中城市，返回首页
+            self.backUP()
         }
     }
     
@@ -246,7 +281,15 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     
     
     @IBAction func action_close(_ sender: Any) {
+        self.backUP()
+    }
+    func backUP() {
+        //保存选中城市，返回首页
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     /*
@@ -301,7 +344,10 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
+                //保存选中城市，返回首页
+                self.backUP()
             }
+            cell.selectionStyle = .none
             return cell
         }else if indexPath.section == 2 {
 
@@ -319,7 +365,10 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
+                //保存选中城市，返回首页
+                self.backUP()
             }
+            cell.selectionStyle = .none
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: nomalCell, for: indexPath)
@@ -339,6 +388,10 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         print("点击了 \(cell?.textLabel?.text ?? "")") //点击列表城市，本地保存，返回首页
         
+        if indexPath.section < 3 {
+            return
+        }
+        
         let citiesModel: CitiesModel = cityDataArray[indexPath.section-3]
         let city:CityModel = citiesModel.city_list![indexPath.row]
         //本地保存国家，返回首页
@@ -349,6 +402,8 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
         UserDefaults.standard.synchronize()
+        //保存选中城市，返回首页
+        self.backUP()
     }
 
     // MARK: 右边索引
@@ -415,4 +470,25 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     
+}
+extension HDSSL_getLocationVC:UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string == "\n" {
+            self.view.endEditing(true)
+            //开始搜索
+            searchresultView.isHidden = false
+            
+            if (textField.text?.count)! > 0 {
+                //API search
+                viewModel.request_searchCityString(string: textField.text!, kind: 1, vc: self)
+            }
+        }
+        
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchresultView.isHidden = true
+    }
 }

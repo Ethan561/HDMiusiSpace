@@ -15,9 +15,13 @@ class HDRootDVC: HDItemBaseVC {
     @IBOutlet weak var navBar_btn1 : UIButton!
     @IBOutlet weak var navBar_btn2 : UIButton!
     @IBOutlet weak var btn_location: UIButton!
+    //menu
     @IBOutlet weak var menu_btn1   : UIButton!
     @IBOutlet weak var menu_btn2   : UIButton!
     @IBOutlet weak var menu_btn3   : UIButton!
+    @IBOutlet weak var menuLine1   : UIView!
+    @IBOutlet weak var menuLine2   : UIView!
+    @IBOutlet weak var menuLine3   : UIView!
     
     @IBOutlet weak var dTableView  : UITableView!
     
@@ -29,6 +33,18 @@ class HDRootDVC: HDItemBaseVC {
     
     var exhibitionArr: [HDSSL_dExhibition] = Array.init() //展览数组
     var museumArr    : [HDSSL_dMuseum]     = Array.init() //博物馆数组
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //刷新选中的城市
+        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        
+        if str.count > 0 {
+            print("城市\(str)")
+            btn_location.setTitle(str, for: .normal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +63,8 @@ class HDRootDVC: HDItemBaseVC {
         //定位按钮设置
         btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
         btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!+20, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        btn_location.titleLabel?.lineBreakMode = .byTruncatingTail
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
@@ -130,12 +147,24 @@ class HDRootDVC: HDItemBaseVC {
         if sender.tag == 0 {
             menu_btn2.isSelected = false
             menu_btn3.isSelected = false
+            
+            menuLine1.isHidden = false
+            menuLine2.isHidden = true
+            menuLine3.isHidden = true
         }else if sender.tag == 1 {
             menu_btn1.isSelected = false
             menu_btn3.isSelected = false
+            
+            menuLine1.isHidden = true
+            menuLine2.isHidden = false
+            menuLine3.isHidden = true
         }else if sender.tag == 2 {
             menu_btn1.isSelected = false
             menu_btn2.isSelected = false
+            
+            menuLine1.isHidden = true
+            menuLine2.isHidden = true
+            menuLine3.isHidden = false
         }
     }
     

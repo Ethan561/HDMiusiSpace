@@ -24,3 +24,8 @@ struct CityModel: Codable {
     var city_id   : Int?
     var city_name : String?
 }
+struct SearchCityModel: Codable {
+    var status        : Int?
+    var msg           : String?
+    var data          : [CityModel]?
+}

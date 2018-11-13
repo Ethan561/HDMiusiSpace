@@ -13,7 +13,7 @@ private let recentCell = "rencentCityCell"
 private let currentCell = "currentCityCell"
 
 typealias TapLeftTableCellBlock = (_ index: Int) -> Void //返回事件,点击左侧列表，改变大洲
-typealias TapRightTableItemBlock = (_ dic: Dictionary<String, Any>) -> Void //返回事件,点击右侧item，返回["name":"英国"，“id”： 11]
+typealias TapRightTableItemBlock = (_ city: HDSSL_selectedCity) -> Void //返回事件,点击右侧item，返回["name":"英国"，“id”： 11]
 
 @IBDesignable         //可视化的关键字
 class HDSSL_worldLocView: UIView {
@@ -220,6 +220,13 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                         UserDefaults.standard.synchronize()
+                        
+                        //回调，改变城市
+                        weak var weakSelf = self
+                        if weakSelf?.blockTapRightTableItem != nil {
+                            weakSelf?.blockTapRightTableItem!(c)
+                        }
+                        
                     }
                     cell.recentArray = recentArray
                     cell.viewWidth = ScreenWidth - 100
@@ -243,6 +250,11 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                         UserDefaults.standard.synchronize()
+                        //回调，改变城市
+                        weak var weakSelf = self
+                        if weakSelf?.blockTapRightTableItem != nil {
+                            weakSelf?.blockTapRightTableItem!(c)
+                        }
                     }
                     cell.hotArray = hotArray
                     cell.backgroundColor = UIColor.white
@@ -268,6 +280,11 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                     UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                     UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                     UserDefaults.standard.synchronize()
+                    //回调，改变城市
+                    weak var weakSelf = self
+                    if weakSelf?.blockTapRightTableItem != nil {
+                        weakSelf?.blockTapRightTableItem!(c)
+                    }
                 }
                 cell.hotArray = hotArray
                 cell.backgroundColor = UIColor.white

@@ -198,18 +198,48 @@
                                             <constraint firstAttribute="height" constant="40" id="rDq-Nh-mDd"/>
                                         </constraints>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxR-SQ-Vkt">
+                                        <rect key="frame" x="110" y="98" width="83.5" height="2"/>
+                                        <color key="backgroundColor" red="0.65490196079999996" green="0.12941176469999999" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="h5R-2h-5gS"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxl-OG-cX6">
+                                        <rect key="frame" x="193.5" y="98" width="83" height="2"/>
+                                        <color key="backgroundColor" red="0.65490196079999996" green="0.12941176469999999" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="yaQ-k4-npy"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgS-7i-BRC">
+                                        <rect key="frame" x="276.5" y="98" width="83.5" height="2"/>
+                                        <color key="backgroundColor" red="0.65490196079999996" green="0.12941176469999999" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="MKR-X8-8Hd"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="QxR-SQ-Vkt" firstAttribute="leading" secondItem="7VK-D3-R1k" secondAttribute="leading" id="1ue-Vc-75C"/>
+                                    <constraint firstItem="SgS-7i-BRC" firstAttribute="leading" secondItem="baJ-iZ-eqk" secondAttribute="leading" id="BFe-EE-cBd"/>
                                     <constraint firstAttribute="trailing" secondItem="fzA-lu-dhb" secondAttribute="trailing" constant="20" id="Cbh-tn-snP"/>
+                                    <constraint firstAttribute="bottom" secondItem="QxR-SQ-Vkt" secondAttribute="bottom" id="D1e-nj-P2R"/>
                                     <constraint firstItem="gRO-UM-s08" firstAttribute="centerY" secondItem="JQ5-CG-vDm" secondAttribute="centerY" id="ECQ-Pm-0N1"/>
                                     <constraint firstItem="fzA-lu-dhb" firstAttribute="leading" secondItem="xP2-3c-7XB" secondAttribute="leading" constant="20" id="Gu8-gv-BnS"/>
                                     <constraint firstItem="fzA-lu-dhb" firstAttribute="top" secondItem="xP2-3c-7XB" secondAttribute="top" constant="10" id="JPl-Ul-Wbx"/>
+                                    <constraint firstAttribute="bottom" secondItem="SgS-7i-BRC" secondAttribute="bottom" id="M1d-4W-7rZ"/>
                                     <constraint firstAttribute="height" constant="100" id="MZ5-sV-rcl"/>
+                                    <constraint firstItem="Xxl-OG-cX6" firstAttribute="width" secondItem="QxR-SQ-Vkt" secondAttribute="width" id="Q5u-d7-cLG"/>
+                                    <constraint firstItem="Xxl-OG-cX6" firstAttribute="leading" secondItem="0YK-ic-3IS" secondAttribute="leading" id="WCa-Ap-tUq"/>
                                     <constraint firstAttribute="trailing" secondItem="gRO-UM-s08" secondAttribute="trailing" constant="15" id="XSE-7x-P03"/>
+                                    <constraint firstItem="SgS-7i-BRC" firstAttribute="width" secondItem="Xxl-OG-cX6" secondAttribute="width" id="aUh-tT-xJL"/>
                                     <constraint firstItem="gRO-UM-s08" firstAttribute="leading" secondItem="JQ5-CG-vDm" secondAttribute="trailing" constant="10" id="dLB-09-0fz"/>
                                     <constraint firstItem="JQ5-CG-vDm" firstAttribute="leading" secondItem="xP2-3c-7XB" secondAttribute="leading" constant="20" id="gg3-EL-b8G"/>
+                                    <constraint firstItem="QxR-SQ-Vkt" firstAttribute="width" secondItem="7VK-D3-R1k" secondAttribute="width" id="m3X-bn-QIS"/>
                                     <constraint firstItem="JQ5-CG-vDm" firstAttribute="top" secondItem="fzA-lu-dhb" secondAttribute="bottom" constant="10" id="yBP-ho-iXa"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xxl-OG-cX6" secondAttribute="bottom" id="ycj-iq-pJF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O4L-nt-p5d">
@@ -241,6 +271,9 @@
                         <outlet property="bavBarView" destination="bja-No-9w9" id="e2j-xv-55Z"/>
                         <outlet property="btn_location" destination="JQ5-CG-vDm" id="SyY-86-EuP"/>
                         <outlet property="dTableView" destination="O4L-nt-p5d" id="st3-qG-GOs"/>
+                        <outlet property="menuLine1" destination="QxR-SQ-Vkt" id="1K5-bY-Vs2"/>
+                        <outlet property="menuLine2" destination="Xxl-OG-cX6" id="160-PE-QHq"/>
+                        <outlet property="menuLine3" destination="SgS-7i-BRC" id="BEi-44-5Gb"/>
                         <outlet property="menu_btn1" destination="7VK-D3-R1k" id="6oC-MZ-CLd"/>
                         <outlet property="menu_btn2" destination="0YK-ic-3IS" id="VZs-k2-7jL"/>
                         <outlet property="menu_btn3" destination="baJ-iZ-eqk" id="1Iu-7u-p9i"/>

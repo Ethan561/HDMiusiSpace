@@ -15,9 +15,13 @@ class HDRootDVC: HDItemBaseVC {
     @IBOutlet weak var navBar_btn1 : UIButton!
     @IBOutlet weak var navBar_btn2 : UIButton!
     @IBOutlet weak var btn_location: UIButton!
+    //menu
     @IBOutlet weak var menu_btn1   : UIButton!
     @IBOutlet weak var menu_btn2   : UIButton!
     @IBOutlet weak var menu_btn3   : UIButton!
+    @IBOutlet weak var menuLine1   : UIView!
+    @IBOutlet weak var menuLine2   : UIView!
+    @IBOutlet weak var menuLine3   : UIView!
     
     @IBOutlet weak var dTableView  : UITableView!
     
@@ -143,12 +147,24 @@ class HDRootDVC: HDItemBaseVC {
         if sender.tag == 0 {
             menu_btn2.isSelected = false
             menu_btn3.isSelected = false
+            
+            menuLine1.isHidden = false
+            menuLine2.isHidden = true
+            menuLine3.isHidden = true
         }else if sender.tag == 1 {
             menu_btn1.isSelected = false
             menu_btn3.isSelected = false
+            
+            menuLine1.isHidden = true
+            menuLine2.isHidden = false
+            menuLine3.isHidden = true
         }else if sender.tag == 2 {
             menu_btn1.isSelected = false
             menu_btn2.isSelected = false
+            
+            menuLine1.isHidden = true
+            menuLine2.isHidden = true
+            menuLine3.isHidden = false
         }
     }
     

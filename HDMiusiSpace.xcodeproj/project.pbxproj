@@ -24,12 +24,12 @@
 		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
+		A74E6FC0219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */; };
+		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
 		A756C8382191858600C1747A /* RootDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756C8372191858600C1747A /* RootDViewModel.swift */; };
 		A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF32192B414004C7F8A /* ExhibitionModel.swift */; };
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
 		A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */; };
-		A7676BFB2192B937004C7F8A /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */; };
-		A7676BFC2192B937004C7F8A /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */; };
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
 		A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */; };
 		A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */; };
@@ -436,12 +436,12 @@
 		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
+		A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
+		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A756C8372191858600C1747A /* RootDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDViewModel.swift; sourceTree = "<group>"; };
 		A7676BF32192B414004C7F8A /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
 		A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dExhibitionCell.xib; sourceTree = "<group>"; };
-		A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
-		A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
 		A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_worldLocView.swift; sourceTree = "<group>"; };
 		A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_worldLocView.xib; sourceTree = "<group>"; };
@@ -942,6 +942,34 @@
 				567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A74E6FBC219A6B26007CD3E7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */,
+				A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */,
+				A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */,
+				A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A74E6FBD219A6B58007CD3E7 /* location */ = {
+			isa = PBXGroup;
+			children = (
+				A738B1F82194089C00B78D21 /* HD_locationHeader.swift */,
+				A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */,
+				A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */,
+				A738B1F42194073800B78D21 /* RecentCitiesableViewCell.swift */,
+				A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */,
+				A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */,
+				A7B982E82196699600AF0266 /* WorldRecentCell.swift */,
+				A7B982EA2196715F00AF0266 /* WorldHotCell.swift */,
+				A72E308D21997996004E3735 /* HD_searchResultView.swift */,
+				A72E308F2199799F004E3735 /* HD_searchResultView.xib */,
+			);
+			path = location;
 			sourceTree = "<group>";
 		};
 		A7F1C50B213E51CE009039D8 /* ViewModel */ = {
@@ -1965,20 +1993,8 @@
 		D6C9FCE92118485B007C8E56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */,
-				A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */,
-				A738B1F42194073800B78D21 /* RecentCitiesableViewCell.swift */,
-				A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */,
-				A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */,
-				A7676BF92192B937004C7F8A /* HDSSL_dMuseumCell.swift */,
-				A7676BFA2192B937004C7F8A /* HDSSL_dMuseumCell.xib */,
-				A738B1F82194089C00B78D21 /* HD_locationHeader.swift */,
-				A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */,
-				A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */,
-				A7B982E82196699600AF0266 /* WorldRecentCell.swift */,
-				A7B982EA2196715F00AF0266 /* WorldHotCell.swift */,
-				A72E308D21997996004E3735 /* HD_searchResultView.swift */,
-				A72E308F2199799F004E3735 /* HD_searchResultView.xib */,
+				A74E6FBD219A6B58007CD3E7 /* location */,
+				A74E6FBC219A6B26007CD3E7 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2228,6 +2244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74E6FC0219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib in Resources */,
 				D66C35C7213FA6D000363D7C /* HDLY_Membership_Cell.xib in Resources */,
 				D66C882A2127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.xib in Resources */,
 				A7AC35C0214A521A004E8BC1 /* HDSSL_MuseumCell.xib in Resources */,
@@ -2245,7 +2262,6 @@
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
-				A7676BFC2192B937004C7F8A /* HDSSL_dMuseumCell.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
@@ -2533,6 +2549,7 @@
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D6115AFA218FD490004A05DA /* ZFSmallFloatControlView.m in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
+				A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */,
 				D68D5416213386C8000CD258 /* HDAnimate.swift in Sources */,
 				D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */,
 				D66A2ABD2140D9E400427425 /* HDLY_AccountBind_VC.swift in Sources */,
@@ -2677,7 +2694,6 @@
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
-				A7676BFB2192B937004C7F8A /* HDSSL_dMuseumCell.swift in Sources */,
 				D62277D921368069008F1416 /* MTImagePickerAssetsModel.swift in Sources */,
 				D66C35CE213FAA8600363D7C /* HDLY_MineCourse_Cell.swift in Sources */,
 				D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */,

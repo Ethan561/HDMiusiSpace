@@ -75,9 +75,6 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 priceL.text = "收费"
             }
             
-          
-
-            
             guard let model1 = dataArray?.last else {
                 return
             }

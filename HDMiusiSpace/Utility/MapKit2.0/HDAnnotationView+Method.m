@@ -161,7 +161,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setImage:nil forState:UIControlStateNormal];
         self.userInteractionEnabled = NO;
-
+        
         //
         self.bigAnn = [[[NSBundle mainBundle] loadNibNamed:@"HDBigAnnView" owner:self options:nil] lastObject];
         self.bigAnn.imgView.image = [UIImage imageNamed:Placeholder_PIN_Playing];
@@ -173,13 +173,13 @@
         [self addSubview:self.bigAnn];
         
         self.isBig = YES;
-        
-        if (self.annotation.type == 1) {
+        if (self.annotation.type == 2) {
             self.callOutView = [[[NSBundle mainBundle] loadNibNamed:@"HDCallOutView" owner:self options:nil] lastObject];
             self.callOutView.nameL.text = self.annotation.title;
             CGSize callOutSize = CGSizeMake(160, 76);
             self.callOutView.frame = CGRectMake((self.frame.size.width - callOutSize.width)/2.0, self.bigAnn.frame.origin.y-callOutSize.height, callOutSize.width, callOutSize.height);
             [self addSubview:self.callOutView];
+            self.callOutView.myAnn = self.annotation;
         }
         
         //开启跳动动画

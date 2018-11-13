@@ -48,14 +48,12 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         
         playerBgView.layer.cornerRadius = 22
         playerBgView.layer.masksToBounds = true
-        //
-
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showExhibitListNoti(noti:)), name: NSNotification.Name(rawValue: "kMapView_didTapHDCallOutView_Noti"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -71,9 +69,22 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         //self.avplayer.pauseAction()
     }
 
+    @objc func showExhibitListNoti(noti: Notification) {
+        let ann:HDAnnotation = noti.object as! HDAnnotation
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
+        vc.exhibition_id = Int(ann.identify) ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func backAction(_ sender: Any) {
         self.back()
+    }
+    
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            player.stop()
+        }
     }
     
 }

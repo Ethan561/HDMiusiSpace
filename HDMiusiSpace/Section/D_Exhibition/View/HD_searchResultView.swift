@@ -8,6 +8,9 @@
 
 import UIKit
 
+typealias TapResultCellBlock = (_ index: Int) -> Void //返回事件,点击左侧列表，改变大洲
+
+
 let cellIdetifier = "cellidentifier"
 class HD_searchResultView: UIView {
 
@@ -16,6 +19,7 @@ class HD_searchResultView: UIView {
     
     var cityArray: [CityModel]? = Array.init()
     
+    var blockTapResultCell:TapResultCellBlock?
     
     //使用代码构造此自定义视图时调用
     override init(frame: CGRect) {       //每一步都必须
@@ -50,7 +54,12 @@ class HD_searchResultView: UIView {
         dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
     }
-
+    
+    //回调
+    func BlockDidFunc(block: @escaping TapResultCellBlock) {
+        blockTapResultCell = block
+    }
+    
 }
 extension HD_searchResultView:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,27 +76,44 @@ extension HD_searchResultView:UITableViewDelegate,UITableViewDataSource{
         
         let model = cityArray![indexPath.row]
         
-        cell!.textLabel?.attributedText = NSAttributedString.init(string: String.init(format: "%@", model.city_name!))
+        cell!.textLabel?.attributedText = self.getAttribiteStringWith(string: String.init(format: "%@", model.city_name!))
         
         return cell!
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = cityArray![indexPath.row]
+        //本地保存城市，返回首页
+        var c = HDSSL_selectedCity()
+        c.city_id = model.city_id
+        c.city_name = model.city_name
+        
+        
+        UserDefaults.standard.set(model.city_name, forKey: "MyLocationCityName")
+        UserDefaults.standard.set(model.city_id, forKey: "MyLocationCityId")
+        UserDefaults.standard.synchronize()
+        
+        
+        //回调，选中搜索城市
+        weak var weakSelf = self
+        if weakSelf?.blockTapResultCell != nil {
+            weakSelf?.blockTapResultCell!(indexPath.row)
+        }
+        
+    }
 }
 extension HD_searchResultView{
-//    func getAttribiteStringWith(string: String) -> NSMutableAttributedString {
-//        let str = string
-    
-//        if (_attribute && _attribute.length > 0) {
-//            str = [NSString stringWithFormat:@"%@<br/><br><span style=\"color:#9A9999 \">%@</span><br/>",_title,_attribute];
-//        }
-//
-//        NSDictionary *attributeDict = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
-//
-//        NSMutableAttributedString *desStr = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:attributeDict documentAttributes:NULL error:nil];
-//        [desStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} range:NSMakeRange(0, desStr.length)];
-//        NSMutableAttributedString *titleStr = [[NSMutableAttributedString alloc] initWithData:[_title dataUsingEncoding:NSUnicodeStringEncoding] options:attributeDict documentAttributes:NULL error:nil];
-//        [desStr addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} range:NSMakeRange(0, titleStr.length)];
-//        _HTMLString = desStr;
-//
-//        return str
-//    }
+    //处理文本变色
+    func getAttribiteStringWith(string: String) -> NSMutableAttributedString {
+        let str = string
+
+        let attribiteDic = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html.rawValue]
+        
+        var desStr: NSMutableAttributedString? = nil
+        if let anEncoding = str.data(using: String.Encoding(rawValue: String.Encoding.unicode.rawValue)) {
+            desStr = try? NSMutableAttributedString.init(data: anEncoding, options: attribiteDic, documentAttributes: nil)
+        }
+        desStr?.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], range: NSRange(location: 0, length: desStr?.length ?? 0))
+
+        return desStr!
+    }
 }

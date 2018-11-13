@@ -30,6 +30,18 @@ class HDRootDVC: HDItemBaseVC {
     var exhibitionArr: [HDSSL_dExhibition] = Array.init() //展览数组
     var museumArr    : [HDSSL_dMuseum]     = Array.init() //博物馆数组
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //刷新选中的城市
+        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        
+        if str.count > 0 {
+            print("城市\(str)")
+            btn_location.setTitle(str, for: .normal)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navBarHeight.constant = CGFloat(kTopHeight)
@@ -47,7 +59,8 @@ class HDRootDVC: HDItemBaseVC {
         //定位按钮设置
         btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
         btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!+20, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        btn_location.titleLabel?.lineBreakMode = .byTruncatingTail
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         

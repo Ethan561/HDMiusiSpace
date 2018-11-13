@@ -231,8 +231,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
             weakSelf?.viewModel.request_getWorldCityList(kind: 1, type: index, isrecommand: index == 0 ? true : false, vc: self)
         }
         
-        worldLocView.BlockRightFunc { (dic) in
-            print(dic)
+        worldLocView.BlockRightFunc { (city) in
+            print(city)
+            //保存选中城市，返回首页
+            self.backUP()
         }
     }
     
@@ -240,7 +242,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     func setSearchResultView()  {
         self.view.addSubview(searchresultView)
         searchresultView.isHidden = true
-        
+        searchresultView.BlockDidFunc { (index) in
+            //保存选中城市，返回首页
+            self.backUP()
+        }
     }
     
     func loadMyViews() {
@@ -277,7 +282,15 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     
     
     @IBAction func action_close(_ sender: Any) {
+        self.backUP()
+    }
+    func backUP() {
+        //保存选中城市，返回首页
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     /*
@@ -332,6 +345,8 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
+                //保存选中城市，返回首页
+                self.backUP()
             }
             cell.selectionStyle = .none
             return cell
@@ -351,6 +366,8 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
+                //保存选中城市，返回首页
+                self.backUP()
             }
             cell.selectionStyle = .none
             return cell
@@ -386,6 +403,8 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
         UserDefaults.standard.synchronize()
+        //保存选中城市，返回首页
+        self.backUP()
     }
 
     // MARK: 右边索引

@@ -21,7 +21,6 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     
     //search
     @IBOutlet weak var seaarchT: UITextField!
-    @IBOutlet weak var searchResultTable: UITableView!
     
     @IBOutlet weak var dBgView: UIView!
     @IBOutlet weak var menu_btn1: UIButton!

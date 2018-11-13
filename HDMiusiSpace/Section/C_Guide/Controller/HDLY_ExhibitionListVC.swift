@@ -147,6 +147,7 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
             
         }else if model.type == 2 {
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
+            self.titleName = model.title ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

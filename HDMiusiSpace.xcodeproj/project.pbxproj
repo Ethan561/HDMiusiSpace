@@ -91,6 +91,7 @@
 		D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFA8211ECA9600A4D459 /* HDItemAPI.swift */; };
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
+		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -165,6 +166,7 @@
 		D62277E421368069008F1416 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62277D021368069008F1416 /* Image.xcassets */; };
 		D62277E6213696ED008F1416 /* ReportErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62277E5213696ED008F1416 /* ReportErrorViewModel.swift */; };
 		D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62277E721369869008F1416 /* ReportErrorModel.swift */; };
+		D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D62B44E5219A7AE100A977CF /* XHStarRateView.m */; };
 		D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F65D4219914D000D32544 /* CoreLocation.framework */; };
 		D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63F8D5C2199516D00686AB3 /* HDBigAnnView.m */; };
 		D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D5E2199517900686AB3 /* HDBigAnnView.xib */; };
@@ -534,6 +536,7 @@
 		D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_LY_API.swift; sourceTree = "<group>"; };
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -638,6 +641,8 @@
 		D62277D121368069008F1416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D62277E5213696ED008F1416 /* ReportErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportErrorViewModel.swift; sourceTree = "<group>"; };
 		D62277E721369869008F1416 /* ReportErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportErrorModel.swift; sourceTree = "<group>"; };
+		D62B44E4219A7AE100A977CF /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
+		D62B44E5219A7AE100A977CF /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		D62F65D4219914D000D32544 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D63F8D5B2199516D00686AB3 /* HDBigAnnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDBigAnnView.h; sourceTree = "<group>"; };
 		D63F8D5C2199516D00686AB3 /* HDBigAnnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDBigAnnView.m; sourceTree = "<group>"; };
@@ -1311,6 +1316,15 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		D62B44E3219A7AE100A977CF /* XHStarRateView */ = {
+			isa = PBXGroup;
+			children = (
+				D62B44E4219A7AE100A977CF /* XHStarRateView.h */,
+				D62B44E5219A7AE100A977CF /* XHStarRateView.m */,
+			);
+			path = XHStarRateView;
+			sourceTree = "<group>";
+		};
 		D66991BA2130E62E002568B2 /* Question */ = {
 			isa = PBXGroup;
 			children = (
@@ -1623,6 +1637,7 @@
 		D6C9FC3F21181EAA007C8E56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D62B44E3219A7AE100A977CF /* XHStarRateView */,
 				D6115AA8218FD490004A05DA /* ZFPlayer */,
 				D62277B221368069008F1416 /* MTImagePicker */,
 				D622778721367D4D008F1416 /* PhotoBrowser */,
@@ -1900,6 +1915,7 @@
 				D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */,
 				D60E8570219165EC00072BF9 /* HDLY_NumGuideVC.swift */,
 				D60E85722191661400072BF9 /* HDLY_QRGuideVC.swift */,
+				D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2610,6 +2626,7 @@
 				D668CFA321435D0A0024BBCE /* HDLY_ChangePhone_VC.swift in Sources */,
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
+				D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */,
 				D62277B121367F12008F1416 /* HDLY_PhotoCell.swift in Sources */,
 				D6115AE8218FD490004A05DA /* ZFPlayerLogManager.m in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
@@ -2730,6 +2747,7 @@
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,
 				D61E94C22192D12400C5299F /* HDAnnotationView.m in Sources */,
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
+				D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
@@ -2953,6 +2971,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
@@ -2980,6 +2999,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
 				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = B5K9YR6DRJ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;

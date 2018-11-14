@@ -252,6 +252,8 @@
         _routeView.frame = CGRectMake(0, 0, self.contentSize.width, self.contentSize.height);
         [_routeView setCenter:CGPointMake(xcenter, ycenter)];
     }
+    
+    NSLog(@"===== scrollView.zoomScale: %.f",scrollView.zoomScale);
 }
 
 - (void)scrollViewDidScroll:(__unused UIScrollView *)scrollView

@@ -52,7 +52,6 @@ class HDLY_ExhibitListVC: HDItemBaseVC {
         dataRequest()
     }
     
-    
     @IBAction func backAction(_ sender: UIButton) {
         self.back()
     }

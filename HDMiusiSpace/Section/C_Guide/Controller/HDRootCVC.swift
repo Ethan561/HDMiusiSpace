@@ -18,7 +18,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var btn_location: UIButton!
 
     lazy var pageMenu: SPPageMenu = {
-        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:95, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:100, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
         page.delegate = self
         page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
@@ -47,11 +47,21 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         self.menuView.addSubview(self.pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         self.addContentSubViewsWithArr(titleArr: menuTitleArr)
-        //定位按钮设置
-        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
-        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //刷新选中的城市
+        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        
+        if str.count > 0 {
+            print("城市\(str)")
+            btn_location.setTitle(str, for: .normal)
+        }
+    }
+    
     
     func setupScrollView() {
         contentScrollView.delegate = self
@@ -62,6 +72,10 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         contentScrollView.showsHorizontalScrollIndicator = false
         contentScrollView.backgroundColor = UIColor.white
         
+        //定位按钮设置
+        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
     }
     
     //MARK: - 定位

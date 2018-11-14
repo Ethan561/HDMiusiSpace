@@ -47,6 +47,18 @@
 		A7B982E92196699600AF0266 /* WorldRecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982E82196699600AF0266 /* WorldRecentCell.swift */; };
 		A7B982EB2196715F00AF0266 /* WorldHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EA2196715F00AF0266 /* WorldHotCell.swift */; };
 		A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EC2196766A00AF0266 /* CountyDataModel.swift */; };
+		A7C59E39219BED5E00F67F0C /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E37219BED5E00F67F0C /* BannerCell.swift */; };
+		A7C59E3A219BED5E00F67F0C /* ScrollBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E38219BED5E00F67F0C /* ScrollBannerView.swift */; };
+		A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E3D219BF04600F67F0C /* UIImageCollectionViewCell.m */; };
+		A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E3E219BF04600F67F0C /* HD_SSL_BigImageVC.m */; };
+		A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E47219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift */; };
+		A7C59E4A219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C59E48219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib */; };
+		A7C59E4D219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E4B219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift */; };
+		A7C59E4E219C004D00F67F0C /* HDSSL_Sec0_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C59E4C219C004C00F67F0C /* HDSSL_Sec0_Cell1.xib */; };
+		A7C59E51219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E4F219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift */; };
+		A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C59E50219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib */; };
+		A7C59E55219C08AE00F67F0C /* HDSSL_Sec1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E53219C08AE00F67F0C /* HDSSL_Sec1Cell.swift */; };
+		A7C59E56219C08AE00F67F0C /* HDSSL_Sec1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C59E54219C08AE00F67F0C /* HDSSL_Sec1Cell.xib */; };
 		A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */; };
 		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
 		D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */; };
@@ -464,6 +476,20 @@
 		A7B982E82196699600AF0266 /* WorldRecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldRecentCell.swift; sourceTree = "<group>"; };
 		A7B982EA2196715F00AF0266 /* WorldHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHotCell.swift; sourceTree = "<group>"; };
 		A7B982EC2196766A00AF0266 /* CountyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyDataModel.swift; sourceTree = "<group>"; };
+		A7C59E37219BED5E00F67F0C /* BannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		A7C59E38219BED5E00F67F0C /* ScrollBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollBannerView.swift; sourceTree = "<group>"; };
+		A7C59E3C219BF04600F67F0C /* HD_SSL_BigImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HD_SSL_BigImageVC.h; sourceTree = "<group>"; };
+		A7C59E3D219BF04600F67F0C /* UIImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCollectionViewCell.m; sourceTree = "<group>"; };
+		A7C59E3E219BF04600F67F0C /* HD_SSL_BigImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HD_SSL_BigImageVC.m; sourceTree = "<group>"; };
+		A7C59E3F219BF04600F67F0C /* UIImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCollectionViewCell.h; sourceTree = "<group>"; };
+		A7C59E47219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0_Cell0.swift; sourceTree = "<group>"; };
+		A7C59E48219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDSSL_Sec0_Cell0.xib; sourceTree = "<group>"; };
+		A7C59E4B219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0_Cell1.swift; sourceTree = "<group>"; };
+		A7C59E4C219C004C00F67F0C /* HDSSL_Sec0_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec0_Cell1.xib; sourceTree = "<group>"; };
+		A7C59E4F219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0_cellNormal.swift; sourceTree = "<group>"; };
+		A7C59E50219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec0_cellNormal.xib; sourceTree = "<group>"; };
+		A7C59E53219C08AE00F67F0C /* HDSSL_Sec1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec1Cell.swift; sourceTree = "<group>"; };
+		A7C59E54219C08AE00F67F0C /* HDSSL_Sec1Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec1Cell.xib; sourceTree = "<group>"; };
 		A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagViewModel.swift; sourceTree = "<group>"; };
 		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
 		D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GenderTip_View.swift; sourceTree = "<group>"; };
@@ -958,6 +984,7 @@
 		A74E6FBC219A6B26007CD3E7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				A7C59E46219BF9D700F67F0C /* ExhibitionDetail */,
 				A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */,
 				A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */,
 				A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */,
@@ -981,6 +1008,41 @@
 				A72E308F2199799F004E3735 /* HD_searchResultView.xib */,
 			);
 			path = location;
+			sourceTree = "<group>";
+		};
+		A7C59E36219BED5E00F67F0C /* ScrollBannerView */ = {
+			isa = PBXGroup;
+			children = (
+				A7C59E37219BED5E00F67F0C /* BannerCell.swift */,
+				A7C59E38219BED5E00F67F0C /* ScrollBannerView.swift */,
+			);
+			path = ScrollBannerView;
+			sourceTree = "<group>";
+		};
+		A7C59E3B219BF04600F67F0C /* SSL_BigImageView */ = {
+			isa = PBXGroup;
+			children = (
+				A7C59E3C219BF04600F67F0C /* HD_SSL_BigImageVC.h */,
+				A7C59E3D219BF04600F67F0C /* UIImageCollectionViewCell.m */,
+				A7C59E3E219BF04600F67F0C /* HD_SSL_BigImageVC.m */,
+				A7C59E3F219BF04600F67F0C /* UIImageCollectionViewCell.h */,
+			);
+			path = SSL_BigImageView;
+			sourceTree = "<group>";
+		};
+		A7C59E46219BF9D700F67F0C /* ExhibitionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A7C59E47219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift */,
+				A7C59E48219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib */,
+				A7C59E4B219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift */,
+				A7C59E4C219C004C00F67F0C /* HDSSL_Sec0_Cell1.xib */,
+				A7C59E4F219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift */,
+				A7C59E50219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib */,
+				A7C59E53219C08AE00F67F0C /* HDSSL_Sec1Cell.swift */,
+				A7C59E54219C08AE00F67F0C /* HDSSL_Sec1Cell.xib */,
+			);
+			path = ExhibitionDetail;
 			sourceTree = "<group>";
 		};
 		A7F1C50B213E51CE009039D8 /* ViewModel */ = {
@@ -1740,6 +1802,8 @@
 		D6C9FC6E21181FD1007C8E56 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				A7C59E3B219BF04600F67F0C /* SSL_BigImageView */,
+				A7C59E36219BED5E00F67F0C /* ScrollBannerView */,
 				D61E947F2192D12400C5299F /* MapKit2.0 */,
 				D61E947C2192CA0200C5299F /* QRCode */,
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
@@ -2277,6 +2341,7 @@
 				D670D38A212585A00064750A /* HDLY_CourseTitle_Cell.xib in Resources */,
 				D6866A582126A1460044EEAA /* HDLY_CourseList_SubVC4.xib in Resources */,
 				A7AC35B8214A51C2004E8BC1 /* HDSSL_ClassCell.xib in Resources */,
+				A7C59E4E219C004D00F67F0C /* HDSSL_Sec0_Cell1.xib in Resources */,
 				D670D38E212585BA0064750A /* HDLY_CourseWeb_Cell.xib in Resources */,
 				D6C9FCD321183856007C8E56 /* RootA.storyboard in Resources */,
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
@@ -2293,11 +2358,13 @@
 				D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
 				D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */,
+				A7C59E56219C08AE00F67F0C /* HDSSL_Sec1Cell.xib in Resources */,
 				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
 				D6115AF7218FD490004A05DA /* ZFPlayer.bundle in Resources */,
 				D66C35D7213FB14B00363D7C /* HDLY_MyDynamicCell.xib in Resources */,
 				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
 				D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */,
+				A7C59E4A219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
@@ -2309,6 +2376,7 @@
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
+				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
@@ -2464,6 +2532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C59E55219C08AE00F67F0C /* HDSSL_Sec1Cell.swift in Sources */,
 				D668CF9F21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift in Sources */,
 				D6AA0AF92134DED00036320F /* HDLY_ModifyName_VC.swift in Sources */,
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
@@ -2552,11 +2621,14 @@
 				D61E94BF2192D12400C5299F /* HDMapView.m in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
+				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
+				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,
 				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
+				A7C59E3A219BED5E00F67F0C /* ScrollBannerView.swift in Sources */,
 				A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */,
 				A7AC35BF214A521A004E8BC1 /* HDSSL_MuseumCell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
@@ -2574,9 +2646,11 @@
 				D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D6115AFA218FD490004A05DA /* ZFSmallFloatControlView.m in Sources */,
+				A7C59E4D219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
 				A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */,
 				D68D5416213386C8000CD258 /* HDAnimate.swift in Sources */,
+				A7C59E39219BED5E00F67F0C /* BannerCell.swift in Sources */,
 				D68D54252133F44D000CD258 /* HDLY_Setting_VC.swift in Sources */,
 				D66A2ABD2140D9E400427425 /* HDLY_AccountBind_VC.swift in Sources */,
 				D62277E6213696ED008F1416 /* ReportErrorViewModel.swift in Sources */,
@@ -2706,6 +2780,7 @@
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
 				A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */,
+				A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
 				D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */,
@@ -2732,6 +2807,7 @@
 				D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */,
 				D62277AA21367D4D008F1416 /* PhotoBrowserCell.swift in Sources */,
 				D61E94CA2192D12400C5299F /* SDWebImageManager.m in Sources */,
+				A7C59E51219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift in Sources */,
 				D62277A021367D4D008F1416 /* ProgressView.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,

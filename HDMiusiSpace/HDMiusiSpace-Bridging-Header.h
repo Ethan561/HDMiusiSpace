@@ -20,6 +20,7 @@
 #import "YYCache.h"
 #import "HDMapKit.h"
 
+#import "HD_SSL_BigImageVC.h"
 
 
 

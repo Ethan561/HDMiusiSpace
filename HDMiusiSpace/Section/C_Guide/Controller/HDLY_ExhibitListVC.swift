@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_ExhibitListVC: HDItemBaseVC {
+class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_ExhibitCell_Delegate,HDLY_AudioPlayer_Delegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBar: UIView!
@@ -19,12 +19,15 @@ class HDLY_ExhibitListVC: HDItemBaseVC {
     var infoModel: HDLY_ExhibitList?
     var exhibition_id = 0
     private var currentModel = HDLY_ExhibitListM()
+    var selectRow = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         dataRequest()
-        
+        player.delegate = self
+
     }
     
     func dataRequest()  {
@@ -108,22 +111,73 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
         if infoModel?.data.exhibitList != nil {
             let listModel = infoModel!.data.exhibitList[indexPath.row]
             cell?.model = listModel
+            cell?.delegate = self
+            if selectRow == indexPath.row {
+                cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                if player.state == .playing {
+                    cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                }else {
+                    cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
+                }
+            }
         }
+        
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectRow = indexPath.row
+        let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
 
         let listModel = infoModel!.data.exhibitList[indexPath.row]
         guard let video = listModel.audio else {
             return
         }
-        if video.isEmpty == false && video.contains(".mp3") {
-            player.play(file: Music.init(name: "", url:URL.init(string: video)!))
-            player.url = video
+        if listModel.title == currentModel.title {
+            cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+            if player.state == .playing {
+                player.pause()
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
+            }else {
+                player.play()
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+            }
+        } else {
+            if video.isEmpty == false && video.contains(".mp3") {
+                player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+                player.url = video
+                currentModel = listModel
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                cell?.playingModel = currentModel
+            }
         }
     }
     
+}
+
+//MARK: --- Player Control ---
+extension HDLY_ExhibitListVC {
     
+    //HDLY_ExhibitCell_Delegate
+    func didselectedCell(_ model: HDLY_ExhibitListM, cell: HDLY_ExhibitCell) {
+        
+    }
+    
+    func finishPlaying() {
+        let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
+        cell?.setSelected(false, animated: true)
+
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        
+        let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as! HDLY_ExhibitCell?
+        cell?.timeL.text = "\(currentTime)/\(totalTime)"
+        
+    }
     
 }
+
+
+

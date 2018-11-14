@@ -191,6 +191,22 @@ extension UIImage {
         
     }
     
+    //用View生成图片
+    class func getImgWithView(_ view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.main.scale)
+        let ctx: CGContext? = UIGraphicsGetCurrentContext()
+        if ctx != nil {
+            view.layer.render(in: ctx!)
+        }
+        
+        let img: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+    
+    
+    
+    
 }
 
 

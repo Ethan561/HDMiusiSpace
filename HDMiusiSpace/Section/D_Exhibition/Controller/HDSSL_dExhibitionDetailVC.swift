@@ -9,6 +9,12 @@
 import UIKit
 
 class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
+    
+    @IBOutlet weak var bannerBg: UIView!
+    @IBOutlet weak var dTableView: UITableView!
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -23,7 +29,14 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         self.hd_navigationBarHidden = true
     }
     
-
+    //MARK: action
+    @IBAction func action_back(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    @IBAction func action_topButton(_ sender: UIButton) {
+        print(sender.tag)
+    }
+    
     /*
     // MARK: - Navigation
 

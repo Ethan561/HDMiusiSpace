@@ -9,6 +9,8 @@
 import UIKit
 
 class HDSSL_dMuseumDetailVC: HDItemBaseVC {
+    @IBOutlet weak var bannerBg: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -23,7 +25,15 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC {
         self.hd_navigationBarHidden = true
     }
     
-
+    @IBAction func action_back(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func action_tapTopButton(_ sender: UIButton) {
+        print(sender.tag)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

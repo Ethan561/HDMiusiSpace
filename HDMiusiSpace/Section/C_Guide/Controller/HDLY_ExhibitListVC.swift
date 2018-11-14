@@ -18,7 +18,7 @@ class HDLY_ExhibitListVC: HDItemBaseVC {
     let player = HDLY_AudioPlayer.shared
     var infoModel: HDLY_ExhibitList?
     var exhibition_id = 0
-    
+    private var currentModel = HDLY_ExhibitListM()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true

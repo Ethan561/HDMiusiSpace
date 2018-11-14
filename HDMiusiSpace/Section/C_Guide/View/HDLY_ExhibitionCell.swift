@@ -34,7 +34,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
         if  model.img != nil  {
             imgV.kf.setImage(with: URL.init(string: (model.img ?? "")), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
-        titleL.text = model.title
+        
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             typeL.text = "数字编号版"
         }else if model.type == 1 {
@@ -42,6 +42,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
         }else if model.type == 2 {
             typeL.text = "扫一扫版"
         }
+        
         if model.isLock == 0 {
             lockView.isHidden = true
         }else {
@@ -62,7 +63,33 @@ class HDLY_ExhibitionCell: UITableViewCell {
             vipPriceL.text = "SVIP￥\(model.vipPrice)"
             vipPriceL.textColor = UIColor.HexColor(0xCCCCCC)
         }
-        
+        UIFont.showAllFonts()
+        if model.isTz == 1 {
+            let maTitleString: NSMutableAttributedString = NSMutableAttributedString.init(string: model.title!)
+            
+            let tzView:UILabel = UILabel.init(frame: CGRect.init(x: 5, y: 0, width: 28, height: 16))
+            tzView.text = "特展"
+            tzView.textAlignment = .center
+            tzView.font = UIFont.init(name: "PingFangSC-Regular", size: 9)
+            tzView.textColor = UIColor.HexColor(0xE8593E)
+            tzView.layer.cornerRadius = 8
+            tzView.layer.masksToBounds = true
+            tzView.layer.borderWidth = 1
+            tzView.layer.borderColor = UIColor.HexColor(0xE8593E).cgColor
+            
+            //
+            let img:UIImage? = UIImage.getImgWithView(tzView)
+            if img != nil {
+                let attach = NSTextAttachment()
+                attach.bounds = CGRect.init(x: 0, y: 0, width: 30, height: 16)
+                attach.image = img
+                let imgStr = NSAttributedString.init(attachment: attach)
+                maTitleString.append(imgStr)
+            }
+            titleL.attributedText = maTitleString
+        }else {
+            titleL.text = model.title
+        }
     }
     
     override func awakeFromNib() {

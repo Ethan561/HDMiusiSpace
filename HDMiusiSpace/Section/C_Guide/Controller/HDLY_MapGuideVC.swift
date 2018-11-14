@@ -265,7 +265,7 @@ extension HDLY_MapGuideVC {
         //报错
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
         vc.articleID = String(museum_id)
-        vc.typeID = "3"
+        vc.typeID = "7"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

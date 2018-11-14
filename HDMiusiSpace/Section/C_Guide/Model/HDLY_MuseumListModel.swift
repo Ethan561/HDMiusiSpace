@@ -116,11 +116,13 @@ struct HDLY_ExhibitListM: Codable {
     var title: String?
     var audio: String?
     var longTime: String?
-    
+    var isPlaying : Bool?
+
     enum CodingKeys: String, CodingKey {
         case exhibitID = "exhibit_id"
         case title, audio
         case longTime = "long_time"
+        case isPlaying
     }
 }
 

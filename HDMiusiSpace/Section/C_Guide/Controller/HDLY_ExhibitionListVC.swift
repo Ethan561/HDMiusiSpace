@@ -119,6 +119,7 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
             if kWindow != nil {
                 kWindow!.addSubview(tipView)
             }
+            tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: "http://www.muspace.net/api/guide/vip_privilege?p=i")!))
             weak var weakS = self
             tipView.sureBlock = { model in
                 weakS?.showDetailVC(model)

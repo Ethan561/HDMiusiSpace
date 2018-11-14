@@ -76,7 +76,9 @@ typedef void(^completeBlock)(CGFloat currentScore);
 
 #pragma mark - private Method
 -(void)createStarView{
-    
+    NSTextAttachment *foreAttachment = [[NSTextAttachment alloc]init];
+    foreAttachment.image = [UIImage imageNamed:@"bl_ios_splb_qyh"];
+    foreAttachment.bounds = CGRectMake(0, 0, 15, 15);
     self.foregroundStarView = [self createStarViewWithImage:ForegroundStarImage];
     self.backgroundStarView = [self createStarViewWithImage:BackgroundStarImage];
     self.foregroundStarView.frame = CGRectMake(0, 0, self.bounds.size.width*_currentScore/self.numberOfStars, self.bounds.size.height);

@@ -70,6 +70,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     }
     
     @IBAction func cleanAction(_ sender: Any) {
+        self.exhibitInfo = nil
         numStr = ""
         numL.text = numStr
         player.stop()
@@ -128,7 +129,6 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
                     player.fileno = numStr
                     isPlaying = true
                 }
-
             }
         }
         self.collectionView.reloadData()

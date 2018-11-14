@@ -286,7 +286,7 @@ class Music {
     var url:URL
     
     //类构造函数
-    init(name:String, url:URL){
+    init(name:String, url:URL) {
         self.name = name
         self.url = url
     }

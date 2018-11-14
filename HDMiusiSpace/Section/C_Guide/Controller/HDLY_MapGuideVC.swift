@@ -253,7 +253,6 @@ extension HDLY_MapGuideVC {
         }
     }
     
-
     
     @IBAction func locBtnAction(_ sender: Any) {
         if (self.chooseAnn != nil) {

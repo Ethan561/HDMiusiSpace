@@ -82,7 +82,8 @@ static const CFTimeInterval kDefaultFadeDuration = 0.1;
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGFloat scale = CGContextGetCTM(ctx).a / self.tiledLayer.contentsScale;
-    
+    NSLog(@"==== %.f , %.f", CGContextGetCTM(ctx).a,self.tiledLayer.contentsScale);
+
     NSInteger col = (NSInteger)((CGRectGetMinX(rect) * scale) / self.tileSize.width);
     NSInteger row = (NSInteger)((CGRectGetMinY(rect) * scale+0.0001) / self.tileSize.height); // 加0.0001是补丁，处理了在iPhone 6P上面瓦片加载错误的问题
     

@@ -8,12 +8,11 @@
 
 import UIKit
 
-class HDLY_ExhibitCell: UITableViewCell {
-
+ class HDLY_ExhibitCell: UITableViewCell,HDLY_AudioPlayer_Delegate {
+    
     @IBOutlet weak var tipImgV: UIImageView!
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var timeL: UILabel!
-        
     var model: HDLY_ExhibitListM? {
         didSet {
             showCellData()
@@ -37,17 +36,15 @@ class HDLY_ExhibitCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        if let listModel = model {
-            if selected == true {
-                tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                nameL.textColor = UIColor.HexColor(0xE8593E)
-                timeL.textColor = UIColor.HexColor(0xE8593E)
-                
-            } else {
-                tipImgV.image = UIImage.init(named: "dl_icon_default")
-                nameL.textColor = UIColor.HexColor(0x4A4A4A)
-                timeL.textColor = UIColor.HexColor(0x9B9B9B)
-            }
+        if selected == true {
+            
+            //                    tipImgV.image = UIImage.init(named: "dl_icon_pause")
+            //                    nameL.textColor = UIColor.HexColor(0xE8593E)
+            //                    self.delegate?.didselectedCell(listModel, cell: self)
+        } else {
+            tipImgV.image = UIImage.init(named: "dl_icon_default")
+            nameL.textColor = UIColor.HexColor(0x4A4A4A)
+            timeL.text = model?.longTime
         }
     }
     

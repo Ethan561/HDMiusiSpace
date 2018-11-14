@@ -26,6 +26,8 @@
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
 		A74E6FC0219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */; };
 		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
+		A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */; };
+		A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */; };
 		A756C8382191858600C1747A /* RootDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756C8372191858600C1747A /* RootDViewModel.swift */; };
 		A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF32192B414004C7F8A /* ExhibitionModel.swift */; };
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
@@ -441,6 +443,8 @@
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
 		A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
 		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
+		A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionDetailVC.swift; sourceTree = "<group>"; };
+		A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumDetailVC.swift; sourceTree = "<group>"; };
 		A756C8372191858600C1747A /* RootDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDViewModel.swift; sourceTree = "<group>"; };
 		A7676BF32192B414004C7F8A /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
@@ -1967,6 +1971,8 @@
 			children = (
 				D6C9FCCB21183536007C8E56 /* HDRootDVC.swift */,
 				A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */,
+				A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */,
+				A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2707,6 +2713,7 @@
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
 				A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
+				A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
 				A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */,
@@ -2759,6 +2766,7 @@
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
 				D61E94C92192D12400C5299F /* MKAnnotationView+WebCache.m in Sources */,
 				D62277D521368069008F1416 /* MTImagePickerController.swift in Sources */,
+				A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */,
 				D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */,
 				D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */,
 				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,

@@ -59,6 +59,10 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         if str.count > 0 {
             print("城市\(str)")
             btn_location.setTitle(str, for: .normal)
+            //定位按钮设置
+            btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+            btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+            btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
         }
     }
     
@@ -72,10 +76,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         contentScrollView.showsHorizontalScrollIndicator = false
         contentScrollView.backgroundColor = UIColor.white
         
-        //定位按钮设置
-        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
-        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+
     }
     
     //MARK: - 定位

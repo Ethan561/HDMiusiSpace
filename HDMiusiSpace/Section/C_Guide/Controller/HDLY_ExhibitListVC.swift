@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_ExhibitCell_Delegate,HDLY_AudioPlayer_Delegate {
+class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navBar: UIView!
@@ -111,7 +111,6 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
         if infoModel?.data.exhibitList != nil {
             let listModel = infoModel!.data.exhibitList[indexPath.row]
             cell?.model = listModel
-            cell?.delegate = self
             if selectRow == indexPath.row {
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
                 if player.state == .playing {
@@ -149,7 +148,6 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 currentModel = listModel
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
-                cell?.playingModel = currentModel
             }
         }
     }
@@ -158,11 +156,6 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
 
 //MARK: --- Player Control ---
 extension HDLY_ExhibitListVC {
-    
-    //HDLY_ExhibitCell_Delegate
-    func didselectedCell(_ model: HDLY_ExhibitListM, cell: HDLY_ExhibitCell) {
-        
-    }
     
     func finishPlaying() {
         let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell

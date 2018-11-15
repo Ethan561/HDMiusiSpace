@@ -12,6 +12,8 @@
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
 		A72E308E21997996004E3735 /* HD_searchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72E308D21997996004E3735 /* HD_searchResultView.swift */; };
 		A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A72E308F2199799F004E3735 /* HD_searchResultView.xib */; };
+		A734299F219D463800596B35 /* HDSSL_ExDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A734299E219D463800596B35 /* HDSSL_ExDetailVM.swift */; };
+		A73429A1219D4E6800596B35 /* ExhibitionDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */; };
 		A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */; };
 		A738B1F52194073800B78D21 /* CurrentCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */; };
 		A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */; };
@@ -441,6 +443,8 @@
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
 		A72E308D21997996004E3735 /* HD_searchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_searchResultView.swift; sourceTree = "<group>"; };
 		A72E308F2199799F004E3735 /* HD_searchResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HD_searchResultView.xib; sourceTree = "<group>"; };
+		A734299E219D463800596B35 /* HDSSL_ExDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_ExDetailVM.swift; sourceTree = "<group>"; };
+		A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionDetailDataModel.swift; sourceTree = "<group>"; };
 		A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchVC.swift; sourceTree = "<group>"; };
 		A738B1F22194073800B78D21 /* CurrentCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCityTableViewCell.swift; sourceTree = "<group>"; };
 		A738B1F32194073800B78D21 /* HotCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotCityTableViewCell.swift; sourceTree = "<group>"; };
@@ -2094,6 +2098,7 @@
 				A7676BF32192B414004C7F8A /* ExhibitionModel.swift */,
 				A738B200219418F700B78D21 /* CityDataModel.swift */,
 				A7B982EC2196766A00AF0266 /* CountyDataModel.swift */,
+				A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2103,6 +2108,7 @@
 			children = (
 				A756C8372191858600C1747A /* RootDViewModel.swift */,
 				A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */,
+				A734299E219D463800596B35 /* HDSSL_ExDetailVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2727,6 +2733,7 @@
 				D622779D21367D4D008F1416 /* TopMostViewControllerGetter.swift in Sources */,
 				D61E94C62192D12400C5299F /* HDMapModel.m in Sources */,
 				D66C35BD213F5E2100363D7C /* HD_LY_Cache.m in Sources */,
+				A73429A1219D4E6800596B35 /* ExhibitionDetailDataModel.swift in Sources */,
 				A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
 				D622779C21367D4D008F1416 /* PhotoBrowserPlugin.swift in Sources */,
@@ -2839,6 +2846,7 @@
 				D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */,
 				D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */,
 				D6A1E22E211C13CF00E1E893 /* FSPagerViewCell.swift in Sources */,
+				A734299F219D463800596B35 /* HDSSL_ExDetailVM.swift in Sources */,
 				D6A9FB3F21227B3C0087972E /* HDLY_CourseDes_VC.swift in Sources */,
 				D61E94C92192D12400C5299F /* MKAnnotationView+WebCache.m in Sources */,
 				D62277D521368069008F1416 /* MTImagePickerController.swift in Sources */,

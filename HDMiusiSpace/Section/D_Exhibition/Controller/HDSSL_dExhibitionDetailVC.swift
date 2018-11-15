@@ -11,11 +11,15 @@ import UIKit
 let kBannerHeight = ScreenWidth*250/375.0
 
 class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
+    //接收
+    var exhibition_id: Int?
     
     //
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
     
+    //
+    var exdataModel: ExhibitionDetailDataModel?
     //
     var bannerView: ScrollBannerView!//banner
     var bannerImgArr: [String]? = Array.init() //轮播图数组
@@ -137,13 +141,15 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
 extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 9
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
         }else if section == 1 {
+            return 2
+        }else if section == 2 {
             return 2
         }
         return 1

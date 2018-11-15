@@ -11,11 +11,7 @@ import ESPullToRefresh
 
 
 class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
-    
-    let showListenView: Bindable = Bindable(false)
-    let showKidsView: Bindable = Bindable(false)
     var dataArr =  [MuseumListData]()
-    
     var type = 1 //1最近2最火    
     //tableView
     lazy var tableView: UITableView = {
@@ -28,8 +24,6 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
         return tableView
     }()
-    
-    let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

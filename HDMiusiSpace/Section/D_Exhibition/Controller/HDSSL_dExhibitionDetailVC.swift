@@ -18,6 +18,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
     
+
     //
     var exdataModel: ExhibitionDetailDataModel?
     //

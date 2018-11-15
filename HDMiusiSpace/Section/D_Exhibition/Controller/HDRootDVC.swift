@@ -8,31 +8,41 @@
 
 import UIKit
 
-class HDRootDVC: HDItemBaseVC {
+class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
 
     @IBOutlet weak var bavBarView  : UIView!
     @IBOutlet weak var navBarHeight: NSLayoutConstraint!
     @IBOutlet weak var navBar_btn1 : UIButton!
     @IBOutlet weak var navBar_btn2 : UIButton!
     @IBOutlet weak var btn_location: UIButton!
-    //menu
-    @IBOutlet weak var menu_btn1   : UIButton!
-    @IBOutlet weak var menu_btn2   : UIButton!
-    @IBOutlet weak var menu_btn3   : UIButton!
-    @IBOutlet weak var menuLine1   : UIView!
-    @IBOutlet weak var menuLine2   : UIView!
-    @IBOutlet weak var menuLine3   : UIView!
+    //
+    @IBOutlet weak var searchBgView: UIView!
+    @IBOutlet weak var menuBgView: UIView!
+    @IBOutlet weak var exhibitionScrollV: UIScrollView!
+    @IBOutlet weak var museumScrollV: UIScrollView!
     
-    @IBOutlet weak var dTableView  : UITableView!
+    
+    lazy var pageMenu: SPPageMenu = {
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:0, y: 0, width: ScreenWidth-125, height: 40), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        
+        page.delegate = self
+        page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
+        page.dividingLine.isHidden = true
+        page.selectedItemTitleColor = UIColor.HexColor(0x333333)
+        page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
+        page.tracker.backgroundColor = UIColor.red
+        page.backgroundColor = UIColor.white
+        page.permutationWay = SPPageMenuPermutationWay.notScrollAdaptContent
+        return page
+    }()
     
     var condition1: Int! //1展览，2博物馆
     var condition2: Int! //1热门推荐，2全部，3最近
     
     //mvvm
-    var viewModel: RootDViewModel = RootDViewModel()
-    
-    var exhibitionArr: [HDSSL_dExhibition] = Array.init() //展览数组
-    var museumArr    : [HDSSL_dMuseum]     = Array.init() //博物馆数组
+    var viewModel = RootDViewModel()
+    var exhibitionArr =  [HDLY_dExhibitionListD]()  //展览数组
+    var museumArr     =  [HDLY_dMuseumListD]() //博物馆数组
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -50,15 +60,15 @@ class HDRootDVC: HDItemBaseVC {
         super.viewDidLoad()
         navBarHeight.constant = CGFloat(kTopHeight)
         self.hd_navigationBarHidden = true
-
+        
         //MVVM
         bindViewModel()
         
         navBar_btn1.isSelected = true
         condition1 = 1
         condition2 = 1
-        menu_btn1.isSelected = true
-        menu_btn2.isSelected = false
+        museumScrollV.isHidden = true
+        self.pageMenu.bridgeScrollView = self.exhibitionScrollV
         
         //定位按钮设置
         btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
@@ -66,9 +76,32 @@ class HDRootDVC: HDItemBaseVC {
         btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!+20, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
         btn_location.titleLabel?.lineBreakMode = .byTruncatingTail
         
-        self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        
         loadMyViews()
+        //
+        setupScrollView()
+        let menuTitleArr = ["热门推荐","全部","最近"]
+        self.menuBgView.addSubview(self.pageMenu)
+        self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
+        self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+        
+    }
+    
+    func setupScrollView() {
+        
+        exhibitionScrollV.delegate = self
+        exhibitionScrollV.isPagingEnabled = true
+        exhibitionScrollV.isScrollEnabled = true
+        exhibitionScrollV.bounces = false
+        exhibitionScrollV.showsVerticalScrollIndicator = false
+        exhibitionScrollV.showsHorizontalScrollIndicator = false
+        exhibitionScrollV.backgroundColor = UIColor.white
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.pageMenu.frame = self.menuBgView.bounds
+        
     }
     
     //MARK: - init
@@ -86,8 +119,6 @@ class HDRootDVC: HDItemBaseVC {
             navBar_btn1.titleLabel?.font = UIFont.init(name: "PingFangSC-Semibold", size: 25)!
             navBar_btn1.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
         }
-        
-        
     }
 
     //MARK: - MVVM
@@ -95,32 +126,24 @@ class HDRootDVC: HDItemBaseVC {
         weak var weakSelf = self
         
         //展览数组
-        viewModel.exhibitionArray.bind { (Array) in
-            
-            weakSelf?.exhibitionArr = Array
-            
+        viewModel.exhibitionArray.bind { (array) in
+            weakSelf?.exhibitionArr = array
         }
         
         //博物馆数组
-        viewModel.museumArray.bind { (Array) in
-            
-            weakSelf?.museumArr = Array
+        viewModel.museumArray.bind { (array) in
+            weakSelf?.museumArr = array
             
         }
     }
-
+    
     //MARK: - 展览、博物馆切换
     @IBAction func action_changeMainType(_ sender: UIButton) {
         //tag=0 展览，tag=1 博物馆
         print(sender.tag)
         navBar_btn1.isSelected = !navBar_btn1.isSelected
-        
         condition1 = sender.tag + 1 //保存大页面状态
-        
         loadMyViews()
-        
-        dTableView.reloadData()
-        
     }
     
     //MARK: - 搜索
@@ -130,44 +153,11 @@ class HDRootDVC: HDItemBaseVC {
     }
     
     //MARK: - 定位
-    
     @IBAction func action_location(_ sender: Any) {
-        
         let vc: HDSSL_getLocationVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_getLocationVC") as! HDSSL_getLocationVC
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    //MARK: - 热门推荐、全部、最近
-    @IBAction func action_changeMenu(_ sender: UIButton) {
-        //tag=0 热门推荐、tag=1全部、tag=2最近
-        print(sender.tag)
-        sender.isSelected = true
-        
-        if sender.tag == 0 {
-            menu_btn2.isSelected = false
-            menu_btn3.isSelected = false
-            
-            menuLine1.isHidden = false
-            menuLine2.isHidden = true
-            menuLine3.isHidden = true
-        }else if sender.tag == 1 {
-            menu_btn1.isSelected = false
-            menu_btn3.isSelected = false
-            
-            menuLine1.isHidden = true
-            menuLine2.isHidden = false
-            menuLine3.isHidden = true
-        }else if sender.tag == 2 {
-            menu_btn1.isSelected = false
-            menu_btn2.isSelected = false
-            
-            menuLine1.isHidden = true
-            menuLine2.isHidden = true
-            menuLine3.isHidden = false
-        }
-    }
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -185,48 +175,62 @@ class HDRootDVC: HDItemBaseVC {
 
 }
 
-extension HDRootDVC:UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if condition1 == 1 {
-            return (ScreenWidth-40)*188/335 + 110
-        }
-        return 110
-    }
+// PageMenu
+extension HDRootDVC {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if condition1 == 1 {
-            let cell = HDSSL_dExhibitionCell.getMyTableCell(tableV: tableView) as HDSSL_dExhibitionCell
-            
-            
-            return cell
-        } else {
-            let cell = HDSSL_dMuseumCell.getMyTableCell(tableV: tableView) as HDSSL_dMuseumCell
-            
-            
-            return cell
+    // ContentSubViews
+    func addContentSubViewsWithArr(titleArr:Array<String>) {
+        
+        self.exhibitionScrollV.contentSize = CGSize.init(width: Int(ScreenWidth)*titleArr.count, height: 0)
+        self.exhibitionScrollV.isScrollEnabled = true
+        
+        for (i, _) in titleArr.enumerated() {
+            //            let model  = self.menuArr[i]
+            switch i {
+                
+            case 0://推荐
+                let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
+                self.addChildViewController(baseVC)
+                baseVC.type = 1
+                self.exhibitionScrollV.addSubview(self.childViewControllers[0].view)
+            case 1://全部
+                let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
+                baseVC.type = 0
+                self.addChildViewController(baseVC)
+            case 2://最近
+                let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
+                baseVC.type = 2
+                self.addChildViewController(baseVC)
+            default: break
+                
+            }
         }
-        
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        if condition1 == 1 {
-            //展览详情
-            let vc: HDSSL_dExhibitionDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-            
-            self.navigationController?.pushViewController(vc, animated: true)
-        
-        } else {
-            //博物馆详情
-            let vc: HDSSL_dMuseumDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
-            
-            self.navigationController?.pushViewController(vc, animated: true)
+    //MARK: ---- SPPageMenuDelegate -----
+    func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
+        if self.childViewControllers.count == 0 {
+            return
         }
-        
+        let contentScrollView:UIScrollView = exhibitionScrollV
+        // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
+        if (labs(toIndex - fromIndex) >= 2) {
+            contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
+        }else {
+            contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
+        }
+        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        if targetViewController.isViewLoaded == true {
+            return;
+        }
+        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight))
+        let s: UIScrollView = targetViewController.view.subviews[0] as! UIScrollView
+        var contentOffset:CGPoint = s.contentOffset
+        if contentOffset.y >= CGFloat(HeaderViewH) {
+            contentOffset.y = CGFloat(HeaderViewH)
+        }
+        s.contentOffset = contentOffset
+        contentScrollView.addSubview(targetViewController.view)
     }
-    
 }
+

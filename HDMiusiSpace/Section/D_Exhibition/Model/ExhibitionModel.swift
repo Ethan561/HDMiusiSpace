@@ -28,3 +28,58 @@ struct HDSSL_selectedCity:Codable {
     var city_id          : Int?     //选择城市id
     var city_name        : String?  //名字
 }
+
+
+struct HDLY_dExhibitionListM: Codable {
+    let status: Int
+    let msg: String
+    let data: [HDLY_dExhibitionListD]
+}
+
+struct HDLY_dExhibitionListD: Codable {
+    var exhibitionID: Int = 0
+    var img: String?
+    var title, address: String?
+    var star: Double = 0.0
+    var iconList: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case exhibitionID = "exhibition_id"
+        case img, title, address, star
+        case iconList = "icon_list"
+    }
+}
+
+
+struct HDLY_dMuseumListM: Codable {
+    let status: Int
+    let msg: String
+    let data: [HDLY_dMuseumListD]
+}
+
+struct HDLY_dMuseumListD: Codable {
+    let museumID: Int
+    let img: String
+    let title, address, distance: String
+    let iconList: [String]
+    let isGg: Int
+    let ggTitle: String
+    let isLive: Int
+    let liveTitle: String
+    let isFree, price, isFavorite: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case museumID = "museum_id"
+        case img, title, address, distance
+        case iconList = "icon_list"
+        case isGg = "is_gg"
+        case ggTitle = "gg_title"
+        case isLive = "is_live"
+        case liveTitle = "live_title"
+        case isFree = "is_free"
+        case price
+        case isFavorite = "is_favorite"
+    }
+}
+
+

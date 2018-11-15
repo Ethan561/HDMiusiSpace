@@ -106,6 +106,8 @@
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
+		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
+		D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
@@ -568,6 +570,8 @@
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
+		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
+		D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumSubVC.swift; sourceTree = "<group>"; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
@@ -2038,6 +2042,8 @@
 			isa = PBXGroup;
 			children = (
 				D6C9FCCB21183536007C8E56 /* HDRootDVC.swift */,
+				D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */,
+				D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */,
 				A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */,
 				A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */,
 				A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */,
@@ -2631,6 +2637,7 @@
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
 				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,
 				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
+				D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
@@ -2719,6 +2726,7 @@
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D62277D421368069008F1416 /* MTImagePickerAssetsController.swift in Sources */,
 				D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */,
+				D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */,
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
 				D61E94D22192D12400C5299F /* SDImageCache.m in Sources */,

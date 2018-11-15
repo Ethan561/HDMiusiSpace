@@ -14,7 +14,6 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     @IBOutlet weak var dTableView: UITableView!
     
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true

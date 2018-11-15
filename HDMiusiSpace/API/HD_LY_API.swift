@@ -150,6 +150,15 @@ enum HD_LY_API {
     //地图导览
     case guideMapGuide(museum_id: Int, api_token: String)
     
+    //获取展览列表
+    case exhibitionExhibitionList(type:Int, skip:Int, take:Int, city_name: String, longitude: String, latitude: String, keywords: String)
+    
+    //获取博物馆列表
+    case exhibitionMuseumList(type:Int, skip:Int, take:Int, city_name: String, longitude: String, latitude: String, keywords: String, api_token: String)
+
+    
+
+    
     
     
     
@@ -355,9 +364,15 @@ extension HD_LY_API: TargetType {
         case .guideMapGuide(museum_id: _, api_token: _):
             return "/api/guide/map_guide"
             
+        case .exhibitionExhibitionList(_):
+            return "/api/exhibition/exhibition_list"
+            
+        case .exhibitionMuseumList(_):
+            return "/api/exhibition/museum_list"
             
             
         }
+        
     }
     
     //--- 请求类型 ---
@@ -807,6 +822,21 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .exhibitionExhibitionList(let type, let skip, let take, let city_name, let longitude, let latitude, let keywords):
+            params = params.merging(["type": type, "skip": skip, "take": take, "city_name": city_name, "longitude": longitude, "latitude": latitude, "keywords": keywords], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .exhibitionMuseumList(let type, let skip, let take, let city_name, let longitude, let latitude, let keywords, let api_token):
+            params = params.merging(["type": type, "skip": skip, "take": take, "city_name": city_name, "longitude": longitude, "latitude": latitude, "keywords": keywords, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+            
             
         }
         

@@ -111,9 +111,10 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         //展览详情
-//        let vc: HDSSL_dExhibitionDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-//        
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+        let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+        
+        self.navigationController?.pushViewController(vc, animated: true)
         
         
     }

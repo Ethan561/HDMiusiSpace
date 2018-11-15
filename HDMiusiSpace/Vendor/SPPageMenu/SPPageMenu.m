@@ -845,6 +845,9 @@
 #pragma mark - setter
 
 - (void)setBridgeScrollView:(UIScrollView *)bridgeScrollView {
+    if (_bridgeScrollView) {
+        [self.bridgeScrollView removeObserver:self forKeyPath:scrollViewContentOffset];
+    }
     _bridgeScrollView = bridgeScrollView;
     if (bridgeScrollView) {
         

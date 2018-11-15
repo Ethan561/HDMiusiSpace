@@ -58,16 +58,18 @@ struct HDLY_dMuseumListM: Codable {
 }
 
 struct HDLY_dMuseumListD: Codable {
-    let museumID: Int
-    let img: String
-    let title, address, distance: String
-    let iconList: [String]
-    let isGg: Int
-    let ggTitle: String
-    let isLive: Int
-    let liveTitle: String
-    let isFree, price, isFavorite: Int
-    
+    var museumID: Int = 0
+    var img: String?
+    var title, address, distance: String?
+    var iconList: [String]?
+    var isGg: Int = 0
+    var ggTitle: String?
+    var isLive: Int = 0
+    var liveTitle: String?
+    var isFree: Int = 0
+    var price: Int = 0
+    var isFavorite: Int = 0
+
     enum CodingKeys: String, CodingKey {
         case museumID = "museum_id"
         case img, title, address, distance

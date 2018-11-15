@@ -24,9 +24,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         
         return tableView
     }()
-    
-    let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120

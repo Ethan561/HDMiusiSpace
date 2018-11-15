@@ -206,8 +206,7 @@ extension HDRootDVC {
             }
         }
     }
-    
-    
+        
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
         if self.childViewControllers.count == 0 {

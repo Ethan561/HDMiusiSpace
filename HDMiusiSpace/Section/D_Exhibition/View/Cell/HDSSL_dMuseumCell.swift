@@ -20,12 +20,29 @@ class HDSSL_dMuseumCell: UITableViewCell {
     @IBOutlet weak var cell_liveContent: UILabel!
     
     
+    var model: HDLY_dMuseumListD? {
+        didSet {
+            showCellData()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    func showCellData() {
+        if self.model != nil {
+            if  model?.img != nil  {
+                cell_img.kf.setImage(with: URL.init(string: (model!.img!)), placeholder: UIImage.grayImage(sourceImageV: cell_img), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            cell_title.text = model?.title
+            cell_address.text = model?.address
+            cell_ticketPrice.text = "\(model?.price)"
+            cell_away.text = model?.distance
+            cell_liveContent.text = model?.liveTitle
+        }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

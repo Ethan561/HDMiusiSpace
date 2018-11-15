@@ -27,6 +27,9 @@ enum HD_SSL_API {
     
     //城市搜索
     case searchCityByString(keyname: String,kind: Int)
+    
+    //展览详情
+    case getExhibitionDetail(exhibitionId: Int)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -62,6 +65,9 @@ extension HD_SSL_API: TargetType {
             
         case .searchCityByString(keyname: _,kind: _):
             return "/api/guide/city_select"
+            
+        case .getExhibitionDetail(exhibitionId: _):
+            return "/api/exhibition/exhibition_info"
         //...
             
             
@@ -138,6 +144,13 @@ extension HD_SSL_API: TargetType {
             
         case .searchCityByString(keyname: let keyname,kind: let kind):
             params = params.merging(["keyname":keyname,"kind":kind], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .getExhibitionDetail(exhibitionId: let exhibitionId):
+            params = params.merging(["exhibition_id":exhibitionId,"api_token":""], uniquingKeysWith: {$1})
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]

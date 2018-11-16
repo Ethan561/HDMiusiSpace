@@ -61,7 +61,7 @@ struct CommentListModel: Codable {
     let avatar: String
     let isVip: Int
     let nickname: String
-    let star: Int
+    let star: Float
     let content: String
     var imgList: [String]?
     let isLike, likeNum, commentNum: Int

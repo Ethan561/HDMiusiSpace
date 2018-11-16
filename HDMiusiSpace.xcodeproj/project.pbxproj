@@ -37,6 +37,8 @@
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
 		A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */; };
 		A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */; };
+		A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */; };
+		A79D9D3A219E4AB80081B3AE /* HDSSL_dCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */; };
 		A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */; };
 		A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */; };
 		A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */; };
@@ -470,6 +472,8 @@
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
 		A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_worldLocView.swift; sourceTree = "<group>"; };
 		A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_worldLocView.xib; sourceTree = "<group>"; };
+		A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentCell.swift; sourceTree = "<group>"; };
+		A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dCommentCell.xib; sourceTree = "<group>"; };
 		A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_API.swift; sourceTree = "<group>"; };
 		A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_newsCell.swift; sourceTree = "<group>"; };
 		A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_newsCell.xib; sourceTree = "<group>"; };
@@ -1049,6 +1053,8 @@
 				A7C59E50219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib */,
 				A7C59E53219C08AE00F67F0C /* HDSSL_Sec1Cell.swift */,
 				A7C59E54219C08AE00F67F0C /* HDSSL_Sec1Cell.xib */,
+				A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */,
+				A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */,
 			);
 			path = ExhibitionDetail;
 			sourceTree = "<group>";
@@ -2412,6 +2418,7 @@
 				A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */,
 				D66C35CB213FA80600363D7C /* HDLY_MineInfo_Cell.xib in Resources */,
 				A7AC35BC214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib in Resources */,
+				A79D9D3A219E4AB80081B3AE /* HDSSL_dCommentCell.xib in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
 				A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
@@ -2626,6 +2633,7 @@
 				D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */,
 				D62277DC21368069008F1416 /* VideoPickerPreviewCell.swift in Sources */,
 				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
+				A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D62277A821367D4D008F1416 /* FadeAnimator.swift in Sources */,

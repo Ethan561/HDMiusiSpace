@@ -16,6 +16,8 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     @IBOutlet weak var cell_number: UILabel!
     @IBOutlet weak var cell_star: UIImageView!
     @IBOutlet weak var cell_tagBg: UIView!
+    @IBOutlet weak var tagL: UILabel!
+    @IBOutlet weak var bgView: UIView!
     
     var model: HDLY_dExhibitionListD? {
         didSet {
@@ -26,17 +28,54 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        bgView.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
     }
 
     func showCellData() {
+        for imgV in cell_tagBg.subviews {
+            imgV.removeFromSuperview()
+        }
         if self.model != nil {
             if  model?.img != nil  {
                 cell_img.kf.setImage(with: URL.init(string: (model!.img!)), placeholder: UIImage.grayImage(sourceImageV: cell_img), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cellTitle.text = model?.title
             cell_locaAndPrice.text = model?.address
-            cell_number.text = "\(model?.star)"
+            cell_number.text = "\(model!.star)"
+            let star = model!.star
+            var imgStr = ""
+            if star < 2 {
+                imgStr = "exhibitionCmt_1_5"
+            }else if star >= 2 && star < 4 {
+                imgStr = "exhibitionCmt_2_5"
+            }else if star >= 4 && star < 6 {
+                imgStr = "exhibitionCmt_3_5"
+            }else if star >= 6 && star < 8 {
+                imgStr = "exhibitionCmt_4_5"
+            }else if star >= 8 {
+                imgStr = "exhibitionCmt_5_5"
+            }
+            cell_star.image = UIImage.init(named: imgStr)
+            var x:CGFloat = 0
+            var imgWArr = [CGFloat]()
             
+            for (i,imgStr) in model!.iconList!.enumerated() {
+                let imgV = UIImageView()
+                imgV.contentMode = .scaleAspectFit
+                imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+                    
+                    let imgSize = img!.size
+                    let imgH: CGFloat = 15
+                    let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                    imgWArr.append(imgW)
+                    if i > 0 {
+                        let w = imgWArr[i-1]
+                        x = x + w
+                    }
+                    imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
+                    self.cell_tagBg.addSubview(imgV)
+                }
+            }
         }
     }
     

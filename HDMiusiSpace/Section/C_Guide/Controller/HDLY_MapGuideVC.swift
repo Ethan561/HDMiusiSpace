@@ -286,8 +286,8 @@ extension HDLY_MapGuideVC : CLLocationManagerDelegate {
         let currlocation = locations.last
         nowLoc = (currlocation?.coordinate)!
         bigOutDoorPOI(locate: nowLoc)
-//        distanceView.currLat.text = String.init(format: "2.当前纬度:%.6lf", nowLoc.latitude)
-//        distanceView.currLon.text = String.init(format: "1.当前经度:%.6lf", nowLoc.longitude)
+//      distanceView.currLat.text = String.init(format: "2.当前纬度:%.6lf", nowLoc.latitude)
+//      distanceView.currLon.text = String.init(format: "1.当前经度:%.6lf", nowLoc.longitude)
         
         
         //实时修改自己的位置
@@ -302,7 +302,6 @@ extension HDLY_MapGuideVC : CLLocationManagerDelegate {
             
         }
     }
-    
 
     
     private func changeLocateToPoint(locate:CLLocationCoordinate2D) ->CGPoint {

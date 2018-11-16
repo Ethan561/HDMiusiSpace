@@ -26,6 +26,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     var bannerImgArr: [String]? = Array.init() //轮播图数组
     var imgsArr: Array<String>?
     
+    //mvvm
+    var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -40,6 +43,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         self.hd_navigationBarHidden = true
         
         //
+        bindViewModel()
+        //
         loadMyDatas()
         //banner
         setupBannerView()
@@ -52,9 +57,24 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         bannerImgArr?.append("http://www.muspace.net/img/test/1.jpg")
         bannerImgArr?.append("http://www.muspace.net/img/test/2.jpg")
         bannerImgArr?.append("http://www.muspace.net/img/test/3.jpg")
+        
+        //请求数据
+        viewModel.request_getExhibitionDetail(exhibitionId: 1, vc: self)
     }
     
-    
+    //mvvm
+    //MARK: - MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        
+        //展览data
+        viewModel.exhibitionData.bind { (data) in
+            weakSelf?.exdataModel = data
+            
+            print(data)
+        }
+        
+    }
     
     
     //MARK: action

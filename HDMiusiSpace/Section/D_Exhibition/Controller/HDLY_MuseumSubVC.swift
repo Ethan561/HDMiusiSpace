@@ -113,7 +113,8 @@ extension HDLY_MuseumSubVC:UITableViewDelegate,UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         //博物馆详情
-        let vc: HDSSL_dMuseumDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
+        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+        let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
         
         self.navigationController?.pushViewController(vc, animated: true)
         

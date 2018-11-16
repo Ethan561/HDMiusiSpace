@@ -66,21 +66,9 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhq-9c-sqK">
                                 <rect key="frame" x="8" y="217.5" width="216" height="18"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lP-UL-fNi">
-                                        <rect key="frame" x="0.0" y="0.0" width="216" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="4lP-UL-fNi" secondAttribute="trailing" id="Pdk-rI-fRx"/>
-                                    <constraint firstItem="4lP-UL-fNi" firstAttribute="top" secondItem="Vhq-9c-sqK" secondAttribute="top" id="TeL-2N-ddi"/>
-                                    <constraint firstAttribute="bottom" secondItem="4lP-UL-fNi" secondAttribute="bottom" id="b2T-DM-H6B"/>
                                     <constraint firstAttribute="height" constant="18" id="cKa-CT-uFh"/>
-                                    <constraint firstItem="4lP-UL-fNi" firstAttribute="leading" secondItem="Vhq-9c-sqK" secondAttribute="leading" id="rJY-u2-wlX"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -111,6 +99,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4cY-ps-TEc" secondAttribute="trailing" constant="20" id="E9Z-SE-ccX"/>
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="P0P-ub-o7g"/>
@@ -118,6 +107,7 @@
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sOB-sn-WwH"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bgView" destination="4cY-ps-TEc" id="K2D-m9-v3h"/>
@@ -127,7 +117,6 @@
                 <outlet property="cell_number" destination="u57-hm-PUb" id="W92-Rk-Pm0"/>
                 <outlet property="cell_star" destination="1CS-iu-7gQ" id="ZEq-gT-1qi"/>
                 <outlet property="cell_tagBg" destination="Vhq-9c-sqK" id="wxw-XE-doo"/>
-                <outlet property="tagL" destination="4lP-UL-fNi" id="DFg-g1-4IF"/>
             </connections>
             <point key="canvasLocation" x="-3.2000000000000002" y="104.34782608695653"/>
         </tableViewCell>

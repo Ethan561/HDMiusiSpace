@@ -17,9 +17,12 @@ class HDSSL_dMuseumCell: UITableViewCell {
     @IBOutlet weak var cell_address: UILabel!
     @IBOutlet weak var cell_away: UILabel!
     @IBOutlet weak var cell_tagBg: UIView!
+    
+    @IBOutlet weak var notiView: UIView!
+    @IBOutlet weak var notiTypeL: UILabel!
     @IBOutlet weak var cell_liveContent: UILabel!
     
-    
+    @IBOutlet weak var lineView: UIView!
     var model: HDLY_dMuseumListD? {
         didSet {
             showCellData()
@@ -29,18 +32,72 @@ class HDSSL_dMuseumCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cell_img.layer.cornerRadius = 4
+        cell_img.layer.masksToBounds = true
+        notiTypeL.layer.cornerRadius = 1
+        notiTypeL.layer.masksToBounds = true
+        
     }
     
     func showCellData() {
         if self.model != nil {
             if  model?.img != nil  {
                 cell_img.kf.setImage(with: URL.init(string: (model!.img!)), placeholder: UIImage.grayImage(sourceImageV: cell_img), options: nil, progressBlock: nil, completionHandler: nil)
+            }else {
+                return
+            }
+            if model!.isFavorite == 0 {
+                cell_collectImg.isHidden = true
+            } else {
+                cell_collectImg.isHidden = false
+            }
+            if model!.isGg == 1 {
+                notiView.isHidden = false
+                notiTypeL.text = "公告"
+                notiTypeL.backgroundColor = UIColor.HexColor(0xEEEEEE)
+                notiTypeL.textColor = UIColor.HexColor(0x9B9B9B)
+                cell_liveContent.text = model?.ggTitle
+            }else {
+                if model?.isLive == 1 {
+                    notiView.isHidden = false
+                    notiTypeL.text = "live"
+                    notiTypeL.backgroundColor = UIColor.HexColor(0xD8B98D)
+                    notiTypeL.textColor = UIColor.white
+                    cell_liveContent.text = model?.ggTitle
+                }else {
+                    notiView.isHidden = true
+                    lineView.isHidden = true
+                }
+            }
+            if model!.isFree == 0 {
+                cell_ticketPrice.text = "￥" + String(model!.price)
+            }else {
+                cell_ticketPrice.text = ""
             }
             cell_title.text = model?.title
             cell_address.text = model?.address
-            cell_ticketPrice.text = "\(model?.price)"
             cell_away.text = model?.distance
             cell_liveContent.text = model?.liveTitle
+            var x:CGFloat = 0
+            var imgWArr = [CGFloat]()
+            cell_tagBg.backgroundColor = UIColor.white
+            for (i,imgStr) in model!.iconList!.enumerated() {
+                let imgV = UIImageView()
+                imgV.contentMode = .scaleAspectFit
+                imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+                    
+                    let imgSize = img!.size
+                    let imgH: CGFloat = 15
+                    let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                    imgWArr.append(imgW)
+                    if i > 0 {
+                        let w = imgWArr[i-1]
+                        x = x + w
+                    }
+                    imgV.frame = CGRect.init(x: x, y: 0, width: imgW, height: imgH)
+                    self.cell_tagBg.addSubview(imgV)
+                }
+            }
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

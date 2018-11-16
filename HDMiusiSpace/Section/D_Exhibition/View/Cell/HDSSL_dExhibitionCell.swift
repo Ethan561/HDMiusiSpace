@@ -56,6 +56,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
                 imgStr = "exhibitionCmt_5_5"
             }
             cell_star.image = UIImage.init(named: imgStr)
+            
             var x:CGFloat = 0
             var imgWArr = [CGFloat]()
             

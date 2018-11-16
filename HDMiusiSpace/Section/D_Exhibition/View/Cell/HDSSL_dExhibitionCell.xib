@@ -72,7 +72,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1CS-iu-7gQ" firstAttribute="leading" secondItem="Vhq-9c-sqK" secondAttribute="trailing" constant="8" id="2l7-L2-lMb"/>
                             <constraint firstItem="1CS-iu-7gQ" firstAttribute="centerY" secondItem="Vhq-9c-sqK" secondAttribute="centerY" id="5Ha-Jb-m6Y"/>
@@ -99,6 +99,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4cY-ps-TEc" secondAttribute="trailing" constant="20" id="E9Z-SE-ccX"/>
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="P0P-ub-o7g"/>
@@ -106,8 +107,10 @@
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sOB-sn-WwH"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bgView" destination="4cY-ps-TEc" id="K2D-m9-v3h"/>
                 <outlet property="cellTitle" destination="8T0-dL-3S9" id="mUG-bX-rbD"/>
                 <outlet property="cell_img" destination="LVe-UC-o7B" id="Gh4-c2-DBq"/>
                 <outlet property="cell_locaAndPrice" destination="Gls-on-cf6" id="2dQ-PV-zOY"/>

@@ -13,6 +13,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     
     var dataArr =  [HDLY_dExhibitionListD]()
     var type = -1 // 0全部 1推荐 2最近
+    
     //tableView
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)

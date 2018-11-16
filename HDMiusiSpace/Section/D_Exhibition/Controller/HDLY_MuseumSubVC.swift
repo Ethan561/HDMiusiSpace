@@ -19,7 +19,9 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
+//        tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
+        tableView.backgroundColor = UIColor.white
+
         tableView.showsVerticalScrollIndicator = false
         
         return tableView
@@ -97,7 +99,13 @@ extension HDLY_MuseumSubVC:UITableViewDelegate,UITableViewDataSource {
         return dataArr.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        if dataArr.count > 0 {
+            let model = dataArr[indexPath.row]
+            if model.isLive == 0 && model.isGg == 0 {
+                return 100
+            }
+        }
+        return 120
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

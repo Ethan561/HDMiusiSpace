@@ -12,7 +12,7 @@ let kItemSpace: CGFloat = 10.0
 let kItemWidth: CGFloat = CGFloat((UIScreen.main.bounds.width-55-20)/3.0)
 
 //block
-typealias BlockTapImgAt = (_ index: Int) -> Void //点击图片，返回点击位置
+typealias BlockTapImgAt = (_ index: Int,_ cellIndex: Int) -> Void //点击图片，返回点击位置
 typealias BlockTapLikeBtn = (_ index: Int) -> Void //点击点赞，返回点击位置
 typealias BlockTapCommentBtn = (_ index: Int) -> Void //点击评论，返回点击位置
 
@@ -159,7 +159,7 @@ extension HDSSL_dCommentCell{
             imgView.contentMode = .scaleAspectFill
             imgView.isUserInteractionEnabled = true
             
-            let tapGes: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: Selector(("tapAction:")))
+            let tapGes: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tapAction(_:)))
             tapGes.numberOfTapsRequired = 1
             imgView.addGestureRecognizer(tapGes)
             
@@ -167,11 +167,11 @@ extension HDSSL_dCommentCell{
         }
     }
     //点击图片
-    func tapAction(_ ges:UITapGestureRecognizer){
+    @objc func tapAction(_ ges:UITapGestureRecognizer){
         print(ges.view!.tag)
         weak var weakSelf = self
         if weakSelf?.blockTapImg != nil {
-            weakSelf?.blockTapImg!(ges.view!.tag)
+            weakSelf?.blockTapImg!(ges.view!.tag, self.tag)
         }
     }
 }

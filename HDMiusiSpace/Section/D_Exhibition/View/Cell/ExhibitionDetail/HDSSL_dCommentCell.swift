@@ -33,6 +33,13 @@ class HDSSL_dCommentCell: UITableViewCell {
     @IBOutlet weak var cell_btnLike   : UIButton!
     @IBOutlet weak var cell_btnComment: UIButton!
     
+    //
+    var myModel: CommentListModel? {
+        didSet{
+            setMyModel()
+        }
+    }
+    
     var blockTapImg : BlockTapImgAt?
     var blockTapLike : BlockTapLikeBtn?
     var blockTapComment : BlockTapCommentBtn?
@@ -48,29 +55,38 @@ class HDSSL_dCommentCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    class  func getMyTableCell(tableV: UITableView) -> HDSSL_dCommentCell! {
+        var cell: HDSSL_dCommentCell? = tableV.dequeueReusableCell(withIdentifier: HDSSL_dCommentCell.className) as? HDSSL_dCommentCell
+        if cell == nil {
+            //注册cell
+            tableV.register(UINib.init(nibName: HDSSL_dCommentCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_dCommentCell.className)
+            cell = Bundle.main.loadNibNamed(HDSSL_dCommentCell.className, owner: nil, options: nil)?.first as? HDSSL_dCommentCell
+        }
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        return cell!
+    }
     func loadMyView(){
         cell_portrial.layer.cornerRadius = 15.0
         cell_portrial.layer.masksToBounds = true
     }
     
-    func initDataWith(_ model: CommentListModel) -> Void {
+    func setMyModel() -> Void {
         //头像
-        cell_portrial.kf.setImage(with: URL.init(string: String.init(format: "%@", model.avatar)), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+        cell_portrial.kf.setImage(with: URL.init(string: String.init(format: "%@", myModel!.avatar)), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         //名字
-        cell_userName.text = String.init(format: "%@", model.nickname)
+        cell_userName.text = String.init(format: "%@", myModel!.nickname)
         //星级数量
-        self.getStarView(model.star)
+        self.getStarView(myModel!.star)
         //评论内容
-        cell_content.text = String.init(format: "%@", model.content)
+        cell_content.text = String.init(format: "%@", myModel!.content)
         //评论图片
-        self.getImgListView(model.imgList)
+        self.getImgListView(myModel!.imgList)
         //时间
-        cell_time.text = String.init(format: "%@", model.commentDate)
+        cell_time.text = String.init(format: "%@", myModel!.commentDate)
         //点赞数量
-        cell_btnLike.setTitle(String.init(format: "%d", model.likeNum), for: .normal)
+        cell_btnLike.setTitle(String.init(format: "%d", myModel!.likeNum), for: .normal)
         //评论数量
-        cell_btnComment.setTitle(String.init(format: "%d", model.commentNum), for: .normal)
+        cell_btnComment.setTitle(String.init(format: "%d", myModel!.commentNum), for: .normal)
     }
 
     @IBAction func action_tapLikeBtn(_ sender: UIButton) {
@@ -108,19 +124,19 @@ extension HDSSL_dCommentCell{
     func getStarView(_ starNum: Float) {
         let starArray = [cell_start1,cell_start2,cell_start3,cell_start4,cell_start5]
         
-        let maxNum:Int = Int(floor(starNum))//向下取整
+        let maxNum:Int = Int(floor(starNum / 2))//向下取整
         
         if maxNum == 0 {
             return
         }else {
             //red
-            for i in 0...maxNum {
+            for i in 0..<maxNum {
                 let imgV = starArray[i]
                 imgV!.image = UIImage.init(named: "zl_icon_star_red")
             }
             //half
-            if floor(starNum) != starNum {
-                let imgV = starArray[maxNum+1]
+            if floor(starNum / 2) != starNum / 2  {
+                let imgV = starArray[maxNum]
                 imgV!.image = UIImage.init(named: "zl_icon_star_half")
             }
         }

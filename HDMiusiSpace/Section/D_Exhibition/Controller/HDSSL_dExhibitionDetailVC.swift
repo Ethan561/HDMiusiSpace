@@ -26,6 +26,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     var bannerImgArr: [String]? = Array.init() //轮播图数组
     var imgsArr: Array<String>?
     
+    //评论
+    var commentArr: [CommentListModel]? = Array.init()
+    
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
@@ -69,13 +72,18 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         
         //展览data
         viewModel.exhibitionData.bind { (data) in
-            weakSelf?.exdataModel = data
             
-            print(data)
+            weakSelf?.showViewData()
+            
         }
         
     }
-    
+    func showViewData() {
+        self.exdataModel = viewModel.exhibitionData.value
+        self.commentArr = exdataModel!.data?.commentList?.list
+
+        self.dTableView.reloadData()
+    }
     
     //MARK: action
     @IBAction func action_back(_ sender: Any) {
@@ -162,16 +170,16 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
 extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 3
     }
-    
+    //0基本信息5条，1展览介绍合展品介绍两个H5，2评论，3同馆展览
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
         }else if section == 1 {
             return 2
         }else if section == 2 {
-            return 2
+            return self.commentArr!.count
         }
         return 1
     }
@@ -185,6 +193,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return 40
         }else if indexPath.section == 1 {
             return 200
+        }else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
+            let model = self.commentArr![indexPath.row]
+            
+            let comH = self.getCommentCellHeight(model)
+            
+            cell?.setNeedsUpdateConstraints()
+            cell?.updateConstraints()
+            
+            return comH
         }
         return 70
     }
@@ -241,6 +259,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell.loadWebView(path)
                 return cell
             }
+        }else if indexPath.section == 2 {
+            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
+            cell.tag = indexPath.row
+            cell.selectionStyle = .none
+            cell.myModel = self.commentArr![indexPath.row]
+            
+            return cell
         }
         let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
         return cell
@@ -255,4 +280,30 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     
+}
+
+extension HDSSL_dExhibitionDetailVC{
+    func getCommentCellHeight(_ model: CommentListModel) -> CGFloat {
+        let content = String.init(format: "%@", model.content)
+        
+        let kkSpace: CGFloat = 10.0
+        let kkWidth: CGFloat = CGFloat((UIScreen.main.bounds.width-55-20)/3.0)
+        
+        //头像、间距等高度
+        let otherH = 48.0 + 30.0
+        //文本
+//        let attribiteDic = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 11)]
+        let size = content.getLabSize(font: UIFont.systemFont(ofSize: 11), width: ScreenWidth - 55)
+        //图片
+        
+        var imgH: CGFloat? = 0.0
+        if (model.imgList?.count)! > 0 {
+            imgH = (kkSpace + kkWidth) * CGFloat(((model.imgList?.count)!-1)/3+1)
+        }else {
+            imgH = 20.0
+        }
+        
+        
+        return imgH! + size.height + CGFloat(otherH)
+    }
 }

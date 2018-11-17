@@ -221,7 +221,7 @@
         <!--d Exhibition DetailVC-->
         <scene sceneID="HUY-zt-Wla">
             <objects>
-                <viewController storyboardIdentifier="HDSSL_dExhibitionDetailVC" id="PPd-or-XRL" customClass="HDSSL_dExhibitionDetailVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDSSL_dExhibitionDetailVC" hidesBottomBarWhenPushed="YES" id="PPd-or-XRL" customClass="HDSSL_dExhibitionDetailVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Idr-49-9by">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -308,7 +308,7 @@
         <!--d Museum DetailVC-->
         <scene sceneID="mIx-G8-0zd">
             <objects>
-                <viewController storyboardIdentifier="HDSSL_dMuseumDetailVC" id="4g6-20-f5F" customClass="HDSSL_dMuseumDetailVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDSSL_dMuseumDetailVC" hidesBottomBarWhenPushed="YES" id="4g6-20-f5F" customClass="HDSSL_dMuseumDetailVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Htb-9i-NCu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

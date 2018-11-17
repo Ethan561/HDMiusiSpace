@@ -35,14 +35,14 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.tabBarController?.tabBar.isHidden = true
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.tabBarController?.tabBar.isHidden = false
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

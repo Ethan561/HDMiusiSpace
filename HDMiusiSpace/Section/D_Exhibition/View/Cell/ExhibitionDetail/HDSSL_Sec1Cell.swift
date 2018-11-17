@@ -8,11 +8,18 @@
 
 import UIKit
 import WebKit
-
+//block
+typealias BloclkCellHeight = (_ height: Double) -> Void //返回高度
 class HDSSL_Sec1Cell: UITableViewCell {
 
+    var blockHeight: BloclkCellHeight?
+    
     lazy var webview:WKWebView  = WKWebView.init(frame: CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height))
     
+    //点击图片，放大
+    func blockHeightFunc(block: @escaping BloclkCellHeight) {
+        blockHeight = block
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,8 +29,15 @@ class HDSSL_Sec1Cell: UITableViewCell {
 
     func loadWebView(_ path: String) {
         //
+        if path == "" || path.count == 0 {
+            return
+        }
         webview.frame = CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height)
+        webview.navigationDelegate = self
+        webview.scrollView.isScrollEnabled = false
+        webview.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.flexibleHeight.rawValue | UIViewAutoresizing.flexibleWidth.rawValue)
         webview.load(URLRequest.init(url: URL.init(string: path)!))
+//        webview.scrollView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,4 +56,66 @@ class HDSSL_Sec1Cell: UITableViewCell {
         
         return cell!
     }
+    
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        if keyPath == "contentSize" {
+//            //
+//            var webheight = 0.0
+//
+//            // 获取内容实际高度
+//            self.webview.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+//
+//                if let tempHeight: Double = result as? Double {
+//                    webheight = tempHeight
+//                    print("webheight: \(webheight)")
+//                }
+//
+//                DispatchQueue.main.async {
+//
+//                    var tempFrame: CGRect = self.webview.frame
+//                    tempFrame.size.height = CGFloat(webheight)
+//                    self.webview.frame = tempFrame
+//
+//                    //返回高度，刷新cell
+//                    weak var weakSelf = self
+//                    if weakSelf?.blockHeight != nil {
+//                        weakSelf?.blockHeight!(webheight)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    func dealloc()
+//    {
+//        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
+//    }
+}
+extension HDSSL_Sec1Cell:WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        
+        // 获取内容实际高度
+        self.webview.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            
+            DispatchQueue.main.async { [unowned self] in
+                
+                var tempFrame: CGRect = self.webview.frame
+                tempFrame.size.height = CGFloat(webheight)
+                self.webview.frame = tempFrame
+                
+                //返回高度，刷新cell
+                weak var weakSelf = self
+                if weakSelf?.blockHeight != nil {
+                    weakSelf?.blockHeight!(webheight)
+                }
+            }
+        }
+    }
+    
 }

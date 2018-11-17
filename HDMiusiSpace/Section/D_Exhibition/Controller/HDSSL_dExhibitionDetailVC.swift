@@ -13,6 +13,9 @@ let kBannerHeight = ScreenWidth*250/375.0
 class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     //接收
     var exhibition_id: Int?
+    var exhibitionCellH: Double?
+    var exhibitCellH: Double?
+    
     
     //
     @IBOutlet weak var bannerBg: UIView!
@@ -25,6 +28,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     var bannerView: ScrollBannerView!//banner
     var bannerImgArr: [String]? = Array.init() //轮播图数组
     var imgsArr: Array<String>?
+    
+    //评论
+    var commentArr: [CommentListModel]? = Array.init()
     
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
@@ -69,13 +75,18 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         
         //展览data
         viewModel.exhibitionData.bind { (data) in
-            weakSelf?.exdataModel = data
             
-            print(data)
+            weakSelf?.showViewData()
+            
         }
         
     }
-    
+    func showViewData() {
+        self.exdataModel = viewModel.exhibitionData.value
+        self.commentArr = exdataModel!.data?.commentList?.list
+
+        self.dTableView.reloadData()
+    }
     
     //MARK: action
     @IBAction func action_back(_ sender: Any) {
@@ -162,16 +173,16 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
 extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 3
     }
-    
+    //0基本信息5条，1展览介绍合展品介绍两个H5，2评论，3同馆展览
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
         }else if section == 1 {
             return 2
         }else if section == 2 {
-            return 2
+            return self.commentArr!.count
         }
         return 1
     }
@@ -184,7 +195,23 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             return 40
         }else if indexPath.section == 1 {
-            return 200
+            
+            if indexPath.row == 0 {
+                return CGFloat(self.exhibitionCellH ?? 0)
+            }else if indexPath.row == 1 {
+                return CGFloat(self.exhibitCellH ?? 0)
+            }
+            
+        }else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
+            let model = self.commentArr![indexPath.row]
+            
+            let comH = self.getCommentCellHeight(model)
+            
+            cell?.setNeedsUpdateConstraints()
+            cell?.updateConstraints()
+            
+            return comH
         }
         return 70
     }
@@ -232,15 +259,48 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             //展览介绍🈴️展品介绍
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
-                let path = "https://www.baidu.com"
+                let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
                 cell.loadWebView(path)
+                
+                cell.blockHeightFunc { (height) in
+                    print(height)
+                    
+                    weak var weakSelf = self
+                    weakSelf?.reloadExhibitionCellHeight(height)
+                    
+                }
                 return cell
             }else if indexPath.row == 1{
                 let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
-                let path = "https://www.baidu.com"
+                let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
                 cell.loadWebView(path)
+                cell.blockHeightFunc { (height) in
+                    print(height)
+                    
+                    weak var weakSelf = self
+                    weakSelf?.reloadExhibitCellHeight(height)
+                    
+                }
                 return cell
             }
+        }else if indexPath.section == 2 {
+            weak var weakSelf = self
+            
+            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
+            cell.tag = indexPath.row
+            cell.selectionStyle = .none
+            cell.myModel = self.commentArr![indexPath.row]
+            cell.BlockTapImgItemFunc { (index,cellIndex) in
+                print("点击第\(index)张图片，第\(cellIndex)个cell")
+                weakSelf?.showCommentBigImgAt(cellIndex, index)
+            }
+            cell.BlockTapLikeFunc { (index) in
+                print("点击喜欢按钮，位置\(index)")
+            }
+            cell.BlockTapCommentFunc { (index) in
+                print("点击评论按钮，位置\(index)")
+            }
+            return cell
         }
         let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
         return cell
@@ -254,5 +314,77 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    //刷新webview，是否显示
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let cells = self.dTableView.visibleCells
+        
+        for cell in cells {
+            if cell.isKind(of: HDSSL_Sec1Cell.self) {
+                let webCell = cell as! HDSSL_Sec1Cell
+                webCell.webview.setNeedsLayout()
+            }
+        }
+        
+    }
     
+}
+
+extension HDSSL_dExhibitionDetailVC{
+    //获取评论cell的高度
+    func getCommentCellHeight(_ model: CommentListModel) -> CGFloat {
+        let content = String.init(format: "%@", model.content)
+        
+        let kkSpace: CGFloat = 10.0
+        let kkWidth: CGFloat = CGFloat((UIScreen.main.bounds.width-55-20)/3.0)
+        
+        //头像、间距等高度
+        let otherH = 48.0 + 30.0
+        //文本
+        let size = content.getLabSize(font: UIFont.systemFont(ofSize: 11), width: ScreenWidth - 55)
+        //图片
+        var imgH: CGFloat? = 0.0
+        if (model.imgList?.count)! > 0 {
+            imgH = (kkSpace + kkWidth) * CGFloat(((model.imgList?.count)!-1)/3+1)
+        }else {
+            imgH = 20.0
+        }
+        
+        return imgH! + size.height + CGFloat(otherH)
+    }
+    //刷新展览介绍cell高度
+    func reloadExhibitionCellHeight(_ height: Double) {
+        if self.exhibitionCellH == nil {
+            self.exhibitionCellH = height
+            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+        }else if self.exhibitionCellH! < height {
+            self.exhibitionCellH = height
+            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+        }
+        
+    }
+    //刷新展品介绍cell高度
+    func reloadExhibitCellHeight(_ height: Double) {
+        if self.exhibitCellH == nil{
+            self.exhibitCellH = height
+            self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
+        }
+        if self.exhibitCellH! < height {
+            self.exhibitCellH = height
+            self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
+        }
+        
+    }
+    
+    //显示评论图片大图
+    func showCommentBigImgAt(_ cellLoc: Int,_ index: Int) {
+        let model = self.commentArr![cellLoc]
+        
+        if model.imgList != nil {
+            let vc = HD_SSL_BigImageVC.init()
+            vc.imageArray = model.imgList
+            vc.atIndex = index
+            self.present(vc, animated: true, completion: nil)
+            
+        }
+    }
 }

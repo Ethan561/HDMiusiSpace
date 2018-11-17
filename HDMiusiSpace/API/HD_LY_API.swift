@@ -156,6 +156,10 @@ enum HD_LY_API {
     //获取博物馆列表
     case exhibitionMuseumList(type:Int, skip:Int, take:Int, city_name: String, longitude: String, latitude: String, keywords: String, api_token: String)
 
+    //获取博物馆详情
+    case exhibitionMuseumInfo(museum_id: Int, api_token: String)
+
+    
     
 
     
@@ -369,6 +373,9 @@ extension HD_LY_API: TargetType {
             
         case .exhibitionMuseumList(_):
             return "/api/exhibition/museum_list"
+            
+        case .exhibitionMuseumInfo(_):
+            return "/api/exhibition/museum_info"
             
             
         }
@@ -831,6 +838,13 @@ extension HD_LY_API: TargetType {
             
         case .exhibitionMuseumList(let type, let skip, let take, let city_name, let longitude, let latitude, let keywords, let api_token):
             params = params.merging(["type": type, "skip": skip, "take": take, "city_name": city_name, "longitude": longitude, "latitude": latitude, "keywords": keywords, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .exhibitionMuseumInfo(let museum_id, let api_token):
+            params = params.merging(["museum_id": museum_id, "api_token": api_token], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

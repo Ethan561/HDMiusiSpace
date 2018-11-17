@@ -37,6 +37,12 @@
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
 		A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */; };
 		A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */; };
+		A799C033219FE98D00BA526C /* HDSSL_dHeaderNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C032219FE98D00BA526C /* HDSSL_dHeaderNormal.swift */; };
+		A799C035219FE99700BA526C /* HDSSL_dHeaderNormal.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C034219FE99700BA526C /* HDSSL_dHeaderNormal.xib */; };
+		A799C038219FEFB500BA526C /* HDSSL_sameMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C036219FEFB500BA526C /* HDSSL_sameMuseumCell.swift */; };
+		A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C037219FEFB500BA526C /* HDSSL_sameMuseumCell.xib */; };
+		A799C03C219FF1E900BA526C /* HDSSL_sameMuseumItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C03A219FF1E900BA526C /* HDSSL_sameMuseumItem.swift */; };
+		A799C03D219FF1E900BA526C /* HDSSL_sameMuseumItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C03B219FF1E900BA526C /* HDSSL_sameMuseumItem.xib */; };
 		A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */; };
 		A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */; };
 		A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */; };
@@ -474,6 +480,12 @@
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
 		A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentHerder.swift; sourceTree = "<group>"; };
 		A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dCommentHerder.xib; sourceTree = "<group>"; };
+		A799C032219FE98D00BA526C /* HDSSL_dHeaderNormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dHeaderNormal.swift; sourceTree = "<group>"; };
+		A799C034219FE99700BA526C /* HDSSL_dHeaderNormal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dHeaderNormal.xib; sourceTree = "<group>"; };
+		A799C036219FEFB500BA526C /* HDSSL_sameMuseumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_sameMuseumCell.swift; sourceTree = "<group>"; };
+		A799C037219FEFB500BA526C /* HDSSL_sameMuseumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_sameMuseumCell.xib; sourceTree = "<group>"; };
+		A799C03A219FF1E900BA526C /* HDSSL_sameMuseumItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_sameMuseumItem.swift; sourceTree = "<group>"; };
+		A799C03B219FF1E900BA526C /* HDSSL_sameMuseumItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_sameMuseumItem.xib; sourceTree = "<group>"; };
 		A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_worldLocView.swift; sourceTree = "<group>"; };
 		A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_worldLocView.xib; sourceTree = "<group>"; };
 		A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentCell.swift; sourceTree = "<group>"; };
@@ -1031,6 +1043,8 @@
 			children = (
 				A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */,
 				A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */,
+				A799C032219FE98D00BA526C /* HDSSL_dHeaderNormal.swift */,
+				A799C034219FE99700BA526C /* HDSSL_dHeaderNormal.xib */,
 			);
 			path = header;
 			sourceTree = "<group>";
@@ -1069,6 +1083,10 @@
 				A7C59E54219C08AE00F67F0C /* HDSSL_Sec1Cell.xib */,
 				A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */,
 				A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */,
+				A799C036219FEFB500BA526C /* HDSSL_sameMuseumCell.swift */,
+				A799C037219FEFB500BA526C /* HDSSL_sameMuseumCell.xib */,
+				A799C03A219FF1E900BA526C /* HDSSL_sameMuseumItem.swift */,
+				A799C03B219FF1E900BA526C /* HDSSL_sameMuseumItem.xib */,
 			);
 			path = ExhibitionDetail;
 			sourceTree = "<group>";
@@ -2384,6 +2402,7 @@
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
+				A799C03D219FF1E900BA526C /* HDSSL_sameMuseumItem.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
@@ -2400,6 +2419,7 @@
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
+				A799C035219FE99700BA526C /* HDSSL_dHeaderNormal.xib in Resources */,
 				D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
@@ -2408,6 +2428,7 @@
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
+				A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
@@ -2670,6 +2691,7 @@
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
 				D6EEDD9D218FEFE700F730BA /* HDLY_RootCSubVC.swift in Sources */,
 				D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */,
+				A799C038219FEFB500BA526C /* HDSSL_sameMuseumCell.swift in Sources */,
 				D66C35D6213FB14B00363D7C /* HDLY_MyDynamicCell.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
 				D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */,
@@ -2853,6 +2875,7 @@
 				D6115AED218FD490004A05DA /* ZFKVOController.m in Sources */,
 				A7AC35BB214A51F6004E8BC1 /* HDSSL_ExhibitionCell.swift in Sources */,
 				D6115AF1218FD490004A05DA /* ZFAVPlayerManager.m in Sources */,
+				A799C03C219FF1E900BA526C /* HDSSL_sameMuseumItem.swift in Sources */,
 				D68D50D6213A5C23000F80E6 /* RootAViewModel.swift in Sources */,
 				D60E85732191661400072BF9 /* HDLY_QRGuideVC.swift in Sources */,
 				A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */,
@@ -2861,6 +2884,7 @@
 				D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */,
 				D6C9FC8621181FD1007C8E56 /* HDAlert.swift in Sources */,
 				D668CFA121435CD40024BBCE /* HDLY_ChangePwd_VC.swift in Sources */,
+				A799C033219FE98D00BA526C /* HDSSL_dHeaderNormal.swift in Sources */,
 				D61E94C02192D12400C5299F /* HDTiledView.m in Sources */,
 				A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */,
 				D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */,

@@ -20,6 +20,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     //
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
+    @IBOutlet weak var bannerNumL: UILabel!
     
 
     //
@@ -35,14 +36,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-    }
+    //评论header
+    lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,9 +56,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     
     //MARK: 加载数据
     func loadMyDatas() {
-        bannerImgArr?.append("http://www.muspace.net/img/test/1.jpg")
-        bannerImgArr?.append("http://www.muspace.net/img/test/2.jpg")
-        bannerImgArr?.append("http://www.muspace.net/img/test/3.jpg")
+//        bannerImgArr?.append("http://www.muspace.net/img/test/1.jpg")
+//        bannerImgArr?.append("http://www.muspace.net/img/test/2.jpg")
+//        bannerImgArr?.append("http://www.muspace.net/img/test/3.jpg")
         
         //请求数据
         viewModel.request_getExhibitionDetail(exhibitionId: 1, vc: self)
@@ -83,7 +79,11 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     }
     func showViewData() {
         self.exdataModel = viewModel.exhibitionData.value
-        self.commentArr = exdataModel!.data?.commentList?.list
+        self.commentArr = exdataModel!.data?.commentList?.list //评论
+        self.bannerImgArr = exdataModel?.data?.imgList //banner
+        //img绝对地址
+        bannerView.imgPathArr = bannerImgArr!
+        imgsArr = bannerImgArr
 
         self.dTableView.reloadData()
     }
@@ -112,14 +112,18 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
     //MARK:---显示banner View
     func setupBannerView() {
         
+        self.bannerNumL.layer.cornerRadius = 15
+        self.bannerNumL.layer.masksToBounds = true
+        
         bannerView = ScrollBannerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: kBannerHeight))//750:422
-        view.insertSubview(bannerView, aboveSubview: bannerBg)
+        bannerBg.insertSubview(bannerView, at: 0)
         bannerView.placeholderImg = UIImage.init(named: "img_nothing")!
         bannerView.pageControlAliment = .center
         bannerView.pageControlBottomDis = 15
-        //        if bannerView.pageControl != nil {
-        //            bannerView.pageControl!.isHidden = true
-        //        }
+        
+//                if bannerView.pageControl != nil {
+//                    bannerView.pageControl!.isHidden = true
+//                }
         
         //img相对地址
         //        if self.bannerImgArr != nil {
@@ -145,6 +149,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
     func cycleScrollView(_ scrollView: ScrollBannerView, didScorllToIndex index: Int) {
         if imgsArr != nil {
             let str = "\(index+1)/\(imgsArr!.count)"
+            self.bannerNumL.text = str
         }
     }
     
@@ -182,6 +187,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }else if section == 1 {
             return 2
         }else if section == 2 {
+            
             return self.commentArr!.count
         }
         return 1
@@ -199,6 +205,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 return CGFloat(self.exhibitionCellH ?? 0)
             }else if indexPath.row == 1 {
+                if self.exdataModel?.data?.isExhibit == 0{
+                    return 0.01
+                }
                 return CGFloat(self.exhibitCellH ?? 0)
             }
             
@@ -215,17 +224,65 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return 70
     }
+    //MARK: ---------Header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 85
+        }
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 2 {
+            //
+            let totalNum = self.exdataModel?.data?.commentList?.total
+            let picNum = self.exdataModel?.data?.commentList?.imgNum
+            commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)
+            commentHeader.btn_havePic.setTitle(String.init(format: "有图(%d)",picNum ?? 0), for: .normal)
+            return commentHeader
+        }
+        return nil
+    }
+    
+    //MARK: ---------Footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            guard self.exdataModel != nil else {
+                return 0.01
+            }
+            if (self.exdataModel?.data?.commentList?.total)! > 2 {
+                return 40
+            }
+        }
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 2 {
+            let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+            btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
+            btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
+            btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
+                                                             
+            return btn
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
+                cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
+                cell.cell_starNumL.text = String.init(format: "%.1f", self.exdataModel?.data?.star ?? "")
+                cell.starNum = self.exdataModel?.data?.star ?? 0.0
+                
                 
                 return cell
             }
             else if indexPath.row == 1 {
                 let cell = HDSSL_Sec0_Cell1.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell1
-                cell.cell_timeL.text = "2018.02.27-07.22 9:00-17:00 （周一闭馆）\n 9:00-17:00 （夏季）\n 9:00-17:00 （冬季）"
+
+                cell.cell_timeL.text = String.init(format: "%@", self.exdataModel?.data?.time ?? "")
                 return cell
             }
             else  {
@@ -236,13 +293,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 
                 if indexPath.row == 2 {
                     name = "展厅："
-                    title = "西区1层B展厅"
+                    title = String.init(format: "%@", self.exdataModel?.data?.exhibitionName ?? "")
                 }else if indexPath.row == 3 {
                     name = "费用："
-                    title = "免费（需携带身份证）"
+                    title = String.init(format: "%@", self.exdataModel?.data?.price ?? "")
                 }else if indexPath.row == 4 {
                     name = "地址："
-                    title = "北京市西城区复兴门外大街16号"
+                    title = String.init(format: "%@", self.exdataModel?.data?.address ?? "")
                     cell.accessoryType = .disclosureIndicator
                 }
                 
@@ -312,6 +369,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         dTableView.delegate = self
         dTableView.dataSource = self
         
+    }
+    //查看更多评论
+    @objc func action_showMoreComment(){
+        print("查看更多评论")
     }
     
     //刷新webview，是否显示
@@ -388,3 +449,4 @@ extension HDSSL_dExhibitionDetailVC{
         }
     }
 }
+

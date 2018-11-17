@@ -10,11 +10,13 @@ import UIKit
 
 class HDSSL_Sec0_Cell1: UITableViewCell {
 
-    @IBOutlet weak var cell_timeL: UITextView!
+    @IBOutlet weak var cell_timeL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cell_timeL.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell_timeL.numberOfLines = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

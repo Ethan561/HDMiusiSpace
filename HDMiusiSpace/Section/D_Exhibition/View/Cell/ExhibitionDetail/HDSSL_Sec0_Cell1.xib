@@ -29,27 +29,27 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="2018.02.27-07.22 9:00-17:00 （周一闭馆）9:00-17:00 （夏季） 9:00-17:00 （冬季）" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fta-ix-ijZ">
-                        <rect key="frame" x="58" y="5" width="246" height="64.5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-gb-TOI">
+                        <rect key="frame" x="58" y="5" width="246" height="59.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Fta-ix-ijZ" firstAttribute="leading" secondItem="zFv-IL-byj" secondAttribute="trailing" id="8mm-iK-5Uc"/>
-                    <constraint firstItem="Fta-ix-ijZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Ftc-dj-gWu"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IZi-59-iyy"/>
+                    <constraint firstItem="DRq-gb-TOI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Uam-DA-UrA"/>
+                    <constraint firstAttribute="bottom" secondItem="DRq-gb-TOI" secondAttribute="bottom" constant="5" id="a94-wQ-PQn"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="bZc-oL-c5D"/>
-                    <constraint firstAttribute="trailing" secondItem="Fta-ix-ijZ" secondAttribute="trailing" constant="16" id="dPc-x9-5PH"/>
-                    <constraint firstAttribute="bottom" secondItem="Fta-ix-ijZ" secondAttribute="bottom" id="y5J-P2-U2u"/>
+                    <constraint firstAttribute="trailing" secondItem="DRq-gb-TOI" secondAttribute="trailing" constant="16" id="m2v-0Z-0fY"/>
+                    <constraint firstItem="DRq-gb-TOI" firstAttribute="leading" secondItem="zFv-IL-byj" secondAttribute="trailing" id="vVL-VN-LY8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="cell_timeL" destination="Fta-ix-ijZ" id="UVr-V3-N6R"/>
+                <outlet property="cell_timeL" destination="DRq-gb-TOI" id="qpm-YW-CBk"/>
             </connections>
-            <point key="canvasLocation" x="67" y="109"/>
+            <point key="canvasLocation" x="65.599999999999994" y="108.84557721139431"/>
         </tableViewCell>
     </objects>
 </document>

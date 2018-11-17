@@ -41,19 +41,19 @@
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DHw-qe-fLW">
                         <rect key="frame" x="58" y="48" width="60" height="12"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_red" translatesAutoresizingMaskIntoConstraints="NO" id="dny-dJ-UV1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="dny-dJ-UV1">
                                 <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_red" translatesAutoresizingMaskIntoConstraints="NO" id="2bb-KY-7Ux">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="2bb-KY-7Ux">
                                 <rect key="frame" x="12" y="0.0" width="12" height="12"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_red" translatesAutoresizingMaskIntoConstraints="NO" id="jVp-zk-ceY">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="jVp-zk-ceY">
                                 <rect key="frame" x="24" y="0.0" width="12" height="12"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_red" translatesAutoresizingMaskIntoConstraints="NO" id="bwJ-hy-cZo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="bwJ-hy-cZo">
                                 <rect key="frame" x="36" y="0.0" width="12" height="12"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_half" translatesAutoresizingMaskIntoConstraints="NO" id="68y-nc-Gmw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_gray" translatesAutoresizingMaskIntoConstraints="NO" id="68y-nc-Gmw">
                                 <rect key="frame" x="48" y="0.0" width="12" height="12"/>
                             </imageView>
                         </subviews>
@@ -62,10 +62,10 @@
                             <constraint firstAttribute="height" constant="12" id="z7c-xB-Hdx"/>
                         </constraints>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXn-cL-z5R">
-                        <rect key="frame" x="123" y="44" width="40" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXn-cL-z5R">
+                        <rect key="frame" x="123" y="44" width="100" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="FAn-yB-NX7"/>
+                            <constraint firstAttribute="width" constant="100" id="FAn-yB-NX7"/>
                             <constraint firstAttribute="height" constant="20" id="QeG-GX-6FB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -99,7 +99,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="zl_icon_star_half" width="12" height="12"/>
-        <image name="zl_icon_star_red" width="12" height="12"/>
+        <image name="zl_icon_star_gray" width="14" height="14"/>
     </resources>
 </document>

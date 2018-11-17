@@ -18,6 +18,11 @@ class HDSSL_Sec0_Cell0: UITableViewCell {
     @IBOutlet weak var cell_star4: UIImageView!
     @IBOutlet weak var cell_star5: UIImageView!
     
+    var starNum: Double = 0.0 {
+        didSet{
+            loadStar()
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -37,5 +42,25 @@ class HDSSL_Sec0_Cell0: UITableViewCell {
         }
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
+    }
+    func loadStar() {
+        let starArray = [cell_star1,cell_star2,cell_star3,cell_star4,cell_star5]
+        
+        let maxNum:Int = Int(floor(self.starNum / 2))//向下取整
+        
+        if maxNum == 0 {
+            return
+        }else {
+            //red
+            for i in 0..<maxNum {
+                let imgV = starArray[i]
+                imgV!.image = UIImage.init(named: "zl_icon_star_red")
+            }
+            //half
+            if floor(self.starNum / 2) != self.starNum / 2  {
+                let imgV = starArray[maxNum]
+                imgV!.image = UIImage.init(named: "zl_icon_star_half")
+            }
+        }
     }
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDSSL_dCommentHerder" customModule="HDMiusiSpace" customModuleProvider="target">
+            <connections>
+                <outlet property="btn_all" destination="YZV-JC-3pB" id="mQl-2G-5vX"/>
+                <outlet property="btn_havePic" destination="kiA-78-UKn" id="0Rq-8n-0Dd"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="RCM-cz-qyy"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FT4-rG-p4L">
+                    <rect key="frame" x="0.0" y="15" width="6" height="20"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="YUO-0P-8KT"/>
+                        <constraint firstAttribute="width" constant="6" id="hTN-bD-KLU"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展览评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2S-Rs-Iic">
+                    <rect key="frame" x="16" y="14.5" width="241" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="XSj-9C-Ent"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCH-S0-l47">
+                    <rect key="frame" x="299" y="10" width="60" height="30"/>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="E9s-wU-7cf"/>
+                        <constraint firstAttribute="width" constant="60" id="EfK-UU-qUE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="去评论">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="action_tapBtn:" destination="-1" eventType="touchUpInside" id="JGG-sS-GKg"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZV-JC-3pB">
+                    <rect key="frame" x="16" y="45.5" width="60" height="26"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.77022572941847967" blue="0.68184123606634439" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="n9k-TF-XYt"/>
+                        <constraint firstAttribute="width" constant="60" id="roW-SO-MVS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="全部(1)">
+                        <color key="titleColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="action_tapBtn:" destination="-1" eventType="touchUpInside" id="yme-28-Sgi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-78-UKn">
+                    <rect key="frame" x="86" y="45.5" width="60" height="26"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="pJa-KW-k9v"/>
+                        <constraint firstAttribute="height" constant="26" id="r8f-K0-lXK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <state key="normal" title="有图(1)">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="action_tapBtn:" destination="-1" eventType="touchUpInside" id="7xP-8O-sId"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VCH-S0-l47" firstAttribute="leading" secondItem="T2S-Rs-Iic" secondAttribute="trailing" constant="42" id="JVz-l3-Lyu"/>
+                <constraint firstItem="FT4-rG-p4L" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="PuE-dX-xtC"/>
+                <constraint firstItem="kiA-78-UKn" firstAttribute="centerY" secondItem="YZV-JC-3pB" secondAttribute="centerY" id="R0T-3v-I89"/>
+                <constraint firstItem="YZV-JC-3pB" firstAttribute="leading" secondItem="T2S-Rs-Iic" secondAttribute="leading" id="Tkd-lX-6Cm"/>
+                <constraint firstItem="T2S-Rs-Iic" firstAttribute="leading" secondItem="FT4-rG-p4L" secondAttribute="trailing" constant="10" id="WCL-bD-9Dm"/>
+                <constraint firstItem="FT4-rG-p4L" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fq1-u3-19V"/>
+                <constraint firstItem="kiA-78-UKn" firstAttribute="leading" secondItem="YZV-JC-3pB" secondAttribute="trailing" constant="10" id="gta-cp-CGd"/>
+                <constraint firstItem="T2S-Rs-Iic" firstAttribute="centerY" secondItem="FT4-rG-p4L" secondAttribute="centerY" id="mZw-Tu-gU3"/>
+                <constraint firstItem="VCH-S0-l47" firstAttribute="centerY" secondItem="FT4-rG-p4L" secondAttribute="centerY" id="phJ-i3-wRR"/>
+                <constraint firstItem="YZV-JC-3pB" firstAttribute="top" secondItem="T2S-Rs-Iic" secondAttribute="bottom" constant="10" id="uFL-Pu-ZDV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VCH-S0-l47" secondAttribute="trailing" constant="16" id="wJd-Md-ocK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="32.799999999999997" y="-191.1544227886057"/>
+        </view>
+    </objects>
+</document>

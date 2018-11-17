@@ -35,6 +35,8 @@
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
 		A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */; };
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
+		A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */; };
+		A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */; };
 		A79D47B42195543C00534AE2 /* HDSSL_worldLocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */; };
 		A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */; };
 		A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */; };
@@ -470,6 +472,8 @@
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
 		A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dExhibitionCell.xib; sourceTree = "<group>"; };
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
+		A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentHerder.swift; sourceTree = "<group>"; };
+		A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dCommentHerder.xib; sourceTree = "<group>"; };
 		A79D47B32195543C00534AE2 /* HDSSL_worldLocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_worldLocView.swift; sourceTree = "<group>"; };
 		A79D47B52195545100534AE2 /* HDSSL_worldLocView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_worldLocView.xib; sourceTree = "<group>"; };
 		A79D9D37219E4AB80081B3AE /* HDSSL_dCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentCell.swift; sourceTree = "<group>"; };
@@ -1022,6 +1026,15 @@
 			path = location;
 			sourceTree = "<group>";
 		};
+		A799C02C219FB6D200BA526C /* header */ = {
+			isa = PBXGroup;
+			children = (
+				A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */,
+				A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		A7C59E36219BED5E00F67F0C /* ScrollBannerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1045,6 +1058,7 @@
 		A7C59E46219BF9D700F67F0C /* ExhibitionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A799C02C219FB6D200BA526C /* header */,
 				A7C59E47219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift */,
 				A7C59E48219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib */,
 				A7C59E4B219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift */,
@@ -2424,6 +2438,7 @@
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
+				A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */,
 				D66C35C3213F805300363D7C /* HDLY_MineHome_Header.xib in Resources */,
 				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
 				D62277E121368069008F1416 /* MTImagePicker.strings in Resources */,
@@ -2820,6 +2835,7 @@
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
+				A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */,
 				D62277D921368069008F1416 /* MTImagePickerAssetsModel.swift in Sources */,
 				D66C35CE213FAA8600363D7C /* HDLY_MineCourse_Cell.swift in Sources */,
 				D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */,

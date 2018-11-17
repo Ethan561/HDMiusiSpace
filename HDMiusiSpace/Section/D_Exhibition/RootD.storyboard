@@ -228,9 +228,29 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCx-OU-HZY">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoI-Bf-oNB">
+                                        <rect key="frame" x="30" y="221" width="50" height="21"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="0yK-i5-zIm"/>
+                                            <constraint firstAttribute="width" constant="50" id="ewg-QF-HeX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rCx-OU-HZY" secondAttribute="height" multiplier="375:250" id="DAW-dc-qCa"/>
+                                    <constraint firstAttribute="bottom" secondItem="RoI-Bf-oNB" secondAttribute="bottom" constant="8" id="IBg-9o-i6U"/>
+                                    <constraint firstItem="RoI-Bf-oNB" firstAttribute="leading" secondItem="rCx-OU-HZY" secondAttribute="leading" constant="30" id="qDN-Oc-Jds"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Px3-9y-15p">
@@ -298,6 +318,7 @@
                     </view>
                     <connections>
                         <outlet property="bannerBg" destination="rCx-OU-HZY" id="4x3-rw-Sxq"/>
+                        <outlet property="bannerNumL" destination="RoI-Bf-oNB" id="bIX-T8-9Xk"/>
                         <outlet property="dTableView" destination="5qk-el-uj4" id="Qqk-o2-czf"/>
                     </connections>
                 </viewController>

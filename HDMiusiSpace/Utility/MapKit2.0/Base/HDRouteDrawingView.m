@@ -27,6 +27,7 @@
 
 - (void)drawPointWithArray:(CGRect)rect
 {
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2);
     CGContextSetLineCap(context, kCGLineCapSquare);

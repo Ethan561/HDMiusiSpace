@@ -187,6 +187,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }else if section == 1 {
             return 2
         }else if section == 2 {
+            
             return self.commentArr!.count
         }
         return 1
@@ -223,6 +224,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return 70
     }
+    //MARK: ---------Header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
             return 85
@@ -240,6 +242,31 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return nil
     }
+    
+    //MARK: ---------Footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            guard self.exdataModel != nil else {
+                return 0.01
+            }
+            if (self.exdataModel?.data?.commentList?.total)! > 2 {
+                return 40
+            }
+        }
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 2 {
+            let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+            btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
+            btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
+            btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
+                                                             
+            return btn
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {
@@ -342,6 +369,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         dTableView.delegate = self
         dTableView.dataSource = self
         
+    }
+    //查看更多评论
+    @objc func action_showMoreComment(){
+        print("查看更多评论")
     }
     
     //刷新webview，是否显示

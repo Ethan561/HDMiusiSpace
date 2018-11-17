@@ -187,6 +187,25 @@
 		D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62277E721369869008F1416 /* ReportErrorModel.swift */; };
 		D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D62B44E5219A7AE100A977CF /* XHStarRateView.m */; };
 		D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F65D4219914D000D32544 /* CoreLocation.framework */; };
+		D637566C219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */; };
+		D637566F219FC562004AD093 /* HDLY_dMuseumHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637566D219FC562004AD093 /* HDLY_dMuseumHeader.swift */; };
+		D6375670219FC562004AD093 /* HDLY_dMuseumHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D637566E219FC562004AD093 /* HDLY_dMuseumHeader.xib */; };
+		D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */; };
+		D6375674219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */; };
+		D6375677219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */; };
+		D6375678219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */; };
+		D637567B219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */; };
+		D637567C219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D637567A219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib */; };
+		D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637567D219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift */; };
+		D6375680219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D637567E219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib */; };
+		D6375683219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375681219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift */; };
+		D6375684219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375682219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib */; };
+		D6375687219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375685219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.swift */; };
+		D6375688219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375686219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib */; };
+		D637568B219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375689219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift */; };
+		D637568C219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D637568A219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib */; };
+		D637568F219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637568D219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift */; };
+		D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D637568E219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib */; };
 		D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63F8D5C2199516D00686AB3 /* HDBigAnnView.m */; };
 		D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D5E2199517900686AB3 /* HDBigAnnView.xib */; };
 		D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63F8D612199521300686AB3 /* HDCallOutView.m */; };
@@ -684,6 +703,25 @@
 		D62B44E4219A7AE100A977CF /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		D62B44E5219A7AE100A977CF /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		D62F65D4219914D000D32544 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionMuseumModel.swift; sourceTree = "<group>"; };
+		D637566D219FC562004AD093 /* HDLY_dMuseumHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_dMuseumHeader.swift; sourceTree = "<group>"; };
+		D637566E219FC562004AD093 /* HDLY_dMuseumHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_dMuseumHeader.xib; sourceTree = "<group>"; };
+		D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoImgCell.swift; sourceTree = "<group>"; };
+		D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoImgCell.xib; sourceTree = "<group>"; };
+		D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoTitleCell.swift; sourceTree = "<group>"; };
+		D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoTitleCell.xib; sourceTree = "<group>"; };
+		D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumTagsCell.swift; sourceTree = "<group>"; };
+		D637567A219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumTagsCell.xib; sourceTree = "<group>"; };
+		D637567D219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoType1Cell.swift; sourceTree = "<group>"; };
+		D637567E219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoType1Cell.xib; sourceTree = "<group>"; };
+		D6375681219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoType2Cell.swift; sourceTree = "<group>"; };
+		D6375682219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoType2Cell.xib; sourceTree = "<group>"; };
+		D6375685219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoType3Cell.swift; sourceTree = "<group>"; };
+		D6375686219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoType3Cell.xib; sourceTree = "<group>"; };
+		D6375689219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoType4Cell.swift; sourceTree = "<group>"; };
+		D637568A219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoType4Cell.xib; sourceTree = "<group>"; };
+		D637568D219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoType5Cell.swift; sourceTree = "<group>"; };
+		D637568E219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoType5Cell.xib; sourceTree = "<group>"; };
 		D63F8D5B2199516D00686AB3 /* HDBigAnnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDBigAnnView.h; sourceTree = "<group>"; };
 		D63F8D5C2199516D00686AB3 /* HDBigAnnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDBigAnnView.m; sourceTree = "<group>"; };
 		D63F8D5E2199517900686AB3 /* HDBigAnnView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDBigAnnView.xib; sourceTree = "<group>"; };
@@ -1001,6 +1039,24 @@
 				A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */,
 				A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */,
 				A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */,
+				D637566D219FC562004AD093 /* HDLY_dMuseumHeader.swift */,
+				D637566E219FC562004AD093 /* HDLY_dMuseumHeader.xib */,
+				D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */,
+				D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */,
+				D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */,
+				D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */,
+				D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */,
+				D637567A219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib */,
+				D637567D219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift */,
+				D637567E219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib */,
+				D6375681219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift */,
+				D6375682219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib */,
+				D6375685219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.swift */,
+				D6375686219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib */,
+				D6375689219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift */,
+				D637568A219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib */,
+				D637568D219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift */,
+				D637568E219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2111,6 +2167,7 @@
 				A738B200219418F700B78D21 /* CityDataModel.swift */,
 				A7B982EC2196766A00AF0266 /* CountyDataModel.swift */,
 				A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */,
+				D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2380,16 +2437,21 @@
 				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
 				D6115AF7218FD490004A05DA /* ZFPlayer.bundle in Resources */,
 				D66C35D7213FB14B00363D7C /* HDLY_MyDynamicCell.xib in Resources */,
+				D6375684219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib in Resources */,
 				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
 				D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */,
 				A7C59E4A219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
+				D6375670219FC562004AD093 /* HDLY_dMuseumHeader.xib in Resources */,
+				D6375680219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
 				D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */,
 				D6866A542126A1360044EEAA /* HDLY_CourseList_SubVC3.xib in Resources */,
+				D6375678219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
+				D6375674219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib in Resources */,
 				D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */,
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
@@ -2408,11 +2470,13 @@
 				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
+				D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
 				D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */,
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
+				D6375688219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
 				D69B15BC212EB25800E9BCA0 /* HDLY_CourseComment_Footer.xib in Resources */,
 				A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */,
@@ -2436,9 +2500,11 @@
 				D66991C62130EA84002568B2 /* HDLY_QuestionContent_Header.xib in Resources */,
 				D66A2ABB2140D09100427425 /* HDLY_LogoutTip_View.xib in Resources */,
 				D66C35D3213FABC200363D7C /* HDLY_MineCourse_CollectionCell.xib in Resources */,
+				D637568C219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib in Resources */,
 				D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */,
 				D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */,
 				D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */,
+				D637567C219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2569,6 +2635,7 @@
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */,
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
+				D637566C219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift in Sources */,
 				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
 				D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
@@ -2605,11 +2672,13 @@
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
 				D6115AF6218FD490004A05DA /* ZFNetworkSpeedMonitor.m in Sources */,
 				A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */,
+				D637567B219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift in Sources */,
 				D62277A221367D4D008F1416 /* PhotoBrowserPresentationController.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
 				D61E94D32192D12400C5299F /* SDWebImageDownloaderOperation.m in Sources */,
 				D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */,
+				D6375683219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
@@ -2639,6 +2708,7 @@
 				D62277A821367D4D008F1416 /* FadeAnimator.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
 				D61E94BF2192D12400C5299F /* HDMapView.m in Sources */,
+				D637568B219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
 				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,
@@ -2662,6 +2732,7 @@
 				D66A2AB72140BFA700427425 /* HDLY_About_VC.swift in Sources */,
 				D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */,
 				D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */,
+				D637566F219FC562004AD093 /* HDLY_dMuseumHeader.swift in Sources */,
 				D622779B21367D4D008F1416 /* ScalePresentationController.swift in Sources */,
 				D6115AF3218FD490004A05DA /* UIView+ZFFrame.m in Sources */,
 				D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */,
@@ -2698,6 +2769,7 @@
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */,
+				D6375677219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift in Sources */,
 				D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
 				D6115AE7218FD490004A05DA /* ZFOrientationObserver.m in Sources */,
@@ -2737,6 +2809,7 @@
 				D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */,
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
 				D6C9FC9521181FD1007C8E56 /* HDEmptyBaseView.swift in Sources */,
+				D6375687219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.swift in Sources */,
 				D61E94D22192D12400C5299F /* SDImageCache.m in Sources */,
 				A7B982E92196699600AF0266 /* WorldRecentCell.swift in Sources */,
 				D66EDF9E212ABA34004DACE0 /* HDLY_ListenDetail_VC.swift in Sources */,
@@ -2760,6 +2833,7 @@
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D66C35BC213F5E2100363D7C /* YYMemoryCache.m in Sources */,
 				D6115AFD218FD490004A05DA /* ZFPortraitControlView.m in Sources */,
+				D637568F219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift in Sources */,
 				D61E94C42192D12400C5299F /* HDMapView+AnnView.m in Sources */,
 				D62277DB21368069008F1416 /* MTImagePickerDataSource.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
@@ -2786,6 +2860,7 @@
 				D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */,
 				D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
+				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
 				A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,
@@ -2853,6 +2928,7 @@
 				D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
+				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,

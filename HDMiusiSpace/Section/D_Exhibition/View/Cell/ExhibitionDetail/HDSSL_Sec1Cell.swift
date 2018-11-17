@@ -32,10 +32,10 @@ class HDSSL_Sec1Cell: UITableViewCell {
         if path == "" || path.count == 0 {
             return
         }
-        webview.frame = CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height)
+//        webview.frame = CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height)
         webview.navigationDelegate = self
         webview.scrollView.isScrollEnabled = false
-        webview.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.flexibleHeight.rawValue | UIViewAutoresizing.flexibleWidth.rawValue)
+//        webview.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.flexibleHeight.rawValue)
         webview.load(URLRequest.init(url: URL.init(string: path)!))
 //        webview.scrollView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
     }

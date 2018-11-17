@@ -23,11 +23,6 @@ class HDSSL_dMuseumCell: UITableViewCell {
     @IBOutlet weak var cell_liveContent: UILabel!
     
     @IBOutlet weak var lineView: UIView!
-    var model: HDLY_dMuseumListD? {
-        didSet {
-            showCellData()
-        }
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +34,11 @@ class HDSSL_dMuseumCell: UITableViewCell {
         
     }
     
+    var model: HDLY_dMuseumListD? {
+        didSet {
+            showCellData()
+        }
+    }
     func showCellData() {
         if self.model != nil {
             if  model?.img != nil  {

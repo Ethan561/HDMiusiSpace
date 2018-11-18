@@ -262,6 +262,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             let picNum = self.exdataModel?.data?.commentList?.imgNum
             commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)
             commentHeader.btn_havePic.setTitle(String.init(format: "有图(%d)",picNum ?? 0), for: .normal)
+            commentHeader.BlockTapBtnFunc { (index) in
+                print(index)
+                ////0去评论，1全部，2有图
+                if index == 0 {
+                    let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
+                    commentvc.exdataModel = self.exdataModel
+                    self.navigationController?.pushViewController(commentvc, animated: true)
+                }
+            }
             return commentHeader
         }
         if section > 2 {

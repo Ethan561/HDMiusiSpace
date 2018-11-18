@@ -7,16 +7,30 @@
 //
 
 import UIKit
+//block
+typealias BloclkTapBtn = (_ index: Int) -> Void //
 
 class HDSSL_dCommentHerder: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var btn_all: UIButton!
     @IBOutlet weak var btn_havePic: UIButton!
+    var blockTapBtn :BloclkTapBtn?
+    
+    func BlockTapBtnFunc(block: @escaping BloclkTapBtn) {
+        blockTapBtn = block
+    }
+    
+    
     
     @IBAction func action_tapBtn(_ sender: UIButton) {
         //0去评论，1全部，2有图
         print(sender.tag)
+        
+        weak var weakself = self
+        if weakself?.blockTapBtn != nil {
+            weakself?.blockTapBtn!(sender.tag)
+        }
     }
     //使用代码构造此自定义视图时调用
     override init(frame: CGRect) {       //每一步都必须

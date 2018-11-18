@@ -233,9 +233,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if model.type == 1{
                 return 250
             }else if model.type == 2{
-                return 70
-            }else if model.type == 3{
-                return 100
+                return 330
+            }else if model.type == 3 {//相关活动
+                return 375
+            }else if model.type == 4 {//精选推荐
+                return 160*ScreenWidth/375.0
+            }else if model.type == 5 {//免费听
+                return 160*ScreenWidth/375.0
             }
 
         }
@@ -420,6 +424,26 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 })
                 
                 return cell!
+            }else if model.type == 2 {//展览攻略
+                let cell = HDLY_MuseumInfoType2Cell.getMyTableCell(tableV: tableView)
+                cell?.model = model.raiders
+                return cell!
+            }else if model.type == 3 {//相关活动
+                let cell = HDLY_MuseumInfoType3Cell.getMyTableCell(tableV: tableView)
+                
+                return cell!
+            }else if model.type == 4 {//精选推荐
+                let cell: HDLY_MuseumInfoType4Cell  = HDLY_MuseumInfoType4Cell.getMyTableCell(tableV: tableView)
+                if model.featured?.list != nil {
+                    cell.listArray = model.featured!.list
+                }
+                return cell
+            }else if model.type == 5 {//免费听
+                let cell:HDLY_MuseumInfoType5Cell = HDLY_MuseumInfoType5Cell.getMyTableCell(tableV: tableView)
+                if model.listen?.list != nil {
+                    cell.listArray = model.listen!.list
+                }
+                return cell
             }
         }
         let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
@@ -431,13 +455,40 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         //
         dTableView.delegate = self
         dTableView.dataSource = self
-        
+        dTableView.tableFooterView = getTableFooterView()
     }
     //查看更多评论
     @objc func action_showMoreComment(){
         print("查看更多评论")
     }
+    func getTableFooterView() -> UIView {
+        let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
+        tFooter.backgroundColor = UIColor.white
+        
+        let tipEnd = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 20))
+        tipEnd.text = "到底了～"
+        tipEnd.textColor = UIColor.lightGray
+        tipEnd.font = UIFont.systemFont(ofSize: 11)
+        tipEnd.textAlignment = .center
+        
+        tFooter.addSubview(tipEnd)
+        
+        let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: 25, width: ScreenWidth-40, height: 50))
+        guideBtn.setTitle("导览", for: .normal)
+        guideBtn.setTitleColor(UIColor.white, for: .normal)
+        guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        guideBtn.layer.cornerRadius = 25
+        guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+        guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+        
+        tFooter.addSubview(guideBtn)
+        
+        return tFooter
+    }
     
+    @objc func action_guide(){
+        print("开始导览")
+    }
     //刷新webview，是否显示
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        let cells = self.dTableView.visibleCells

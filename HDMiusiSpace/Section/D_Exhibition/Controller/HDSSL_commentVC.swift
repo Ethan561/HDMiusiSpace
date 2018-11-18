@@ -10,6 +10,7 @@ import UIKit
 
 class HDSSL_commentVC: HDItemBaseVC {
 
+    @IBOutlet weak var dTableView: UITableView!
     var exdataModel: ExhibitionDetailDataModel?
     
     override func viewDidLoad() {
@@ -17,6 +18,7 @@ class HDSSL_commentVC: HDItemBaseVC {
 
         //UI
         loadMyViews()
+        loadTableView()
         //Data
         
     }
@@ -33,7 +35,8 @@ class HDSSL_commentVC: HDItemBaseVC {
         let item = UIBarButtonItem.init(customView: publishBtn)
         self.navigationItem.rightBarButtonItem = item
     }
-
+    
+    //actions
     @objc func action_publish(){
         print("发布")
     }
@@ -47,4 +50,42 @@ class HDSSL_commentVC: HDItemBaseVC {
     }
     */
 
+}
+extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
+    func loadTableView() {
+        dTableView.delegate = self
+        dTableView.dataSource = self
+    }
+    //
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+             return 410
+        }
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let cell = HDSSL_commentTextCell.getMyTableCell(tableV: tableView) as HDSSL_commentTextCell
+            
+            return cell
+        }else {
+            let cell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell
+            
+            return cell
+        }
+        
+        
+        
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+    }
 }

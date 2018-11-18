@@ -7,13 +7,30 @@
 //
 
 import UIKit
-
+//block
+typealias BloclkShowMore = (_ index: Int) -> Void //
 class HDSSL_dHeaderNormal: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerMore: UIButton!
     
+    var blockShowMore: BloclkShowMore?
+
+    
+    func BlockShowmore(block: @escaping BloclkShowMore){
+        blockShowMore = block
+    }
+    
+    
+    @IBAction func action_showMore(_ sender: UIButton) {
+        weak var weakself = self
+        
+        if weakself?.blockShowMore != nil {
+            weakself?.blockShowMore!(self.tag)
+        }
+        
+    }
     //使用代码构造此自定义视图时调用
     override init(frame: CGRect) {       //每一步都必须
         super.init(frame: frame)         //实现父初始化

@@ -39,7 +39,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     //评论header
     lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
     //其他header
-    lazy var normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+//    lazy var normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,7 +206,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             return 40
         }else if indexPath.section == 1 {
-            
+            //H5
             if indexPath.row == 0 {
                 return CGFloat(self.exhibitionCellH ?? 0)
             }else if indexPath.row == 1 {
@@ -217,6 +217,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             
         }else if indexPath.section == 2 {
+            //评论
             let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
             let model = self.commentArr![indexPath.row]
             
@@ -252,7 +253,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
-            //
+            //评论
             let totalNum = self.exdataModel?.data?.commentList?.total
             let picNum = self.exdataModel?.data?.commentList?.imgNum
             commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)
@@ -260,6 +261,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return commentHeader
         }
         if section > 2 {
+            let normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+            
             let arr = self.exdataModel?.data?.dataList!
             let model = arr![section-3]
             
@@ -277,7 +280,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 titleStr = "免费听"
             }
             normalHeader.headerTitle.text = titleStr
-            
+            normalHeader.tag = section
+            normalHeader.BlockShowmore { (index) in
+                print(index)
+                //查看更多
+            }
             return normalHeader
         }
         return nil
@@ -298,12 +305,14 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 2 {
             let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+            btn.backgroundColor = UIColor.white
             btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
             btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
             btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
             
             return btn
         }
+        //其他footer
         return nil
     }
     
@@ -430,17 +439,17 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     //刷新webview，是否显示
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let cells = self.dTableView.visibleCells
-        
-        for cell in cells {
-            if cell.isKind(of: HDSSL_Sec1Cell.self) {
-                let webCell = cell as! HDSSL_Sec1Cell
-                webCell.webview.setNeedsLayout()
-            }
-        }
-        
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let cells = self.dTableView.visibleCells
+//
+//        for cell in cells {
+//            if cell.isKind(of: HDSSL_Sec1Cell.self) {
+//                let webCell = cell as! HDSSL_Sec1Cell
+//                webCell.webview.setNeedsLayout()
+//            }
+//        }
+//
+//    }
     
 }
 

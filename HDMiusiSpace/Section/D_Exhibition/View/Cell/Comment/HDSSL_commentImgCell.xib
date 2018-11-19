@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DoA-TT-xS1">
-                        <rect key="frame" x="20" y="30" width="280" height="79.5"/>
+                        <rect key="frame" x="0.0" y="30" width="320" height="79.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
@@ -36,9 +36,9 @@
                     <constraint firstItem="DoA-TT-xS1" firstAttribute="top" secondItem="2x5-7K-dTX" secondAttribute="bottom" constant="10" id="O0w-My-wVb"/>
                     <constraint firstAttribute="trailing" secondItem="2x5-7K-dTX" secondAttribute="trailing" id="SaP-Vd-6u3"/>
                     <constraint firstItem="2x5-7K-dTX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WTH-eV-eZj"/>
-                    <constraint firstItem="DoA-TT-xS1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="k6j-f4-ERK"/>
+                    <constraint firstItem="DoA-TT-xS1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="k6j-f4-ERK"/>
                     <constraint firstItem="2x5-7K-dTX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rF2-R8-etA"/>
-                    <constraint firstAttribute="trailing" secondItem="DoA-TT-xS1" secondAttribute="trailing" constant="20" id="rcT-KW-dxR"/>
+                    <constraint firstAttribute="trailing" secondItem="DoA-TT-xS1" secondAttribute="trailing" id="rcT-KW-dxR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

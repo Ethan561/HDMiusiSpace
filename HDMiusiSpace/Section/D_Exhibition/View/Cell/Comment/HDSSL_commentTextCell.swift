@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias BlockBackStarNumber = (_ number: CGFloat) -> Void   //返回分数
+
 class HDSSL_commentTextCell: UITableViewCell {
 
     @IBOutlet weak var cell_img       : UIImageView! //图片
@@ -17,7 +19,9 @@ class HDSSL_commentTextCell: UITableViewCell {
     @IBOutlet weak var cell_inputText : UITextView!  //输入
     @IBOutlet weak var cell_inputBg   : UIView!      //输入背景
     @IBOutlet weak var cell_textCountL: UILabel!     //字数统计
+    var starSlider : XHStarRateView! //评星View
     
+    var blockBackStarNum: BlockBackStarNumber?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +33,18 @@ class HDSSL_commentTextCell: UITableViewCell {
         cell_inputBg.layer.masksToBounds = true
         cell_inputBg.layer.borderWidth = 0.5
         cell_inputBg.layer.borderColor = UIColor.lightGray.cgColor
+        //
+        starSlider = XHStarRateView.init(frame: cell_starBg.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true,andForegroundImg:"zlpl_star_red" , finish: { (index) in
+            
+            weak var weakself = self
+            let starNum = 5.0 + index
+            
+            weakself?.cell_starNumL.text = String.init(format: "%.1f", starNum)
+            if weakself?.blockBackStarNum != nil {
+                weakself?.blockBackStarNum!(starNum)
+            }
+        })
+        cell_starBg.addSubview(starSlider)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,5 +61,9 @@ class HDSSL_commentTextCell: UITableViewCell {
         }
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
+    }
+    
+    func BlockBackStarNumber(block: @escaping BlockBackStarNumber) {
+        blockBackStarNum = block
     }
 }

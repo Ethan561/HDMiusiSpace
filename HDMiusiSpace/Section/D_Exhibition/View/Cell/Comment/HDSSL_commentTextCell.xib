@@ -46,15 +46,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZ2-us-NV3">
-                        <rect key="frame" x="20" y="167" width="140" height="30"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="20" y="167" width="140" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="fJS-uX-XkK"/>
+                            <constraint firstAttribute="height" constant="24" id="fJS-uX-XkK"/>
                             <constraint firstAttribute="width" constant="140" id="fdJ-HN-ftH"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnI-an-yny">
-                        <rect key="frame" x="170" y="171.5" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnI-an-yny">
+                        <rect key="frame" x="170" y="168.5" width="42" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="UKR-7k-T6c"/>
                             <constraint firstAttribute="width" constant="42" id="gV1-dN-9Hu"/>
@@ -64,7 +63,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhA-6i-zZW">
-                        <rect key="frame" x="20" y="212" width="288" height="190"/>
+                        <rect key="frame" x="20" y="206" width="288" height="190"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="亲，展品丰富吗，环境如何，性价比怎么样？" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="44W-5N-yGb">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="173"/>

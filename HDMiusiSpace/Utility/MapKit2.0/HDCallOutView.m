@@ -16,7 +16,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(myTapAction)];
     [self addGestureRecognizer:tap];
     
-    _rateView = [[XHStarRateView alloc] initWithFrame:CGRectMake((160-60)/2.0, 35, 60, 25) numberOfStars:5 rateStyle:IncompleteStar isAnination:YES finish:^(CGFloat currentScore) {
+    _rateView = [[XHStarRateView alloc] initWithFrame:CGRectMake((160-60)/2.0, 35, 60, 25) numberOfStars:5 rateStyle:IncompleteStar isAnination:YES andForegroundImg:@"dl_map_star_red" finish:^(CGFloat currentScore) {
         NSLog(@"4----  %f",currentScore);
     }];
     

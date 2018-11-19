@@ -47,9 +47,9 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         super.viewWillAppear(animated)
         
         //刷新选中的城市
-        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         
-        if str.count > 0 {
+        if str != nil {
             print("城市\(str)")
             btn_location.setTitle(str, for: .normal)
         }

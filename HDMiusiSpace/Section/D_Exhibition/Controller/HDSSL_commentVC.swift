@@ -71,7 +71,9 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = HDSSL_commentTextCell.getMyTableCell(tableV: tableView) as HDSSL_commentTextCell
-            
+            cell.BlockBackStarNumber { (number) in
+                print("评分%.1f",number)
+            }
             return cell
         }else {
             let cell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell

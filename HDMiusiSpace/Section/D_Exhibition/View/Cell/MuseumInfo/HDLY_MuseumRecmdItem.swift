@@ -1,5 +1,5 @@
 //
-//  HDLY_FreeListenClctCell.swift
+//  HDLY_MuseumRecmdItem.swift
 //  HDMiusiSpace
 //
 //  Created by liuyi on 2018/11/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_FreeListenClctCell: UICollectionViewCell {
+class HDLY_MuseumRecmdItem: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

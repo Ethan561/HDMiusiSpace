@@ -1,5 +1,5 @@
 //
-//  HDLY_SameExhibitionClctCell.swift
+//  HDLY_FreeListenClctCell.swift
 //  HDMiusiSpace
 //
 //  Created by liuyi on 2018/11/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_SameExhibitionClctCell: UICollectionViewCell {
+class HDLY_FreeListenItem: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,6 +12,8 @@ class HDSSL_commentVC: HDItemBaseVC {
 
     @IBOutlet weak var dTableView: UITableView!
     var exdataModel: ExhibitionDetailDataModel?
+    var starNumber : CGFloat?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +67,7 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
         if indexPath.row == 0 {
              return 410
         }
-        return 120
+        return 300
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,10 +75,12 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             let cell = HDSSL_commentTextCell.getMyTableCell(tableV: tableView) as HDSSL_commentTextCell
             cell.BlockBackStarNumber { (number) in
                 print("评分%.1f",number)
+                self.starNumber = number  //保存评分
             }
             return cell
         }else {
             let cell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell
+            
             
             return cell
         }
@@ -91,3 +95,4 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
         
     }
 }
+

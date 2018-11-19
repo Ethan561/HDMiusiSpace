@@ -21,7 +21,7 @@
 #import "HDMapKit.h"
 
 #import "HD_SSL_BigImageVC.h"
-
+#import "XHStarRateView.h"
 
 
 

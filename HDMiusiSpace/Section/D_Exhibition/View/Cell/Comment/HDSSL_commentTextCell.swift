@@ -17,7 +17,7 @@ class HDSSL_commentTextCell: UITableViewCell {
     @IBOutlet weak var cell_inputText : UITextView!  //输入
     @IBOutlet weak var cell_inputBg   : UIView!      //输入背景
     @IBOutlet weak var cell_textCountL: UILabel!     //字数统计
-    
+    var starSlider : XHStarRateView! //评星View
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +29,8 @@ class HDSSL_commentTextCell: UITableViewCell {
         cell_inputBg.layer.masksToBounds = true
         cell_inputBg.layer.borderWidth = 0.5
         cell_inputBg.layer.borderColor = UIColor.lightGray.cgColor
+        //
+//        starSlider = XHStarRateView.init(frame: <#T##CGRect#>, numberOfStars: <#T##Int#>, rateStyle: <#T##RateStyle#>, isAnination: <#T##Bool#>, finish: <#T##finishBlock!##finishBlock!##(CGFloat) -> Void#>)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

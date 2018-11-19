@@ -109,6 +109,8 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate {
 //                tempFrame.size.height = CGFloat(webheight)
 //                self.webview.frame = tempFrame
                 
+                self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight))
+                
                 //返回高度，刷新cell
                 weak var weakSelf = self
                 if weakSelf?.blockHeight != nil {

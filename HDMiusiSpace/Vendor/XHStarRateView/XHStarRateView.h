@@ -30,12 +30,15 @@ typedef NS_ENUM(NSInteger, RateStyle)
 @property (nonatomic,assign)RateStyle rateStyle;    //评分样式    默认是WholeStar
 @property (nonatomic, weak) id<XHStarRateViewDelegate>delegate;
 
+/*
+ *pragram
+ *foreImgName:传递本地star图片名字
+ */
+-(instancetype)initWithFrame:(CGRect)frame andForegroundImg: (NSString*)foreImgName;
+-(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation andForegroundImg: (NSString*)foreImgName delegate:(id)delegate;
 
--(instancetype)initWithFrame:(CGRect)frame;
--(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation delegate:(id)delegate;
 
-
--(instancetype)initWithFrame:(CGRect)frame finish:(finishBlock)finish;
--(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation finish:(finishBlock)finish;
+-(instancetype)initWithFrame:(CGRect)frame andForegroundImg: (NSString*)foreImgName finish:(finishBlock)finish;
+-(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation andForegroundImg: (NSString*)foreImgName finish:(finishBlock)finish;
 -(void)setCurrentScore:(CGFloat)currentScore;
 @end

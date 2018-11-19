@@ -28,40 +28,40 @@ typedef void(^completeBlock)(CGFloat currentScore);
 @implementation XHStarRateView
 
 #pragma mark - 代理方式
--(instancetype)initWithFrame:(CGRect)frame{
+-(instancetype)initWithFrame:(CGRect)frame andForegroundImg:(NSString *)foreImgName{
     if (self = [super initWithFrame:frame]) {
         _numberOfStars = 5;
         _rateStyle = WholeStar;
-        [self createStarView];
+        [self createStarViewWith:foreImgName];
     }
     return self;
 }
 
--(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation delegate:(id)delegate{
+-(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation andForegroundImg:(NSString *)foreImgName delegate:(id)delegate{
     if (self = [super initWithFrame:frame]) {
         _numberOfStars = numberOfStars;
         _rateStyle = rateStyle;
         _isAnimation = isAnimation;
         _delegate = delegate;
-        [self createStarView];
+        [self createStarViewWith:foreImgName];
     }
     return self;
 }
 
 #pragma mark - block方式
--(instancetype)initWithFrame:(CGRect)frame finish:(finishBlock)finish{
+-(instancetype)initWithFrame:(CGRect)frame andForegroundImg:(NSString *)foreImgName finish:(finishBlock)finish{
     if (self = [super initWithFrame:frame]) {
         _numberOfStars = 5;
         _rateStyle = WholeStar;
         _complete = ^(CGFloat currentScore){
             finish(currentScore);
         };
-        [self createStarView];
+        [self createStarViewWith:foreImgName];
     }
     return self;
 }
 
--(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation finish:(finishBlock)finish{
+-(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation andForegroundImg:(NSString *)foreImgName finish:(finishBlock)finish{
     if (self = [super initWithFrame:frame]) {
         _numberOfStars = numberOfStars;
         _rateStyle = rateStyle;
@@ -69,17 +69,17 @@ typedef void(^completeBlock)(CGFloat currentScore);
         _complete = ^(CGFloat currentScore){
             finish(currentScore);
         };
-        [self createStarView];
+        [self createStarViewWith:foreImgName];
     }
     return self;
 }
 
 #pragma mark - private Method
--(void)createStarView{
+-(void)createStarViewWith:(NSString*)foreImgName{
     NSTextAttachment *foreAttachment = [[NSTextAttachment alloc]init];
     foreAttachment.image = [UIImage imageNamed:@"bl_ios_splb_qyh"];
     foreAttachment.bounds = CGRectMake(0, 0, 15, 15);
-    self.foregroundStarView = [self createStarViewWithImage:ForegroundStarImage];
+    self.foregroundStarView = [self createStarViewWithImage:foreImgName];
     self.backgroundStarView = [self createStarViewWithImage:BackgroundStarImage];
     self.foregroundStarView.frame = CGRectMake(0, 0, self.bounds.size.width*_currentScore/self.numberOfStars, self.bounds.size.height);
     

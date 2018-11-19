@@ -34,7 +34,7 @@ class HDSSL_commentTextCell: UITableViewCell {
         cell_inputBg.layer.borderWidth = 0.5
         cell_inputBg.layer.borderColor = UIColor.lightGray.cgColor
         //
-        starSlider = XHStarRateView.init(frame: cell_starBg.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true, finish: { (index) in
+        starSlider = XHStarRateView.init(frame: cell_starBg.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true,andForegroundImg:"zlpl_star_red" , finish: { (index) in
             
             weak var weakself = self
             let starNum = 5.0 + index

@@ -10,10 +10,8 @@ import UIKit
 
 
 protocol HDLY_MuseumInfoType5Cell_Delegate:NSObjectProtocol {
-    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_MuseumInfoType5Cell)
+    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem)
 }
-
-
 
 class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
 
@@ -24,7 +22,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             myCollectionView.reloadData()
         }
     }
-    weak var delegate: HDLY_Topic_Cell_Delegate?
+    weak var delegate: HDLY_MuseumInfoType5Cell_Delegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -73,12 +71,17 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
         let cell:HDLY_FreeListenItem = HDLY_FreeListenItem.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
         if self.listArray != nil {
             if self.listArray!.count > 0 {
-                let model = listArray![indexPath.row]
+                var model = listArray![indexPath.row]
                 if  model.img != nil  {
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
                 cell.nameL.text = model.exhibitName
+                if model.isPlaying == true {
+                    cell.playBtn.isSelected = true
+                }else {
+                    cell.playBtn.isSelected = false
+                }
             }
         }
         return cell
@@ -86,7 +89,9 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = listArray![indexPath.row]
-        //        delegate?.didSelectItemAt(model, self)
+        let item:HDLY_FreeListenItem = collectionView.cellForItem(at: indexPath) as! HDLY_FreeListenItem
+        delegate?.didSelectItemAt(model, item)
+        
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------

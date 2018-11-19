@@ -117,12 +117,14 @@ struct DMuseumListenList: Codable {
     var listenID: Int = 0
     var img: String?
     var title, exhibitName: String?
-    
+    var isPlaying : Bool?
+
     enum CodingKeys: String, CodingKey {
         case audio
         case listenID = "listen_id"
         case img, title
         case exhibitName = "exhibit_name"
+        case isPlaying
     }
 }
 

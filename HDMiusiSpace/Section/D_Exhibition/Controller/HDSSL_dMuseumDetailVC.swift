@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate , HDLY_MuseumInfoType4Cell_Delegate{
+class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate , HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate{
     
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var myTableView: UITableView!
@@ -21,19 +21,16 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
     var infoModel: ExhibitionMuseumData?
-    let audioPlayer = HDLY_AudioPlayer.shared
+    let player = HDLY_AudioPlayer.shared
+    
+    var playItem:HDLY_FreeListenItem?
+    var playModel:DMuseumListenList?
     
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.isOpaque = false
         return webV
     }()
-    
-//    lazy var testWebV1: UIWebView = {
-//        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-//        webV.isOpaque = false
-//        return webV
-//    }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,7 +45,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         dataRequest()
-        
+        player.delegate = self
+
     }
     
     @IBAction func action_back(_ sender: UIButton) {
@@ -57,6 +55,13 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     @IBAction func action_tapTopButton(_ sender: UIButton) {
         print(sender.tag)
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
+        if parent == nil {
+            player.stop()
+        }
     }
     
 }
@@ -298,6 +303,8 @@ extension HDSSL_dMuseumDetailVC {
                     if model.listen?.list != nil {
                         cell.listArray = model.listen!.list
                     }
+                    cell.delegate = self
+                    
                     return cell
                 }
             }
@@ -326,7 +333,54 @@ extension HDSSL_dMuseumDetailVC {
         showRecomendDetailVC(classID: model.classID ?? 0)
     }
     
+    //HDLY_MuseumInfoType5Cell_Delegate
+    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem) {
+        self.playItem = cell
+        if model.title == playModel?.title {
+            if player.state == .playing {
+                player.pause()
+                cell.playBtn.isSelected = false
+                playModel?.isPlaying = false
+            }else {
+                player.play()
+                cell.playBtn.isSelected = true
+                playModel?.isPlaying = true
+
+            }
+        } else {
+            guard let video = model.audio else {return}
+            if video.isEmpty == false && video.contains(".mp3") {
+                player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+                player.url = video
+                self.playModel = model
+                cell.playBtn.isSelected = true
+                playModel?.isPlaying = true
+
+            }
+        }
+    }
+    
 }
+
+//MARK: --- Player Control ---
+extension HDSSL_dMuseumDetailVC {
+    
+    func finishPlaying() {
+        if let cell = playItem {
+            cell.playBtn.isSelected = false
+        }
+        
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        if let cell = playItem {
+            DispatchQueue.main.async {
+                cell.progressV.progress = progress
+            }
+        }
+    }   
+}
+
 
 extension HDSSL_dMuseumDetailVC {
     

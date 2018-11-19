@@ -21,6 +21,9 @@ class HDLY_FreeListenItem: UICollectionViewCell {
         // Initialization code
         imgBgView.layer.cornerRadius = 8
         imgBgView.layer.masksToBounds = true
+        playBtn.setImage(UIImage.init(named: "kz_mft_icon_play"), for: .normal)
+        playBtn.setImage(UIImage.init(named: "kz_mft_icon_pause"), for: .selected)
+        playBtn.isUserInteractionEnabled = false
         
     }
     

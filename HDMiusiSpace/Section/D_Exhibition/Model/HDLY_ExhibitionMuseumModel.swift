@@ -46,7 +46,7 @@ struct ExhibitionMuseumDataList: Codable {
 struct DMuseumExhibition: Codable {
     var exhibitionNum: Int?
     var categoryTitle: String?
-    var list: [DExhibitionList]?
+    var list: [ExhibitionList]?
     
     enum CodingKeys: String, CodingKey {
         case exhibitionNum = "exhibition_num"

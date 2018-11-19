@@ -196,9 +196,9 @@ extension HDSSL_dMuseumDetailVC {
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
-                return 160*ScreenWidth/375.0
+                return 200*ScreenWidth/375.0
             }else if model.type == 5 {//免费听
-                return 160*ScreenWidth/375.0
+                return (ScreenWidth - 20 * 3)/2.0 + 30
             }
         }
         return 0.01
@@ -258,11 +258,14 @@ extension HDSSL_dMuseumDetailVC {
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![indexPath.section - 2]
                 if model.type == 1 {//同馆展览
-                    let cell:HDLY_MuseumInfoType1Cell = HDLY_MuseumInfoType1Cell.getMyTableCell(tableV: tableView)
-                    if model.exhibition?.list != nil {
-                        cell.listArray = model.exhibition!.list
-                    }
-                    return cell
+                    let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
+                    cell?.listArray = model.exhibition?.list
+                    cell?.BlockTapItemFunc(block: { (index) in
+                        print(index) //点击同馆展览
+                    })
+                    
+                    return cell!
+                    
                 }
                 else if model.type == 2 {//展览攻略
                     let cell = HDLY_MuseumInfoType2Cell.getMyTableCell(tableV: tableView)

@@ -72,7 +72,7 @@ extension HDSSL_dMuseumDetailVC {
             
             self.infoModel = model.data
             if self.infoModel != nil {
-//                self.kVideoCover = self.infoModel!.data.img
+//              self.kVideoCover = self.infoModel!.data.img
                 self.getWebHeight()
                 self.topImgView.kf.setImage(with: URL.init(string: self.infoModel!.img!), placeholder: UIImage.init(named: ""))
                 self.myTableView.reloadData()
@@ -293,8 +293,6 @@ extension HDSSL_dMuseumDetailVC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }
-    
-    
 }
 
 extension HDSSL_dMuseumDetailVC {

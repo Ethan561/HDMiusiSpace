@@ -22,7 +22,8 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             myCollectionView.reloadData()
         }
     }
-    weak var delegate: HDLY_Topic_Cell_Delegate?
+    
+    weak var delegate: HDLY_MuseumInfoType4Cell_Delegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -86,7 +87,7 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = listArray![indexPath.row]
-        //        delegate?.didSelectItemAt(model, self)
+        delegate?.didSelectItemAt(model, self)
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate {
+class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate , HDLY_MuseumInfoType4Cell_Delegate{
     
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var myTableView: UITableView!
@@ -18,6 +18,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var errorBtn: UIButton!
     
     var webViewH: CGFloat = 0
+    var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
     var infoModel: ExhibitionMuseumData?
     let audioPlayer = HDLY_AudioPlayer.shared
@@ -28,19 +29,24 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         return webV
     }()
     
+//    lazy var testWebV1: UIWebView = {
+//        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+//        webV.isOpaque = false
+//        return webV
+//    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        myTableView.separatorStyle = .none
         dataRequest()
         
     }
@@ -99,6 +105,10 @@ extension HDSSL_dMuseumDetailVC {
         }
         self.testWebV.delegate = self
         self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+        if self.infoModel?.areaHTML != nil {
+            self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: self.infoModel!.areaHTML!)!))
+        }
+        
     }
     
     
@@ -131,17 +141,19 @@ extension HDSSL_dMuseumDetailVC {
             }
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![section-2]
-                if model.type == 1 {
+                if model.type == 1 {//同馆展览
                     header.titleL.text = model.exhibition?.categoryTitle
                 }
                 else if model.type == 2 {
                     header.titleL.text = model.raiders?.categoryTitle
-                }else if model.type == 3 {
-              
+                }else if model.type == 3 {//相关活动
+                    header.titleL.text = "相关活动"
+                    header.moreBtn.isHidden = true
                 }else if model.type == 4 {
                     header.titleL.text = model.featured?.categoryTitle
                 }else if model.type == 5 {
                     header.titleL.text = model.listen?.categoryTitle
+                    header.moreBtn.setTitle("查看全部", for: .normal)
                 }
             }
             return header
@@ -183,7 +195,7 @@ extension HDSSL_dMuseumDetailVC {
             }
         }
         else if indexPath.section == 1 {
-            return 400
+            return areaWebViewH
         }
         else {
             
@@ -249,9 +261,10 @@ extension HDSSL_dMuseumDetailVC {
         }
         else if indexPath.section == 1 {
             let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
-            if infoModel?.areaImg != nil {
-                cell?.imgV.kf.setImage(with: URL.init(string:(infoModel!.areaImg!)), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            guard let url = self.infoModel?.areaHTML else {
+                return cell!
             }
+            cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
             return cell!
         }
         else {
@@ -260,10 +273,9 @@ extension HDSSL_dMuseumDetailVC {
                 if model.type == 1 {//同馆展览
                     let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                     cell?.listArray = model.exhibition?.list
-                    cell?.BlockTapItemFunc(block: { (index) in
-                        print(index) //点击同馆展览
+                    cell?.BlockTapItemFunc(block: { (m) in
+                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
                     })
-                    
                     return cell!
                     
                 }
@@ -273,10 +285,10 @@ extension HDSSL_dMuseumDetailVC {
                     return cell!
                 }else if model.type == 3 {//相关活动
                     let cell = HDLY_MuseumInfoType3Cell.getMyTableCell(tableV: tableView)
-                    
                     return cell!
                 }else if model.type == 4 {//精选推荐
                     let cell: HDLY_MuseumInfoType4Cell  = HDLY_MuseumInfoType4Cell.getMyTableCell(tableV: tableView)
+                    cell.delegate = self
                     if model.featured?.list != nil {
                         cell.listArray = model.featured!.list
                     }
@@ -294,17 +306,40 @@ extension HDSSL_dMuseumDetailVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if indexPath.section > 1 {
+            if self.infoModel?.dataList != nil {
+                let model = self.infoModel!.dataList![indexPath.section - 2]
+                if model.type == 2 {//展览攻略
+                    if model.raiders?.strategyID != nil {
+                        self.showRelatedStrategyVC(exhibitionID: model.raiders!.strategyID!)
+                    }
+                } else if model.type == 3 {//相关活动
+                    
+                }
+            }
+        }
     }
+    
+    //HDLY_MuseumInfoType4Cell_Delegate
+    
+    func didSelectItemAt(_ model:DMuseumFeaturedList, _ cell: HDLY_MuseumInfoType4Cell) {
+        showRecomendDetailVC(classID: model.classID ?? 0)
+    }
+    
 }
 
 extension HDSSL_dMuseumDetailVC {
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
+        if webView.request?.url?.absoluteString == self.infoModel?.museumHTML {
             let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
             self.webViewH = CGFloat(webViewHStr.floatValue + 10)
             LOG("webViewH: \(webViewH)")
+        }
+        if webView.request?.url?.absoluteString == self.infoModel?.areaHTML {
+            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
+            self.areaWebViewH = CGFloat(webViewHStr.floatValue + 10)
+            
         }
         self.myTableView.reloadData()
 //        self.myTableView.reloadRows(at: [IndexPath.init(row: 5, section: 0)], with: .none)
@@ -314,14 +349,62 @@ extension HDSSL_dMuseumDetailVC {
 
 
 extension HDSSL_dMuseumDetailVC {
-    
+    //更多界面
     @objc func moreBtnAction(_ sender: UIButton) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
-        self.navigationController?.pushViewController(vc, animated: true)
+        let section = sender.tag - 100
+        if section > 1 {
+            if self.infoModel?.dataList != nil {
+                let model = self.infoModel!.dataList![section-2]
+                if model.type == 1 {//同馆展览
+                    let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SameExhibitionListVC") as! HDLY_SameExhibitionListVC
+                    vc.museumId = self.museumId
+                    vc.titleName = "同馆展览-" + self.infoModel!.title!
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else if model.type == 2 {//参观攻略更多
+                    let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_StrategyListVC") as! HDLY_StrategyListVC
+                    vc.museumId = self.museumId
+                    vc.titleName = "展览攻略"
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else if model.type == 3 {//相关活动
+  
+                }else if model.type == 4 {//精选推荐
+                    let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
+                    self.navigationController?.pushViewController(vc, animated: true)
+
+                }else if model.type == 5 {//免费听
+                    let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+                    vc.museum_id = self.museumId
+                    vc.titleName = self.infoModel?.title ?? ""
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
         
     }
-
     
+    func showExhibitionDetailVC(exhibitionID: Int) {
+        //展览详情
+        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+        let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+        vc.exhibition_id = exhibitionID
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //展览攻略详情
+    func showRelatedStrategyVC(exhibitionID: Int)  {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+        vc.topic_id = "\(exhibitionID)"
+        vc.fromRootAChoiceness = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //精选推荐详情
+    func showRecomendDetailVC(classID: Int) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = "\(classID)"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 

@@ -370,8 +370,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 
                 return cell
             }
-            
-            
         }
         else if indexPath.section == 1 {
             //加载两个webView

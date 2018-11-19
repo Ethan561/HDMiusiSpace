@@ -157,6 +157,10 @@
 		D620E1B721A246810034E258 /* HDLY_MuseumRecmdItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D620E1B521A246810034E258 /* HDLY_MuseumRecmdItem.xib */; };
 		D620E1BA21A246B90034E258 /* HDLY_FreeListenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1B821A246B90034E258 /* HDLY_FreeListenItem.swift */; };
 		D620E1BB21A246B90034E258 /* HDLY_FreeListenItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D620E1B921A246B90034E258 /* HDLY_FreeListenItem.xib */; };
+		D620E1BD21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1BC21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift */; };
+		D620E1BF21A2B2CD0034E258 /* HDLY_StrategyListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1BE21A2B2CD0034E258 /* HDLY_StrategyListVC.swift */; };
+		D620E1C221A2B53C0034E258 /* HDLY_StrategyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1C021A2B53C0034E258 /* HDLY_StrategyListCell.swift */; };
+		D620E1C321A2B53C0034E258 /* HDLY_StrategyListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D620E1C121A2B53C0034E258 /* HDLY_StrategyListCell.xib */; };
 		D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */; };
 		D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */; };
 		D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */; };
@@ -687,6 +691,10 @@
 		D620E1B521A246810034E258 /* HDLY_MuseumRecmdItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumRecmdItem.xib; sourceTree = "<group>"; };
 		D620E1B821A246B90034E258 /* HDLY_FreeListenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_FreeListenItem.swift; sourceTree = "<group>"; };
 		D620E1B921A246B90034E258 /* HDLY_FreeListenItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_FreeListenItem.xib; sourceTree = "<group>"; };
+		D620E1BC21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SameExhibitionListVC.swift; sourceTree = "<group>"; };
+		D620E1BE21A2B2CD0034E258 /* HDLY_StrategyListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_StrategyListVC.swift; sourceTree = "<group>"; };
+		D620E1C021A2B53C0034E258 /* HDLY_StrategyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_StrategyListCell.swift; sourceTree = "<group>"; };
+		D620E1C121A2B53C0034E258 /* HDLY_StrategyListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_StrategyListCell.xib; sourceTree = "<group>"; };
 		D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_FeedbackChoose_View.swift; sourceTree = "<group>"; };
 		D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_FeedbackChoose_View.xib; sourceTree = "<group>"; };
 		D622778321366E51008F1416 /* HDLY_ReportError_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ReportError_VC.swift; sourceTree = "<group>"; };
@@ -1412,6 +1420,8 @@
 				D620E1B521A246810034E258 /* HDLY_MuseumRecmdItem.xib */,
 				D620E1B821A246B90034E258 /* HDLY_FreeListenItem.swift */,
 				D620E1B921A246B90034E258 /* HDLY_FreeListenItem.xib */,
+				D620E1C021A2B53C0034E258 /* HDLY_StrategyListCell.swift */,
+				D620E1C121A2B53C0034E258 /* HDLY_StrategyListCell.xib */,
 			);
 			path = MuseumInfo;
 			sourceTree = "<group>";
@@ -2184,6 +2194,8 @@
 				A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */,
 				A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */,
 				A72DE93621A132E000F0536F /* HDSSL_commentVC.swift */,
+				D620E1BC21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift */,
+				D620E1BE21A2B2CD0034E258 /* HDLY_StrategyListVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2506,6 +2518,7 @@
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
+				D620E1C321A2B53C0034E258 /* HDLY_StrategyListCell.xib in Resources */,
 				D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
 				D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */,
@@ -2725,6 +2738,7 @@
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
 				D61E94CC2192D12400C5299F /* UIImageView+HighlightedWebCache.m in Sources */,
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
+				D620E1BD21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift in Sources */,
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D6115AF2218FD490004A05DA /* ZFUtilities.m in Sources */,
@@ -2763,6 +2777,7 @@
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
 				D61E94D32192D12400C5299F /* SDWebImageDownloaderOperation.m in Sources */,
 				D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */,
+				D620E1BF21A2B2CD0034E258 /* HDLY_StrategyListVC.swift in Sources */,
 				D6375683219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift in Sources */,
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
@@ -2878,6 +2893,7 @@
 				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
+				D620E1C221A2B53C0034E258 /* HDLY_StrategyListCell.swift in Sources */,
 				D61E94C32192D12400C5299F /* HDRouteDrawingView.m in Sources */,
 				D62277DA21368069008F1416 /* MTImagePickerModel.swift in Sources */,
 				D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */,

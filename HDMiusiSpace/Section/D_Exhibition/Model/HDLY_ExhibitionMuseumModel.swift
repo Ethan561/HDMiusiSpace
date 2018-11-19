@@ -17,12 +17,15 @@ struct HDLY_ExhibitionMuseumModel: Codable {
 
 struct ExhibitionMuseumData: Codable {
     var img: String?
-    var isFavorite: Int = 0
+    var isFavorite: Int?
     var title, time, price, address: String?
     var iconList: [String]?
     var museumHTML: String?
-    var areaImg: String?
-    var dataList: [ExhibitionMuseumDataList]?
+    var isArea: Int?
+    var areaHTML: String?
+    var isTourGuide: Int?
+    var tourGuide: String?
+    var dataList: [DataList]?
     
     enum CodingKeys: String, CodingKey {
         case img
@@ -30,7 +33,10 @@ struct ExhibitionMuseumData: Codable {
         case title, time, price, address
         case iconList = "icon_list"
         case museumHTML = "museum_html"
-        case areaImg = "area_img"
+        case isArea = "is_area"
+        case areaHTML = "area_html"
+        case isTourGuide = "is_tour_guide"
+        case tourGuide = "tour_guide"
         case dataList = "data_list"
     }
 }
@@ -126,6 +132,30 @@ struct DMuseumRaiders: Codable {
     var img: String?
     var title: String?
     var isFavorite: Int = 0
+    
+    enum CodingKeys: String, CodingKey {
+        case author
+        case categoryTitle = "category_title"
+        case commentNum = "comment_num"
+        case strategyID = "strategy_id"
+        case img, title
+        case isFavorite = "is_favorite"
+    }
+}
+
+//参观攻略
+struct DStrategyListModel: Codable {
+    let status: Int?
+    let msg: String?
+    let data: [DStrategyListData]?
+}
+
+struct DStrategyListData: Codable {
+    var author, categoryTitle: String?
+    var commentNum, strategyID: Int?
+    var img: String?
+    var title: String?
+    var isFavorite: Int?
     
     enum CodingKeys: String, CodingKey {
         case author

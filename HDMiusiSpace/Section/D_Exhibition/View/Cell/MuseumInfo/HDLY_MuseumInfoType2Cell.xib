@@ -25,6 +25,14 @@
                             <constraint firstAttribute="width" secondItem="HHy-cE-bDd" secondAttribute="height" multiplier="36:25" id="b3n-3f-uFP"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u97-T3-trJ">
+                        <rect key="frame" x="260" y="20" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="R3M-DK-IDA"/>
+                            <constraint firstAttribute="width" constant="40" id="Wg5-1a-xET"/>
+                        </constraints>
+                        <state key="normal" image="zl_icon_star_gray"/>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国国家博物馆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaC-bb-ScR">
                         <rect key="frame" x="20" y="230.5" width="280" height="23"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="16"/>
@@ -50,12 +58,15 @@
                     <constraint firstItem="L3L-fR-lXt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QvO-oN-CIw"/>
                     <constraint firstItem="XaC-bb-ScR" firstAttribute="top" secondItem="HHy-cE-bDd" secondAttribute="bottom" constant="16" id="W6G-Jd-Ds6"/>
                     <constraint firstItem="XaC-bb-ScR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZFa-Q5-o0Q"/>
+                    <constraint firstAttribute="trailing" secondItem="u97-T3-trJ" secondAttribute="trailing" constant="20" id="jUY-G7-DdL"/>
                     <constraint firstItem="HHy-cE-bDd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="rWb-lW-NvY"/>
+                    <constraint firstItem="u97-T3-trJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="zNL-48-kOg"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgV" destination="HHy-cE-bDd" id="EUd-hG-xnw"/>
+                <outlet property="likeBtn" destination="u97-T3-trJ" id="Y4n-9p-qfh"/>
                 <outlet property="tagL" destination="L3L-fR-lXt" id="Y5W-E8-oNF"/>
                 <outlet property="titleL" destination="XaC-bb-ScR" id="bgV-ba-Vrd"/>
             </connections>
@@ -64,5 +75,6 @@
     </objects>
     <resources>
         <image name="jxtj_img3" width="140" height="100"/>
+        <image name="zl_icon_star_gray" width="14" height="14"/>
     </resources>
 </document>

@@ -9,7 +9,7 @@
 import UIKit
 
 //block
-typealias BlockTapItem = (_ index: Int) -> Void //返回点击cell
+typealias BlockTapItem = (_ model: ExhibitionList) -> Void //返回点击cell
 
 class HDSSL_sameMuseumCell: UITableViewCell {
 
@@ -21,6 +21,7 @@ class HDSSL_sameMuseumCell: UITableViewCell {
             collectView.reloadData()
         }
     }
+    
     func BlockTapItemFunc(block: @escaping BlockTapItem) {
         blockTapItem = block
     }
@@ -104,7 +105,7 @@ extension HDSSL_sameMuseumCell :UICollectionViewDelegate,UICollectionViewDataSou
 //        delegate?.didSelectItemAt(model, self)
         weak var weakSelf = self
         if weakSelf?.blockTapItem != nil {
-            weakSelf?.blockTapItem!(indexPath.row)
+            weakSelf?.blockTapItem!(model)
         }
     }
     

@@ -2,25 +2,21 @@
 //  HDLY_dMuseumHeader.swift
 //  HDMiusiSpace
 //
-//  Created by liuyi on 2018/11/17.
+//  Created by liuyi on 2018/11/20.
 //  Copyright © 2018 hengdawb. All rights reserved.
 //
 
 import UIKit
 
-class HDLY_dMuseumHeader: UITableViewCell {
+class HDLY_dMuseumHeader: UIView {
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
     }
+    */
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

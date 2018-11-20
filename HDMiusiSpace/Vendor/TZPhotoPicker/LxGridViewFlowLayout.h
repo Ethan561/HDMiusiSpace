@@ -23,17 +23,17 @@
 @optional
 
 - (void)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
-   willMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPathA:(NSIndexPath *)sourceIndexPath
+   willMoveToIndexPathB:(NSIndexPath *)destinationIndexPath;
 - (void)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
-    didMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPathSo:(NSIndexPath *)sourceIndexPath
+    didMoveToIndexPathDe:(NSIndexPath *)destinationIndexPath;
 
 - (BOOL)collectionView:(UICollectionView *)collectionView
 canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
-    canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPathS:(NSIndexPath *)sourceIndexPath
+    canMoveToIndexPathD:(NSIndexPath *)destinationIndexPath;
 
 @end
 

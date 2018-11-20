@@ -54,7 +54,7 @@ class HDSSL_commentVC: HDItemBaseVC {
         
         dTableView.reloadData()
         self.collectionView?.reloadData()
-    }
+    } 
     // UI
     func loadMyViews() {
         self.title = "评论"

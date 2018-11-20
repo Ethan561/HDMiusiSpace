@@ -110,6 +110,10 @@ class HDSSL_commentVC: HDItemBaseVC {
     //actions
     @objc func action_publish(){
         print("发布")
+        //上传图片，得到图片地址，开始发布
+        let commentSvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentSucVC") as! HDSSL_commentSucVC
+
+        self.navigationController?.pushViewController(commentSvc, animated: true)
     }
 
     

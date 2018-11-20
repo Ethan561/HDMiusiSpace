@@ -98,7 +98,7 @@
                             <constraint firstAttribute="trailing" secondItem="YbV-t2-lmZ" secondAttribute="trailing" constant="10" id="zZ3-pI-cLV"/>
                         </constraints>
                     </view>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="古树华章--最伟大的博物馆" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nVj-DA-JVv">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="古树华章--最伟大的博物馆" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nVj-DA-JVv">
                         <rect key="frame" x="148" y="20" width="152" height="85"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

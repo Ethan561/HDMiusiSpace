@@ -262,6 +262,10 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
                 print("评分%d",number)
                 self.starNumber = number //保存评分
             }
+            cell.BlockBackCommentText { (text) in
+                self.commentContent = text //保存文字内容
+            }
+            
             return cell
         }else {
             pickerImgCell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell

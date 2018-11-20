@@ -25,7 +25,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-kG-R6J">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
                             </imageView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="78x-Lu-hdG">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="78x-Lu-hdG">
                                 <rect key="frame" x="0.0" y="152" width="225" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="QTM-29-duE"/>

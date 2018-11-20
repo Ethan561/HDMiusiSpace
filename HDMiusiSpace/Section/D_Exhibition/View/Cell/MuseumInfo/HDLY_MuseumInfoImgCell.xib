@@ -19,20 +19,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="294" height="204.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2QS-Kd-ffG">
+                    <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8i-aA-gl0">
                         <rect key="frame" x="0.0" y="0.0" width="294" height="204.5"/>
-                    </imageView>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </webView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2QS-Kd-ffG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5rT-Hj-LPx"/>
-                    <constraint firstAttribute="trailing" secondItem="2QS-Kd-ffG" secondAttribute="trailing" id="B03-lF-N7E"/>
-                    <constraint firstItem="2QS-Kd-ffG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LR6-m4-CrW"/>
-                    <constraint firstAttribute="bottom" secondItem="2QS-Kd-ffG" secondAttribute="bottom" id="e2P-tP-Mqf"/>
+                    <constraint firstAttribute="bottom" secondItem="x8i-aA-gl0" secondAttribute="bottom" id="6Xk-kY-6qj"/>
+                    <constraint firstItem="x8i-aA-gl0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OtX-XL-dye"/>
+                    <constraint firstAttribute="trailing" secondItem="x8i-aA-gl0" secondAttribute="trailing" id="bgv-xf-Q9S"/>
+                    <constraint firstItem="x8i-aA-gl0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="plx-DX-DJN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imgV" destination="2QS-Kd-ffG" id="U4f-Fc-OjS"/>
+                <outlet property="webView" destination="x8i-aA-gl0" id="Vr6-d6-NTU"/>
             </connections>
             <point key="canvasLocation" x="116.8" y="200.14992503748127"/>
         </tableViewCell>

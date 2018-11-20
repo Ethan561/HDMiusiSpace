@@ -123,7 +123,8 @@ extension HDLY_MuseumSubVC:UITableViewDelegate,UITableViewDataSource {
         //博物馆详情
         let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
         let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
-        
+        let model = dataArr[indexPath.row]
+        vc.museumId = model.museumID
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

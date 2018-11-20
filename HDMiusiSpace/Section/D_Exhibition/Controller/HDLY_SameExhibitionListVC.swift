@@ -1,39 +1,26 @@
 //
-//  HDLY_ExhibitionSubVC.swift
+//  HDLY_SameExhibitionListVC.swift
 //  HDMiusiSpace
 //
-//  Created by liuyi on 2018/11/15.
+//  Created by liuyi on 2018/11/19.
 //  Copyright © 2018 hengdawb. All rights reserved.
 //
 
 import UIKit
 import ESPullToRefresh
 
-class HDLY_ExhibitionSubVC: HDItemBaseVC {
+class HDLY_SameExhibitionListVC: HDItemBaseVC {
     
+    @IBOutlet weak var tableView: UITableView!
     var dataArr =  [HDLY_dExhibitionListD]()
-    var type = -1 // 0全部 1推荐 2最近
+    var museumId = 0
+    var exhibitionId = 0
+    var titleName  = ""
+
     
-    //tableView
-    lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
-        tableView.showsVerticalScrollIndicator = false
-        
-        return tableView
-    }()
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
-        self.tableView.frame = view.bounds
-        self.view.addSubview(self.tableView)
-        self.hd_navigationBarHidden = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
         } else {
@@ -41,11 +28,16 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         }
         self.dataRequest()
         addRefresh()
+        self.title = titleName
         
     }
     
     func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: 0, take: 20, city_name: "", longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getSameExhibitionList(exhibition_id: exhibitionId, museum_id: museumId, skip: 0, take: 20, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -71,26 +63,10 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         self.tableView.es.noticeNoMoreData()
     }
     
-    @objc func pageTitleViewToTop() {
-        self.tableView.contentOffset = CGPoint.init(x: 0, y: 0)
-    }
     
-    //监听子视图滚动
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SubTableViewDidScroll"), object: scrollView)
-        //LOG("==== SubTableViewDidScroll :\(scrollView.contentOffset.y)")
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //
-        self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-100)
-        
-    }
 }
 
-
-extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
+extension HDLY_SameExhibitionListVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArr.count
     }
@@ -114,11 +90,10 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
         //展览详情
         let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
         let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-        let model = dataArr[indexPath.row]
-        vc.exhibition_id = model.exhibitionID
-        self.navigationController?.pushViewController(vc, animated: true)
         
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
 }
+

@@ -10,7 +10,7 @@ import UIKit
 
 class HDLY_MuseumInfoImgCell: UITableViewCell {
 
-    @IBOutlet weak var imgV: UIImageView!
+    @IBOutlet weak var webView: UIWebView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,7 +18,7 @@ class HDLY_MuseumInfoImgCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        self.webView.scrollView.isScrollEnabled = false
         // Configure the view for the selected state
     }
     

@@ -13,7 +13,7 @@ class HDLY_MuseumInfoType2Cell: UITableViewCell {
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var tagL: UILabel!
-    
+    @IBOutlet weak var likeBtn: UIButton!
     
     var model: DMuseumRaiders? {
         didSet {

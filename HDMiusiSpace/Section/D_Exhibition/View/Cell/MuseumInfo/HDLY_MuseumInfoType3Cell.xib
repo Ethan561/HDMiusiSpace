@@ -60,6 +60,14 @@
                         <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcQ-c3-pus">
+                        <rect key="frame" x="260" y="20" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="OHV-55-PUl"/>
+                            <constraint firstAttribute="height" constant="40" id="YQi-pi-Qzr"/>
+                        </constraints>
+                        <state key="normal" image="zl_icon_star_gray"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ISE-T1-ex6" firstAttribute="top" secondItem="xIk-Vf-8rH" secondAttribute="bottom" constant="30" id="602-cF-5k6"/>
@@ -70,6 +78,8 @@
                     <constraint firstItem="wAS-uv-iTf" firstAttribute="top" secondItem="T2X-FX-ciA" secondAttribute="bottom" constant="8" id="QPW-6s-VSP"/>
                     <constraint firstItem="ISE-T1-ex6" firstAttribute="leading" secondItem="wAS-uv-iTf" secondAttribute="trailing" constant="20" id="bQH-Yn-vXB"/>
                     <constraint firstItem="xIk-Vf-8rH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="dUw-jR-OVk"/>
+                    <constraint firstAttribute="trailing" secondItem="GcQ-c3-pus" secondAttribute="trailing" constant="20" id="enh-Cn-YzS"/>
+                    <constraint firstItem="GcQ-c3-pus" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="iBP-Z5-NR9"/>
                     <constraint firstAttribute="trailing" secondItem="ISE-T1-ex6" secondAttribute="trailing" constant="20" id="l6N-vX-pBu"/>
                     <constraint firstItem="T2X-FX-ciA" firstAttribute="top" secondItem="xIk-Vf-8rH" secondAttribute="bottom" constant="8" id="nJp-Tt-oob"/>
                     <constraint firstItem="B5h-T3-7vK" firstAttribute="top" secondItem="ISE-T1-ex6" secondAttribute="bottom" constant="8" id="nUK-bp-Bwz"/>
@@ -80,6 +90,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgV" destination="xIk-Vf-8rH" id="BwV-Rx-cCP"/>
+                <outlet property="likeBtn" destination="GcQ-c3-pus" id="OVE-8O-7YF"/>
                 <outlet property="museumL" destination="T2X-FX-ciA" id="gW0-0s-kLa"/>
                 <outlet property="priceL" destination="XtU-Dh-Lwk" id="SEg-tc-gRr"/>
                 <outlet property="teacherL" destination="ISE-T1-ex6" id="GiX-ff-d2u"/>
@@ -91,5 +102,6 @@
     <resources>
         <image name="jxtj_img3" width="140" height="100"/>
         <image name="teacher_img" width="40" height="40"/>
+        <image name="zl_icon_star_gray" width="14" height="14"/>
     </resources>
 </document>

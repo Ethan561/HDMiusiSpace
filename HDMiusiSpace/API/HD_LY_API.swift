@@ -159,8 +159,12 @@ enum HD_LY_API {
     //获取博物馆详情
     case exhibitionMuseumInfo(museum_id: Int, api_token: String)
 
-    
-    
+    //获取同馆展览列表
+    case getSameExhibitionList(exhibition_id: Int, museum_id: Int, skip:Int, take:Int , api_token: String)
+
+    //获取同馆攻略列表
+    case getStrategyList(museum_id: Int, skip:Int, take:Int , api_token: String)
+
 
     
     
@@ -376,6 +380,12 @@ extension HD_LY_API: TargetType {
             
         case .exhibitionMuseumInfo(_):
             return "/api/exhibition/museum_info"
+            
+        case .getSameExhibitionList(_):
+            return "/api/exhibition/same_exhibition_list"
+            
+        case .getStrategyList(_):
+            return "/api/exhibition/strategy_list"
             
             
         }
@@ -850,6 +860,18 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             
+        case .getSameExhibitionList(let exhibition_id, let museum_id, let skip, let take, let api_token):
+            params = params.merging(["exhibition_id": exhibition_id,"museum_id": museum_id, "skip": skip, "take": take,  "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .getStrategyList(let museum_id, let skip, let take, let api_token):
+            
+            params = params.merging(["museum_id": museum_id, "skip": skip, "take": take,  "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
             
         }

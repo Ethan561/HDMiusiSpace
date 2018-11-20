@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HDLY_MineHome_Header_Delegate:NSObjectProtocol {
+    func pushToMyDetails(type:Int) 
+}
+
 class HDLY_MineHome_Header: UIView {
     
     @IBOutlet weak var avatarImgV: UIImageView!
@@ -16,15 +20,42 @@ class HDLY_MineHome_Header: UIView {
     @IBOutlet weak var signatureL: UILabel!
     @IBOutlet weak var loginView: UIView!
     
+    @IBOutlet weak var followNumberLabel: UILabel!
     @IBOutlet weak var userInfoBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var collectNumberLabel: UILabel!
     
+    @IBOutlet weak var cardNumberLabel: UILabel!
+    @IBOutlet weak var foorprintNumberLabel: UILabel!
+    
+     weak var delegate: HDLY_MineHome_Header_Delegate?
     
     override func awakeFromNib() {
         avatarImgV.layer.cornerRadius = 30
-        
     }
     
+   
+    @IBAction func showMyfollowAction(_ sender: UIButton) {
+        if delegate != nil {
+            delegate?.pushToMyDetails(type: 0)
+        }
+    }
     
-
+    @IBAction func showMyClickAction(_ sender: UIButton) {
+        if delegate != nil {
+            delegate?.pushToMyDetails(type: 1)
+        }
+    }
+    
+    @IBAction func showMyCardAction(_ sender: UIButton) {
+        if delegate != nil {
+            delegate?.pushToMyDetails(type: 2)
+        }
+    }
+    
+    @IBAction func showMyFootprintAction(_ sender: UIButton) {
+        if delegate != nil {
+            delegate?.pushToMyDetails(type: 3)
+        }
+    }
 }

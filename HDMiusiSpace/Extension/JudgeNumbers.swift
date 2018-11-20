@@ -53,7 +53,7 @@ enum Validate {
             
     
         case .verifyNumber(let str):
-            predicateStr = "^[0-9]{4}"
+            predicateStr = "^[0-9]{6}"
             currObject = str
             
         }

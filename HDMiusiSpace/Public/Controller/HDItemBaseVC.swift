@@ -12,9 +12,13 @@ class HDItemBaseVC: UIViewController {
     
 //    var refreshHeader: MJRefreshNormalHeader?
 //    var refreshFooter: MJRefreshAutoNormalFooter?
+    var isHideBackBtn: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if isHideBackBtn == true {
+            return
+        }
         addLeftBarButtonItem()
     }
     

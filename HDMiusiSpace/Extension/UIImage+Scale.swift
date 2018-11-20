@@ -205,8 +205,34 @@ extension UIImage {
     }
     
     
+    //用Color生成图片
+    class func getImgWithColor(_ color: UIColor, imgSize: CGSize) -> UIImage? {
+        
+        let rect = CGRect.init(x: 0, y: 0, width: imgSize.width, height: imgSize.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
+        let ctx: CGContext? = UIGraphicsGetCurrentContext()
+        if ctx != nil {
+            ctx!.setFillColor(color.cgColor)
+            ctx!.fill(rect)
+        }
+        let img: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
     
     
 }
 
+////  颜色转换为背景图片
+//- (UIImage *)imageWithColor:(UIColor *)color {
+//    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+//    UIGraphicsBeginImageContext(rect.size);
+//
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [color CGColor]);
+//    CGContextFillRect(context, rect);
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    return image;
+//}
 

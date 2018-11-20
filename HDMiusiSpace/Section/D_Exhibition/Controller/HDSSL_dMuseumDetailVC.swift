@@ -16,7 +16,9 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
-    
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+
     var webViewH: CGFloat = 0
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
@@ -45,8 +47,23 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         dataRequest()
-//        player.delegate = self
-
+        likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+        likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
+        bindViewModel()
+    }
+    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        //收藏
+        publicViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.likeBtn.isSelected = false
+            } else {
+                weakSelf?.likeBtn.isSelected = true
+            }
+        }
+        
     }
     
     @IBAction func action_back(_ sender: UIButton) {
@@ -57,6 +74,33 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         print(sender.tag)
     }
     
+    
+    @IBAction func likeBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: "\(museumId)", cate_id: "8", self)
+    }
+    
+    @IBAction func shareBtnAction(_ sender: UIButton) {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+    }
+    
+    @IBAction func errorBtnAction(_ sender: UIButton) {
+        //报错
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+        vc.articleID = "\(museumId)"
+        vc.typeID = "7"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     override func didMove(toParentViewController parent: UIViewController?) {
         super.didMove(toParentViewController: parent)
         if parent == nil {
@@ -64,6 +108,44 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         }
     }
     
+}
+
+extension HDSSL_dMuseumDetailVC: UMShareDelegate {
+    func shareDelegate(platformType: UMSocialPlatformType) {
+        
+        guard let url  = self.infoModel?.share_url else {
+            return
+        }
+        
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = url
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.title, thumImage: thumbURL)
+        
+        //设置网页地址
+        shareObject?.webpageUrl = url
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject
+        
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+            }
+        }
+    }
 }
 
 
@@ -84,6 +166,9 @@ extension HDSSL_dMuseumDetailVC {
             self.infoModel = model.data
             if self.infoModel != nil {
 //              self.kVideoCover = self.infoModel!.data.img
+                if self.infoModel?.isFavorite == 1 {
+                    self.likeBtn.isSelected = true
+                }
                 self.getWebHeight()
                 self.topImgView.kf.setImage(with: URL.init(string: self.infoModel!.img!), placeholder: UIImage.init(named: ""))
                 self.myTableView.reloadData()

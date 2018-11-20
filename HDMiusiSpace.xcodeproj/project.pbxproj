@@ -409,6 +409,8 @@
 		D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */; };
 		D696C3F021A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C3EF21A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift */; };
 		D696C3F221A3A78300B7E3FA /* HDLY_dMuseumHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D696C3F121A3A78300B7E3FA /* HDLY_dMuseumHeader.xib */; };
+		D696C3F421A3DCAD00B7E3FA /* HDLY_ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */; };
+		D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */; };
 		D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */; };
 		D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */; };
 		D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */; };
@@ -1011,6 +1013,8 @@
 		D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumGuideHelpView.swift; sourceTree = "<group>"; };
 		D696C3EF21A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_dMuseumHeader.swift; sourceTree = "<group>"; };
 		D696C3F121A3A78300B7E3FA /* HDLY_dMuseumHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_dMuseumHeader.xib; sourceTree = "<group>"; };
+		D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ShareView.swift; sourceTree = "<group>"; };
+		D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ShareView.xib; sourceTree = "<group>"; };
 		D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Header.swift; sourceTree = "<group>"; };
 		D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseComment_Header.xib; sourceTree = "<group>"; };
 		D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Footer.swift; sourceTree = "<group>"; };
@@ -2082,6 +2086,8 @@
 				D62277AE21367F12008F1416 /* HDLY_PhotoSelectorView.swift */,
 				D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */,
 				D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */,
+				D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */,
+				D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2738,6 +2744,7 @@
 				D66C35C3213F805300363D7C /* HDLY_MineHome_Header.xib in Resources */,
 				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
 				D62277E121368069008F1416 /* MTImagePicker.strings in Resources */,
+				D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
@@ -3169,6 +3176,7 @@
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
 				A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */,
+				D696C3F421A3DCAD00B7E3FA /* HDLY_ShareView.swift in Sources */,
 				A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,

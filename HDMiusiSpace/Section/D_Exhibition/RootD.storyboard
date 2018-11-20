@@ -272,6 +272,7 @@
                                         <state key="normal" image="icon_baocuo_white"/>
                                         <connections>
                                             <action selector="action_topButton:" destination="PPd-or-XRL" eventType="touchUpInside" id="NPS-8k-495"/>
+                                            <action selector="errorBtnAction:" destination="PPd-or-XRL" eventType="touchUpInside" id="5ay-1I-zZz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VoM-Ps-EtZ">
@@ -279,6 +280,7 @@
                                         <state key="normal" image="xz_icon_share_white_default"/>
                                         <connections>
                                             <action selector="action_topButton:" destination="PPd-or-XRL" eventType="touchUpInside" id="jO4-uY-OzB"/>
+                                            <action selector="shareBtnAction:" destination="PPd-or-XRL" eventType="touchUpInside" id="jFM-Ho-uec"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odo-go-GPe">
@@ -286,6 +288,7 @@
                                         <state key="normal" image="Star_white"/>
                                         <connections>
                                             <action selector="action_topButton:" destination="PPd-or-XRL" eventType="touchUpInside" id="GwS-j3-EQB"/>
+                                            <action selector="likeBtnAction:" destination="PPd-or-XRL" eventType="touchUpInside" id="fqO-dV-IL7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -320,6 +323,9 @@
                         <outlet property="bannerBg" destination="rCx-OU-HZY" id="4x3-rw-Sxq"/>
                         <outlet property="bannerNumL" destination="RoI-Bf-oNB" id="bIX-T8-9Xk"/>
                         <outlet property="dTableView" destination="5qk-el-uj4" id="Qqk-o2-czf"/>
+                        <outlet property="errorBtn" destination="d3M-h8-OTY" id="fVq-24-8iQ"/>
+                        <outlet property="likeBtn" destination="odo-go-GPe" id="BsU-pj-Et9"/>
+                        <outlet property="shareBtn" destination="VoM-Ps-EtZ" id="Luh-1y-fot"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkK-vB-qyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -557,6 +563,7 @@
                                         <state key="normal" image="icon_baocuo_white"/>
                                         <connections>
                                             <action selector="action_tapTopButton:" destination="4g6-20-f5F" eventType="touchUpInside" id="PLq-Qn-IUF"/>
+                                            <action selector="errorBtnAction:" destination="4g6-20-f5F" eventType="touchUpInside" id="bQ9-Ca-mgC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dd-7j-n3G">
@@ -564,6 +571,7 @@
                                         <state key="normal" image="xz_icon_share_white_default"/>
                                         <connections>
                                             <action selector="action_tapTopButton:" destination="4g6-20-f5F" eventType="touchUpInside" id="ONY-Ii-Jrv"/>
+                                            <action selector="shareBtnAction:" destination="4g6-20-f5F" eventType="touchUpInside" id="kU0-a4-5MW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YK4-Kf-8VB">
@@ -571,6 +579,7 @@
                                         <state key="normal" image="Star_white"/>
                                         <connections>
                                             <action selector="action_tapTopButton:" destination="4g6-20-f5F" eventType="touchUpInside" id="4Cm-uh-vyq"/>
+                                            <action selector="likeBtnAction:" destination="4g6-20-f5F" eventType="touchUpInside" id="XLh-9l-fcE"/>
                                         </connections>
                                     </button>
                                 </subviews>

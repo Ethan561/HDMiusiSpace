@@ -140,12 +140,8 @@ extension HDSSL_dMuseumDetailVC {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section > 0 {
-            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45))
-            
             let header = HDLY_dMuseumHeader.createViewFromNib() as! HDLY_dMuseumHeader
-            header.frame = headerView.bounds
-            headerView.addSubview(header)
-            
+            header.frame =  CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45)
             header.backgroundColor = UIColor.white
             header.moreBtn.tag = 100 + section
             header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
@@ -171,7 +167,7 @@ extension HDSSL_dMuseumDetailVC {
                     header.moreBtn.setTitle("查看全部", for: .normal)
                 }
             }
-            return headerView
+            return header
         }
         return nil
     }

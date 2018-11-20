@@ -23,6 +23,20 @@
 #import "HD_SSL_BigImageVC.h"
 #import "XHStarRateView.h"
 
+//拍照
+#import "TZImagePickerController.h"
+#import "UIView+Layout.h"
+#import "TZTestCell.h"
+#import <Photos/Photos.h>
+#import "LxGridViewFlowLayout.h"
+#import "TZImageManager.h"
+#import "TZVideoPlayerController.h"
+#import "TZPhotoPreviewController.h"
+#import "TZGifPhotoPreviewController.h"
+#import "TZLocationManager.h"
+#import "TZAssetCell.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+#import "FLAnimatedImage.h"
 
 
 

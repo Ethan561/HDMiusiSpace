@@ -31,6 +31,28 @@
 		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
+		A7441D2D21A2A0D50064E6A6 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7441D0321A2A0D50064E6A6 /* back@2x.png */; };
+		A7441D2E21A2A0D50064E6A6 /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D0421A2A0D50064E6A6 /* TZTestCell.m */; };
+		A7441D2F21A2A0D50064E6A6 /* photo_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7441D0521A2A0D50064E6A6 /* photo_delete@2x.png */; };
+		A7441D3021A2A0D50064E6A6 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D0721A2A0D50064E6A6 /* FLAnimatedImage.m */; };
+		A7441D3121A2A0D50064E6A6 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D0821A2A0D50064E6A6 /* FLAnimatedImageView.m */; };
+		A7441D3221A2A0D50064E6A6 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D0E21A2A0D50064E6A6 /* TZImageCropManager.m */; };
+		A7441D3321A2A0D50064E6A6 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1021A2A0D50064E6A6 /* TZAssetCell.m */; };
+		A7441D3421A2A0D50064E6A6 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1121A2A0D50064E6A6 /* TZVideoPlayerController.m */; };
+		A7441D3521A2A0D50064E6A6 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1221A2A0D50064E6A6 /* TZAssetModel.m */; };
+		A7441D3621A2A0D50064E6A6 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1321A2A0D50064E6A6 /* NSBundle+TZImagePicker.m */; };
+		A7441D3721A2A0D50064E6A6 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1621A2A0D50064E6A6 /* UIView+Layout.m */; };
+		A7441D3821A2A0D50064E6A6 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1721A2A0D50064E6A6 /* TZPhotoPreviewController.m */; };
+		A7441D3921A2A0D50064E6A6 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A7441D1821A2A0D50064E6A6 /* TZImagePickerController.bundle */; };
+		A7441D3A21A2A0D50064E6A6 /* TZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1921A2A0D50064E6A6 /* TZProgressView.m */; };
+		A7441D3B21A2A0D50064E6A6 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1C21A2A0D50064E6A6 /* TZImageManager.m */; };
+		A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1E21A2A0D50064E6A6 /* TZPhotoPickerController.m */; };
+		A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D1F21A2A0D50064E6A6 /* TZPhotoPreviewCell.m */; };
+		A7441D3E21A2A0D50064E6A6 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D2521A2A0D50064E6A6 /* TZImagePickerController.m */; };
+		A7441D3F21A2A0D50064E6A6 /* TZLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D2621A2A0D50064E6A6 /* TZLocationManager.m */; };
+		A7441D4021A2A0D50064E6A6 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D2721A2A0D50064E6A6 /* TZGifPhotoPreviewController.m */; };
+		A7441D4121A2A0D50064E6A6 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7441D2921A2A0D50064E6A6 /* AlbumAddBtn@2x.png */; };
+		A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */; };
 		A74E6FC0219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */; };
 		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
 		A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */; };
@@ -506,6 +528,46 @@
 		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
+		A7441D0321A2A0D50064E6A6 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		A7441D0421A2A0D50064E6A6 /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		A7441D0521A2A0D50064E6A6 /* photo_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_delete@2x.png"; sourceTree = "<group>"; };
+		A7441D0721A2A0D50064E6A6 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		A7441D0821A2A0D50064E6A6 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		A7441D0921A2A0D50064E6A6 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		A7441D0A21A2A0D50064E6A6 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		A7441D0C21A2A0D50064E6A6 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		A7441D0D21A2A0D50064E6A6 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		A7441D0E21A2A0D50064E6A6 /* TZImageCropManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageCropManager.m; sourceTree = "<group>"; };
+		A7441D0F21A2A0D50064E6A6 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		A7441D1021A2A0D50064E6A6 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		A7441D1121A2A0D50064E6A6 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		A7441D1221A2A0D50064E6A6 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		A7441D1321A2A0D50064E6A6 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
+		A7441D1421A2A0D50064E6A6 /* TZLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZLocationManager.h; sourceTree = "<group>"; };
+		A7441D1521A2A0D50064E6A6 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		A7441D1621A2A0D50064E6A6 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		A7441D1721A2A0D50064E6A6 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		A7441D1821A2A0D50064E6A6 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		A7441D1921A2A0D50064E6A6 /* TZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZProgressView.m; sourceTree = "<group>"; };
+		A7441D1A21A2A0D50064E6A6 /* TZGifPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZGifPhotoPreviewController.h; sourceTree = "<group>"; };
+		A7441D1B21A2A0D50064E6A6 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		A7441D1C21A2A0D50064E6A6 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		A7441D1D21A2A0D50064E6A6 /* TZImageCropManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageCropManager.h; sourceTree = "<group>"; };
+		A7441D1E21A2A0D50064E6A6 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		A7441D1F21A2A0D50064E6A6 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		A7441D2021A2A0D50064E6A6 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		A7441D2121A2A0D50064E6A6 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		A7441D2221A2A0D50064E6A6 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		A7441D2321A2A0D50064E6A6 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		A7441D2421A2A0D50064E6A6 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		A7441D2521A2A0D50064E6A6 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		A7441D2621A2A0D50064E6A6 /* TZLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZLocationManager.m; sourceTree = "<group>"; };
+		A7441D2721A2A0D50064E6A6 /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
+		A7441D2821A2A0D50064E6A6 /* TZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZProgressView.h; sourceTree = "<group>"; };
+		A7441D2921A2A0D50064E6A6 /* AlbumAddBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AlbumAddBtn@2x.png"; sourceTree = "<group>"; };
+		A7441D2A21A2A0D50064E6A6 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		A7441D2B21A2A0D50064E6A6 /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
+		A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
 		A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
 		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionDetailVC.swift; sourceTree = "<group>"; };
@@ -1082,6 +1144,69 @@
 				A72DE93E21A142F900F0536F /* HDSSL_commentImgCell.xib */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		A7441D0221A2A0D50064E6A6 /* TZPhotoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				A7441D0321A2A0D50064E6A6 /* back@2x.png */,
+				A7441D2921A2A0D50064E6A6 /* AlbumAddBtn@2x.png */,
+				A7441D0521A2A0D50064E6A6 /* photo_delete@2x.png */,
+				A7441D0621A2A0D50064E6A6 /* FLAnimatedImage */,
+				A7441D0B21A2A0D50064E6A6 /* TZImagePickerController */,
+				A7441D2B21A2A0D50064E6A6 /* TZTestCell.h */,
+				A7441D0421A2A0D50064E6A6 /* TZTestCell.m */,
+				A7441D2A21A2A0D50064E6A6 /* LxGridViewFlowLayout.h */,
+				A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */,
+			);
+			path = TZPhotoPicker;
+			sourceTree = "<group>";
+		};
+		A7441D0621A2A0D50064E6A6 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				A7441D0721A2A0D50064E6A6 /* FLAnimatedImage.m */,
+				A7441D0821A2A0D50064E6A6 /* FLAnimatedImageView.m */,
+				A7441D0921A2A0D50064E6A6 /* FLAnimatedImage.h */,
+				A7441D0A21A2A0D50064E6A6 /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		A7441D0B21A2A0D50064E6A6 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				A7441D1521A2A0D50064E6A6 /* TZImagePickerController.h */,
+				A7441D2521A2A0D50064E6A6 /* TZImagePickerController.m */,
+				A7441D0D21A2A0D50064E6A6 /* TZPhotoPickerController.h */,
+				A7441D0C21A2A0D50064E6A6 /* TZPhotoPreviewCell.h */,
+				A7441D0E21A2A0D50064E6A6 /* TZImageCropManager.m */,
+				A7441D0F21A2A0D50064E6A6 /* TZImageManager.h */,
+				A7441D1021A2A0D50064E6A6 /* TZAssetCell.m */,
+				A7441D1121A2A0D50064E6A6 /* TZVideoPlayerController.m */,
+				A7441D1221A2A0D50064E6A6 /* TZAssetModel.m */,
+				A7441D1321A2A0D50064E6A6 /* NSBundle+TZImagePicker.m */,
+				A7441D1421A2A0D50064E6A6 /* TZLocationManager.h */,
+				A7441D1621A2A0D50064E6A6 /* UIView+Layout.m */,
+				A7441D1721A2A0D50064E6A6 /* TZPhotoPreviewController.m */,
+				A7441D1821A2A0D50064E6A6 /* TZImagePickerController.bundle */,
+				A7441D1921A2A0D50064E6A6 /* TZProgressView.m */,
+				A7441D1A21A2A0D50064E6A6 /* TZGifPhotoPreviewController.h */,
+				A7441D1B21A2A0D50064E6A6 /* TZAssetCell.h */,
+				A7441D1C21A2A0D50064E6A6 /* TZImageManager.m */,
+				A7441D1D21A2A0D50064E6A6 /* TZImageCropManager.h */,
+				A7441D1E21A2A0D50064E6A6 /* TZPhotoPickerController.m */,
+				A7441D1F21A2A0D50064E6A6 /* TZPhotoPreviewCell.m */,
+				A7441D2021A2A0D50064E6A6 /* NSBundle+TZImagePicker.h */,
+				A7441D2121A2A0D50064E6A6 /* TZAssetModel.h */,
+				A7441D2221A2A0D50064E6A6 /* TZVideoPlayerController.h */,
+				A7441D2321A2A0D50064E6A6 /* TZPhotoPreviewController.h */,
+				A7441D2421A2A0D50064E6A6 /* UIView+Layout.h */,
+				A7441D2621A2A0D50064E6A6 /* TZLocationManager.m */,
+				A7441D2721A2A0D50064E6A6 /* TZGifPhotoPreviewController.m */,
+				A7441D2821A2A0D50064E6A6 /* TZProgressView.h */,
+			);
+			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
 		A74E6FBC219A6B26007CD3E7 /* Cell */ = {
@@ -1855,6 +1980,7 @@
 		D6C9FC3F21181EAA007C8E56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				A7441D0221A2A0D50064E6A6 /* TZPhotoPicker */,
 				D62B44E3219A7AE100A977CF /* XHStarRateView */,
 				D6115AA8218FD490004A05DA /* ZFPlayer */,
 				D62277B221368069008F1416 /* MTImagePicker */,
@@ -2513,6 +2639,7 @@
 				D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
+				A7441D2F21A2A0D50064E6A6 /* photo_delete@2x.png in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
 				A799C03D219FF1E900BA526C /* HDSSL_sameMuseumItem.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
@@ -2552,6 +2679,7 @@
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
+				A7441D3921A2A0D50064E6A6 /* TZImagePickerController.bundle in Resources */,
 				D63F8D642199522300686AB3 /* HDCallOutView.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
@@ -2563,6 +2691,7 @@
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
+				A7441D4121A2A0D50064E6A6 /* AlbumAddBtn@2x.png in Resources */,
 				D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */,
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */,
@@ -2573,6 +2702,7 @@
 				A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */,
 				A72DE93C21A1389800F0536F /* HDSSL_commentTextCell.xib in Resources */,
 				D66C35CB213FA80600363D7C /* HDLY_MineInfo_Cell.xib in Resources */,
+				A7441D2D21A2A0D50064E6A6 /* back@2x.png in Resources */,
 				A7AC35BC214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib in Resources */,
 				A79D9D3A219E4AB80081B3AE /* HDSSL_dCommentCell.xib in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
@@ -2740,11 +2870,13 @@
 				D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */,
 				D620E1BD21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift in Sources */,
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
+				A7441D3521A2A0D50064E6A6 /* TZAssetModel.m in Sources */,
 				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D6115AF2218FD490004A05DA /* ZFUtilities.m in Sources */,
 				A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */,
 				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
 				D66EDF9C212AB16A004DACE0 /* CourseListen.swift in Sources */,
+				A7441D3221A2A0D50064E6A6 /* TZImageCropManager.m in Sources */,
 				D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */,
 				A72DE93B21A1389800F0536F /* HDSSL_commentTextCell.swift in Sources */,
 				D6EEDDB12190202D00F730BA /* HDLY_GuideCard2Cell.swift in Sources */,
@@ -2783,6 +2915,7 @@
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
 				D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */,
+				A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */,
 				D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */,
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
@@ -2800,10 +2933,12 @@
 				D6115AFC218FD490004A05DA /* ZFSpeedLoadingView.m in Sources */,
 				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,
 				D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */,
+				A7441D3321A2A0D50064E6A6 /* TZAssetCell.m in Sources */,
 				D62277DC21368069008F1416 /* VideoPickerPreviewCell.swift in Sources */,
 				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
 				A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
+				A7441D3F21A2A0D50064E6A6 /* TZLocationManager.m in Sources */,
 				D6A1E237211C299E00E1E893 /* TStrInt.swift in Sources */,
 				D62277A821367D4D008F1416 /* FadeAnimator.swift in Sources */,
 				D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */,
@@ -2816,6 +2951,7 @@
 				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,
 				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
 				D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */,
+				A7441D3E21A2A0D50064E6A6 /* TZImagePickerController.m in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
@@ -2875,11 +3011,13 @@
 				D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
 				D6115AE7218FD490004A05DA /* ZFOrientationObserver.m in Sources */,
+				A7441D3421A2A0D50064E6A6 /* TZVideoPlayerController.m in Sources */,
 				D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */,
 				D62277A321367D4D008F1416 /* DefaultPageControlPlugin.swift in Sources */,
 				D622779F21367D4D008F1416 /* RawImageButtonPlugin.swift in Sources */,
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
 				D6115AF5218FD490004A05DA /* ZFLandScapeControlView.m in Sources */,
+				A7441D3721A2A0D50064E6A6 /* UIView+Layout.m in Sources */,
 				D620E1BA21A246B90034E258 /* HDLY_FreeListenItem.swift in Sources */,
 				D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */,
 				D66C35D2213FABC200363D7C /* HDLY_MineCourse_CollectionCell.swift in Sources */,
@@ -2893,6 +3031,7 @@
 				D67ABF85212BAD4700276CDE /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */,
 				D6C9FC5B21181F28007C8E56 /* SwiftNotice.swift in Sources */,
+				A7441D3821A2A0D50064E6A6 /* TZPhotoPreviewController.m in Sources */,
 				D620E1C221A2B53C0034E258 /* HDLY_StrategyListCell.swift in Sources */,
 				D61E94C32192D12400C5299F /* HDRouteDrawingView.m in Sources */,
 				D62277DA21368069008F1416 /* MTImagePickerModel.swift in Sources */,
@@ -2902,6 +3041,7 @@
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
 				D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */,
+				A7441D4021A2A0D50064E6A6 /* TZGifPhotoPreviewController.m in Sources */,
 				D62277B121367F12008F1416 /* HDLY_PhotoCell.swift in Sources */,
 				D6115AE8218FD490004A05DA /* ZFPlayerLogManager.m in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
@@ -2925,6 +3065,7 @@
 				D614DFA9211ECA9700A4D459 /* HDItemAPI.swift in Sources */,
 				D6C9FC9021181FD1007C8E56 /* HDFloatingButtonManager.swift in Sources */,
 				D622779D21367D4D008F1416 /* TopMostViewControllerGetter.swift in Sources */,
+				A7441D3B21A2A0D50064E6A6 /* TZImageManager.m in Sources */,
 				D61E94C62192D12400C5299F /* HDMapModel.m in Sources */,
 				D66C35BD213F5E2100363D7C /* HD_LY_Cache.m in Sources */,
 				A73429A1219D4E6800596B35 /* ExhibitionDetailDataModel.swift in Sources */,
@@ -2940,6 +3081,7 @@
 				D6115AFD218FD490004A05DA /* ZFPortraitControlView.m in Sources */,
 				D637568F219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift in Sources */,
 				D61E94C42192D12400C5299F /* HDMapView+AnnView.m in Sources */,
+				A7441D3021A2A0D50064E6A6 /* FLAnimatedImage.m in Sources */,
 				D62277DB21368069008F1416 /* MTImagePickerDataSource.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
 				D66C35C1213F804B00363D7C /* HDLY_MineHome_Header.swift in Sources */,
@@ -2969,11 +3111,13 @@
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
 				A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,
+				A7441D2E21A2A0D50064E6A6 /* TZTestCell.m in Sources */,
 				D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */,
 				A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */,
 				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDetail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */,
+				A7441D3621A2A0D50064E6A6 /* NSBundle+TZImagePicker.m in Sources */,
 				D670D384212575970064750A /* CourseModel.swift in Sources */,
 				D61E94CB2192D12400C5299F /* SDWebImageDecoder.m in Sources */,
 				D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */,
@@ -2985,9 +3129,11 @@
 				A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */,
 				A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
+				A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
 				D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */,
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
+				A7441D3A21A2A0D50064E6A6 /* TZProgressView.m in Sources */,
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
 				A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
@@ -2995,12 +3141,14 @@
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
 				A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */,
+				A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
 				A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */,
+				A7441D3121A2A0D50064E6A6 /* FLAnimatedImageView.m in Sources */,
 				D62277D921368069008F1416 /* MTImagePickerAssetsModel.swift in Sources */,
 				D66C35CE213FAA8600363D7C /* HDLY_MineCourse_Cell.swift in Sources */,
 				D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */,

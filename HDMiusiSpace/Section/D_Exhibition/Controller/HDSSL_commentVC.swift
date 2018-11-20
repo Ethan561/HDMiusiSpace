@@ -311,19 +311,20 @@ extension HDSSL_commentVC:UICollectionViewDataSource,UICollectionViewDelegate{
         return indexPath.item < selectedPhotos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, itemAt sourceIndexPath: IndexPath,canMoveTo destinationIndexPath: IndexPath) -> Bool {
+    
+    func collectionView(_ collectionView: UICollectionView, itemAt indexPathS: IndexPath,canMoveTo indexPathD: IndexPath) -> Bool {
         //
-        return (sourceIndexPath.item < selectedPhotos.count && destinationIndexPath.item < selectedPhotos.count)
+        return (indexPathS.item < selectedPhotos.count && indexPathD.item < selectedPhotos.count)
     }
-    func collectionView(_ collectionView: UICollectionView, itemAt sourceIndexPath: IndexPath, didMoveTo destinationIndexPath: IndexPath) {
-        let image = selectedPhotos[sourceIndexPath.item] as! UIImage
+    func collectionView(_ collectionView: UICollectionView, itemAt indexPathSo: IndexPath, didMoveTo indexPathDe: IndexPath) {
+        let image = selectedPhotos[indexPathSo.item] as! UIImage
         
-        selectedPhotos.removeObject(at: sourceIndexPath.item)
-        selectedPhotos.insert(image, at: destinationIndexPath.item)
+        selectedPhotos.removeObject(at: indexPathSo.item)
+        selectedPhotos.insert(image, at: indexPathDe.item)
         
-        let asset = selectedAssets[sourceIndexPath.item]
-        selectedAssets.removeObject(at: sourceIndexPath.item)
-        selectedAssets.insert(asset, at: destinationIndexPath.item)
+        let asset = selectedAssets[indexPathSo.item]
+        selectedAssets.removeObject(at: indexPathSo.item)
+        selectedAssets.insert(asset, at: indexPathDe.item)
         
         collectionView.reloadData()
     }

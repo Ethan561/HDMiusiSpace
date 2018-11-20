@@ -66,10 +66,12 @@ struct CommentListModel: Codable {
     var imgList: [String]?
     let isLike, likeNum, commentNum: Int
     let commentDate: String
+    let commentId: Int
     
     enum CodingKeys: String, CodingKey {
         case avatar
         case isVip = "is_vip"
+        case commentId = "comment_id"
         case nickname, star, content
         case imgList = "img_list"
         case isLike = "is_like"

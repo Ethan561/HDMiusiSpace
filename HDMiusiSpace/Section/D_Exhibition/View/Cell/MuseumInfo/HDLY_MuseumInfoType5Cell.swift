@@ -13,7 +13,7 @@ protocol HDLY_MuseumInfoType5Cell_Delegate:NSObjectProtocol {
     func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem)
 }
 
-class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HDLY_AudioPlayer_Delegate{
 
     
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -23,7 +23,9 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
         }
     }
     weak var delegate: HDLY_MuseumInfoType5Cell_Delegate?
-    
+    var playModel:DMuseumListenList?
+    var selectRow = -1
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -71,16 +73,18 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
         let cell:HDLY_FreeListenItem = HDLY_FreeListenItem.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
         if self.listArray != nil {
             if self.listArray!.count > 0 {
-                var model = listArray![indexPath.row]
+                let model = listArray![indexPath.row]
                 if  model.img != nil  {
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
                 cell.nameL.text = model.exhibitName
-                if model.isPlaying == true {
-                    cell.playBtn.isSelected = true
-                }else {
-                    cell.playBtn.isSelected = false
+                if playModel != nil {
+                    if playModel?.title == model.title && playModel?.isPlaying == true {
+                        cell.playBtn.isSelected = true
+                    }else {
+                        cell.playBtn.isSelected = false
+                    }
                 }
             }
         }
@@ -89,6 +93,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = listArray![indexPath.row]
+        selectRow = indexPath.row
         let item:HDLY_FreeListenItem = collectionView.cellForItem(at: indexPath) as! HDLY_FreeListenItem
         delegate?.didSelectItemAt(model, item)
         
@@ -118,4 +123,20 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
 }
 
+//MARK: --- Player Control ---
+extension HDLY_MuseumInfoType5Cell {
+    
+    func finishPlaying() {
+        let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_FreeListenItem
+        cell?.playBtn.isSelected = false
+        
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_FreeListenItem
+        DispatchQueue.main.async {
+            cell?.progressV.progress = progress
+        }
+    }
+}
 

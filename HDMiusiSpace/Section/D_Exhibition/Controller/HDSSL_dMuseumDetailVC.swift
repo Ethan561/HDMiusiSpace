@@ -45,7 +45,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         dataRequest()
-        player.delegate = self
+//        player.delegate = self
 
     }
     
@@ -133,9 +133,19 @@ extension HDSSL_dMuseumDetailVC {
         return 0.01
     }
     
+//    UIView *view = [[UIView alloc] initWithFrame:[head frame]];
+//    head.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//    [view addSubview:head];
+//    return view;
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section > 0 {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45))
+            
             let header = HDLY_dMuseumHeader.createViewFromNib() as! HDLY_dMuseumHeader
+            header.frame = headerView.bounds
+            headerView.addSubview(header)
+            
             header.backgroundColor = UIColor.white
             header.moreBtn.tag = 100 + section
             header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
@@ -161,7 +171,7 @@ extension HDSSL_dMuseumDetailVC {
                     header.moreBtn.setTitle("查看全部", for: .normal)
                 }
             }
-            return header
+            return headerView
         }
         return nil
     }
@@ -295,7 +305,7 @@ extension HDSSL_dMuseumDetailVC {
                     let cell: HDLY_MuseumInfoType4Cell  = HDLY_MuseumInfoType4Cell.getMyTableCell(tableV: tableView)
                     cell.delegate = self
                     if model.featured?.list != nil {
-                        cell.listArray = model.featured!.list
+                            cell.listArray = model.featured!.list
                     }
                     return cell
                 }else if model.type == 5 {//免费听
@@ -304,6 +314,8 @@ extension HDSSL_dMuseumDetailVC {
                         cell.listArray = model.listen!.list
                     }
                     cell.delegate = self
+                    cell.playModel = playModel
+                    player.delegate = cell
                     
                     return cell
                 }
@@ -358,27 +370,14 @@ extension HDSSL_dMuseumDetailVC {
 
             }
         }
-    }
-    
-}
-
-//MARK: --- Player Control ---
-extension HDSSL_dMuseumDetailVC {
-    
-    func finishPlaying() {
-        if let cell = playItem {
-            cell.playBtn.isSelected = false
-        }
+//        self.myTableView.reloadData()
+//        //刷新表格视图的分区的头视图
+//        let sec = self.infoModel!.dataList!.count + 1
+//        self.myTableView.reloadSections(IndexSet.init(integer: sec), with: .none)
+        self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.infoModel!.dataList!.count + 1)], with: .none)
         
     }
     
-    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
-        if let cell = playItem {
-            DispatchQueue.main.async {
-                cell.progressV.progress = progress
-            }
-        }
-    }   
 }
 
 

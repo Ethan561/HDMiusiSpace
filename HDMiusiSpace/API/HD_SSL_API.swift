@@ -33,6 +33,11 @@ enum HD_SSL_API {
     
     //获取听过未评论列表
     case getHeartedButCommentList(api_token: String,skip: Int,take: Int)
+    
+    //发布评论
+    case publishCommentWith(api_token: String,exhibitId: Int,star: Int,content: String,imgsPaths:Array<String>)
+    //生成画报
+    case createPaperWith(api_token: String,commentId: Int)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -75,6 +80,12 @@ extension HD_SSL_API: TargetType {
         case .getHeartedButCommentList(api_token: _,skip: _, take: _):
             return "/api/exhibition/uncomment_exhibition"
             
+        case .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _):
+            return "/api/exhibition/exhibition_comment"
+            
+        case .createPaperWith(api_token: _, commentId: _):
+            return "/api/exhibition/save_photo"
+            
         //...
             
             
@@ -85,7 +96,8 @@ extension HD_SSL_API: TargetType {
     //--- 请求类型 ---
     var method: Moya.Method {
         switch self {
-        case .saveSelectedTags(api_token:_,label_id_str: _,deviceno: _):
+        case .saveSelectedTags(api_token:_,label_id_str: _,deviceno: _),
+             .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _):
             
             return  .post
             
@@ -169,6 +181,23 @@ extension HD_SSL_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .publishCommentWith(api_token: let api_token, exhibitId: let exhibitId, star: let star, content: let content, imgsPaths: let imgsPaths):
+            params = params.merging(["api_token": api_token, "exhibition_id": exhibitId,"star":star,"content":content,"uoload_img":imgsPaths], uniquingKeysWith: {$1})
+//            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": "RootSign"] //图片相关的接口直接用RootSign
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+            
+        case .createPaperWith(api_token: let api_token, commentId: let commentId):
+            params = params.merging(["api_token":api_token,"comment_id":commentId], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
             
         //...
             

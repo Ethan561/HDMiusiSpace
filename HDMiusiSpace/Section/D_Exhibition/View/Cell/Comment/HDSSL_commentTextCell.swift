@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias BlockBackStarNumber = (_ number: CGFloat) -> Void   //返回分数
+typealias BlockBackStarNumber = (_ number: Int) -> Void   //返回分数
 
 class HDSSL_commentTextCell: UITableViewCell {
 
@@ -37,11 +37,11 @@ class HDSSL_commentTextCell: UITableViewCell {
         starSlider = XHStarRateView.init(frame: cell_starBg.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true,andForegroundImg:"zlpl_star_red" , finish: { (index) in
             
             weak var weakself = self
-            let starNum = 5.0 + index
+            let starNum = 2 * index
             
-            weakself?.cell_starNumL.text = String.init(format: "%.1f", starNum)
+            weakself?.cell_starNumL.text = String.init(format: "%d", starNum)
             if weakself?.blockBackStarNum != nil {
-                weakself?.blockBackStarNum!(starNum)
+                weakself?.blockBackStarNum!(Int(starNum))
             }
         })
         cell_starBg.addSubview(starSlider)

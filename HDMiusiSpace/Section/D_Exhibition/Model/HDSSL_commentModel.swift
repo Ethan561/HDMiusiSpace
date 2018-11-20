@@ -18,3 +18,22 @@ struct HDSSL_uncommentModel: Codable {
     var look_time          : String? //上次查看时间
     var title              : String?
 }
+//发布评论
+struct HDSSL_backCommentModel: Codable {
+    var status      : Int?
+    var msg         : String?
+    var data        : HDSSL_commentResultModel?
+}
+struct HDSSL_commentResultModel: Codable {
+    var comment_id             : Int?//评论id
+    var exhibition_list        : [HDSSL_uncommentModel]? //待评论
+    var html_url               : String? //分享url
+}
+
+//生成画报
+struct HDSSL_PaperModel: Codable {
+    var status      : Int?
+    var msg         : String?
+    var data        : String?
+}
+

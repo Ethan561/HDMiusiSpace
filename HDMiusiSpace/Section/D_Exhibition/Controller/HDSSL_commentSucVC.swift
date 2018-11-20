@@ -9,17 +9,22 @@
 import UIKit
 
 class HDSSL_commentSucVC: HDItemBaseVC {
-
+    //传递参数
+    var commentId: Int? //发布成功，返回评论id
+    var htmlShareUrl:String? //发布成功，返回分享地址
+    
     @IBOutlet weak var btn_sharePaper: UIButton!
     @IBOutlet weak var btn_shareMyComment: UIButton!
     @IBOutlet weak var dTableView: UITableView!
+    
+    var isShowMore: Bool = false
     
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
     var dataArray: [HDSSL_uncommentModel]? = Array.init()
     
+    var paperPath: String? //画报地址
     
-    var isShowMore: Bool = false
     
     override func viewDidLoad() {
         isHideBackBtn = true
@@ -30,7 +35,7 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         //
         bindViewModel()
         
-        //
+        //请求数据
         viewModel.request_getNerverCommentList(skip: 0, take: 100, vc: self)
     }
     //mvvm
@@ -45,6 +50,22 @@ class HDSSL_commentSucVC: HDItemBaseVC {
             
         }
         
+        //画报
+        viewModel.paperModel.bind { (paper) in
+            
+            weakSelf?.jumpPaperVC(model: paper)
+            
+        }
+        
+    }
+    func jumpPaperVC(model: HDSSL_PaperModel)  {
+        
+        self.paperPath = model.data!
+        
+        let commentSvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_shareCommentVC") as! HDSSL_shareCommentVC
+        commentSvc.imgPath = self.paperPath
+        
+        self.navigationController?.pushViewController(commentSvc, animated: true)
     }
     func dealData(data:[HDSSL_uncommentModel]) {
         //
@@ -82,12 +103,18 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     @IBAction func action_sharePaper(_ sender: Any) {
+        //1、请求生成图片、2、跳页显示画报
+        request_createPaper()
         
     }
     @IBAction func action_shareMyComment(_ sender: Any) {
         
     }
     
+    func request_createPaper() {
+        //
+        viewModel.request_createPaper(api_token: HDDeclare.shared.api_token!, commentId: self.commentId!, vc: self)
+    }
     
     /*
     // MARK: - Navigation

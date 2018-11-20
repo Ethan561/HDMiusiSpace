@@ -24,7 +24,7 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
         self.title = "快速注册"
         loginBtn.layer.cornerRadius = 23
         HDLY_UserModel.shared.getDeviceNum()
-        phoneTF.keyboardType = .numberPad
+        phoneTF.keyboardType = .emailAddress
         phoneTF.returnKeyType = .done
         phoneTF.delegate = self
         smsTF.keyboardType = .numberPad

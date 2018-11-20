@@ -15,7 +15,7 @@ class HDRootEVC: HDItemBaseVC {
     @IBOutlet weak var myTableView: UITableView!
     let declare:HDDeclare = HDDeclare.shared
     
-    let tabHeader:HDLY_MineHome_Header = HDLY_MineHome_Header.createViewFromNib() as! HDLY_MineHome_Header
+    var tabHeader = HDLY_MineHome_Header()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,13 @@ class HDRootEVC: HDItemBaseVC {
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        //
-        myTableView.tableHeaderView = tabHeader
-        myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 140)
+        
+        tabHeader = HDLY_MineHome_Header.createViewFromNib() as! HDLY_MineHome_Header
+        tabHeader.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 180)
+        tabHeader.delegate = self
+        let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 180))
+        v.addSubview(tabHeader)
+        myTableView.tableHeaderView = v
         tabHeader.loginBtn.addTarget(self, action: #selector(loginBtnAction), for: UIControlEvents.touchUpInside)
         tabHeader.userInfoBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
         
@@ -110,20 +114,20 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     
-    //header
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    //footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
+//    //header
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        return nil
+//    }
+//    //footer
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.01
+//    }
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        return nil
+//    }
     
     //row
     
@@ -144,7 +148,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         
         if section == 0 {
             if index == 0 {//会员
-                return 120*ScreenWidth/375.0
+                return 120
             }else if index == 1 {//我的钱包
                 return 60
             }else if index == 2 {//我的订单
@@ -212,5 +216,22 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-
+extension HDRootEVC: HDLY_MineHome_Header_Delegate {
+    func pushToMyDetails(type: Int) {
+        switch type {
+        case 0:
+            print(1)
+        case 1:
+            print(2)
+        case 2:
+            print(3)
+        case 3:
+            print(4)
+        default:
+            break
+        }
+    }
+    
+    
+}
 

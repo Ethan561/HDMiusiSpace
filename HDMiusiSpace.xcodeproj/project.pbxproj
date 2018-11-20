@@ -76,6 +76,10 @@
 		A79D9D3A219E4AB80081B3AE /* HDSSL_dCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */; };
 		A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */; };
 		A7A90A5A21A3A1C4005BD37F /* HDSSL_commentSucVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A5921A3A1C4005BD37F /* HDSSL_commentSucVC.swift */; };
+		A7A90A5D21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A5B21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift */; };
+		A7A90A5E21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7A90A5C21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib */; };
+		A7A90A6021A3D4D2005BD37F /* HDSSL_commentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A5F21A3D4D2005BD37F /* HDSSL_commentVM.swift */; };
+		A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */; };
 		A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */; };
 		A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */; };
 		A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */; };
@@ -592,6 +596,10 @@
 		A79D9D38219E4AB80081B3AE /* HDSSL_dCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dCommentCell.xib; sourceTree = "<group>"; };
 		A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_API.swift; sourceTree = "<group>"; };
 		A7A90A5921A3A1C4005BD37F /* HDSSL_commentSucVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentSucVC.swift; sourceTree = "<group>"; };
+		A7A90A5B21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_neverCommentCell.swift; sourceTree = "<group>"; };
+		A7A90A5C21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_neverCommentCell.xib; sourceTree = "<group>"; };
+		A7A90A5F21A3D4D2005BD37F /* HDSSL_commentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentVM.swift; sourceTree = "<group>"; };
+		A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentModel.swift; sourceTree = "<group>"; };
 		A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_newsCell.swift; sourceTree = "<group>"; };
 		A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_newsCell.xib; sourceTree = "<group>"; };
 		A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_ClassCell.swift; sourceTree = "<group>"; };
@@ -1144,6 +1152,8 @@
 				A72DE93A21A1389800F0536F /* HDSSL_commentTextCell.xib */,
 				A72DE93D21A142F900F0536F /* HDSSL_commentImgCell.swift */,
 				A72DE93E21A142F900F0536F /* HDSSL_commentImgCell.xib */,
+				A7A90A5B21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift */,
+				A7A90A5C21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -2384,6 +2394,7 @@
 				A7B982EC2196766A00AF0266 /* CountyDataModel.swift */,
 				A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */,
 				D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */,
+				A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2394,6 +2405,7 @@
 				A756C8372191858600C1747A /* RootDViewModel.swift */,
 				A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */,
 				A734299E219D463800596B35 /* HDSSL_ExDetailVM.swift */,
+				A7A90A5F21A3D4D2005BD37F /* HDSSL_commentVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2697,6 +2709,7 @@
 				A7441D4121A2A0D50064E6A6 /* AlbumAddBtn@2x.png in Resources */,
 				D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */,
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
+				A7A90A5E21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib in Resources */,
 				A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6375688219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib in Resources */,
@@ -2907,6 +2920,7 @@
 				D6115AF6218FD490004A05DA /* ZFNetworkSpeedMonitor.m in Sources */,
 				A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */,
 				D637567B219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift in Sources */,
+				A7A90A5D21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift in Sources */,
 				D62277A221367D4D008F1416 /* PhotoBrowserPresentationController.swift in Sources */,
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
@@ -3092,6 +3106,7 @@
 				D6115AEB218FD490004A05DA /* ZFFloatView.m in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
+				A7A90A6021A3D4D2005BD37F /* HDSSL_commentVM.swift in Sources */,
 				D68D54182133A9CD000CD258 /* HDLY_UserModel.swift in Sources */,
 				D61E94CE2192D12400C5299F /* UIImage+GIF.m in Sources */,
 				D6115AF9218FD490004A05DA /* ZFPlayerControlView.m in Sources */,
@@ -3131,6 +3146,7 @@
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,
 				A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */,
+				A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */,
 				A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */,

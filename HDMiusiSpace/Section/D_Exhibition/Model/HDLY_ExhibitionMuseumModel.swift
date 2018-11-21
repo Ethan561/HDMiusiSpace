@@ -28,6 +28,8 @@ struct ExhibitionMuseumData: Codable {
     var dataList: [DataList]?
     var museum_id: Int?
     var share_url: String?
+    var longitude: String?
+    var latitude: String?
     
     enum CodingKeys: String, CodingKey {
         case img
@@ -42,6 +44,8 @@ struct ExhibitionMuseumData: Codable {
         case dataList = "data_list"
         case museum_id
         case share_url
+        case longitude
+        case latitude
     }
 }
 

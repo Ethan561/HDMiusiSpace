@@ -16,6 +16,12 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
+    
+    @IBOutlet weak var navBgView: UIView!
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navHeightCons: NSLayoutConstraint!
+    @IBOutlet weak var backBtn: UIButton!
+    
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
 
@@ -45,11 +51,21 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
-        myTableView.separatorStyle = .none
+//        myTableView.separatorStyle = .none
         dataRequest()
         likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
         likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
         bindViewModel()
+        //
+        navHeightCons.constant = kTopHeight
+        navView.backgroundColor = UIColor.clear
+        navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        navBgView.isHidden = true
+        
+        if HDLY_LocationTool.shared.city == nil {
+            HDLY_LocationTool.shared.startLocation()
+        }
+        
     }
     
     //MVVM
@@ -349,6 +365,7 @@ extension HDSSL_dMuseumDetailVC {
                 }else if indexPath.row == 3 {
                     name = "地址："
                     title = self.infoModel?.address
+                    cell.accessoryType = .disclosureIndicator
                 }
                 cell.cell_nameL.text = name
                 cell.cell_titleL.text = title
@@ -416,6 +433,37 @@ extension HDSSL_dMuseumDetailVC {
                 } else if model.type == 3 {//相关活动
                     
                 }
+            }
+        }
+        if indexPath.section == 0 && indexPath.row == 3 {
+            if self.infoModel?.latitude != nil && self.infoModel?.longitude != nil {
+                let endLoc: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(Float(self.infoModel!.latitude!) ?? 0), longitude: CLLocationDegrees.init(Float(self.infoModel!.longitude!) ?? 0))
+                let name = self.infoModel?.title
+                
+                let alertController = UIAlertController(title: nil,
+                                                        message: nil, preferredStyle: .actionSheet)
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                
+                let okAction1 = UIAlertAction(title: "使用苹果自带地图导航", style: .default, handler: {
+                    action in
+                    HDLY_LocationTool.onNavForIOSMap(fromLoc: HDLY_LocationTool.shared.coordinate!, endLoc: endLoc, endLocName: name!)
+
+                })
+                let okAction2 = UIAlertAction(title: "使用百度地图导航", style: .default, handler: {
+                    action in
+                    let startLoc = HDLY_LocationTool.shared.coordinate!
+                    
+                    let urlStr = "baidumap://map/direction?origin=latlng:\(startLoc.latitude),\(startLoc.longitude)|name:我的位置&destination=latlng:\(endLoc.latitude),\(endLoc.longitude)|name:\(name!)&mode=driving"
+                    let encodingUrl = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+                    
+                    UIApplication.shared.openURL(URL.init(string: encodingUrl)!)
+                    
+                })
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction1)
+                alertController.addAction(okAction2)
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -542,5 +590,35 @@ extension HDSSL_dMuseumDetailVC {
 }
 
 
+let kTableHeaderViewH = 250*ScreenWidth/375.0
+
+//滑动显示控制
+extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //       LOG("*****:\(scrollView.contentOffset.y)")
+        if self.myTableView == scrollView {
+            let offSetY = scrollView.contentOffset.y
+            if offSetY >= kTableHeaderViewH {
+                navBgView.isHidden = false
+                backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
+                errorBtn.setImage(UIImage.init(named: "icon_baocuo_black"), for: .normal)
+                shareBtn.setImage(UIImage.init(named: "xz_icon_share_black_default"), for: .normal)
+                if likeBtn.isSelected == false {
+                    likeBtn.setImage(UIImage.init(named: "Star_black"), for: .normal)
+                }
+                
+            } else {
+                navBgView.isHidden = true
+                backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
+                errorBtn.setImage(UIImage.init(named: "icon_baocuo_white"), for: .normal)
+                shareBtn.setImage(UIImage.init(named: "xz_icon_share_white_default"), for: .normal)
+                if likeBtn.isSelected == false {
+                    likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+                }
+            }
+        }
+    }
+}
 
 

@@ -40,7 +40,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         }
         self.dataRequest()
         addRefresh()
-
+        
     }
     
     func addRefresh() {

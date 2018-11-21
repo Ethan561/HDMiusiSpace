@@ -152,6 +152,8 @@
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
 		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
 		D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */; };
+		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
+		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
@@ -707,6 +709,8 @@
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
 		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
 		D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumSubVC.swift; sourceTree = "<group>"; };
+		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
+		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
@@ -1111,6 +1115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */,
 				D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */,
 				D66C35BF213F5E3800363D7C /* libsqlite3.0.tbd in Frameworks */,
@@ -1138,6 +1143,7 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D619533E21A545880039D151 /* MapKit.framework */,
 				A7A90A6521A3E934005BD37F /* UIKit.framework */,
 				D62F65D4219914D000D32544 /* CoreLocation.framework */,
 				D66C35BE213F5E3800363D7C /* libsqlite3.0.tbd */,
@@ -2112,6 +2118,7 @@
 				D61E947C2192CA0200C5299F /* QRCode */,
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
 				D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */,
+				D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */,
 				D6C9FC7021181FD1007C8E56 /* Network */,
 				D6C9FC7A21181FD1007C8E56 /* HDFloatingButton */,
 				D6C9FC7E21181FD1007C8E56 /* HDEmptyView */,
@@ -2978,6 +2985,7 @@
 				D637568B219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
+				D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */,
 				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
 				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,

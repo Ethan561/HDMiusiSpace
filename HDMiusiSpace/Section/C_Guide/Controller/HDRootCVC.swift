@@ -9,14 +9,14 @@
 import UIKit
 
 class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
-
+    
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
     @IBOutlet weak var btn_location: UIButton!
-
+    
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:100, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         

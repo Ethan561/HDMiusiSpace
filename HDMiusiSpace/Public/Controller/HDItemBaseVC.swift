@@ -27,7 +27,7 @@ class HDItemBaseVC: UIViewController {
          setupNavigationBar()
         navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName:TitleFont] as [NSAttributedStringKey : Any]
             
-            //[NSForegroundColorAttributeName:UIColor.white]
+         //[NSForegroundColorAttributeName:UIColor.white]
 //
 //        navigationController?.navigationBar.barTintColor = UIColor(red: 66/256.0, green: 176/256.0, blue: 216/256.0, alpha: 1)
 //

@@ -8,7 +8,8 @@
 
 import UIKit
 
-typealias BlockBackStarNumber = (_ number: CGFloat) -> Void   //返回分数
+typealias BlockBackStarNumber = (_ number: Int) -> Void   //返回分数
+typealias BlockBackCommentText = (_ text: String) -> Void //返回评论内容
 
 class HDSSL_commentTextCell: UITableViewCell {
 
@@ -22,6 +23,7 @@ class HDSSL_commentTextCell: UITableViewCell {
     var starSlider : XHStarRateView! //评星View
     
     var blockBackStarNum: BlockBackStarNumber?
+    var blockBackCommentText:BlockBackCommentText?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,14 +39,21 @@ class HDSSL_commentTextCell: UITableViewCell {
         starSlider = XHStarRateView.init(frame: cell_starBg.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true,andForegroundImg:"zlpl_star_red" , finish: { (index) in
             
             weak var weakself = self
-            let starNum = 5.0 + index
+            let starNum = 2 * index
             
-            weakself?.cell_starNumL.text = String.init(format: "%.1f", starNum)
+            weakself?.cell_starNumL.text = String.init(format: "%d", starNum)
             if weakself?.blockBackStarNum != nil {
-                weakself?.blockBackStarNum!(starNum)
+                weakself?.blockBackStarNum!(Int(starNum))
             }
         })
         cell_starBg.addSubview(starSlider)
+        
+        //
+        cell_inputText.delegate = self
+        if cell_inputText.text == "亲，展品丰富吗，环境如何，性价比怎么样？" {
+            cell_inputText.textColor = UIColor.lightGray
+            cell_textCountL.text = "0/300"
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -65,5 +74,57 @@ class HDSSL_commentTextCell: UITableViewCell {
     
     func BlockBackStarNumber(block: @escaping BlockBackStarNumber) {
         blockBackStarNum = block
+    }
+    func BlockBackCommentText(block: @escaping BlockBackCommentText) {
+        blockBackCommentText = block
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        cell_inputText.resignFirstResponder()
+    }
+}
+
+extension HDSSL_commentTextCell:UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "亲，展品丰富吗，环境如何，性价比怎么样？" {
+            textView.text = ""
+        }
+        textView.textColor = UIColor.black
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        //返回文本，计算字数
+        print(textView.text.count)
+        cell_textCountL.text = String.init(format: "%d/300", textView.text.count)
+        
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        //返回文本，计算字数
+        print(textView.text.count)
+        
+        if textView.text == "" {
+            textView.text = "亲，展品丰富吗，环境如何，性价比怎么样？"
+            textView.textColor = UIColor.lightGray
+        }
+        weak var weakself = self
+        let str = textView.text == "亲，展品丰富吗，环境如何，性价比怎么样？" ? "" : textView.text
+        
+        if weakself?.blockBackCommentText != nil {
+            weakself?.blockBackCommentText!(str!)
+        }
+        
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            
+            return false
+        }
+        
+        if textView.text.count >= 300 {
+            return false
+        }
+        
+        return true
     }
 }

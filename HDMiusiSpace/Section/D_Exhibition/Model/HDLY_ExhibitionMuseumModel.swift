@@ -26,6 +26,8 @@ struct ExhibitionMuseumData: Codable {
     var isTourGuide: Int?
     var tourGuide: String?
     var dataList: [DataList]?
+    var museum_id: Int?
+    var share_url: String?
     
     enum CodingKeys: String, CodingKey {
         case img
@@ -38,6 +40,8 @@ struct ExhibitionMuseumData: Codable {
         case isTourGuide = "is_tour_guide"
         case tourGuide = "tour_guide"
         case dataList = "data_list"
+        case museum_id
+        case share_url
     }
 }
 

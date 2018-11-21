@@ -15,6 +15,7 @@ struct ExhibitionDetailDataModel: Codable {
 }
 
 struct DetailDataModel: Codable {
+
     var imgList: [String]?
     var isFavorite: Int?
     var title: String?
@@ -27,8 +28,13 @@ struct DetailDataModel: Codable {
     var exhibitHTML: String?
     var commentList: CommentList?
     var dataList: [DataList]?
-    
+    var exhibition_id: Int?
+    var share_url: String?
+    var museum_id: Int?
+
+
     enum CodingKeys: String, CodingKey {
+        
         case imgList = "img_list"
         case isFavorite = "is_favorite"
         case title, star, time
@@ -42,6 +48,7 @@ struct DetailDataModel: Codable {
         case exhibitHTML = "exhibit_html"
         case commentList = "comment_list"
         case dataList = "data_list"
+
     }
 }
 

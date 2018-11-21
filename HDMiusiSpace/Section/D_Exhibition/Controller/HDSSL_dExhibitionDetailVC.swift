@@ -10,7 +10,7 @@ import UIKit
 
 let kBannerHeight = ScreenWidth*250/375.0
 
-class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
+class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate {
     //接收
     var exhibition_id: Int?
     var exhibitionCellH: Double?
@@ -21,14 +21,20 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
     @IBOutlet weak var bannerNumL: UILabel!
-    
+    @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var errorBtn: UIButton!
 
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     //
     var exdataModel: ExhibitionDetailDataModel?
     //
     var bannerView: ScrollBannerView!//banner
     var bannerImgArr: [String]? = Array.init() //轮播图数组
     var imgsArr: Array<String>?
+    let player = HDLY_AudioPlayer.shared
+    var playModel: DMuseumListenList?
     
     //评论
     var commentArr: [CommentListModel]? = Array.init()
@@ -54,6 +60,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         setupBannerView()
         //
         setupdTableView()
+        likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+        likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
+        
     }
     
     //MARK: 加载数据
@@ -73,7 +82,14 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
             weakSelf?.showViewData()
             
         }
-        
+        //收藏
+        publicViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.likeBtn.isSelected = false
+            } else {
+                weakSelf?.likeBtn.isSelected = true
+            }
+        }
     }
     //处理返回数据
     func showViewData() {
@@ -95,6 +111,42 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
         print(sender.tag)
     }
     
+    @IBAction func likeBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        if self.exdataModel?.data?.exhibition_id != nil {
+            publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: "\(self.exdataModel!.data!.exhibition_id!)", cate_id: "7", self)
+        }
+    }
+    
+    @IBAction func shareBtnAction(_ sender: UIButton) {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+    }
+    
+    @IBAction func errorBtnAction(_ sender: UIButton) {
+        //报错
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+        if self.exdataModel?.data?.exhibition_id != nil {
+            vc.articleID = "\(self.exdataModel!.data!.exhibition_id!)"
+        }
+        vc.typeID = "6"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
+        if parent == nil {
+            player.stop()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -106,6 +158,45 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC {
     */
 
 }
+
+extension HDSSL_dExhibitionDetailVC: UMShareDelegate {
+    func shareDelegate(platformType: UMSocialPlatformType) {
+        
+        guard let url  = self.exdataModel?.data?.share_url else {
+            return
+        }
+        
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = url
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.exdataModel?.data!.title!, descr: self.exdataModel?.data?.museumTitle!, thumImage: thumbURL)
+        
+        //设置网页地址
+        shareObject?.webpageUrl = url
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject
+        
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+            }
+        }
+    }
+}
+
 
 extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
     //MARK:---显示banner View
@@ -268,7 +359,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 if index == 0 {
                     let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
                     commentvc.exdataModel = self.exdataModel
+                    commentvc.exhibition_id = self.exhibition_id
                     self.navigationController?.pushViewController(commentvc, animated: true)
+                }else {
+                    // 1全部，2有图
+                    let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
+                    commentListvc.listType = index
+                    self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }
             return commentHeader
@@ -297,6 +394,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             normalHeader.BlockShowmore { (index) in
                 print(index)
                 //查看更多
+                self.moreBtnAction(index)
             }
             return normalHeader
         }
@@ -441,6 +539,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 return cell!
             }else if model.type == 4 {//精选推荐
                 let cell: HDLY_MuseumInfoType4Cell  = HDLY_MuseumInfoType4Cell.getMyTableCell(tableV: tableView)
+                cell.delegate = self
+
                 if model.featured?.list != nil {
                     cell.listArray = model.featured!.list
                 }
@@ -450,6 +550,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 if model.listen?.list != nil {
                     cell.listArray = model.listen!.list
                 }
+                cell.delegate = self
+                cell.playModel = playModel
+                player.delegate = cell
                 return cell
             }
         }
@@ -457,6 +560,54 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         return cell
         
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section > 2 {
+            let arr = self.exdataModel?.data?.dataList!
+            let model = arr![indexPath.section-3]
+            if model.type == 2 {//展览攻略
+                if model.raiders?.strategyID != nil {
+                    self.showRelatedStrategyVC(exhibitionID: model.raiders!.strategyID!)
+                }
+            }
+        }
+    }
+    
+    //HDLY_MuseumInfoType4Cell_Delegate
+    
+    func didSelectItemAt(_ model:DMuseumFeaturedList, _ cell: HDLY_MuseumInfoType4Cell) {
+        showRecomendDetailVC(classID: model.classID ?? 0)
+    }
+    
+    //HDLY_MuseumInfoType5Cell_Delegate
+    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem) {
+        if model.title == playModel?.title {
+            if player.state == .playing {
+                player.pause()
+                cell.playBtn.isSelected = false
+                playModel?.isPlaying = false
+            }else {
+                player.play()
+                cell.playBtn.isSelected = true
+                playModel?.isPlaying = true
+                
+            }
+        } else {
+            guard let video = model.audio else {return}
+            if video.isEmpty == false && video.contains(".mp3") {
+                player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+                player.url = video
+                self.playModel = model
+                cell.playBtn.isSelected = true
+                playModel?.isPlaying = true
+            }
+        }
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.exdataModel!.data!.dataList!.count + 2)], with: .none)
+        
+    }
+    
     
     func setupdTableView()  {
         //
@@ -570,4 +721,63 @@ extension HDSSL_dExhibitionDetailVC{
         }
     }
 }
+
+extension HDSSL_dExhibitionDetailVC {
+    //更多界面
+    @objc func moreBtnAction(_ section: Int) {
+        let arr = self.exdataModel?.data?.dataList!
+        let model = arr![section-3]
+        
+        var titleStr: String?
+        
+        if model.type == 1{
+            let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SameExhibitionListVC") as! HDLY_SameExhibitionListVC
+            vc.museumId = self.exdataModel?.data?.museum_id ?? 0
+            vc.titleName = "同馆展览-" + self.exdataModel!.data!.museumTitle!
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if model.type == 2{
+            let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_StrategyListVC") as! HDLY_StrategyListVC
+            vc.museumId = self.exdataModel?.data?.museum_id ?? 0
+            vc.titleName = "展览攻略"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if model.type == 3{
+            titleStr = "相关活动"
+        }else if model.type == 4{
+            titleStr = "精选推荐"
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else if model.type == 5{
+            titleStr = "免费听"
+            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+            vc.museum_id = self.exdataModel!.data!.museum_id ?? 0
+            vc.titleName = self.exdataModel?.data?.title ?? ""
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func showExhibitionDetailVC(exhibitionID: Int) {
+        //展览详情
+        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+        let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+        vc.exhibition_id = exhibitionID
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //展览攻略详情
+    func showRelatedStrategyVC(exhibitionID: Int)  {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+        vc.topic_id = "\(exhibitionID)"
+        vc.fromRootAChoiceness = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //精选推荐详情
+    func showRecomendDetailVC(classID: Int) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = "\(classID)"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 

@@ -16,6 +16,9 @@ class HDSSL_commentVM: NSObject {
     //生成画报
     var paperModel: Bindable = Bindable(HDSSL_PaperModel())
     
+    //ExComListModel
+    var exComListModel: Bindable = Bindable(ExComListModel())
+    
     //请求
     func request_getNerverCommentList(skip: Int,take: Int,vc: HDItemBaseVC) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getHeartedButCommentList(api_token: HDDeclare.shared.api_token!, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
@@ -70,6 +73,26 @@ class HDSSL_commentVM: NSObject {
             let model: HDSSL_PaperModel = try! jsonDecoder.decode(HDSSL_PaperModel.self, from: result)
             
             self.paperModel.value = model
+            
+            
+        }) { (errorCode, msg) in
+            //
+        }
+        
+    }
+    
+    //请求评论列表
+    func request_getExhibitionCommentList(type:Int,skip: Int,take: Int,exhibitionID: Int,vc: HDItemBaseVC) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getExhibitionCommentList(api_token: HDDeclare.shared.api_token!, skip: skip, take: take, type: type, exhibitionID: exhibitionID), showHud: true, loadingVC: vc, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            let model: HDSSL_commentListModel = try! jsonDecoder.decode(HDSSL_commentListModel.self, from: result)
+            
+            self.exComListModel.value = model.data!
             
             
         }) { (errorCode, msg) in

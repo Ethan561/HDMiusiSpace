@@ -365,6 +365,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     // 1全部，2有图
                     let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
                     commentListvc.listType = index
+                    commentListvc.exhibition_id = self.exhibition_id!
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }

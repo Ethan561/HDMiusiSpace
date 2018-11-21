@@ -153,7 +153,8 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             LOG("\(String(describing: dic))")
             
             let sex: String = dic!["data"] as! String
-          
+            self.genderL.text = sex == "1" ?  "男" : "女"
+            self.declare.gender = self.genderL.text
              self.genderTipView.sureBlock = nil
         }) { (errorCode, msg) in
             self.genderTipView.sureBlock = nil

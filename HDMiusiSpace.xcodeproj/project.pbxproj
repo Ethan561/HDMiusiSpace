@@ -90,6 +90,7 @@
 		A7AC35BC214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35BA214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib */; };
 		A7AC35BF214A521A004E8BC1 /* HDSSL_MuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */; };
 		A7AC35C0214A521A004E8BC1 /* HDSSL_MuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */; };
+		A7B8447621A4E83B00FC8465 /* HDSSL_commentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8447521A4E83B00FC8465 /* HDSSL_commentListVC.swift */; };
 		A7B982E92196699600AF0266 /* WorldRecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982E82196699600AF0266 /* WorldRecentCell.swift */; };
 		A7B982EB2196715F00AF0266 /* WorldHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EA2196715F00AF0266 /* WorldHotCell.swift */; };
 		A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EC2196766A00AF0266 /* CountyDataModel.swift */; };
@@ -614,6 +615,7 @@
 		A7AC35BA214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_ExhibitionCell.xib; sourceTree = "<group>"; };
 		A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MuseumCell.swift; sourceTree = "<group>"; };
 		A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_MuseumCell.xib; sourceTree = "<group>"; };
+		A7B8447521A4E83B00FC8465 /* HDSSL_commentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentListVC.swift; sourceTree = "<group>"; };
 		A7B982E82196699600AF0266 /* WorldRecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldRecentCell.swift; sourceTree = "<group>"; };
 		A7B982EA2196715F00AF0266 /* WorldHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHotCell.swift; sourceTree = "<group>"; };
 		A7B982EC2196766A00AF0266 /* CountyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyDataModel.swift; sourceTree = "<group>"; };
@@ -2346,6 +2348,7 @@
 				A72DE93621A132E000F0536F /* HDSSL_commentVC.swift */,
 				A7A90A5921A3A1C4005BD37F /* HDSSL_commentSucVC.swift */,
 				A7A90A6321A3E17D005BD37F /* HDSSL_shareCommentVC.swift */,
+				A7B8447521A4E83B00FC8465 /* HDSSL_commentListVC.swift */,
 				D620E1BC21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift */,
 				D620E1BE21A2B2CD0034E258 /* HDLY_StrategyListVC.swift */,
 			);
@@ -3170,6 +3173,7 @@
 				D6C9FC9121181FD1007C8E56 /* HDEmptyView.swift in Sources */,
 				A7441D3A21A2A0D50064E6A6 /* TZProgressView.m in Sources */,
 				D66A8A5A212E3B81009A879F /* HDLY_ListenComment_Header.swift in Sources */,
+				A7B8447621A4E83B00FC8465 /* HDSSL_commentListVC.swift in Sources */,
 				A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */,

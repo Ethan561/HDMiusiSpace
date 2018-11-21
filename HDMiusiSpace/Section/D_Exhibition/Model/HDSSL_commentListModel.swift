@@ -52,6 +52,7 @@ struct ExCommentModel: Codable {
 }
 
 struct ReplyCommentModel: Codable {
+    var return_id: Int?
     var avatar: String?
     var nickname: String?
     var likeNum: Int?

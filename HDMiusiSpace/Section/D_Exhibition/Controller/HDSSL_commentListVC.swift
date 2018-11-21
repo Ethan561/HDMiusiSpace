@@ -59,6 +59,9 @@ class HDSSL_commentListVC: HDItemBaseVC {
         self.picCommentCount = model.imgNum
         self.commentArray = model.list!
         
+        btn_all.setTitle(String.init(format: "全部(%d)", allCommentCount ?? 0), for: .normal)
+        btn_pic.setTitle(String.init(format: "有图(%d)", picCommentCount ?? 0), for: .normal)
+
         dTableView.reloadData()
         
     }

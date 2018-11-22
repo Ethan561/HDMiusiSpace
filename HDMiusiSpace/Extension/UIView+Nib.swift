@@ -122,5 +122,15 @@ extension UIView {
 }
 
 
+//
+
+extension UIView {
+    
+    func removeAllSubviews() {
+        for v in self.subviews {
+            v.removeFromSuperview()
+        }
+    }
+}
 
 

@@ -67,9 +67,7 @@ class HDSSL_sameMuseumCell: UITableViewCell {
         self.collectView.register(UINib.init(nibName: HDSSL_sameMuseumItem.className, bundle: nil), forCellWithReuseIdentifier: HDSSL_sameMuseumItem.className)
         self.collectView.delegate = self
         self.collectView.dataSource = self
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
-            self.collectView.reloadData()
-        }
+//        self.collectView.reloadData()
     }
 }
 extension HDSSL_sameMuseumCell :UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -93,6 +91,7 @@ extension HDSSL_sameMuseumCell :UICollectionViewDelegate,UICollectionViewDataSou
                 cell.item_title.text = String.init(format: "%@", model.title)
                 cell.item_loc.text = String.init(format: "%@", model.address)
                 cell.item_starNum.text = String.init(format: "%.1f", model.star)
+                cell.item_iconBg.removeAllSubviews()
                 cell.item_iconBg.addSubview(self.getImagesWith(arr: model.iconList!, frame: cell.item_iconBg.bounds)) //icon list
                 cell.item_star.image = UIImage.init(named: self.getStarImgName(model.star))
             }

@@ -54,9 +54,13 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         super.viewWillAppear(animated)
         
         //刷新选中的城市
-        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         
-        if str.count > 0 {
+        guard str != nil else {
+            return
+        }
+        
+        if str!.count > 0 {
             print("城市\(str)")
             btn_location.setTitle(str, for: .normal)
             //定位按钮设置

@@ -82,6 +82,21 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
 
     }
     
+    //MARK: - 足迹
+    @IBAction func footprintsAction(_ sender: Any) {
+        showWebVC(url: "http://news.baidu.com/")
+    }
+    
+    func showWebVC(url: String) {
+        
+        let webVC =  HDLY_WKWebVC()
+        webVC.urlPath = url
+        webVC.titleName = "测试"
+        webVC.progressTintColor = UIColor.HexColor(0xE8593E)
+        webVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(webVC, animated: true)
+    }
+    
     //MARK: - 定位
     @IBAction func action_location(_ sender: Any) {
         

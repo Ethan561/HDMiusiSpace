@@ -358,6 +358,7 @@
 		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
 		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
 		D67A202B21A6924F009D6270 /* CoreLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */; };
+		D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */; };
 		D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */; };
 		D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */; };
 		D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */; };
@@ -959,6 +960,7 @@
 		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
 		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
 		D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreLocation+Extension.swift"; sourceTree = "<group>"; };
+		D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDItemBaseWebVC.swift; sourceTree = "<group>"; };
 		D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
 		D67ABF6B212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
 		D67ABF6C212BAD4700276CDE /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
@@ -2083,6 +2085,7 @@
 			children = (
 				D6C9FC4721181F28007C8E56 /* HDItemBaseVC.swift */,
 				D6C9FC4821181F28007C8E56 /* HDItemBaseNaviVC.swift */,
+				D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3053,6 +3056,7 @@
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
 				D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */,
+				D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */,
 				D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */,
 				D61E94C12192D12400C5299F /* HDAnnotation.m in Sources */,
 				D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */,

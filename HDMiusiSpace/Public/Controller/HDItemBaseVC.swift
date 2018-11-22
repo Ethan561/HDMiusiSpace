@@ -13,7 +13,7 @@ class HDItemBaseVC: UIViewController {
 //    var refreshHeader: MJRefreshNormalHeader?
 //    var refreshFooter: MJRefreshAutoNormalFooter?
     var isHideBackBtn: Bool = false
-    
+    public var isShowNavShadowLayer = true
     override func viewDidLoad() {
         super.viewDidLoad()
         if isHideBackBtn == true {
@@ -55,14 +55,19 @@ class HDItemBaseVC: UIViewController {
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
-        //1.设置阴影颜色
-        navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+        if isShowNavShadowLayer {
+            //1.设置阴影颜色
+            navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
+            
+            //2.设置阴影偏移范围
+            navigationBar.layer.shadowOffset = CGSize.init(width: 0, height: 10)
+            
+            //3.设置阴影颜色的透明度
+            navigationBar.layer.shadowOpacity = 0.2
+        } else {
+            navigationBar.layer.shadowColor = UIColor.white.cgColor
+        }
         
-        //2.设置阴影偏移范围
-        navigationBar.layer.shadowOffset = CGSize.init(width: 0, height: 10)
-        
-        //3.设置阴影颜色的透明度
-        navigationBar.layer.shadowOpacity = 0.2
         
     }
 

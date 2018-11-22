@@ -10,6 +10,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--My FollowVC-->
+        <scene sceneID="g01-7t-XF8">
+            <objects>
+                <viewController storyboardIdentifier="HDZQ_MyFollowVC" hidesBottomBarWhenPushed="YES" id="EwN-HO-aSk" customClass="HDZQ_MyFollowVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cOi-Wu-Jey">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxJ-Pj-2WP">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4ig-w8-hg3" firstAttribute="bottom" secondItem="hxJ-Pj-2WP" secondAttribute="bottom" id="9YW-DE-DxX"/>
+                            <constraint firstItem="4ig-w8-hg3" firstAttribute="trailing" secondItem="hxJ-Pj-2WP" secondAttribute="trailing" id="RSW-xk-YOd"/>
+                            <constraint firstItem="hxJ-Pj-2WP" firstAttribute="leading" secondItem="4ig-w8-hg3" secondAttribute="leading" id="TSx-M5-j7h"/>
+                            <constraint firstItem="hxJ-Pj-2WP" firstAttribute="top" secondItem="4ig-w8-hg3" secondAttribute="top" constant="10" id="gTc-QP-d5E"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4ig-w8-hg3"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="hxJ-Pj-2WP" id="CrC-lR-cde"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ze6-Hs-dUx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2519" y="-1750"/>
+        </scene>
+        <!--My CollectVC-->
+        <scene sceneID="LLI-Bc-W97">
+            <objects>
+                <viewController storyboardIdentifier="HDZQ_MyCollectVC" hidesBottomBarWhenPushed="YES" id="s4H-nC-cft" customClass="HDZQ_MyCollectVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JqW-Hr-BRu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Af-Nt-KVp">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9Gv-no-nsy" firstAttribute="trailing" secondItem="6Af-Nt-KVp" secondAttribute="trailing" id="4Zf-YT-CHy"/>
+                            <constraint firstItem="9Gv-no-nsy" firstAttribute="bottom" secondItem="6Af-Nt-KVp" secondAttribute="bottom" id="Mdx-Fa-bdA"/>
+                            <constraint firstItem="6Af-Nt-KVp" firstAttribute="leading" secondItem="9Gv-no-nsy" secondAttribute="leading" id="SEC-MZ-RYP"/>
+                            <constraint firstItem="6Af-Nt-KVp" firstAttribute="top" secondItem="9Gv-no-nsy" secondAttribute="top" constant="10" id="uIe-ZB-Pyg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Gv-no-nsy"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="6Af-Nt-KVp" id="yzE-AP-lzx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ag7-O4-wmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3233" y="-1751"/>
+        </scene>
         <!--RootEVC-->
         <scene sceneID="8c4-VP-BTH">
             <objects>
@@ -97,6 +155,8 @@
                         <outlet property="navbarCons" destination="hAO-pY-aeg" id="KMf-PJ-6LB"/>
                         <segue destination="98e-Jv-yaV" kind="show" identifier="PushTo_HDLY_UserInfo_VC_Line" id="cbE-ai-BbU"/>
                         <segue destination="Ymt-jS-LkT" kind="show" identifier="PushTo_HDLY_Setting_VC_Line" id="iOy-p3-TRf"/>
+                        <segue destination="EwN-HO-aSk" kind="show" identifier="PushTo_HDZQ_MyFollowVC" id="DxR-fd-twx"/>
+                        <segue destination="s4H-nC-cft" kind="show" identifier="PushTo_HDZQ_MyFCollectVC" id="G8Q-gg-LVV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-sh-aql" userLabel="First Responder" sceneMemberID="firstResponder"/>

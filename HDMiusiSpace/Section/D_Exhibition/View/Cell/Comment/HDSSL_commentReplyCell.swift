@@ -39,7 +39,10 @@ class HDSSL_commentReplyCell: UITableViewCell {
     }
     
     //点赞评论回复
-    @IBAction func action_tapLike(_ sender: Any) {
+    @IBAction func action_tapLike(_ sender: UIButton) {
+        
+        sender.isSelected = !sender.isSelected
+        
         weak var weakself = self
         if weakself?.blockTapLikeButton != nil {
             weakself?.blockTapLikeButton!(myModel!)

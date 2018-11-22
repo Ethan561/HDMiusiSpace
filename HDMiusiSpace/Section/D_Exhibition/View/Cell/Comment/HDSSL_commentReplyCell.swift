@@ -36,6 +36,11 @@ class HDSSL_commentReplyCell: UITableViewCell {
         cell_content.text = String.init(format: "%@", (myModel?.content)!)
         cell_date.text = String.init(format: "%@", (myModel?.commentDate)!)
         btn_like.setTitle(String.init(format: "%d", myModel?.likeNum ?? 0), for: .normal)
+//        if myModel?.isLike == 1 {
+//            btn_like.isSelected = true
+//        }else{
+//            btn_like.isSelected = false
+//        }
     }
     
     //点赞评论回复

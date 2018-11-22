@@ -27,7 +27,8 @@ class HDSSL_commentListVC: HDItemBaseVC {
     var commentText: String = ""
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
-    
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,18 @@ class HDSSL_commentListVC: HDItemBaseVC {
         viewModel.commentSuccess.bind { (flag) in
             
             weakSelf?.closeKeyBoardView()
+        }
+        //
+        publicViewModel.likeModel.bind { (model) in
+            
+            let m : LikeModel = model
+            
+//            weakSelf?.likeNumL.text = model.like_num?.string
+//            if model.is_like?.int == 0 {
+//                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+//            }else {
+//                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+//            }
         }
     }
     func dealMyDatas(_ model:ExComListModel) -> Void {
@@ -170,6 +183,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapLikeFunc { (index) in
                 print("点击喜欢按钮，位置\(index)")
+                weakSelf?.likeTheComment(index)
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
@@ -191,12 +205,26 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         
     }
-    
+    //评论这个评论
     func replayTheComment(_ index:Int) -> Void {
         //
         currentCommentModel = self.commentArray[index]
         
         self.showKeyBoardView()
+    }
+    //点赞这个评论
+    func likeTheComment(_ index:Int) -> Void {
+        currentCommentModel = self.commentArray[index]
+        
+        if currentCommentModel.commentID != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", currentCommentModel.commentID!), cate_id: "5", self)
+        }
+        
     }
 
     //获取评论cell的高度

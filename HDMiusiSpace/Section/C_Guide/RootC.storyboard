@@ -37,6 +37,9 @@
                                                 <state key="normal" title="足迹">
                                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="footprintsAction:" destination="a4P-nd-McC" eventType="touchUpInside" id="myg-NS-zdJ"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="导览" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4y-9z-BLf">
                                                 <rect key="frame" x="19" y="0.0" width="120" height="44"/>

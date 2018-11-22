@@ -221,8 +221,10 @@ extension HDRootEVC: HDLY_MineHome_Header_Delegate {
         switch type {
         case 0:
             print(1)
+            self.performSegue(withIdentifier: "PushTo_HDZQ_MyFollowVC", sender: nil)
         case 1:
             print(2)
+            self.performSegue(withIdentifier: "PushTo_HDZQ_MyFCollectVC", sender: nil)
         case 2:
             print(3)
         case 3:

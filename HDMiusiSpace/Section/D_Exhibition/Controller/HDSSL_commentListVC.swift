@@ -22,7 +22,9 @@ class HDSSL_commentListVC: HDItemBaseVC {
     var allCommentCount: Int? //全部评论
     var picCommentCount: Int? //有图评论
     var commentArray:[ExCommentModel] = Array.init() //评论数组
-    
+    var keyboardTextField : KeyboardTextField! //评论输入
+    var currentCommentModel: ExCommentModel!  //当前回复评论对象
+    var commentText: String = ""
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
     
@@ -34,6 +36,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         
         bindViewModel()
         
+        setupCommentView()
         //请求数据
         viewModel.request_getExhibitionCommentList(type: 1, skip: 0, take: 10, exhibitionID: self.exhibition_id!, vc: self)
     }
@@ -51,7 +54,11 @@ class HDSSL_commentListVC: HDItemBaseVC {
         viewModel.exComListModel.bind { (model) in
             weakSelf?.dealMyDatas(model)
         }
-        
+        //评论
+        viewModel.commentSuccess.bind { (flag) in
+            
+            weakSelf?.closeKeyBoardView()
+        }
     }
     func dealMyDatas(_ model:ExComListModel) -> Void {
         //
@@ -166,6 +173,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
+                weakSelf?.replayTheComment(index)
             }
             return cell
         } else {
@@ -182,6 +190,13 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         
+    }
+    
+    func replayTheComment(_ index:Int) -> Void {
+        //
+        currentCommentModel = self.commentArray[index]
+        
+        self.showKeyBoardView()
     }
 
     //获取评论cell的高度
@@ -214,4 +229,74 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         let size = content.getLabSize(font: UIFont.systemFont(ofSize: 11), width: ScreenWidth - 120)
         return size.height + CGFloat(otherH)
     }
+}
+//MARK: ---- 评论 ----
+extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
+    
+    func setupCommentView() {
+        keyboardTextField = HDLY_KeyboardView(point: CGPoint(x: 0, y: 0), width: self.view.bounds.size.width)
+        keyboardTextField.delegate = self
+        keyboardTextField.isLeftButtonHidden = true
+        keyboardTextField.isRightButtonHidden = false
+        keyboardTextField.rightButton.setTitle("发布", for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitleColor(UIColor.HexColor(0x999999), for: UIControlState.normal)
+        keyboardTextField.rightButton.backgroundColor = UIColor.clear
+        keyboardTextField.placeholderLabel.text = "发回复"
+        keyboardTextField.autoresizingMask = [UIViewAutoresizing.flexibleWidth , UIViewAutoresizing.flexibleTopMargin]
+        self.view.addSubview(keyboardTextField)
+        keyboardTextField.toFullyBottom()
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
+        view.backgroundColor = UIColor.HexColor(0x000000, 0.3)
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(closeKeyBoardView))
+        view.addGestureRecognizer(tap)
+        keyboardTextField.addAttachmentView(view)
+        keyboardTextField.isHidden = true
+    }
+    
+    //显示评论输入框界面
+    func showKeyBoardView() {
+        keyboardTextField.isHidden = false
+        keyboardTextField.show()
+    }
+    
+    //隐藏评论显示
+    @objc func closeKeyBoardView() {
+        keyboardTextField.textView.text = ""
+        keyboardTextField.hide()
+        keyboardTextField.isHidden = true
+    }
+    
+    //MARK: ==== KeyboardTextFieldDelegate ====
+    func keyboardTextFieldPressReturnButton(_ keyboardTextField: KeyboardTextField) {
+        //回复文本
+        commentText =  keyboardTextField.textView.text
+        self.replyCommentWith()
+    }
+    
+    func keyboardTextFieldPressRightButton(_ keyboardTextField :KeyboardTextField) {
+        //回复文本
+        commentText =  keyboardTextField.textView.text
+        
+        self.replyCommentWith()
+        
+    }
+    
+    func replyCommentWith(){
+        //判断是否登陆
+        if commentText.isEmpty == false && currentCommentModel.commentID != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API,发布评论回复
+            viewModel.request_replycommentWith(api_token: HDDeclare.shared.api_token!, comment: commentText, id: String.init(format: "%d", currentCommentModel.commentID!), return_id: "0", cate_id: "3", self)
+            
+        }
+    }
+    
+    func keyboardTextField(_ keyboardTextField :KeyboardTextField , didChangeText text:String) {
+        
+    }
+    
 }

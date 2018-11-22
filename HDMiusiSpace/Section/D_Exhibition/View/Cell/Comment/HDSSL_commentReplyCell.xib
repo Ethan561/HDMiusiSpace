@@ -54,12 +54,12 @@
                                     <constraint firstAttribute="height" constant="15" id="Qwg-k8-o61"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <state key="normal" title="1000" image="jx_icon_zan">
+                                <state key="normal" title="1000" image="d_icon_dislike">
                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <state key="selected" image="icon_like_pressed"/>
+                                <state key="selected" image="d_icon_like"/>
                                 <connections>
-                                    <action selector="action_tapLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sJ8-50-ah1"/>
+                                    <action selector="action_tapLike:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CoB-0N-Qjc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的评论很好，描述的很详细" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-0N-qO9">
@@ -107,8 +107,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_like_pressed" width="24" height="24"/>
-        <image name="jx_icon_zan" width="12" height="12"/>
+        <image name="d_icon_dislike" width="11" height="11"/>
+        <image name="d_icon_like" width="11" height="11"/>
         <image name="wd_img_tx" width="60" height="60"/>
     </resources>
 </document>

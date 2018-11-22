@@ -373,6 +373,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
                     commentListvc.listType = index
                     commentListvc.exhibition_id = self.exhibition_id!
+                    commentListvc.exdataModel = self.exdataModel!
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }

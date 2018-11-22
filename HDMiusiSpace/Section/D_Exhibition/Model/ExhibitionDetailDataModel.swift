@@ -31,6 +31,8 @@ struct DetailDataModel: Codable {
     var exhibition_id: Int?
     var share_url: String?
     var museum_id: Int?
+    var longitude: String?
+    var latitude: String?
 
 
     enum CodingKeys: String, CodingKey {
@@ -48,7 +50,11 @@ struct DetailDataModel: Codable {
         case exhibitHTML = "exhibit_html"
         case commentList = "comment_list"
         case dataList = "data_list"
-
+        case exhibition_id
+        case share_url
+        case museum_id
+        case longitude
+        case latitude
     }
 }
 
@@ -68,7 +74,7 @@ struct CommentListModel: Codable {
     let avatar: String
     let isVip: Int
     let nickname: String
-    let star: Float
+    let star: Int
     let content: String
     var imgList: [String]?
     let isLike, likeNum, commentNum: Int

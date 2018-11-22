@@ -9,14 +9,14 @@
 import UIKit
 
 class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
-
+    
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
     @IBOutlet weak var btn_location: UIButton!
-
+    
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:100, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -54,9 +54,12 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         super.viewWillAppear(animated)
         
         //刷新选中的城市
-        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
+        guard str != nil else {
+            return
+        }
         
-        if str.count > 0 {
+        if str!.count > 0 {
             print("城市\(str)")
             btn_location.setTitle(str, for: .normal)
             //定位按钮设置
@@ -77,6 +80,21 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         contentScrollView.backgroundColor = UIColor.white
         
 
+    }
+    
+    //MARK: - 足迹
+    @IBAction func footprintsAction(_ sender: Any) {
+        showWebVC(url: "http://news.baidu.com/")
+    }
+    
+    func showWebVC(url: String) {
+        
+        let webVC =  HDLY_WKWebVC()
+        webVC.urlPath = url
+        webVC.titleName = "测试"
+        webVC.progressTintColor = UIColor.HexColor(0xE8593E)
+        webVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
     //MARK: - 定位

@@ -24,7 +24,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
-
+    @IBOutlet weak var navBgView: UIView!
+    @IBOutlet weak var navView: UIView!
+    @IBOutlet weak var navHeightCons: NSLayoutConstraint!
+    @IBOutlet weak var backBtn: UIButton!
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     //
@@ -51,10 +54,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         super.viewDidLoad()
 
         self.hd_navigationBarHidden = true
-        
-        //
         bindViewModel()
-        //
         loadMyDatas()
         //banner
         setupBannerView()
@@ -62,6 +62,16 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         setupdTableView()
         likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
         likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
+        
+        //
+        navHeightCons.constant = kTopHeight
+        navView.backgroundColor = UIColor.clear
+        navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        navBgView.isHidden = true
+        
+        if HDLY_LocationTool.shared.city == nil {
+            HDLY_LocationTool.shared.startLocation()
+        }
         
     }
     
@@ -106,9 +116,6 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     //MARK: action
     @IBAction func action_back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-    }
-    @IBAction func action_topButton(_ sender: UIButton) {
-        print(sender.tag)
     }
     
     @IBAction func likeBtnAction(_ sender: UIButton) {
@@ -365,6 +372,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     // 1全部，2有图
                     let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
                     commentListvc.listType = index
+                    commentListvc.exhibition_id = self.exhibition_id!
+                    commentListvc.exdataModel = self.exdataModel!
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }
@@ -571,6 +580,34 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 if model.raiders?.strategyID != nil {
                     self.showRelatedStrategyVC(exhibitionID: model.raiders!.strategyID!)
                 }
+            }
+        }
+        if indexPath.section == 0 && indexPath.row == 4 {
+            if self.exdataModel?.data?.latitude != nil && self.exdataModel?.data?.longitude != nil {
+                let endLoc: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(Float(self.exdataModel!.data!.latitude!) ?? 0), longitude: CLLocationDegrees.init(Float(self.exdataModel!.data!.longitude!) ?? 0))
+                let name = self.exdataModel?.data?.museumTitle
+                
+                let alertController = UIAlertController(title: nil,
+                                                        message: nil, preferredStyle: .actionSheet)
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                
+                let okAction1 = UIAlertAction(title: "使用苹果自带地图导航", style: .default, handler: {
+                    action in
+                    HDLY_LocationTool.onNavForIOSMap(fromLoc: HDLY_LocationTool.shared.coordinate!, endLoc: endLoc, endLocName: name!)
+                    
+                })
+                let okAction2 = UIAlertAction(title: "使用百度地图导航", style: .default, handler: {
+                    action in
+                    let startLoc = HDLY_LocationTool.shared.coordinate!
+                    HDLY_LocationTool.onNavForBaiduMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
+                })
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction1)
+                if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://map/")!) {
+                    alertController.addAction(okAction2)
+                }
+                
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -781,3 +818,33 @@ extension HDSSL_dExhibitionDetailVC {
 }
 
 
+let kTableHeaderViewH1 = 250*ScreenWidth/375.0
+
+//滑动显示控制
+extension HDSSL_dExhibitionDetailVC: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //       LOG("*****:\(scrollView.contentOffset.y)")
+        if self.dTableView == scrollView {
+            let offSetY = scrollView.contentOffset.y
+            if offSetY >= kTableHeaderViewH1 {
+                navBgView.isHidden = false
+                backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
+                errorBtn.setImage(UIImage.init(named: "icon_baocuo_black"), for: .normal)
+                shareBtn.setImage(UIImage.init(named: "xz_icon_share_black_default"), for: .normal)
+                if likeBtn.isSelected == false {
+                    likeBtn.setImage(UIImage.init(named: "Star_black"), for: .normal)
+                }
+                
+            } else {
+                navBgView.isHidden = true
+                backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
+                errorBtn.setImage(UIImage.init(named: "icon_baocuo_white"), for: .normal)
+                shareBtn.setImage(UIImage.init(named: "xz_icon_share_white_default"), for: .normal)
+                if likeBtn.isSelected == false {
+                    likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+                }
+            }
+        }
+    }
+}

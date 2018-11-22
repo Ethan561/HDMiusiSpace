@@ -33,6 +33,8 @@ enum HD_SSL_API {
     
     //获取听过未评论列表
     case getHeartedButCommentList(api_token: String,skip: Int,take: Int)
+    //获取展览列表
+    case getExhibitionCommentList(api_token: String,skip: Int,take: Int,type: Int,exhibitionID: Int)
     
     //发布评论
     case publishCommentWith(api_token: String,exhibitId: Int,star: Int,content: String,imgsPaths:Array<String>)
@@ -79,6 +81,8 @@ extension HD_SSL_API: TargetType {
             
         case .getHeartedButCommentList(api_token: _,skip: _, take: _):
             return "/api/exhibition/uncomment_exhibition"
+        case .getExhibitionCommentList(api_token: _, skip: _, take: _, type: _, exhibitionID: _):
+            return "/api/exhibition/comment_list"
             
         case .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _):
             return "/api/exhibition/exhibition_comment"
@@ -198,6 +202,12 @@ extension HD_SSL_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        case .getExhibitionCommentList(api_token: let api_token, skip: let skip, take: let take, type: let type, exhibitionID: let exhibitionID):
+            params = params.merging(["exhibition_id":exhibitionID,"type":type,"skip":skip,"take":take,"api_token":api_token], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
         //...
             

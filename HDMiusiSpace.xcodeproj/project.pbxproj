@@ -100,6 +100,9 @@
 		A7AC35BF214A521A004E8BC1 /* HDSSL_MuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */; };
 		A7AC35C0214A521A004E8BC1 /* HDSSL_MuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */; };
 		A7B8447621A4E83B00FC8465 /* HDSSL_commentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8447521A4E83B00FC8465 /* HDSSL_commentListVC.swift */; };
+		A7B8447921A5269600FC8465 /* HDSSL_commentReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8447721A5269600FC8465 /* HDSSL_commentReplyCell.swift */; };
+		A7B8447A21A5269600FC8465 /* HDSSL_commentReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B8447821A5269600FC8465 /* HDSSL_commentReplyCell.xib */; };
+		A7B8447C21A5361600FC8465 /* HDSSL_commentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B8447B21A5361600FC8465 /* HDSSL_commentListModel.swift */; };
 		A7B982E92196699600AF0266 /* WorldRecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982E82196699600AF0266 /* WorldRecentCell.swift */; };
 		A7B982EB2196715F00AF0266 /* WorldHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EA2196715F00AF0266 /* WorldHotCell.swift */; };
 		A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EC2196766A00AF0266 /* CountyDataModel.swift */; };
@@ -162,6 +165,8 @@
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
 		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
 		D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */; };
+		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
+		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
@@ -361,6 +366,8 @@
 		D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */; };
 		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
 		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
+		D67A202B21A6924F009D6270 /* CoreLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */; };
+		D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */; };
 		D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */; };
 		D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */; };
 		D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */; };
@@ -634,6 +641,9 @@
 		A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MuseumCell.swift; sourceTree = "<group>"; };
 		A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_MuseumCell.xib; sourceTree = "<group>"; };
 		A7B8447521A4E83B00FC8465 /* HDSSL_commentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentListVC.swift; sourceTree = "<group>"; };
+		A7B8447721A5269600FC8465 /* HDSSL_commentReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentReplyCell.swift; sourceTree = "<group>"; };
+		A7B8447821A5269600FC8465 /* HDSSL_commentReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_commentReplyCell.xib; sourceTree = "<group>"; };
+		A7B8447B21A5361600FC8465 /* HDSSL_commentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentListModel.swift; sourceTree = "<group>"; };
 		A7B982E82196699600AF0266 /* WorldRecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldRecentCell.swift; sourceTree = "<group>"; };
 		A7B982EA2196715F00AF0266 /* WorldHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldHotCell.swift; sourceTree = "<group>"; };
 		A7B982EC2196766A00AF0266 /* CountyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyDataModel.swift; sourceTree = "<group>"; };
@@ -727,6 +737,8 @@
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
 		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
 		D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumSubVC.swift; sourceTree = "<group>"; };
+		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
+		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
@@ -965,6 +977,8 @@
 		D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell1.xib; sourceTree = "<group>"; };
 		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
 		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
+		D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreLocation+Extension.swift"; sourceTree = "<group>"; };
+		D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDItemBaseWebVC.swift; sourceTree = "<group>"; };
 		D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
 		D67ABF6B212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
 		D67ABF6C212BAD4700276CDE /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
@@ -1131,6 +1145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */,
 				D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */,
 				D66C35BF213F5E3800363D7C /* libsqlite3.0.tbd in Frameworks */,
@@ -1158,6 +1173,7 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D619533E21A545880039D151 /* MapKit.framework */,
 				A7A90A6521A3E934005BD37F /* UIKit.framework */,
 				D62F65D4219914D000D32544 /* CoreLocation.framework */,
 				D66C35BE213F5E3800363D7C /* libsqlite3.0.tbd */,
@@ -1184,6 +1200,8 @@
 				A72DE93E21A142F900F0536F /* HDSSL_commentImgCell.xib */,
 				A7A90A5B21A3ABAA005BD37F /* HDSSL_neverCommentCell.swift */,
 				A7A90A5C21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib */,
+				A7B8447721A5269600FC8465 /* HDSSL_commentReplyCell.swift */,
+				A7B8447821A5269600FC8465 /* HDSSL_commentReplyCell.xib */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -2051,6 +2069,7 @@
 				D6C9FC6221181F54007C8E56 /* UIImage+Scale.swift */,
 				D671F758211A98A600A9EE57 /* UIView+Nib.swift */,
 				D61D36D5219BC41B0019586B /* UIFont+Extension.swift */,
+				D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2085,6 +2104,7 @@
 			children = (
 				D6C9FC4721181F28007C8E56 /* HDItemBaseVC.swift */,
 				D6C9FC4821181F28007C8E56 /* HDItemBaseNaviVC.swift */,
+				D67A202C21A6A1D9009D6270 /* HDItemBaseWebVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2133,6 +2153,7 @@
 				D61E947C2192CA0200C5299F /* QRCode */,
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
 				D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */,
+				D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */,
 				D6C9FC7021181FD1007C8E56 /* Network */,
 				D6C9FC7A21181FD1007C8E56 /* HDFloatingButton */,
 				D6C9FC7E21181FD1007C8E56 /* HDEmptyView */,
@@ -2438,6 +2459,7 @@
 				A73429A0219D4E6800596B35 /* ExhibitionDetailDataModel.swift */,
 				D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */,
 				A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */,
+				A7B8447B21A5361600FC8465 /* HDSSL_commentListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2769,6 +2791,7 @@
 				A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
+				A7B8447A21A5269600FC8465 /* HDSSL_commentReplyCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
 				A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */,
 				D620E1B721A246810034E258 /* HDLY_MuseumRecmdItem.xib in Resources */,
@@ -2995,6 +3018,7 @@
 				D62277D621368069008F1416 /* LoadingViewController.swift in Sources */,
 				D66C35CA213FA80600363D7C /* HDLY_MineInfo_Cell.swift in Sources */,
 				D6115AFC218FD490004A05DA /* ZFSpeedLoadingView.m in Sources */,
+				A7B8447C21A5361600FC8465 /* HDSSL_commentListModel.swift in Sources */,
 				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,
 				D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */,
 				A7441D3321A2A0D50064E6A6 /* TZAssetCell.m in Sources */,
@@ -3009,7 +3033,9 @@
 				D61E94BF2192D12400C5299F /* HDMapView.m in Sources */,
 				D637568B219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
+				D67A202B21A6924F009D6270 /* CoreLocation+Extension.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
+				D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */,
 				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,
 				1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
@@ -3060,6 +3086,7 @@
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
 				D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */,
+				D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */,
 				D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */,
 				D61E94C12192D12400C5299F /* HDAnnotation.m in Sources */,
 				D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */,
@@ -3200,6 +3227,7 @@
 				A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */,
 				A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */,
 				A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */,
+				A7B8447921A5269600FC8465 /* HDSSL_commentReplyCell.swift in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,

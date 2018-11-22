@@ -36,6 +36,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         
         addRefresh()
         refreshAction()
+        
+        HDLY_LocationTool.shared.startLocation()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

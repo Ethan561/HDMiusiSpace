@@ -258,6 +258,11 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = HDSSL_commentTextCell.getMyTableCell(tableV: tableView) as HDSSL_commentTextCell
+            //图片
+            cell.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.imgList?[0]) ?? "")), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            //标题
+            cell.cell_titleT.text = String.init(format: "%@", (self.exdataModel?.data?.title!)!)
+            
             cell.BlockBackStarNumber { (number) in
                 print("评分%d",number)
                 self.starNumber = number //保存评分

@@ -60,6 +60,39 @@ final class HDLY_LocationTool: NSObject,CLLocationManagerDelegate {
         MKMapItem.openMaps(with: [startItem, endItem], launchOptions: options)
     }
     
+    
+    //百度地图导航
+    class func onNavForBaiduMap(fromLoc:CLLocationCoordinate2D, endLoc: CLLocationCoordinate2D, endLocName: String) {
+        
+        var openUrlStr: String?
+        
+        if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://")!) {
+            
+            openUrlStr = "baidumap://map/direction?origin=latlng:\(fromLoc.latitude),\(fromLoc.longitude)|name:我的位置&destination=latlng:\(endLoc.latitude),\(endLoc.longitude)|name:\(endLocName)&mode=driving"
+        }
+        else {
+            //相同城市
+//        openUrlStr = "http://api.map.baidu.com/direction?origin=latlng:34.264642646862,108.95108518068|name:我家&destination=大雁塔&mode=driving&region=西安&output=html&src=webapp.baidu.openAPIdemo"
+            
+            //不同城市
+            openUrlStr =  String.init(format: "http://api.map.baidu.com/direction?origin=latlng:%lf,%lf|name:当前位置&destination=latlng:%lf,%lf|name:%@&mode=driving&origin_region=天津&destination_region=北京&coord_type=wgs84&output=html&src=webapp.baidu.openAPIdemo", (fromLoc.latitude),(fromLoc.longitude), (endLoc.latitude),(endLoc.longitude),endLocName)
+        }
+        if openUrlStr != nil {
+            let openUrl = URL.init(string: openUrlStr!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            
+            //根据iOS系统版本，分别处理
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(openUrl!, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                })
+            } else {
+                UIApplication.shared.openURL(openUrl!)
+            }
+        }
+        
+    }
+    
 }
 
 //MARK: -- CLLocationManagerDelegate ---
@@ -68,10 +101,10 @@ extension HDLY_LocationTool {
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let newLocation = locations.last
+        let newLocation = locations.last?.locationMarsFromEarth()
         if newLocation != nil {
             stopLocation()
-
+            
             LOG("nowloc is latitude:\(String(describing: newLocation?.coordinate.latitude))  longitude:\(String(describing: newLocation?.coordinate.longitude))")
             coordinate = newLocation!.coordinate
             

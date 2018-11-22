@@ -357,6 +357,7 @@
 		D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */; };
 		D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */; };
 		D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */; };
+		D67A202B21A6924F009D6270 /* CoreLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */; };
 		D67ABF7D212BAD4700276CDE /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */; };
 		D67ABF7E212BAD4700276CDE /* STKHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF6E212BAD4700276CDE /* STKHTTPDataSource.m */; };
 		D67ABF7F212BAD4700276CDE /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF70212BAD4700276CDE /* STKLocalFileDataSource.m */; };
@@ -957,6 +958,7 @@
 		D6724628211D5C8F00239109 /* HDLY_Recommend_Cell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell1.xib; sourceTree = "<group>"; };
 		D672462B211D5F4400239109 /* HDLY_Recommend_Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_Cell2.swift; sourceTree = "<group>"; };
 		D672462C211D5F4400239109 /* HDLY_Recommend_Cell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_Recommend_Cell2.xib; sourceTree = "<group>"; };
+		D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreLocation+Extension.swift"; sourceTree = "<group>"; };
 		D67ABF6A212BAD4700276CDE /* STKQueueEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKQueueEntry.m; sourceTree = "<group>"; };
 		D67ABF6B212BAD4700276CDE /* STKAutoRecoveringHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKAutoRecoveringHTTPDataSource.h; sourceTree = "<group>"; };
 		D67ABF6C212BAD4700276CDE /* STKDataSourceWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKDataSourceWrapper.h; sourceTree = "<group>"; };
@@ -2046,6 +2048,7 @@
 				D6C9FC6221181F54007C8E56 /* UIImage+Scale.swift */,
 				D671F758211A98A600A9EE57 /* UIView+Nib.swift */,
 				D61D36D5219BC41B0019586B /* UIFont+Extension.swift */,
+				D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2998,6 +3001,7 @@
 				D61E94BF2192D12400C5299F /* HDMapView.m in Sources */,
 				D637568B219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.swift in Sources */,
 				D6866A4D2126A10D0044EEAA /* HDLY_CourseList_SubVC2.swift in Sources */,
+				D67A202B21A6924F009D6270 /* CoreLocation+Extension.swift in Sources */,
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
 				D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */,
 				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,

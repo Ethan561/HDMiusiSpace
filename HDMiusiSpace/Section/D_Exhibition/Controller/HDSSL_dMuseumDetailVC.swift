@@ -164,7 +164,6 @@ extension HDSSL_dMuseumDetailVC: UMShareDelegate {
     }
 }
 
-
 extension HDSSL_dMuseumDetailVC {
     
     func dataRequest()  {
@@ -452,16 +451,14 @@ extension HDSSL_dMuseumDetailVC {
                 let okAction2 = UIAlertAction(title: "使用百度地图导航", style: .default, handler: {
                     action in
                     let startLoc = HDLY_LocationTool.shared.coordinate!
-                    
-                    let urlStr = "baidumap://map/direction?origin=latlng:\(startLoc.latitude),\(startLoc.longitude)|name:我的位置&destination=latlng:\(endLoc.latitude),\(endLoc.longitude)|name:\(name!)&mode=driving"
-                    let encodingUrl = urlStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-                    
-                    UIApplication.shared.openURL(URL.init(string: encodingUrl)!)
+                    HDLY_LocationTool.onNavForBaiduMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
                     
                 })
                 alertController.addAction(cancelAction)
                 alertController.addAction(okAction1)
-                alertController.addAction(okAction2)
+                if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://map/")!) {
+                    alertController.addAction(okAction2)
+                }
                 
                 self.present(alertController, animated: true, completion: nil)
             }

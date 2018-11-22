@@ -54,7 +54,10 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         super.viewWillAppear(animated)
         
         //刷新选中的城市
-        let str: String = UserDefaults.standard.object(forKey: "MyLocationCityName") as! String
+        let cityStr: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
+        guard let str = cityStr else {
+            return
+        }
         
         if str.count > 0 {
             print("城市\(str)")

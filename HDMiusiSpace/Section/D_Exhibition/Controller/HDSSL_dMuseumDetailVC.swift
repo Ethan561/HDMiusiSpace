@@ -33,7 +33,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     var playItem:HDLY_FreeListenItem?
     var playModel:DMuseumListenList?
-    
+    var playingSelectRow = -1
+
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.isOpaque = false
@@ -79,6 +80,11 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
                 weakSelf?.likeBtn.isSelected = true
             }
         }
+    }
+    
+    deinit {
+        LOG(" 释放 ---")
+        
         
     }
     
@@ -385,8 +391,9 @@ extension HDSSL_dMuseumDetailVC {
                 if model.type == 1 {//同馆展览
                     let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                     cell?.listArray = model.exhibition?.list
+                    weak var weakS = self
                     cell?.BlockTapItemFunc(block: { (m) in
-                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
+                        weakS?.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
                     })
                     return cell!
                     
@@ -412,6 +419,7 @@ extension HDSSL_dMuseumDetailVC {
                     }
                     cell.delegate = self
                     cell.playModel = playModel
+                    cell.selectRow = playingSelectRow
                     player.delegate = cell
                     
                     return cell
@@ -472,18 +480,19 @@ extension HDSSL_dMuseumDetailVC {
     }
     
     //HDLY_MuseumInfoType5Cell_Delegate
-    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem) {
-        self.playItem = cell
+    func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int)  {
+        self.playItem = item
+        playingSelectRow = selectRow
         if model.title == playModel?.title {
             if player.state == .playing {
                 player.pause()
-                cell.playBtn.isSelected = false
+                item.playBtn.isSelected = false
                 playModel?.isPlaying = false
             }else {
                 player.play()
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
-
+                
             }
         } else {
             guard let video = model.audio else {return}
@@ -491,15 +500,12 @@ extension HDSSL_dMuseumDetailVC {
                 player.play(file: Music.init(name: "", url:URL.init(string: video)!))
                 player.url = video
                 self.playModel = model
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
 
             }
         }
-//        self.myTableView.reloadData()
-//        //刷新表格视图的分区的头视图
-//        let sec = self.infoModel!.dataList!.count + 1
-//        self.myTableView.reloadSections(IndexSet.init(integer: sec), with: .none)
+        player.delegate = cell
         self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.infoModel!.dataList!.count + 1)], with: .none)
         
     }

@@ -48,7 +48,7 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         
         playerBgView.layer.cornerRadius = 22
         playerBgView.layer.masksToBounds = true
-        
+        playerView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,6 +148,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             //self.showMapList(ann: annView.annotation)
         }
         else if annView.annotation.annType == kAnnotationType_One || annView.annotation.annType == kAnnotationType_ReadOne {
+            playerView.isHidden = false
             annView.bigPicture()
             self.chooseAnn = annView.annotation
             self.playerTitleL.text = annView.annotation.title

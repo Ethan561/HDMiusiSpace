@@ -20,6 +20,9 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     var exhibition_id = 0
     private var currentModel = HDLY_ExhibitListM()
     var selectRow = -1
+    //
+    var isUpload = false
+    let uploadVM = HDLY_RootCVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,6 +151,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 currentModel = listModel
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                isUpload = false
             }
         }
     }
@@ -167,6 +171,15 @@ extension HDLY_ExhibitListVC {
         
         let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as! HDLY_ExhibitCell?
         cell?.timeL.text = "\(currentTime)/\(totalTime)"
+        
+        if progress > 0.5 && isUpload == false {
+            isUpload = true
+            let token:String? = HDDeclare.shared.api_token
+            if token != nil {
+                uploadVM.uploadFootprintRequest(api_token: token!, exhibit_id: cell?.model?.exhibitID ?? 0, self)
+                
+            }
+        }
         
     }
     

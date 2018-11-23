@@ -146,8 +146,25 @@ class HDSSL_commentVC: HDItemBaseVC {
     //actions
     @objc func action_publish(){
         print("发布")
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         
-        uploadImage()
+        if self.commentContent?.count == 0 {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入评论内容")
+            return
+        }
+        
+        if self.selectedPhotos.count == 0 {
+            //无图评论
+            //正式发布
+            self.viewModel.request_PublishCommentWith(exhibitId: self.exhibition_id!, star: self.starNumber!, content: self.commentContent
+                ?? "", uploadImags: self.ImagePathArray, self)
+        }else {
+            //有图评论，先上传评论
+            uploadImage()
+        }
         
     }
 

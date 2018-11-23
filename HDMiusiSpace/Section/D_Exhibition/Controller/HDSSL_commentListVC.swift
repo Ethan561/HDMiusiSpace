@@ -24,10 +24,15 @@ class HDSSL_commentListVC: HDItemBaseVC {
     var commentArray:[ExCommentModel] = Array.init() //评论数组
     var keyboardTextField : KeyboardTextField! //评论输入
     var currentCommentModel: ExCommentModel!  //当前回复评论对象
+    var currentSection: Int? //当前section
+    var currentIndexPath: IndexPath? //当前位置
     var commentText: String = ""
+    var tapLikeType: Int? //1点赞评论，2点赞评论回复
+    
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
-    
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +64,40 @@ class HDSSL_commentListVC: HDItemBaseVC {
             
             weakSelf?.closeKeyBoardView()
         }
+        //点赞
+        publicViewModel.likeModel.bind { (model) in
+            
+            let m : LikeModel = model
+            
+            if weakSelf?.tapLikeType == 1 {
+                var mode = weakSelf?.commentArray[(weakSelf?.currentSection!)!]
+                
+                mode!.isLike = m.is_like?.int
+                mode!.likeNum = m.like_num?.int
+                
+                weakSelf?.commentArray.remove(at: (weakSelf?.currentSection!)!)
+                weakSelf?.commentArray.insert(mode!, at: (weakSelf?.currentSection!)!)
+                
+                //刷新点赞按钮
+                weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: (weakSelf?.currentSection!)!)], with: .automatic)
+            }else {
+                var mode = weakSelf?.commentArray[(weakSelf?.currentIndexPath?.section)!]
+                var reply = mode?.commentList![((weakSelf?.currentIndexPath?.row)! - 1)]
+                reply?.isLike = m.is_like?.int
+                reply?.likeNum = m.like_num?.int
+                
+                mode?.commentList?.remove(at: ((weakSelf?.currentIndexPath?.row)! - 1))
+                mode?.commentList?.insert(reply!, at: ((weakSelf?.currentIndexPath?.row)! - 1))
+                
+                weakSelf?.commentArray.remove(at: (weakSelf?.currentIndexPath?.section)!)
+                weakSelf?.commentArray.insert(mode!, at: (weakSelf?.currentIndexPath?.section)!)
+                
+                //刷新点赞按钮
+                weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: ((weakSelf?.currentIndexPath?.row)!), section: (weakSelf?.currentIndexPath?.section)!)], with: .fade)
+            }
+            
+            
+        }
     }
     func dealMyDatas(_ model:ExComListModel) -> Void {
         //
@@ -71,7 +110,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         btn_pic.setTitle(String.init(format: "有图(%d)", picCommentCount ?? 0), for: .normal)
 
         dTableView.reloadData()
-        
+     
     }
     
     //切换列表
@@ -157,8 +196,9 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         let model = self.commentArray[indexPath.section]
         
+        weak var weakSelf = self
+        
         if indexPath.row == 0 {
-            weak var weakSelf = self
             
             let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
             cell.tag = indexPath.section
@@ -170,6 +210,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapLikeFunc { (index) in
                 print("点击喜欢按钮，位置\(index)")
+                weakSelf?.likeTheComment(index)
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
@@ -180,10 +221,11 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             let modelreply = model.commentList![indexPath.row-1]
             
             let cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell
+            cell.indexpath = indexPath
             cell.myModel = modelreply
-            cell.BlockTapLikeButtonFunc { (model) in
+            cell.BlockTapLikeButtonFunc { (model,indexpath) in
                 //点赞回复，调用接口
-                
+                weakSelf?.likeTheReplyComment(indexpath,model)
             }
             
             return cell
@@ -191,12 +233,43 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         
     }
-    
+    //评论这个评论
     func replayTheComment(_ index:Int) -> Void {
         //
         currentCommentModel = self.commentArray[index]
         
         self.showKeyBoardView()
+    }
+    //点赞这个评论
+    func likeTheComment(_ index:Int) -> Void {
+        currentCommentModel = self.commentArray[index]
+        currentSection = index
+        tapLikeType = 1
+        
+        if currentCommentModel.commentID != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", currentCommentModel.commentID!), cate_id: "6", self)
+        }
+        
+    }
+    
+    func likeTheReplyComment(_ indexp: IndexPath,_ m: ReplyCommentModel) {
+        //
+        tapLikeType = 2
+        currentIndexPath = indexp
+        if currentCommentModel.commentID != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", m.returnId!), cate_id: "5", self)
+        }
+        
     }
 
     //获取评论cell的高度

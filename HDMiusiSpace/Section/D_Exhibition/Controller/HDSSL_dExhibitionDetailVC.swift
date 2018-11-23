@@ -11,12 +11,12 @@ import UIKit
 let kBannerHeight = ScreenWidth*250/375.0
 
 class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate {
+    
     //接收
     var exhibition_id: Int?
     var exhibitionCellH: Double?
     var exhibitCellH: Double?
-    
-    
+
     //
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
@@ -38,17 +38,19 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var imgsArr: Array<String>?
     let player = HDLY_AudioPlayer.shared
     var playModel: DMuseumListenList?
-    
+    var playingSelectRow = -1
+
     //评论
     var commentArr: [CommentListModel]? = Array.init()
-    
+    //
+    var likeCellIndex: Int! //点赞指纹
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
     //评论header
     lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
-    //其他header
-//    lazy var normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+    //基本信息footer
+//    lazy var firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +101,24 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             } else {
                 weakSelf?.likeBtn.isSelected = true
             }
+        }
+        //点赞
+        publicViewModel.likeModel.bind { (model) in
+            
+            let m : LikeModel = model
+            
+            
+            var mode = weakSelf?.commentArr![(weakSelf?.likeCellIndex)!]
+            
+            mode!.isLike = (m.is_like?.int)!
+            mode!.likeNum = (m.like_num?.int)!
+            
+            weakSelf?.commentArr?.remove(at: (weakSelf?.likeCellIndex)!)
+            weakSelf?.commentArr?.insert(mode!, at: (weakSelf?.likeCellIndex!)!)
+            
+            //刷新点赞按钮
+            weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: (weakSelf?.likeCellIndex!)!, section:2)], with: .fade)
+            
         }
     }
     //处理返回数据
@@ -154,6 +174,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         }
     }
     
+    deinit {
+        LOG(" 释放 ---")
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -337,7 +361,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }else if model.type == 4 {//精选推荐
                 return 160*ScreenWidth/375.0
             }else if model.type == 5 {//免费听
-                return 160*ScreenWidth/375.0
+                return (ScreenWidth - 20 * 3)/2.0 + 30
             }
 
         }
@@ -412,6 +436,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     //MARK: ---------Footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 100
+        }
         if section == 2 {
             guard self.exdataModel != nil else {
                 return 0.01
@@ -423,6 +450,19 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            //
+            if self.exdataModel == nil {
+                return nil
+            }
+            let firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+            firstSecFooter.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.museumImg!)!)), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+            firstSecFooter.cell_title.text = String.init(format: "%@", (self.exdataModel?.data?.museumTitle)!)
+            firstSecFooter.cell_address.text = String.init(format: "%@", (self.exdataModel?.data?.museumAddress)!)
+            
+            
+            return firstSecFooter
+        }
         if section == 2 {
             let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
             btn.backgroundColor = UIColor.white
@@ -521,9 +561,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapLikeFunc { (index) in
                 print("点击喜欢按钮，位置\(index)")
+                weakSelf?.commentTapLikeButton(index)
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
+                
+                weakSelf?.action_showMoreComment()
             }
             return cell
         }
@@ -561,6 +604,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 }
                 cell.delegate = self
                 cell.playModel = playModel
+                cell.selectRow = playingSelectRow
+
                 player.delegate = cell
                 return cell
             }
@@ -619,15 +664,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     //HDLY_MuseumInfoType5Cell_Delegate
-    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem) {
+    func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int) {
+        playingSelectRow = selectRow
         if model.title == playModel?.title {
             if player.state == .playing {
                 player.pause()
-                cell.playBtn.isSelected = false
+                item.playBtn.isSelected = false
                 playModel?.isPlaying = false
             }else {
                 player.play()
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
                 
             }
@@ -637,7 +683,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 player.play(file: Music.init(name: "", url:URL.init(string: video)!))
                 player.url = video
                 self.playModel = model
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
             }
         }
@@ -655,7 +701,30 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     //查看更多评论
     @objc func action_showMoreComment(){
         print("查看更多评论")
+        //
+        // 1全部，2有图
+        let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
+        commentListvc.listType = 1
+        commentListvc.exhibition_id = self.exhibition_id!
+        commentListvc.exdataModel = self.exdataModel!
+        self.navigationController?.pushViewController(commentListvc, animated: true)
     }
+    //点赞
+    func commentTapLikeButton(_ index:Int) -> Void {
+        //
+        let myModel = self.commentArr![index]
+        likeCellIndex = index
+        
+        if myModel.commentId != 0 {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", myModel.commentId), cate_id: "6", self)
+        }
+    }
+    
     func getTableFooterView() -> UIView {
         let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
         tFooter.backgroundColor = UIColor.white

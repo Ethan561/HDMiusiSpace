@@ -79,7 +79,6 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
                 weakSelf?.likeBtn.isSelected = true
             }
         }
-        
     }
     
     deinit {
@@ -390,9 +389,9 @@ extension HDSSL_dMuseumDetailVC {
                 if model.type == 1 {//同馆展览
                     let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                     cell?.listArray = model.exhibition?.list
-//                    cell?.BlockTapItemFunc(block: { (m) in
-//                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
-//                    })
+                    cell?.BlockTapItemFunc(block: { (m) in
+                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
+                    })
                     return cell!
                     
                 }

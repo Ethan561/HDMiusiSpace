@@ -84,16 +84,7 @@ extension HDSSL_sameMuseumCell :UICollectionViewDelegate,UICollectionViewDataSou
         if self.listArray != nil {
             if self.listArray!.count > 0 {
                 let model :ExhibitionList = listArray![indexPath.row]
-                
-                if  model.img != nil  {
-                    cell.item_img.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.item_img), options: nil, progressBlock: nil, completionHandler: nil)
-                }
-                cell.item_title.text = String.init(format: "%@", model.title)
-                cell.item_loc.text = String.init(format: "%@", model.address)
-                cell.item_starNum.text = String.init(format: "%.1f", model.star)
-//                cell.item_iconBg.removeAllSubviews()
-//                cell.item_iconBg.addSubview(self.getImagesWith(arr: model.iconList!, frame: cell.item_iconBg.bounds)) //icon list
-                cell.item_star.image = UIImage.init(named: self.getStarImgName(model.star))
+                cell.model = model
             }
         }
         return cell

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
+		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
+		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
+		1B2928ED21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */; };
+		1B2928F021A67A8F00FEF21C /* HDZQ_MyFollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928EE21A67A8F00FEF21C /* HDZQ_MyFollowCell.swift */; };
+		1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B2928EF21A67A8F00FEF21C /* HDZQ_MyFollowCell.xib */; };
+		1B2928F321A6808900FEF21C /* HDZQ_MyOwnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */; };
+		1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */; };
+		1B2928F721A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
@@ -521,6 +530,15 @@
 
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
+		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
+		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
+		1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowSubVC.swift; sourceTree = "<group>"; };
+		1B2928EE21A67A8F00FEF21C /* HDZQ_MyFollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowCell.swift; sourceTree = "<group>"; };
+		1B2928EF21A67A8F00FEF21C /* HDZQ_MyFollowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_MyFollowCell.xib; sourceTree = "<group>"; };
+		1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyOwnModel.swift; sourceTree = "<group>"; };
+		1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectVC.swift; sourceTree = "<group>"; };
+		1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectSubVC.swift; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
@@ -1450,6 +1468,7 @@
 			children = (
 				D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */,
 				A79EE6BE213A71DF009F1BA3 /* HD_SSL_API.swift */,
+				1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2341,6 +2360,10 @@
 				D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */,
 				D668CFA021435CD40024BBCE /* HDLY_ChangePwd_VC.swift */,
 				D668CFA221435D0A0024BBCE /* HDLY_ChangePhone_VC.swift */,
+				1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */,
+				1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */,
+				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
+				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2380,6 +2403,7 @@
 			isa = PBXGroup;
 			children = (
 				D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */,
+				1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2403,6 +2427,8 @@
 				D66A2ABA2140D09100427425 /* HDLY_LogoutTip_View.xib */,
 				D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */,
 				D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */,
+				1B2928EE21A67A8F00FEF21C /* HDZQ_MyFollowCell.swift */,
+				1B2928EF21A67A8F00FEF21C /* HDZQ_MyFollowCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2410,6 +2436,7 @@
 		D6C9FCE421184840007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2727,6 +2754,7 @@
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
 				A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */,
+				1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D6C9FCDB211839A8007C8E56 /* RootE.storyboard in Resources */,
@@ -2957,6 +2985,7 @@
 				D66991BD2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.swift in Sources */,
 				D6115AF4218FD490004A05DA /* ZFVolumeBrightnessView.m in Sources */,
 				D670D395212586870064750A /* HDLY_CourseComment_Cell.swift in Sources */,
+				1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */,
 				D6115AF6218FD490004A05DA /* ZFNetworkSpeedMonitor.m in Sources */,
 				A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */,
 				D637567B219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift in Sources */,
@@ -3008,6 +3037,7 @@
 				D61E94C72192D12400C5299F /* HDBaseModel.m in Sources */,
 				D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */,
 				A7C59E41219BF04700F67F0C /* HD_SSL_BigImageVC.m in Sources */,
+				1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */,
 				D66991C02130E959002568B2 /* HDLY_QuestionTip_Header.swift in Sources */,
 				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,
 				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
@@ -3062,6 +3092,7 @@
 				D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */,
 				D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
+				1B2928F721A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift in Sources */,
 				D60E856D2191651E00072BF9 /* HDLY_ExhibitListVC.swift in Sources */,
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
@@ -3072,6 +3103,7 @@
 				D6375677219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift in Sources */,
 				D669473B212FE6610068945A /* HDLY_LeaveQuestion_VC.swift in Sources */,
 				D614DFA6211EC75900A4D459 /* MD5.swift in Sources */,
+				1B2928F321A6808900FEF21C /* HDZQ_MyOwnModel.swift in Sources */,
 				D6115AE7218FD490004A05DA /* ZFOrientationObserver.m in Sources */,
 				A7441D3421A2A0D50064E6A6 /* TZVideoPlayerController.m in Sources */,
 				D670D3912125864C0064750A /* HDLY_CourseTeacher_Cell.swift in Sources */,
@@ -3107,6 +3139,7 @@
 				A7A90A6421A3E17D005BD37F /* HDSSL_shareCommentVC.swift in Sources */,
 				D62277B121367F12008F1416 /* HDLY_PhotoCell.swift in Sources */,
 				D6115AE8218FD490004A05DA /* ZFPlayerLogManager.m in Sources */,
+				1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */,
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
 				D68D541B2133D173000CD258 /* HDLY_SmsLogin_VC.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
@@ -3169,6 +3202,7 @@
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
 				D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */,
+				1B2928F021A67A8F00FEF21C /* HDZQ_MyFollowCell.swift in Sources */,
 				D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
@@ -3214,6 +3248,7 @@
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,
+				1B2928ED21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift in Sources */,
 				D6AA0B012135210A0036320F /* TopicDetailViewModel.swift in Sources */,
 				A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */,
 				A7441D3121A2A0D50064E6A6 /* FLAnimatedImageView.m in Sources */,
@@ -3254,6 +3289,7 @@
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
+				1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
 				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,

@@ -94,6 +94,11 @@ class HDSSL_dCommentCell: UITableViewCell {
         cell_time.text = String.init(format: "%@", listModel!.commentDate!)
         //点赞数量
         cell_btnLike.setTitle(String.init(format: "%d", listModel!.likeNum!), for: .normal)
+        if listModel?.isLike == 1 {
+            cell_btnLike.isSelected = true
+        }else{
+            cell_btnLike.isSelected = false
+        }
         //评论数量
         cell_btnComment.setTitle(String.init(format: "%d", listModel!.commentNum!), for: .normal)
     }

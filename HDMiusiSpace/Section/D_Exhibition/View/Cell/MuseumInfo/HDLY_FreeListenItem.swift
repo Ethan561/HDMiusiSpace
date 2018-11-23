@@ -25,6 +25,7 @@ class HDLY_FreeListenItem: UICollectionViewCell {
         playBtn.setImage(UIImage.init(named: "kz_mft_icon_pause"), for: .selected)
         playBtn.isUserInteractionEnabled = false
         
+        progressV.progressTintColor = UIColor.red
     }
     
     //类方法，创建cell

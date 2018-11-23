@@ -11,6 +11,7 @@ import UIKit
 let kBannerHeight = ScreenWidth*250/375.0
 
 class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate {
+    
     //接收
     var exhibition_id: Int?
     var exhibitionCellH: Double?
@@ -38,7 +39,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var imgsArr: Array<String>?
     let player = HDLY_AudioPlayer.shared
     var playModel: DMuseumListenList?
-    
+    var playingSelectRow = -1
+
     //评论
     var commentArr: [CommentListModel]? = Array.init()
     
@@ -341,7 +343,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }else if model.type == 4 {//精选推荐
                 return 160*ScreenWidth/375.0
             }else if model.type == 5 {//免费听
-                return 160*ScreenWidth/375.0
+                return (ScreenWidth - 20 * 3)/2.0 + 30
             }
 
         }
@@ -565,6 +567,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 }
                 cell.delegate = self
                 cell.playModel = playModel
+                cell.selectRow = playingSelectRow
+
                 player.delegate = cell
                 return cell
             }
@@ -623,15 +627,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     //HDLY_MuseumInfoType5Cell_Delegate
-    func didSelectItemAt(_ model:DMuseumListenList, _ cell: HDLY_FreeListenItem) {
+    func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int) {
+        playingSelectRow = selectRow
         if model.title == playModel?.title {
             if player.state == .playing {
                 player.pause()
-                cell.playBtn.isSelected = false
+                item.playBtn.isSelected = false
                 playModel?.isPlaying = false
             }else {
                 player.play()
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
                 
             }
@@ -641,7 +646,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 player.play(file: Music.init(name: "", url:URL.init(string: video)!))
                 player.url = video
                 self.playModel = model
-                cell.playBtn.isSelected = true
+                item.playBtn.isSelected = true
                 playModel?.isPlaying = true
             }
         }

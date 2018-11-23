@@ -52,16 +52,19 @@ struct ExCommentModel: Codable {
 }
 
 struct ReplyCommentModel: Codable {
-    var return_id: Int?
+    var returnId: Int?
     var avatar: String?
     var nickname: String?
     var likeNum: Int?
     var content, commentDate: String?
+    var isLike: Int?
     
     enum CodingKeys: String, CodingKey {
         case avatar, nickname
         case likeNum = "like_num"
         case content
         case commentDate = "comment_date"
+        case isLike = "is_like"
+        case returnId = "return_id"
     }
 }

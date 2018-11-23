@@ -168,6 +168,7 @@
 		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
 		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
+		D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -740,6 +741,7 @@
 		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
 		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCVM.swift; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -2478,6 +2480,7 @@
 		D6C9FCF22118486A007C8E56 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -3002,6 +3005,7 @@
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
 				D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */,
+				D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */,
 				A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */,
 				D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */,
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,

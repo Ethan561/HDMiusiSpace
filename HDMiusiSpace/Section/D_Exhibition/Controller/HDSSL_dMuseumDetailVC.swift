@@ -85,6 +85,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     deinit {
         LOG(" 释放 ---")
         
+        
     }
     
     @IBAction func action_back(_ sender: UIButton) {
@@ -390,8 +391,9 @@ extension HDSSL_dMuseumDetailVC {
                 if model.type == 1 {//同馆展览
                     let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                     cell?.listArray = model.exhibition?.list
+                    weak var weakS = self
                     cell?.BlockTapItemFunc(block: { (m) in
-                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
+                        weakS?.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
                     })
                     return cell!
                     

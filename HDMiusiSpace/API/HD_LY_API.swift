@@ -165,8 +165,12 @@ enum HD_LY_API {
     //获取同馆攻略列表
     case getStrategyList(museum_id: Int, skip:Int, take:Int , api_token: String)
 
-
+    //足迹上传
+    case uploadFavoritesFootprint(exhibit_id: Int , api_token: String)
     
+    //课程学习记录上传
+    case uploadCourseRecords(chapter_id: Int , api_token: String, study_time: String)
+
     
     
     
@@ -387,6 +391,12 @@ extension HD_LY_API: TargetType {
         case .getStrategyList(_):
             return "/api/exhibition/strategy_list"
             
+        case .uploadFavoritesFootprint(_):
+            return "/api/favorites/footprint"
+            
+        case .uploadCourseRecords(_):
+            return "/api/myclass/study_class"
+            
             
         }
         
@@ -414,8 +424,10 @@ extension HD_LY_API: TargetType {
              .usersPassword(api_token: _, password: _),
              .usersChangeusername(api_token: _, username: _, smscode: _),
              .usersChangeGender(api_token: _, sex: _),
-             .register_bind(params: _):
-
+             .register_bind(params: _),
+             .uploadFavoritesFootprint(exhibit_id: _, api_token: _),
+             .uploadCourseRecords(chapter_id: _, api_token: _, study_time: _):
+            
             
             return  .post
         default:
@@ -872,6 +884,26 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .uploadFavoritesFootprint(let exhibit_id, let api_token):
+            params = params.merging(["exhibit_id": exhibit_id, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+            
+            
+        case .uploadCourseRecords(let chapter_id, let api_token, let study_time):
+            params = params.merging(["chapter_id": chapter_id, "api_token": api_token, "study_time": study_time], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
             
             
         }

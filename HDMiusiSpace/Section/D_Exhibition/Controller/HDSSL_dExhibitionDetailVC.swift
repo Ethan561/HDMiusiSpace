@@ -16,8 +16,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var exhibition_id: Int?
     var exhibitionCellH: Double?
     var exhibitCellH: Double?
-    
-    
+
     //
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!

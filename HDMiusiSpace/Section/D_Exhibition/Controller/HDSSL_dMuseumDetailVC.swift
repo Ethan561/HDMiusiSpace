@@ -82,6 +82,11 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         
     }
     
+    deinit {
+        LOG(" 释放 ---")
+        
+    }
+    
     @IBAction func action_back(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -385,9 +390,9 @@ extension HDSSL_dMuseumDetailVC {
                 if model.type == 1 {//同馆展览
                     let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                     cell?.listArray = model.exhibition?.list
-                    cell?.BlockTapItemFunc(block: { (m) in
-                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
-                    })
+//                    cell?.BlockTapItemFunc(block: { (m) in
+//                        self.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
+//                    })
                     return cell!
                     
                 }

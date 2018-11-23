@@ -154,6 +154,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         }
     }
     
+    deinit {
+        LOG(" 释放 ---")
+        
+    }
     /*
     // MARK: - Navigation
 

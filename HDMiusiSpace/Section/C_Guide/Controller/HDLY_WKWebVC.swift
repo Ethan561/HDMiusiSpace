@@ -22,7 +22,17 @@ class HDLY_WKWebVC: HDItemBaseWebVC {
         
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        
+    }
+    
     //MARK: ---- WKNavigationDelegate ----
+    
     //开始加载
     override func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         self.progressView.isHidden = false

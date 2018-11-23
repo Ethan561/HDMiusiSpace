@@ -50,8 +50,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     
     //评论header
     lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
-    //其他header
-//    lazy var normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+    //基本信息footer
+//    lazy var firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -437,6 +437,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     //MARK: ---------Footer
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 100
+        }
         if section == 2 {
             guard self.exdataModel != nil else {
                 return 0.01
@@ -448,6 +451,19 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            //
+            if self.exdataModel == nil {
+                return nil
+            }
+            let firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+            firstSecFooter.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.museumImg!)!)), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+            firstSecFooter.cell_title.text = String.init(format: "%@", (self.exdataModel?.data?.museumTitle)!)
+            firstSecFooter.cell_address.text = String.init(format: "%@", (self.exdataModel?.data?.museumAddress)!)
+            
+            
+            return firstSecFooter
+        }
         if section == 2 {
             let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
             btn.backgroundColor = UIColor.white

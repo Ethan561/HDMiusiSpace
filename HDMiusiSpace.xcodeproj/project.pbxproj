@@ -71,6 +71,8 @@
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
 		A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */; };
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
+		A79422FC21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */; };
+		A79422FE21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */; };
 		A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */; };
 		A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */; };
 		A799C033219FE98D00BA526C /* HDSSL_dHeaderNormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C032219FE98D00BA526C /* HDSSL_dHeaderNormal.swift */; };
@@ -612,6 +614,8 @@
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
 		A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dExhibitionCell.xib; sourceTree = "<group>"; };
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
+		A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0Footer.swift; sourceTree = "<group>"; };
+		A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec0Footer.xib; sourceTree = "<group>"; };
 		A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentHerder.swift; sourceTree = "<group>"; };
 		A799C030219FB72D00BA526C /* HDSSL_dCommentHerder.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dCommentHerder.xib; sourceTree = "<group>"; };
 		A799C032219FE98D00BA526C /* HDSSL_dHeaderNormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dHeaderNormal.swift; sourceTree = "<group>"; };
@@ -1300,6 +1304,15 @@
 			path = location;
 			sourceTree = "<group>";
 		};
+		A79422FA21A7DE1F0083A1C8 /* footer */ = {
+			isa = PBXGroup;
+			children = (
+				A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */,
+				A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */,
+			);
+			path = footer;
+			sourceTree = "<group>";
+		};
 		A799C02C219FB6D200BA526C /* header */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1347,7 @@
 		A7C59E46219BF9D700F67F0C /* ExhibitionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A79422FA21A7DE1F0083A1C8 /* footer */,
 				A799C02C219FB6D200BA526C /* header */,
 				A7C59E47219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift */,
 				A7C59E48219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib */,
@@ -2732,6 +2746,7 @@
 				A7C59E56219C08AE00F67F0C /* HDSSL_Sec1Cell.xib in Resources */,
 				D670D39E212588C20064750A /* HDLY_CourseRecmd_Cell.xib in Resources */,
 				D6115AF7218FD490004A05DA /* ZFPlayer.bundle in Resources */,
+				A79422FE21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib in Resources */,
 				D66C35D7213FB14B00363D7C /* HDLY_MyDynamicCell.xib in Resources */,
 				D6375684219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.xib in Resources */,
 				D696C3F221A3A78300B7E3FA /* HDLY_dMuseumHeader.xib in Resources */,
@@ -3293,6 +3308,7 @@
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,
 				D66C7AB92123F68B00B34221 /* RecommendSectionCell.swift in Sources */,
+				A79422FC21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift in Sources */,
 				D61E94D72192D12400C5299F /* UIButton+WebCache.m in Sources */,
 				D69451882196755E00E7DA44 /* HDLY_OpenVipTipView.swift in Sources */,
 				D66EDF93212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift in Sources */,

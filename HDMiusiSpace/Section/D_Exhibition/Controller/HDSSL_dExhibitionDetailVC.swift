@@ -43,7 +43,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
 
     //评论
     var commentArr: [CommentListModel]? = Array.init()
-    
+    //
+    var likeCellIndex: Int! //点赞指纹
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
@@ -101,6 +102,24 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             } else {
                 weakSelf?.likeBtn.isSelected = true
             }
+        }
+        //点赞
+        publicViewModel.likeModel.bind { (model) in
+            
+            let m : LikeModel = model
+            
+            
+            var mode = weakSelf?.commentArr![(weakSelf?.likeCellIndex)!]
+            
+            mode!.isLike = (m.is_like?.int)!
+            mode!.likeNum = (m.like_num?.int)!
+            
+            weakSelf?.commentArr?.remove(at: (weakSelf?.likeCellIndex)!)
+            weakSelf?.commentArr?.insert(mode!, at: (weakSelf?.likeCellIndex!)!)
+            
+            //刷新点赞按钮
+            weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: (weakSelf?.likeCellIndex!)!, section:2)], with: .fade)
+            
         }
     }
     //处理返回数据
@@ -527,9 +546,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapLikeFunc { (index) in
                 print("点击喜欢按钮，位置\(index)")
+                weakSelf?.commentTapLikeButton(index)
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
+                
+                weakSelf?.action_showMoreComment()
             }
             return cell
         }
@@ -664,7 +686,30 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     //查看更多评论
     @objc func action_showMoreComment(){
         print("查看更多评论")
+        //
+        // 1全部，2有图
+        let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
+        commentListvc.listType = 1
+        commentListvc.exhibition_id = self.exhibition_id!
+        commentListvc.exdataModel = self.exdataModel!
+        self.navigationController?.pushViewController(commentListvc, animated: true)
     }
+    //点赞
+    func commentTapLikeButton(_ index:Int) -> Void {
+        //
+        let myModel = self.commentArr![index]
+        likeCellIndex = index
+        
+        if myModel.commentId != 0 {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", myModel.commentId), cate_id: "6", self)
+        }
+    }
+    
     func getTableFooterView() -> UIView {
         let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
         tFooter.backgroundColor = UIColor.white

@@ -71,15 +71,15 @@ struct CommentList: Codable {
 }
 //评论2
 struct CommentListModel: Codable {
-    let avatar: String
-    let isVip: Int
-    let nickname: String
-    let star: Int
-    let content: String
+    var avatar: String
+    var isVip: Int
+    var nickname: String
+    var star: Int
+    var content: String
     var imgList: [String]?
-    let isLike, likeNum, commentNum: Int
-    let commentDate: String
-    let commentId: Int
+    var isLike, likeNum, commentNum: Int
+    var commentDate: String
+    var commentId: Int
     
     enum CodingKeys: String, CodingKey {
         case avatar

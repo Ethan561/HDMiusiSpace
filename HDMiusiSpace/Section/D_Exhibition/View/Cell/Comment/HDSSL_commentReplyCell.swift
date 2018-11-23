@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias BlockTapLikeButton = (_ model:ReplyCommentModel) -> Void //点赞
+typealias BlockTapLikeButton = (_ model:ReplyCommentModel,_ indexpath: IndexPath) -> Void //点赞
 
 class HDSSL_commentReplyCell: UITableViewCell {
 
@@ -17,6 +17,8 @@ class HDSSL_commentReplyCell: UITableViewCell {
     @IBOutlet weak var cell_content: UILabel!
     @IBOutlet weak var cell_date: UILabel!
     @IBOutlet weak var btn_like: UIButton!
+    
+    var indexpath: IndexPath? //对象指纹
     
     var blockTapLikeButton: BlockTapLikeButton?
     
@@ -36,21 +38,21 @@ class HDSSL_commentReplyCell: UITableViewCell {
         cell_content.text = String.init(format: "%@", (myModel?.content)!)
         cell_date.text = String.init(format: "%@", (myModel?.commentDate)!)
         btn_like.setTitle(String.init(format: "%d", myModel?.likeNum ?? 0), for: .normal)
-//        if myModel?.isLike == 1 {
-//            btn_like.isSelected = true
-//        }else{
-//            btn_like.isSelected = false
-//        }
+        if myModel?.isLike == 1 {
+            btn_like.isSelected = true
+        }else{
+            btn_like.isSelected = false
+        }
     }
     
     //点赞评论回复
     @IBAction func action_tapLike(_ sender: UIButton) {
         
-        sender.isSelected = !sender.isSelected
+//        sender.isSelected = !sender.isSelected
         
         weak var weakself = self
         if weakself?.blockTapLikeButton != nil {
-            weakself?.blockTapLikeButton!(myModel!)
+            weakself?.blockTapLikeButton!(myModel!,indexpath!)
         }
     }
     

@@ -122,13 +122,18 @@ class HDSSL_dCommentCell: UITableViewCell {
         cell_time.text = String.init(format: "%@", myModel!.commentDate)
         //点赞数量
         cell_btnLike.setTitle(String.init(format: "%d", myModel!.likeNum), for: .normal)
+        if myModel?.isLike == 1 {
+            cell_btnLike.isSelected = true
+        }else{
+            cell_btnLike.isSelected = false
+        }
         //评论数量
         cell_btnComment.setTitle(String.init(format: "%d", myModel!.commentNum), for: .normal)
     }
 
     @IBAction func action_tapLikeBtn(_ sender: UIButton) {
         
-        sender.isSelected = !sender.isSelected;
+//        sender.isSelected = !sender.isSelected;
         
         weak var weakSelf = self
         if weakSelf?.blockTapLike != nil {

@@ -41,7 +41,7 @@ class HDSSL_commentTextCell: UITableViewCell {
             weak var weakself = self
             let starNum = 2 * index
             
-            weakself?.cell_starNumL.text = String.init(format: "%d", starNum)
+            weakself?.cell_starNumL.text = String.init(format: "%.1f", starNum)
             if weakself?.blockBackStarNum != nil {
                 weakself?.blockBackStarNum!(Int(starNum))
             }

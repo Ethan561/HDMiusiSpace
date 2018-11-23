@@ -261,8 +261,15 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         //
         tapLikeType = 2
         currentIndexPath = indexp
-        //API--点赞
-        publicViewModel.doLikeRequest(id: String.init(format: "%d", m.returnId!), cate_id: "5", self)
+        if currentCommentModel.commentID != nil {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            //API--点赞
+            publicViewModel.doLikeRequest(id: String.init(format: "%d", m.returnId!), cate_id: "5", self)
+        }
+        
     }
 
     //获取评论cell的高度

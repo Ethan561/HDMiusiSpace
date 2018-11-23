@@ -82,7 +82,8 @@ struct MyCollectCourseModel:Codable {
     var img: String
     var teacherName: String
     var teacherTitle: String
-    var price: String
+    var price: Int
+    var fileType : Int
     
     enum CodingKeys: String, CodingKey {
         case classId = "class_id"
@@ -93,6 +94,6 @@ struct MyCollectCourseModel:Codable {
         case studyClassNum = "study_class_num"
         case teacherName = "teacher_name"
         case teacherTitle = "teacher_title"
-        
+        case fileType = "file_type"
     }
 }

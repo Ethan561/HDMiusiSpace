@@ -157,6 +157,7 @@
                         <segue destination="Ymt-jS-LkT" kind="show" identifier="PushTo_HDLY_Setting_VC_Line" id="iOy-p3-TRf"/>
                         <segue destination="EwN-HO-aSk" kind="show" identifier="PushTo_HDZQ_MyFollowVC" id="DxR-fd-twx"/>
                         <segue destination="s4H-nC-cft" kind="show" identifier="PushTo_HDZQ_MyFCollectVC" id="G8Q-gg-LVV"/>
+                        <segue destination="TnC-jx-SWm" kind="show" identifier="PushTo_HDZQ_MyCoursesVC" id="D4U-QG-aVi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-sh-aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1201,6 +1202,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7V-20-ULA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6174" y="1034"/>
+        </scene>
+        <!--My CoursesVC-->
+        <scene sceneID="5fM-Lr-Kpa">
+            <objects>
+                <viewController storyboardIdentifier="HDZQ_MyCoursesVC" hidesBottomBarWhenPushed="YES" id="TnC-jx-SWm" customClass="HDZQ_MyCoursesVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uAw-zI-5az">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BwW-21-VsZ">
+                                <rect key="frame" x="0.0" y="30" width="375" height="637"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BwW-21-VsZ" firstAttribute="top" secondItem="5k0-Mx-BvU" secondAttribute="top" constant="10" id="2l5-cH-IlI"/>
+                            <constraint firstItem="5k0-Mx-BvU" firstAttribute="trailing" secondItem="BwW-21-VsZ" secondAttribute="trailing" id="5aS-9x-vuV"/>
+                            <constraint firstItem="5k0-Mx-BvU" firstAttribute="bottom" secondItem="BwW-21-VsZ" secondAttribute="bottom" id="JIv-Wq-Ahf"/>
+                            <constraint firstItem="BwW-21-VsZ" firstAttribute="leading" secondItem="5k0-Mx-BvU" secondAttribute="leading" id="eTA-eD-IEJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5k0-Mx-BvU"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="BwW-21-VsZ" id="G1i-9F-4Ut"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4XJ-6F-2Cq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3874" y="-1750"/>
         </scene>
     </scenes>
     <resources>

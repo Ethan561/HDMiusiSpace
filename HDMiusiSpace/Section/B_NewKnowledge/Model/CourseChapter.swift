@@ -51,6 +51,7 @@ struct ChapterList: Codable {
     let title, timeLong, video: String
     let freeType, isPlay: Int
     var isNeedBuy = false
+    var chapter_id: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case title
@@ -58,6 +59,7 @@ struct ChapterList: Codable {
         case video
         case freeType = "free_type"
         case isPlay = "is_play"
+        case chapter_id
     }
 }
 

@@ -48,7 +48,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
     //评论header
-    lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
+//    lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
     //基本信息footer
 //    lazy var firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
     
@@ -380,6 +380,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
             //评论
+            let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
             let totalNum = self.exdataModel?.data?.commentList?.total
             let picNum = self.exdataModel?.data?.commentList?.imgNum
             commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)

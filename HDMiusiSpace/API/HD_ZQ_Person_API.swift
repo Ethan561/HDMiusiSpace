@@ -17,10 +17,14 @@ enum HD_ZQ_Person_API {
     case getMyFavoriteNews(api_token: String, skip:Int, take:Int,type:Int)
     //我的收藏课程
     case getMyFavoriteCourses(api_token: String, skip:Int, take:Int,type:Int)
-    //我的收藏课程
+    //我的收藏展览
     case getMyFavoriteExhibition(api_token: String, skip:Int, take:Int,type:Int)
     //我的日卡
-//    case getSearchTypes()
+    case getMyDayCards(api_token: String, skip:Int, take:Int)
+    //我的已购买课程
+    case getMyBuyCourses(api_token: String, skip:Int, take:Int)
+    //我的学习中课程
+    case getMyStudyCourses(api_token: String, skip:Int, take:Int)
 //    //我的足迹
 //    case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
 //
@@ -52,7 +56,12 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/myclass/favorites_list"
         case .getMyFavoriteExhibition(api_token: _,  skip: _, take: _, type: _):
             return "/api/favorites/my_exhibition"
-            
+        case .getMyDayCards(api_token: _,  skip: _, take: _):
+            return "/api/favorites/my_daycard"
+        case .getMyBuyCourses(api_token: _,  skip: _, take: _):
+            return "/api/myclass/buy_list"
+        case .getMyStudyCourses(api_token: _,  skip: _, take: _):
+            return "/api/myclass/study_list"
         }
     }
     
@@ -84,11 +93,10 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
         
-        case .getMyFavoriteNews(let apiToken,let page,let size,let type):
+        case .getMyFavoriteNews(let apiToken,let page,let size, _):
             params = params.merging(["api_token": apiToken,
                                      "skip":page,
-                                     "take":size,
-                                     "type":type], uniquingKeysWith: {$1})
+                                     "take":size], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -101,11 +109,31 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-        case .getMyFavoriteExhibition(let apiToken,let page,let size,let type):
+        case .getMyFavoriteExhibition(let apiToken,let page,let size, _):
             params = params.merging(["api_token": apiToken,
                                      "skip":page,
-                                     "take":size,
-                                     "type":type], uniquingKeysWith: {$1})
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyDayCards(let apiToken,let page,let size):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyBuyCourses(let apiToken,let page,let size):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyStudyCourses(let apiToken,let page,let size):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

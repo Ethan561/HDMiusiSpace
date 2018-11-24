@@ -28,6 +28,12 @@ class HDRootEVC: HDItemBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshUserInfo()
+//        var  params = ["p":"i", "api_token": HDDeclare.shared.api_token ?? "",
+//                       "study_time":"02:00",
+//                                 "chapter_id":"13"]
+//        let signKey =  HDDeclare.getSignKey(params)
+//        let dic2 = ["Sign": signKey]
+//        params.merge(dic2, uniquingKeysWith: { $1 })
     }
     
     func setupViews() {
@@ -211,7 +217,9 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.row == 3 {
+            self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
+        }
     }
     
 }

@@ -54,5 +54,27 @@ class HDZQ_MyViewModel: NSObject {
         }
     }
     
+    var bugCourses: Bindable = Bindable([MyCollectCourseModel]())
+    func requestMyBuyCourses(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyBuyCourses(api_token:apiToken , skip:skip, take:take), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectCourseData = try! jsonDecoder.decode(MyCollectCourseData.self, from: result)
+            self.bugCourses.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    var studyCourses: Bindable = Bindable([MyCollectCourseModel]())
+    func requestMyStudyCourses(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyStudyCourses(api_token:apiToken , skip:skip, take:take), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectCourseData = try! jsonDecoder.decode(MyCollectCourseData.self, from: result)
+            self.studyCourses.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
 }
 

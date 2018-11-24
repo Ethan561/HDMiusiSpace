@@ -16,6 +16,8 @@
 		1B2928F321A6808900FEF21C /* HDZQ_MyOwnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */; };
 		1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */; };
 		1B2928F721A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */; };
+		1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */; };
+		1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
@@ -542,6 +544,8 @@
 		1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyOwnModel.swift; sourceTree = "<group>"; };
 		1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectVC.swift; sourceTree = "<group>"; };
 		1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectSubVC.swift; sourceTree = "<group>"; };
+		1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesVC.swift; sourceTree = "<group>"; };
+		1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesSubVC.swift; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
@@ -2380,6 +2384,8 @@
 				1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */,
 				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
 				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
+				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
+				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2965,6 +2971,7 @@
 				D6C9FCDF21183C4E007C8E56 /* UIView+Position.swift in Sources */,
 				D637566C219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift in Sources */,
 				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
+				1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */,
 				A72DE93F21A142F900F0536F /* HDSSL_commentImgCell.swift in Sources */,
 				D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,
@@ -3036,6 +3043,7 @@
 				D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */,
 				D62277D621368069008F1416 /* LoadingViewController.swift in Sources */,
 				D66C35CA213FA80600363D7C /* HDLY_MineInfo_Cell.swift in Sources */,
+				1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */,
 				D6115AFC218FD490004A05DA /* ZFSpeedLoadingView.m in Sources */,
 				A7B8447C21A5361600FC8465 /* HDSSL_commentListModel.swift in Sources */,
 				D6A1E22C211C13CF00E1E893 /* FSPagerView.swift in Sources */,

@@ -16,6 +16,7 @@ let Status_Code_Success1 = 200
 
 let Status_Code_Error   = 0
 let Status_Code_ErrorToken = 405
+let Status_Code_BindPhone = 422
 
 let Status_Code_NoLocation = -1
 
@@ -91,6 +92,9 @@ class HD_LY_NetHelper {
                     case Status_Code_Error:
                         
                         failureHandle(failure: failure, stateCode: nil, message: model.msg)
+                    case Status_Code_BindPhone:
+                        
+                        failureHandle(failure: failure, stateCode: Status_Code_BindPhone, message: model.msg)
                     //ErrorToken
                     case Status_Code_ErrorToken:
                         
@@ -124,7 +128,7 @@ class HD_LY_NetHelper {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: message)
             }
             if let failureBlack = failure {
-                failureBlack(nil ,message)
+                failureBlack(stateCode ,message)
             }
         }
     }

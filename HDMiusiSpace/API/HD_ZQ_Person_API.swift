@@ -25,20 +25,9 @@ enum HD_ZQ_Person_API {
     case getMyBuyCourses(api_token: String, skip:Int, take:Int)
     //我的学习中课程
     case getMyStudyCourses(api_token: String, skip:Int, take:Int)
-//    //我的足迹
-//    case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
-//
-//    //我的钱包
-//    case getCityList(type: Int)
-//
-//    //我的订单
-//    case getWorldCityList(kind: Int,type: Int)
-//
-//    //我的课程
-//    case searchCityByString(keyname: String,kind: Int)
-//
-//    //我的动态
-//    case getExhibitionDetail(exhibitionId: Int)
+    //我的学习中课程
+    case thirdBindPhone(params:[String:Any])
+
 }
 extension HD_ZQ_Person_API: TargetType {
     //--- 服务器地址 ---
@@ -62,22 +51,22 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/myclass/buy_list"
         case .getMyStudyCourses(api_token: _,  skip: _, take: _):
             return "/api/myclass/study_list"
+        case .thirdBindPhone(params:_):
+            return "/api/users/bind_phone"
         }
     }
     
     
     //--- 请求类型 ---
     var method: Moya.Method {
-//        switch self {
-//        case .saveSelectedTags(api_token:_,label_id_str: _,deviceno: _),
-//             .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _):
-//
-//            return  .post
-//
-//        default:
-//            return .get
-//        }
-        return .get
+        switch self {
+        case .thirdBindPhone(params:_):
+            return  .post
+
+        default:
+            return .get
+        }
+        
     }
     //--- 请求任务事件（这里附带上参数）---
     var task: Task {
@@ -137,6 +126,12 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        case .thirdBindPhone(params: let paramsTemp):
+            params = params.merging(paramsTemp, uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         default:
             return .requestPlain//无参数
         }

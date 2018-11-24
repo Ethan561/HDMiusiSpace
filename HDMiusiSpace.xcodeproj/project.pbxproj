@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -535,6 +536,7 @@
 
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -1965,6 +1967,7 @@
 				D68D541A2133D173000CD258 /* HDLY_SmsLogin_VC.swift */,
 				D68D541C2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift */,
 				D68D541E2133D1D2000CD258 /* HDLY_Register_VC.swift */,
+				1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */,
 				D68D54202133D1ED000CD258 /* LogInSection.storyboard */,
 			);
 			path = LogInSection;
@@ -3226,6 +3229,7 @@
 				D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */,
 				D66A2AB92140D07F00427425 /* HDLY_LogoutTip_View.swift in Sources */,
 				D6A9FB4121227BA80087972E /* HDLY_CourseList_VC.swift in Sources */,
+				1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */,
 				D6C9FC8421181FD1007C8E56 /* HDDeclare.swift in Sources */,
 				D6C9FC9421181FD1007C8E56 /* UIScrollView+Empty.swift in Sources */,
 				D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */,

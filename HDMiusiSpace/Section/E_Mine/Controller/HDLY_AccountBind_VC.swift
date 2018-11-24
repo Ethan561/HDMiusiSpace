@@ -79,7 +79,12 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if section == 0 {
+            return 2
+        } else {
+           return 2
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -101,13 +106,14 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 cell?.subNameL.text = declare.phone
                 cell?.moreImgV.isHidden = true
                 return cell!
-            }else if index == 2 {//邮箱
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "邮箱"
-                cell?.moreImgV.isHidden = true
-                cell?.bottomLine.isHidden = true
-                return cell!
             }
+//            else if index == 2 {//邮箱
+//                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+//                cell?.nameL.text = "邮箱"
+//                cell?.moreImgV.isHidden = true
+//                cell?.bottomLine.isHidden = true
+//                return cell!
+//            }
         }
         
         if section == 1 {
@@ -123,14 +129,15 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 cell?.subNameL.text = "未绑定"
                 cell?.moreImgV.isHidden = true
                 return cell!
-            }else if index == 2 {//邮箱
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "邮箱"
-                cell?.subNameL.text = "未绑定"
-                cell?.moreImgV.isHidden = true
-                cell?.bottomLine.isHidden = true
-                return cell!
             }
+//            else if index == 2 {//邮箱
+//                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+//                cell?.nameL.text = "邮箱"
+//                cell?.subNameL.text = "未绑定"
+//                cell?.moreImgV.isHidden = true
+//                cell?.bottomLine.isHidden = true
+//                return cell!
+//            }
         }
         return UITableViewCell.init()
     }

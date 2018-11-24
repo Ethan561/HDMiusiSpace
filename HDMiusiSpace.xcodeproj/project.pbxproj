@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
+		1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -537,6 +538,7 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
+		1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -2389,6 +2391,7 @@
 				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
 				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
+				1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2968,6 +2971,7 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */,
 				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
+				1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */,

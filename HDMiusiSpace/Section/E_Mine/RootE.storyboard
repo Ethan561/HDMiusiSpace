@@ -10,6 +10,120 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Day CardVC-->
+        <scene sceneID="nHr-mI-XUr">
+            <objects>
+                <viewController storyboardIdentifier="HDZQ_DayCardVC" hidesBottomBarWhenPushed="YES" id="eUd-lI-9Ts" customClass="HDZQ_DayCardVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rH5-XA-g8N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dap-Oe-AcP">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HDZQ_DayCardTableViewCell" rowHeight="558" id="s3h-2T-NPs" customClass="HDZQ_DayCardTableViewCell" customModule="HDMiusiSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="558"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s3h-2T-NPs" id="TZ5-HZ-1BK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMU-lZ-phY">
+                                                    <rect key="frame" x="20" y="24" width="57" height="31"/>
+                                                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tuG-gh-bMP">
+                                                    <rect key="frame" x="0.0" y="60" width="375" height="469"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="tuG-gh-bMP" secondAttribute="height" multiplier="4:5" id="QLD-93-ulN"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XAn-68-AsK">
+                                                        <size key="itemSize" width="315" height="421"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HDZQ_DayCardCollectionViewCell" id="U6k-em-jRK" customClass="HDZQ_DayCardCollectionViewCell" customModule="HDMiusiSpace" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="24" width="315" height="421"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="315" height="421"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jx_img_rika" translatesAutoresizingMaskIntoConstraints="NO" id="XS3-4Y-PL1">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="315" height="421"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </view>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="XS3-4Y-PL1" firstAttribute="leading" secondItem="U6k-em-jRK" secondAttribute="leading" id="2Nc-u7-9NH"/>
+                                                                <constraint firstAttribute="bottom" secondItem="XS3-4Y-PL1" secondAttribute="bottom" id="mEM-IT-pO4"/>
+                                                                <constraint firstItem="XS3-4Y-PL1" firstAttribute="top" secondItem="U6k-em-jRK" secondAttribute="top" id="npU-dP-hNt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="XS3-4Y-PL1" secondAttribute="trailing" id="q03-T2-47I"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="darCardImageView" destination="XS3-4Y-PL1" id="3TM-WZ-Df5"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="s3h-2T-NPs" id="6zR-dT-q2t"/>
+                                                        <outlet property="delegate" destination="s3h-2T-NPs" id="F8x-ZB-aCo"/>
+                                                    </connections>
+                                                </collectionView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAn-KE-xlc">
+                                                    <rect key="frame" x="313" y="29" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="tuG-gh-bMP" secondAttribute="trailing" id="9tX-5t-QRU"/>
+                                                <constraint firstItem="rAn-KE-xlc" firstAttribute="centerY" secondItem="gMU-lZ-phY" secondAttribute="centerY" id="ECb-ZL-U8B"/>
+                                                <constraint firstAttribute="trailing" secondItem="rAn-KE-xlc" secondAttribute="trailing" constant="20" id="MjO-ai-h8B"/>
+                                                <constraint firstItem="gMU-lZ-phY" firstAttribute="top" secondItem="TZ5-HZ-1BK" secondAttribute="top" constant="24" id="N7X-YX-a33"/>
+                                                <constraint firstItem="tuG-gh-bMP" firstAttribute="top" secondItem="gMU-lZ-phY" secondAttribute="bottom" constant="5" id="d0y-aA-6ON"/>
+                                                <constraint firstItem="gMU-lZ-phY" firstAttribute="leading" secondItem="TZ5-HZ-1BK" secondAttribute="leading" constant="20" id="hte-Ku-UpY"/>
+                                                <constraint firstItem="tuG-gh-bMP" firstAttribute="leading" secondItem="TZ5-HZ-1BK" secondAttribute="leading" id="k7e-KU-b2z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collectionView" destination="tuG-gh-bMP" id="lnp-lO-dcC"/>
+                                            <outlet property="dateLabel" destination="gMU-lZ-phY" id="afO-eD-RNk"/>
+                                            <outlet property="numberLabel" destination="rAn-KE-xlc" id="EOM-Y7-iRg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eUd-lI-9Ts" id="zlA-Yn-FR5"/>
+                                    <outlet property="delegate" destination="eUd-lI-9Ts" id="nj2-4S-SUa"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0g0-Le-gar" firstAttribute="trailing" secondItem="Dap-Oe-AcP" secondAttribute="trailing" id="GJi-sA-lAc"/>
+                            <constraint firstItem="0g0-Le-gar" firstAttribute="bottom" secondItem="Dap-Oe-AcP" secondAttribute="bottom" id="LeT-sN-Cme"/>
+                            <constraint firstItem="Dap-Oe-AcP" firstAttribute="leading" secondItem="0g0-Le-gar" secondAttribute="leading" id="PwT-Bs-aMt"/>
+                            <constraint firstItem="Dap-Oe-AcP" firstAttribute="top" secondItem="0g0-Le-gar" secondAttribute="top" id="XOQ-kw-Adv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0g0-Le-gar"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Dap-Oe-AcP" id="Y19-vS-ATy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cpt-Bz-jVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1741.5999999999999" y="-1738.3808095952024"/>
+        </scene>
         <!--My FollowVC-->
         <scene sceneID="g01-7t-XF8">
             <objects>
@@ -158,6 +272,7 @@
                         <segue destination="EwN-HO-aSk" kind="show" identifier="PushTo_HDZQ_MyFollowVC" id="DxR-fd-twx"/>
                         <segue destination="s4H-nC-cft" kind="show" identifier="PushTo_HDZQ_MyFCollectVC" id="G8Q-gg-LVV"/>
                         <segue destination="TnC-jx-SWm" kind="show" identifier="PushTo_HDZQ_MyCoursesVC" id="D4U-QG-aVi"/>
+                        <segue destination="eUd-lI-9Ts" kind="show" identifier="PushToHDZQ_DayCardVC" id="uog-xc-qiK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-sh-aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1356,6 +1471,7 @@ sgi0CLYIuAi6CL8IxxozGjUaOhpIGkwaUxpYGmUaaBp1GnoaghqFGooakhqVGqcaqhqvAAAAAAAAAgEA
 AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
 </mutableData>
         </image>
+        <image name="jx_img_rika" width="335" height="480"/>
         <image name="wd_icon_sz" width="20" height="20"/>
         <image name="wd_icon_xx" width="20" height="20"/>
         <image name="wd_img_app" width="100" height="100"/>

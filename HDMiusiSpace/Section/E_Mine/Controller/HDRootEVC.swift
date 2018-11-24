@@ -235,6 +235,7 @@ extension HDRootEVC: HDLY_MineHome_Header_Delegate {
             self.performSegue(withIdentifier: "PushTo_HDZQ_MyFCollectVC", sender: nil)
         case 2:
             print(3)
+             self.performSegue(withIdentifier: "PushToHDZQ_DayCardVC", sender: nil)
         case 3:
             print(4)
         default:

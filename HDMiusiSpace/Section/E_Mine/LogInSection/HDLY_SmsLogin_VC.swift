@@ -231,6 +231,12 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             
         }) { (errorCode, msg) in
             HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+            if errorCode == 422 {
+                let vc = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_ThirdBindPhoneVC") as! HDZQ_ThirdBindPhoneVC
+                vc.params = params
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
         }
     }
     

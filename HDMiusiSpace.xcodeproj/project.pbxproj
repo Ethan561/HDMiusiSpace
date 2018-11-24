@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
 		1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */; };
+		1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -539,6 +540,7 @@
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
 		1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
+		1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFootprintVC.swift; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -2392,6 +2394,7 @@
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
 				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
 				1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */,
+				1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3118,6 +3121,7 @@
 				D6EEDDAD21901FF000F730BA /* HDLY_Kids_Cell2.swift in Sources */,
 				A7A90A5A21A3A1C4005BD37F /* HDSSL_commentSucVC.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
+				1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */,
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
 				D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */,
 				D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */,

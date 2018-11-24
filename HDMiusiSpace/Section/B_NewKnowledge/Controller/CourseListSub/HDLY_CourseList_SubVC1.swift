@@ -10,7 +10,7 @@ import UIKit
 
 protocol ChapterListPlayDelegate: NSObjectProtocol {
     
-    func playWithCurrentPlayUrl(_ video: String)
+    func playWithCurrentPlayUrl(_ model: ChapterList)
     
 }
 
@@ -172,13 +172,13 @@ extension HDLY_CourseList_SubVC1 {
                 
             }
             else if listModel.freeType == 1 {
-                delegate?.playWithCurrentPlayUrl(listModel.video)
+                delegate?.playWithCurrentPlayUrl(listModel)
             }
             else if listModel.freeType == 2 {
-                delegate?.playWithCurrentPlayUrl(listModel.video)
+                delegate?.playWithCurrentPlayUrl(listModel)
             }
         }else {
-            delegate?.playWithCurrentPlayUrl(listModel.video)
+            delegate?.playWithCurrentPlayUrl(listModel)
         }
     }
     

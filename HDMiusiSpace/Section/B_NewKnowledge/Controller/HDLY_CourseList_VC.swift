@@ -79,6 +79,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     let courseListTopH = (kStatusBarHeight+24+60+ScreenWidth*9/16.0)
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    let uploadVM = HDLY_RootCVM()
+    var listPlayModel: ChapterList?
+    var currentPlayTime: TimeInterval = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,20 +93,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         contentView.addSubview(contentScrollView)
         menuView.addSubview(self.pageMenu)
         
-        // 设置退到后台继续播放
-        self.player.pauseWhenAppResignActive = false
+        setupPlayer()
         
-        weak var _self = self
-        self.player.orientationWillChange = { (player,isFullScreen) -> (Void) in
-            _self?.setNeedsStatusBarAppearanceUpdate()
-        }
-        // 播放完自动播放下一个
-        self.player.playerDidToEnd = { (asset) -> () in
-            
-        }
         dataRequest()
         addContentSubViewsWithArr(titleArr: titleArray)
         bindViewModel()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,6 +132,47 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
         }
         
+    }
+    
+    private func setupPlayer() {
+        // 设置退到后台继续播放
+        self.player.pauseWhenAppResignActive = false
+        
+        weak var _self = self
+        self.player.orientationWillChange = { (player,isFullScreen) -> (Void) in
+            _self?.setNeedsStatusBarAppearanceUpdate()
+        }
+        // 播放完自动播放下一个
+        self.player.playerDidToEnd = { (asset) -> () in
+            
+        }
+        
+        self.player.playerPlayStateChanged = { (asset,state) -> () in
+            if state == ZFPlayerPlaybackState.playStatePaused {
+                _self?.uploadRecordActions()
+            }
+            else if state == ZFPlayerPlaybackState.playStatePlayStopped {
+                _self?.uploadRecordActions()
+            }
+        }
+        
+        self.player.playerPlayTimeChanged = { (asset,currentTime,duration) -> () in
+            LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
+            _self?.currentPlayTime = currentTime
+        }
+    }
+    
+    func uploadRecordActions() {
+        guard let model = self.listPlayModel else {
+            return
+        }
+        
+        let token:String? = HDDeclare.shared.api_token
+        if token != nil {
+            let time = HDLY_AudioPlayer.shared.formatPlayTime(seconds: currentPlayTime)
+            uploadVM.uploadCourseRecordsRequest(api_token: token!, chapter_id: model.chapter_id, study_time: time, self)
+            
+        }
     }
     
     @IBAction func likeBtnAction(_ sender: UIButton) {
@@ -179,10 +215,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
     }
     
-    func playWithCurrentPlayUrl(_ video: String) {
+    // ChapterListPlayDelegate
+    func playWithCurrentPlayUrl(_ model: ChapterList) {
         
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
-
+        listPlayModel = model
+        let video = model.video
         if video.isEmpty == false && video.contains(".mp3") {
             self.player.assetURL = NSURL.init(string: video)! as URL
             self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
@@ -192,7 +230,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             self.player.assetURL = NSURL.init(string: video)! as URL
             self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
         }
-        
     }
     func dataRequest()  {
         guard let idnum = self.courseId else {

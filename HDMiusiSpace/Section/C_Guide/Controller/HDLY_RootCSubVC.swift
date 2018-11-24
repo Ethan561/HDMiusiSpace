@@ -12,7 +12,7 @@ import ESPullToRefresh
 
 class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     var dataArr =  [MuseumListData]()
-    var type = 1 //1最近2最火    
+    var type = 1 //1最近2最火
     //tableView
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)

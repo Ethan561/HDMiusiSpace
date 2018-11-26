@@ -234,6 +234,20 @@
     //代理回调
     [self getBackPhotosWith];
 }
+- (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath{
+    NSLog(@"按钮上");
+    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+    [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+    [_collectionView performBatchUpdates:^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sourceIndexPath.item inSection:0];
+        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    } completion:^(BOOL finished) {
+        [self->_collectionView reloadData];
+        
+        //代理回调
+        [self getBackPhotosWith];
+    }];
+}
 #pragma mark - TZImagePickerController
 
 - (void)pushTZImagePickerController {

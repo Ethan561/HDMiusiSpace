@@ -8,6 +8,9 @@
 
 import UIKit
 
+//极光推送是否是发布模式
+let isProduction = false
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -23,11 +26,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //推送代码
         let entity = JPUSHRegisterEntity()
-        entity.types = 1 << 0 | 1 << 1 | 1 << 2
+        entity.types = 1 << 0 | 1 << 1 | 1 << 2 //badge,sound,alert
         JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)
         //需要IDFA 功能，定向投放广告功能
         //let advertisingId = ASIdentifierManager.shared().advertisingIdentifier.uuidString
-        JPUSHService.setup(withOption: launchOptions, appKey: "80316ddeba93bff119c5fd1a", channel: "App Store", apsForProduction: false, advertisingIdentifier: nil)
+        JPUSHService.setup(withOption: launchOptions, appKey: "80316ddeba93bff119c5fd1a", channel: "App Store", apsForProduction: isProduction, advertisingIdentifier: nil)
+        
+        //设置推送标签和别名
+        NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.jpfNetworkDidLogin, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(jpushNetworkDidCloseNoti(_:)), name: NSNotification.Name.jpfNetworkDidClose, object: nil)
+        //用户登录成功绑定uid
+        NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.init("SetJpushAliasWithUID"), object: nil)
         
         return true
     }
@@ -150,6 +159,33 @@ extension AppDelegate : JPUSHRegisterDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) { //可选
         print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
+    
+    
+    //noti
+    @objc func jpushLoginSuccessNoti(_ noti: Notification) {
+        //标签分组
+        JPUSHService.setTags(["phone"], completion: nil, seq: 1)
+        //用户别名(设置唯一标识)
+        guard let uid =  HDDeclare.shared.uid else {
+            return
+        }
+        let  alias : String = "ios" + "\(uid)"
+        JPUSHService.setAlias(alias, completion: { (iResCode, iAlias, seq) in
+            print("alias,\(alias) . completion,\(iResCode),\(iAlias),\(seq)")
+        }, seq: 0)
+        
+    }
+    
+    @objc func jpushNetworkDidCloseNoti(_ noti: Notification) {
+        JPUSHService.deleteTags(["phone"], completion: nil, seq: 0)
+        JPUSHService.deleteAlias({ (iResCode, iAlias, seq) in
+            print("退出注销别名 \(iResCode),\(String(describing: iAlias)),\(seq)")
+        }, seq: 0)
+        
+    }
+    
+
+    
 }
 
 

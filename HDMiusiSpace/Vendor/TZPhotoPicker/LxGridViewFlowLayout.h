@@ -23,18 +23,19 @@
 @optional
 
 - (void)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPathA:(NSIndexPath *)sourceIndexPath
-   willMoveToIndexPathB:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+   willMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 - (void)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPathSo:(NSIndexPath *)sourceIndexPath
-    didMoveToIndexPathDe:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    didMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
 - (BOOL)collectionView:(UICollectionView *)collectionView
 canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)collectionView:(UICollectionView *)collectionView
-       itemAtIndexPathS:(NSIndexPath *)sourceIndexPath
-    canMoveToIndexPathD:(NSIndexPath *)destinationIndexPath;
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
+- (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath;
 @end
 
 @protocol LxGridViewDelegateFlowLayout <UICollectionViewDelegateFlowLayout>

@@ -22,7 +22,7 @@ extension UIScrollView {
                 }
             }
          self.addSubview(ly_emptyView!)
-         self.ly_emptyView?.isHidden = true
+         self.ly_emptyView!.isHidden = true
         }
         get {
             return objc_getAssociatedObject(self, RuntimeKey.kEmptyViewKey!) as? HDEmptyView
@@ -50,6 +50,7 @@ extension UIScrollView {
     
     public func ly_hideEmptyView() {
         self.ly_emptyView?.isHidden = true
+        
     }
     
     //MARK: - Private Method

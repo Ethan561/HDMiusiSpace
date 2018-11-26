@@ -15,5 +15,5 @@
 @property (nonatomic, strong) UIImageView *imageView;
 
 - (void)setImage:(NSString *)imageName;
-
+- (void)setImageWithImage:(UIImage *)image;
 @end

@@ -77,10 +77,15 @@
 }
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSObject *obj = _imageArray[indexPath.row];
+    
     UIImageCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"imagecell" forIndexPath:indexPath];
     cell.delegate = self;
-
-    [cell setImage:_imageArray[indexPath.row]];
+    if ([obj isKindOfClass:[UIImage class]]) {
+        [cell setImageWithImage:(UIImage*)obj];
+    }else{
+        [cell setImage:_imageArray[indexPath.row]];
+    }
     return cell;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

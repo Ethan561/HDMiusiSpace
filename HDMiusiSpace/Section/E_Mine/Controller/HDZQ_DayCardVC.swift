@@ -10,6 +10,8 @@ import UIKit
 
 class HDZQ_DayCardVC: HDItemBaseVC {
 
+    private var daycardList = [Date_list]()
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,11 @@ class HDZQ_DayCardVC: HDItemBaseVC {
 extension HDZQ_DayCardVC {
     private func requestDayCardData() {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDayCards(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 10), success: { (result) in
-            
+            let jsonDecoder = JSONDecoder()
+            guard let model:DayCardData = try? jsonDecoder.decode(DayCardData.self, from: result) else { return }
+            self.daycardList = (model.data?.date_list)!
+            self.title = "收藏的日卡(\(String(describing: model.data?.total_num)))"
+            self.tableView.reloadData()
         }) { (error, msg) in
             
         }
@@ -31,11 +37,16 @@ extension HDZQ_DayCardVC {
 
 extension HDZQ_DayCardVC:UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return daycardList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = daycardList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_DayCardTableViewCell") as? HDZQ_DayCardTableViewCell
+        cell?.dateLabel.text = model.month
+        cell?.numberLabel.text = "/\(model.num)"
+        cell?.currentNumberLabel.text = "1"
+        cell?.dayList = model.date_list
         return cell!
     }
     
@@ -51,6 +62,8 @@ class HDZQ_DayCardTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var currentNumberLabel: UILabel!
+    public var dayList = [DayCardModel]()
     override func awakeFromNib() {
         super.awakeFromNib()
         let layout = HDetailItemColletionViewLayout()
@@ -63,14 +76,29 @@ class HDZQ_DayCardTableViewCell: UITableViewCell {
 
 extension HDZQ_DayCardTableViewCell:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return dayList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let card = dayList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HDZQ_DayCardCollectionViewCell", for: indexPath) as? HDZQ_DayCardCollectionViewCell
+        cell?.darCardImageView.kf.setImage(with: URL.init(string: card.img!))
         return cell!
     }
     
+    
+}
+
+extension HDZQ_DayCardTableViewCell:UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.collectionView {
+            guard self.dayList.count > 0 else { return }
+            let offX = scrollView.contentOffset.x
+            let w = CGFloat(ScreenWidth - 60)
+            let i = Int(offX/w)
+            self.currentNumberLabel.text = "\(i+1)"
+        }
+    }
     
 }
 

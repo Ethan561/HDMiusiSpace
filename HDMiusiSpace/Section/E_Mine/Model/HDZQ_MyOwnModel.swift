@@ -131,3 +131,82 @@ struct FootprintModel:Codable {
     var look_date: String?
     var list_data = [FPContent]()
 }
+
+struct UserData:Codable {
+    var status: Int = 0
+    var data: UserModel?
+    var msg: String?
+}
+
+struct UserModel:Codable {
+    var sex: Int = 0
+    var bind_wb: Int = 0
+    var footprint_num: Int = 0
+    var daycard_num: Int = 0
+    var favorite_num: Int = 0
+    var email: String?
+    var bind_wx: Int = 0
+    var wb_nickname: String?
+    var nickname: String?
+    var focus_num: Int = 0
+    var uid: Int = 0
+    var wx_nickname: String?
+    var qq_nickname: String?
+    var is_vip: Int = 0
+    var phone: String?
+    var avatar: String?
+    var vip_end_time: String?
+    var label_str = [String]()
+    var bind_qq: Int = 0
+    var profile: String?
+    var space_money: String?
+}
+
+//struct DayCardData:Codable {
+//    var status: Int = 0
+//    var data = [DayCardList]()
+//    var msg: String?
+//}
+//
+//struct DayCardList:Codable {
+//    var total_num = 0
+//    var date_list = [DayCardModel]()
+//    var month: String?
+//    var num: Int = 0
+//}
+//
+//struct DayCardModel:Codable {
+//    var article_id: Int = 0
+//    var img: String?
+//    var card_id: Int = 0
+//    var date: String?
+//    var daycard_id: Int = 0
+//}
+
+
+struct DayCardData:Codable {
+    var status: Int = 0
+    var data: DayCardList?
+    var msg: String?
+}
+
+struct DayCardList:Codable {
+    var total_num: Int = 0
+    var date_list = [Date_list]()
+}
+
+struct DayCardModel:Codable {
+    var article_id: Int = 0
+    var img: String?
+    var card_id: Int = 0
+    var date: String?
+    var daycard_id: Int = 0
+}
+
+struct Date_list:Codable {
+    var date_list = [DayCardModel]()
+    var month: String?
+    var num: Int = 0
+}
+
+

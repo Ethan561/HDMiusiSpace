@@ -13,6 +13,9 @@ class HDRootEVC: HDItemBaseVC {
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!    
     @IBOutlet weak var myTableView: UITableView!
+    
+    private var user = UserModel()
+    
     let declare:HDDeclare = HDDeclare.shared
     
     var tabHeader = HDLY_MineHome_Header()
@@ -27,13 +30,8 @@ class HDRootEVC: HDItemBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshUserInfo()
-//        var  params = ["p":"i", "api_token": HDDeclare.shared.api_token ?? "",
-//                       "study_time":"02:00",
-//                                 "chapter_id":"13"]
-//        let signKey =  HDDeclare.getSignKey(params)
-//        let dic2 = ["Sign": signKey]
-//        params.merge(dic2, uniquingKeysWith: { $1 })
+//        refreshUserInfo()
+        getUserInfo()
     }
     
     func setupViews() {
@@ -67,11 +65,19 @@ class HDRootEVC: HDItemBaseVC {
             if declare.avatar != nil {
                 tabHeader.avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
+            tabHeader.followNumberLabel.text = "\(user.focus_num)"
+            tabHeader.collectNumberLabel.text = "\(user.favorite_num)"
+            tabHeader.cardNumberLabel.text = "\(user.daycard_num)"
+            tabHeader.foorprintNumberLabel.text = "\(user.footprint_num)"
         } else {
             //未登录
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
+            tabHeader.followNumberLabel.text = "0"
+            tabHeader.collectNumberLabel.text = "0"
+            tabHeader.cardNumberLabel.text = "0"
+            tabHeader.foorprintNumberLabel.text = "0"
         }
     }
     
@@ -92,24 +98,22 @@ class HDRootEVC: HDItemBaseVC {
     @IBAction func pushToNotiMsgVC(_ sender: UIButton) {
         
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+
+extension HDRootEVC {
+    func getUserInfo() {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.getUserInfo(api_token: declare.api_token ?? ""), cache: false, showHud: false , success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" 获取用户信息： \(String(describing: dic))")
+            let jsonDecoder = JSONDecoder()
+            guard let model:UserData = try? jsonDecoder.decode(UserData.self, from: result) else { return }
+            self.user = model.data ?? UserModel()
+            self.refreshUserInfo()
+        }) { (errorCode, msg) in
+            self.declare.loginStatus = Login_Status.kLogin_Status_Logout
+            self.refreshUserInfo()
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
@@ -119,23 +123,6 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    
-//    //header
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 0.01
-//    }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        return nil
-//    }
-//    //footer
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 0.01
-//    }
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        return nil
-//    }
-    
-    //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -239,7 +226,5 @@ extension HDRootEVC: HDLY_MineHome_Header_Delegate {
             break
         }
     }
-    
-    
 }
 

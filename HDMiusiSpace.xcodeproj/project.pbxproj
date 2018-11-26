@@ -440,6 +440,9 @@
 		D696C3F221A3A78300B7E3FA /* HDLY_dMuseumHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D696C3F121A3A78300B7E3FA /* HDLY_dMuseumHeader.xib */; };
 		D696C3F421A3DCAD00B7E3FA /* HDLY_ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */; };
 		D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */; };
+		D699A3B521AB81A800ADF45E /* HDLY_MessageCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699A3B421AB81A800ADF45E /* HDLY_MessageCenterVC.swift */; };
+		D699A3B721AB81CB00ADF45E /* HDLY_SystemMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699A3B621AB81CB00ADF45E /* HDLY_SystemMsgVC.swift */; };
+		D699A3B921AB822500ADF45E /* HDLY_ReceiveMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699A3B821AB822500ADF45E /* HDLY_ReceiveMsgVC.swift */; };
 		D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */; };
 		D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */; };
 		D69B15BA212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */; };
@@ -1076,6 +1079,9 @@
 		D696C3F121A3A78300B7E3FA /* HDLY_dMuseumHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_dMuseumHeader.xib; sourceTree = "<group>"; };
 		D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ShareView.swift; sourceTree = "<group>"; };
 		D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ShareView.xib; sourceTree = "<group>"; };
+		D699A3B421AB81A800ADF45E /* HDLY_MessageCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MessageCenterVC.swift; sourceTree = "<group>"; };
+		D699A3B621AB81CB00ADF45E /* HDLY_SystemMsgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SystemMsgVC.swift; sourceTree = "<group>"; };
+		D699A3B821AB822500ADF45E /* HDLY_ReceiveMsgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ReceiveMsgVC.swift; sourceTree = "<group>"; };
 		D69B15B5212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Header.swift; sourceTree = "<group>"; };
 		D69B15B7212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_CourseComment_Header.xib; sourceTree = "<group>"; };
 		D69B15B9212EB24700E9BCA0 /* HDLY_CourseComment_Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_CourseComment_Footer.swift; sourceTree = "<group>"; };
@@ -1993,6 +1999,16 @@
 			path = LogInSection;
 			sourceTree = "<group>";
 		};
+		D699A3B321AB814B00ADF45E /* NotiMessage */ = {
+			isa = PBXGroup;
+			children = (
+				D699A3B421AB81A800ADF45E /* HDLY_MessageCenterVC.swift */,
+				D699A3B621AB81CB00ADF45E /* HDLY_SystemMsgVC.swift */,
+				D699A3B821AB822500ADF45E /* HDLY_ReceiveMsgVC.swift */,
+			);
+			path = NotiMessage;
+			sourceTree = "<group>";
+		};
 		D6A1E224211C13CF00E1E893 /* FSPagerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2395,6 +2411,7 @@
 		D6C9FCB4211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D699A3B321AB814B00ADF45E /* NotiMessage */,
 				D6C9FCCD2118354E007C8E56 /* HDRootEVC.swift */,
 				D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */,
 				D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */,
@@ -3120,6 +3137,7 @@
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
 				D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */,
 				D66C35C6213FA6D000363D7C /* HDLY_Membership_Cell.swift in Sources */,
+				D699A3B521AB81A800ADF45E /* HDLY_MessageCenterVC.swift in Sources */,
 				D66A2AB72140BFA700427425 /* HDLY_About_VC.swift in Sources */,
 				D6866A572126A1460044EEAA /* HDLY_CourseList_SubVC4.swift in Sources */,
 				D6115AE6218FD490004A05DA /* ZFPlayerController.m in Sources */,
@@ -3210,6 +3228,7 @@
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D62277D421368069008F1416 /* MTImagePickerAssetsController.swift in Sources */,
+				D699A3B721AB81CB00ADF45E /* HDLY_SystemMsgVC.swift in Sources */,
 				D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */,
 				D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */,
 				D67ABF82212BAD4700276CDE /* STKAudioPlayer.m in Sources */,
@@ -3310,6 +3329,7 @@
 				A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */,
 				D696C3F421A3DCAD00B7E3FA /* HDLY_ShareView.swift in Sources */,
 				A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */,
+				D699A3B921AB822500ADF45E /* HDLY_ReceiveMsgVC.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,

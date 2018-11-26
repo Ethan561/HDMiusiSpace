@@ -25,8 +25,10 @@ enum HD_ZQ_Person_API {
     case getMyBuyCourses(api_token: String, skip:Int, take:Int)
     //我的学习中课程
     case getMyStudyCourses(api_token: String, skip:Int, take:Int)
-    //我的学习中课程
+    //第三方登录绑定手机
     case thirdBindPhone(params:[String:Any])
+    //我的导览足迹
+    case getMyFootPrint(api_token: String, skip:Int, take:Int)
 
 }
 extension HD_ZQ_Person_API: TargetType {
@@ -53,6 +55,8 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/myclass/study_list"
         case .thirdBindPhone(params:_):
             return "/api/users/bind_phone"
+        case .getMyFootPrint(api_token: _,  skip: _, take: _):
+            return "/api/favorites/my_footprint"
         }
     }
     
@@ -132,6 +136,13 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .getMyFootPrint(let apiToken,let page,let size):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         default:
             return .requestPlain//无参数
         }

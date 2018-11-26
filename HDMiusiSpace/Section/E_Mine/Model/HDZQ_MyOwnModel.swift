@@ -97,3 +97,37 @@ struct MyCollectCourseModel:Codable {
         case fileType = "file_type"
     }
 }
+
+
+struct FootprintData:Codable {
+    var status: Int = 0
+    var data = [FootprintModel]()
+    var msg: String?
+}
+
+struct FPRelatedModel:Codable {
+    var img: String?
+    var title: String?
+    var class_id: Int = 0
+    var teacher_title: String?
+    var teacher_name: String?
+}
+
+struct FPExhibit:Codable {
+    var exhibit_title: String?
+    var voice: String?
+    var exhibit_id: Int = 0
+}
+
+struct FPContent:Codable {
+    var class_list = [FPRelatedModel]()
+    var exhibition_share_html: String?
+    var exhibition_title: String?
+    var museum_title: String?
+    var exhibit_list = [FPExhibit]()
+}
+
+struct FootprintModel:Codable {
+    var look_date: String?
+    var list_data = [FPContent]()
+}

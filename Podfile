@@ -19,5 +19,10 @@
  pod 'UMengUShare/Social/ReducedSina'
  pod 'ESPullToRefresh'
  pod 'Bugly', '~> 2.5.0'
-
+ pod 'JPush'#极光推送
+ 
+ 
+ 
+ 
+ 
  end

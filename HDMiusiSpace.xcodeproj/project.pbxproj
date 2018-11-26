@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
+		1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */; };
+		1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -128,6 +130,7 @@
 		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
 		D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */; };
 		D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */; };
+		D607702A21A92CF4006B19B1 /* ESPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D607702921A92CF4006B19B1 /* ESPullToRefresh.framework */; };
 		D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */; };
 		D60E856D2191651E00072BF9 /* HDLY_ExhibitListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856C2191651E00072BF9 /* HDLY_ExhibitListVC.swift */; };
 		D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */; };
@@ -538,6 +541,8 @@
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
+		1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
+		1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFootprintVC.swift; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -679,6 +684,8 @@
 		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
 		D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GenderTip_View.swift; sourceTree = "<group>"; };
 		D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GenderTip_View.xib; sourceTree = "<group>"; };
+		D607702821A8FCBD006B19B1 /* HDMiusiSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HDMiusiSpace.entitlements; sourceTree = "<group>"; };
+		D607702921A92CF4006B19B1 /* ESPullToRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ESPullToRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionListVC.swift; sourceTree = "<group>"; };
 		D60E856C2191651E00072BF9 /* HDLY_ExhibitListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitListVC.swift; sourceTree = "<group>"; };
 		D60E856E2191659500072BF9 /* HDLY_MapGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MapGuideVC.swift; sourceTree = "<group>"; };
@@ -1160,6 +1167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D607702A21A92CF4006B19B1 /* ESPullToRefresh.framework in Frameworks */,
 				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */,
 				D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */,
@@ -1188,6 +1196,7 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D607702921A92CF4006B19B1 /* ESPullToRefresh.framework */,
 				D619533E21A545880039D151 /* MapKit.framework */,
 				A7A90A6521A3E934005BD37F /* UIKit.framework */,
 				D62F65D4219914D000D32544 /* CoreLocation.framework */,
@@ -2027,6 +2036,7 @@
 		D6C9FC102117FA3A007C8E56 /* HDMiusiSpace */ = {
 			isa = PBXGroup;
 			children = (
+				D607702821A8FCBD006B19B1 /* HDMiusiSpace.entitlements */,
 				D614DFA7211EC9E800A4D459 /* API */,
 				D6C9FC98211825DC007C8E56 /* Section */,
 				D6C9FC6E21181FD1007C8E56 /* Utility */,
@@ -2392,6 +2402,8 @@
 				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
 				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
+				1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */,
+				1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2695,6 +2707,11 @@
 					D6C9FC0D2117FA3A007C8E56 = {
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					D6C9FC212117FA3A007C8E56 = {
 						CreatedOnToolsVersion = 9.4;
@@ -2973,6 +2990,7 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */,
 				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
+				1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */,
@@ -3119,6 +3137,7 @@
 				D6EEDDAD21901FF000F730BA /* HDLY_Kids_Cell2.swift in Sources */,
 				A7A90A5A21A3A1C4005BD37F /* HDSSL_commentSucVC.swift in Sources */,
 				D69B15B6212EB22400E9BCA0 /* HDLY_CourseComment_Header.swift in Sources */,
+				1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */,
 				D62277A121367D4D008F1416 /* PhotoBrowser.swift in Sources */,
 				D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */,
 				D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */,
@@ -3546,11 +3565,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
+				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = B5K9YR6DRJ;
+				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3558,10 +3578,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "61a4316f-87ec-4c84-b4d9-4eee05cfaff1";
-				PROVISIONING_PROFILE_SPECIFIER = All_Pro_10;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -3575,10 +3595,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Li Shijieli (QBT3QBDDTY)";
+				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wenbo Online Culture Development Co., Ltd (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = B5K9YR6DRJ;
+				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -3586,10 +3607,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = All_Pro_10;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dis;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

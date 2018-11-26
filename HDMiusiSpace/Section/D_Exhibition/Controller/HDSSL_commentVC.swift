@@ -8,15 +8,8 @@
 
 import UIKit
 
-class HDSSL_commentVC: HDItemBaseVC,SSL_PickerViewDelegate {
-    //MARK:返回图片数组
-    func getBackSelectedPhotos(_ images: [Any]!) {
-        print(images)
-        self.commentPhotos = images as! [UIImage]
-        self.dTableView.reloadData()
-    }
+class HDSSL_commentVC: HDItemBaseVC {
     
-
     @IBOutlet weak var dTableView: UITableView!
     //传递参数
     var exhibition_id: Int?  //展览id
@@ -26,17 +19,7 @@ class HDSSL_commentVC: HDItemBaseVC,SSL_PickerViewDelegate {
     var commentContent: String? //评论文字内容
     //图片选择器
     lazy var imagePickerView = SSL_PickerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 350))
-    var commentPhotos: [UIImage] = Array.init()
-    
-
-    var selectedPhotos : NSMutableArray = NSMutableArray.init()
-//    var selectedAssets : NSMutableArray = NSMutableArray.init()
-//    var isSelectOriginalPhoto: Bool?
-//    var itemWH: CGFloat?
-//    var margin: CGFloat?
-//    var maxPic: Int? //做多图片数量
-//
-//    lazy var imagePickerVc = UIImagePickerController.init()
+    var commentPhotos: [UIImage] = Array.init() //选择照片数组
     
     var pickerImgCell:HDSSL_commentImgCell?
     
@@ -49,8 +32,6 @@ class HDSSL_commentVC: HDItemBaseVC,SSL_PickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        maxPic = 9
         
         //UI
         loadMyViews()
@@ -119,7 +100,7 @@ class HDSSL_commentVC: HDItemBaseVC,SSL_PickerViewDelegate {
             return
         }
         
-        if self.selectedPhotos.count == 0 {
+        if self.commentPhotos.count == 0 {
             //无图评论
             //正式发布
             self.viewModel.request_PublishCommentWith(exhibitId: self.exhibition_id!, star: self.starNumber!, content: self.commentContent
@@ -149,7 +130,7 @@ class HDSSL_commentVC: HDItemBaseVC,SSL_PickerViewDelegate {
 extension HDSSL_commentVC {
     func uploadImage() {
         //
-        if selectedPhotos.count > 0 {
+        if commentPhotos.count > 0 {
             
             guard HDDeclare.shared.api_token != nil else{
                 return
@@ -163,9 +144,9 @@ extension HDSSL_commentVC {
                 self.view.addSubview(loadingView!)
                 
                 
-                for i in 0..<self.selectedPhotos.count {
+                for i in 0..<self.commentPhotos.count {
                     
-                    let image: UIImage = self.selectedPhotos[i] as! UIImage
+                    let image: UIImage = self.commentPhotos[i] as! UIImage
                     
                     var imgData = UIImagePNGRepresentation(image)
                     
@@ -186,7 +167,7 @@ extension HDSSL_commentVC {
                         
                         self.ImagePathArray.append(imgUrl)
                         
-                        if self.ImagePathArray.count == self.selectedPhotos.count {
+                        if self.ImagePathArray.count == self.commentPhotos.count {
                             
                             loadingView?.removeFromSuperview()
                             
@@ -276,3 +257,20 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
     }
 }
 
+extension HDSSL_commentVC:SSL_PickerViewDelegate {
+    //MARK:返回图片数组
+    func getBackSelectedPhotos(_ images: [Any]!) {
+        print(images)
+        self.commentPhotos = images as! [UIImage]
+        self.dTableView.reloadData()
+    }
+    
+    func didSelectedItem(at itemIndex: Int) {
+        print(itemIndex)
+        let vc = HD_SSL_BigImageVC.init()
+        vc.imageArray = commentPhotos
+        vc.atIndex = itemIndex
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+}

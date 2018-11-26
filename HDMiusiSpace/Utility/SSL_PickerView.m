@@ -89,7 +89,7 @@
 }
 - (void)configCollectionView {
     // 如不需要长按排序效果，将LxGridViewFlowLayout类改成UICollectionViewFlowLayout即可
-    CGFloat _itemWH = (self.tz_width - 40) / 3;
+    CGFloat _itemWH = (self.tz_width - 50) / 3;
     
     _layout = [[LxGridViewFlowLayout alloc] init];
     
@@ -158,23 +158,27 @@
             vc.model = model;
             [self.superVC presentViewController:vc animated:YES completion:nil];
         } else { // preview photos / 预览照片
-            TZImagePickerController *imagePickervc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
-            imagePickervc.maxImagesCount = 9;
-            imagePickervc.allowPickingGif = NO;
-            
-            imagePickervc.allowPickingOriginalPhoto = YES;
-            imagePickervc.allowPickingMultipleVideo = NO;
-            imagePickervc.showSelectedIndex = YES;
-            imagePickervc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-            [imagePickervc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-                self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
-                self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
-                self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
-                [self->_collectionView reloadData];
-                self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (self->_margin + self->_itemWH));
-            }];
-            
-            [self.superVC presentViewController:imagePickervc animated:YES completion:nil];
+//            TZImagePickerController *imagePickervc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
+//            imagePickervc.maxImagesCount = 9;
+//            imagePickervc.allowPickingGif = NO;
+//
+//            imagePickervc.allowPickingOriginalPhoto = YES;
+//            imagePickervc.allowPickingMultipleVideo = NO;
+//            imagePickervc.showSelectedIndex = YES;
+//            imagePickervc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
+//            [imagePickervc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+//                self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
+//                self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
+//                self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
+//                [self->_collectionView reloadData];
+//                self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (self->_margin + self->_itemWH));
+//            }];
+//
+//            [self.superVC presentViewController:imagePickervc animated:YES completion:nil];
+        
+            if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedItemAt:)]) {
+                [self.delegate didSelectedItemAt:indexPath.item];
+            }
         }
     }
 }

@@ -95,10 +95,34 @@
 //    NSString *url = [NSString stringWithFormat:@"%@%@",[[[HDDeclare IP_Request_Header] componentsSeparatedByString:@"/api"] firstObject],imageName];
 //    NSString *url = [HDDeclare realSizeImagePathWithRequestPath:imageName];
 ////    if ([imageName hasPrefix:@"http"]) {
+    
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"展品列表默认"]];
 //    }else{
 //        self.imageView.image = [UIImage imageWithContentsOfFile:imageName];
 //    }
+    
+    CGFloat x = SCREEN_HEIGHT/SCREEN_WIDTH;
+    CGFloat y = self.imageView.image.size.height/self.imageView.image.size.width;
+    if (isnan(y)) {
+        y = x;
+    }
+    //x为屏幕尺寸，y为图片尺寸，通过两个尺寸的比较，重置imageview的frame
+    if (y>x) {
+        self.imageView.frame = CGRectMake(0, 0, SCREEN_HEIGHT/y, SCREEN_HEIGHT);
+    }else
+    {
+        self.imageView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH*y);
+    }
+    self.imageView.center = CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+}
+- (void)setImageWithImage:(UIImage *)image
+{
+    //重置zoomscale为1
+    self.scrollView.zoomScale = 1;
+    
+    self.imageView.image = image;
     
     CGFloat x = SCREEN_HEIGHT/SCREEN_WIDTH;
     CGFloat y = self.imageView.image.size.height/self.imageView.image.size.width;

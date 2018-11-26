@@ -16,6 +16,7 @@ class RootAViewModel: NSObject {
 
     //
     func dataRequest(deviceno : String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
+        myTableView.ly_startLoading()
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
@@ -23,7 +24,7 @@ class RootAViewModel: NSObject {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessHomeRequest(api_token: token, deviceno: deviceno), showHud: true, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            myTableView.ly_hideEmptyView()
+            myTableView.ly_endLoading()
             let jsonDecoder = JSONDecoder()
             let model:ChoicenessModel = try! jsonDecoder.decode(ChoicenessModel.self, from: result)
             self.rootAData.value = model
@@ -31,7 +32,7 @@ class RootAViewModel: NSObject {
             myTableView.es.stopLoadingMore()
 
         }) { (errorCode, msg) in
-            myTableView.ly_showEmptyView()
+            myTableView.ly_endLoading()
             myTableView.es.stopPullToRefresh()
         }
     }

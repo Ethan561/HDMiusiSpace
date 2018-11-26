@@ -28,12 +28,12 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         setupViews()
-        
-        //MVVM
-        bindViewModel()
         let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
         self.myTableView.ly_emptyView = empV
-        
+        myTableView.ly_endLoading()
+
+        //MVVM
+        bindViewModel()
         addRefresh()
         refreshAction()
         
@@ -43,7 +43,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.myTableView.ly_hideEmptyView()
+        
     }
     
     func addRefresh() {

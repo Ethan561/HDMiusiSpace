@@ -27,7 +27,7 @@ extension HDZQ_DayCardVC {
             let jsonDecoder = JSONDecoder()
             guard let model:DayCardData = try? jsonDecoder.decode(DayCardData.self, from: result) else { return }
             self.daycardList = (model.data?.date_list)!
-            self.title = "收藏的日卡(\(String(describing: model.data?.total_num)))"
+            self.title = "收藏的日卡(\(model.data?.total_num ?? 0))"
             self.tableView.reloadData()
         }) { (error, msg) in
             
@@ -45,7 +45,7 @@ extension HDZQ_DayCardVC:UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_DayCardTableViewCell") as? HDZQ_DayCardTableViewCell
         cell?.dateLabel.text = model.month
         cell?.numberLabel.text = "/\(model.num)"
-        cell?.currentNumberLabel.text = "1"
+
         cell?.dayList = model.date_list
         return cell!
     }

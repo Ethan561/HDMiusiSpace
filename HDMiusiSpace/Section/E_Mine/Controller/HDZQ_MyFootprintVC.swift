@@ -15,7 +15,7 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 400
+        title = "导览足迹"
         requestFootPrintData()
     }
 }

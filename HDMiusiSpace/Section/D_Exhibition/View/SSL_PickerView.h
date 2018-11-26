@@ -10,8 +10,8 @@
 
 @protocol SSL_PickerViewDelegate <NSObject>
 
-- (void)getBackSelectedPhotos:(NSArray *)images;
-
+- (void)getBackSelectedPhotos:(NSArray *)images;//返回选择的图片数组
+- (void)didSelectedItemAt:(NSInteger)itemIndex; //返回点击的位置
 @end
 
 @interface SSL_PickerView : UIView

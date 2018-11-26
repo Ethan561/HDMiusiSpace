@@ -33,6 +33,10 @@ class HDTagChooseStateVC: UIViewController {
     //初始化标签数据
     func loadMyDatas() {
         //
+        guard HDDeclare.shared.allTagsArray != nil else {
+            return
+        }
+        
         dataArr = HDDeclare.shared.allTagsArray!
         
         let tagdatamodel = dataArr[1] //第二页单选

@@ -315,12 +315,12 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
                 return;
             }
             
-            if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPathS:canMoveToIndexPathD:)] && [self.dataSource collectionView:self.collectionView itemAtIndexPathS:sourceIndexPath canMoveToIndexPathD:destinationIndexPath] == NO) {
+            if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:canMoveToIndexPath:)] && [self.dataSource collectionView:self.collectionView itemAtIndexPath:sourceIndexPath canMoveToIndexPath:destinationIndexPath] == NO) {
                 return;
             }
             
-            if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPathA:willMoveToIndexPathB:)]) {
-                [self.dataSource collectionView:self.collectionView itemAtIndexPathA:sourceIndexPath willMoveToIndexPathB:destinationIndexPath];
+            if ([self.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:willMoveToIndexPath:)]) {
+                [self.dataSource collectionView:self.collectionView itemAtIndexPath:sourceIndexPath willMoveToIndexPath:destinationIndexPath];
             }
             
             _movingItemIndexPath = destinationIndexPath;
@@ -336,8 +336,8 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
                 }
             } completion:^(BOOL finished) {
                 typeof(self) __strong strongSelf = weakSelf;
-                if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPathSo:didMoveToIndexPathDe:)]) {
-                    [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPathSo:sourceIndexPath didMoveToIndexPathDe:destinationIndexPath];
+                if ([strongSelf.dataSource respondsToSelector:@selector(collectionView:itemAtIndexPath:didMoveToIndexPath:)]) {
+                    [strongSelf.dataSource collectionView:strongSelf.collectionView itemAtIndexPath:sourceIndexPath didMoveToIndexPath:destinationIndexPath];
                 }
             }];
         }

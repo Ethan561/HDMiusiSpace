@@ -37,6 +37,7 @@
 #import "TZAssetCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FLAnimatedImage.h"
+#import "SSL_PickerView.h"
 
 //极光推送
 #import "JPUSHService.h"

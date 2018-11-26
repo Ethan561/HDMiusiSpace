@@ -228,16 +228,13 @@ extension HDRootEVC: HDLY_MineHome_Header_Delegate {
     func pushToMyDetails(type: Int) {
         switch type {
         case 0:
-            print(1)
             self.performSegue(withIdentifier: "PushTo_HDZQ_MyFollowVC", sender: nil)
         case 1:
-            print(2)
             self.performSegue(withIdentifier: "PushTo_HDZQ_MyFCollectVC", sender: nil)
         case 2:
-            print(3)
              self.performSegue(withIdentifier: "PushToHDZQ_DayCardVC", sender: nil)
         case 3:
-            print(4)
+            self.performSegue(withIdentifier: "PushToFootPrintVC", sender: nil)
         default:
             break
         }

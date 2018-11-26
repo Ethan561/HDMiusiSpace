@@ -38,6 +38,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FLAnimatedImage.h"
 #import "SSL_PickerView.h"
+#import "SSLPickerFooterView.h"
 
 //极光推送
 #import "JPUSHService.h"

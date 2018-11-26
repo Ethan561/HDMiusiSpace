@@ -35,6 +35,7 @@ canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
        itemAtIndexPath:(NSIndexPath *)sourceIndexPath
     canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
+- (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath;
 @end
 
 @protocol LxGridViewDelegateFlowLayout <UICollectionViewDelegateFlowLayout>

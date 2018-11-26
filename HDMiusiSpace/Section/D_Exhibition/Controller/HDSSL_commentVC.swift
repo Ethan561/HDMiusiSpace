@@ -18,7 +18,7 @@ class HDSSL_commentVC: HDItemBaseVC {
     var starNumber : Int?  //评分
     var commentContent: String? //评论文字内容
     //图片选择器
-    lazy var imagePickerView = SSL_PickerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 350))
+    lazy var imagePickerView = SSL_PickerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 430))
     var commentPhotos: [UIImage] = Array.init() //选择照片数组
     
     var pickerImgCell:HDSSL_commentImgCell?
@@ -208,11 +208,11 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
              return 410
         }
         if commentPhotos.count >= 0 && commentPhotos.count < 3{
-            return 100 + 40
+            return 80 + 58 + 80
         }else if commentPhotos.count >= 3  && commentPhotos.count < 6 {
-            return 80 * 2 + 30 + 80
+            return 80 * 2 + 96 + 80
         }else {
-            return 80 * 3 + 40 + 100
+            return 80 * 3 + 130 + 80
         }
         
     }
@@ -237,8 +237,6 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
         }else {
             pickerImgCell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell
             
-//            pickerImgCell!.cell_collectBg.addSubview(self.configCollectionView())
-//            imagePickerView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 350)
             imagePickerView.superVC = self
             imagePickerView.delegate = self
             pickerImgCell?.cell_collectBg.addSubview(imagePickerView)

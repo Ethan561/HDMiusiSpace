@@ -41,6 +41,8 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
     
     CADisplayLink * _displayLink;
     CFTimeInterval _remainSecondsToBeginEditing;
+    
+    BOOL isDeleteBack;
 }
 
 #pragma mark - setup
@@ -250,6 +252,11 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             
             NSIndexPath * movingItemIndexPath = _movingItemIndexPath;
             
+            //手势结束，判断是否移动到删除按钮上
+            [self jumentDeleteItemWith:_beingMovedPromptView.center];//判断是否移动到删除按钮位置
+            ////
+            
+            
             if (movingItemIndexPath) {
                 if ([self.delegate respondsToSelector:@selector(collectionView:layout:willEndDraggingItemAtIndexPath:)]) {
                     [self.delegate collectionView:self.collectionView layout:self willEndDraggingItemAtIndexPath:movingItemIndexPath];
@@ -307,6 +314,8 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
         {
             CGPoint panTranslation = [pan translationInView:self.collectionView];
             _beingMovedPromptView.center = CGPointOffset(_sourceItemCollectionViewCellCenter, panTranslation.x, panTranslation.y);
+            
+//            [self jumentDeleteItemWith:panTranslation];//判断是否移动到删除按钮位置
             
             NSIndexPath * sourceIndexPath = _movingItemIndexPath;
             NSIndexPath * destinationIndexPath = [self.collectionView indexPathForItemAtPoint:_beingMovedPromptView.center];
@@ -404,5 +413,37 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
     _panGestureRecognizer.enabled = NO;
     _panGestureRecognizer.enabled = YES;
 }
-
+//判断是否移动到删除按钮处
+- (void)jumentDeleteItemWith:(CGPoint)panCenterPoint{
+    //获取相对屏幕坐标
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    
+    CGRect frame=[_beingMovedPromptView convertRect: _beingMovedPromptView.bounds toView:window];
+    
+    CGRect frame1=[self.collectionView convertRect: self.collectionView.bounds toView:window];
+    
+    NSLog(@"移动中心点坐标(%f,%f)",panCenterPoint.x,panCenterPoint.y);
+    NSLog(@"相对屏幕坐标(%f,%f)",frame.origin.x,frame.origin.y);
+    NSLog(@"CollectionView相对屏幕坐标(%f,%f)",frame1.origin.x,frame1.origin.y);
+    //获取移动View中心点坐标
+    CGPoint  point = CGPointMake(frame.origin.x+frame.size.width/2, frame.origin.y+frame.size.height/2);
+    if (point.y>window.frame.size.height-40) {
+        //删除移动cell
+        isDeleteBack  = YES;
+        [self performSelector:@selector(deletAction) withObject:nil afterDelay:0.5];
+    }
+}
+//延迟删除item
+- (void)deletAction{
+    
+    isDeleteBack  = NO;
+    
+    typeof(self) __weak weakSelf = self;
+    
+    if ([weakSelf.dataSource respondsToSelector:@selector(moveOnDeleteButtonAt:)]) {
+        
+        [weakSelf.dataSource moveOnDeleteButtonAt:_movingItemIndexPath];
+        
+    }
+}
 @end

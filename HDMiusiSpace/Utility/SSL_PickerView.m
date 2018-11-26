@@ -20,6 +20,7 @@
 #import "TZAssetCell.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "FLAnimatedImage.h"
+#import "SSLPickerFooterView.h"
 
 @interface SSL_PickerView()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
 {
@@ -98,15 +99,17 @@
     _layout.minimumLineSpacing = 10;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:_layout];
-    CGFloat rgb = 244 / 255.0;
+    
     _collectionView.alwaysBounceVertical = YES;
-    _collectionView.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
-    _collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
+    _collectionView.scrollEnabled = NO;
     _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     [self addSubview:_collectionView];
     [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
+    [_collectionView registerNib:[UINib nibWithNibName:@"SSLPickerFooterView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"SSLPickerFooterView"];
 }
 #pragma mark UICollectionView
 
@@ -158,29 +161,50 @@
             vc.model = model;
             [self.superVC presentViewController:vc animated:YES completion:nil];
         } else { // preview photos / 预览照片
-//            TZImagePickerController *imagePickervc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.item];
-//            imagePickervc.maxImagesCount = 9;
-//            imagePickervc.allowPickingGif = NO;
-//
-//            imagePickervc.allowPickingOriginalPhoto = YES;
-//            imagePickervc.allowPickingMultipleVideo = NO;
-//            imagePickervc.showSelectedIndex = YES;
-//            imagePickervc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
-//            [imagePickervc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-//                self->_selectedPhotos = [NSMutableArray arrayWithArray:photos];
-//                self->_selectedAssets = [NSMutableArray arrayWithArray:assets];
-//                self->_isSelectOriginalPhoto = isSelectOriginalPhoto;
-//                [self->_collectionView reloadData];
-//                self->_collectionView.contentSize = CGSizeMake(0, ((self->_selectedPhotos.count + 2) / 3 ) * (self->_margin + self->_itemWH));
-//            }];
-//
-//            [self.superVC presentViewController:imagePickervc animated:YES completion:nil];
         
             if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedItemAt:)]) {
                 [self.delegate didSelectedItemAt:indexPath.item];
             }
         }
     }
+}
+
+// 设置区尾尺寸高度
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    
+    CGSize size = CGSizeMake(self.tz_width, 80);
+    return size;
+}
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+
+{
+    
+    NSString * reuseIdentifier;
+    
+    if ([kind isEqualToString: UICollectionElementKindSectionFooter ]){
+        
+        reuseIdentifier = @"SSLPickerFooterView";
+        
+    }
+    
+    UICollectionReusableView *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
+    
+    //控件绑定tag
+    
+//    UILabel *label = (UILabel *)[view viewWithTag:1];
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionFooter]){
+        
+//        view.backgroundColor = [UIColor lightGrayColor];
+        
+//        label.text = [NSString stringWithFormat:@"这是footer:%ld",(long)indexPath.section];
+        
+    }
+    
+    return view;
+    
 }
 
 #pragma mark - LxGridViewDataSource
@@ -209,6 +233,20 @@
     [_collectionView reloadData];
     //代理回调
     [self getBackPhotosWith];
+}
+- (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath{
+    NSLog(@"按钮上");
+    [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+    [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+    [_collectionView performBatchUpdates:^{
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sourceIndexPath.item inSection:0];
+        [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    } completion:^(BOOL finished) {
+        [self->_collectionView reloadData];
+        
+        //代理回调
+        [self getBackPhotosWith];
+    }];
 }
 #pragma mark - TZImagePickerController
 

@@ -68,6 +68,8 @@
 		A7441D4121A2A0D50064E6A6 /* AlbumAddBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7441D2921A2A0D50064E6A6 /* AlbumAddBtn@2x.png */; };
 		A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */; };
 		A74BD60921AB860700057C9D /* SSL_PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A74BD60721AB860600057C9D /* SSL_PickerView.m */; };
+		A74BD60D21AB931000057C9D /* SSLPickerFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A74BD60B21AB931000057C9D /* SSLPickerFooterView.m */; };
+		A74BD60E21AB931000057C9D /* SSLPickerFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74BD60C21AB931000057C9D /* SSLPickerFooterView.xib */; };
 		A74E6FC0219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */; };
 		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
 		A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */; };
@@ -623,6 +625,9 @@
 		A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
 		A74BD60721AB860600057C9D /* SSL_PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSL_PickerView.m; sourceTree = "<group>"; };
 		A74BD60821AB860600057C9D /* SSL_PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSL_PickerView.h; sourceTree = "<group>"; };
+		A74BD60A21AB931000057C9D /* SSLPickerFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSLPickerFooterView.h; sourceTree = "<group>"; };
+		A74BD60B21AB931000057C9D /* SSLPickerFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSLPickerFooterView.m; sourceTree = "<group>"; };
+		A74BD60C21AB931000057C9D /* SSLPickerFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SSLPickerFooterView.xib; sourceTree = "<group>"; };
 		A74E6FBE219A6BE4007CD3E7 /* HDSSL_dMuseumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDSSL_dMuseumCell.xib; sourceTree = "<group>"; };
 		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionDetailVC.swift; sourceTree = "<group>"; };
@@ -1248,6 +1253,9 @@
 				A7441D0421A2A0D50064E6A6 /* TZTestCell.m */,
 				A7441D2A21A2A0D50064E6A6 /* LxGridViewFlowLayout.h */,
 				A7441D2C21A2A0D50064E6A6 /* LxGridViewFlowLayout.m */,
+				A74BD60A21AB931000057C9D /* SSLPickerFooterView.h */,
+				A74BD60B21AB931000057C9D /* SSLPickerFooterView.m */,
+				A74BD60C21AB931000057C9D /* SSLPickerFooterView.xib */,
 			);
 			path = TZPhotoPicker;
 			sourceTree = "<group>";
@@ -2780,6 +2788,7 @@
 				D6866A4E2126A10D0044EEAA /* HDLY_CourseList_SubVC2.xib in Resources */,
 				D66C35CF213FAA8600363D7C /* HDLY_MineCourse_Cell.xib in Resources */,
 				D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */,
+				A74BD60E21AB931000057C9D /* SSLPickerFooterView.xib in Resources */,
 				D694518C219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib in Resources */,
 				D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
@@ -3015,6 +3024,7 @@
 				D637566C219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift in Sources */,
 				D68D50D9213A6CA0000F80E6 /* HDLY_RootACard_Cell.swift in Sources */,
 				1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */,
+				A74BD60D21AB931000057C9D /* SSLPickerFooterView.m in Sources */,
 				A72DE93F21A142F900F0536F /* HDSSL_commentImgCell.swift in Sources */,
 				D60E8571219165EC00072BF9 /* HDLY_NumGuideVC.swift in Sources */,
 				D6AA0AFF21351D610036320F /* CoursePublicViewModel.swift in Sources */,

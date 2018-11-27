@@ -29,6 +29,8 @@ enum HD_ZQ_Person_API {
     case thirdBindPhone(params:[String:Any])
     //我的导览足迹
     case getMyFootPrint(api_token: String, skip:Int, take:Int)
+    //关于缪斯空间
+    case getAboutMuseSpaceInfo()
 
 }
 extension HD_ZQ_Person_API: TargetType {
@@ -57,6 +59,8 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/users/bind_phone"
         case .getMyFootPrint(api_token: _,  skip: _, take: _):
             return "/api/favorites/my_footprint"
+        case .getAboutMuseSpaceInfo:
+            return "/api/users/about"
         }
     }
     
@@ -140,6 +144,10 @@ extension HD_ZQ_Person_API: TargetType {
             params = params.merging(["api_token": apiToken,
                                      "skip":page,
                                      "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getAboutMuseSpaceInfo():
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

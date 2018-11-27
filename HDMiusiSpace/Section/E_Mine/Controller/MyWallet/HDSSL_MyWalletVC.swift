@@ -10,6 +10,27 @@ import UIKit
 
 class HDSSL_MyWalletVC: HDItemBaseVC {
 
+    @IBOutlet weak var btn_openVIP: UIButton!
+    @IBOutlet weak var goldNumberL: UILabel!
+    @IBOutlet weak var menuBg1: UIView!  //余额背景
+    @IBOutlet weak var menuBg2: UIView!  //开通VIP背景
+    
+    
+    @IBOutlet weak var sele_title1: UILabel!
+    @IBOutlet weak var sele_title2: UILabel!
+    @IBOutlet weak var sele_title3: UILabel!
+    @IBOutlet weak var sele_title4: UILabel!
+    @IBOutlet weak var sele_title5: UILabel!
+    @IBOutlet weak var sele_title6: UILabel!
+    
+    @IBOutlet weak var sele_content1: UILabel!
+    @IBOutlet weak var sele_content2: UILabel!
+    @IBOutlet weak var sele_content3: UILabel!
+    @IBOutlet weak var sele_content4: UILabel!
+    @IBOutlet weak var sele_content5: UILabel!
+    @IBOutlet weak var sele_content6: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +50,11 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         
         let item = UIBarButtonItem.init(customView: publishBtn)
         self.navigationItem.rightBarButtonItem = item
+        
+        menuBg1.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        menuBg2.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        
+        btn_openVIP.addRoundedCorners(corners: [UIRectCorner.topRight, UIRectCorner.bottomRight], radii: CGSize.init(width: 10, height: 10))
     }
     //MARK:-- 交易记录
     @objc func action_goToTransactionRecord() {
@@ -36,6 +62,18 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         print("交易记录")
     }
 
+    //开通会员
+    @IBAction func action_openVIP(_ sender: UIButton) {
+        print("开通会员")
+    }
+    //充值
+    @IBAction func action_recharge(_ sender: UIButton) {
+        print("充值")
+    }
+    
+    @IBAction func action_selectProduct(_ sender: UIButton) {
+        print(sender.tag)
+    }
     /*
     // MARK: - Navigation
 

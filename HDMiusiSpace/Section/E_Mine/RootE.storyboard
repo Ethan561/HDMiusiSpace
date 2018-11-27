@@ -284,11 +284,13 @@
                         <segue destination="TnC-jx-SWm" kind="show" identifier="PushTo_HDZQ_MyCoursesVC" id="D4U-QG-aVi"/>
                         <segue destination="eUd-lI-9Ts" kind="show" identifier="PushToHDZQ_DayCardVC" id="uog-xc-qiK"/>
                         <segue destination="xVL-ng-m9N" kind="show" identifier="PushToFootPrintVC" id="wdB-2d-6bT"/>
+                        <segue destination="wPN-R3-CIv" kind="push" identifier="PushTo_HDSSL_MyWalletVC_Line" id="oCG-72-XEp"/>
+                        <segue destination="eAD-5q-Ujz" kind="push" identifier="PushTo_HDSSL_MyOrderVC_Line" id="vSa-TM-yWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-sh-aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2512.8000000000002" y="-1052.0239880059971"/>
+            <point key="canvasLocation" x="2444" y="-1052"/>
         </scene>
         <!--User InfoVC-->
         <scene sceneID="Sr7-u3-tzC">
@@ -1723,6 +1725,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XJ-6F-2Cq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3874" y="-1750"/>
+        </scene>
+        <!--My OrderVC-->
+        <scene sceneID="nnn-oO-NY9">
+            <objects>
+                <viewController storyboardIdentifier="HDSSL_MyOrderVC" hidesBottomBarWhenPushed="YES" id="eAD-5q-Ujz" customClass="HDSSL_MyOrderVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8ao-Wv-Upj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="gxf-xt-2Ee"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eYD-lI-WCm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fp4-fH-KYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047" y="-3107"/>
+        </scene>
+        <!--My WalletVC-->
+        <scene sceneID="s4D-PM-wsA">
+            <objects>
+                <viewController storyboardIdentifier="HDSSL_MyWalletVC" hidesBottomBarWhenPushed="YES" id="wPN-R3-CIv" customClass="HDSSL_MyWalletVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lvd-Zt-ZMc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jJz-T4-MtN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qHN-KE-hV7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yo4-Jf-q2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="-2421"/>
         </scene>
         <!--My FootprintVC-->
         <scene sceneID="RhF-t7-7GE">

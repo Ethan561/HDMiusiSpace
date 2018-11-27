@@ -71,7 +71,15 @@ final class HDDeclare: NSObject {
     var card_no   : String?//卡号
     var uid       : Int?
     var client_id : String?
-
+    var isVip : Int?   //微博昵称
+    var isBindWechat : Int?  //是否绑定微信
+    var isBindWeibo : Int?   //是否绑定微博
+    var isBindQQ : Int?  //是否绑定QQ
+    var wechatName : String?  //微信昵称
+    var weiboName : String?   //微博昵称
+    var QQName : String?  //QQ昵称
+    var profile : String?   //个人简介
+    var labStr : [String]?   //兴趣标签
     
     //enum 类型
     var languageType    : Language_Type   = .kLanguage_Type_Chinese

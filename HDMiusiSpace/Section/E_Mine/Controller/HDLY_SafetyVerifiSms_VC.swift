@@ -61,9 +61,11 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG(" dic ： \(String(describing: dic))")
-            let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
-            self.declare.api_token = dataDic["api_token"] as? String
+//            let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+            guard let apitoken = dic!["data"] as? String else { return }
+//            self.declare.api_token = dataDic["api_token"] as? String
 //            self.declare.nickname = dataDic["nickname"] as? String
+            self.declare.api_token = apitoken
             self.declare.loginStatus = .kLogin_Status_Login
             let defaults = UserDefaults.standard
             defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)

@@ -215,7 +215,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             self.declare.phone    = dataDic["phone"] as? String
             self.declare.email    = dataDic["email"] as? String
             self.declare.nickname = dataDic["nickname"] as? String
-            
+            self.declare.isVip  =  dataDic["nickname"] as? Int
             let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
             self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
             

@@ -1747,14 +1747,72 @@
                     <view key="view" contentMode="scaleToFill" id="Lvd-Zt-ZMc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buI-qU-TvF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="571"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFl-0d-Bq0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS2-qb-gSz">
+                                                <rect key="frame" x="144" y="532" width="87" height="68"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="68" id="mJU-ub-KHm"/>
+                                                    <constraint firstAttribute="width" constant="87" id="r0v-Wy-vfI"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="600" id="V7P-db-xXc"/>
+                                            <constraint firstItem="JS2-qb-gSz" firstAttribute="centerX" secondItem="nFl-0d-Bq0" secondAttribute="centerX" id="Yyc-JX-fL3"/>
+                                            <constraint firstAttribute="bottom" secondItem="JS2-qb-gSz" secondAttribute="bottom" id="tyI-dG-tED"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="nFl-0d-Bq0" secondAttribute="bottom" id="IBm-4V-WGW"/>
+                                    <constraint firstItem="nFl-0d-Bq0" firstAttribute="width" secondItem="buI-qU-TvF" secondAttribute="width" id="XzL-s7-ieo"/>
+                                    <constraint firstAttribute="trailing" secondItem="nFl-0d-Bq0" secondAttribute="trailing" id="dPm-QB-ad8"/>
+                                    <constraint firstItem="nFl-0d-Bq0" firstAttribute="leading" secondItem="buI-qU-TvF" secondAttribute="leading" id="hzn-Be-91X"/>
+                                    <constraint firstItem="nFl-0d-Bq0" firstAttribute="top" secondItem="buI-qU-TvF" secondAttribute="top" id="yQK-Kh-UjQ"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6q-uM-srR">
+                                <rect key="frame" x="20" y="591" width="335" height="56"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="jiV-Fg-gnN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                                <state key="normal" title="立即充值">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="buI-qU-TvF" firstAttribute="trailing" secondItem="jJz-T4-MtN" secondAttribute="trailing" id="3WN-ND-NHQ"/>
+                            <constraint firstItem="E6q-uM-srR" firstAttribute="top" secondItem="buI-qU-TvF" secondAttribute="bottom" constant="20" id="5Zq-zh-Wt9"/>
+                            <constraint firstItem="E6q-uM-srR" firstAttribute="leading" secondItem="jJz-T4-MtN" secondAttribute="leading" constant="20" id="9VY-hw-8d7"/>
+                            <constraint firstItem="buI-qU-TvF" firstAttribute="leading" secondItem="jJz-T4-MtN" secondAttribute="leading" id="HmL-JP-au4"/>
+                            <constraint firstItem="jJz-T4-MtN" firstAttribute="trailing" secondItem="E6q-uM-srR" secondAttribute="trailing" constant="20" id="R4b-0K-jd8"/>
+                            <constraint firstItem="jJz-T4-MtN" firstAttribute="bottom" secondItem="E6q-uM-srR" secondAttribute="bottom" constant="20" id="Wsp-0J-qWT"/>
+                            <constraint firstItem="buI-qU-TvF" firstAttribute="top" secondItem="Lvd-Zt-ZMc" secondAttribute="top" id="flB-xm-JL1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jJz-T4-MtN"/>
                     </view>
                     <navigationItem key="navigationItem" id="qHN-KE-hV7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yo4-Jf-q2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1044" y="-2421"/>
+            <point key="canvasLocation" x="1044" y="-2421.1394302848576"/>
         </scene>
         <!--My FootprintVC-->
         <scene sceneID="RhF-t7-7GE">

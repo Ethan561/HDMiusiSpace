@@ -27,7 +27,7 @@ class HDLY_About_VC: HDItemBaseVC {
         }
         myTableView.separatorStyle = .none
         myTableView.backgroundColor = UIColor.HexColor(0xF0F0F0)
-        myTableView.isScrollEnabled = false
+//        myTableView.isScrollEnabled = true
         headerView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 210*ScreenWidth/375.0)
         myTableView.tableHeaderView = headerView
     }

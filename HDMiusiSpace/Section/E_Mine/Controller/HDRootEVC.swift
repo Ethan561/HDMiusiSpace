@@ -61,7 +61,7 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.userInfoView.isHidden  = false
             tabHeader.loginView.isHidden = true
             tabHeader.nameL.text = declare.nickname
-            tabHeader.signatureL.text = declare.sign
+            tabHeader.signatureL.text = declare.profile
             if declare.avatar != nil {
                 tabHeader.avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
@@ -108,6 +108,24 @@ extension HDRootEVC {
             let jsonDecoder = JSONDecoder()
             guard let model:UserData = try? jsonDecoder.decode(UserData.self, from: result) else { return }
             self.user = model.data ?? UserModel()
+            self.declare.isVip = self.user.is_vip
+            self.declare.isBindWeibo = self.user.bind_wb
+            self.declare.isBindWechat = self.user.bind_wx
+            self.declare.weiboName = self.user.wb_nickname
+            self.declare.wechatName = self.user.wx_nickname
+            self.declare.isBindQQ = self.user.bind_qq
+            self.declare.QQName = self.user.qq_nickname
+            self.declare.profile = self.user.profile
+            self.declare.labStr = self.user.label_str
+            self.declare.avatar = self.user.avatar
+            self.declare.nickname = self.user.nickname
+            LOG(self.user.label_str)
+            if self.user.sex == 1 {
+                self.declare.gender = "男"
+            }
+            if self.user.sex == 2 {
+                self.declare.gender = "女"
+            }
             self.refreshUserInfo()
         }) { (errorCode, msg) in
             self.declare.loginStatus = Login_Status.kLogin_Status_Logout

@@ -14,6 +14,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var nicknameL: UILabel!
     @IBOutlet weak var genderL: UILabel!
     @IBOutlet weak var signatureL: UILabel!
+    @IBOutlet weak var labStrs: UILabel!
     
     var pickedAvatarImage: UIImage?
     lazy var genderTipView: HDLY_GenderTip_View = HDLY_GenderTip_View.createViewFromNib() as! HDLY_GenderTip_View
@@ -34,7 +35,12 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     
     func showUserInfo() {
         nicknameL.text = declare.nickname
-        signatureL.text = declare.sign
+        signatureL.text = declare.profile
+        var s = ""
+        declare.labStr?.forEach({ (str) in
+            s = s + str
+        })
+        labStrs.text = s
         genderL.text = declare.gender
         if declare.avatar != nil {
             avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)

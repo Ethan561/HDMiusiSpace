@@ -204,7 +204,13 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 3 {
+        if indexPath.row == 1 {
+            self.performSegue(withIdentifier: "PushTo_HDSSL_MyWalletVC_Line", sender: nil)
+        }
+        else if indexPath.row == 2 {
+            self.performSegue(withIdentifier: "PushTo_HDSSL_MyOrderVC_Line", sender: nil)
+        }
+        else if indexPath.row == 3 {
             self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
         }
     }

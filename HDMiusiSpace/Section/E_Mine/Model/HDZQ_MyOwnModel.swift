@@ -98,7 +98,7 @@ struct MyCollectCourseModel:Codable {
     }
 }
 
-
+//足迹
 struct FootprintData:Codable {
     var status: Int = 0
     var data = [FootprintModel]()
@@ -132,6 +132,8 @@ struct FootprintModel:Codable {
     var list_data = [FPContent]()
 }
 
+
+// 用户详情
 struct UserData:Codable {
     var status: Int = 0
     var data: UserModel?
@@ -162,28 +164,8 @@ struct UserModel:Codable {
     var space_money: String?
 }
 
-//struct DayCardData:Codable {
-//    var status: Int = 0
-//    var data = [DayCardList]()
-//    var msg: String?
-//}
-//
-//struct DayCardList:Codable {
-//    var total_num = 0
-//    var date_list = [DayCardModel]()
-//    var month: String?
-//    var num: Int = 0
-//}
-//
-//struct DayCardModel:Codable {
-//    var article_id: Int = 0
-//    var img: String?
-//    var card_id: Int = 0
-//    var date: String?
-//    var daycard_id: Int = 0
-//}
 
-
+// 日卡
 struct DayCardData:Codable {
     var status: Int = 0
     var data: DayCardList?

@@ -95,7 +95,8 @@ class HDTagChooseCareerVC: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "HD_PushToChooseSateVCLine" {
-
+            let vc:HDTagChooseStateVC = segue.destination as! HDTagChooseStateVC
+            vc.selectedtagArray = selectedtagArray
         }
     }
 }

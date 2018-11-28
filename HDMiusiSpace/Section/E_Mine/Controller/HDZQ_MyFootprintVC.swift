@@ -18,6 +18,7 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
         title = "导览足迹"
         requestFootPrintData()
     }
+    
 }
 
 extension HDZQ_MyFootprintVC {
@@ -81,7 +82,6 @@ extension HDZQ_MyFootprintVC : UITableViewDataSource {
             return CGFloat(90 + 55 * model.exhibit_list.count + 20)
         }
     }
-    
 }
 
 //MARK:使seactionheader跟随tableview一起滑动

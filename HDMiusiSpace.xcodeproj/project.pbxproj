@@ -177,6 +177,7 @@
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
+		D6182D8021AD2A9000928A99 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6182D7F21AD2A8F00928A99 /* StoreKit.framework */; };
 		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
 		D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */; };
 		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
@@ -770,6 +771,7 @@
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
+		D6182D7F21AD2A8F00928A99 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
 		D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumSubVC.swift; sourceTree = "<group>"; };
 		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
@@ -1185,6 +1187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D607702A21A92CF4006B19B1 /* ESPullToRefresh.framework in Frameworks */,
+				D6182D8021AD2A9000928A99 /* StoreKit.framework in Frameworks */,
 				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */,
 				D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */,
@@ -1213,6 +1216,7 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6182D7F21AD2A8F00928A99 /* StoreKit.framework */,
 				D607702921A92CF4006B19B1 /* ESPullToRefresh.framework */,
 				D619533E21A545880039D151 /* MapKit.framework */,
 				A7A90A6521A3E934005BD37F /* UIKit.framework */,
@@ -2742,6 +2746,9 @@
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 0940;
 						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 0;
 							};

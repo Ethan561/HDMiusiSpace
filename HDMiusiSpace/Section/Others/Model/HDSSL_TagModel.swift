@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct HDSSL_TagModel: Codable {
     var status       : Int?
     var msg          : String?

@@ -2327,11 +2327,43 @@
                         <outlet property="sele_title4" destination="uag-t1-seq" id="Y6v-P9-NK0"/>
                         <outlet property="sele_title5" destination="OnV-fU-RLe" id="kpZ-PV-RGk"/>
                         <outlet property="sele_title6" destination="UTs-nQ-iTt" id="1HA-aS-lGJ"/>
+                        <segue destination="KU4-wD-2gF" kind="push" identifier="PushToTransactionRecordVC" id="XIW-kB-EzD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yo4-Jf-q2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013.6" y="-2821.4392803598203"/>
+        </scene>
+        <!--Transaction RecordVC-->
+        <scene sceneID="qAq-CJ-8Au">
+            <objects>
+                <viewController storyboardIdentifier="HDSSL_TransactionRecordVC" id="KU4-wD-2gF" customClass="HDSSL_TransactionRecordVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="How-W6-VY3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="izs-sQ-Gkj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="izs-sQ-Gkj" firstAttribute="trailing" secondItem="VI7-WF-WW9" secondAttribute="trailing" id="5pR-Iz-y9a"/>
+                            <constraint firstItem="izs-sQ-Gkj" firstAttribute="leading" secondItem="VI7-WF-WW9" secondAttribute="leading" id="hBc-D9-d5I"/>
+                            <constraint firstItem="izs-sQ-Gkj" firstAttribute="bottom" secondItem="VI7-WF-WW9" secondAttribute="bottom" id="hsU-kr-Gtq"/>
+                            <constraint firstItem="izs-sQ-Gkj" firstAttribute="top" secondItem="How-W6-VY3" secondAttribute="top" id="uMQ-xA-bKZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VI7-WF-WW9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pp3-2h-7tU"/>
+                    <connections>
+                        <outlet property="dTableView" destination="izs-sQ-Gkj" id="fZ7-3r-KPv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxG-63-0g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1825" y="-2821"/>
         </scene>
         <!--My FootprintVC-->
         <scene sceneID="RhF-t7-7GE">

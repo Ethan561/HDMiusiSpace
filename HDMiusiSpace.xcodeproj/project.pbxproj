@@ -110,6 +110,9 @@
 		A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */; };
 		A7A90A6421A3E17D005BD37F /* HDSSL_shareCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A6321A3E17D005BD37F /* HDSSL_shareCommentVC.swift */; };
 		A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A90A6521A3E934005BD37F /* UIKit.framework */; };
+		A7AA22A321AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */; };
+		A7AA22A621AE274200CDA6CE /* HDSSL_recordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */; };
+		A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */; };
 		A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */; };
 		A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */; };
 		A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */; };
@@ -677,6 +680,9 @@
 		A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentModel.swift; sourceTree = "<group>"; };
 		A7A90A6321A3E17D005BD37F /* HDSSL_shareCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_shareCommentVC.swift; sourceTree = "<group>"; };
 		A7A90A6521A3E934005BD37F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TransactionRecordVC.swift; sourceTree = "<group>"; };
+		A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_recordCell.swift; sourceTree = "<group>"; };
+		A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_recordCell.xib; sourceTree = "<group>"; };
 		A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_newsCell.swift; sourceTree = "<group>"; };
 		A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_newsCell.xib; sourceTree = "<group>"; };
 		A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_ClassCell.swift; sourceTree = "<group>"; };
@@ -1256,6 +1262,9 @@
 			isa = PBXGroup;
 			children = (
 				A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */,
+				A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */,
+				A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */,
+				A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */,
 			);
 			path = MyWallet;
 			sourceTree = "<group>";
@@ -2922,6 +2931,7 @@
 				D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
+				A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */,
 				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
 				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
@@ -3133,6 +3143,7 @@
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
 				D6115AF0218FD490004A05DA /* ZFIJKPlayerManager.m in Sources */,
+				A7AA22A321AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift in Sources */,
 				D6115AFE218FD490004A05DA /* UIImageView+ZFCache.m in Sources */,
 				D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */,
 				D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */,
@@ -3227,6 +3238,7 @@
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D61E94D02192D12400C5299F /* SDWebImageCompat.m in Sources */,
+				A7AA22A621AE274200CDA6CE /* HDSSL_recordCell.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */,

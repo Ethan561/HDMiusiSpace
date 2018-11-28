@@ -60,6 +60,7 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     @objc func action_goToTransactionRecord() {
         //
         print("交易记录")
+        self.performSegue(withIdentifier: "PushToTransactionRecordVC", sender: nil)
     }
 
     //开通会员

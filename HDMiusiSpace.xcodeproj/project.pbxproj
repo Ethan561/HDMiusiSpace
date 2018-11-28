@@ -10,6 +10,10 @@
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
 		1B1A81F821A8FB7C001DCC1F /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */; };
 		1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */; };
+		1B1C2D9321AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */; };
+		1B1C2D9521AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */; };
+		1B1C2D9721AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */; };
+		1B1C2D9921AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -25,6 +29,8 @@
 		1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */; };
+		A70C686A21AD11180033C488 /* HDSSL_MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */; };
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
 		A71B315221424E0D00D6BA9B /* HDSSL_searchTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */; };
 		A72DE93721A132E000F0536F /* HDSSL_commentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72DE93621A132E000F0536F /* HDSSL_commentVC.swift */; };
@@ -104,6 +110,9 @@
 		A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */; };
 		A7A90A6421A3E17D005BD37F /* HDSSL_shareCommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A90A6321A3E17D005BD37F /* HDSSL_shareCommentVC.swift */; };
 		A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A90A6521A3E934005BD37F /* UIKit.framework */; };
+		A7AA22A321AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */; };
+		A7AA22A621AE274200CDA6CE /* HDSSL_recordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */; };
+		A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */; };
 		A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */; };
 		A7AC35B4214A518B004E8BC1 /* HDSSL_newsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */; };
 		A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */; };
@@ -552,6 +561,10 @@
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
 		1B1A81F721A8FB7C001DCC1F /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
 		1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFootprintVC.swift; sourceTree = "<group>"; };
+		1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_AboutMuseFooterView.swift; sourceTree = "<group>"; };
+		1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseFooterView.xib; sourceTree = "<group>"; };
+		1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseHeaderView.xib; sourceTree = "<group>"; };
+		1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_AboutMuseHeaderView.swift; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -567,6 +580,8 @@
 		1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesSubVC.swift; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyWalletVC.swift; sourceTree = "<group>"; };
+		A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyOrderVC.swift; sourceTree = "<group>"; };
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
 		A71B315121424E0D00D6BA9B /* HDSSL_searchTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_searchTagModel.swift; sourceTree = "<group>"; };
 		A72DE93621A132E000F0536F /* HDSSL_commentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentVC.swift; sourceTree = "<group>"; };
@@ -666,6 +681,9 @@
 		A7A90A6121A3D537005BD37F /* HDSSL_commentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_commentModel.swift; sourceTree = "<group>"; };
 		A7A90A6321A3E17D005BD37F /* HDSSL_shareCommentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_shareCommentVC.swift; sourceTree = "<group>"; };
 		A7A90A6521A3E934005BD37F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TransactionRecordVC.swift; sourceTree = "<group>"; };
+		A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_recordCell.swift; sourceTree = "<group>"; };
+		A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_recordCell.xib; sourceTree = "<group>"; };
 		A7AC35B1214A518B004E8BC1 /* HDSSL_newsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_newsCell.swift; sourceTree = "<group>"; };
 		A7AC35B2214A518B004E8BC1 /* HDSSL_newsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_newsCell.xib; sourceTree = "<group>"; };
 		A7AC35B5214A51C2004E8BC1 /* HDSSL_ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_ClassCell.swift; sourceTree = "<group>"; };
@@ -1234,6 +1252,25 @@
 				567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		A70C686521AD10940033C488 /* MyOrder */ = {
+			isa = PBXGroup;
+			children = (
+				A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */,
+			);
+			path = MyOrder;
+			sourceTree = "<group>";
+		};
+		A70C686621AD10980033C488 /* MyWallet */ = {
+			isa = PBXGroup;
+			children = (
+				A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */,
+				A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */,
+				A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */,
+				A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */,
+			);
+			path = MyWallet;
 			sourceTree = "<group>";
 		};
 		A72DE93821A1385E00F0536F /* Comment */ = {
@@ -2421,6 +2458,8 @@
 		D6C9FCB4211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A70C686621AD10980033C488 /* MyWallet */,
+				A70C686521AD10940033C488 /* MyOrder */,
 				D699A3B321AB814B00ADF45E /* NotiMessage */,
 				D6C9FCCD2118354E007C8E56 /* HDRootEVC.swift */,
 				D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */,
@@ -2509,6 +2548,10 @@
 				1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */,
 				1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */,
 				1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */,
+				1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */,
+				1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */,
+				1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */,
+				1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2862,6 +2905,7 @@
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */,
+				1B1C2D9521AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
 				A7441D4121A2A0D50064E6A6 /* AlbumAddBtn@2x.png in Resources */,
 				D6694738212FE62D0068945A /* HDLY_LeaveMsg_VC.xib in Resources */,
@@ -2876,6 +2920,7 @@
 				A72DE93C21A1389800F0536F /* HDSSL_commentTextCell.xib in Resources */,
 				D66C35CB213FA80600363D7C /* HDLY_MineInfo_Cell.xib in Resources */,
 				A7441D2D21A2A0D50064E6A6 /* back@2x.png in Resources */,
+				1B1C2D9721AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib in Resources */,
 				A7AC35BC214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib in Resources */,
 				A79D9D3A219E4AB80081B3AE /* HDSSL_dCommentCell.xib in Resources */,
 				D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */,
@@ -2893,6 +2938,7 @@
 				D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
+				A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */,
 				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
 				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
@@ -3104,6 +3150,7 @@
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
 				D6115AF0218FD490004A05DA /* ZFIJKPlayerManager.m in Sources */,
+				A7AA22A321AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift in Sources */,
 				D6115AFE218FD490004A05DA /* UIImageView+ZFCache.m in Sources */,
 				D6C9FC5321181F28007C8E56 /* HDItemBaseVC.swift in Sources */,
 				D6C9FC8F21181FD1007C8E56 /* HDFloatingButtonView.swift in Sources */,
@@ -3163,6 +3210,7 @@
 				D60E857C21918B3400072BF9 /* HDLY_ExhibitCell.swift in Sources */,
 				D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */,
 				D6115AFA218FD490004A05DA /* ZFSmallFloatControlView.m in Sources */,
+				1B1C2D9921AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift in Sources */,
 				A7C59E4D219C004C00F67F0C /* HDSSL_Sec0_Cell1.swift in Sources */,
 				D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */,
 				A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */,
@@ -3197,6 +3245,7 @@
 				D6C9FCC8211834FF007C8E56 /* HDRootBVC.swift in Sources */,
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D61E94D02192D12400C5299F /* SDWebImageCompat.m in Sources */,
+				A7AA22A621AE274200CDA6CE /* HDSSL_recordCell.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				D68D541D2133D1AD000CD258 /* HDLY_PswdLogin_VC.swift in Sources */,
@@ -3237,6 +3286,7 @@
 				D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */,
 				A7441D4021A2A0D50064E6A6 /* TZGifPhotoPreviewController.m in Sources */,
 				A7A90A6421A3E17D005BD37F /* HDSSL_shareCommentVC.swift in Sources */,
+				A70C686A21AD11180033C488 /* HDSSL_MyOrderVC.swift in Sources */,
 				D62277B121367F12008F1416 /* HDLY_PhotoCell.swift in Sources */,
 				D6115AE8218FD490004A05DA /* ZFPlayerLogManager.m in Sources */,
 				1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */,
@@ -3245,6 +3295,7 @@
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D62277D421368069008F1416 /* MTImagePickerAssetsController.swift in Sources */,
+				A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */,
 				D699A3B721AB81CB00ADF45E /* HDLY_SystemMsgVC.swift in Sources */,
 				D622778421366E51008F1416 /* HDLY_ReportError_VC.swift in Sources */,
 				D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */,
@@ -3269,6 +3320,7 @@
 				A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */,
 				D6C9FC6721181F54007C8E56 /* HDFullScreenPopGesture.swift in Sources */,
 				D622779C21367D4D008F1416 /* PhotoBrowserPlugin.swift in Sources */,
+				1B1C2D9321AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift in Sources */,
 				D622779E21367D4D008F1416 /* PhotoBrowserCellPlugin.swift in Sources */,
 				D6AA0AFD2134FBB30036320F /* TopicModel.swift in Sources */,
 				D66C35BB213F5E2100363D7C /* YYKVStorage.m in Sources */,

@@ -34,7 +34,7 @@ class HDLY_ChangePwd_VC: HDItemBaseVC, UITextFieldDelegate {
                 
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
-                let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                guard let dataDic: Dictionary<String,Any> = dic!["data"] as? Dictionary else { return }
                 self.declare.api_token = dataDic["api_token"] as? String
                 self.declare.loginStatus = .kLogin_Status_Login
                 let defaults = UserDefaults.standard

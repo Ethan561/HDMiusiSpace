@@ -55,35 +55,11 @@ class HDLY_AccountBind_VC: HDItemBaseVC {
 extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
-    
-    //header
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    //footer
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 18
-        }
-        return 0.01
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 2
-        } else {
-           return 2
-        }
+       return 5
         
     }
     
@@ -92,10 +68,7 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let section = indexPath.section
         let index = indexPath.row
-        if section == 0 {
             if index == 0 {//修改密码
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "修改密码"
@@ -107,38 +80,39 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 cell?.moreImgV.isHidden = true
                 return cell!
             }
-//            else if index == 2 {//邮箱
-//                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-//                cell?.nameL.text = "邮箱"
-//                cell?.moreImgV.isHidden = true
-//                cell?.bottomLine.isHidden = true
-//                return cell!
-//            }
-        }
-        
-        if section == 1 {
-            if index == 0 {//微信
+            else if index == 2 {//微信
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.moreImgV.isHidden = true
                 cell?.nameL.text = "微信"
-                cell?.subNameL.text = "未绑定"
+                if declare.isBindWechat == 1 {
+                    cell?.subNameL.text = declare.wechatName
+                } else {
+                    cell?.subNameL.text = "未绑定"
+                }
                 return cell!
-            }else if index == 1 {//新浪微博
+            }else if index == 3 {//新浪微博
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "新浪微博"
-                cell?.subNameL.text = "未绑定"
+                if declare.isBindWeibo == 1 {
+                    cell?.subNameL.text = declare.weiboName
+                } else {
+                    cell?.subNameL.text = "未绑定"
+                }
+                
                 cell?.moreImgV.isHidden = true
                 return cell!
             }
-//            else if index == 2 {//邮箱
-//                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-//                cell?.nameL.text = "邮箱"
-//                cell?.subNameL.text = "未绑定"
-//                cell?.moreImgV.isHidden = true
-//                cell?.bottomLine.isHidden = true
-//                return cell!
-//            }
-        }
+            else if index == 4 {//QQ
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.nameL.text = "QQ"
+                if declare.isBindWeibo == 1 {
+                    cell?.subNameL.text = declare.QQName
+                } else {
+                    cell?.subNameL.text = "未绑定"
+                }
+                cell?.moreImgV.isHidden = true
+                return cell!
+            }
         return UITableViewCell.init()
     }
     

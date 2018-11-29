@@ -132,6 +132,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func bugBtnAction(_ sender: UIButton) {
+        HDLY_IAPStore.shared.requestProducts(nil)
+        
+        return
         if  self.infoModel?.data  != nil {
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)

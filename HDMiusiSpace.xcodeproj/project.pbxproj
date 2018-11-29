@@ -537,6 +537,8 @@
 		D6EEDDB12190202D00F730BA /* HDLY_GuideCard2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDDAF2190202D00F730BA /* HDLY_GuideCard2Cell.swift */; };
 		D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDDB22190271100F730BA /* HDLY_GuideMapCell.swift */; };
 		D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */; };
+		D6F5A92521AE6A1E00811A79 /* HDLY_IAPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */; };
+		D6F5A92721AE7C4C00811A79 /* Device+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1196,6 +1198,8 @@
 		D6EEDDAF2190202D00F730BA /* HDLY_GuideCard2Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_GuideCard2Cell.swift; sourceTree = "<group>"; };
 		D6EEDDB22190271100F730BA /* HDLY_GuideMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GuideMapCell.swift; sourceTree = "<group>"; };
 		D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GuideMapCell.xib; sourceTree = "<group>"; };
+		D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_IAPStore.swift; sourceTree = "<group>"; };
+		D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+Extension.swift"; sourceTree = "<group>"; };
 		DE5220120C8482CA6BBD2EF2 /* Pods-HDMiusiSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2164,6 +2168,7 @@
 		D6C9FC4021181EBC007C8E56 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */,
 				A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */,
 				A738B1FA2194094300B78D21 /* UIColor+Hex.swift */,
 				D6C9FC5E21181F54007C8E56 /* HDFullScreenPopGesture.swift */,
@@ -2254,6 +2259,7 @@
 		D6C9FC6E21181FD1007C8E56 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D6F5A92321AE689600811A79 /* HDIAPKit */,
 				A74BD60821AB860600057C9D /* SSL_PickerView.h */,
 				A74BD60721AB860600057C9D /* SSL_PickerView.m */,
 				A7C59E3B219BF04600F67F0C /* SSL_BigImageView */,
@@ -2713,6 +2719,14 @@
 				A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D6F5A92321AE689600811A79 /* HDIAPKit */ = {
+			isa = PBXGroup;
+			children = (
+				D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */,
+			);
+			path = HDIAPKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3362,6 +3376,7 @@
 				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
 				A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */,
+				D6F5A92721AE7C4C00811A79 /* Device+Extension.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,
 				A7441D2E21A2A0D50064E6A6 /* TZTestCell.m in Sources */,
 				D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */,
@@ -3402,6 +3417,7 @@
 				A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */,
 				D699A3B921AB822500ADF45E /* HDLY_ReceiveMsgVC.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
+				D6F5A92521AE6A1E00811A79 /* HDLY_IAPStore.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,

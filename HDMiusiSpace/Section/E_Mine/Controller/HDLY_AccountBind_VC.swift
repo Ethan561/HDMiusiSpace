@@ -76,8 +76,15 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
             }else if index == 1 {//手机号
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "手机号"
+                
                 cell?.subNameL.text = declare.phone
                 cell?.moreImgV.isHidden = true
+                
+                let phone = HDDeclare.shared.phone
+                guard let foot =  phone?.suffix(4) else { return cell! }
+                guard let head =  phone?.prefix(3) else { return cell! }
+                cell?.subNameL.text = String(head) + "····" + String(foot)
+                
                 return cell!
             }
             else if index == 2 {//微信

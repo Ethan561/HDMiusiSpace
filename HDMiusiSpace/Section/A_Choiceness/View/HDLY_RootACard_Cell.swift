@@ -10,10 +10,19 @@ import UIKit
 
 class HDLY_RootACard_Cell: UITableViewCell {
 
+    @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var imgV: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        collectionBtn.setImage(UIImage.init(named: "rika_coollect_default"), for: .normal)
+        collectionBtn.setImage(UIImage.init(named: "rika_coollect_pressed"), for: .selected)
+        collectionBtn.isHidden = true
+        
+        imgV.layer.cornerRadius = 10
+        imgV.layer.masksToBounds = true
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

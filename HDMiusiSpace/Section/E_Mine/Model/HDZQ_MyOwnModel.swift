@@ -191,4 +191,15 @@ struct Date_list:Codable {
     var num: Int = 0
 }
 
+struct DynamicData:Codable {
+    var status: Int = 0
+    var data: [MyDynamic]?
+    var msg: String?
+}
 
+struct MyDynamic:Codable {
+    var comment: String?
+    var created_at: String?
+    var avatar: String?
+    var nickname: String?
+}

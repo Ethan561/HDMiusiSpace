@@ -17,12 +17,18 @@ class HDLY_Recommend_Cell1: UITableViewCell {
     @IBOutlet weak var priceL: UILabel!
     @IBOutlet weak var courseL: UILabel!
     @IBOutlet weak var typeImgV: UIImageView!
+    @IBOutlet weak var percentLabel: UILabel!
+    @IBOutlet weak var progress: UIProgressView!
+    @IBOutlet weak var bgView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgV.layer.cornerRadius = 8
-        imgV.layer.masksToBounds = true
+//        imgV.layer.cornerRadius = 8
+//        imgV.layer.masksToBounds = true
+        bgView.layer.cornerRadius = 8
+        bgView.clipsToBounds = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

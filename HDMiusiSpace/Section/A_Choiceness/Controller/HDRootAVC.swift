@@ -17,12 +17,16 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     var tabHeader: RootBHeaderView!
     var bannerArr =  [BbannerModel]()
-    
+    //
+    var collectionRow = -1
+    var isCollection: Bool?
     var infoModel: ChoicenessModel?
     var dataArr =  [BItemModel]()
+    
     //MVVM
     let viewModel: RootAViewModel = RootAViewModel()
-    
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -91,6 +95,15 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
             weakSelf?.bannerArr = banner
             weakSelf?.tabHeader.pageControl.numberOfPages = banner.count
             weakSelf?.tabHeader.pagerView.reloadData()
+        }
+        //收藏
+        publicViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.isCollection = false
+            } else {
+                weakSelf?.isCollection = true
+            }
+            weakSelf?.myTableView.reloadRows(at: [IndexPath.init(row: weakSelf?.collectionRow ?? 0, section: 0)], with: .none)
         }
     }
     
@@ -224,6 +237,23 @@ extension HDRootAVC {
             if model.itemCard?.img != nil {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.itemCard!.img), placeholder: UIImage.grayImage(sourceImageV: (cell?.imgV)!), options: nil, progressBlock: nil, completionHandler: nil)
             }
+            cell?.collectionBtn.isHidden = false
+            collectionRow = indexPath.row
+            
+            cell?.collectionBtn.tag = model.itemCard?.daycardID ?? 0
+            cell?.collectionBtn.addTarget(self, action: #selector(cardCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+            if isCollection != nil {
+                cell?.collectionBtn.isSelected = isCollection!
+            }else {
+                if model.itemCard?.isFavorite == 1 {
+                    self.isCollection = true
+                    cell?.collectionBtn.isSelected = true
+                } else {
+                    cell?.collectionBtn.isSelected = false
+                    self.isCollection = false
+                }
+            }
+            
             return cell!
         }else if model.type.int == 3 {
             let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
@@ -251,6 +281,16 @@ extension HDRootAVC {
     @objc func moreBtnAction(_ sender: UIButton) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    //收藏日卡
+    @objc func cardCollectionBtnAction(_ sender: UIButton) {
+        let cardID:String = String(sender.tag)
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: cardID, cate_id: "1", self)
     }
     
 }

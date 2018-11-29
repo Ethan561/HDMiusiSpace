@@ -22,6 +22,7 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
         
@@ -135,7 +136,15 @@ extension HDZQ_MyCoursesSubVC:UITableViewDelegate,UITableViewDataSource {
             cell?.priceL.text = "免费"
             cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
         }
-        
+        cell?.percentLabel.isHidden = false
+        if model.percentage == 0 {
+            cell?.percentLabel.text = "未学习"
+            cell?.progress.isHidden = true
+        } else {
+            cell?.percentLabel.text = "已学\(model.percentage)%"
+            cell?.progress.progress = Float(Double(model.percentage)/100.0)
+            cell?.progress.isHidden = false
+        }
         return cell!
     
     }

@@ -10,13 +10,13 @@ import UIKit
 
 
 protocol HDLY_MineCourse_Cell_Delegate:NSObjectProtocol {
-    func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_MineCourse_Cell)
+    func didSelectItemAt(_ model:MyCollectCourseModel, _ cell: HDLY_MineCourse_Cell)
 }
 
 class HDLY_MineCourse_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
-    var listArray: Array<BRecmdModel>? {
+    var listArray: Array<MyCollectCourseModel>? {
         didSet{
             myCollectionView.reloadData()
         }
@@ -75,7 +75,7 @@ class HDLY_MineCourse_Cell: UITableViewCell,UICollectionViewDelegate,UICollectio
     //MARK: ---
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if listArray != nil {
-            return listArray!.count
+            return listArray!.count > 5 ? 5 : listArray!.count
         }
         return 5
     }
@@ -85,10 +85,10 @@ class HDLY_MineCourse_Cell: UITableViewCell,UICollectionViewDelegate,UICollectio
         if self.listArray != nil {
             if self.listArray!.count > 0 {
                 let model = listArray![indexPath.row]
-                if  model.img != nil  {
-                    cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
-                }
+                cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 cell.nameL.text = model.title
+                cell.learnProgressLabel.text = "已学\(model.percentage)%"
+                cell.progressView.progress = Float(Double(model.percentage)/100.0)
             }
         }
         return cell
@@ -101,8 +101,8 @@ class HDLY_MineCourse_Cell: UITableViewCell,UICollectionViewDelegate,UICollectio
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height:CGFloat  = 140 * ScreenWidth/375.0
-        let width:CGFloat   = height * 7 / 6.0
+        let height:CGFloat  = 140
+        let width:CGFloat   = 140
         
         return CGSize.init(width: width, height: height)
     }

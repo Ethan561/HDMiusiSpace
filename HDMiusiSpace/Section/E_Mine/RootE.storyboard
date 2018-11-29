@@ -1814,14 +1814,28 @@
                     <view key="view" contentMode="scaleToFill" id="8ao-Wv-Upj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPE-rq-ZlA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CPE-rq-ZlA" firstAttribute="top" secondItem="8ao-Wv-Upj" secondAttribute="top" id="0ce-r6-Kwo"/>
+                            <constraint firstItem="CPE-rq-ZlA" firstAttribute="trailing" secondItem="gxf-xt-2Ee" secondAttribute="trailing" id="B35-G6-xQF"/>
+                            <constraint firstItem="CPE-rq-ZlA" firstAttribute="leading" secondItem="gxf-xt-2Ee" secondAttribute="leading" id="Ntt-t5-Xu0"/>
+                            <constraint firstItem="CPE-rq-ZlA" firstAttribute="bottom" secondItem="gxf-xt-2Ee" secondAttribute="bottom" id="g19-bP-ewI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gxf-xt-2Ee"/>
                     </view>
                     <navigationItem key="navigationItem" id="eYD-lI-WCm"/>
+                    <connections>
+                        <outlet property="scrollView" destination="CPE-rq-ZlA" id="Vtc-HD-dB0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fp4-fH-KYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015" y="-3506"/>
+            <point key="canvasLocation" x="1013.6" y="-3506.8965517241381"/>
         </scene>
         <!--My WalletVC-->
         <scene sceneID="s4D-PM-wsA">

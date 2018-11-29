@@ -56,7 +56,9 @@ class HDLY_UserModel: NSObject {
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" 获取用户信息： \(String(describing: dic))")
                 declare.loginStatus = Login_Status.kLogin_Status_Login
-                declare.saveUserMessage(myDic: dic!["data"] as! NSDictionary)
+                let jsonDecoder = JSONDecoder()
+                guard let model:UserData = try? jsonDecoder.decode(UserData.self, from: result) else { return }
+                declare.saveUserInfo(model: model.data ?? UserModel())
                 if (blockProperty != nil)
                 {
                     blockProperty!(_:"success")

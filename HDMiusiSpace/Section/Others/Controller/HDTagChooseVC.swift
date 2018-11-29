@@ -35,6 +35,9 @@ class HDTagChooseVC: UIViewController {
     //初始化标签数组
     func loadMyDatas() {
         //
+        guard HDDeclare.shared.allTagsArray != nil else {
+            return
+        }
         dataArr = HDDeclare.shared.allTagsArray!
         
         let tagdatamodel = dataArr[2] //第三页多选

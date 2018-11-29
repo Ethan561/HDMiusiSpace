@@ -23,6 +23,7 @@
 		1B2928F321A6808900FEF21C /* HDZQ_MyOwnModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */; };
 		1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */; };
 		1B2928F721A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */; };
+		1B30BC9621AE6E450099557F /* HDZQ_SignLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30BC9521AE6E450099557F /* HDZQ_SignLabelVC.swift */; };
 		1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */; };
 		1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */; };
 		1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */; };
@@ -576,6 +577,7 @@
 		1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyOwnModel.swift; sourceTree = "<group>"; };
 		1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectVC.swift; sourceTree = "<group>"; };
 		1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectSubVC.swift; sourceTree = "<group>"; };
+		1B30BC9521AE6E450099557F /* HDZQ_SignLabelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_SignLabelVC.swift; sourceTree = "<group>"; };
 		1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_RelatedClassCell.swift; sourceTree = "<group>"; };
 		1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RelatedClassCell.xib; sourceTree = "<group>"; };
 		1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesVC.swift; sourceTree = "<group>"; };
@@ -2469,6 +2471,7 @@
 				D699A3B321AB814B00ADF45E /* NotiMessage */,
 				D6C9FCCD2118354E007C8E56 /* HDRootEVC.swift */,
 				D68D54222133F437000CD258 /* HDLY_UserInfo_VC.swift */,
+				1B30BC9521AE6E450099557F /* HDZQ_SignLabelVC.swift */,
 				D68D54242133F44D000CD258 /* HDLY_Setting_VC.swift */,
 				D6AA0AF82134DED00036320F /* HDLY_ModifyName_VC.swift */,
 				D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */,
@@ -3462,6 +3465,7 @@
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
+				1B30BC9621AE6E450099557F /* HDZQ_SignLabelVC.swift in Sources */,
 				1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */,
 				D6C9FCC6211834E8007C8E56 /* HDRootAVC.swift in Sources */,
 				D6C9FC6621181F54007C8E56 /* UIColor+HexColor.swift in Sources */,

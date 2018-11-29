@@ -140,6 +140,13 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         self.performSegue(withIdentifier: "PushTo_HDLY_ModifyName_VC_Line", sender: 1)
     }
     
+    @IBAction func changeSignLabeAction(_ sender: Any) {
+        
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseVC") as! HDTagChooseVC
+//        self.navigationController?.pushViewController(vc, animated: true)
+//        self.present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func changeGenderAction(_ sender: UIButton) {
         if kWindow != nil {
             self.genderTipView.frame = kWindow!.bounds

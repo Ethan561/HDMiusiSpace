@@ -19,13 +19,13 @@ struct ExhibitionMuseumData: Codable {
     var img: String?
     var isFavorite: Int?
     var title, time, price, address: String?
-    var iconList: [String]?
+    var iconList: [String?]?
     var museumHTML: String?
     var isArea: Int?
     var areaHTML: String?
     var isTourGuide: Int?
     var tourGuide: String?
-    var dataList: [DataList]?
+    var dataList: [ExhibitionMuseumDataList]?
     var museum_id: Int?
     var share_url: String?
     var longitude: String?
@@ -72,8 +72,7 @@ struct DMuseumExhibition: Codable {
 struct DExhibitionList: Codable {
     var exhibitionID: Int?
     var img: String?
-    var title, address: String?
-    var star: Double?
+    var title, address, star: String?
     var iconList: [String]?
     
     enum CodingKeys: String, CodingKey {

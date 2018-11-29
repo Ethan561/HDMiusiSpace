@@ -40,12 +40,13 @@ struct HDLY_dExhibitionListD: Codable {
     var exhibitionID: Int = 0
     var img: String?
     var title, address: String?
-    var star: Double = 0.0
+    var star: String?
     var iconList: [String]?
     
     enum CodingKeys: String, CodingKey {
         case exhibitionID = "exhibition_id"
-        case img, title, address, star
+        case img, title, address
+        case star
         case iconList = "icon_list"
     }
 }
@@ -67,7 +68,7 @@ struct HDLY_dMuseumListD: Codable {
     var isLive: Int = 0
     var liveTitle: String?
     var isFree: Int = 0
-    var price: Int = 0
+    var price:  String?
     var isFavorite: Int = 0
 
     enum CodingKeys: String, CodingKey {

@@ -348,7 +348,9 @@ extension HDSSL_dMuseumDetailVC {
             }
             else if indexPath.row == 4 { //标签视图
                 let cell = HDLY_MuseumTagsCell.getMyTableCell(tableV: tableView)
-                cell?.imgArr = self.infoModel?.iconList
+                if self.infoModel?.iconList != nil {
+                    cell?.imgArr = self.infoModel?.iconList as! Array<String>
+                }
                 return cell!
             }
             else if indexPath.row == 5 {

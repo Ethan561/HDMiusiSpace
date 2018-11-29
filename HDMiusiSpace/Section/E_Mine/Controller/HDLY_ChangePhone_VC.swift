@@ -60,7 +60,7 @@ class HDLY_ChangePhone_VC: HDItemBaseVC, UITextFieldDelegate {
                 //
                 let defaults = UserDefaults.standard
                 defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
-                
+                HDDeclare.shared.phone = self.phoneTF.text
                 HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                     for vc in self.navigationController!.viewControllers {

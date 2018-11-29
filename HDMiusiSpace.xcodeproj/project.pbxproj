@@ -89,6 +89,11 @@
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
 		A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */; };
 		A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */; };
+		A788E3FE21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E3FD21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift */; };
+		A788E40521AF912000E2FC62 /* HDSSL_OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E40321AF912000E2FC62 /* HDSSL_OrderCell.swift */; };
+		A788E40621AF912000E2FC62 /* HDSSL_OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */; };
+		A788E40921AFBA0E00E2FC62 /* HDSSL_TicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */; };
+		A788E40A21AFBA0E00E2FC62 /* HDSSL_TicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A788E40821AFBA0E00E2FC62 /* HDSSL_TicketCell.xib */; };
 		A79422FC21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */; };
 		A79422FE21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */; };
 		A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */; };
@@ -538,6 +543,8 @@
 		D6EEDDB12190202D00F730BA /* HDLY_GuideCard2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDDAF2190202D00F730BA /* HDLY_GuideCard2Cell.swift */; };
 		D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDDB22190271100F730BA /* HDLY_GuideMapCell.swift */; };
 		D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */; };
+		D6F5A92521AE6A1E00811A79 /* HDLY_IAPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */; };
+		D6F5A92721AE7C4C00811A79 /* Device+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -661,6 +668,11 @@
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
 		A7676BF62192B921004C7F8A /* HDSSL_dExhibitionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_dExhibitionCell.xib; sourceTree = "<group>"; };
 		A7676BFD2192D78D004C7F8A /* HDSSL_getLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_getLocationVC.swift; sourceTree = "<group>"; };
+		A788E3FD21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyOrderSubVC.swift; sourceTree = "<group>"; };
+		A788E40321AF912000E2FC62 /* HDSSL_OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_OrderCell.swift; sourceTree = "<group>"; };
+		A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_OrderCell.xib; sourceTree = "<group>"; };
+		A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TicketCell.swift; sourceTree = "<group>"; };
+		A788E40821AFBA0E00E2FC62 /* HDSSL_TicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_TicketCell.xib; sourceTree = "<group>"; };
 		A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0Footer.swift; sourceTree = "<group>"; };
 		A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec0Footer.xib; sourceTree = "<group>"; };
 		A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentHerder.swift; sourceTree = "<group>"; };
@@ -1198,6 +1210,8 @@
 		D6EEDDAF2190202D00F730BA /* HDLY_GuideCard2Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_GuideCard2Cell.swift; sourceTree = "<group>"; };
 		D6EEDDB22190271100F730BA /* HDLY_GuideMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GuideMapCell.swift; sourceTree = "<group>"; };
 		D6EEDDB32190271100F730BA /* HDLY_GuideMapCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GuideMapCell.xib; sourceTree = "<group>"; };
+		D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_IAPStore.swift; sourceTree = "<group>"; };
+		D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device+Extension.swift"; sourceTree = "<group>"; };
 		DE5220120C8482CA6BBD2EF2 /* Pods-HDMiusiSpace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1260,6 +1274,11 @@
 			isa = PBXGroup;
 			children = (
 				A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */,
+				A788E3FD21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift */,
+				A788E40321AF912000E2FC62 /* HDSSL_OrderCell.swift */,
+				A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */,
+				A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */,
+				A788E40821AFBA0E00E2FC62 /* HDSSL_TicketCell.xib */,
 			);
 			path = MyOrder;
 			sourceTree = "<group>";
@@ -2166,6 +2185,7 @@
 		D6C9FC4021181EBC007C8E56 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D6F5A92621AE7C4C00811A79 /* Device+Extension.swift */,
 				A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */,
 				A738B1FA2194094300B78D21 /* UIColor+Hex.swift */,
 				D6C9FC5E21181F54007C8E56 /* HDFullScreenPopGesture.swift */,
@@ -2256,6 +2276,7 @@
 		D6C9FC6E21181FD1007C8E56 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D6F5A92321AE689600811A79 /* HDIAPKit */,
 				A74BD60821AB860600057C9D /* SSL_PickerView.h */,
 				A74BD60721AB860600057C9D /* SSL_PickerView.m */,
 				A7C59E3B219BF04600F67F0C /* SSL_BigImageView */,
@@ -2718,6 +2739,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D6F5A92321AE689600811A79 /* HDIAPKit */ = {
+			isa = PBXGroup;
+			children = (
+				D6F5A92421AE6A1E00811A79 /* HDLY_IAPStore.swift */,
+			);
+			path = HDIAPKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2852,6 +2881,7 @@
 				D60E85792191769E00072BF9 /* HDLY_ExhibitionCell.xib in Resources */,
 				A74BD60E21AB931000057C9D /* SSLPickerFooterView.xib in Resources */,
 				D694518C219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib in Resources */,
+				A788E40621AF912000E2FC62 /* HDSSL_OrderCell.xib in Resources */,
 				D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
@@ -2907,6 +2937,7 @@
 				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
+				A788E40A21AFBA0E00E2FC62 /* HDSSL_TicketCell.xib in Resources */,
 				D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */,
 				1B1C2D9521AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib in Resources */,
 				D6C9FC5621181F28007C8E56 /* TipContentView.xib in Resources */,
@@ -3189,6 +3220,7 @@
 				A7C59E49219BFE0400F67F0C /* HDSSL_Sec0_Cell0.swift in Sources */,
 				D689DDA12193DB9A007DF948 /* HDLY_MapExhibitModel.swift in Sources */,
 				D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */,
+				A788E40521AF912000E2FC62 /* HDSSL_OrderCell.swift in Sources */,
 				A7441D3E21A2A0D50064E6A6 /* TZImagePickerController.m in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
@@ -3224,6 +3256,7 @@
 				D62277E6213696ED008F1416 /* ReportErrorViewModel.swift in Sources */,
 				D668CF9D21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift in Sources */,
 				D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */,
+				A788E3FE21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift in Sources */,
 				D66C35BA213F5E2100363D7C /* YYCache.m in Sources */,
 				D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */,
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,
@@ -3337,6 +3370,7 @@
 				D62277DB21368069008F1416 /* MTImagePickerDataSource.swift in Sources */,
 				D6694732212F8E9C0068945A /* CourseDetail.swift in Sources */,
 				D66C35C1213F804B00363D7C /* HDLY_MineHome_Header.swift in Sources */,
+				A788E40921AFBA0E00E2FC62 /* HDSSL_TicketCell.swift in Sources */,
 				D6115AEB218FD490004A05DA /* ZFFloatView.m in Sources */,
 				D6699FFD21198714006339D3 /* RootBHeaderView.swift in Sources */,
 				D66D002D212162A300DD4DD5 /* HDLY_RecmdMore_VC.swift in Sources */,
@@ -3365,6 +3399,7 @@
 				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
 				A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */,
+				D6F5A92721AE7C4C00811A79 /* Device+Extension.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,
 				A7441D2E21A2A0D50064E6A6 /* TZTestCell.m in Sources */,
 				D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */,
@@ -3405,6 +3440,7 @@
 				A7441D3C21A2A0D50064E6A6 /* TZPhotoPickerController.m in Sources */,
 				D699A3B921AB822500ADF45E /* HDLY_ReceiveMsgVC.swift in Sources */,
 				D6C9FC9221181FD1007C8E56 /* HDRunTime.swift in Sources */,
+				D6F5A92521AE6A1E00811A79 /* HDLY_IAPStore.swift in Sources */,
 				D66C35B9213F5E2100363D7C /* YYDiskCache.m in Sources */,
 				A738B201219418F700B78D21 /* CityDataModel.swift in Sources */,
 				D63F8D5D2199516D00686AB3 /* HDBigAnnView.m in Sources */,

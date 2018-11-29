@@ -367,6 +367,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return 70
     }
+    
     //MARK: ---------Header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
@@ -377,6 +378,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return 0.01
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
             //评论
@@ -484,8 +486,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
                 cell.cell_starNumL.text = String.init(format: "%.1f", self.exdataModel?.data?.star ?? "")
-                cell.starNum = self.exdataModel?.data?.star ?? 0.0
-                
+                if self.exdataModel?.data?.star != nil {
+                    let num:Int = Int(self.exdataModel!.data!.star!) ?? 0
+                    cell.starNum = Double(num)
+                }
                 
                 return cell
             }

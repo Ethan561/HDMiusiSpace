@@ -94,6 +94,7 @@
 		A788E40621AF912000E2FC62 /* HDSSL_OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */; };
 		A788E40921AFBA0E00E2FC62 /* HDSSL_TicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */; };
 		A788E40A21AFBA0E00E2FC62 /* HDSSL_TicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A788E40821AFBA0E00E2FC62 /* HDSSL_TicketCell.xib */; };
+		A788E40C21AFCC6100E2FC62 /* HDSSL_OrderDetialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A788E40B21AFCC6100E2FC62 /* HDSSL_OrderDetialVC.swift */; };
 		A79422FC21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */; };
 		A79422FE21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib in Resources */ = {isa = PBXBuildFile; fileRef = A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */; };
 		A799C02F219FB71D00BA526C /* HDSSL_dCommentHerder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */; };
@@ -673,6 +674,7 @@
 		A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_OrderCell.xib; sourceTree = "<group>"; };
 		A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TicketCell.swift; sourceTree = "<group>"; };
 		A788E40821AFBA0E00E2FC62 /* HDSSL_TicketCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_TicketCell.xib; sourceTree = "<group>"; };
+		A788E40B21AFCC6100E2FC62 /* HDSSL_OrderDetialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_OrderDetialVC.swift; sourceTree = "<group>"; };
 		A79422FB21A7DE8B0083A1C8 /* HDSSL_Sec0Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_Sec0Footer.swift; sourceTree = "<group>"; };
 		A79422FD21A7DE980083A1C8 /* HDSSL_Sec0Footer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_Sec0Footer.xib; sourceTree = "<group>"; };
 		A799C02E219FB71D00BA526C /* HDSSL_dCommentHerder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dCommentHerder.swift; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 			children = (
 				A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */,
 				A788E3FD21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift */,
+				A788E40B21AFCC6100E2FC62 /* HDSSL_OrderDetialVC.swift */,
 				A788E40321AF912000E2FC62 /* HDSSL_OrderCell.swift */,
 				A788E40421AF912000E2FC62 /* HDSSL_OrderCell.xib */,
 				A788E40721AFBA0E00E2FC62 /* HDSSL_TicketCell.swift */,
@@ -3404,6 +3407,7 @@
 				A7441D2E21A2A0D50064E6A6 /* TZTestCell.m in Sources */,
 				D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */,
 				A79EE6BF213A71DF009F1BA3 /* HD_SSL_API.swift in Sources */,
+				A788E40C21AFCC6100E2FC62 /* HDSSL_OrderDetialVC.swift in Sources */,
 				D6AA0AFB2134FA2A0036320F /* HDLY_TopicDetail_VC.swift in Sources */,
 				D6C9FC6A21181F54007C8E56 /* UIButton_Extention.swift in Sources */,
 				A7676BFE2192D78D004C7F8A /* HDSSL_getLocationVC.swift in Sources */,

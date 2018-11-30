@@ -31,6 +31,10 @@ enum HD_ZQ_Person_API {
     case getMyFootPrint(api_token: String, skip:Int, take:Int)
     //关于缪斯空间
     case getAboutMuseSpaceInfo()
+    //我的动态
+    case getMyDynamicList(api_token: String, skip:Int, take:Int)
+    //个人中心页面
+    case getMyDynamicIndex(api_token: String)
 
 }
 extension HD_ZQ_Person_API: TargetType {
@@ -61,6 +65,10 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/favorites/my_footprint"
         case .getAboutMuseSpaceInfo:
             return "/api/users/about"
+        case .getMyDynamicList(api_token: _,  skip: _, take: _):
+            return "/api/dynamic/dynamic_list"
+        case .getMyDynamicIndex(api_token: _):
+            return "/api/dynamic/index"
         }
     }
     
@@ -148,6 +156,18 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
         case .getAboutMuseSpaceInfo():
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyDynamicList(let apiToken,let page,let size):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyDynamicIndex(let apiToken):
+            params = params.merging(["api_token": apiToken], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

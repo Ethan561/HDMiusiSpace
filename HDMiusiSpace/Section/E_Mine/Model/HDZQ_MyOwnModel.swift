@@ -132,8 +132,81 @@ struct FootprintModel:Codable {
     var list_data = [FPContent]()
 }
 
+// 日卡
+struct DayCardData:Codable {
+    var status: Int = 0
+    var data: DayCardList?
+    var msg: String?
+}
 
-// 用户详情
+struct DayCardList:Codable {
+    var total_num: Int = 0
+    var date_list = [Date_list]()
+}
+
+struct DayCardModel:Codable {
+    var article_id: Int = 0
+    var img: String?
+    var card_id: Int = 0
+    var date: String?
+    var daycard_id: Int = 0
+}
+
+struct Date_list:Codable {
+    var date_list = [DayCardModel]()
+    var month: String?
+    var num: Int = 0
+}
+
+struct DynamicData:Codable {
+    var status: Int = 0
+    var data: [MyDynamic]?
+    var msg: String?
+}
+
+struct MyDynamic:Codable {
+    var comment: String?
+    var created_at: String?
+    var avatar: String?
+    var nickname: String?
+}
+
+
+struct UserDynamicModel:Codable {
+    var status: Int = 0
+    var data: UserDynamic?
+    var msg: String?
+}
+
+struct UserDynamic:Codable {
+    var sex: Int = 0
+    var footprint_num: Int = 0
+    var daycard_num: Int = 0
+    var favorite_num: Int = 0
+    var email: String?
+    var nickname: String?
+    var class_list = [CoureModel]()
+    var focus_num: Int = 0
+    var is_new_footprint: Int = 0
+    var uid: Int = 0
+    var dynamic_list = [MyDynamic]()
+    var is_vip: Int = 0
+    var phone: String?
+    var avatar: String?
+    var is_new_msg: Int = 0
+    var vip_end_time: String?
+    var profile: String?
+    var space_money: String?
+}
+
+struct CoureModel:Codable {
+    var percentage: Int = 0
+    var img: String?
+    var title: String?
+    var class_num: Int = 0
+    var class_id: Int = 0
+}
+
 struct UserData:Codable {
     var status: Int = 0
     var data: UserModel?
@@ -163,32 +236,3 @@ struct UserModel:Codable {
     var profile: String?
     var space_money: String?
 }
-
-
-// 日卡
-struct DayCardData:Codable {
-    var status: Int = 0
-    var data: DayCardList?
-    var msg: String?
-}
-
-struct DayCardList:Codable {
-    var total_num: Int = 0
-    var date_list = [Date_list]()
-}
-
-struct DayCardModel:Codable {
-    var article_id: Int = 0
-    var img: String?
-    var card_id: Int = 0
-    var date: String?
-    var daycard_id: Int = 0
-}
-
-struct Date_list:Codable {
-    var date_list = [DayCardModel]()
-    var month: String?
-    var num: Int = 0
-}
-
-

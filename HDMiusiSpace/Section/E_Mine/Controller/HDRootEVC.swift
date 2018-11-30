@@ -9,13 +9,13 @@
 import UIKit
 
 class HDRootEVC: HDItemBaseVC {
-
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!    
     @IBOutlet weak var myTableView: UITableView!
-    
-    private var user = UserModel()
-    
+    private var user = UserDynamic()
+    private var myDynamics = [MyDynamic]()
+    private var courses =  [MyCollectCourseModel]()
+    private var htmls =  [NSAttributedString]()
     let declare:HDDeclare = HDDeclare.shared
     
     var tabHeader = HDLY_MineHome_Header()
@@ -30,8 +30,26 @@ class HDRootEVC: HDItemBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        refreshUserInfo()
-        getUserInfo()
+        if declare.loginStatus == .kLogin_Status_Login {
+            getUserInfo()
+            getMyDynamicList()
+            getMyStudyCourses()
+        } else {
+            //未登录
+            tabHeader.userInfoView.isHidden  = true
+            tabHeader.loginView.isHidden = false
+            tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
+            tabHeader.followNumberLabel.text = "0"
+            tabHeader.collectNumberLabel.text = "0"
+            tabHeader.cardNumberLabel.text = "0"
+            tabHeader.foorprintNumberLabel.text = "0"
+            self.user = UserDynamic()
+            self.myDynamics.removeAll()
+            self.courses.removeAll()
+            self.htmls.removeAll()
+            self.myTableView.reloadData()
+        }
+        
     }
     
     func setupViews() {
@@ -57,20 +75,22 @@ class HDRootEVC: HDItemBaseVC {
 
     func refreshUserInfo() {
         if declare.loginStatus == .kLogin_Status_Login {
+            let indexPath = IndexPath(row: 3, section: 0)
+            self.myTableView.reloadRows(at: [indexPath], with: .none)
             //已登录
             tabHeader.userInfoView.isHidden  = false
             tabHeader.loginView.isHidden = true
-            tabHeader.nameL.text = declare.nickname
-            tabHeader.signatureL.text = declare.profile
+            tabHeader.nameL.text = user.nickname
+            tabHeader.signatureL.text = user.profile
             if declare.avatar != nil {
-                tabHeader.avatarImgV.kf.setImage(with: URL.init(string: declare.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                tabHeader.avatarImgV.kf.setImage(with: URL.init(string: user.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             tabHeader.followNumberLabel.text = "\(user.focus_num)"
             tabHeader.collectNumberLabel.text = "\(user.favorite_num)"
             tabHeader.cardNumberLabel.text = "\(user.daycard_num)"
             tabHeader.foorprintNumberLabel.text = "\(user.footprint_num)"
         } else {
-            //未登录
+//            //未登录
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
@@ -78,6 +98,11 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.collectNumberLabel.text = "0"
             tabHeader.cardNumberLabel.text = "0"
             tabHeader.foorprintNumberLabel.text = "0"
+            self.user = UserDynamic()
+            self.myDynamics.removeAll()
+            self.courses.removeAll()
+            self.htmls.removeAll()
+            self.myTableView.reloadData()
         }
     }
     
@@ -102,24 +127,12 @@ class HDRootEVC: HDItemBaseVC {
 
 extension HDRootEVC {
     func getUserInfo() {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.getUserInfo(api_token: declare.api_token ?? ""), cache: false, showHud: false , success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicIndex(api_token: declare.api_token ?? ""), cache: false, showHud: false , success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG(" 获取用户信息： \(String(describing: dic))")
             let jsonDecoder = JSONDecoder()
-            guard let model:UserData = try? jsonDecoder.decode(UserData.self, from: result) else { return }
-            self.user = model.data ?? UserModel()
-            self.declare.isVip = self.user.is_vip
-            self.declare.isBindWeibo = self.user.bind_wb
-            self.declare.isBindWechat = self.user.bind_wx
-            self.declare.weiboName = self.user.wb_nickname
-            self.declare.wechatName = self.user.wx_nickname
-            self.declare.isBindQQ = self.user.bind_qq
-            self.declare.QQName = self.user.qq_nickname
-            self.declare.profile = self.user.profile
-            self.declare.labStr = self.user.label_str
-            self.declare.avatar = self.user.avatar
-            self.declare.nickname = self.user.nickname
-            LOG(self.user.label_str)
+            guard let model:UserDynamicModel = try? jsonDecoder.decode(UserDynamicModel.self, from: result) else { return }
+            self.user = model.data!
             if self.user.sex == 1 {
                 self.declare.gender = "男"
             }
@@ -128,8 +141,49 @@ extension HDRootEVC {
             }
             self.refreshUserInfo()
         }) { (errorCode, msg) in
-            self.declare.loginStatus = Login_Status.kLogin_Status_Logout
-            self.refreshUserInfo()
+            if errorCode != nil && errorCode! == Status_Code_ErrorToken {
+               self.declare.loginStatus = Login_Status.kLogin_Status_Logout
+                self.refreshUserInfo()
+            }
+        }
+    }
+    
+    func getMyDynamicList() {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicList(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            guard let model:DynamicData = try? jsonDecoder.decode(DynamicData.self, from: result) else { return }
+            // 将字符串转换为富文本字符串，比较耗时，提前转换
+            for i in 0..<model.data!.count {
+                let m = model.data![i]
+                var attrStr: NSAttributedString? = nil
+                if let anEncoding = m.comment!.data(using: .unicode) {
+                    attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                    self.htmls.append(attrStr!)
+                }
+            }
+             self.myDynamics = model.data!
+            let indexSet = NSIndexSet(index: 1)
+            self.myTableView.reloadSections(indexSet as IndexSet, with: .automatic)
+        }) { (errorCode, msg) in
+            if errorCode != nil && errorCode! == Status_Code_ErrorToken {
+                self.declare.loginStatus = Login_Status.kLogin_Status_Logout
+                self.refreshUserInfo()
+            }
+        }
+    }
+    
+    func getMyStudyCourses() {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyStudyCourses(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectCourseData = try! jsonDecoder.decode(MyCollectCourseData.self, from: result)
+            self.courses = model.data
+            let indexPath = IndexPath(row: 4, section: 0)
+            self.myTableView.reloadRows(at: [indexPath], with: .none)
+        }) { (errorCode, msg) in
+            if errorCode != nil && errorCode! == Status_Code_ErrorToken {
+                self.declare.loginStatus = Login_Status.kLogin_Status_Logout
+                self.refreshUserInfo()
+            }
         }
     }
 }
@@ -147,7 +201,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             return 6
         }
         if section == 1 {
-            return 3
+            return myDynamics.count
         }
         return 0
     }
@@ -156,7 +210,6 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         
         let section = indexPath.section
         let index = indexPath.row
-        
         if section == 0 {
             if index == 0 {//会员
                 return 120
@@ -165,18 +218,21 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }else if index == 2 {//我的订单
                 return 60
             }else if index == 3 {//我的课程
-                return 60
+                return declare.loginStatus == .kLogin_Status_Login ? 60 : 0
             }else if index == 4 {//
-                return 140 * ScreenWidth/375.0
-
+                return declare.loginStatus == .kLogin_Status_Login ? 140 : 0
             }else if index == 5 {//我的动态
-                return 60
+                return declare.loginStatus == .kLogin_Status_Login ? 60 : 0
             }
         }
         if section == 1 {
-            return 100
+            return declare.loginStatus == .kLogin_Status_Login ? tableView.estimatedRowHeight : 0
         }
         return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+         return declare.loginStatus == .kLogin_Status_Login ? 100 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -198,15 +254,19 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 return cell!
             }else if index == 3 {//我的课程
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.bottomLine.isHidden = true
+                cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
                 cell?.nameL.text = "我的课程"
                 return cell!
             }else if index == 4 {//
                 let cell = HDLY_MineCourse_Cell.getMyTableCell(tableV: tableView)
-
+                cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
+                if self.courses.count > 0 {
+                   cell?.listArray = self.courses
+                }
                 return cell!
             }else if index == 5 {//我的动态
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
                 cell?.bottomLine.isHidden = true
                 cell?.moreImgV.isHidden = true
                 cell?.nameL.text = "我的动态"
@@ -214,8 +274,13 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         if section == 1 {
+            let model = myDynamics[indexPath.row]
             let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
-            
+            cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
+            cell?.avaImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell?.timeL.text = model.created_at
+            cell?.nameL.text = model.nickname
+            cell?.contentL.attributedText = self.htmls[index]
             return cell!
         }
         return UITableViewCell.init()

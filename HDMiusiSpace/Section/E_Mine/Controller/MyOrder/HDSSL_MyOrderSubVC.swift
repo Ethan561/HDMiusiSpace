@@ -123,7 +123,12 @@ extension HDSSL_MyOrderSubVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //博物馆详情
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDSSL_OrderDetialVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_OrderDetialVC") as! HDSSL_OrderDetialVC
+//        let model = dataArr[indexPath.row]
+//        vc.museumId = model.museumID
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     

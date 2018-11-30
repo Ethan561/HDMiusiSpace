@@ -80,7 +80,7 @@ final class HDDeclare: NSObject {
     var QQName : String?  //QQ昵称
     var profile : String?   //个人简介
     var labStr : [String]?   //兴趣标签
-    
+    var user = UserModel()
     //enum 类型
     var languageType    : Language_Type   = .kLanguage_Type_Chinese
     var loginStatus     : Login_Status    = .kLogin_Status_Unknown
@@ -100,7 +100,7 @@ final class HDDeclare: NSObject {
         
     }
     
-    open func removeUserMessage() {
+    public func removeUserMessage() {
         self.api_token = nil
         self.uid = 0
         self.username = nil
@@ -109,7 +109,7 @@ final class HDDeclare: NSObject {
         defaults.set(nil,forKey: userInfoTokenKey)
     }
     
-    open func saveUserMessage(myDic: NSDictionary) {
+    public func saveUserMessage(myDic: NSDictionary) {
         if (myDic.count > 0) {
             let avatarStr = myDic["avatar"] as? String == nil ? self.avatar : myDic["avatar"] as? String
             self.avatar = HDDeclare.IP_Request_Header() + avatarStr!
@@ -142,7 +142,7 @@ final class HDDeclare: NSObject {
         }
     }
     
-    open func saveApiTokenMessage(myDic: NSDictionary) {
+    public func saveApiTokenMessage(myDic: NSDictionary) {
         if (myDic.count > 0) {
             
             self.username = myDic["username"] as? String == nil ? self.username : myDic["username"] as? String
@@ -152,10 +152,33 @@ final class HDDeclare: NSObject {
 //                RootAViewModel.bindDevice(user_number: String(self.uid!), client_id: HDDeclare.shared.client_id!)
             }
 
-            let defaults = UserDefaults.standard
+//            let defaults = UserDefaults.standard
 //            defaults.set(myDic,forKey: userInfoKey)
         }
     }
+    
+    public func saveUserInfo(model:UserModel) {
+        self.user = model
+        self.isVip = self.user.is_vip
+        self.isBindWeibo = self.user.bind_wb
+        self.isBindWechat = self.user.bind_wx
+        self.weiboName = self.user.wb_nickname
+        self.wechatName = self.user.wx_nickname
+        self.isBindQQ = self.user.bind_qq
+        self.QQName = self.user.qq_nickname
+        self.profile = self.user.profile
+        self.labStr = self.user.label_str
+        self.avatar = self.user.avatar
+        self.nickname = self.user.nickname
+        LOG(self.user.label_str)
+        if self.user.sex == 1 {
+            self.gender = "男"
+        }
+        if self.user.sex == 2 {
+            self.gender = "女"
+        }
+    }
+    
 }
 
 

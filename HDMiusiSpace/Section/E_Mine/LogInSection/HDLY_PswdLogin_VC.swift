@@ -78,7 +78,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 //
                 let defaults = UserDefaults.standard
                 defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
-                
+                HDLY_UserModel.shared.requestUserInfo()
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                     self.backToRootEVC()

@@ -21,12 +21,18 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
         super.viewDidLoad()
         self.title = "安全验证"
         loginBtn.layer.cornerRadius = 23
-        phoneL.text = HDDeclare.shared.phone
+        
+        let phone = HDDeclare.shared.phone
         if isFindPwd == true {
             self.title = "找回密码"
             phoneL.isHidden = true
             phoneView.isHidden = false
         }
+        phoneL.text = HDDeclare.shared.phone
+        guard let foot =  phone?.suffix(4) else { return }
+        guard let head =  phone?.prefix(3) else { return }
+        phoneL.text = String(head) + "····" + String(foot)
+        
     }
 
     
@@ -55,10 +61,11 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
         if segue.identifier == "PushTo_HDLY_SafetyVerifiSms_VC_Line" {
             let vc: HDLY_SafetyVerifiSms_VC = segue.destination as! HDLY_SafetyVerifiSms_VC
             vc.segueType = self.segueType
-            if isFindPwd == true {
-                let phone:String = phoneTF.text!
-                vc.phone = phone
-            }
+            vc.phone = HDDeclare.shared.phone
+//            if isFindPwd == true {
+//                let phone:String = phoneTF.text!
+//                vc.phone = phone
+//            }
         }
     }
     

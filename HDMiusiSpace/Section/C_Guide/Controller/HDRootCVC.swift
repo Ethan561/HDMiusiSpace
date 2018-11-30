@@ -84,7 +84,15 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     //MARK: - 足迹
     @IBAction func footprintsAction(_ sender: Any) {
-        showWebVC(url: "http://news.baidu.com/")
+//        showWebVC(url: "http://news.baidu.com/")
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        
+        let vc: HDZQ_MyFootprintVC = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_MyFootprintVC") as! HDZQ_MyFootprintVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     func showWebVC(url: String) {

@@ -217,7 +217,9 @@ extension HDSSL_dMuseumDetailVC {
         self.testWebV.delegate = self
         self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
         if self.infoModel?.areaHTML != nil {
-            self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: self.infoModel!.areaHTML!)!))
+            if self.infoModel!.areaHTML!.contains("html") {
+                self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: self.infoModel!.areaHTML!)!))
+            }
         }
         
     }
@@ -384,7 +386,9 @@ extension HDSSL_dMuseumDetailVC {
             guard let url = self.infoModel?.areaHTML else {
                 return cell!
             }
-            cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+            if url.contains("html") {
+                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+            }
             return cell!
         }
         else {

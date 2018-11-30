@@ -117,7 +117,7 @@ extension HDLY_IAPStore {
             print("===产品标题 ==========\(product.localizedTitle)")
             print("====产品描述信息==========\(product.localizedDescription)")
             print("=====价格: =========\(product.price)")
-            if (product.productIdentifier == "spacecoin30")
+            if (product.productIdentifier == "0060")
             {
                 if(SKPaymentQueue.canMakePayments()){
                     buyProduct(product: product)

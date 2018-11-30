@@ -11,6 +11,7 @@ import UIKit
 class HDLY_BuyNote_Cell: UITableViewCell {
 
     @IBOutlet weak var contentL: UILabel!
+    @IBOutlet weak var titleL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

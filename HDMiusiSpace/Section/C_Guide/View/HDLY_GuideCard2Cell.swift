@@ -110,11 +110,15 @@ class HDLY_GuideCard2Cell: UITableViewCell {
         if dataArray != nil {
             if sender.tag == 101 {
                 let model = dataArray!.first
-                delegate?.didSelectItemAt(model!, self)
+                if model != nil {
+                    delegate?.didSelectItemAt(model!, self)
+                }
             }
             else if sender.tag == 102 {
                 let model1 = dataArray!.last
-                delegate?.didSelectItemAt(model1!, self)
+                if model1 != nil {
+                    delegate?.didSelectItemAt(model1!, self)
+                }
             }
         }
         

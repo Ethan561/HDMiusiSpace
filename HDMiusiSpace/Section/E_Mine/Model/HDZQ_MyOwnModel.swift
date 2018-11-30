@@ -236,3 +236,23 @@ struct UserModel:Codable {
     var profile: String?
     var space_money: String?
 }
+
+struct OtherDynamicData:Codable {
+    var status: Int = 0
+    var data: OtherDynamic?
+    var msg: String?
+}
+
+struct OtherDynamic:Codable {
+    var toid: String?
+    var dynamic_list = [MyDynamic]()
+    var favorite_num: Int = 0
+    var is_vip: Int = 0
+    var avatar: String?
+    var nickname: String?
+    var is_focus: Int = 0
+    var focus_num: Int = 0
+    var sex: Int = 0
+    var profile: String?
+}
+

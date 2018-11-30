@@ -14,6 +14,10 @@
 		1B1C2D9521AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */; };
 		1B1C2D9721AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */; };
 		1B1C2D9921AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */; };
+		1B21CBA921B0DDA5006246DF /* UIView+Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBA821B0DDA5006246DF /* UIView+Badge.swift */; };
+		1B21CBAB21B0EB96006246DF /* HDZQ_OthersCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */; };
+		1B21CBAD21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBAC21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift */; };
+		1B21CBAF21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B21CBAE21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib */; };
 		1B2794FF21A54B4700518A34 /* HD_ZQ_Person_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */; };
 		1B27950121A554F500518A34 /* HDZQ_MyFollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */; };
 		1B27950321A5583A00518A34 /* HDZQ_MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */; };
@@ -574,6 +578,10 @@
 		1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseFooterView.xib; sourceTree = "<group>"; };
 		1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseHeaderView.xib; sourceTree = "<group>"; };
 		1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_AboutMuseHeaderView.swift; sourceTree = "<group>"; };
+		1B21CBA821B0DDA5006246DF /* UIView+Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Badge.swift"; sourceTree = "<group>"; };
+		1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_OthersCenterVC.swift; sourceTree = "<group>"; };
+		1B21CBAC21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_PersonOthersHeaderView.swift; sourceTree = "<group>"; };
+		1B21CBAE21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_PersonOthersHeaderView.xib; sourceTree = "<group>"; };
 		1B2794FE21A54B4700518A34 /* HD_ZQ_Person_API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_ZQ_Person_API.swift; sourceTree = "<group>"; };
 		1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFollowVC.swift; sourceTree = "<group>"; };
 		1B27950221A5583A00518A34 /* HDZQ_MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyViewModel.swift; sourceTree = "<group>"; };
@@ -2200,6 +2208,7 @@
 				D6C9FC5D21181F54007C8E56 /* UIColor+HexColor.swift */,
 				D6C9FC6221181F54007C8E56 /* UIImage+Scale.swift */,
 				D671F758211A98A600A9EE57 /* UIView+Nib.swift */,
+				1B21CBA821B0DDA5006246DF /* UIView+Badge.swift */,
 				D61D36D5219BC41B0019586B /* UIFont+Extension.swift */,
 				D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */,
 			);
@@ -2501,6 +2510,7 @@
 				D668CFA221435D0A0024BBCE /* HDLY_ChangePhone_VC.swift */,
 				1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */,
 				1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */,
+				1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */,
 				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
 				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
@@ -2579,6 +2589,8 @@
 				1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */,
 				1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */,
 				1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */,
+				1B21CBAC21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift */,
+				1B21CBAE21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2935,6 +2947,7 @@
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
 				D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */,
+				1B21CBAF21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib in Resources */,
 				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
 				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
@@ -3354,6 +3367,7 @@
 				D622779D21367D4D008F1416 /* TopMostViewControllerGetter.swift in Sources */,
 				A7441D3B21A2A0D50064E6A6 /* TZImageManager.m in Sources */,
 				D61E94C62192D12400C5299F /* HDMapModel.m in Sources */,
+				1B21CBA921B0DDA5006246DF /* UIView+Badge.swift in Sources */,
 				D66C35BD213F5E2100363D7C /* HD_LY_Cache.m in Sources */,
 				A73429A1219D4E6800596B35 /* ExhibitionDetailDataModel.swift in Sources */,
 				A7AC35B7214A51C2004E8BC1 /* HDSSL_ClassCell.swift in Sources */,
@@ -3425,6 +3439,7 @@
 				A7A90A6221A3D537005BD37F /* HDSSL_commentModel.swift in Sources */,
 				A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */,
 				1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */,
+				1B21CBAD21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift in Sources */,
 				A7B8447921A5269600FC8465 /* HDSSL_commentReplyCell.swift in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */,
@@ -3486,6 +3501,7 @@
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
+				1B21CBAB21B0EB96006246DF /* HDZQ_OthersCenterVC.swift in Sources */,
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,

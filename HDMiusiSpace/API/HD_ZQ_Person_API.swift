@@ -35,6 +35,8 @@ enum HD_ZQ_Person_API {
     case getMyDynamicList(api_token: String, skip:Int, take:Int)
     //个人中心页面
     case getMyDynamicIndex(api_token: String)
+    //他人中心页面
+    case getOtherDynamicIndex(api_token: String,toid:Int)
 
 }
 extension HD_ZQ_Person_API: TargetType {
@@ -69,6 +71,8 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/dynamic/dynamic_list"
         case .getMyDynamicIndex(api_token: _):
             return "/api/dynamic/index"
+        case .getOtherDynamicIndex(api_token: _,toid:_):
+            return "/api/dynamic/user_index"
         }
     }
     
@@ -168,6 +172,12 @@ extension HD_ZQ_Person_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
         case .getMyDynamicIndex(let apiToken):
             params = params.merging(["api_token": apiToken], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getOtherDynamicIndex(let apiToken,let toid):
+            params = params.merging(["api_token": apiToken,
+                                     "toid":toid], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

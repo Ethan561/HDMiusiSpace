@@ -70,15 +70,12 @@ extension HDZQ_MyFollowSubVC:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        //展览详情
-//        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
-//        let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-//        let model = dataArr[indexPath.row]
-//        vc.exhibition_id = model.exhibitionID
-//        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
+        let model = dataArr[indexPath.row]
+        vc.toid = model.toid
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
     
 }

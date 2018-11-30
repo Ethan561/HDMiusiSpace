@@ -10,6 +10,7 @@ import UIKit
 
 class HDLY_CourseComment_Header: UIView {
 
+    @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
     /*
     // Only override draw() if you perform custom drawing.

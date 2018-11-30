@@ -60,8 +60,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarHCons.constant = kStatusBarHeight+24
         self.hd_navigationBarHidden = true
+        //statusBarHCons.constant = kStatusBarHeight+24
         myTableView.separatorStyle = .none
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
@@ -292,6 +292,8 @@ extension HDLY_CourseDes_VC {
             if count > 0 {
                 let header = HDLY_CourseComment_Header.createViewFromNib() as! HDLY_CourseComment_Header
                 header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                header.titleL.text = "精选留言"
+                
                 return header
             }
         }
@@ -434,6 +436,7 @@ extension HDLY_CourseDes_VC {
         }
         else if indexPath.section == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
+            cell?.titleL.text = "购买须知"
             cell?.contentL.text = model?.buynotice
             
             return cell!

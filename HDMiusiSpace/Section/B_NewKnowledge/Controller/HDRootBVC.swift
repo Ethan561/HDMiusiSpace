@@ -314,7 +314,7 @@ extension HDRootBVC {
     
     //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//       LOG("*****:\(scrollView.contentOffset.y)")
+       LOG("*****:\(scrollView.contentOffset.y)")
         if self.myTableView == scrollView {
             if self.childVCScrollView != nil {
                 if self.childVCScrollView!.contentOffset.y > 0 {

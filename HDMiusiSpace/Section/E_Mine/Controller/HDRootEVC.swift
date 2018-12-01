@@ -9,6 +9,7 @@
 import UIKit
 
 class HDRootEVC: HDItemBaseVC {
+    @IBOutlet weak var msgBtn: UIButton!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!    
     @IBOutlet weak var myTableView: UITableView!
@@ -43,6 +44,8 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.collectNumberLabel.text = "0"
             tabHeader.cardNumberLabel.text = "0"
             tabHeader.foorprintNumberLabel.text = "0"
+            tabHeader.foorprintNumberLabel.removeBadge()
+            msgBtn.showBadge()
             self.user = UserDynamic()
             self.myDynamics.removeAll()
             self.courses.removeAll()
@@ -89,6 +92,17 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.collectNumberLabel.text = "\(user.favorite_num)"
             tabHeader.cardNumberLabel.text = "\(user.daycard_num)"
             tabHeader.foorprintNumberLabel.text = "\(user.footprint_num)"
+            if user.is_new_msg != 0 {
+                msgBtn.showBadge()
+            } else {
+                msgBtn.removeBadge()
+            }
+            if user.is_new_footprint != 0 {
+                tabHeader.foorprintNumberLabel.showBadge()
+            } else {
+                tabHeader.foorprintNumberLabel.removeBadge()
+            }
+            
         } else {
 //            //未登录
             tabHeader.userInfoView.isHidden  = true
@@ -98,6 +112,8 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.collectNumberLabel.text = "0"
             tabHeader.cardNumberLabel.text = "0"
             tabHeader.foorprintNumberLabel.text = "0"
+            msgBtn.removeBadge()
+            tabHeader.foorprintNumberLabel.removeBadge()
             self.user = UserDynamic()
             self.myDynamics.removeAll()
             self.courses.removeAll()

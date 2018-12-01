@@ -7,51 +7,78 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDLY_ReceiveMsgVC: HDItemBaseVC {
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    var dataArr = [DynamicMsgModelData]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "收到的动态消息"
-        // Do any additional setup after loading the view.
+        tableView.separatorStyle = .none
+
+        self.dataRequest()
+        addRefresh()
+    }
+    
+    func dataRequest()  {
+        guard let token = HDDeclare.shared.api_token else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: 0, take: 100, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            let model:HDLY_DynamicMsgModel = try! jsonDecoder.decode(HDLY_DynamicMsgModel.self, from: result)
+            if model.data != nil {
+                self.dataArr = model.data!
+                self.tableView.reloadData()
+            }
+            
+        }) { (errorCode, msg) in
+            //            tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            //            tableView.ly_showEmptyView()
+        }
+    }
+    
+    func addRefresh() {
+        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+    }
+    
+    private func loadMore() {
+        self.tableView.es.noticeNoMoreData()
     }
     
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+
 extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return dataArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HDLY_MessageCenterCell") as? HDLY_MessageCenterCell
-        if indexPath.row == 0 {
-            cell?.imgV.image = UIImage.init(named: "xi_icon_xtxi")
-            
-        } else {
-            cell?.imgV.image = UIImage.init(named: "xi_icon_dtxi")
-            cell?.lineView.isHidden = true
-            cell?.timeL.isHidden = false
-            cell?.countL.isHidden = false
-            
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell1") as? HDLY_ReceiveMsgCell1
+            return cell!
         }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell2") as? HDLY_ReceiveMsgCell2
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        if indexPath.row % 2 == 0 {
+            return 160
+        }
+        return 130
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,6 +94,11 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
 
 class HDLY_ReceiveMsgCell1: UITableViewCell {
     
+    @IBOutlet weak var avatarImgV: UIImageView!
+    @IBOutlet weak var dateL: UILabel!
+    @IBOutlet weak var titleL: UILabel!
+    @IBOutlet weak var contentL: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,6 +109,10 @@ class HDLY_ReceiveMsgCell1: UITableViewCell {
 
 class HDLY_ReceiveMsgCell2: UITableViewCell {
     
+    @IBOutlet weak var avatarImgV: UIImageView!
+    @IBOutlet weak var dateL: UILabel!
+    @IBOutlet weak var titleL: UILabel!
+    @IBOutlet weak var contentL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

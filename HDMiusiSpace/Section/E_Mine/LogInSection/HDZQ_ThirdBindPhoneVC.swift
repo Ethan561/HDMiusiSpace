@@ -57,7 +57,11 @@ class HDZQ_ThirdBindPhoneVC: HDItemBaseVC, UITextFieldDelegate {
                 self.declare.phone    = dataDic["phone"] as? String
                 self.declare.email    = dataDic["email"] as? String
                 self.declare.nickname = dataDic["nickname"] as? String
-            
+                let arr:Array<String> = dataDic["tags"] as! Array<String>
+                if arr.count > 0 {
+                    let tags = NSSet.init(array: arr)
+                    JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+                }
                 let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
                 self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
                 

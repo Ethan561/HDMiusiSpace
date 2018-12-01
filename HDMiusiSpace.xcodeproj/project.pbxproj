@@ -199,6 +199,7 @@
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
 		D6182D8021AD2A9000928A99 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6182D7F21AD2A8F00928A99 /* StoreKit.framework */; };
 		D618E85D21B21D43001C05FC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618E85C21B21D43001C05FC /* Date+Extension.swift */; };
+		D618E85F21B26D36001C05FC /* HDLY_NotiMsgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */; };
 		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
 		D618F908219D433A000FB336 /* HDLY_MuseumSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */; };
 		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
@@ -817,6 +818,7 @@
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
 		D6182D7F21AD2A8F00928A99 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D618E85C21B21D43001C05FC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NotiMsgModel.swift; sourceTree = "<group>"; };
 		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
 		D618F907219D433A000FB336 /* HDLY_MuseumSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumSubVC.swift; sourceTree = "<group>"; };
 		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
@@ -2564,6 +2566,7 @@
 			children = (
 				D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */,
 				1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */,
+				D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2847,7 +2850,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -3486,6 +3489,7 @@
 				D62277AA21367D4D008F1416 /* PhotoBrowserCell.swift in Sources */,
 				D61E94CA2192D12400C5299F /* SDWebImageManager.m in Sources */,
 				A7C59E51219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift in Sources */,
+				D618E85F21B26D36001C05FC /* HDLY_NotiMsgModel.swift in Sources */,
 				D62277A021367D4D008F1416 /* ProgressView.swift in Sources */,
 				D6A1E22D211C13CF00E1E893 /* FSPageViewTransformer.swift in Sources */,
 				D66EDF97212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift in Sources */,
@@ -3734,6 +3738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3763,6 +3768,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wenbo Online Culture Development Co., Ltd (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;

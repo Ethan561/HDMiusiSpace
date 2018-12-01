@@ -57,20 +57,12 @@ class CoursePublicViewModel: NSObject {
     func doLikeRequest( id: String, cate_id: String, _ vc: UIViewController)  {
         
         var token :String = ""
-        var deviceno = HDDeclare.shared.deviceno
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
-            if deviceno == nil {
-                deviceno = ""
-            }
-        }else {
-            if deviceno == nil {
-                HDLY_UserModel.shared.getDeviceNum()
-                return
-            }
         }
         
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doLikeRequest(id: id, cate_id: cate_id, api_token: token, deviceno: deviceno!), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doLikeRequest(id: id, cate_id: cate_id, api_token: token, deviceno: deviceno), showHud: true, loadingVC: vc, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

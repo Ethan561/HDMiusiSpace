@@ -85,11 +85,6 @@ class HDTagChooseVC: UIViewController {
     //MARK: - 上传已选标签
     func uploadMyTags() {
         //
-        
-        if HDDeclare.shared.deviceno != nil {
-            
-        }
-        
         if self.selectedtagArray.count > 0 {
             
             var tagIds: String? = ""

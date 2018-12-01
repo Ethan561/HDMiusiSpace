@@ -10,16 +10,19 @@ import UIKit
 
 //极光推送是否是发布模式
 let isProduction = false
+let HDJPushAliasKey = "HDJPushAliasKey"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var myJPushAlias:String?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Bugly.start(withAppId: "c72887a81c")
-        
+        myJPushAlias = HDLY_UserModel.shared.getDeviceNum()
+
         localDataInit()
         configUSharePlatforms()
         setRootVC()
@@ -35,8 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //设置推送标签和别名
         NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.jpfNetworkDidLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(jpushNetworkDidCloseNoti(_:)), name: NSNotification.Name.jpfNetworkDidClose, object: nil)
-        //用户登录成功绑定uid
-        NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.init("SetJpushAliasWithUID"), object: nil)
+//        //用户登录成功绑定uid
+//        NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.init("SetJpushAliasWithUID"), object: nil)
+        
+
         
         return true
     }
@@ -53,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = vc;
             
         }
-        
     }
     
     func configUSharePlatforms()  {
@@ -81,12 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (token != nil) {
             declare.api_token = token
             HDLY_UserModel.shared.requestUserInfo()
-        }
-        let deviceNum:String? = defaults.string(forKey: deviceNumberKey)
-        if (deviceNum != nil) {
-            declare.deviceno = deviceNum
-        } else {
-            HDLY_UserModel.shared.requestDeviceNumber()
         }
     }
     
@@ -155,23 +153,22 @@ extension AppDelegate : JPUSHRegisterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         JPUSHService.registerDeviceToken(deviceToken)
     }
+    
     //获取token 失败
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) { //可选
         print("did Fail To Register For Remote Notifications With Error: \(error)")
     }
     
-    
     //noti
     @objc func jpushLoginSuccessNoti(_ noti: Notification) {
         //标签分组
-        JPUSHService.setTags(["phone"], completion: nil, seq: 1)
+//        JPUSHService.setTags(["phone"], completion: nil, seq: 1)
         //用户别名(设置唯一标识)
-        guard let uid =  HDDeclare.shared.uid else {
+        guard let alias =  myJPushAlias else {
             return
         }
-        let  alias : String = "ios" + "\(uid)"
         JPUSHService.setAlias(alias, completion: { (iResCode, iAlias, seq) in
-            print("alias,\(alias) . completion,\(iResCode),\(iAlias),\(seq)")
+            print("=== setAliasSuccess,\(alias) . completion,\(iResCode),\(iAlias),\(seq)")
         }, seq: 0)
         
     }

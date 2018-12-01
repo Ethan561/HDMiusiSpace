@@ -11,7 +11,7 @@ import Kingfisher
 import ESPullToRefresh
 
 let PageMenuH = 45.0
-let HeaderViewH = (ScreenWidth*200/375.0)+80
+let HeaderViewH:CGFloat = 280
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
     
@@ -99,7 +99,10 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
         
         //
-        myTableView.tableHeaderView = tabHeader
+        let headView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH))
+        headView.addSubview(tabHeader)
+        
+        myTableView.tableHeaderView = headView
         myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH)
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")

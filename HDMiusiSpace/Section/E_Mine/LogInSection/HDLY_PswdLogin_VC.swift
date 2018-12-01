@@ -46,11 +46,8 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     }
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
-        if declare.deviceno == nil {
-            HDLY_UserModel.shared.getDeviceNum()
-            return
-        }
-        
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+
         if phoneTF.text?.isEmpty == false && pwdTF.text?.isEmpty == false {
             guard  Validate.phoneNum(phoneTF.text!).isRight  else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
@@ -61,7 +58,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 return
             }
             
-            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: pwdTF.text!, smscode: "", deviceno: declare.deviceno!), showHud: true, loadingVC: self , success: { (result) in
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: pwdTF.text!, smscode: "", deviceno: deviceno), showHud: true, loadingVC: self , success: { (result) in
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
                 let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary

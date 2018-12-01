@@ -31,7 +31,7 @@ class HDSSL_TagViewModel: NSObject {
             
             
         }) { (errorCode, msg) in
-            //            self.showEmptyView.value = true
+            //self.showEmptyView.value = true
         }
     }
     
@@ -45,11 +45,13 @@ class HDSSL_TagViewModel: NSObject {
             //
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            let arr:Array<String> = dic!["data"] as! Array<String>
+            if arr.count > 0 {
+                let tags = NSSet.init(array: arr)
+                JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+            }
         }) { (errorCode, msg) in
             //
-            
         }
-    
     }
 }

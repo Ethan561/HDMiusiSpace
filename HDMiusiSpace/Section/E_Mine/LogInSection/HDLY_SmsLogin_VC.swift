@@ -66,12 +66,9 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     
 
     @IBAction func loginBtnAction(_ sender: UIButton) {
-        if declare.deviceno == nil {
-            HDLY_UserModel.shared.getDeviceNum()
-            return
-        }
 
-        
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+
         if phoneTF.text?.isEmpty == false && smsTF.text?.isEmpty == false {
             guard  Validate.phoneNum(phoneTF.text!).isRight  else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
@@ -81,7 +78,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
 //                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的验证码")
 //                return
 //            }
-            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: "", smscode: smsTF.text!, deviceno: declare.deviceno!), showHud: true, loadingVC: self , success: { (result) in
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: "", smscode: smsTF.text!, deviceno: deviceno), showHud: true, loadingVC: self , success: { (result) in
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
                 let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
@@ -195,7 +192,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     }
     
     func thirdLoginRequestWithInfo(resp:UMSocialUserInfoResponse, from: String) {
-        let deviceID = HDDeclare.shared.deviceno ?? ""
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
         let openid   = resp.uid!
         let b_nickname = resp.name!
         let b_avatar = resp.iconurl ?? ""
@@ -203,7 +200,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
                                      "b_from": from,
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
-                                     "deviceno": deviceID,
+                                     "deviceno": deviceno,
                                      ]
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
             

@@ -66,22 +66,23 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     }
     
     private func refresh() {
-        if HDDeclare.shared.deviceno != nil {
-            self.viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, myTableView: self.myTableView , self)
-        }
+        
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+        self.viewModel.dataRequest(deviceno: deviceno, myTableView: self.myTableView , self)
         self.viewModel.dataRequestForBanner()
     }
     
     private func loadMore() {
-        if HDDeclare.shared.deviceno != nil && infoModel?.data != nil {
-            self.viewModel.dataRequestGetMoreNews(deviceno: HDDeclare.shared.deviceno!, num: "10", myTableView: myTableView, self)
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+
+        if infoModel?.data != nil {
+            self.viewModel.dataRequestGetMoreNews(deviceno: deviceno, num: "10", myTableView: myTableView, self)
         }
     }
     
     @objc func refreshAction() {
-        if HDDeclare.shared.deviceno != nil {
-            self.viewModel.dataRequest(deviceno: HDDeclare.shared.deviceno!, myTableView: self.myTableView , self)
-        }
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+        self.viewModel.dataRequest(deviceno: deviceno, myTableView: self.myTableView , self)
         self.viewModel.dataRequestForBanner()
     }
     

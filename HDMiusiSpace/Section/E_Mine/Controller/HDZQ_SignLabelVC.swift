@@ -59,13 +59,10 @@ class HDZQ_SignLabelVC: UIViewController {
         tagBgView.addSubview(tagView!)
         tagView?.loadTagsView()
     }
-
+    
     func uploadMyTags() {
         //
-        
-        if HDDeclare.shared.deviceno != nil {
-            
-        }
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
         
         if self.mySignLabels.count > 0 {
             
@@ -80,7 +77,7 @@ class HDZQ_SignLabelVC: UIViewController {
             }
             
             //调用接口
-            HDSSL_TagViewModel().request_saveSelectedTags(deviceno: HDDeclare.shared.deviceno!, label_id_str: tagIds!, self)
+            HDSSL_TagViewModel().request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
             
         }
     }

@@ -89,6 +89,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
             self.resultTableView.reloadData()
         }
     }
+    
     //MARK: - 处理搜索结果
     func dealSearchResultData(){
         for  i: Int in 0..<self.resultArray.count {

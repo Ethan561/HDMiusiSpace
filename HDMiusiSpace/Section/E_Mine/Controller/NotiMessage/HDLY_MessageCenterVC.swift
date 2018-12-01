@@ -47,9 +47,12 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            
+            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SystemMsgVC") as! HDLY_SystemMsgVC
+            self.navigationController?.pushViewController(vc, animated: true)
         } else {
-            
+            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReceiveMsgVC") as! HDLY_ReceiveMsgVC
+            self.navigationController?.pushViewController(vc, animated: true)
+
         }
     }
     

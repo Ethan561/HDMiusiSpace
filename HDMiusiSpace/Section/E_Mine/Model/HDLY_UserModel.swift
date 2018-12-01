@@ -13,35 +13,28 @@ class HDLY_UserModel: NSObject {
     static let shared = HDLY_UserModel()
     public typealias backBlock = (_ backMsg :String) ->()
     
-    open func getDeviceNum() {
+    open func getDeviceNum() -> String {
         let declare:HDDeclare = HDDeclare.shared
         let defaults = UserDefaults.standard
         
-        let deviceNum:String? = defaults.string(forKey: deviceNumberKey)
+        let deviceNum:String? = defaults.string(forKey: HDJPushAliasKey)
         if (deviceNum != nil) {
             declare.deviceno = deviceNum
         }else {
-            HDLY_UserModel.shared.requestDeviceNumber()
+           declare.deviceno = HDLY_UserModel.shared.requestDeviceNumber()
         }
+        return declare.deviceno!
     }
     //请求机器号
-    open func requestDeviceNumber () {
+    open func requestDeviceNumber () -> String {
     
         let declare = HDDeclare.shared
+        let millisecond = Date().milliStamp
+        print("当前毫秒级时间戳是 millisecond == ",millisecond)
+        UserDefaults.standard.set(millisecond, forKey: HDJPushAliasKey)
+        declare.deviceno = millisecond
         
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.requestDeviceno(), cache: false, showHud: false , success: { (result) in
-            
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG(" 获取机器号： \(String(describing: dic))")
-            declare.deviceno = dic!["data"] as? String
-            if (declare.deviceno != nil)
-            {
-                let defaults = UserDefaults.standard
-                defaults.set(declare.deviceno,forKey: deviceNumberKey)
-            }
-        }) { (errorCode, msg) in
-            
-        }
+        return millisecond
     }
     
     //获取用户信息

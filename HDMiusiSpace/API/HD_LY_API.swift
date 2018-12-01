@@ -80,6 +80,7 @@ enum HD_LY_API {
     case modifyAvatar(api_token: String, avatar: Data)
     //获取机器号
     case requestDeviceno()
+    
     //发送短信或邮箱验证码
     case sendSmsForCheck(username: String)
     
@@ -173,6 +174,10 @@ enum HD_LY_API {
 
     //内购票据校验
     case  verifyTransaction(receipt_data: String, password: String, is_sandbox: String, uuid: String, api_token: String)
+    
+    //消息中心接口
+    
+    
     
     
     

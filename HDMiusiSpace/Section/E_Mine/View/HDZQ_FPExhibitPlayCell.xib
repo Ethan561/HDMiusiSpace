@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HDZQ_FPExhibitPlayCell" rowHeight="98" id="KGk-i7-Jjw" customClass="HDZQ_FPExhibitPlayCell" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="220" height="54.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCY-q8-ARS">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgA-xW-IpU">
+                                <rect key="frame" x="20" y="12" width="150" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Lg2-rA-3l7"/>
+                                    <constraint firstAttribute="height" constant="20" id="W4S-YV-OiY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Dq-A6-EbA">
+                                <rect key="frame" x="177" y="1" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="CvK-dB-5Ir"/>
+                                    <constraint firstAttribute="width" constant="42" id="r7H-0Z-0fw"/>
+                                </constraints>
+                                <state key="normal" image="wd_dlzj_paly"/>
+                                <state key="selected" image="wd_dlzj_pause"/>
+                                <connections>
+                                    <action selector="playOrPauseAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Wn3-Fp-Ruf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7Dq-A6-EbA" firstAttribute="top" secondItem="aCY-q8-ARS" secondAttribute="top" constant="1" id="B9t-bb-wme"/>
+                            <constraint firstItem="XgA-xW-IpU" firstAttribute="leading" secondItem="aCY-q8-ARS" secondAttribute="leading" constant="20" id="H30-Nd-hWA"/>
+                            <constraint firstItem="XgA-xW-IpU" firstAttribute="top" secondItem="aCY-q8-ARS" secondAttribute="top" constant="12" id="Pz4-Ay-GOO"/>
+                            <constraint firstAttribute="trailing" secondItem="7Dq-A6-EbA" secondAttribute="trailing" constant="1" id="lnQ-0Q-RqH"/>
+                            <constraint firstAttribute="height" constant="44" id="uZ4-fb-Upa"/>
+                            <constraint firstAttribute="bottom" secondItem="7Dq-A6-EbA" secondAttribute="bottom" constant="1" id="w3s-qt-7nr"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="aCY-q8-ARS" secondAttribute="trailing" id="270-0Z-QbA"/>
+                    <constraint firstItem="aCY-q8-ARS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="S2X-du-wBJ"/>
+                    <constraint firstItem="aCY-q8-ARS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oja-js-laT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerView" destination="aCY-q8-ARS" id="izn-fd-3XX"/>
+                <outlet property="exhibitLabel" destination="XgA-xW-IpU" id="YPj-dA-ooU"/>
+                <outlet property="playBtn" destination="7Dq-A6-EbA" id="X9X-hY-ohz"/>
+            </connections>
+            <point key="canvasLocation" x="-166.40000000000001" y="77.811094452773617"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="wd_dlzj_paly" width="40" height="40"/>
+        <image name="wd_dlzj_pause" width="40" height="40"/>
+    </resources>
+</document>

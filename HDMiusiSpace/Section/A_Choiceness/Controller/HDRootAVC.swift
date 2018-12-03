@@ -25,6 +25,8 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     //MVVM
     let viewModel: RootAViewModel = RootAViewModel()
+    var searchVM: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
+    
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
 
     override func viewDidLoad() {
@@ -42,6 +44,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         refreshAction()
         
         HDLY_LocationTool.shared.startLocation()
+        
+        //获取搜索默认提示信息
+        searchVM.request_getSearchPlaceholder(vc: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +110,15 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
                 weakSelf?.isCollection = true
             }
             weakSelf?.myTableView.reloadRows(at: [IndexPath.init(row: weakSelf?.collectionRow ?? 0, section: 0)], with: .none)
+        }
+        //搜索框提示信息
+        searchVM.searchPlaceholder.bind { (str) in
+            print(str)
+            //保存本地
+            UserDefaults.standard.set(str, forKey: "SeachPlaceHolder")
+            UserDefaults.standard.synchronize()
+            
+            weakSelf?.tabHeader.placeholderLab.text = str
         }
     }
     

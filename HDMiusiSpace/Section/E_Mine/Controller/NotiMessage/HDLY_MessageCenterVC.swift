@@ -22,10 +22,12 @@ class HDLY_MessageCenterVC: HDItemBaseVC {
     }
     
     func dataRequest()  {
-        guard let token = HDDeclare.shared.api_token else {
-            return
+        var token = HDDeclare.shared.api_token
+        if token == nil {
+            token = ""
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenter(api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenter(api_token: token!) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

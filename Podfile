@@ -5,7 +5,7 @@
  
  pod 'JoyTool'
  pod 'Masonry'
- pod 'Moya'
+ pod 'Moya', '~> 12.0'
  pod 'SnapKit'
  pod 'Kingfisher'
  pod 'ZZCircleProgress'
@@ -20,7 +20,8 @@
  pod 'ESPullToRefresh'
  pod 'Bugly', '~> 2.5.0'
  pod 'JPush'#极光推送
- 
+ # 集成百度统计
+ pod 'BaiduMobStatCodeless'
  
  
  

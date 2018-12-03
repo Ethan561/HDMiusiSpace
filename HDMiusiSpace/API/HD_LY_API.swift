@@ -176,8 +176,13 @@ enum HD_LY_API {
     case  verifyTransaction(receipt_data: String, password: String, is_sandbox: String, uuid: String, api_token: String)
     
     //消息中心接口
+    case messageCenter(api_token: String)
     
+    //系统消息列表
+    case messageCenterSystemList( skip:Int, take:Int , api_token: String)
     
+    //动态消息列表
+    case messageCenterDynamicList( skip:Int, take:Int , api_token: String)
     
     
     
@@ -407,6 +412,14 @@ extension HD_LY_API: TargetType {
         case .verifyTransaction(_):
             return "/api/iap/proc_reciptdata"
             
+        case .messageCenter(_):
+            return "/api/messagecenter/index"
+            
+        case .messageCenterSystemList(_):
+            return "/api/messagecenter/system_list"
+            
+        case .messageCenterDynamicList(_):
+            return "/api/messagecenter/dynamic_list"
             
             
             
@@ -909,7 +922,6 @@ extension HD_LY_API: TargetType {
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
             
-            
         case .uploadCourseRecords(let chapter_id, let api_token, let study_time):
             params = params.merging(["chapter_id": chapter_id, "api_token": api_token, "study_time": study_time], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
@@ -928,6 +940,26 @@ extension HD_LY_API: TargetType {
 //            params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .messageCenter(let api_token):
+            params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .messageCenterSystemList(let skip, let take, let api_token):
+            params = params.merging(["skip": skip, "take": take,  "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .messageCenterDynamicList(let skip, let take, let api_token):
+            params = params.merging(["skip": skip, "take": take,  "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
             
         }
         
@@ -951,5 +983,8 @@ extension HD_LY_API: TargetType {
     }
     
 }
+
+
+
 
 

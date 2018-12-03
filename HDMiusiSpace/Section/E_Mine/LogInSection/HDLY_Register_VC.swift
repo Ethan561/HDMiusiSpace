@@ -47,6 +47,11 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
                 let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                let arr:Array<String> = dataDic["tags"] as! Array<String>
+                if arr.count > 0 {
+                    let tags = NSSet.init(array: arr)
+                    JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+                }
                 HDDeclare.shared.saveUserMessage(myDic: dataDic as NSDictionary)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                     self.back()

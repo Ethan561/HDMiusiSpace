@@ -128,7 +128,7 @@ extension HDZQ_MyCollectSubVC:UITableViewDelegate,UITableViewDataSource {
             cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
             cell.cell_titleLab.text = String.init(format: "%@", news.title!)
             
-            let plat = news.platform == nil ? "" : "|"+news.platform!
+            let plat = news.plat_title == nil ? "" : "|"+news.plat_title!
             cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
             
             cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)

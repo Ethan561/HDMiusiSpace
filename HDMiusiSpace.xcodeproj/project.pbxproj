@@ -56,6 +56,7 @@
 		A738B1FD2194094300B78D21 /* String+SoolyCitySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */; };
 		A738B1FF2194146800B78D21 /* HDSSL_locationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */; };
 		A738B201219418F700B78D21 /* CityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B200219418F700B78D21 /* CityDataModel.swift */; };
+		A73E44B221B4F839008B780E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73E44B121B4F839008B780E /* StoreKit.framework */; };
 		A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */; };
 		A740F19C21391B160015B628 /* HDTagChooseStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */; };
 		A740F19E213921DF0015B628 /* HD_SSL_TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */; };
@@ -197,7 +198,6 @@
 		D614DFAB211ECD6200A4D459 /* HD_LY_API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAA211ECD6200A4D459 /* HD_LY_API.swift */; };
 		D614DFAF211EDB9500A4D459 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = D614DFAD211EDB9500A4D459 /* NSString+Hash.m */; };
 		D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */; };
-		D6182D8021AD2A9000928A99 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6182D7F21AD2A8F00928A99 /* StoreKit.framework */; };
 		D618E85D21B21D43001C05FC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618E85C21B21D43001C05FC /* Date+Extension.swift */; };
 		D618E85F21B26D36001C05FC /* HDLY_NotiMsgModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */; };
 		D618F906219D4322000FB336 /* HDLY_ExhibitionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */; };
@@ -623,6 +623,7 @@
 		A738B1FB2194094300B78D21 /* String+SoolyCitySelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SoolyCitySelector.swift"; sourceTree = "<group>"; };
 		A738B1FE2194146800B78D21 /* HDSSL_locationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_locationViewModel.swift; sourceTree = "<group>"; };
 		A738B200219418F700B78D21 /* CityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDataModel.swift; sourceTree = "<group>"; };
+		A73E44B121B4F839008B780E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A740F19721391AA20015B628 /* HDTagChooseCareerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseCareerVC.swift; sourceTree = "<group>"; };
 		A740F19B21391B160015B628 /* HDTagChooseStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseStateVC.swift; sourceTree = "<group>"; };
 		A740F19D213921DF0015B628 /* HD_SSL_TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_SSL_TagView.swift; sourceTree = "<group>"; };
@@ -816,7 +817,6 @@
 		D614DFAD211EDB9500A4D459 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		D614DFAE211EDB9500A4D459 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		D6179E2D219AB5BE009A2C10 /* HDLY_WKWebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_WKWebVC.swift; sourceTree = "<group>"; };
-		D6182D7F21AD2A8F00928A99 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D618E85C21B21D43001C05FC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NotiMsgModel.swift; sourceTree = "<group>"; };
 		D618F905219D4322000FB336 /* HDLY_ExhibitionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionSubVC.swift; sourceTree = "<group>"; };
@@ -1238,8 +1238,8 @@
 			files = (
 				D62FB0E221AFE980000D84BF /* Security.framework in Frameworks */,
 				D607702A21A92CF4006B19B1 /* ESPullToRefresh.framework in Frameworks */,
-				D6182D8021AD2A9000928A99 /* StoreKit.framework in Frameworks */,
 				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
+				A73E44B221B4F839008B780E /* StoreKit.framework in Frameworks */,
 				A7A90A6621A3E934005BD37F /* UIKit.framework in Frameworks */,
 				D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */,
 				D66C35BF213F5E3800363D7C /* libsqlite3.0.tbd in Frameworks */,
@@ -1267,8 +1267,8 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A73E44B121B4F839008B780E /* StoreKit.framework */,
 				D62FB0E121AFE980000D84BF /* Security.framework */,
-				D6182D7F21AD2A8F00928A99 /* StoreKit.framework */,
 				D607702921A92CF4006B19B1 /* ESPullToRefresh.framework */,
 				D619533E21A545880039D151 /* MapKit.framework */,
 				A7A90A6521A3E934005BD37F /* UIKit.framework */,
@@ -3739,7 +3739,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
@@ -3769,7 +3769,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wenbo Online Culture Development Co., Ltd (KK468Q7DR9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
@@ -3783,7 +3783,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

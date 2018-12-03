@@ -7,6 +7,12 @@
 //
 
 import Foundation
+struct HDSSL_searchPlaceholderModel:Codable {
+    var status            : Int?
+    var msg               : String?
+    var data              : String?
+}
+//---搜索类别
 struct HDSSL_searchTagModel: Codable {
     var status            : Int?
     var msg               : String?
@@ -18,6 +24,7 @@ struct HDSSL_SearchTag: Codable {
     var title             : String?
 }
 
+//---开始搜索
 struct HDSSL_SearchResultModel: Codable {
     var status            : Int?
     var msg               : String?
@@ -39,7 +46,7 @@ struct HDSSL_SearchNews: Codable {
     var title             : String?//资讯标题
     var img               : String?//资讯头图
     var keywords          : String?//资讯标签
-    var platform          : String?//资讯平台
+    var plat_title        : String?//资讯平台
     var comments          : Int?   //评论数量
     var likes             : Int?   //点赞数量
 }
@@ -62,7 +69,7 @@ struct HDSSL_SearchExhibition: Codable {
     var img               : String?  //图片
     var is_free           : Int?     //是否免费1免费，0不免费
     var price             : Float?   //价格
-    var star              : Float?   //评星
+    var star              : String?   //评星
     var address           : String?  //展览地址
     var icon_list         : [String]?//服务图标地址
 }

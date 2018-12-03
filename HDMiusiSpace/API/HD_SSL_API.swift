@@ -14,10 +14,15 @@ enum HD_SSL_API {
     case getLaunchTagList(api_token: String)
     //保存标签
     case saveSelectedTags(api_token: String,label_id_str: String,deviceno: String)
+    
+    //---搜索
+    //
+    case getSearchPlaceholder()
     //请求搜索类型
     case getSearchTypes()
-    //搜索
+    //开始搜索
     case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
+    
     
     //获取城市列表1=全部城市，2=有博物馆部分城市
     case getCityList(type: Int)
@@ -59,11 +64,13 @@ extension HD_SSL_API: TargetType {
         case .saveSelectedTags(api_token: _,label_id_str: _,deviceno: _):
             return "/api/index/labelsave"
             
+        //默认搜索提示
+        case .getSearchPlaceholder():
+            return "/api/search/default_title"
         //请求搜索类型
         case .getSearchTypes():
             return  "/api/search/search_type"
-            
-            //搜索
+        //开始搜索
         case .startSearchWith(keyword: _, skip: _, take: _, searchType: _):
             return "/api/search/index"
             
@@ -134,13 +141,19 @@ extension HD_SSL_API: TargetType {
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
+        //默认搜搜提示信息
+        case .getSearchPlaceholder():
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
         //请求搜索类型
         case .getSearchTypes():
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
         
-        //搜索
+        //开始搜索
         case .startSearchWith(keyword: let keyword, skip: let skip, take: let take, searchType: let searchType):
             params = params.merging(["keyword": keyword,
                                      "skip":skip,

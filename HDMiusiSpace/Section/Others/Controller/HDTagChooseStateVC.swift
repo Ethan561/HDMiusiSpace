@@ -37,7 +37,7 @@ class HDTagChooseStateVC: UIViewController {
             return
         }
         
-        dataArr = HDDeclare.shared.allTagsArray!
+        dataArr = HDDeclare.shared.allTagsArray!//所有标签
         
         let tagdatamodel = dataArr[1] //第二页单选
         

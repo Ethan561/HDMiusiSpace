@@ -12,23 +12,25 @@ let SearchHistory : String = "SearchHistory"
 
 class HDSSL_SearchVC: HDItemBaseVC {
 
-    var textFeild: UITextField!  //输入框
-    @IBOutlet weak var tagBgView: UIView! //标签背景页
-    @IBOutlet weak var dTableView: UITableView!
-    @IBOutlet weak var resultTableView: UITableView!
+    var textFeild                     : UITextField! //输入框
+    @IBOutlet weak var tagBgView      : UIView!      //标签背景页
+    @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
+    @IBOutlet weak var resultTableView: UITableView! //搜索结果
     
-    var searchTypeArray: [HDSSL_SearchTag] = Array.init() //搜索类型数组
-    var resultArray: [HDSSL_SearchType] = Array.init() //搜索类型数组
-    var newsArray: [HDSSL_SearchNews] = Array.init()
-    var classArray: [HDSSL_SearchCourse] = Array.init()
-    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()
-    var museumArray: [HDSSL_SearchMuseum] = Array.init()
+    var searchTypeArray: [HDSSL_SearchTag] = Array.init()  //搜索类型数组
+    var resultArray    : [HDSSL_SearchType] = Array.init()  //搜索类型数组
+    var newsArray      : [HDSSL_SearchNews] = Array.init()  //资讯
+    var classArray     : [HDSSL_SearchCourse] = Array.init()//新知
+    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()//展览
+    var museumArray    : [HDSSL_SearchMuseum] = Array.init()//博物馆
     
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
     
     //mvvm
     var viewModel: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
+    
+    var placeholderStr: String? //默认搜素提示信息
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,12 +50,11 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         loadSearchHistory()
         
-        self.viewModel.request_getTags(vc: self)
+        self.viewModel.request_getTags(vc: self) //获取搜索类别
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
-        self.resultTableView.isHidden = true
-        
+        self.resultTableView.isHidden = true //先隐藏搜索结果列表
         self.resultTableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
@@ -162,6 +163,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         view.addSubview(imgView)
         
         //输入
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        
         textFeild = UITextField.init(frame: CGRect.init(x: 20, y: 3, width: view.frame.size.width-20-30, height: 30))
         view.addSubview(textFeild)
         textFeild.tintColor = UIColor.black
@@ -170,7 +173,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         textFeild.font = UIFont.systemFont(ofSize: 14)
         textFeild.delegate = self
         textFeild.borderStyle = .none
-        textFeild.placeholder = "杨家成霸道口语课"
+        textFeild.placeholder = placeholder
         
         //语音按钮
         let voiceBtn = UIButton.init(frame: CGRect.init(x: view.frame.size.width-35, y: 0, width: 24, height: 35))
@@ -272,6 +275,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
+                //开始搜索
                 self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: 0, vc: self)
                 //保存搜索历史
                 self.func_saveHistory(textField.text!)
@@ -285,7 +289,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
 //MARK: UITableView
 extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     
-    //获取cell数量
+    //获取搜索结果cell数量
     func getTableViewCells(index: Int) -> Int {
         let model: HDSSL_SearchType = self.resultArray[index]
         
@@ -320,9 +324,9 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == dTableView {
-            return 1
+            return 1 //搜索历史
         }else {
-            return resultArray.count
+            return resultArray.count //搜索结果
         }
         
     }
@@ -405,6 +409,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == dTableView {
+            //搜索历史
             let str: String = historyArray[indexPath.row]
             
             let cell = UITableViewCell.init()
@@ -413,7 +418,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             
             return cell
         }else {
-            
+            //搜索结果
             let model = self.getResultModel(section: indexPath.section)
             
             switch model.type {
@@ -426,7 +431,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell.cell_titleLab.text = String.init(format: "%@", news.title!)
                 
-                let plat = news.platform == nil ? "" : "|"+news.platform!
+                let plat = news.plat_title == nil ? "" : "|"+news.plat_title!
                 cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
                 
                 cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
@@ -475,7 +480,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 //标签
                 cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
                 //评分
-                cell?.cell_scoreLab.text = String.init(format: "%.1f", exhibition.star!)
+                cell?.cell_scoreLab.text = String.init(format: "%@", exhibition.star!)
                 
                 return cell!
                 
@@ -505,18 +510,39 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         return UITableViewCell()
     }
     
+    //加载cell小图标
     func getImagesWith(arr: [String],frame: CGRect) -> UIView {
         //
         let bgView = UIView.init(frame: frame)
+        
+//        var x:CGFloat = 0
+//        var imgWArr = [CGFloat]()
+//        for (i,imgStr) in arr.enumerated() {
+//            let imgV = UIImageView()
+//            imgV.contentMode = .scaleAspectFit
+//            imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+//
+//                let imgSize = img!.size
+//                let imgH: CGFloat = 15
+//                let imgW: CGFloat = 15*imgSize.width/imgSize.height
+//                imgWArr.append(imgW)
+//                if i > 0 {
+//                    let w = imgWArr[i-1]
+//                    x = x + w
+//                }
+//                imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
+//                bgView.addSubview(imgV)
+//            }
+//        }
         for i in 0..<arr.count {
             //
             var size1 = CGSize.zero
-            
+
             if i > 0 {
                 size1 = UIImage.getImageSize(arr[i-1])
             }
             let size = UIImage.getImageSize(arr[i])
-            
+
             let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width: size.width/2, height: size.height/2))
             imgView.kf.setImage(with: URL.init(string: arr[i]))
             imgView.centerY = bgView.centerY
@@ -529,12 +555,19 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        if tableView == dTableView {
+            //点击搜索历史，1开始搜索，2刷新搜索历史记录列表
+            let str: String = historyArray[indexPath.row]
+            textFeild.text = str
+            //
+            self.viewModel.request_search(str: str, skip: 0, take: 10, type: 0, vc: self)
+            //保存搜索历史
+            self.func_saveHistory(str)
+        }else {
+            //进入详情
+            
+        }
         
-        let str: String = historyArray[indexPath.row]
-        textFeild.text = str
-        self.viewModel.request_search(str: str, skip: 0, take: 10, type: 0, vc: self)
-        //保存搜索历史
-        self.func_saveHistory(str)
     }
     
     

@@ -69,13 +69,13 @@ extension HDZQ_MyFollowSubVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
-        let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
-        let model = dataArr[indexPath.row]
-        vc.toid = model.toid
-        self.navigationController?.pushViewController(vc, animated: true)
-
+        if type == 2 {
+            let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+            let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
+            let model = dataArr[indexPath.row]
+            vc.toid = model.toid
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

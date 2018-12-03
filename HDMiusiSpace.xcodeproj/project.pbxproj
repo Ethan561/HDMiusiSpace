@@ -32,6 +32,10 @@
 		1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */; };
 		1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */; };
 		1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */; };
+		1B87792721B27D1D00850B55 /* HDZQ_FoorprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */; };
+		1B87792821B27D1D00850B55 /* HDZQ_FoorprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */; };
+		1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */; };
+		1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
 		A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */; };
@@ -598,6 +602,10 @@
 		1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RelatedClassCell.xib; sourceTree = "<group>"; };
 		1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesVC.swift; sourceTree = "<group>"; };
 		1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesSubVC.swift; sourceTree = "<group>"; };
+		1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FoorprintCell.swift; sourceTree = "<group>"; };
+		1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FoorprintCell.xib; sourceTree = "<group>"; };
+		1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPExhibitPlayCell.swift; sourceTree = "<group>"; };
+		1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FPExhibitPlayCell.xib; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
 		A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyWalletVC.swift; sourceTree = "<group>"; };
@@ -2590,6 +2598,10 @@
 				1B2928EE21A67A8F00FEF21C /* HDZQ_MyFollowCell.swift */,
 				1B2928EF21A67A8F00FEF21C /* HDZQ_MyFollowCell.xib */,
 				1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */,
+				1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */,
+				1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */,
+				1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */,
+				1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */,
 				1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */,
 				1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */,
 				1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */,
@@ -2915,6 +2927,7 @@
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
 				D620E1C321A2B53C0034E258 /* HDLY_StrategyListCell.xib in Resources */,
 				D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */,
+				1B87792821B27D1D00850B55 /* HDZQ_FoorprintCell.xib in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
 				D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */,
 				A7C59E56219C08AE00F67F0C /* HDSSL_Sec1Cell.xib in Resources */,
@@ -2950,6 +2963,7 @@
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
 				A7441D3921A2A0D50064E6A6 /* TZImagePickerController.bundle in Resources */,
+				1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */,
 				D63F8D642199522300686AB3 /* HDCallOutView.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
@@ -3224,6 +3238,7 @@
 				D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */,
 				A7441D3321A2A0D50064E6A6 /* TZAssetCell.m in Sources */,
 				D62277DC21368069008F1416 /* VideoPickerPreviewCell.swift in Sources */,
+				1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */,
 				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
 				A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
@@ -3319,6 +3334,7 @@
 				D62277A321367D4D008F1416 /* DefaultPageControlPlugin.swift in Sources */,
 				D622779F21367D4D008F1416 /* RawImageButtonPlugin.swift in Sources */,
 				D6884E65211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.swift in Sources */,
+				1B87792721B27D1D00850B55 /* HDZQ_FoorprintCell.swift in Sources */,
 				D6115AF5218FD490004A05DA /* ZFLandScapeControlView.m in Sources */,
 				A7441D3721A2A0D50064E6A6 /* UIView+Layout.m in Sources */,
 				D620E1BA21A246B90034E258 /* HDLY_FreeListenItem.swift in Sources */,

@@ -18,16 +18,18 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
         super.viewDidLoad()
         self.title = "收到的动态消息"
         tableView.separatorStyle = .none
-
+        
         self.dataRequest()
         addRefresh()
     }
     
     func dataRequest()  {
-        guard let token = HDDeclare.shared.api_token else {
-            return
+        
+        var token = HDDeclare.shared.api_token
+        if token == nil {
+            token = "123456"
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: 0, take: 100, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: 0, take: 100, api_token: token!) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -65,29 +67,43 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell1") as? HDLY_ReceiveMsgCell1
-            return cell!
-        }
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell2") as? HDLY_ReceiveMsgCell2
+        if dataArr.count > 0 {
+            let model = dataArr[indexPath.row]
+//            1普通评论点赞 2普通评论回复 3展览评星点赞 4展览评星回复 5关注 6问题答复
+            if model.cateID == 2 ||  model.cateID == 4 || model.cateID == 6 {
+                let cell1 = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell1") as? HDLY_ReceiveMsgCell1
+                cell1?.avatarImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell1?.titleL.text = model.title
+                cell1?.contentL.text = model.des
+                cell1?.dateL.text = model.createdAt
+
+                return cell1!
+            }else {
+                cell?.avatarImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.titleL.text = model.title
+                cell?.contentL.text = model.des
+                cell?.dateL.text = model.createdAt
+            }
+        }
         return cell!
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row % 2 == 0 {
+        let model = dataArr[indexPath.row]
+        //1普通评论点赞 2普通评论回复 3展览评星点赞 4展览评星回复 5关注 6问题答复
+        if model.cateID == 2 ||  model.cateID == 4 || model.cateID == 6 {
             return 160
         }
+        
         return 130
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            
-        } else {
-            
-        }
+
+        
     }
+    
     
 }
 
@@ -102,6 +118,9 @@ class HDLY_ReceiveMsgCell1: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        avatarImgV.layer.cornerRadius = 22
+        avatarImgV.layer.masksToBounds = true
+        
         
     }
 }
@@ -116,6 +135,8 @@ class HDLY_ReceiveMsgCell2: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        avatarImgV.layer.cornerRadius = 22
+        avatarImgV.layer.masksToBounds = true
         
     }
 }

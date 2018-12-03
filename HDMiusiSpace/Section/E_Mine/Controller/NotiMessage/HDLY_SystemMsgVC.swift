@@ -87,18 +87,17 @@ extension HDLY_SystemMsgVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row % 2 == 0 {
+        let model = dataArr[indexPath.row]
+        if model.cateID == 2 {
             return 180
         }
-        return 135
+        let height = model.content!.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth - 150) + 95
+        return height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            
-        } else {
-            
-        }
+        
+        
     }
     
 }

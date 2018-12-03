@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.3)
+  - BaiduMobStatCodeless (4.9.5)
   - Bugly (2.5.0)
   - ESPullToRefresh (2.7)
   - JCore (1.2.5)
@@ -30,6 +31,7 @@ PODS:
   - ZZCircleProgress (0.2.1)
 
 DEPENDENCIES:
+  - BaiduMobStatCodeless
   - Bugly (~> 2.5.0)
   - ESPullToRefresh
   - JoyTool
@@ -47,6 +49,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BaiduMobStatCodeless
     - Bugly
     - ESPullToRefresh
     - JCore
@@ -62,6 +65,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BaiduMobStatCodeless: 8fa2c6bf1cc9f5ec3ec77c69fbf4d5ed195c959a
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   JCore: 14706de2640b25fb77dbd02332696491407f37c9
@@ -75,6 +79,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: b540e90e364d19f4d04996aa9de685cc858d7fae
+PODFILE CHECKSUM: ee38b78be09019dd91afed8d327e9aa071be2314
 
 COCOAPODS: 1.5.3

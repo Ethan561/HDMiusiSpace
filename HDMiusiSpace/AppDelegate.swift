@@ -41,7 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        //用户登录成功绑定uid
 //        NotificationCenter.default.addObserver(self, selector: #selector(jpushLoginSuccessNoti(_:)), name: NSNotification.Name.init("SetJpushAliasWithUID"), object: nil)
         
-
+        //百度统计埋点方法，样例
+        /*
+         *事件id：0001
+         *事件描述：“单机一下按钮”
+         */
+        BaiduMobStat.default()?.logEvent("0001", eventLabel: "单击一下按钮")
         
         return true
     }

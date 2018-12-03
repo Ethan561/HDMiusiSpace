@@ -11,12 +11,19 @@ import UIKit
 class HDZQ_MyFootprintVC: HDItemBaseVC {
 
     private var dayList = [FootprintModel]()
-    
+    private var lastIndex : IndexPath?
+    private var lastRow : Int?
+    private var currentIndex : String?
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "导览足迹"
         requestFootPrintData()
+    }
+    
+    deinit {
+         let player = HDLY_AudioPlayer.shared
+        player.stop()
     }
     
 }
@@ -51,6 +58,9 @@ extension HDZQ_MyFootprintVC : UITableViewDataSource {
         cell?.exhibitionTitleLabel.text = model.exhibition_title
         cell?.setupExhibitView(model:model)
         cell?.setupCellViews(model: model)
+        cell?.index = indexPath
+        cell?.currentIndex = self.currentIndex
+        cell?.delegate = self
         return cell!
     }
     
@@ -102,106 +112,134 @@ extension HDZQ_MyFootprintVC : UITableViewDelegate {
     }
 }
 
-
-class HDZQ_FoorprintCell: UITableViewCell {
-    @IBOutlet weak var bottomLineView: UIView!
-    @IBOutlet weak var exhibitionTitleLabel: UILabel!
-    @IBOutlet weak var exhibitionLabel: UILabel!
-    @IBOutlet weak var shareBtn: UIButton!
-    public var exhibitContentView = UIView()
-    public var classContentView = UIView()
-    public var model = FPContent()
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.addSubview(exhibitContentView)
-        classContentView.backgroundColor = UIColor.white
-        self.addSubview(classContentView)
-    }
-    
-    func setupExhibitView(model:FPContent) {
-        if model.exhibit_list.count > 0 {
-            let x = exhibitionLabel.ly_left
-            let y = Int(exhibitionLabel.ly_bottom) + 20
-            let height = 44
-            let width  = 220
-            exhibitContentView.removeAllSubviews()
-            exhibitContentView.frame = CGRect.init(x:Int(x), y: y, width: width, height: (height + 10) * model.exhibit_list.count)
-            for i in 0..<model.exhibit_list.count {
-                let margin:Int = (height + 10) * i
-                let exhibitView = UIView.init(frame: CGRect.init(x: 0, y: margin, width: width, height: height))
-                exhibitView.layer.cornerRadius = 22.0
-                
-                let exhibitLabel = UILabel.init(frame: CGRect.init(x: 20, y: 12, width: 150, height: 20))
-                exhibitLabel.font = UIFont.systemFont(ofSize: 14.0)
-                exhibitLabel.text = model.exhibit_list[i].exhibit_title
-                exhibitLabel.textColor = .white
-                
-                let playBtn = UIButton.init(frame: CGRect.init(x: width - 43, y: 1, width: 42, height: 42))
-                playBtn.setImage(UIImage.init(named: "wd_dlzj_paly"), for: .normal)
-                playBtn.setImage(UIImage.init(named: "wd_dlzj_pause"), for: .selected)
-                exhibitView.addSubview(playBtn)
-                exhibitView.addSubview(exhibitLabel)
-                exhibitView.backgroundColor = UIColor.HexColor(0xE8593E)
-                exhibitContentView.addSubview(exhibitView)
+extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
+    func exhibitPlayAction(index: IndexPath,row:Int,idxStrig:String,url:String) {
+        let indexPath = IndexPath.init(row: index.row, section: index.section)
+        let cell =  tableView.cellForRow(at: indexPath) as? HDZQ_FoorprintCell
+        cell?.currentIndex = idxStrig
+        // 更新当前点击的cell
+        let indexPath1 = IndexPath.init(row: row, section: 0)
+        cell?.exhibitContentView.reloadRows(at: [indexPath1], with: .none)
+        
+        //更新当前cell里面上一个播放的btn
+        if lastRow != nil && lastRow != row && lastIndex == index {
+            let indexPath2 = IndexPath.init(row: lastRow!, section: 0)
+            cell?.exhibitContentView.reloadRows(at: [indexPath2], with: .none)
+        }
+        
+        // 更新其他cell里面上一个播放的btn
+        if lastIndex != nil && lastIndex != index && idxStrig != "" {
+            let cell1 =  tableView.cellForRow(at: lastIndex!) as? HDZQ_FoorprintCell
+            cell1?.currentIndex = ""
+            cell1?.exhibitContentView.reloadData()
+        }
+        self.lastRow = row
+        self.lastIndex = index
+        self.currentIndex = idxStrig
+        
+         let player = HDLY_AudioPlayer.shared
+        if idxStrig != "" {
+            let URLS = URL.init(string: url)
+            player.delegate = self
+            if player.fileno == url {
+                player.play()
+            } else {
+               player.play(file: Music.init(name: "", url: URLS!))
+               player.fileno =  url
             }
         } else {
-            exhibitContentView.frame = CGRect.init(x: 0, y: 0, width: 0, height: 0)
-            exhibitContentView.isHidden = true
+            player.pause()
+        }
+        
+    }
+}
+
+extension HDZQ_MyFootprintVC : HDLY_AudioPlayer_Delegate {
+    func finishPlaying() {
+        
+        let cell1 = tableView.cellForRow(at: lastIndex!) as? HDZQ_FoorprintCell
+        cell1?.currentIndex = ""
+        let indexPath1 = IndexPath.init(row: self.lastRow!, section: 0)
+        cell1?.exhibitContentView.reloadRows(at: [indexPath1], with: .none)
+//        self.currentIndex = nil
+//        self.lastRow = nil
+//        self.lastIndex = nil
+        
+    }
+    func playerTime(_ currentTime: String, _ totalTime: String, _ progress: Float) {
+        print(progress)
+    }
+}
+
+
+
+typealias BtnAction = (UIButton)->()
+
+extension UIButton{
+    
+    ///  gei button 添加一个属性 用于记录点击tag
+    private struct AssociatedKeys{
+        static var actionKey = "actionKey"
+    }
+    
+    @objc dynamic var actionDic: NSMutableDictionary? {
+        set{
+            objc_setAssociatedObject(self,&AssociatedKeys.actionKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+        }
+        get{
+            if let dic = objc_getAssociatedObject(self, &AssociatedKeys.actionKey) as? NSDictionary{
+                return NSMutableDictionary.init(dictionary: dic)
+            }
+            return nil
         }
     }
     
-    func setupCellViews(model:FPContent) {
-        let x = exhibitionLabel.ly_left
-        let y = Int(exhibitContentView.ly_bottom) + 15
-        let height = 180
-        let width  = Int(ScreenWidth - 60)
-        if model.class_list.count > 0 {
-            classContentView.removeAllSubviews()
-            let label = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: 80, height: 25))
-            label.font = UIFont.systemFont(ofSize: 18.0)
-            label.textColor = UIColor.HexColor(0x4A4A4A)
-            label.text = "相关课程"
-            self.model = model
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 15
-            layout.minimumInteritemSpacing = 15
-            layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-            layout.itemSize = CGSize(width: 140, height:150)
-            
-            let collectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 30, width: width, height: 150), collectionViewLayout: layout)
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            collectionView.register(UINib.init(nibName: "HDZQ_RelatedClassCell", bundle: nil), forCellWithReuseIdentifier: "HDZQ_RelatedClassCell")
-            collectionView.backgroundColor = .white
-            classContentView.addSubview(collectionView)
-            classContentView.addSubview(label)
-            classContentView.frame = CGRect.init(x:Int(x), y: y, width: width, height: height)
-        } else {
-            classContentView.frame = CGRect.init(x: 0, y: 0, width: 0, height: 0)
-            classContentView.isHidden = true
+    @objc dynamic fileprivate func DIY_button_add(action:@escaping  BtnAction ,for controlEvents: UIControlEvents) {
+        let eventStr = NSString.init(string: String.init(describing: controlEvents.rawValue))
+        if let actions = self.actionDic {
+            actions.setObject(action, forKey: eventStr)
+            self.actionDic = actions
+        }else{
+            self.actionDic = NSMutableDictionary.init(object: action, forKey: eventStr)
         }
+        
+        switch controlEvents {
+        case .touchUpInside:
+            self.addTarget(self, action: #selector(touchUpInSideBtnAction), for: .touchUpInside)
+        case .touchUpOutside:
+            self.addTarget(self, action: #selector(touchUpOutsideBtnAction), for: .touchUpOutside)
+        default:
+            self.addTarget(self, action: #selector(touchUpInSideBtnAction), for: .touchUpInside)
+        }
+    }
+    
+    @objc fileprivate func touchUpInSideBtnAction(btn: UIButton) {
+        if let actionDic = self.actionDic  {
+            if let touchUpInSideAction = actionDic.object(forKey: String.init(describing: UIControlEvents.touchUpInside.rawValue)) as? BtnAction{
+                touchUpInSideAction(self)
+            }
+        }
+    }
+    
+    @objc fileprivate func touchUpOutsideBtnAction(btn: UIButton) {
+        if let actionDic = self.actionDic  {
+            if let touchUpOutsideBtnAction = actionDic.object(forKey:   String.init(describing: UIControlEvents.touchUpOutside.rawValue)) as? BtnAction{
+                touchUpOutsideBtnAction(self)
+            }
+        }
+    }
+    
+    
+    @discardableResult
+    func addTouchUpInSideBtnAction(_ action:@escaping BtnAction) -> UIButton{
+        self.DIY_button_add(action: action, for: .touchUpInside)
+        return self
+    }
+    @discardableResult
+    func addTouchUpOutSideBtnAction(_ action:@escaping BtnAction) -> UIButton{
+        self.DIY_button_add(action: action, for: .touchUpOutside)
+        return self
     }
     
 }
 
-extension HDZQ_FoorprintCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.model.class_list.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let model = self.model.class_list[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HDZQ_RelatedClassCell", for: indexPath) as? HDZQ_RelatedClassCell
-        cell?.exhibitTitleLabel.text = model.title
-        cell?.teacherLabel.text = model.teacher_name
-        cell?.exhibitImageView.kf.setImage(with: URL.init(string: model.img!))
-        return cell!
-    }
-    
-    
-}
-
-extension HDZQ_FoorprintCell:UICollectionViewDelegate {
-    
-}

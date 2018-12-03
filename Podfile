@@ -5,7 +5,7 @@
  
  pod 'JoyTool'
  pod 'Masonry'
- pod 'Moya'
+ pod 'Moya', '~> 12.0'
  pod 'SnapKit'
  pod 'Kingfisher'
  pod 'ZZCircleProgress'

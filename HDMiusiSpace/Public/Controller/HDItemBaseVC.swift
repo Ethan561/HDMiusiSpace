@@ -51,7 +51,7 @@ class HDItemBaseVC: UIViewController {
         let navigationBar: UINavigationBar = (self.navigationController?.navigationBar)!
         navigationBar.setBackgroundImage(UIImage.init(named: "nav_barX"), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage.init()
-        navigationBar.tintColor = UIColor.white
+        navigationBar.barTintColor = UIColor.white
         navigationBar.isTranslucent = false
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         

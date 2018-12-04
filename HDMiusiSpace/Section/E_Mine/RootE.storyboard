@@ -127,6 +127,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Dap-Oe-AcP" id="Y19-vS-ATy"/>
+                        <segue destination="5Rc-cC-fha" kind="show" id="2HV-AJ-mY3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpt-Bz-jVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3065,6 +3066,88 @@
             </objects>
             <point key="canvasLocation" x="2582" y="-2821"/>
         </scene>
+        <!--Day Card BrowserVC-->
+        <scene sceneID="Yr7-uK-bdG">
+            <objects>
+                <viewController storyboardIdentifier="HDZQ_DayCardBrowserVC" id="5Rc-cC-fha" customClass="HDZQ_DayCardBrowserVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ymH-et-MVb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J5K-lV-NbS">
+                                <rect key="frame" x="0.0" y="65.5" width="375" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J5K-lV-NbS" secondAttribute="height" multiplier="7:10" id="OaR-rs-YF8"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="21" minimumInteritemSpacing="0.0" id="xYE-sJ-fHU">
+                                    <size key="itemSize" width="272" height="397"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HDZQ_DayCardBrowserCell" id="Xp9-ld-0Sy" customClass="HDZQ_DayCardBrowserCell" customModule="HDMiusiSpace" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="69.5" width="272" height="397"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="272" height="397"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L7O-Qr-Rea">
+                                                    <rect key="frame" x="0.0" y="0.0" width="272" height="397"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.2836308924" green="0.78432684080000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="L7O-Qr-Rea" firstAttribute="leading" secondItem="Xp9-ld-0Sy" secondAttribute="leading" id="EAr-ES-4Wm"/>
+                                            <constraint firstAttribute="bottom" secondItem="L7O-Qr-Rea" secondAttribute="bottom" id="GXM-vj-oSS"/>
+                                            <constraint firstItem="L7O-Qr-Rea" firstAttribute="centerY" secondItem="Xp9-ld-0Sy" secondAttribute="centerY" id="cXS-vy-Hog"/>
+                                            <constraint firstAttribute="trailing" secondItem="L7O-Qr-Rea" secondAttribute="trailing" id="tbo-qb-d6X"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imgView" destination="L7O-Qr-Rea" id="zYp-6u-Kz0"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="5Rc-cC-fha" id="k5p-nd-zk1"/>
+                                    <outlet property="delegate" destination="5Rc-cC-fha" id="IXZ-eg-K6X"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-aT-q32">
+                                <rect key="frame" x="165.5" y="601.5" width="44" height="44"/>
+                                <color key="backgroundColor" red="0.2196078431372549" green="0.2196078431372549" blue="0.2196078431372549" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="D7G-79-m91"/>
+                                    <constraint firstAttribute="height" constant="44" id="ynY-lS-fXe"/>
+                                </constraints>
+                                <state key="normal" image="xz_icon_share_white_default"/>
+                                <connections>
+                                    <action selector="shareAction:" destination="5Rc-cC-fha" eventType="touchUpInside" id="6JD-M8-7zl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jHa-aT-q32" firstAttribute="top" secondItem="J5K-lV-NbS" secondAttribute="bottom" id="3vH-5Y-wFu"/>
+                            <constraint firstItem="xXU-gv-gxN" firstAttribute="trailing" secondItem="J5K-lV-NbS" secondAttribute="trailing" id="A7D-7B-tUT"/>
+                            <constraint firstItem="J5K-lV-NbS" firstAttribute="centerY" secondItem="ymH-et-MVb" secondAttribute="centerY" id="THL-ge-iry"/>
+                            <constraint firstItem="jHa-aT-q32" firstAttribute="centerX" secondItem="ymH-et-MVb" secondAttribute="centerX" id="bUJ-a2-MGg"/>
+                            <constraint firstItem="J5K-lV-NbS" firstAttribute="leading" secondItem="xXU-gv-gxN" secondAttribute="leading" id="du1-Yj-D2U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xXU-gv-gxN"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="J5K-lV-NbS" id="Jty-Yt-S9y"/>
+                        <outlet property="shareBtn" destination="jHa-aT-q32" id="6QO-Dl-63c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l20-4r-ixn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3376.8000000000002" y="-2812.4437781109445"/>
+        </scene>
         <!--My FootprintVC-->
         <scene sceneID="RhF-t7-7GE">
             <objects>
@@ -3290,5 +3373,6 @@ AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
         <image name="xtxi_bg_1" width="266" height="74"/>
         <image name="xtxi_icon_ms" width="40" height="41"/>
         <image name="xz_icon_share_black_default" width="22" height="22"/>
+        <image name="xz_icon_share_white_default" width="22" height="22"/>
     </resources>
 </document>

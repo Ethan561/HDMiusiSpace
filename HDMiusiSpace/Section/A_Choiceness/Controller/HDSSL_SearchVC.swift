@@ -128,14 +128,21 @@ class HDSSL_SearchVC: HDItemBaseVC {
         tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
         tagView.titleColorNormal = UIColor.RGBColor(215, 99, 72)
         tagView.borderColor = UIColor.RGBColor(215, 99, 72)
+        
+        weak var weakSelf = self
+        
         tagView.BlockFunc { (array) in
             //1、保存选择标签
-            print(array)
-            for i: Int in 0..<array.count {
-                let index : Int = Int(array[i] as! String)! //标签下标
-                //                let str : String = self.tagStrArray[index] //
-                
+//            print(array)
+            //
+            let index: Int = Int(array[0] as! String)!
+            
+            //搜索某一类型数据
+            if (weakSelf?.textFeild.text?.count)! > 0 {
+                //
+                weakSelf?.viewModel.request_search(str: (weakSelf?.textFeild.text!)!, skip: 0, take: 10, type: index+1, vc: self)
             }
+            
         }
         tagView.titleArray = typeTitleArray
         
@@ -236,6 +243,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
     }
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
+        //清空搜索历史记录
+        
         historyArray.removeAll()
         self.dTableView.reloadData()
         UserDefaults().set(historyArray, forKey: SearchHistory)
@@ -360,7 +369,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             return nil
         }else {
             let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
-            
+            view.backgroundColor = UIColor.white
             let headerTitle = UILabel.init(frame: CGRect.init(x: 20, y: 7, width: 200, height: 30))
             
             var title: String?
@@ -429,9 +438,11 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 
                 let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
                 cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell.tag = indexPath.row
+                
                 cell.cell_titleLab.text = String.init(format: "%@", news.title!)
                 
-                let plat = news.plat_title == nil ? "" : "|"+news.plat_title!
+                let plat = (news.plat_title == nil ? "" : "|"+news.plat_title!)
                 cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
                 
                 cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
@@ -445,6 +456,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 let course: HDSSL_SearchCourse = list![indexPath.row]
                 
                 let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
+                cell?.tag = indexPath.row
+                
                 cell?.cell_imgView.kf.setImage(with: URL.init(string: course.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.cell_titleLab.text = String.init(format: "%@", course.title!)
                 cell?.cell_teacherNameLab.text = String.init(format: "%@", course.teacher_name!)
@@ -466,6 +479,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
                 
                 let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
+                cell?.tag = indexPath.row
                 cell?.cell_imgView.kf.setImage(with: URL.init(string: exhibition.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
                 //标题
                 cell?.cell_titleLab.text = String.init(format: "%@", exhibition.title!)
@@ -489,6 +503,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 let museum: HDSSL_SearchMuseum = list![indexPath.row]
                 
                 let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
+                cell?.tag = indexPath.row
                 cell?.cell_imgView.kf.setImage(with: URL.init(string: museum.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
                 //标题
                 cell?.cell_titleLab.text = String.init(format: "%@", museum.title!)
@@ -515,25 +530,6 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         //
         let bgView = UIView.init(frame: frame)
         
-//        var x:CGFloat = 0
-//        var imgWArr = [CGFloat]()
-//        for (i,imgStr) in arr.enumerated() {
-//            let imgV = UIImageView()
-//            imgV.contentMode = .scaleAspectFit
-//            imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
-//
-//                let imgSize = img!.size
-//                let imgH: CGFloat = 15
-//                let imgW: CGFloat = 15*imgSize.width/imgSize.height
-//                imgWArr.append(imgW)
-//                if i > 0 {
-//                    let w = imgWArr[i-1]
-//                    x = x + w
-//                }
-//                imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
-//                bgView.addSubview(imgV)
-//            }
-//        }
         for i in 0..<arr.count {
             //
             var size1 = CGSize.zero
@@ -565,6 +561,47 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             self.func_saveHistory(str)
         }else {
             //进入详情
+            let model = self.getResultModel(section: indexPath.section)
+            if model.type == 0 {
+                //资讯
+                let list = model.news_list
+                let news: HDSSL_SearchNews = list![indexPath.row]
+                
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+                vc.topic_id = String(news.article_id!)
+                vc.fromRootAChoiceness = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else if model.type == 1 {
+                //新知、课程
+                let list = model.course_list
+                let course: HDSSL_SearchCourse = list![indexPath.row]
+                
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                vc.courseId = String(course.class_id!)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if model.type == 2 {
+                //展览
+                let list = model.exhibition_list
+                let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
+                //展览详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+                
+                vc.exhibition_id = exhibition.exhibition_id
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else if model.type == 3 {
+                //博物馆
+                let list = model.museum_list
+                let museum: HDSSL_SearchMuseum = list![indexPath.row]
+                //博物馆详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
+                
+                vc.museumId = museum.museum_id!
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
             
         }
         

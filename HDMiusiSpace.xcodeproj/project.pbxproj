@@ -96,6 +96,8 @@
 		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
 		A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */; };
 		A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */; };
+		A753D10F21B6269F009C14D7 /* HDSSL_defaultAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */; };
+		A753D11121B626A9009C14D7 /* HDSSL_defaultAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */; };
 		A756C8382191858600C1747A /* RootDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756C8372191858600C1747A /* RootDViewModel.swift */; };
 		A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF32192B414004C7F8A /* ExhibitionModel.swift */; };
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
@@ -687,6 +689,8 @@
 		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionDetailVC.swift; sourceTree = "<group>"; };
 		A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumDetailVC.swift; sourceTree = "<group>"; };
+		A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_defaultAlertView.swift; sourceTree = "<group>"; };
+		A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_defaultAlertView.xib; sourceTree = "<group>"; };
 		A756C8372191858600C1747A /* RootDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDViewModel.swift; sourceTree = "<group>"; };
 		A7676BF32192B414004C7F8A /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
@@ -2771,6 +2775,8 @@
 				A7AC35BA214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib */,
 				A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */,
 				A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */,
+				A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */,
+				A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2985,6 +2991,7 @@
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				A7A90A5E21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib in Resources */,
 				A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */,
+				A753D11121B626A9009C14D7 /* HDSSL_defaultAlertView.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6375688219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
@@ -3553,6 +3560,7 @@
 				D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */,
 				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,
 				D6115AEE218FD490004A05DA /* ZFReachabilityManager.m in Sources */,
+				A753D10F21B6269F009C14D7 /* HDSSL_defaultAlertView.swift in Sources */,
 				D62277A621367D4D008F1416 /* KingfisherPhotoLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

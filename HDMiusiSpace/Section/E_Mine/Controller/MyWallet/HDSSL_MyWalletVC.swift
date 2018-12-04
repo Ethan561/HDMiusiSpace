@@ -15,6 +15,13 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     @IBOutlet weak var menuBg1: UIView!  //余额背景
     @IBOutlet weak var menuBg2: UIView!  //开通VIP背景
     
+    @IBOutlet weak var item1: UIView!
+    @IBOutlet weak var item3: UIView!
+    @IBOutlet weak var item5: UIView!
+    @IBOutlet weak var item2: UIView!
+    @IBOutlet weak var item4: UIView!
+    @IBOutlet weak var item6: UIView!
+    
     
     @IBOutlet weak var sele_title1: UILabel!
     @IBOutlet weak var sele_title2: UILabel!

@@ -244,12 +244,22 @@ class HDSSL_SearchVC: HDItemBaseVC {
     }
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
         //清空搜索历史记录
+        weak var weakself = self
         
-        historyArray.removeAll()
-        self.dTableView.reloadData()
-        UserDefaults().set(historyArray, forKey: SearchHistory)
+        let tipView: HDSSL_defaultAlertView = HDSSL_defaultAlertView.createViewFromNib() as! HDSSL_defaultAlertView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.blockSelected { (type) in
+            if type == 1 {
+                weakself!.historyArray.removeAll()
+                weakself!.dTableView.reloadData()
+                UserDefaults().set(weakself!.historyArray, forKey: SearchHistory)
+            }
+        }
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+        
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         

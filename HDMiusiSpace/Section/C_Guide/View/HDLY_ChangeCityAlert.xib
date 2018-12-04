@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HDLY_ChangeCityAlert" customModule="HDMiusiSpace" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uyZ-oL-jWC">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6G6-N6-BeG">
+                    <rect key="frame" x="57.5" y="235.5" width="260" height="136"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCd-hz-YcK">
+                            <rect key="frame" x="130" y="98" width="130" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="切换">
+                                <color key="titleColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="sureBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="b9b-lH-qjL"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定位到您在 西安，是否切换至该城市？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odh-fx-ahN">
+                            <rect key="frame" x="30" y="20" width="200" height="38.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7b-dg-VIt">
+                            <rect key="frame" x="0.0" y="98" width="130" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="mWa-Rp-aNZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="cancleBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="3PC-v3-l4F"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="y7b-dg-VIt" secondAttribute="bottom" constant="8" id="6u4-9R-tUP"/>
+                        <constraint firstItem="sCd-hz-YcK" firstAttribute="height" secondItem="y7b-dg-VIt" secondAttribute="height" id="BxN-bK-ptu"/>
+                        <constraint firstItem="Odh-fx-ahN" firstAttribute="leading" secondItem="6G6-N6-BeG" secondAttribute="leading" constant="30" id="FLU-4X-3yw"/>
+                        <constraint firstAttribute="width" constant="260" id="GQU-dp-gVW"/>
+                        <constraint firstAttribute="trailing" secondItem="Odh-fx-ahN" secondAttribute="trailing" constant="30" id="OT2-Zf-GeG"/>
+                        <constraint firstItem="y7b-dg-VIt" firstAttribute="width" secondItem="6G6-N6-BeG" secondAttribute="width" multiplier="0.5" id="Rdg-mf-n4f"/>
+                        <constraint firstAttribute="trailing" secondItem="sCd-hz-YcK" secondAttribute="trailing" id="WvC-Oy-FJp"/>
+                        <constraint firstAttribute="height" constant="136" id="YhF-ja-pl9"/>
+                        <constraint firstItem="sCd-hz-YcK" firstAttribute="centerY" secondItem="y7b-dg-VIt" secondAttribute="centerY" id="iyV-Ny-S1s"/>
+                        <constraint firstItem="sCd-hz-YcK" firstAttribute="width" secondItem="y7b-dg-VIt" secondAttribute="width" id="jQq-Lu-qcf"/>
+                        <constraint firstItem="y7b-dg-VIt" firstAttribute="leading" secondItem="6G6-N6-BeG" secondAttribute="leading" id="tAA-ce-CPY"/>
+                        <constraint firstItem="Odh-fx-ahN" firstAttribute="top" secondItem="6G6-N6-BeG" secondAttribute="top" constant="20" id="tda-f4-Se5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="uyZ-oL-jWC" secondAttribute="bottom" id="DZ7-jA-8lP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uyZ-oL-jWC" secondAttribute="trailing" id="IkT-hE-Y6a"/>
+                <constraint firstItem="6G6-N6-BeG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ufn-Ij-aOM"/>
+                <constraint firstItem="uyZ-oL-jWC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Z2x-nA-v57"/>
+                <constraint firstItem="6G6-N6-BeG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-30" id="Z3O-2F-VeF"/>
+                <constraint firstItem="uyZ-oL-jWC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wJx-0z-cei"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bgView" destination="6G6-N6-BeG" id="FJ1-ro-Jhp"/>
+                <outlet property="cancleBtn" destination="y7b-dg-VIt" id="VwF-Ql-5A0"/>
+                <outlet property="sureBtn" destination="sCd-hz-YcK" id="veX-uw-pTv"/>
+                <outlet property="tipL" destination="Odh-fx-ahN" id="OiL-Tn-bbt"/>
+            </connections>
+            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+        </view>
+    </objects>
+</document>

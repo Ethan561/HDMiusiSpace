@@ -17,6 +17,8 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
     @IBOutlet weak var btn_location: UIButton!
     
+    var currentCityName: String?
+    
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:100, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -47,26 +49,56 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         self.menuView.addSubview(self.pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+        
+        let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
+        if cityName != nil {
+            if cityName != HDLY_LocationTool.shared.city {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                    self.showChangeCityTipView()
+                }
+            }
+        }
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+  
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         guard str != nil else {
             return
         }
         
-        if str!.count > 0 {
-            print("城市\(str)")
-            btn_location.setTitle(str, for: .normal)
-            //定位按钮设置
-            btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
-            btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-            btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        if currentCityName == nil {
+            if str!.count > 0 {
+                print("城市\(str)")
+                currentCityName = str
+                btn_location.setTitle(str, for: .normal)
+                //定位按钮设置
+                btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+                btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+                btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+                
+            }
+        }else {
+            if currentCityName == str {
+
+            }else {
+                btn_location.setTitle(str, for: .normal)
+                //定位按钮设置
+                btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+                btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+                btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+                currentCityName = str
+                
+                //界面刷新
+                HDDeclare.shared.locModel.cityName = str!
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+            }
         }
+        
     }
     
     
@@ -81,6 +113,45 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         
 
     }
+    
+    //弹窗提醒切换城市
+    func showChangeCityTipView() {
+        let tipView:HDLY_ChangeCityAlert = HDLY_ChangeCityAlert.createViewFromNib() as! HDLY_ChangeCityAlert
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        if HDLY_LocationTool.shared.city != nil {
+            win.addSubview(tipView)
+            tipView.tipL.text = "定位到您在 \(HDLY_LocationTool.shared.city!)，是否切换至该城市？"
+        }
+        weak var weakS = self
+        tipView.sureBtnBlock = {
+            weakS?.changeCityAction()
+        }
+        
+    }
+    
+    func changeCityAction() {
+        guard let str = HDLY_LocationTool.shared.city else {
+            return
+        }
+        currentCityName = str
+        btn_location.setTitle(str, for: .normal)
+        //定位按钮设置
+        btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+        btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+        btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+        UserDefaults.standard.set(str, forKey: "MyLocationCityName")
+        
+        //界面刷新
+        HDDeclare.shared.locModel.cityName = str
+        HDDeclare.shared.locModel.latitude = "\(HDLY_LocationTool.shared.coordinate!.latitude)"
+        HDDeclare.shared.locModel.longitude = "\(HDLY_LocationTool.shared.coordinate!.longitude)"
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+    }
+    
     
     //MARK: - 足迹
     @IBAction func footprintsAction(_ sender: Any) {

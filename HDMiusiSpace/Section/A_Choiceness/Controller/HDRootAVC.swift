@@ -26,9 +26,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     //MVVM
     let viewModel: RootAViewModel = RootAViewModel()
     var searchVM: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
-    
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -43,7 +43,12 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         addRefresh()
         refreshAction()
         
+        //定位
         HDLY_LocationTool.shared.startLocation()
+        let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
+        if cityName != nil {
+            HDDeclare.shared.locModel.cityName = cityName!
+        }
         
         //获取搜索默认提示信息
         searchVM.request_getSearchPlaceholder(vc: self)

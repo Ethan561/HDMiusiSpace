@@ -330,7 +330,7 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
             view.backgroundColor = UIColor.white
             
             if section == 0 {
-                let locString = "北京市" //GPS获取当前城市
+                let locString =  HDLY_LocationTool.shared.city ?? "定位失败" //GPS获取当前城市
                 let gps = " GPS定位"
                 
                 let string = locString + gps

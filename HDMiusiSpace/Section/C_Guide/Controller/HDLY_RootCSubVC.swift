@@ -41,6 +41,10 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.dataRequest()
         addRefresh()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+
+        
+        
     }
     
     func addRefresh() {
@@ -70,8 +74,8 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-CGFloat(PageMenuH)-15)
     }
     
-    func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_id: "北京市", longitude: "", latitude: "", type: type, skip: 0, take: 20), showHud: false, loadingVC: self, success: { (result) in
+    @objc func dataRequest()  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_id: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 20), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

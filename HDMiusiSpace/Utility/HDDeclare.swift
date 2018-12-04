@@ -90,6 +90,10 @@ final class HDDeclare: NSObject {
     var allTagsArray : [HDSSL_TagData]? //所有标签数据
     var selectedTagArray : [HDSSL_Tag]? //已选标签数组
     
+    //选择当前的定位 Model
+    var locModel = HDLY_LocModel()
+    
+    
     //保存地图信息
 //    public var mapInfoArray : []?
 //    // 保持路线信息

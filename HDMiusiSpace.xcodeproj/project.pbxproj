@@ -296,6 +296,8 @@
 		D62277E421368069008F1416 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D62277D021368069008F1416 /* Image.xcassets */; };
 		D62277E6213696ED008F1416 /* ReportErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62277E5213696ED008F1416 /* ReportErrorViewModel.swift */; };
 		D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62277E721369869008F1416 /* ReportErrorModel.swift */; };
+		D624EE5121B67AA600E45CAF /* HDLY_ChangeCityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D624EE5021B67AA600E45CAF /* HDLY_ChangeCityAlert.swift */; };
+		D624EE5321B67AB100E45CAF /* HDLY_ChangeCityAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = D624EE5221B67AB100E45CAF /* HDLY_ChangeCityAlert.xib */; };
 		D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D62B44E5219A7AE100A977CF /* XHStarRateView.m */; };
 		D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F65D4219914D000D32544 /* CoreLocation.framework */; };
 		D62FB0E221AFE980000D84BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62FB0E121AFE980000D84BF /* Security.framework */; };
@@ -951,6 +953,8 @@
 		D62277D121368069008F1416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D62277E5213696ED008F1416 /* ReportErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportErrorViewModel.swift; sourceTree = "<group>"; };
 		D62277E721369869008F1416 /* ReportErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportErrorModel.swift; sourceTree = "<group>"; };
+		D624EE5021B67AA600E45CAF /* HDLY_ChangeCityAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ChangeCityAlert.swift; sourceTree = "<group>"; };
+		D624EE5221B67AB100E45CAF /* HDLY_ChangeCityAlert.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_ChangeCityAlert.xib; sourceTree = "<group>"; };
 		D62B44E4219A7AE100A977CF /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		D62B44E5219A7AE100A977CF /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		D62F65D4219914D000D32544 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2698,6 +2702,8 @@
 				D69451892196757900E7DA44 /* HDLY_OpenVipTipView.xib */,
 				D694518D2196840B00E7DA44 /* HDLY_NumGuideHelpView.swift */,
 				D694518B219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib */,
+				D624EE5021B67AA600E45CAF /* HDLY_ChangeCityAlert.swift */,
+				D624EE5221B67AB100E45CAF /* HDLY_ChangeCityAlert.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2867,7 +2873,7 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -2926,6 +2932,7 @@
 				D694518C219683EB00E7DA44 /* HDLY_NumGuideHelpView.xib in Resources */,
 				A788E40621AF912000E2FC62 /* HDSSL_OrderCell.xib in Resources */,
 				D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */,
+				D624EE5321B67AB100E45CAF /* HDLY_ChangeCityAlert.xib in Resources */,
 				D6AA0B05213530C60036320F /* HDLY_TopicRecmd_Cell.xib in Resources */,
 				D69B15B8212EB23000E9BCA0 /* HDLY_CourseComment_Header.xib in Resources */,
 				A7441D2F21A2A0D50064E6A6 /* photo_delete@2x.png in Resources */,
@@ -3159,6 +3166,7 @@
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */,
 				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
+				D624EE5121B67AA600E45CAF /* HDLY_ChangeCityAlert.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
 				D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */,

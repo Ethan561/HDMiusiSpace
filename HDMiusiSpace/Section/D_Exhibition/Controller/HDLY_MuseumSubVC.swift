@@ -42,15 +42,19 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
         }
         self.dataRequest()
         addRefresh()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"), object: nil)
+
     }
     
-    func dataRequest()  {
+    @objc func dataRequest()  {
+        
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: 0, take: 20, city_name: "", longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        let cityName: String = HDDeclare.shared.locModel.cityName
+
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: 0, take: 20, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

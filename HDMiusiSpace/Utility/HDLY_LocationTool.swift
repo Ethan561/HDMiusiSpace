@@ -119,6 +119,12 @@ extension HDLY_LocationTool {
                     LOG("country: \(String(describing: placeMark!.country))")//国家
 
                     self.city = placeMark?.locality
+                    
+                    let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
+                    if cityName == nil {
+                        HDDeclare.shared.locModel.cityName = self.city ?? ""
+                    }
+                    
                     if self.delegate != nil {
                         self.delegate!.didUpdateLocationInfo(city: placeMark!.locality ?? "", coordinate: newLocation!.coordinate)
                     }
@@ -137,5 +143,16 @@ extension HDLY_LocationTool {
             break
         }
     }
-
+    
 }
+
+
+class HDLY_LocModel: NSObject {
+    
+    var cityName  : String = ""
+    var longitude : String = ""
+    var latitude  : String = ""
+    
+}
+
+

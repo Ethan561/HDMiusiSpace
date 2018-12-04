@@ -41,11 +41,14 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         }
         self.dataRequest()
         addRefresh()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"), object: nil)
+
     }
     
-    func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: 0, take: 20, city_name: "", longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+   @objc func dataRequest()  {
+        let cityName: String = HDDeclare.shared.locModel.cityName
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: 0, take: 20, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

@@ -96,6 +96,11 @@
 		A74E6FC1219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */; };
 		A74E700C219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */; };
 		A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */; };
+		A753D10F21B6269F009C14D7 /* HDSSL_defaultAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */; };
+		A753D11121B626A9009C14D7 /* HDSSL_defaultAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */; };
+		A753D11321B65941009C14D7 /* HDSSL_goodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753D11221B65941009C14D7 /* HDSSL_goodsModel.swift */; };
+		A753D11621B66506009C14D7 /* HD_goodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753D11421B66506009C14D7 /* HD_goodsCell.swift */; };
+		A753D11721B66506009C14D7 /* HD_goodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A753D11521B66506009C14D7 /* HD_goodsCell.xib */; };
 		A756C8382191858600C1747A /* RootDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756C8372191858600C1747A /* RootDViewModel.swift */; };
 		A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF32192B414004C7F8A /* ExhibitionModel.swift */; };
 		A7676BF72192B921004C7F8A /* HDSSL_dExhibitionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */; };
@@ -687,6 +692,11 @@
 		A74E6FBF219A6BE4007CD3E7 /* HDSSL_dMuseumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumCell.swift; sourceTree = "<group>"; };
 		A74E700B219AA077007CD3E7 /* HDSSL_dExhibitionDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionDetailVC.swift; sourceTree = "<group>"; };
 		A74E700D219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dMuseumDetailVC.swift; sourceTree = "<group>"; };
+		A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_defaultAlertView.swift; sourceTree = "<group>"; };
+		A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_defaultAlertView.xib; sourceTree = "<group>"; };
+		A753D11221B65941009C14D7 /* HDSSL_goodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_goodsModel.swift; sourceTree = "<group>"; };
+		A753D11421B66506009C14D7 /* HD_goodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HD_goodsCell.swift; sourceTree = "<group>"; };
+		A753D11521B66506009C14D7 /* HD_goodsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HD_goodsCell.xib; sourceTree = "<group>"; };
 		A756C8372191858600C1747A /* RootDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootDViewModel.swift; sourceTree = "<group>"; };
 		A7676BF32192B414004C7F8A /* ExhibitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionModel.swift; sourceTree = "<group>"; };
 		A7676BF52192B921004C7F8A /* HDSSL_dExhibitionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_dExhibitionCell.swift; sourceTree = "<group>"; };
@@ -1315,6 +1325,8 @@
 				A7AA22A221AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift */,
 				A7AA22A421AE274200CDA6CE /* HDSSL_recordCell.swift */,
 				A7AA22A521AE274200CDA6CE /* HDSSL_recordCell.xib */,
+				A753D11421B66506009C14D7 /* HD_goodsCell.swift */,
+				A753D11521B66506009C14D7 /* HD_goodsCell.xib */,
 			);
 			path = MyWallet;
 			sourceTree = "<group>";
@@ -2574,6 +2586,7 @@
 				D68D54172133A9CD000CD258 /* HDLY_UserModel.swift */,
 				1B2928F221A6808900FEF21C /* HDZQ_MyOwnModel.swift */,
 				D618E85E21B26D36001C05FC /* HDLY_NotiMsgModel.swift */,
+				A753D11221B65941009C14D7 /* HDSSL_goodsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2771,6 +2784,8 @@
 				A7AC35BA214A51F6004E8BC1 /* HDSSL_ExhibitionCell.xib */,
 				A7AC35BD214A521A004E8BC1 /* HDSSL_MuseumCell.swift */,
 				A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */,
+				A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */,
+				A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2985,6 +3000,7 @@
 				D66EDF98212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib in Resources */,
 				A7A90A5E21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib in Resources */,
 				A7676BF82192B921004C7F8A /* HDSSL_dExhibitionCell.xib in Resources */,
+				A753D11121B626A9009C14D7 /* HDSSL_defaultAlertView.xib in Resources */,
 				D6C9FCD521183910007C8E56 /* RootB.storyboard in Resources */,
 				D6375688219FFC4D004AD093 /* HDLY_MuseumInfoType3Cell.xib in Resources */,
 				D6C9FC192117FA3A007C8E56 /* Assets.xcassets in Resources */,
@@ -3013,6 +3029,7 @@
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */,
 				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
+				A753D11721B66506009C14D7 /* HD_goodsCell.xib in Resources */,
 				D66991CE2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib in Resources */,
 				D6884E5A211E7D5200ABDE5E /* HDLY_Kids_Cell1.xib in Resources */,
 				D68D50DA213A6CA0000F80E6 /* HDLY_RootACard_Cell.xib in Resources */,
@@ -3215,6 +3232,7 @@
 				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,
+				A753D11621B66506009C14D7 /* HD_goodsCell.swift in Sources */,
 				D61E94CF2192D12400C5299F /* UIImage+MultiFormat.m in Sources */,
 				D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */,
 				A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */,
@@ -3273,6 +3291,7 @@
 				D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */,
 				A799C038219FEFB500BA526C /* HDSSL_sameMuseumCell.swift in Sources */,
 				D66C35D6213FB14B00363D7C /* HDLY_MyDynamicCell.swift in Sources */,
+				A753D11321B65941009C14D7 /* HDSSL_goodsModel.swift in Sources */,
 				D6C9FC8821181FD1007C8E56 /* HDLoadingView.swift in Sources */,
 				D622778021363349008F1416 /* HDLY_FeedbackChoose_View.swift in Sources */,
 				D66C35C6213FA6D000363D7C /* HDLY_Membership_Cell.swift in Sources */,
@@ -3553,6 +3572,7 @@
 				D6AA0B04213530C60036320F /* HDLY_TopicRecmd_Cell.swift in Sources */,
 				D6866A492126A0ED0044EEAA /* HDLY_CourseList_SubVC1.swift in Sources */,
 				D6115AEE218FD490004A05DA /* ZFReachabilityManager.m in Sources */,
+				A753D10F21B6269F009C14D7 /* HDSSL_defaultAlertView.swift in Sources */,
 				D62277A621367D4D008F1416 /* KingfisherPhotoLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

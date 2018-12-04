@@ -59,6 +59,7 @@ class HDZQ_FoorprintCell: UITableViewCell {
         
     }
     
+    
     func setupExhibitView(model:FPContent) {
         if model.exhibit_list.count > 0 {
             let x = exhibitionLabel.ly_left

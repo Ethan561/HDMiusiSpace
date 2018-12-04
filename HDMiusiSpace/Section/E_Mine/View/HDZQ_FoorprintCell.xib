@@ -34,6 +34,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-Ln-JQv">
                         <rect key="frame" x="251" y="7" width="22" height="22"/>
                         <state key="normal" image="xz_icon_share_black_default"/>
+                        <connections>
+                            <action selector="shareAction:" destination="nVa-Fx-Wxp" eventType="touchUpInside" id="mzx-Wa-3Rr"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家博物馆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAV-xn-H8X">
                         <rect key="frame" x="58.5" y="43.5" width="306.5" height="20"/>
@@ -62,7 +65,7 @@
                 <outlet property="exhibitionTitleLabel" destination="pGz-3v-D21" id="knU-Tj-diw"/>
                 <outlet property="shareBtn" destination="1dP-Ln-JQv" id="bW2-DY-Iqh"/>
             </connections>
-            <point key="canvasLocation" x="30" y="-189"/>
+            <point key="canvasLocation" x="-65" y="-187"/>
         </tableViewCell>
     </objects>
     <resources>

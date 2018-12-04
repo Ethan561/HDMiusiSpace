@@ -3075,7 +3075,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J5K-lV-NbS">
-                                <rect key="frame" x="0.0" y="50" width="375" height="535.5"/>
+                                <rect key="frame" x="0.0" y="65.5" width="375" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J5K-lV-NbS" secondAttribute="height" multiplier="7:10" id="OaR-rs-YF8"/>
@@ -3117,20 +3117,23 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHa-aT-q32">
-                                <rect key="frame" x="165.5" y="585.5" width="44" height="44"/>
+                                <rect key="frame" x="165.5" y="601.5" width="44" height="44"/>
                                 <color key="backgroundColor" red="0.2196078431372549" green="0.2196078431372549" blue="0.2196078431372549" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="D7G-79-m91"/>
                                     <constraint firstAttribute="height" constant="44" id="ynY-lS-fXe"/>
                                 </constraints>
                                 <state key="normal" image="xz_icon_share_white_default"/>
+                                <connections>
+                                    <action selector="shareAction:" destination="5Rc-cC-fha" eventType="touchUpInside" id="6JD-M8-7zl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jHa-aT-q32" firstAttribute="top" secondItem="J5K-lV-NbS" secondAttribute="bottom" id="3vH-5Y-wFu"/>
                             <constraint firstItem="xXU-gv-gxN" firstAttribute="trailing" secondItem="J5K-lV-NbS" secondAttribute="trailing" id="A7D-7B-tUT"/>
-                            <constraint firstItem="J5K-lV-NbS" firstAttribute="top" secondItem="xXU-gv-gxN" secondAttribute="top" constant="30" id="EBZ-ew-9QC"/>
+                            <constraint firstItem="J5K-lV-NbS" firstAttribute="centerY" secondItem="ymH-et-MVb" secondAttribute="centerY" id="THL-ge-iry"/>
                             <constraint firstItem="jHa-aT-q32" firstAttribute="centerX" secondItem="ymH-et-MVb" secondAttribute="centerX" id="bUJ-a2-MGg"/>
                             <constraint firstItem="J5K-lV-NbS" firstAttribute="leading" secondItem="xXU-gv-gxN" secondAttribute="leading" id="du1-Yj-D2U"/>
                         </constraints>

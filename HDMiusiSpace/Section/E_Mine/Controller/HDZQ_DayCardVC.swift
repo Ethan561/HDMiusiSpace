@@ -45,7 +45,7 @@ extension HDZQ_DayCardVC:UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_DayCardTableViewCell") as? HDZQ_DayCardTableViewCell
         cell?.dateLabel.text = model.month
         cell?.numberLabel.text = "/\(model.num)"
-
+        cell?.vc = self
         cell?.dayList = model.date_list
         return cell!
     }
@@ -54,7 +54,9 @@ extension HDZQ_DayCardVC:UITableViewDataSource {
 }
 
 extension HDZQ_DayCardVC:UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+    }
 }
 
 
@@ -63,6 +65,7 @@ class HDZQ_DayCardTableViewCell: UITableViewCell {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var currentNumberLabel: UILabel!
+    public var vc : HDZQ_DayCardVC?
     public var dayList = [DayCardModel]()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -103,7 +106,15 @@ extension HDZQ_DayCardTableViewCell:UIScrollViewDelegate {
 }
 
 extension HDZQ_DayCardTableViewCell:UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let browserVC = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_DayCardBrowserVC") as! HDZQ_DayCardBrowserVC
+        if self.vc != nil {
+            browserVC.dayList = self.dayList
+            browserVC.index = indexPath.row
+            self.vc!.navigationController?.pushViewController(browserVC, animated: true)
+        }
+        
+    }
 }
 
 class HDZQ_DayCardCollectionViewCell: UICollectionViewCell {

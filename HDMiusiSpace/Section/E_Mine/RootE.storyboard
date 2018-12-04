@@ -55,7 +55,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="421"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jx_img_rika" translatesAutoresizingMaskIntoConstraints="NO" id="XS3-4Y-PL1">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XS3-4Y-PL1">
                                                                         <rect key="frame" x="0.0" y="0.0" width="315" height="421"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -3096,10 +3096,10 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L7O-Qr-Rea">
                                                     <rect key="frame" x="0.0" y="0.0" width="272" height="397"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="0.2836308924" green="0.78432684080000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="L7O-Qr-Rea" firstAttribute="leading" secondItem="Xp9-ld-0Sy" secondAttribute="leading" id="EAr-ES-4Wm"/>
                                             <constraint firstAttribute="bottom" secondItem="L7O-Qr-Rea" secondAttribute="bottom" id="GXM-vj-oSS"/>
@@ -3360,7 +3360,6 @@ sgi0CLYIuAi6CL8IxxozGjUaOhpIGkwaUxpYGmUaaBp1GnoaghqFGooakhqVGqcaqhqvAAAAAAAAAgEA
 AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
 </mutableData>
         </image>
-        <image name="jx_img_rika" width="335" height="480"/>
         <image name="jxtj_img3" width="140" height="100"/>
         <image name="nav_back" width="12" height="20"/>
         <image name="wd_icon_ddwc_white" width="16" height="16"/>

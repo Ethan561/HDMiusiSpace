@@ -139,6 +139,24 @@ extension UIImage {
         
         return UIImage.init(cgImage: img.cgImage!)
     }
+    
+    class func grayImage(size: CGSize) -> UIImage? {
+        let width = size.width
+        let height = size.height
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(UIColor.HexColor(0xEEEEEE).cgColor)
+        context?.fill(rect)
+        
+        guard let img = UIGraphicsGetImageFromCurrentImageContext() else {
+            return UIImage.init(named: "img_nothing")
+        }
+        UIGraphicsEndImageContext()
+        
+        return UIImage.init(cgImage: img.cgImage!)
+    }
+    
     /// 获取网络图片尺寸
     
     ///

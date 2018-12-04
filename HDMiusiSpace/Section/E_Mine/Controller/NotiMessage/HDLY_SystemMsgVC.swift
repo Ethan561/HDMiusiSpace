@@ -54,7 +54,7 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
         self.tableView.es.noticeNoMoreData()
     }
 
-
+    
 }
 
 

@@ -61,6 +61,46 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
         navigationBar.layer.shadowColor = UIColor.black.cgColor
     }
     
+    @IBAction func shareAction(_ sender: Any) {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+    }
+}
+
+extension HDZQ_DayCardBrowserVC: UMShareDelegate {
+    func shareDelegate(platformType: UMSocialPlatformType) {
+        
+        guard let url = self.dayList[index].img else { return }
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = url
+        let shareObject = UMShareImageObject()
+        shareObject.shareImage = thumbURL
+        messageObject.shareObject = shareObject
+        
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+            }
+        }
+    }
 }
 
 extension HDZQ_DayCardBrowserVC : UICollectionViewDataSource {
@@ -104,6 +144,7 @@ extension HDZQ_DayCardBrowserVC : UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let idx = Int(scrollView.contentOffset.x / ScreenWidth)
         self.title = "\(idx + 1)/\(dayList.count)"
+        self.index = idx
     }
     
 }

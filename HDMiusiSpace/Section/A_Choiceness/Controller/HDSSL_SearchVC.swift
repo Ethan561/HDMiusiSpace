@@ -243,6 +243,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
     }
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
+        //清空搜索历史记录
+        
         historyArray.removeAll()
         self.dTableView.reloadData()
         UserDefaults().set(historyArray, forKey: SearchHistory)
@@ -528,25 +530,6 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         //
         let bgView = UIView.init(frame: frame)
         
-//        var x:CGFloat = 0
-//        var imgWArr = [CGFloat]()
-//        for (i,imgStr) in arr.enumerated() {
-//            let imgV = UIImageView()
-//            imgV.contentMode = .scaleAspectFit
-//            imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
-//
-//                let imgSize = img!.size
-//                let imgH: CGFloat = 15
-//                let imgW: CGFloat = 15*imgSize.width/imgSize.height
-//                imgWArr.append(imgW)
-//                if i > 0 {
-//                    let w = imgWArr[i-1]
-//                    x = x + w
-//                }
-//                imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
-//                bgView.addSubview(imgV)
-//            }
-//        }
         for i in 0..<arr.count {
             //
             var size1 = CGSize.zero

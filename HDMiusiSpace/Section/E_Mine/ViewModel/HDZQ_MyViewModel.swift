@@ -75,6 +75,19 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    //我的钱包
+    var goodsData: Bindable = Bindable(GoodsData())
+    func requestMyWalletData(apiToken:String,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyWallet(api_token: apiToken), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            
+            let model:HDSSL_goodsModel = try! jsonDecoder.decode(HDSSL_goodsModel.self, from: result)
+            self.goodsData.value = model.data!
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 

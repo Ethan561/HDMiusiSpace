@@ -14,6 +14,7 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     private var lastIndex : IndexPath?
     private var lastRow : Int?
     private var currentIndex : String?
+    private var shareModel :FPContent?
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,13 +62,14 @@ extension HDZQ_MyFootprintVC : UITableViewDataSource {
         cell?.index = indexPath
         cell?.currentIndex = self.currentIndex
         cell?.delegate = self
-        cell?.shareBtn.addTouchUpInSideBtnAction({ (btn) in
+        cell?.shareBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
             let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
             tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
             tipView.delegate = self
             if kWindow != nil {
                 kWindow!.addSubview(tipView)
             }
+            self?.shareModel = model
         })
         return cell!
     }
@@ -105,32 +107,32 @@ extension HDZQ_MyFootprintVC : UITableViewDataSource {
 extension HDZQ_MyFootprintVC: UMShareDelegate {
     func shareDelegate(platformType: UMSocialPlatformType) {
         
-//        guard let url = self.dayList[index].img else { return }
-//        //创建分享消息对象
-//        let messageObject = UMSocialMessageObject()
-//        //创建网页内容对象
-//        let thumbURL = url
-//        let shareObject = UMShareImageObject()
-//        shareObject.shareImage = thumbURL
-//        messageObject.shareObject = shareObject
-//        
-//        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
-//            if error != nil {
-//                //UMSocialLog(error)
-//                LOG(error)
-//            } else {
-//                if (data is UMSocialShareResponse) {
-//                    var resp = data as? UMSocialShareResponse
-//                    //分享结果消息
-//                    LOG(resp?.message)
-//                    
-//                    //第三方原始返回的数据
-//                    print(resp?.originalResponse)
-//                } else {
-//                    LOG(data)
-//                }
-//            }
-//        }
+        guard self.shareModel != nil else { return }
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = shareModel?.exhibition_share_html
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: shareModel?.exhibition_title, descr: shareModel?.museum_title, thumImage: nil)
+        shareObject?.webpageUrl = thumbURL
+        messageObject.shareObject = shareObject
+        
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+            }
+        }
     }
 }
 

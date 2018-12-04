@@ -45,7 +45,7 @@ class HDRootEVC: HDItemBaseVC {
             tabHeader.cardNumberLabel.text = "0"
             tabHeader.foorprintNumberLabel.text = "0"
             tabHeader.foorprintNumberLabel.removeBadge()
-            msgBtn.showBadge()
+            msgBtn.removeBadge()
             self.user = UserDynamic()
             self.myDynamics.removeAll()
             self.courses.removeAll()

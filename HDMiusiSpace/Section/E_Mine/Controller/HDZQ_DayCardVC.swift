@@ -59,12 +59,12 @@ extension HDZQ_DayCardVC:UITableViewDelegate {
     }
 }
 
-
 class HDZQ_DayCardTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var currentNumberLabel: UILabel!
+    public var img = UIImage.grayImage(size: CGSize.init(width: ScreenWidth - 60, height: (ScreenWidth)*1.25))
     public var vc : HDZQ_DayCardVC?
     public var dayList = [DayCardModel]()
     override func awakeFromNib() {
@@ -85,11 +85,9 @@ extension HDZQ_DayCardTableViewCell:UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let card = dayList[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HDZQ_DayCardCollectionViewCell", for: indexPath) as? HDZQ_DayCardCollectionViewCell
-        cell?.darCardImageView.kf.setImage(with: URL.init(string: card.img!))
+        cell?.darCardImageView.kf.setImage(with:  URL.init(string: card.img!), placeholder: self.img, options: nil, progressBlock: nil, completionHandler: nil)
         return cell!
     }
-    
-    
 }
 
 extension HDZQ_DayCardTableViewCell:UIScrollViewDelegate {
@@ -176,7 +174,7 @@ class HDetailItemColletionViewLayout: UICollectionViewFlowLayout {
         }
         return array
     }
-//
+
     /// 这个方法的返回值，就决定了collectionView停止滚动时的偏移量
 //    
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {

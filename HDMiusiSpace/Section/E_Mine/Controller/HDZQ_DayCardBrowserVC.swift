@@ -155,5 +155,7 @@ class HDZQ_DayCardBrowserCell:UICollectionViewCell {
     @IBOutlet weak var imgView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        imgView.layer.cornerRadius = 10.0
+        imgView.clipsToBounds = true
     }
 }

@@ -31,6 +31,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         let itemW = 90
         let itemH = 60
         
+        
         layout.itemSize = CGSize(width: itemW, height: itemH)
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout

@@ -2980,6 +2980,12 @@
                     <connections>
                         <outlet property="btn_openVIP" destination="0cE-gX-mpo" id="YAA-eH-Jkv"/>
                         <outlet property="goldNumberL" destination="Ndd-tj-7Gu" id="FR9-xA-u6S"/>
+                        <outlet property="item1" destination="FPH-Ns-ZOg" id="XHR-Ce-FyR"/>
+                        <outlet property="item2" destination="L63-X3-vp7" id="7e4-FL-Df8"/>
+                        <outlet property="item3" destination="9MD-a0-f5D" id="YOw-ko-URE"/>
+                        <outlet property="item4" destination="dvB-o4-5XE" id="rdx-Bs-Ah4"/>
+                        <outlet property="item5" destination="KbI-kn-0cf" id="H1P-pz-cTh"/>
+                        <outlet property="item6" destination="ndl-Vx-2Oq" id="Rex-AS-dEf"/>
                         <outlet property="menuBg1" destination="vjU-tT-Qri" id="o80-Wh-eTD"/>
                         <outlet property="menuBg2" destination="1z2-ee-nEZ" id="aX4-CF-JYt"/>
                         <outlet property="sele_content1" destination="Uvz-mw-lQr" id="UBe-GF-0nx"/>

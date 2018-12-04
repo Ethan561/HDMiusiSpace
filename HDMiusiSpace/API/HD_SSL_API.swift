@@ -45,6 +45,8 @@ enum HD_SSL_API {
     case publishCommentWith(api_token: String,exhibitId: Int,star: Int,content: String,imgsPaths:Array<String>)
     //生成画报
     case createPaperWith(api_token: String,commentId: Int)
+    //我的钱包
+    case requestMyWallet(api_token: String)
 }
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
@@ -97,6 +99,8 @@ extension HD_SSL_API: TargetType {
         case .createPaperWith(api_token: _, commentId: _):
             return "/api/exhibition/save_photo"
             
+        case .requestMyWallet(api_token: _):
+            return "/api/order/my_wallet"
         //...
             
             
@@ -222,6 +226,12 @@ extension HD_SSL_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        case .requestMyWallet(api_token: let api_token):
+            params = params.merging(["api_token":api_token], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         //...
             
             

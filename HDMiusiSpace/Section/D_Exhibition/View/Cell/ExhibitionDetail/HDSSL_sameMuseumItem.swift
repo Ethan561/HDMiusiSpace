@@ -34,7 +34,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             }
             item_title.text = model!.title
             item_loc.text = model!.address
-            item_starNum.text = String.init(format: "%.1f", model!.star.string)
+            item_starNum.text = model!.star.string
             
             let star: Int = Int(model!.star.int)
             var imgStr = ""

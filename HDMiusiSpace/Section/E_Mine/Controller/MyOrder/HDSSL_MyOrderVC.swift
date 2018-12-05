@@ -66,19 +66,19 @@ extension HDSSL_MyOrderVC:SPPageMenuDelegate {
             case 0:
                 let baseVC:HDSSL_MyOrderSubVC = HDSSL_MyOrderSubVC()
                 self.addChildViewController(baseVC)
-                baseVC.type = 1
+                baseVC.type = 0 
                 self.scrollView.addSubview(self.childViewControllers[0].view)
             case 1:
                 let baseVC:HDSSL_MyOrderSubVC = HDSSL_MyOrderSubVC()
-                baseVC.type = 2
+                baseVC.type = 1
                 self.addChildViewController(baseVC)
             case 2:
                 let baseVC:HDSSL_MyOrderSubVC = HDSSL_MyOrderSubVC()
-                baseVC.type = 3
+                baseVC.type = 2
                 self.addChildViewController(baseVC)
             case 3:
                 let baseVC:HDSSL_MyOrderSubVC = HDSSL_MyOrderSubVC()
-                baseVC.type = 4
+                baseVC.type = 3
                 self.addChildViewController(baseVC)
             default: break
                 

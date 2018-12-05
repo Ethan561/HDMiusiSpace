@@ -2126,8 +2126,8 @@
                                     <constraint firstAttribute="width" constant="70" id="GSb-3A-O0C"/>
                                     <constraint firstAttribute="height" constant="30" id="d9r-Lv-l3a"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="待评价">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="评论晒图">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
@@ -2282,9 +2282,52 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waj-Ne-tK5">
+                                        <rect key="frame" x="124" y="85" width="201" height="23"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_icon_video_black_default" translatesAutoresizingMaskIntoConstraints="NO" id="1oA-vn-EHF">
+                                                <rect key="frame" x="0.0" y="6.5" width="12" height="10"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="10" id="btY-oF-q7N"/>
+                                                    <constraint firstAttribute="width" constant="12" id="cNk-Ke-r47"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24课时" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lC-wn-bYM">
+                                                <rect key="frame" x="14" y="1" width="50" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="Mib-Lu-2Cs"/>
+                                                    <constraint firstAttribute="width" constant="50" id="Uak-Vv-0FQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="蒙特" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCE-re-fFY">
+                                                <rect key="frame" x="69" y="1" width="132" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="DZL-gF-zXp"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23" id="Jko-xo-ma4"/>
+                                            <constraint firstItem="5lC-wn-bYM" firstAttribute="leading" secondItem="1oA-vn-EHF" secondAttribute="trailing" constant="2" id="JnN-rs-iT8"/>
+                                            <constraint firstAttribute="trailing" secondItem="iCE-re-fFY" secondAttribute="trailing" id="MtZ-G8-DSm"/>
+                                            <constraint firstItem="1oA-vn-EHF" firstAttribute="centerY" secondItem="waj-Ne-tK5" secondAttribute="centerY" id="QRM-S5-TfN"/>
+                                            <constraint firstItem="5lC-wn-bYM" firstAttribute="centerY" secondItem="waj-Ne-tK5" secondAttribute="centerY" id="Ulc-QS-ksf"/>
+                                            <constraint firstItem="1oA-vn-EHF" firstAttribute="leading" secondItem="waj-Ne-tK5" secondAttribute="leading" id="bGo-IG-5aB"/>
+                                            <constraint firstItem="iCE-re-fFY" firstAttribute="leading" secondItem="5lC-wn-bYM" secondAttribute="trailing" constant="5" id="hqw-Me-GNk"/>
+                                            <constraint firstItem="iCE-re-fFY" firstAttribute="centerY" secondItem="waj-Ne-tK5" secondAttribute="centerY" id="wW0-SO-3Mt"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="waj-Ne-tK5" firstAttribute="leading" secondItem="m3F-Ik-bPF" secondAttribute="trailing" constant="10" id="0C9-v2-0yt"/>
                                     <constraint firstAttribute="trailing" secondItem="9Xf-PF-hh5" secondAttribute="trailing" constant="20" id="1fG-hE-sv9"/>
                                     <constraint firstItem="NtR-L3-Mjn" firstAttribute="leading" secondItem="IO5-N5-8YE" secondAttribute="leading" constant="10" id="3Jz-3L-nts"/>
                                     <constraint firstItem="BjW-wx-KbC" firstAttribute="leading" secondItem="IO5-N5-8YE" secondAttribute="leading" id="3QV-Cq-lYG"/>
@@ -2301,10 +2344,12 @@
                                     <constraint firstItem="5VK-oq-hjb" firstAttribute="leading" secondItem="IO5-N5-8YE" secondAttribute="leading" constant="10" id="EQ5-HO-zob"/>
                                     <constraint firstItem="UvI-nz-Wcb" firstAttribute="leading" secondItem="5VK-oq-hjb" secondAttribute="trailing" id="EUH-iN-Jly"/>
                                     <constraint firstItem="Qe8-8m-gVH" firstAttribute="top" secondItem="m3F-Ik-bPF" secondAttribute="bottom" constant="20" id="HtK-Jn-28Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="waj-Ne-tK5" secondAttribute="trailing" constant="10" id="JCL-ul-hcH"/>
                                     <constraint firstItem="YB6-PV-Nmn" firstAttribute="top" secondItem="Qe8-8m-gVH" secondAttribute="bottom" constant="15" id="Jar-j2-sCn"/>
                                     <constraint firstItem="9Xf-PF-hh5" firstAttribute="leading" secondItem="Sw7-d8-LZ4" secondAttribute="trailing" id="KcP-Og-NR7"/>
                                     <constraint firstItem="DdE-3B-MK0" firstAttribute="top" secondItem="IO5-N5-8YE" secondAttribute="top" constant="40" id="NBY-By-BDl"/>
                                     <constraint firstItem="Sw7-d8-LZ4" firstAttribute="leading" secondItem="IO5-N5-8YE" secondAttribute="leading" constant="10" id="RaA-Ym-gjP"/>
+                                    <constraint firstItem="waj-Ne-tK5" firstAttribute="top" secondItem="DdE-3B-MK0" secondAttribute="bottom" constant="5" id="SfP-bA-flC"/>
                                     <constraint firstAttribute="trailing" secondItem="Qe8-8m-gVH" secondAttribute="trailing" constant="10" id="TAk-cb-iTu"/>
                                     <constraint firstItem="n1M-jk-Mgz" firstAttribute="top" secondItem="9Xf-PF-hh5" secondAttribute="bottom" constant="3" id="TtL-6Z-6cT"/>
                                     <constraint firstItem="jc6-Zv-9f2" firstAttribute="top" secondItem="MZc-v3-2db" secondAttribute="bottom" constant="3" id="UFI-86-1vd"/>
@@ -2364,8 +2409,11 @@
                         <viewLayoutGuide key="safeArea" id="9OO-e6-cmu"/>
                     </view>
                     <connections>
+                        <outlet property="authorLab" destination="iCE-re-fFY" id="Vp7-sL-Fmz"/>
                         <outlet property="btn_bottom" destination="A88-0A-PD5" id="06c-7o-ETO"/>
                         <outlet property="btn_state" destination="7zt-Oq-rdb" id="0Wz-Iy-1hz"/>
+                        <outlet property="classBgView" destination="waj-Ne-tK5" id="lE0-j7-sAL"/>
+                        <outlet property="classTimeLab" destination="5lC-wn-bYM" id="cqG-1N-nOT"/>
                         <outlet property="img_content" destination="m3F-Ik-bPF" id="gfZ-DR-uGh"/>
                         <outlet property="img_icon_state" destination="a7m-oo-XR9" id="ipU-wQ-NkY"/>
                         <outlet property="lab_contentRealPrice" destination="jc6-Zv-9f2" id="F2l-C4-6tp"/>
@@ -2376,6 +2424,8 @@
                         <outlet property="lab_orderNumber" destination="UvI-nz-Wcb" id="XA2-8v-keY"/>
                         <outlet property="lab_orderPayTime" destination="n1M-jk-Mgz" id="COM-DR-2qZ"/>
                         <outlet property="lab_state" destination="a0O-xQ-SRD" id="9WJ-hL-7ho"/>
+                        <outlet property="payStateTitleLab" destination="NtR-L3-Mjn" id="mR2-Rs-mad"/>
+                        <outlet property="payTimeTitleLab" destination="oEU-L4-nqZ" id="caH-bb-bzP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUb-9l-jjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3002,5 +3052,6 @@ AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
         <image name="xtxi_icon_ms" width="40" height="41"/>
         <image name="xz_icon_share_black_default" width="22" height="22"/>
         <image name="xz_icon_share_white_default" width="22" height="22"/>
+        <image name="xz_icon_video_black_default" width="12" height="10"/>
     </resources>
 </document>

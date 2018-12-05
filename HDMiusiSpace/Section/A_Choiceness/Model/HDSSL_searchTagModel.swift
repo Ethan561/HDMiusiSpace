@@ -69,7 +69,7 @@ struct HDSSL_SearchExhibition: Codable {
     var img               : String?  //图片
     var is_free           : Int?     //是否免费1免费，0不免费
     var price             : Float?   //价格
-    var star              : String?   //评星
+    var star              : TStrInt?   //评星
     var address           : String?  //展览地址
     var icon_list         : [String]?//服务图标地址
 }

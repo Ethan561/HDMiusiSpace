@@ -14,6 +14,30 @@ class HDTagChooseCareerVC: UIViewController {
     @IBOutlet weak var lab_des  : UILabel!
     @IBOutlet weak var TagBgView: UIView!
     
+    // firstGuideView
+    @IBOutlet weak var firstGuideView: UIView!
+    @IBOutlet weak var firstGuideScrollView: UIScrollView!
+    @IBOutlet weak var firstGuideBtn: UIButton!
+    @IBOutlet weak var guideImg1: UIImageView!
+    @IBOutlet weak var guideImg2: UIImageView!
+    @IBOutlet weak var guideImg3: UIImageView!
+    
+    @IBOutlet weak var img1HeightCons: NSLayoutConstraint!
+    @IBOutlet weak var img2HeightCons: NSLayoutConstraint!
+    @IBOutlet weak var img3HeightCons: NSLayoutConstraint!
+    
+    @IBOutlet weak var pageControl: FSPageControl! {
+        didSet {
+            self.pageControl.contentHorizontalAlignment = .center
+            self.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            self.pageControl.setImage(UIImage(named:"icon_gray"), for: .normal)
+            self.pageControl.setImage(UIImage(named:"icon_red"), for: .selected)
+            self.pageControl.itemSpacing = 15
+            self.pageControl.interitemSpacing = 18
+            
+        }
+    }
+    
     var tagStrArray : [String] = Array.init()        //标签字符串数组
     var selectedtagArray = [HDSSL_Tag]()             //已选标签字符串数组
     var dataArr = [HDSSL_TagData]()                  //标签类别数组
@@ -30,7 +54,36 @@ class HDTagChooseCareerVC: UIViewController {
         //获取启动标签
         self.viewModel.request_getLaunchTagList(self)
         
+        //
+        setupFirstGuideView()
+        
+        if UIDevice.current.isiPhoneXSeries() == true {
+            //iPhoneX
+            let imgH = ScreenWidth * 600 / 375
+            img1HeightCons.constant = imgH
+            img2HeightCons.constant = imgH
+            img3HeightCons.constant = imgH
+            guideImg1.image = UIImage.init(named: "img_01")
+            guideImg2.image = UIImage.init(named: "img_02")
+            guideImg3.image = UIImage.init(named: "img_03")
+            
+        } else {
+            let imgH = ScreenWidth * 468 / 375
+            img1HeightCons.constant = imgH
+            img2HeightCons.constant = imgH
+            img3HeightCons.constant = imgH
+            guideImg1.image = UIImage.init(named: "img_01-1")
+            guideImg2.image = UIImage.init(named: "img_02-1")
+            guideImg3.image = UIImage.init(named: "img_03-1")
+            
+        }
+        
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
@@ -88,6 +141,7 @@ class HDTagChooseCareerVC: UIViewController {
     
 
     
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -100,4 +154,39 @@ class HDTagChooseCareerVC: UIViewController {
         }
     }
 }
+
+extension HDTagChooseCareerVC: UIScrollViewDelegate {
+    
+    func setupFirstGuideView() {
+        firstGuideScrollView.showsVerticalScrollIndicator = false
+        firstGuideScrollView.showsHorizontalScrollIndicator = false
+        firstGuideScrollView.bounces = false
+        firstGuideScrollView.delegate = self
+        firstGuideScrollView.isPagingEnabled = true
+        
+        //
+        firstGuideBtn.layer.cornerRadius = 20
+        firstGuideBtn.layer.masksToBounds = true
+        
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        
+    }
+    
+    
+    @IBAction func firstGuideBtnAction(_ sender: Any) {
+        
+        firstGuideView.isHidden = true
+    }
+    
+    //MARK: --- UIScrollViewDelegate --
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex: NSInteger = lroundf(Float(scrollView.contentOffset.x/ScreenWidth))
+        print("scrollViewDidScroll: \(pageIndex)")
+        pageControl.currentPage = pageIndex
+    }
+    
+    
+}
+
 

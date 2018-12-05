@@ -40,7 +40,7 @@ struct HDLY_dExhibitionListD: Codable {
     var exhibitionID: Int = 0
     var img: String?
     var title, address: String?
-    var star: String?
+    var star: TStrInt?
     var iconList: [String]?
     
     enum CodingKeys: String, CodingKey {

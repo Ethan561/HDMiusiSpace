@@ -85,7 +85,7 @@ class HDSSL_dCommentCell: UITableViewCell {
         //名字
         cell_userName.text = String.init(format: "%@", listModel!.nickname!)
         //星级数量
-        self.getStarView(listModel?.star)
+        self.getStarView(listModel?.star?.int)
         //评论内容
         cell_content.text = String.init(format: "%@", listModel!.content!)
         //评论图片
@@ -113,7 +113,7 @@ class HDSSL_dCommentCell: UITableViewCell {
         //名字
         cell_userName.text = String.init(format: "%@", myModel!.nickname)
         //星级数量
-        self.getStarView(Int(myModel!.star))
+        self.getStarView(Int(myModel!.star.int))
         //评论内容
         cell_content.text = String.init(format: "%@", myModel!.content)
         //评论图片

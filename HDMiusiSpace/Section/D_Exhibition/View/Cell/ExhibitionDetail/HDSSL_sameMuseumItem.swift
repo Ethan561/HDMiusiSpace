@@ -34,9 +34,9 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             }
             item_title.text = model!.title
             item_loc.text = model!.address
-            item_starNum.text = String.init(format: "%.1f", model!.star)
+            item_starNum.text = model!.star.string
             
-            let star: Int = Int(model!.star) ?? 0
+            let star: Int = Int(model!.star.int)
             var imgStr = ""
             if star < 2 {
                 imgStr = "exhibitionCmt_1_5"

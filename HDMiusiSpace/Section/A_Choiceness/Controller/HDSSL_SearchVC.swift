@@ -504,7 +504,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 //标签
                 cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
                 //评分
-                cell?.cell_scoreLab.text = String.init(format: "%@", exhibition.star!)
+                cell?.cell_scoreLab.text = exhibition.star?.string
                 
                 return cell!
                 

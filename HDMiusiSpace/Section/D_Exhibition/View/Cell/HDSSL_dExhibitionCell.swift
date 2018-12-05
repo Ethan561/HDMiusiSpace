@@ -41,8 +41,8 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             }
             cellTitle.text = model?.title
             cell_locaAndPrice.text = model?.address
-            cell_number.text = model!.star
-            let star: Float! = Float(model!.star ?? "0")
+            cell_number.text = model!.star?.string
+            let star: Float! = Float(model!.star?.string ?? "0")
             var imgStr = ""
             if star < 2 {
                 imgStr = "exhibitionCmt_1_5"

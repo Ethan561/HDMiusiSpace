@@ -80,7 +80,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     //MARK: 加载数据
     func loadMyDatas() {
         //请求数据
-        viewModel.request_getExhibitionDetail(exhibitionId: 1, vc: self)
+        guard let exID = exhibition_id else {
+            return
+        }
+        viewModel.request_getExhibitionDetail(exhibitionId: exID, vc: self)
     }
     
     //mvvm
@@ -485,10 +488,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
-                cell.cell_starNumL.text = String.init(format: "%.1f", self.exdataModel?.data?.star ?? "")
+                cell.cell_starNumL.text = self.exdataModel?.data?.star?.string
                 if self.exdataModel?.data?.star != nil {
-                    let num:Int = Int(self.exdataModel!.data!.star!) ?? 0
-                    cell.starNum = Double(num)
+                    let num: Double = Double (self.exdataModel!.data!.star!.string) ?? 0.0
+                    cell.starNum = num
                 }
                 
                 return cell

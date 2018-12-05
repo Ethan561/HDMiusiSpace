@@ -19,7 +19,7 @@ struct DetailDataModel: Codable {
     var imgList: [String]?
     var isFavorite: Int?
     var title: String?
-    var star: String?
+    var star: TStrInt?
     var time, exhibitionName, price, address: String?
     var museumImg: String?
     var museumTitle, museumAddress: String?
@@ -74,7 +74,7 @@ struct CommentListModel: Codable {
     var avatar: String
     var isVip: Int
     var nickname: String
-    var star: Int
+    var star: TStrInt
     var content: String
     var imgList: [String]?
     var isLike, likeNum, commentNum: Int
@@ -119,7 +119,7 @@ struct ExhibitionList: Codable {
     let exhibitionID: Int
     let img: String
     let title, address: String
-    let star: String
+    let star: TStrInt
     var iconList: [String]?
     
     enum CodingKeys: String, CodingKey {

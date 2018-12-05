@@ -34,6 +34,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
         }
 //        webview.frame = CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height)
         webview.navigationDelegate = self
+        webview.uiDelegate = self
         webview.scrollView.isScrollEnabled = false
 //        webview.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.flexibleHeight.rawValue)
         webview.load(URLRequest.init(url: URL.init(string: path)!))
@@ -91,7 +92,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
 //        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
 //    }
 }
-extension HDSSL_Sec1Cell:WKNavigationDelegate {
+extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         var webheight = 0.0
         
@@ -119,5 +120,13 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate {
             }
         }
     }
-    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+       print(message)
+        let webheight = Double(message)
+         weak var weakSelf = self
+        if weakSelf?.blockHeight != nil {
+            weakSelf?.blockHeight!(webheight!)
+        }
+        completionHandler()
+    }
 }

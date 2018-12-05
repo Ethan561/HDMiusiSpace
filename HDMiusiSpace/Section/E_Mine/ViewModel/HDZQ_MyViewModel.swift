@@ -88,6 +88,28 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    //我的订单列表
+    var orderList: Bindable = Bindable([MyOrder]())
+    func requestMyOrderList(apiToken:String,skip:Int,take:Int,status:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderList(api_token: apiToken, status: status, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:HDSSLMyOrderModel = try! jsonDecoder.decode(HDSSLMyOrderModel.self, from: result)
+            self.orderList.value = model.data!
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    //我的订单详情
+    var orderDetail: Bindable = Bindable(OrderDetailModel())
+    func requestMyOrderDetail(apiToken:String,orderId:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderDetail(api_token: apiToken, orderId: orderId), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:HDSSLMyOrderDetailModel = try! jsonDecoder.decode(HDSSLMyOrderDetailModel.self, from: result)
+            self.orderDetail.value = model.data!
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 

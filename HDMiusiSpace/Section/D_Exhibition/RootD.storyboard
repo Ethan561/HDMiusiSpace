@@ -136,7 +136,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -212,6 +212,7 @@
                         <outlet property="navBar_btn1" destination="0wZ-I2-Bye" id="ca6-PU-KFa"/>
                         <outlet property="navBar_btn2" destination="NdL-CO-hlL" id="faX-gV-Rsm"/>
                         <outlet property="searchBgView" destination="fzA-lu-dhb" id="iEK-n3-Cd4"/>
+                        <outlet property="searchPlaceLab" destination="AgI-q5-oB5" id="xhq-1i-hnU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t5V-06-44T" userLabel="First Responder" sceneMemberID="firstResponder"/>

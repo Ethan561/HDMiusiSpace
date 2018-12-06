@@ -24,7 +24,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-
+    
     var webViewH: CGFloat = 0
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0

@@ -21,6 +21,8 @@ struct MyOrder: Codable {
     var title: String?
     var img: String?
     var author: String?
+    var isComment:Int?//是否评论1已评论0未评论
+    var isShare:Int? //是否分享1已分享0未分享
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
@@ -29,6 +31,8 @@ struct MyOrder: Codable {
         case payAmount = "pay_amount"
         case goodsID = "goods_id"
         case status, title, img, author
+        case isComment = "is_comment"
+        case isShare = "is_share"
     }
 }
 //---订单详情
@@ -46,6 +50,10 @@ struct OrderDetailModel: Codable {
     var title: String? //标题
     var img: String? //图片
     var author: String? //作者
+    var classNum:Int? //课时
+    var isComment:Int?//是否评论1已评论0未评论
+    var isShare:Int? //是否分享1已分享0未分享
+    
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
@@ -57,5 +65,8 @@ struct OrderDetailModel: Codable {
         case createdAt = "created_at"
         case payTime = "pay_time"
         case discount, title, img, author
+        case classNum = "class_num"
+        case isComment = "is_comment"
+        case isShare = "is_share"
     }
 }

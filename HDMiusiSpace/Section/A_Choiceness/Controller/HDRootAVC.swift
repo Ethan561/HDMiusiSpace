@@ -27,10 +27,11 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     let viewModel: RootAViewModel = RootAViewModel()
     var searchVM: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         setupViews()
@@ -138,6 +139,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        
         //
         tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as! RootBHeaderView
         tabHeader.pagerView.dataSource = self

@@ -47,6 +47,8 @@ enum HD_SSL_API {
     case createPaperWith(api_token: String,commentId: Int)
     //我的钱包
     case requestMyWallet(api_token: String)
+    //订单交易记录
+    case requestOrderRecordList(api_token: String,skip: Int,take: Int)
     //订单列表
     case requestMyOrderList(api_token: String,status: Int,skip: Int,take: Int)
     //订单详情
@@ -105,6 +107,9 @@ extension HD_SSL_API: TargetType {
             
         case .requestMyWallet(api_token: _):
             return "/api/order/my_wallet"
+            
+        case .requestOrderRecordList(api_token: _, skip: _, take: _):
+            return "/api/order/trades_log"
             
         case .requestMyOrderList(api_token: _, status: _, skip: _, take: _):
             return "/api/order/order_list"
@@ -237,6 +242,12 @@ extension HD_SSL_API: TargetType {
             
         case .requestMyWallet(api_token: let api_token):
             params = params.merging(["api_token":api_token], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .requestOrderRecordList(api_token: let api_token, skip: let skip, take: let take):
+            params = params.merging(["skip":skip,"take":take,"api_token":api_token], uniquingKeysWith: {$1})
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]

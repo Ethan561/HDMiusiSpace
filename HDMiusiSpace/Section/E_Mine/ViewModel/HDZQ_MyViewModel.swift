@@ -110,6 +110,18 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    //订单交易记录
+    //我的订单详情
+    var orderRecordList: Bindable = Bindable([OrderRecordDataModel]())
+    func getOrderRecordList(apiToken:String,skip:Int,take:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestOrderRecordList(api_token: apiToken, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:HDSSL_OrderRecordModel = try! jsonDecoder.decode(HDSSL_OrderRecordModel.self, from: result)
+            self.orderRecordList.value = model.data!
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 

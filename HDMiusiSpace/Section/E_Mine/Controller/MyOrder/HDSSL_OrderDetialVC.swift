@@ -135,9 +135,9 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         lab_orderPayTime.text = String.init(format: "%@", orderDetail?.payTime ?? "")
         
     }
-    //客服
+    //客服电话
     @objc func action_server(){
-        
+        UIApplication.shared.openURL(URL(string: "telprompt:131***")!)
     }
     
     //评价

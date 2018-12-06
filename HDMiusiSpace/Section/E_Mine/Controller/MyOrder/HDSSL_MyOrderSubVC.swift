@@ -11,8 +11,8 @@ import ESPullToRefresh
 
 class HDSSL_MyOrderSubVC: HDItemBaseVC {
 
-    private var courses =  [MyCollectCourseModel]()
-    public var type = 1 // 1,2
+    private var orderArray =  [MyOrder]()
+    public var type: Int?  //0全部1待支付2已完成3已取消
     private var viewModel = HDZQ_MyViewModel()
     
     private var take = 10
@@ -34,39 +34,34 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         self.isShowNavShadowLayer = false
         tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
         view.addSubview(self.tableView)
-        addRefresh()
+        addRefresh() //刷新
         bindViewModel()
         requestData()
     }
     
-
+    //请求订单列表
     func requestData() {
-        if type == 1 {
-            viewModel.requestMyStudyCourses(apiToken: HDDeclare.shared.api_token ?? "", skip: skip, take: take, type: type, vc: self)
-        } else if type == 2 {
-            viewModel.requestMyBuyCourses(apiToken: HDDeclare.shared.api_token ?? "", skip: skip, take: take, type: type, vc: self)
-        } else {
-            viewModel.requestMyCollectCourses(apiToken: HDDeclare.shared.api_token ?? "", skip: skip, take: take, type: type, vc: self)
-        }
+        viewModel.requestMyOrderList(apiToken: "123456", skip: skip*10, take: take, status: type!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
-    
+    //mvvm
     func bindViewModel() {
-        viewModel.bugCourses.bind { [weak self] (models) in
-            self?.refreshTableView(models: models)
+        
+        viewModel.orderList.bind { (models) in
+            self.refreshTableView(models: models)
         }
-        viewModel.collectCourses.bind { [weak self] (models) in
-            self?.refreshTableView(models: models)
-        }
-        viewModel.studyCourses.bind { [weak self] (models) in
-            self?.refreshTableView(models: models)
-        }
+        
     }
-    
-    func refreshTableView(models:[MyCollectCourseModel]) {
+    //刷新列表
+    func refreshTableView(models:[MyOrder]) {
         if models.count > 0 {
-            self.courses = models
+            if skip == 0 {
+                self.orderArray.removeAll()
+            }
+            self.orderArray += models
             self.tableView.reloadData()
-        } else {
+            
+        }
+        if self.orderArray.count == 0 {
             self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
             self.tableView.ly_showEmptyView()
         }
@@ -92,13 +87,11 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
     
     private func refresh() {
         skip = 0
-        take = 10
         requestData()
     }
     
     private func loadMore() {
-        skip = 0
-        take = take + 10
+        skip += 1
         requestData()
     }
     
@@ -106,7 +99,7 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
 
 extension HDSSL_MyOrderSubVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return orderArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -114,22 +107,88 @@ extension HDSSL_MyOrderSubVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let model = courses[indexPath.row]
+        let model = orderArray[indexPath.row]
+        weak var weakSelf = self
         
-        let cell = HDSSL_OrderCell.getMyTableCell(tableV: tableView)
-        
-        
-        return cell!
+        if model.cateID == 1 {
+            //课程
+            let cell = HDSSL_OrderCell.getMyTableCell(tableV: tableView)
+            cell?.tag = indexPath.row
+            cell?.order = model
+            cell?.bloclkPayOrderFunc(block: { (type) in
+                //支付
+                weakSelf?.payMyOrderOf(type)
+            })
+            cell?.bloclkBeginClassFunc(block: { (type) in
+                //开始上课
+                weakSelf?.beginClassForOrderOf(type)
+            })
+            cell?.bloclkShareOrderFunc(block: { (type) in
+                //晒单分享
+                weakSelf?.shareMyOrderOf(type)
+            })
+            cell?.bloclkDeleteOrderFunc(block: { (type) in
+                //删除订单
+                weakSelf?.deleteMyOrderOf(type)
+            })
+            
+            return cell!
+            
+        }else {
+            //门票
+            let cell = HDSSL_TicketCell.getMyTableCell(tableV: tableView)
+            cell?.tag = indexPath.row
+            cell?.order = model
+            
+            cell?.bloclkPayTicketFunc(block: { (type) in
+                //支付
+                weakSelf?.payMyOrderOf(type)
+            })
+            cell?.bloclkDeleteTicketFunc(block: { (type) in
+                //删除
+                weakSelf?.deleteMyOrderOf(type)
+            })
+            cell?.bloclkCommentTicketFunc(block: { (type) in
+                //评价
+                weakSelf?.commentMyOrderOf(type)
+            })
+            
+            return cell!
+            
+        }
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //博物馆详情
         let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
         let vc: HDSSL_OrderDetialVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_OrderDetialVC") as! HDSSL_OrderDetialVC
-//        let model = dataArr[indexPath.row]
-//        vc.museumId = model.museumID
+        let model = orderArray[indexPath.row]
+        vc.order = model
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
+}
+extension HDSSL_MyOrderSubVC{
+    //操作订单
+    //支付
+    func payMyOrderOf(_ index: Int) {
+        let order = orderArray[index]
+    }
+    //开始上课
+    func beginClassForOrderOf(_ index: Int) {
+        let order = orderArray[index]
+    }
+    //晒单分享
+    func shareMyOrderOf(_ index: Int) {
+        let order = orderArray[index]
+    }
+    //删除订单
+    func deleteMyOrderOf(_ index: Int) {
+        let order = orderArray[index]
+    }
+    //评价订单
+    func commentMyOrderOf(_ index: Int) {
+        let order = orderArray[index]
+    }
 }

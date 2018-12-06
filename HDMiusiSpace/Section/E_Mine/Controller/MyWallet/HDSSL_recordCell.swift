@@ -15,6 +15,25 @@ class HDSSL_recordCell: UITableViewCell {
     @IBOutlet weak var cell_timeL: UILabel!
     @IBOutlet weak var cell_priceL: UILabel!
     
+    var cellData: OrderRecordModel?{
+        didSet{
+            reloadViews()
+        }
+    }
+    
+    func reloadViews(){
+        cell_titleL.text = cellData?.title
+        cell_timeL.text = cellData?.payTime
+        cell_priceL.text = cellData?.payAmount
+        
+        if cellData?.cardID == 1 {
+            cell_img.image = UIImage.init(named: "wd_img_jyjl_ke")
+        }else {
+            cell_img.image = UIImage.init(named: "wd_img_jyjl_m")
+        }
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

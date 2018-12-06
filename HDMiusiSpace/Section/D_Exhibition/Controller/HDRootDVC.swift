@@ -17,6 +17,8 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var btn_location: UIButton!
     //
     @IBOutlet weak var searchBgView: UIView!
+    @IBOutlet weak var searchPlaceLab: UILabel!
+    
     @IBOutlet weak var menuBgView: UIView!
     @IBOutlet weak var exhibitionScrollV: UIScrollView!
     @IBOutlet weak var museumScrollV: UIScrollView!
@@ -99,6 +101,10 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         navBar_btn1.isSelected = true
         condition1 = 1
         museumScrollV.isHidden = true
+        
+        //
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        searchPlaceLab.text = placeholder
         
         //定位按钮设置
         btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
@@ -266,6 +272,10 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBAction func action_search(_ sender: UIButton) {
         //tag=0 普通搜索，tag=1 语音搜索
         print(sender.tag)
+        let storyborad = UIStoryboard.init(name: "RootA", bundle: nil)
+        let vc: HDSSL_SearchVC = storyborad.instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: - 定位

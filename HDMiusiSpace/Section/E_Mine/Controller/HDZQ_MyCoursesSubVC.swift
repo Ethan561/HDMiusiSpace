@@ -19,7 +19,7 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     private var skip = 0
     
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -32,7 +32,7 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false
-        tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
+        tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
         addRefresh()
         bindViewModel()
@@ -63,13 +63,19 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     }
     
     func refreshTableView(models:[MyCollectCourseModel]) {
-        if models.count > 0 {
+        
+        if self.skip > 0 {
+            self.courses.append(contentsOf: models)
+        } else {
             self.courses = models
+        }
+        if self.courses.count > 0 {
             self.tableView.reloadData()
         } else {
             self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
             self.tableView.ly_showEmptyView()
         }
+        
         self.tableView.es.stopPullToRefresh()
         self.tableView.es.stopLoadingMore()
     }
@@ -91,14 +97,11 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     }
     
     private func refresh() {
-        skip = 0
-        take = 10
         requestData()
     }
     
     private func loadMore() {
-        skip = 0
-        take = take + 10
+        skip = skip + take
         requestData()
     }
     
@@ -149,7 +152,10 @@ extension HDZQ_MyCoursesSubVC:UITableViewDelegate,UITableViewDataSource {
     
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let model = courses[indexPath.row]
+         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = String(model.classId)
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     

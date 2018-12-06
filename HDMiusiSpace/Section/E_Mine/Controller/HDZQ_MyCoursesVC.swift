@@ -87,7 +87,7 @@ extension HDZQ_MyCoursesVC:SPPageMenuDelegate {
         if targetViewController.isViewLoaded == true {
             return;
         }
-        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - 44)
+        targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight - 44)
         contentScrollView.addSubview(targetViewController.view)
     }
 }

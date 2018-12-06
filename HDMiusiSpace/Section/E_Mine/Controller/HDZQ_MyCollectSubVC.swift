@@ -15,13 +15,14 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     private var viewModel = HDZQ_MyViewModel()
     
-    private var take = 10
+    private var take = 2
     private var skip = 0
     
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
         
@@ -31,7 +32,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false
-        tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
+        tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
         addRefresh()
         bindViewModel()
@@ -49,10 +50,13 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     
     func bindViewModel() {
         viewModel.collectNews.bind { [weak self] (models) in
-            if models.count > 0 {
+            if (self?.skip)! > 0 {
+                self?.news.append(contentsOf: models)
+            } else {
                 self?.news = models
-                self?.tableView.reloadData()
-                
+            }
+            if (self?.news.count)! > 0 {
+                 self?.tableView.reloadData()
             } else {
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
@@ -61,8 +65,12 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
             self?.tableView.es.stopLoadingMore()
         }
         viewModel.collectExhibitions.bind { [weak self] (models) in
-            if models.count > 0 {
+            if (self?.skip)! > 0 {
+                self?.exhibitions.append(contentsOf: models)
+            } else {
                 self?.exhibitions = models
+            }
+            if (self?.exhibitions.count)! > 0 {
                 self?.tableView.reloadData()
             } else {
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
@@ -90,14 +98,11 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     }
     
     private func refresh() {
-        skip = 0
-        take = 10
        requestData()
     }
     
     private func loadMore() {
-        skip = 0
-        take = take + 10
+        skip = skip + take
         requestData()
     }
     
@@ -158,7 +163,6 @@ extension HDZQ_MyCollectSubVC:UITableViewDelegate,UITableViewDataSource {
           } else {
             let model = news[indexPath.row]
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
-//            vc.topic_id = model.itemList?.articleID.string
             vc.topic_id = String(model.article_id ?? 0)
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)

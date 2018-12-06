@@ -59,14 +59,16 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
             }
             self.orderArray += models
             self.tableView.reloadData()
-            
+            self.tableView.es.stopPullToRefresh()
+            self.tableView.es.stopLoadingMore()
+        }else{
+            self.tableView.es.noticeNoMoreData()
         }
         if self.orderArray.count == 0 {
             self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
             self.tableView.ly_showEmptyView()
         }
-        self.tableView.es.stopPullToRefresh()
-        self.tableView.es.stopLoadingMore()
+        
     }
     
     func addRefresh() {

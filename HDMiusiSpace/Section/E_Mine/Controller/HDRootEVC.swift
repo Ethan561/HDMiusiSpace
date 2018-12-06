@@ -275,6 +275,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 return cell!
             }else if index == 4 {//
                 let cell = HDLY_MineCourse_Cell.getMyTableCell(tableV: tableView)
+                cell?.delegate = self
                 cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
                 if self.courses.count > 0 {
                    cell?.listArray = self.courses
@@ -303,6 +304,10 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if declare.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         if indexPath.row == 1 {
             self.performSegue(withIdentifier: "PushTo_HDSSL_MyWalletVC_Line", sender: nil)
         }
@@ -316,8 +321,20 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension HDRootEVC:HDLY_MineCourse_Cell_Delegate {
+    func didSelectItemAt(_ model: MyCollectCourseModel, _ cell: HDLY_MineCourse_Cell) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = String(model.classId)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 extension HDRootEVC: HDLY_MineHome_Header_Delegate {
     func pushToMyDetails(type: Int) {
+        if declare.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         switch type {
         case 0:
             self.performSegue(withIdentifier: "PushTo_HDZQ_MyFollowVC", sender: nil)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDZQ_MyFollowSubVC: HDItemBaseVC {
 
@@ -14,11 +15,13 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     
     private var viewModel = HDZQ_MyViewModel()
-    
+    private var take = 2
+    private var skip = 0
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
         
@@ -28,28 +31,65 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false
-        tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
+        tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
         tableView.register(UINib.init(nibName: "HDZQ_MyFollowCell", bundle: nil), forCellReuseIdentifier: "HDZQ_MyFollowCell")
+        addRefresh()
         bindViewModel()
-        viewModel.requestMyFollow(apiToken: HDDeclare.shared.api_token ?? "", skip: 0, take: 10, type: type, vc: self)
+        requestData()
+    }
+    
+    func requestData() {
+        viewModel.requestMyFollow(apiToken: HDDeclare.shared.api_token ?? "", skip: skip, take: take, type: type, vc: self)
     }
     
     func bindViewModel() {
         viewModel.follows.bind { [weak self] (models) in
-            if models.count > 0 {
+            
+            if (self?.skip)! > 0 {
+                self?.dataArr.append(contentsOf: models)
+            } else {
                 self?.dataArr = models
+            }
+            if (self?.dataArr.count)! > 0 {
                 self?.tableView.reloadData()
             } else {
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
             }
+            self?.tableView.es.stopPullToRefresh()
+            self?.tableView.es.stopLoadingMore()
         }
     }
     
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        requestData()
+    }
+    
+    private func loadMore() {
+        skip = skip + take
+        requestData()
+    }
 }
 
 extension HDZQ_MyFollowSubVC:UITableViewDelegate,UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataArr.count
     }

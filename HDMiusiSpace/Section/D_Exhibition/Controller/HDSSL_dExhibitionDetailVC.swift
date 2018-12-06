@@ -39,7 +39,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     let player = HDLY_AudioPlayer.shared
     var playModel: DMuseumListenList?
     var playingSelectRow = -1
-
+    
+    var isExhibitionCellFloder = true//折叠状态
+    
     //评论
     var commentArr: [CommentListModel]? = Array.init()
     //
@@ -485,6 +487,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
+        weak var weakSelf = self
+
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
@@ -537,11 +541,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 
                 cell.blockHeightFunc { (height) in
                     print(height)
-                    
-                    weak var weakSelf = self
-                    weakSelf?.reloadExhibitionCellHeight(height)
+//                    weakSelf?.reloadExhibitionCellHeight( 2, height)
                     
                 }
+                cell.blockRefreshHeight = { (model) in
+                    let webH: Double = Double(model.height!) ?? 0
+                    let flag: Int = Int(model.isfolder!) ?? 1
+                    weakSelf?.reloadExhibitionCellHeight( flag, webH)
+                }
+                
                 return cell
             }else if indexPath.row == 1{
                 let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
@@ -549,9 +557,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell.loadWebView(path)
                 cell.blockHeightFunc { (height) in
                     print(height)
-                    
                     weak var weakSelf = self
-                    weakSelf?.reloadExhibitCellHeight(height)
+//                    weakSelf?.reloadExhibitCellHeight(height)
                     
                 }
                 return cell
@@ -800,11 +807,14 @@ extension HDSSL_dExhibitionDetailVC{
         return imgH! + size.height + CGFloat(otherH)
     }
     //刷新展览介绍cell高度
-    func reloadExhibitionCellHeight(_ height: Double) {
+    func reloadExhibitionCellHeight(_ flag: Int, _ height: Double) {
+        let isFloder = flag == 2 ? true : false
+        
         if self.exhibitionCellH == nil {
             self.exhibitionCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-        }else if self.exhibitionCellH! < height {
+        }else if self.isExhibitionCellFloder != isFloder {
+            self.isExhibitionCellFloder = isFloder
             self.exhibitionCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
         }

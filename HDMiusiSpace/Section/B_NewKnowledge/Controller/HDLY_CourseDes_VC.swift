@@ -32,6 +32,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var showFeedbackChooseTip = false
     var infoModel: CourseModel?
     var isMp3Course = false
+    var orderTipView: HDLY_CreateOrderTipView?
+    
     
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     
@@ -132,16 +134,41 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     }
     
     @IBAction func bugBtnAction(_ sender: UIButton) {
-        HDLY_IAPStore.shared.requestProducts(nil)
-        
-        return
+//        HDLY_IAPStore.shared.requestProducts(nil)
+//        
+//        return
         if  self.infoModel?.data  != nil {
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
-                self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self.pushToLoginVC(vc: self)
+                    return
+                }
+                //显示支付弹窗
+                showOrderTipView()
             }else {
                 self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
             }
         }
+    }
+    
+    func showOrderTipView() {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        
+        guard let model = self.infoModel?.data else {
+            return
+        }
+        
+        tipView.titleL.text = model.title
+        tipView.priceL.text = model.price.string
+        tipView.sureBlock = {
+            
+        }
+        
     }
     
     //MVVM

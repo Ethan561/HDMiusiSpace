@@ -14,6 +14,8 @@ class HDSSL_Sec1Cell: UITableViewCell {
 
     var blockHeight: BloclkCellHeight?
     
+    var blockRefreshHeight: (( _ model: FoldModel) -> ( Void))?
+
     lazy var webview:WKWebView  = WKWebView.init(frame: CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height))
     
     //点击图片，放大
@@ -92,6 +94,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
 //        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
 //    }
 }
+
 extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         var webheight = 0.0
@@ -110,7 +113,7 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
 //                tempFrame.size.height = CGFloat(webheight)
 //                self.webview.frame = tempFrame
                 
-                self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight))
+//                self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight))
                 
                 //返回高度，刷新cell
                 weak var weakSelf = self
@@ -120,13 +123,35 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
             }
         }
     }
+    
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-       print(message)
-        let webheight = Double(message)
-         weak var weakSelf = self
-        if weakSelf?.blockHeight != nil {
-            weakSelf?.blockHeight!(webheight!)
+        
+        let arr = message.components(separatedBy: ",")
+        let webheight = Double(arr.last ?? "0")
+        print(message,arr)//展开是1 , 收起是2
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight ?? 0))
+            print("(webView.frame: \(webView.frame)")
+            
+            let model = FoldModel()
+            model.isfolder = arr.first
+            model.height = arr.last
+            weak var weakSelf = self
+
+            if weakSelf?.blockRefreshHeight != nil {
+                weakSelf?.blockRefreshHeight!(model)
+                
+            }
         }
         completionHandler()
     }
 }
+
+
+class FoldModel: NSObject {
+    var isfolder : String?
+    var height : String?
+}
+
+

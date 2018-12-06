@@ -389,6 +389,8 @@ extension HDSSL_dMuseumDetailVC {
             if url.contains("html") {
                 cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
             }
+            cell?.webView.delegate = self
+            
             return cell!
         }
         else {

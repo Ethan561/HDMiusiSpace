@@ -14,6 +14,7 @@ class HDLY_CreateOrderTipView: UIView {
     @IBOutlet weak var priceL: UILabel!
     @IBOutlet weak var sureBtn: UIButton!
     @IBOutlet weak var spaceCoinL: UILabel!
+    @IBOutlet weak var successView: UIView!
     
     var sureBlock: (() -> (Void))?
     

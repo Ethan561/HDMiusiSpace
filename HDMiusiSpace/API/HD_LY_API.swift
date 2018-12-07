@@ -189,6 +189,9 @@ enum HD_LY_API {
     
     //获取支付数据
     
+    //获得购买信息
+    case orderGetBuyInfo(cate_id:Int, goods_id:Int , api_token: String)
+    
     
     
     
@@ -429,6 +432,13 @@ extension HD_LY_API: TargetType {
             
         case .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
             return "/api/order/create_order"
+            
+        case .orderGetBuyInfo(cate_id: _, goods_id: _, api_token: _):
+            return "/api/order/get_buy_info"
+            
+            
+            
+            
             
             
             
@@ -978,6 +988,21 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .orderGetBuyInfo(let cate_id, let goods_id, let api_token):
+            
+            params = params.merging(["cate_id": cate_id, "goods_id": goods_id,"api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             

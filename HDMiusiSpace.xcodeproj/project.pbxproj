@@ -328,6 +328,7 @@
 		D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D5E2199517900686AB3 /* HDBigAnnView.xib */; };
 		D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63F8D612199521300686AB3 /* HDCallOutView.m */; };
 		D63F8D642199522300686AB3 /* HDCallOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D632199522300686AB3 /* HDCallOutView.xib */; };
+		D659071021BA25E500F5E7BA /* OrderInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659070F21BA25E500F5E7BA /* OrderInfoModel.swift */; };
 		D668CF9D21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D668CF9C21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift */; };
 		D668CF9F21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */; };
 		D668CFA121435CD40024BBCE /* HDLY_ChangePwd_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D668CFA021435CD40024BBCE /* HDLY_ChangePwd_VC.swift */; };
@@ -994,6 +995,7 @@
 		D63F8D602199521300686AB3 /* HDCallOutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDCallOutView.h; sourceTree = "<group>"; };
 		D63F8D612199521300686AB3 /* HDCallOutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDCallOutView.m; sourceTree = "<group>"; };
 		D63F8D632199522300686AB3 /* HDCallOutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDCallOutView.xib; sourceTree = "<group>"; };
+		D659070F21BA25E500F5E7BA /* OrderInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoModel.swift; sourceTree = "<group>"; };
 		D668CF9C21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SafetyVerifi_VC.swift; sourceTree = "<group>"; };
 		D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SafetyVerifiSms_VC.swift; sourceTree = "<group>"; };
 		D668CFA021435CD40024BBCE /* HDLY_ChangePwd_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ChangePwd_VC.swift; sourceTree = "<group>"; };
@@ -1892,6 +1894,14 @@
 			path = XHStarRateView;
 			sourceTree = "<group>";
 		};
+		D659070E21BA1D8500F5E7BA /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				D659070F21BA25E500F5E7BA /* OrderInfoModel.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 		D66991BA2130E62E002568B2 /* Question */ = {
 			isa = PBXGroup;
 			children = (
@@ -2756,6 +2766,7 @@
 		D6C9FCFF2118487B007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D659070E21BA1D8500F5E7BA /* Order */,
 				D66C7AB52123D89700B34221 /* NewKnowledgeModel.swift */,
 				D670D383212575970064750A /* CourseModel.swift */,
 				D66EDF9B212AB16A004DACE0 /* CourseListen.swift */,
@@ -3211,6 +3222,7 @@
 				D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */,
 				A72DE93B21A1389800F0536F /* HDSSL_commentTextCell.swift in Sources */,
 				D6EEDDB12190202D00F730BA /* HDLY_GuideCard2Cell.swift in Sources */,
+				D659071021BA25E500F5E7BA /* OrderInfoModel.swift in Sources */,
 				D6C9FC5821181F28007C8E56 /* TipContentView.swift in Sources */,
 				D6115AEF218FD490004A05DA /* UIViewController+ZFPlayerRotation.m in Sources */,
 				D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */,

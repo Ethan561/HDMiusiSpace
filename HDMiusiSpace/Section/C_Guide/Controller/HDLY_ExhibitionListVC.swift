@@ -138,7 +138,7 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
         
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
-            vc.exhibit_num = model.exhibitionID
+            vc.exhibition_id = model.exhibitionID
             self.navigationController?.pushViewController(vc, animated: true)
             
         }else if model.type == 1 {

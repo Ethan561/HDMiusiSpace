@@ -138,7 +138,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 //        
 //        return
         if  self.infoModel?.data  != nil {
-            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+            if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self.pushToLoginVC(vc: self)
                     return

@@ -14,7 +14,11 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     @IBOutlet weak var nicknameL: UILabel!
     @IBOutlet weak var genderL: UILabel!
     @IBOutlet weak var signatureL: UILabel!
-    @IBOutlet weak var labStrs: UILabel!
+    @IBOutlet weak var labStrs: UIView!
+    
+    @IBOutlet weak var labSignsViewBottomConstraint: NSLayoutConstraint!
+    var lastTagOrigin : CGPoint?  //上一个标签起点
+    var lastTagSize   : CGSize?   //上一个标签尺寸
     
     var pickedAvatarImage: UIImage?
     lazy var genderTipView: HDLY_GenderTip_View = HDLY_GenderTip_View.createViewFromNib() as! HDLY_GenderTip_View
@@ -40,7 +44,41 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         declare.labStr?.forEach({ (str) in
             s = s + str
         })
-        labStrs.text = s
+        
+         var recordLab: UILabel? = nil
+        for i in 0..<declare.labStr!.count {
+            let tagTitle = declare.labStr![i] as NSString
+            let lab = UILabel()
+            lab.backgroundColor = UIColor.white
+            lab.textColor = UIColor.HexColor(0x9b9b9b)
+            lab.font =  UIFont.systemFont(ofSize: 14)
+            lab.lineBreakMode = .byTruncatingTail
+            let rect = tagTitle.boundingRect(with: CGSize.init(width:ScreenWidth - 150, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : lab.font], context: nil)
+            
+            let BtnW = rect.size.width + 20
+            let BtnH = rect.size.height + 10
+            if i == 0 {
+                lab.frame = CGRect(x: 0, y: 10, width: BtnW, height: BtnH)
+            } else {
+                let yuWidth: CGFloat = labStrs.frame.size.width - 10 - (recordLab?.frame.origin.x ?? 0.0) - (recordLab?.frame.size.width ?? 0.0)
+                if yuWidth >= (rect.size.width ) {
+                    lab.frame = CGRect(x: (recordLab?.frame.origin.x ?? 0.0) + (recordLab?.frame.size.width ?? 0.0) + 10, y: recordLab?.frame.origin.y ?? 0.0, width: BtnW, height: BtnH)
+                } else {
+                    lab.frame = CGRect(x: 0, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
+                }
+            }
+            lab.text = tagTitle as String
+            lab.textAlignment = .center
+            lab.layer.masksToBounds = true
+            lab.layer.cornerRadius = (rect.size.height + 10) / 2
+            lab.layer.borderWidth = 0.5
+            lab.layer.borderColor = UIColor.HexColor(0x9b9b9b).cgColor
+            labStrs.addSubview(lab)
+            recordLab = lab
+            
+        }
+        
+        labSignsViewBottomConstraint.constant = recordLab!.frame.origin.y + 40
         genderL.text = declare.gender
         if declare.avatar != nil {
             avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)

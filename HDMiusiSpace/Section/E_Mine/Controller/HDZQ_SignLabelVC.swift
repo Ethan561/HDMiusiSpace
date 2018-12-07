@@ -51,9 +51,11 @@ class HDZQ_SignLabelVC: UIViewController {
                 let index : Int = Int(array[i] as! String)!       //标签下标
                 let m = self?.tagList[index]
                 self?.mySignLabels.append(m!) //保存选择标签
+                
             }
             self?.uploadMyTags()
             HDDeclare.shared.selectedTagArray = self?.mySignLabels
+            
         }
         tagView?.titleArray = signLabels
         tagBgView.addSubview(tagView!)
@@ -75,9 +77,8 @@ class HDZQ_SignLabelVC: UIViewController {
                 tagIds = tagIds! + String(model.label_id!) + "#"
                 
             }
-            
             //调用接口
-            HDSSL_TagViewModel().request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
+           self.request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
             
         }
     }
@@ -87,6 +88,40 @@ class HDZQ_SignLabelVC: UIViewController {
     }
     @IBAction func action_back(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func request_saveSelectedTags(deviceno : String,label_id_str: String,_ vc:UIViewController) {
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .saveSelectedTags(api_token: token, label_id_str: label_id_str, deviceno: deviceno), success: { (result) in
+            //
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let arr:Array<String> = dic!["data"] as! Array<String>
+            if arr.count > 0 {
+                let tags = NSSet.init(array: arr)
+                JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+            }
+            HDDeclare.shared.labStr?.removeAll()
+            self.mySignLabels.forEach({ (m) in
+                HDDeclare.shared.labStr?.append(m.title!)
+            })
+            
+            
+            HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
+            let delay = DispatchTime.now() + DispatchTimeInterval.seconds(1)
+           
+
+            DispatchQueue.main.asyncAfter(deadline: delay, execute: {
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+            
+        }) { (errorCode, msg) in
+            //
+        }
     }
     
 }

@@ -92,6 +92,7 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             
             let sign: String = dic!["data"] as! String
             self.declare.sign = sign
+            self.declare.profile = sign
             HDAlert.showAlertTipWith(type: .onlyText, text: "个人简介更新成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.back()

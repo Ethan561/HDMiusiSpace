@@ -97,6 +97,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
         tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        self.tabHeader.placeholderLab.text = placeholder
         
         //
         let headView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH))
@@ -164,7 +166,10 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     //跳转搜索入口
     @IBAction func searchAction(_ sender: UIButton) {
+        let storyborad = UIStoryboard.init(name: "RootA", bundle: nil)
+        let vc: HDSSL_SearchVC = storyborad.instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
         
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

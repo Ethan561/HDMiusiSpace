@@ -185,6 +185,11 @@ enum HD_LY_API {
     case messageCenterDynamicList( skip:Int, take:Int , api_token: String)
     
     //创建订单
+    case orderCreateOrder(cate_id:Int, goods_id:Int , pay_type:Int , api_token: String)
+    
+    //获取支付数据
+    
+    
     
     
 }
@@ -422,6 +427,10 @@ extension HD_LY_API: TargetType {
         case .messageCenterDynamicList(_):
             return "/api/messagecenter/dynamic_list"
             
+        case .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
+            return "/api/order/create_order"
+            
+            
             
             
             
@@ -454,8 +463,8 @@ extension HD_LY_API: TargetType {
              .register_bind(params: _),
              .uploadFavoritesFootprint(exhibit_id: _, api_token: _),
              .uploadCourseRecords(chapter_id: _, api_token: _, study_time: _),
-             .verifyTransaction(receipt_data: _, password: _, is_sandbox: _, uuid: _, api_token: _):
-            
+             .verifyTransaction(receipt_data: _, password: _, is_sandbox: _, uuid: _, api_token: _),
+             .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
             
             return  .post
         default:
@@ -960,6 +969,16 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+        case .orderCreateOrder(let cate_id, let goods_id, let pay_type, let api_token):
+            params = params.merging(["cate_id": cate_id, "goods_id": goods_id, "pay_type": pay_type,"api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
             
             
         }

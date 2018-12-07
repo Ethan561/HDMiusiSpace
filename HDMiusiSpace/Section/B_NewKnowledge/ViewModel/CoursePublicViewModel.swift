@@ -103,4 +103,22 @@ class CoursePublicViewModel: NSObject {
             
         }
     }
+    
+    // 04创建订单
+    /*
+     cate_id: 订单类型1购买课程，2购买普通展览，3购买景区导览，4购买vip,5充值空间币
+     goods_id: 要购买的商品id(课程id,导览id博物馆id,vip购买id，空间币充值id)
+     pay_type: 支付方式1空间币支付2支付宝3微信
+     */
+    
+    func createOrderRequest(api_token: String, cate_id: Int, goods_id: Int, pay_type: Int, _ vc: UIViewController)  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .orderCreateOrder(cate_id: cate_id, goods_id: goods_id, pay_type: pay_type, api_token: api_token), showHud: true, loadingVC: vc, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
 }

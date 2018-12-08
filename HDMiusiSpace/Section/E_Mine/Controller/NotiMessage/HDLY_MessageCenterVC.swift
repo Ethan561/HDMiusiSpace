@@ -11,7 +11,6 @@ import UIKit
 class HDLY_MessageCenterVC: HDItemBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
-    
     var model = HDLY_NotiMsgModel()
     
     override func viewDidLoad() {
@@ -76,7 +75,7 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
                 cell?.countL.text = "\(self.model.data?.dynamicMsgNum ?? 0)"
                 cell?.timeL.text = model.data?.dynamicMsgTime
                 cell?.subTitleL.text = model.data?.dynamicMsgTitle
-            }else {
+            } else {
                 cell?.timeL.text = model.data?.dynamicMsgTime
                 cell?.subTitleL.text = model.data?.dynamicMsgTitle
             }

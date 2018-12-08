@@ -23,7 +23,6 @@ enum HD_SSL_API {
     //开始搜索
     case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
     
-    
     //获取城市列表1=全部城市，2=有博物馆部分城市
     case getCityList(type: Int)
     
@@ -54,6 +53,7 @@ enum HD_SSL_API {
     //订单详情
     case requestMyOrderDetail(api_token: String,orderId: Int)
 }
+
 extension HD_SSL_API: TargetType {
     //--- 服务器地址 ---
     var baseURL: URL {

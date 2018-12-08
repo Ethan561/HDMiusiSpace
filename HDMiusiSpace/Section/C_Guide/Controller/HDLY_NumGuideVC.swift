@@ -19,6 +19,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     var numStr = ""
     var exhibit_num = 0
+    var exhibition_id: Int?
+    
     var dataArr = ["1","2","3","4","5","6","7","8","9","","0",""]
     var exhibitInfo: HDLY_ExhibitListM?
     var isPlaying = false
@@ -50,7 +52,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
             numL.text = "\(exhibit_num)"
         }
         player.delegate = self
-
+        numL.text = ""
+        
     }
     
     func setupNavBarItem() {
@@ -99,7 +102,10 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitInfo(exhibit_num: exhibit_num, api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        guard let exhibitionID = exhibition_id else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitInfo(exhibition_id: exhibitionID, exhibit_num: "\(exhibit_num)", api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             let dataDic:Dictionary<String,Any> = dic!["data"] as! Dictionary<String,Any>

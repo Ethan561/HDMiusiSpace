@@ -526,16 +526,21 @@ extension HDSSL_dMuseumDetailVC {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if webView.request?.url?.absoluteString == self.infoModel?.museumHTML {
             let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("webViewH: \(webViewH)")
+            
+            if self.webViewH != CGFloat(webViewHStr.floatValue + 10) {
+                self.webViewH = CGFloat(webViewHStr.floatValue + 10)
+                LOG("webViewH: \(webViewH)")
+                self.myTableView.reloadData()
+            }
         }
         if webView.request?.url?.absoluteString == self.infoModel?.areaHTML {
             let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.areaWebViewH = CGFloat(webViewHStr.floatValue + 10)
+            if self.areaWebViewH != CGFloat(webViewHStr.floatValue + 10) {
+                self.areaWebViewH = CGFloat(webViewHStr.floatValue + 10)
+                self.myTableView.reloadData()
+            }
             
         }
-        self.myTableView.reloadData()
-//        self.myTableView.reloadRows(at: [IndexPath.init(row: 5, section: 0)], with: .none)
     }
     
 }

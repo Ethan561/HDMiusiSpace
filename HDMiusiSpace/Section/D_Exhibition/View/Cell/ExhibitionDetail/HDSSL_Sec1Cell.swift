@@ -10,10 +10,16 @@ import UIKit
 import WebKit
 //block
 typealias BloclkCellHeight = (_ height: Double) -> Void //返回高度
+
+protocol HDSSL_Sec1CellDelegate: NSObjectProtocol {
+    func backWebviewHeight(_ height: Double , _ cell: UITableViewCell)
+    func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell)
+}
+
 class HDSSL_Sec1Cell: UITableViewCell {
 
     var blockHeight: BloclkCellHeight?
-    
+    var delegate: HDSSL_Sec1CellDelegate?
     var blockRefreshHeight: (( _ model: FoldModel) -> ( Void))?
 
     lazy var webview:WKWebView  = WKWebView.init(frame: CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height))
@@ -107,6 +113,8 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
                 print("webheight: \(webheight)")
             }
             
+            self.delegate?.backWebviewHeight(webheight, self)
+
             DispatchQueue.main.async { [unowned self] in
                 
 //                var tempFrame: CGRect = self.webview.frame
@@ -116,10 +124,11 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
 //                self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight))
                 
                 //返回高度，刷新cell
+                
                 weak var weakSelf = self
-                if weakSelf?.blockHeight != nil {
-                    weakSelf?.blockHeight!(webheight)
-                }
+//                if weakSelf?.blockHeight != nil {
+//                    weakSelf?.blockHeight!(webheight)
+//                }
             }
         }
     }
@@ -138,11 +147,13 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
             model.isfolder = arr.first
             model.height = arr.last
             weak var weakSelf = self
+            
+            self.delegate?.webViewFolderAction(model, self)
 
-            if weakSelf?.blockRefreshHeight != nil {
-                weakSelf?.blockRefreshHeight!(model)
-                
-            }
+//            if weakSelf?.blockRefreshHeight != nil {
+//                weakSelf?.blockRefreshHeight!(model)
+//
+//            }
         }
         completionHandler()
     }

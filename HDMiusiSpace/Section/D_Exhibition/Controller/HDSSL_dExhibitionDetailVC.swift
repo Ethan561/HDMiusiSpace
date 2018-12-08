@@ -16,7 +16,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var exhibition_id: Int?
     var exhibitionCellH: Double?
     var exhibitCellH: Double?
-
+    
     //
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var dTableView: UITableView!
@@ -538,17 +538,17 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
                 let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
                 cell.loadWebView(path)
-                
-                cell.blockHeightFunc { (height) in
-                    print(height)
-//                    weakSelf?.reloadExhibitionCellHeight( 2, height)
-                    
-                }
-                cell.blockRefreshHeight = { (model) in
-                    let webH: Double = Double(model.height!) ?? 0
-                    let flag: Int = Int(model.isfolder!) ?? 1
-                    weakSelf?.reloadExhibitionCellHeight( flag, webH)
-                }
+                cell.delegate = self
+//                cell.blockHeightFunc { (height) in
+//                    print(height)
+////                    weakSelf?.reloadExhibitionCellHeight( 2, height)
+//
+//                }
+//                cell.blockRefreshHeight = { (model) in
+//                    let webH: Double = Double(model.height!) ?? 0
+//                    let flag: Int = Int(model.isfolder!) ?? 1
+//                    weakSelf?.reloadExhibitionCellHeight( flag, webH)
+//                }
                 
                 return cell
             }else if indexPath.row == 1{
@@ -781,6 +781,24 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
 //        }
 //
 //    }
+    
+}
+extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
+    
+    func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
+        if self.exhibitionCellH == nil{
+            self.exhibitionCellH = height
+            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+        }
+    }
+    
+    //
+    func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
+        let webH: Double = Double(model.height!) ?? 0
+        let flag: Int = Int(model.isfolder!) ?? 1
+        self.reloadExhibitionCellHeight( flag, webH)
+    }
+    
     
 }
 

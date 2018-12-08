@@ -14,6 +14,9 @@ class CoursePublicViewModel: NSObject {
     let isCollection: Bindable = Bindable(false)
     let likeModel: Bindable = Bindable(LikeModel())
     let isFocus: Bindable = Bindable(false)
+    // 订单x信息
+    let orderBuyInfo: Bindable = Bindable(OrderBuyInfoData())
+    let orderResultInfo: Bindable = Bindable(OrderResultData())
     
     //评论（cate_id：类型id，1资讯，2轻听随看，3看展评论,4精选专题）
     func commentCommitRequest(api_token: String, comment: String, id: String, return_id: String, cate_id: String, _ vc: UIViewController)  {
@@ -91,7 +94,7 @@ class CoursePublicViewModel: NSObject {
             if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
                 if is_focus == 0 {
                     self.isFocus.value = false
-                }else {
+                } else {
                     self.isFocus.value = true
                 }
             }
@@ -103,6 +106,25 @@ class CoursePublicViewModel: NSObject {
             
         }
     }
+    
+    //获得购买信息
+    func orderGetBuyInfoRequest(api_token: String, cate_id: Int, goods_id: Int, _ vc: UIViewController)  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .orderGetBuyInfo(cate_id: cate_id, goods_id: goods_id, api_token: api_token), showHud: true, loadingVC: vc, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let jsonDecoder = JSONDecoder()
+            //JSON转Model：
+            let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dic!)!
+            let model:OrderBuyInfoModel = try! jsonDecoder.decode(OrderBuyInfoModel.self, from: dataA)
+            if model.data != nil {
+                self.orderBuyInfo.value = model.data!
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     
     // 04创建订单
     /*
@@ -116,9 +138,28 @@ class CoursePublicViewModel: NSObject {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
+            let jsonDecoder = JSONDecoder()
+            //JSON转Model：
+            let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dic!)!
+            let model:OrderResultModel = try! jsonDecoder.decode(OrderResultModel.self, from: dataA)
+            if model.data != nil {
+                self.orderResultInfo.value = model.data!
+            }
+            
         }) { (errorCode, msg) in
             
         }
     }
     
+
+    
+    
 }
+
+
+
+
+
+
+
+

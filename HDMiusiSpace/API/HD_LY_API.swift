@@ -146,7 +146,7 @@ enum HD_LY_API {
     case guideExhibitList(exhibition_id: Int, skip:Int, take:Int , api_token: String)
     
     //展品详情
-    case guideExhibitInfo(exhibit_num: Int, api_token: String)
+    case guideExhibitInfo(exhibition_id: Int, exhibit_num: String, api_token: String)
     
     //地图导览
     case guideMapGuide(museum_id: Int, api_token: String)
@@ -188,6 +188,9 @@ enum HD_LY_API {
     case orderCreateOrder(cate_id:Int, goods_id:Int , pay_type:Int , api_token: String)
     
     //获取支付数据
+    
+    //获得购买信息
+    case orderGetBuyInfo(cate_id:Int, goods_id:Int , api_token: String)
     
     
     
@@ -388,7 +391,7 @@ extension HD_LY_API: TargetType {
         case .guideExhibitList(exhibition_id: _, skip: _, take: _, api_token: _):
             return "/api/guide/exhibit_list"
             
-        case .guideExhibitInfo(exhibit_num: _, api_token: _):
+        case .guideExhibitInfo(exhibition_id: _, exhibit_num: _, api_token: _):
             return "/api/guide/exhibit_info"
             
         case .guideMapGuide(museum_id: _, api_token: _):
@@ -429,6 +432,13 @@ extension HD_LY_API: TargetType {
             
         case .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
             return "/api/order/create_order"
+            
+        case .orderGetBuyInfo(cate_id: _, goods_id: _, api_token: _):
+            return "/api/order/get_buy_info"
+            
+            
+            
+            
             
             
             
@@ -874,9 +884,9 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-        case .guideExhibitInfo(let exhibit_num, let api_token):
+        case .guideExhibitInfo(let exhibition_id, let exhibit_num, let api_token):
             
-            params = params.merging(["exhibit_num": exhibit_num, "api_token": api_token], uniquingKeysWith: {$1})
+            params = params.merging(["exhibition_id": exhibition_id, "exhibit_num": exhibit_num, "api_token": api_token], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -978,6 +988,21 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .orderGetBuyInfo(let cate_id, let goods_id, let api_token):
+            
+            params = params.merging(["cate_id": cate_id, "goods_id": goods_id,"api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             

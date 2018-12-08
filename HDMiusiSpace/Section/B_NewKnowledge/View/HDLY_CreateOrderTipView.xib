@@ -253,13 +253,42 @@
                         <constraint firstAttribute="trailing" secondItem="2o8-Re-rl4" secondAttribute="trailing" constant="20" id="zXD-3r-VoE"/>
                     </constraints>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcp-aI-kib">
+                    <rect key="frame" x="0.0" y="277" width="375" height="390"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_buy_success" translatesAutoresizingMaskIntoConstraints="NO" id="CYH-JJ-UWT">
+                            <rect key="frame" x="155.5" y="134" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="AeC-6L-Dit"/>
+                                <constraint firstAttribute="width" secondItem="CYH-JJ-UWT" secondAttribute="height" multiplier="1:1" id="w2n-2C-YJF"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购买成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPv-Is-D4L">
+                            <rect key="frame" x="146.5" y="212" width="82" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="zPv-Is-D4L" firstAttribute="top" secondItem="CYH-JJ-UWT" secondAttribute="bottom" constant="14" id="01P-GV-FJl"/>
+                        <constraint firstItem="CYH-JJ-UWT" firstAttribute="centerX" secondItem="dcp-aI-kib" secondAttribute="centerX" id="Jui-u7-O97"/>
+                        <constraint firstItem="zPv-Is-D4L" firstAttribute="centerX" secondItem="dcp-aI-kib" secondAttribute="centerX" id="LQD-da-Nax"/>
+                        <constraint firstItem="CYH-JJ-UWT" firstAttribute="centerY" secondItem="dcp-aI-kib" secondAttribute="centerY" multiplier="0.85" id="mYP-xi-clz"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Viq-9Z-Xbl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8qR-NF-U5Z"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="925-Es-7EI" secondAttribute="trailing" id="9We-Nz-ZsG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Viq-9Z-Xbl" secondAttribute="trailing" id="AeC-Ml-L4r"/>
+                <constraint firstItem="dcp-aI-kib" firstAttribute="bottom" secondItem="Viq-9Z-Xbl" secondAttribute="bottom" id="Asf-QL-hY9"/>
+                <constraint firstItem="dcp-aI-kib" firstAttribute="trailing" secondItem="Viq-9Z-Xbl" secondAttribute="trailing" id="B1O-Rw-S2n"/>
+                <constraint firstItem="dcp-aI-kib" firstAttribute="leading" secondItem="Viq-9Z-Xbl" secondAttribute="leading" id="GWw-iq-Neb"/>
                 <constraint firstAttribute="bottom" secondItem="Viq-9Z-Xbl" secondAttribute="bottom" id="LCS-e8-OPA"/>
+                <constraint firstItem="dcp-aI-kib" firstAttribute="top" secondItem="Viq-9Z-Xbl" secondAttribute="top" id="MSW-XU-6Y8"/>
                 <constraint firstItem="Viq-9Z-Xbl" firstAttribute="top" secondItem="925-Es-7EI" secondAttribute="bottom" id="Su0-6s-8TB"/>
                 <constraint firstItem="925-Es-7EI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="c9e-Oi-Go6"/>
                 <constraint firstAttribute="bottom" secondItem="Dgg-i7-a5j" secondAttribute="bottom" id="cvH-Qr-RXP"/>
@@ -272,6 +301,7 @@
             <connections>
                 <outlet property="priceL" destination="khD-Es-aWc" id="L3d-yP-L8V"/>
                 <outlet property="spaceCoinL" destination="qad-k7-1lR" id="3QD-LL-HSG"/>
+                <outlet property="successView" destination="dcp-aI-kib" id="DtL-mP-Mhq"/>
                 <outlet property="sureBtn" destination="2o8-Re-rl4" id="Tm1-Qd-EJw"/>
                 <outlet property="titleL" destination="7OZ-Hh-ffN" id="UEo-ry-zxg"/>
             </connections>
@@ -279,6 +309,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_buy_success" width="64" height="64"/>
         <image name="xtxi_icon_yj" width="8" height="12"/>
     </resources>
 </document>

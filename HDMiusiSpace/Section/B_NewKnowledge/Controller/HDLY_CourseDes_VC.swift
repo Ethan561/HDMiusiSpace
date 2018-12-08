@@ -138,35 +138,61 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 //        
 //        return
         if  self.infoModel?.data  != nil {
-            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+            if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self.pushToLoginVC(vc: self)
                     return
                 }
-                //显示支付弹窗
-                showOrderTipView()
+                //获取订单信息
+                guard let goodId = self.infoModel?.data.articleID.int else {
+                    return
+                }
+                publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, self)
+                return
+    
             }else {
                 self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
             }
         }
     }
     
-    func showOrderTipView() {
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
         let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
         guard let win = kWindow else {
             return
         }
         tipView.frame = win.bounds
         win.addSubview(tipView)
-        
-        guard let model = self.infoModel?.data else {
-            return
-        }
+        orderTipView = tipView
         
         tipView.titleL.text = model.title
-        tipView.priceL.text = model.price.string
+        tipView.priceL.text = String.init(format: "￥%@", model.price?.string ?? "")
+        tipView.spaceCoinL.text = model.spaceMoney
+        tipView.sureBtn.setTitle("支付\(model.price!.int)空间币", for: .normal)
+        
+        weak var _self = self
         tipView.sureBlock = {
-            
+            _self?.orderBuyAction()
+        }
+        
+    }
+    
+    func orderBuyAction() {
+        guard let goodId = self.infoModel?.data.articleID.int else {
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
         }
         
     }
@@ -181,6 +207,16 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             } else {
                 weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
             }
+        }
+        
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind { (model) in
+            weakSelf?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind { (model) in
+            weakSelf?.showPaymentResult(model)
         }
         
     }

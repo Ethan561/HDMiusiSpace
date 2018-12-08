@@ -166,7 +166,7 @@ extension HDLY_RootCSubVC {
 
                 return cell!
                 
-            }else if model.type == 2 {
+            } else if model.type == 2 {
                 let mapData = model.map
 
                 if index == 0 {

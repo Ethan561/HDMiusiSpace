@@ -231,9 +231,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }
     }
     
-    @IBAction func shareBtnAction(_ sender: UIButton) {
-        
-    }
+
     
     @IBAction func errorBtnAction(_ sender: UIButton) {
         tapErrorBtnAction()
@@ -660,3 +658,52 @@ extension HDLY_CourseDes_VC {
     
 }
 
+extension HDLY_CourseDes_VC: UMShareDelegate {
+    
+    @IBAction func shareBtnAction(_ sender: UIButton) {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+        
+    }
+    
+    
+    func shareDelegate(platformType: UMSocialPlatformType) {
+        
+        guard let url  = self.infoModel?.data.url else {
+            return
+        }
+        
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = url
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.data.title, descr: self.infoModel?.data.title, thumImage: thumbURL)
+        
+        //设置网页地址
+        shareObject?.webpageUrl = url
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject
+        
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+            }
+        }
+    }
+}

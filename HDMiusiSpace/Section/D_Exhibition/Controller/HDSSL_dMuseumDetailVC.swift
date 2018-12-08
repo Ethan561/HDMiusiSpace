@@ -105,14 +105,6 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: "\(museumId)", cate_id: "8", self)
     }
     
-    @IBAction func shareBtnAction(_ sender: UIButton) {
-        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
-        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
-        tipView.delegate = self
-        if kWindow != nil {
-            kWindow!.addSubview(tipView)
-        }
-    }
     
     @IBAction func errorBtnAction(_ sender: UIButton) {
         //报错
@@ -133,6 +125,16 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
 }
 
 extension HDSSL_dMuseumDetailVC: UMShareDelegate {
+    
+    @IBAction func shareBtnAction(_ sender: UIButton) {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+    }
+    
     func shareDelegate(platformType: UMSocialPlatformType) {
         
         guard let url  = self.infoModel?.share_url else {
@@ -533,6 +535,7 @@ extension HDSSL_dMuseumDetailVC {
                 self.myTableView.reloadData()
             }
         }
+        
         if webView.request?.url?.absoluteString == self.infoModel?.areaHTML {
             let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
             if self.areaWebViewH != CGFloat(webViewHStr.floatValue + 10) {

@@ -15,7 +15,7 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     
     private var viewModel = HDZQ_MyViewModel()
-    private var take = 2
+    private var take = 10
     private var skip = 0
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)

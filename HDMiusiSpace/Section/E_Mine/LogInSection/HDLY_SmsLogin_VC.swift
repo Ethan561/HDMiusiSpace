@@ -28,7 +28,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupThridLogin()
         loginBtn.layer.cornerRadius = 23
         setupBarBtn()
         phoneTF.keyboardType = .numberPad

@@ -15,8 +15,8 @@ class HDLY_About_VC: HDItemBaseVC {
     private var phone = "010-85619596"
     private var email = "postmaster@muspace.com"
     private var gnjs  = "http://www.muspace.net/api/users/about_html/gnjs?p=i"
-    private var ysxy  = "http://www.muspace.net/api/users/about_html/ysxy?p=a"
-    private var syxy  = "http://www.muspace.net/api/users/about_html/syxy?p=a"
+    private var ysxy  = "http://www.muspace.net/api/users/about_html/ysxy?p=i"
+    private var syxy  = "http://www.muspace.net/api/users/about_html/syxy?p=i"
     
     override func viewDidLoad() {
         super.viewDidLoad()

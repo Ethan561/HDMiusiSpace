@@ -20,7 +20,9 @@ struct DetailDataModel: Codable {
     var isFavorite: Int?
     var title: String?
     var star: TStrInt?
-    var time, exhibitionName, price, address: String?
+    var time, exhibitionName: String?
+    var price: String?
+    var address: String?
     var museumImg: String?
     var museumTitle, museumAddress: String?
     var exhibitionHTML: String?

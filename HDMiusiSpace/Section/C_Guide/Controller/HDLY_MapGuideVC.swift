@@ -211,7 +211,7 @@ extension HDLY_MapGuideVC {
             token = HDDeclare.shared.api_token!
         }
         //获取各楼层地图尺寸等信息
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getMapListAll(museum_id: 1, api_token: token), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getMapListAll(museum_id: museum_id, api_token: token), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

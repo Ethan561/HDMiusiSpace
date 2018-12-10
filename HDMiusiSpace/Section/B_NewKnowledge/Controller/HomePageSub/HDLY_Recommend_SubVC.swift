@@ -186,8 +186,10 @@ extension HDLY_Recommend_SubVC {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }
             if model.boutiquelist?.is_free?.int == 0 {
-                cell?.priceL.text = "¥" + (model.boutiquelist?.price?.string == nil ? "0" :(model.boutiquelist?.price?.string)!)
                 cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
+                if model.boutiquelist?.price != nil {
+                    cell?.priceL.text = "¥" + "\(model.boutiquelist!.price!)"
+                }
 
             }else {
                 cell?.priceL.text = "免费"
@@ -223,7 +225,9 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.titleL.text = model.interactioncard?.title
             cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"
-            cell?.priceL.text = "¥" + (model.interactioncard?.price?.string == nil ? "0" :(model.interactioncard?.price?.string)!)
+            if model.interactioncard?.price != nil {
+                cell?.priceL.text = "¥" + "\(model.interactioncard!.price!)"
+            }
 
             return cell!
         }else if model.type?.int == 5 {

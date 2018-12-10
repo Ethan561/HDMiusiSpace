@@ -39,7 +39,7 @@ struct BRecmdModel:Codable {
     var title: String?
     var des: String?
     var img: String?
-    var price: TStrInt?
+    var price: String?
     var is_top: TStrInt?
     var is_big: TStrInt?
     var is_card: TStrInt?
@@ -73,7 +73,9 @@ struct RecmdMoreModel:Codable {
 struct CourseListModel: Codable {
     let classID, uid: Int
     let title: String
-    let price, isFree ,fileType: Int
+    let price: String
+    let isFree ,fileType: Int
+    
     let img: String
     let classNum, purchases, isBigImg: Int
     let teacher_name, teacher_title: String

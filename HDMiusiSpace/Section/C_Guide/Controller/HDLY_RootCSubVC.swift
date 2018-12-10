@@ -13,6 +13,10 @@ import ESPullToRefresh
 class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     var dataArr =  [MuseumListData]()
     var type = 1 //1最近2最火
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
+
     //tableView
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)
@@ -24,6 +28,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
         return tableView
     }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +45,9 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         }
         self.dataRequest()
         addRefresh()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+        bindViewModel()
 
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
         
     }
     
@@ -81,10 +85,8 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             
             let jsonDecoder = JSONDecoder()
             let model:HDLY_MuseumListModel = try! jsonDecoder.decode(HDLY_MuseumListModel.self, from: result)
-            if model.data != nil {
-                self.dataArr = model.data
-                self.tableView.reloadData()
-            }
+            self.dataArr = model.data
+            self.tableView.reloadData()
             
         }) { (errorCode, msg) in
             
@@ -166,7 +168,7 @@ extension HDLY_RootCSubVC {
 
                 return cell!
                 
-            } else if model.type == 2 {
+            }else if model.type == 2 {
                 let mapData = model.map
 
                 if index == 0 {
@@ -190,8 +192,23 @@ extension HDLY_RootCSubVC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model:MuseumListData = dataArr[indexPath.section]
         if model.type == 2 && indexPath.row == 1 {
-            let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_MapGuideVC") as! HDLY_MapGuideVC
-            self.navigationController?.pushViewController(vc, animated: true)
+            if model.map?.isLock == 0 {
+                let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_MapGuideVC") as! HDLY_MapGuideVC
+                vc.museum_id = model.map?.museumID ?? 0
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }else {//购买弹窗
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
+                    self.navigationController?.pushViewController(logVC, animated: true)
+                    return
+                }
+                //获取订单信息
+                guard let goodId = model.map?.museumID else {
+                    return
+                }
+                publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 3, goods_id: goodId, self)
+            }
         }
     }
 }
@@ -239,3 +256,68 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
     
 }
 
+extension HDLY_RootCSubVC {
+    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind { (model) in
+            weakSelf?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind { (model) in
+            weakSelf?.showPaymentResult(model)
+        }
+        
+    }
+    
+    
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = String.init(format: "￥%.f", model.price!)
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction(model)
+        }
+        
+    }
+    
+    func orderBuyAction(_ model: OrderBuyInfoData) {
+        guard let goodId = Int(model.goodsID ?? "") else {
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 3, goods_id: goodId, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+            self.dataRequest()
+        }
+        
+    }
+    
+    
+}

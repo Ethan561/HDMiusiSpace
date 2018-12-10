@@ -82,7 +82,7 @@ struct MyCollectCourseModel:Codable {
     var img: String
     var teacherName: String
     var teacherTitle: String
-    var price: Int
+    var price: String
     var fileType : Int
     
     enum CodingKeys: String, CodingKey {

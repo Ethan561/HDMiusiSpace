@@ -52,7 +52,9 @@ class HDLY_Kids_Cell2: UITableViewCell {
             }
             titleL.text = model?.title
             countL.text = model?.views?.string == nil ? "0" :(model?.views?.string)! + "人在学"
-            priceL.text = "¥" + (model?.price?.string == nil ? "0" : (model?.price?.string)!)
+            if model?.price != nil {
+                priceL.text = "¥" + "\(model!.price!)"
+            }
             //
             
             let model1 = dataArray?.last

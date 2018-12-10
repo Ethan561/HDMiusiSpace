@@ -372,7 +372,9 @@ extension HDSSL_dMuseumDetailVC {
                 
                 if indexPath.row == 2 {
                     name = "费用："
-                    title = self.infoModel?.price
+                    if self.infoModel?.price != nil {
+                        title = "\(self.infoModel!.price!)"
+                    }
                 }else if indexPath.row == 3 {
                     name = "地址："
                     title = self.infoModel?.address

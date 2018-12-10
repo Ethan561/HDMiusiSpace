@@ -53,7 +53,7 @@ struct HDSSL_SearchNews: Codable {
 struct HDSSL_SearchCourse: Codable {
     var class_id          : Int?     //课程id
     var title             : String?  //课程标题
-    var price             : Float?   //价格
+    var price             : String?   //价格
     var is_free           : Int?     //是否免费1免费，0不免费
     var img               : String?  //图片
     var class_num         : Int?     //课时
@@ -68,7 +68,7 @@ struct HDSSL_SearchExhibition: Codable {
     var title             : String?  //名字
     var img               : String?  //图片
     var is_free           : Int?     //是否免费1免费，0不免费
-    var price             : Float?   //价格
+    var price             : String?   //价格
     var star              : TStrInt?   //评星
     var address           : String?  //展览地址
     var icon_list         : [String]?//服务图标地址

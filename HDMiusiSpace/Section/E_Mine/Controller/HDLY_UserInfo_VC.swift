@@ -57,6 +57,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             
             let BtnW = rect.size.width + 20
             let BtnH = rect.size.height + 10
+            // 左对齐
 //            if i == 0 {
 //                lab.frame = CGRect(x: 0, y: 10, width: BtnW, height: BtnH)
 //            } else {
@@ -67,6 +68,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
 //                    lab.frame = CGRect(x: 0, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
 //                }
 //            }
+            // 右对齐
             if i == 0 {
                 lab.frame = CGRect(x: labStrs.frame.size.width - 10 - BtnW , y: 10, width: BtnW, height: BtnH)
             } else {

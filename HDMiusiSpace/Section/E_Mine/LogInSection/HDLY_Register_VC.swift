@@ -112,8 +112,8 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
     
     @IBAction func showProtocolDetailAction(_ sender: Any) {
         let vc = HDLY_WKWebVC()
-        vc.titleName = "使用协议"
-        vc.urlPath = "http://www.muspace.net/api/users/about_html/syxy?p=i"
+        vc.titleName = "服务协议"
+        vc.urlPath = "http://www.muspace.net/api/users/about_html/fwxy?p=i"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     /*

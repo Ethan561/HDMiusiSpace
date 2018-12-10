@@ -78,6 +78,9 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
         
         self.tableView.es.stopPullToRefresh()
         self.tableView.es.stopLoadingMore()
+        if models.count == 0 {
+            self.tableView.es.noticeNoMoreData()
+        }
     }
     
     func addRefresh() {

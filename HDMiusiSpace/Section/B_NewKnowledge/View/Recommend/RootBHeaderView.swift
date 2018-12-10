@@ -20,8 +20,10 @@ class RootBHeaderView: UIView {
             self.pagerView.itemSize = .zero
             self.pagerView.automaticSlidingInterval = 2
             self.pagerView.transformer = FSPagerViewTransformer(type:.linear)
-            let transform = CGAffineTransform(scaleX: 0.85, y: 0.8)
-            self.pagerView.itemSize = self.pagerView.frame.size.applying(transform)
+//            let transform = CGAffineTransform(scaleX: 0.85, y: 0.8)
+//            let size = self.pagerView.frame.size.applying(transform)
+////            self.pagerView.itemSize = size
+            self.pagerView.itemSize = CGSize.init(width: ScreenWidth - 60, height: (ScreenWidth - 40) * 200 / 335 )
         }
     }
     

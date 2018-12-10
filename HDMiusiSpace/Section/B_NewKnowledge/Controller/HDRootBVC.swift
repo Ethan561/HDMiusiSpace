@@ -11,7 +11,7 @@ import Kingfisher
 import ESPullToRefresh
 
 let PageMenuH = 45.0
-let HeaderViewH:CGFloat = 280
+let HeaderViewH:CGFloat = (ScreenWidth - 40) * 200 / 335 + 100
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
     
@@ -104,7 +104,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         let headView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH))
         headView.addSubview(tabHeader)
         
-        myTableView.tableHeaderView = headView
+        myTableView.tableHeaderView = tabHeader
         myTableView.tableHeaderView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: HeaderViewH)
         myTableView.separatorStyle = .none
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")

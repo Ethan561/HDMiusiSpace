@@ -39,12 +39,15 @@ struct MuseumListModel: Codable {
     let img: String
     let title: String
     let type, priceType, price, vipPrice: Int
+    let isLock: Int
     
     enum CodingKeys: String, CodingKey {
         case id, img, title, type
         case priceType = "price_type"
         case price
         case vipPrice = "vip_price"
+        case isLock = "is_lock"
+
     }
 }
 
@@ -55,6 +58,7 @@ struct MuseumMapModel: Codable {
     let img: String
     let priceType, price, vipPrice: Int
     let version: String
+    let isLock: Int
     
     enum CodingKeys: String, CodingKey {
         case museumID = "museum_id"
@@ -63,6 +67,8 @@ struct MuseumMapModel: Codable {
         case price
         case vipPrice = "vip_price"
         case version
+        case isLock = "is_lock"
+
     }
 }
 

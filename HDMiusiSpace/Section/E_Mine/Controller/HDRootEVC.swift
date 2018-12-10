@@ -308,15 +308,18 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             self.pushToLoginVC(vc: self)
             return
         }
-        if indexPath.row == 1 {
-            self.performSegue(withIdentifier: "PushTo_HDSSL_MyWalletVC_Line", sender: nil)
+        if indexPath.section == 0 {
+            if indexPath.row == 1 {
+                self.performSegue(withIdentifier: "PushTo_HDSSL_MyWalletVC_Line", sender: nil)
+            }
+            else if indexPath.row == 2 {
+                self.performSegue(withIdentifier: "PushTo_HDSSL_MyOrderVC_Line", sender: nil)
+            }
+            else if indexPath.row == 3 {
+                self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
+            }
         }
-        else if indexPath.row == 2 {
-            self.performSegue(withIdentifier: "PushTo_HDSSL_MyOrderVC_Line", sender: nil)
-        }
-        else if indexPath.row == 3 {
-            self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
-        }
+        
     }
     
 }

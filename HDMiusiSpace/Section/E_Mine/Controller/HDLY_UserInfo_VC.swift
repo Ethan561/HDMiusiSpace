@@ -69,14 +69,15 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
 //                }
 //            }
             // 右对齐
+            let w = ScreenWidth - 150
             if i == 0 {
-                lab.frame = CGRect(x: labStrs.frame.size.width - 10 - BtnW , y: 10, width: BtnW, height: BtnH)
+                lab.frame = CGRect(x: w - 10 - BtnW , y: 10, width: BtnW, height: BtnH)
             } else {
                 let yuWidth: CGFloat = (recordLab?.frame.origin.x ?? 0.0) - 10
                 if yuWidth >= (rect.size.width ) {
                     lab.frame = CGRect(x: (recordLab?.frame.origin.x ?? 0.0) - 10 - BtnW, y: recordLab?.frame.origin.y ?? 0.0, width: BtnW, height: BtnH)
                 } else {
-                    lab.frame = CGRect(x: labStrs.frame.size.width - 10 - BtnW, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
+                    lab.frame = CGRect(x: w - 10 - BtnW, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
                 }
             }
 

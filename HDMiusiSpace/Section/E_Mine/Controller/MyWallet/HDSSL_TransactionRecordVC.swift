@@ -32,7 +32,7 @@ class HDSSL_TransactionRecordVC: HDItemBaseVC {
     }
     //请求订单列表
     func requestData() {
-        viewModel.getOrderRecordList(apiToken: "123456", skip: skip*10, take: take, vc: self)  //HDDeclare.shared.api_token ?? ""
+        viewModel.getOrderRecordList(apiToken: HDDeclare.shared.api_token ?? "", skip: skip*10, take: take, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
 
     //MVVM

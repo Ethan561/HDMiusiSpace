@@ -41,7 +41,7 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
     
     //请求订单列表
     func requestData() {
-        viewModel.requestMyOrderList(apiToken: "123456", skip: skip*10, take: take, status: type!, vc: self)  //HDDeclare.shared.api_token ?? ""
+        viewModel.requestMyOrderList(apiToken: HDDeclare.shared.api_token ?? "", skip: skip*10, take: take, status: type!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
     //mvvm
     func bindViewModel() {

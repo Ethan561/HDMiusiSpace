@@ -41,7 +41,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         loadMyViews()
         bindViewModel()
         
-        viewModel.requestMyOrderDetail(apiToken: "123456", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
+        viewModel.requestMyOrderDetail(apiToken: HDDeclare.shared.api_token ?? "", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
     
     func loadMyViews() {

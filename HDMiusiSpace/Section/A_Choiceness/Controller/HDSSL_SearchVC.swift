@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 let SearchHistory : String = "SearchHistory"
 
 class HDSSL_SearchVC: HDItemBaseVC {
 
+    private var take = 10
+    private var skip = 0
+    var currentType: Int = 0  //当前搜索类型
+    
     var textFeild                     : UITextField! //输入框
     @IBOutlet weak var tagBgView      : UIView!      //标签背景页
     @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
@@ -50,6 +55,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         loadSearchHistory()
         
+        addRefresh() //刷新
+        
         self.viewModel.request_getTags(vc: self) //获取搜索类别
         
         self.dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
@@ -81,16 +88,48 @@ class HDSSL_SearchVC: HDItemBaseVC {
         //搜索结果数组
         viewModel.resultArray.bind { (resultArray) in
             
-            weakSelf?.resultArray = resultArray
-            weakSelf?.dealSearchResultData()
+//            weakSelf?.resultArray = resultArray
+//            weakSelf?.dealSearchResultData()
+//
+//            //显示搜索结果
+//            self.resultTableView.isHidden = false
+//            self.textFeild.resignFirstResponder()
+//            self.resultTableView.reloadData()
             
-            //显示搜索结果
-            self.resultTableView.isHidden = false
-            self.textFeild.resignFirstResponder()
-            self.resultTableView.reloadData()
+            weakSelf?.refreshTableView(models: resultArray)
         }
     }
-    
+    //刷新列表
+    func refreshTableView(models:[HDSSL_SearchType]) {
+        //显示搜索结果
+        self.resultTableView.isHidden = false
+        self.textFeild.resignFirstResponder()
+        
+        if self.currentType == 0 {//0时不需要分页
+            skip = 0
+        }
+        
+        if models.count > 0 {
+            if skip == 0 {
+                self.resultArray.removeAll()
+            }
+            self.resultArray += models
+            
+            self.resultTableView.es.stopPullToRefresh()
+            self.resultTableView.es.stopLoadingMore()
+            
+            self.dealSearchResultData()
+        
+            self.resultTableView.reloadData()
+        }else{
+            self.resultTableView.es.noticeNoMoreData()
+        }
+        if self.resultArray.count == 0 {
+            self.resultTableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.resultTableView.ly_showEmptyView()
+        }
+        
+    }
     //MARK: - 处理搜索结果
     func dealSearchResultData(){
         for  i: Int in 0..<self.resultArray.count {
@@ -133,21 +172,27 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         tagView.BlockFunc { (array) in
             //1、保存选择标签
-//            print(array)
-            //
             let index: Int = Int(array[0] as! String)!
             
-            //搜索某一类型数据
-            if (weakSelf?.textFeild.text?.count)! > 0 {
-                //
-                weakSelf?.viewModel.request_search(str: (weakSelf?.textFeild.text!)!, skip: 0, take: 10, type: index+1, vc: self)
-            }
+            weakSelf?.searchByTag(index) //搜索某一类型数据
             
         }
         tagView.titleArray = typeTitleArray
         
         tagBgView.addSubview(tagView)
         tagView.loadNormalTagsView()
+    }
+    //标签搜索
+    func searchByTag(_ tagIndex:Int){
+        
+        self.currentType = tagIndex + 1 //设置搜索类型
+        
+        self.textFeild.text = typeTitleArray[tagIndex]
+        
+        //保存搜索历史
+        self.func_saveHistory(self.textFeild.text!)
+        
+        self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: tagIndex+1, vc: self)
     }
     //MARK: - 自定义导航栏
     func loadSearchBar() {
@@ -236,11 +281,18 @@ class HDSSL_SearchVC: HDItemBaseVC {
     //MARK: - actions
     //搜索
     @objc func action_search(_ sender: UIButton) {
+        if (self.textFeild.text?.count)! > 0 {
+            self.currentType = 0 //设置搜索类型
+            //开始搜索
+            self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: 0, vc: self)
+            //保存搜索历史
+            self.func_saveHistory(self.textFeild.text!)
+        }
         
     }
     //语音输入
     @objc func action_voice(_ sender: UIButton) {
-        
+        self.textFeild.becomeFirstResponder()
     }
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
         //清空搜索历史记录
@@ -283,6 +335,38 @@ class HDSSL_SearchVC: HDItemBaseVC {
     */
 
 }
+extension HDSSL_SearchVC{
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.resultTableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.resultTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.resultTableView.refreshIdentifier = String.init(describing: self)
+        self.resultTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        skip = 0
+        requestData()
+    }
+    
+    private func loadMore() {
+        skip += 1
+        requestData()
+    }
+    func requestData() {
+        //刷新数据请求
+        self.viewModel.request_search(str: self.textFeild.text!, skip: skip*take, take: take, type: currentType, vc: self)
+    }
+}
 //MARK: TextfeildDelegate
 extension HDSSL_SearchVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -294,6 +378,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
+                self.currentType = 0 //设置搜索类型
                 //开始搜索
                 self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: 0, vc: self)
                 //保存搜索历史
@@ -317,16 +402,16 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         switch modelType {
         case 0:
             
-            return min(3, model.news_num!)
+            return min(3, (model.news_list?.count)!)
         case 1:
         
-            return min(3, model.course_num!)
+            return min(3, (model.course_list?.count)!)
         case 2:
         
-            return min(3, model.exhibition_num!)
+            return min(3, (model.exhibition_list?.count)!)
         case 3:
         
-            return min(3, model.museum_num!)
+            return min(3, (model.museum_list?.count)!)
         default:
             return 0
         }

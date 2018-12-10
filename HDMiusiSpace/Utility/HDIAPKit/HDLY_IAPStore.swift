@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SwiftyStoreKit
 
 let VERIFY_RECEIPT_URL = "https://buy.itunes.apple.com/verifyReceipt"
 let ITMS_SANDBOX_VERIFY_RECEIPT_URL = "https://sandbox.itunes.apple.com/verifyReceipt"
@@ -20,7 +21,7 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
     
     override init() {
         super.init()
-
+        
     }
     
     func setup() {
@@ -234,7 +235,90 @@ extension HDLY_IAPStore {
 }
 
 
+extension HDLY_IAPStore {
+    //获取商品列表并保存
+    func getList() {
+        let produceSet = NSSet(array: ["0060","0012","0018","888","spacecoin30"])
+        
+        SwiftyStoreKit.retrieveProductsInfo(produceSet as! Set<String>) { result in
+            if let product = result.retrievedProducts.first {
+                let priceString = product.localizedPrice!
+                print("Product: \(product.localizedDescription), price: \(priceString)")
+            } else if let invalidProductId = result.invalidProductIDs.first {
+                print("Invalid product identifier: \(invalidProductId)")
+            } else {
+                print("Error: \(result.error)")
+            }
+        }
+    }
     
+    //点击购买按钮操作
+    @IBAction func onBuyBtnClick(_ sender: Any) {
+        let prodectID:String = "spacecoin30"
+        
+        SwiftyStoreKit.purchaseProduct(prodectID, quantity: 3, atomically: true) { result in
+            switch result {
+            case .success(let purchase):
+                print("Purchase Success: \(purchase.productId)")
+                
+                //上传后台验证订单信息
+                //                let receipt = HDIAPReceiptValidator(service: .sandbox)
+                
+                //                #if DEBUG
+                //                let service: VerifyReceiptURLType = .production
+                //                #else
+                ////                let service: VerifyReceiptURLType = .production
+                //                #endif
+                
+                let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: "your-shared-secret")
+                
+                let password = "公共秘钥在 itunesConnect App 内购买项目查看"
+                SwiftyStoreKit.verifyReceipt(using: appleValidator, forceRefresh: true, completion: { (result) in
+                    switch result {
+                    case .success(let receipt):
+                        print("receipt--->\(receipt)")
+                        break
+                    case .error(let error):
+                        print("error--->\(error)")
+                        break
+                    }
+                })
+                
+            case .error(let error):
+                switch error.code {
+                case .unknown: print("Unknown error. Please contact support")
+                case .clientInvalid: print("Not allowed to make the payment")
+                case .paymentCancelled: break
+                case .paymentInvalid: print("The purchase identifier was invalid")
+                case .paymentNotAllowed: print("The device is not allowed to make the payment")
+                case .storeProductNotAvailable: print("The product is not available in the current storefront")
+                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
+                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
+                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+                }
+            }
+        }
+    }
+    
+    //恢复内购
+    func restorePurchases() {
+        
+        SwiftyStoreKit.restorePurchases(atomically: true) { results in
+            
+            for purchase in results.restoredPurchases {
+                let downloads = purchase.transaction.downloads
+                if !downloads.isEmpty {
+                    SwiftyStoreKit.start(downloads)
+                } else if purchase.needsFinishTransaction {
+                    // Deliver content from server, then:
+                    SwiftyStoreKit.finishTransaction(purchase.transaction)
+                }
+            }
+            //self.showAlert(self.alertForRestorePurchases(results))
+        }
+    }
+    
+}
 
 
 

@@ -33,9 +33,11 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             signatureView.isHidden = true
         }else {
             self.title = "个人简介"
-            signatureTextView.text = declare.sign
+            signatureTextView.text = declare.profile
             nicknameVIew.isHidden = true
             signatureView.isHidden = false
+            signatureTextView.delegate = self
+            countL.text = "\(declare.sign?.count ?? 0)/30"
         }
         
         setupBarBtn()
@@ -56,11 +58,20 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
     @objc func modifyUserInfoRequest() {
         if showNicknameVIew == true {
             if nameTF.text?.isEmpty == false {
-                modifyNicknameRequest()
+                if (nameTF.text?.count)! > 8 && (nameTF.text?.count)! < 4 {
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入4-8个字符")
+                } else {
+                    modifyNicknameRequest()
+                }
             }
         }else {
             if signatureTextView.text.isEmpty == false {
-                modifyProfileRequest()
+                if signatureTextView.text.count > 30 {
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入少于30个字符")
+                } else {
+                    modifyProfileRequest()
+                }
+                
             }
         }
     }
@@ -106,21 +117,16 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
         nameTF.text = ""
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    deinit {
+        print("deinit")
     }
     
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension HDLY_ModifyName_VC: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        print( textView.text.count)
+        countL.text = "\(textView.text.count)/30"
     }
-    */
-
 }

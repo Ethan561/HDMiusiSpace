@@ -18,7 +18,9 @@ struct HDLY_ExhibitionMuseumModel: Codable {
 struct ExhibitionMuseumData: Codable {
     var img: String?
     var isFavorite: Int?
-    var title, time, price, address: String?
+    var title, time: String?
+    var price: String?
+    var address: String?
     var iconList: [String?]?
     var museumHTML: String?
     var isArea: Int?

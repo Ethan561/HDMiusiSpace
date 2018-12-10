@@ -19,7 +19,8 @@ struct ChapterData: Codable {
     let img: String
     let isFree: Int
     let video: String
-    let yprice, price, fileType, isFavorite: TStrInt
+    var yprice, price : String?
+    let fileType, isFavorite: TStrInt
     let isBuy: Int
     let sectionList: [ChapterSection]
     

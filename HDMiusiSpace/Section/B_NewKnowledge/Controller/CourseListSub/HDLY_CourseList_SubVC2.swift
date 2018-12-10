@@ -59,7 +59,8 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
-                    self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+                    guard let price = self.infoModel!.data.price else {return}
+                    self.buyBtn.setTitle("原价¥\(price)", for: .normal)
                     self.bottomHCons.constant = 74
                 }else {
                     self.bottomHCons.constant = 0

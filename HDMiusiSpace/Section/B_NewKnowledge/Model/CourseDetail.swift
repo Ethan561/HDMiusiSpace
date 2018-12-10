@@ -19,7 +19,8 @@ struct CourseDetailModel: Codable {
     var img, title, buynotice: String
     var isFree: Int
     var video: String
-    var yprice, price, teacherID: TStrInt
+    var yprice, price : String?
+    var teacherID: TStrInt
     var url: String
     var fileType: Int
     var timg, teacherName, teacherTitle: String

@@ -286,9 +286,11 @@ extension HDLY_RootCSubVC {
         orderTipView = tipView
         
         tipView.titleL.text = model.title
-        tipView.priceL.text = String.init(format: "￥%@", model.price?.string ?? "")
-        tipView.spaceCoinL.text = model.spaceMoney
-        tipView.sureBtn.setTitle("支付\(model.price!.int)空间币", for: .normal)
+        if model.price != nil {
+            tipView.priceL.text = String.init(format: "￥%.f", model.price!)
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
         
         weak var _self = self
         tipView.sureBlock = {

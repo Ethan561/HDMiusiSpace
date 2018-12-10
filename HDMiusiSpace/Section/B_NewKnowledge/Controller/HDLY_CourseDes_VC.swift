@@ -167,10 +167,11 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         orderTipView = tipView
         
         tipView.titleL.text = model.title
-        tipView.priceL.text = String.init(format: "￥%@", model.price?.string ?? "")
-        tipView.spaceCoinL.text = model.spaceMoney
-        tipView.sureBtn.setTitle("支付\(model.price!.int)空间币", for: .normal)
-        
+        if model.price != nil {
+            tipView.priceL.text = String.init(format: "￥%.f", model.price!)
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
         weak var _self = self
         tipView.sureBlock = {
             _self?.orderBuyAction()
@@ -266,7 +267,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
-                    self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price.string)", for: .normal)
+                    if self.infoModel!.data.price != nil {
+                        self.buyBtn.setTitle("原价¥\(self.infoModel!.data.price!)", for: .normal)
+                    }
                     self.listenBgView.isHidden = false
 
                 }else {

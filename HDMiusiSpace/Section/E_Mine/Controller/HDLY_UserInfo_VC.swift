@@ -44,7 +44,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         declare.labStr?.forEach({ (str) in
             s = s + str
         })
-        
+        labStrs.removeAllSubviews()
          var recordLab: UILabel? = nil
         for i in 0..<declare.labStr!.count {
             let tagTitle = declare.labStr![i] as NSString
@@ -57,16 +57,29 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             
             let BtnW = rect.size.width + 20
             let BtnH = rect.size.height + 10
+            // 左对齐
+//            if i == 0 {
+//                lab.frame = CGRect(x: 0, y: 10, width: BtnW, height: BtnH)
+//            } else {
+//                let yuWidth: CGFloat = labStrs.frame.size.width - 10 - (recordLab?.frame.origin.x ?? 0.0) - (recordLab?.frame.size.width ?? 0.0)
+//                if yuWidth >= (rect.size.width ) {
+//                    lab.frame = CGRect(x: (recordLab?.frame.origin.x ?? 0.0) + (recordLab?.frame.size.width ?? 0.0) + 10, y: recordLab?.frame.origin.y ?? 0.0, width: BtnW, height: BtnH)
+//                } else {
+//                    lab.frame = CGRect(x: 0, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
+//                }
+//            }
+            // 右对齐
             if i == 0 {
-                lab.frame = CGRect(x: 0, y: 10, width: BtnW, height: BtnH)
+                lab.frame = CGRect(x: labStrs.frame.size.width - 10 - BtnW , y: 10, width: BtnW, height: BtnH)
             } else {
-                let yuWidth: CGFloat = labStrs.frame.size.width - 10 - (recordLab?.frame.origin.x ?? 0.0) - (recordLab?.frame.size.width ?? 0.0)
+                let yuWidth: CGFloat = (recordLab?.frame.origin.x ?? 0.0) - 10
                 if yuWidth >= (rect.size.width ) {
-                    lab.frame = CGRect(x: (recordLab?.frame.origin.x ?? 0.0) + (recordLab?.frame.size.width ?? 0.0) + 10, y: recordLab?.frame.origin.y ?? 0.0, width: BtnW, height: BtnH)
+                    lab.frame = CGRect(x: (recordLab?.frame.origin.x ?? 0.0) - 10 - BtnW, y: recordLab?.frame.origin.y ?? 0.0, width: BtnW, height: BtnH)
                 } else {
-                    lab.frame = CGRect(x: 0, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
+                    lab.frame = CGRect(x: labStrs.frame.size.width - 10 - BtnW, y: (recordLab?.frame.origin.y ?? 0.0) + (recordLab?.frame.size.height ?? 0.0) + 10, width: BtnW, height: BtnH)
                 }
             }
+
             lab.text = tagTitle as String
             lab.textAlignment = .center
             lab.layer.masksToBounds = true

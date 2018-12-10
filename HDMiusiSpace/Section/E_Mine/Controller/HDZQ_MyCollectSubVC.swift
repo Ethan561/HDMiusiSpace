@@ -15,7 +15,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     private var viewModel = HDZQ_MyViewModel()
     
-    private var take = 10
+    private var take = 2
     private var skip = 0
     
     lazy var tableView: UITableView = {
@@ -63,6 +63,9 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
             }
             self?.tableView.es.stopPullToRefresh()
             self?.tableView.es.stopLoadingMore()
+            if models.count == 0 {
+                self?.tableView.es.noticeNoMoreData()
+            }
         }
         viewModel.collectExhibitions.bind { [weak self] (models) in
             if (self?.skip)! > 0 {
@@ -78,6 +81,9 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
             }
             self?.tableView.es.stopPullToRefresh()
             self?.tableView.es.stopLoadingMore()
+            if models.count == 0 {
+                self?.tableView.es.noticeNoMoreData()
+            }
         }
     }
     
@@ -98,6 +104,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     }
     
     private func refresh() {
+        skip = 0
        requestData()
     }
     

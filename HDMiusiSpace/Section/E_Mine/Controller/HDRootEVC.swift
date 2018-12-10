@@ -191,7 +191,7 @@ extension HDRootEVC {
     func getMyStudyCourses() {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyStudyCourses(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
             let jsonDecoder = JSONDecoder()
-            let model:MyCollectCourseData = try! jsonDecoder.decode(MyCollectCourseData.self, from: result)
+            guard let model:MyCollectCourseData = try? jsonDecoder.decode(MyCollectCourseData.self, from: result) else { return }
             self.courses = model.data
             let indexPath = IndexPath(row: 4, section: 0)
             self.myTableView.reloadRows(at: [indexPath], with: .none)

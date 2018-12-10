@@ -13,6 +13,9 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var pwdTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
     
+    @IBOutlet weak var wxBtn: UIButton!
+    @IBOutlet weak var qqBtn: UIButton!
+    @IBOutlet weak var weiboBtn: UIButton!
     let declare:HDDeclare = HDDeclare.shared
 
     override func viewDidLoad() {
@@ -25,7 +28,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         phoneTF.delegate = self
         pwdTF.returnKeyType = .done
         pwdTF.delegate = self
-        
+        setupThridLogin()
     }
     
     func setupBarBtn() {
@@ -110,8 +113,105 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func thridLoginAction(_ sender: UIButton) {
+    func setupThridLogin() {
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false {
+            qqBtn.isHidden = true
+        }
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false {
+            wxBtn.isHidden = true
+        }
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+            weiboBtn.isHidden = true
+        }
         
+    }
+    
+    @IBAction func thridLoginAction(_ sender: UIButton) {
+        let index = sender.tag - 100
+        if index == 1 {//微信
+            self.getAuthWithUserInfoWithType(type: .wechatSession)
+        }
+        else if index == 2 {//QQ
+            self.getAuthWithUserInfoWithType(type: .QQ)
+        }
+        else if index == 3 {//微博
+            self.getAuthWithUserInfoWithType(type: .sina)
+        }
+    }
+    
+    func getAuthWithUserInfoWithType(type: UMSocialPlatformType) {
+        
+        var from = "qq"
+        if type == .wechatSession {
+            from = "wx"
+        }else if type == .sina {
+            from = "wb"
+        }
+        
+        UMSocialManager.default().getUserInfo(with: type, currentViewController: self) { (result, error) in
+            if error != nil {
+                LOG("\(String(describing: error?.localizedDescription))")
+            }else {
+                let resp:UMSocialUserInfoResponse = result as! UMSocialUserInfoResponse
+                LOG("name:\(resp.name)")
+                LOG("uid:\(resp.uid)")
+                LOG("iconurl:\(resp.iconurl)")
+                //
+                self.thirdLoginRequestWithInfo(resp: resp, from: from)
+            }
+        }
+    }
+    
+    
+    func thirdLoginRequestWithInfo(resp:UMSocialUserInfoResponse, from: String) {
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+        let openid   = resp.uid!
+        let b_nickname = resp.name!
+        let b_avatar = resp.iconurl ?? ""
+        let params: [String: Any] = ["openid": openid,
+                                     "b_from": from,
+                                     "b_nickname": b_nickname,
+                                     "b_avatar": b_avatar,
+                                     "deviceno": deviceno,
+                                     ]
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" dic ： \(String(describing: dic))")
+            let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+            self.declare.api_token = dataDic["api_token"] as? String
+            self.declare.uid      = dataDic["uid"] as? Int
+            self.declare.phone    = dataDic["phone"] as? String
+            self.declare.email    = dataDic["email"] as? String
+            self.declare.nickname = dataDic["nickname"] as? String
+            self.declare.isVip  =  dataDic["nickname"] as? Int
+            let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
+            self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+            let arr:Array<String> = dataDic["tags"] as! Array<String>
+            if arr.count > 0 {
+                let tags = NSSet.init(array: arr)
+                JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+            }
+            
+            self.declare.loginStatus = .kLogin_Status_Login
+            //
+            let defaults = UserDefaults.standard
+            defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+            HDLY_UserModel.shared.requestUserInfo()
+            HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                self.back()
+            })
+            
+        }) { (errorCode, msg) in
+            HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+            if errorCode == 422 {
+                let vc = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_ThirdBindPhoneVC") as! HDZQ_ThirdBindPhoneVC
+                vc.params = params
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

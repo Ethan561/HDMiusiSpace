@@ -37,17 +37,21 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
 
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
-        if phoneTF.text?.isEmpty == false {
-            guard  Validate.phoneNum(phoneTF.text!).isRight  else {
-                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
-                return
-            }
+        if (phoneTF.text?.isEmpty)! || phoneTF.text == "" {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
+            return
         }
+        guard  Validate.phoneNum(phoneTF.text!).isRight  else {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
+            return
+        }
+        
         if isFindPwd == false {
             self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifiSms_VC_Line", sender: nil)
         }else {
             self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifiSms_VC_Line", sender: phoneTF.text!)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,10 +66,10 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
             let vc: HDLY_SafetyVerifiSms_VC = segue.destination as! HDLY_SafetyVerifiSms_VC
             vc.segueType = self.segueType
             vc.phone = HDDeclare.shared.phone
-//            if isFindPwd == true {
-//                let phone:String = phoneTF.text!
-//                vc.phone = phone
-//            }
+            if isFindPwd == true {
+                let phone:String = phoneTF.text!
+                vc.phone = phone
+            }
         }
     }
     

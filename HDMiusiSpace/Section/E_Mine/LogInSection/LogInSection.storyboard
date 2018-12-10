@@ -370,7 +370,7 @@
                                         <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UN-Qp-SAG">
+                                    <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7UN-Qp-SAG">
                                         <rect key="frame" x="61" y="12" width="63" height="63"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="dl_icon_wc"/>
@@ -378,7 +378,7 @@
                                             <action selector="thridLoginAction:" destination="rVe-TH-YYz" eventType="touchUpInside" id="Ngx-O4-Tec"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onf-DA-kU2">
+                                    <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Onf-DA-kU2">
                                         <rect key="frame" x="136" y="12" width="63" height="63"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -389,7 +389,7 @@
                                             <action selector="thridLoginAction:" destination="rVe-TH-YYz" eventType="touchUpInside" id="T5D-j8-Teb"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38Z-Ne-jmr">
+                                    <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38Z-Ne-jmr">
                                         <rect key="frame" x="211" y="12" width="63" height="63"/>
                                         <state key="normal" image="dl_icon_wb"/>
                                         <connections>
@@ -439,6 +439,9 @@
                         <outlet property="loginBtn" destination="b4h-co-MiI" id="YoW-m0-ud4"/>
                         <outlet property="phoneTF" destination="K58-OA-WTB" id="60x-ca-i6x"/>
                         <outlet property="pwdTF" destination="1x0-jf-ExW" id="FDw-Xi-zPk"/>
+                        <outlet property="qqBtn" destination="Onf-DA-kU2" id="ps2-bf-PHM"/>
+                        <outlet property="weiboBtn" destination="38Z-Ne-jmr" id="Fwm-Mh-IZM"/>
+                        <outlet property="wxBtn" destination="7UN-Qp-SAG" id="fMq-hb-t7B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSe-cH-1Sy" userLabel="First Responder" sceneMemberID="firstResponder"/>

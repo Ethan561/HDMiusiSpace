@@ -34,7 +34,7 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
         
-        if phoneTF.text?.isEmpty == false && smsTF.text?.isEmpty == false {
+        if phoneTF.text?.isEmpty == false  {
             guard  Validate.phoneNum(phoneTF.text!).isRight  else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
                 return
@@ -60,6 +60,8 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
             }) { (errorCode, msg) in
                 
             }
+        } else {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入您的手机号")
         }
     }
     
@@ -71,6 +73,8 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
             }
             HDLY_UserModel.shared.sendSmsForCheck(username: phoneTF.text!, vc: self)
             beginCount()
+        } else {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入您的手机号")
         }
     }
     

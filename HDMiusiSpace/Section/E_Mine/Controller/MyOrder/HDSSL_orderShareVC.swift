@@ -1,28 +1,27 @@
 //
-//  HDSSL_shareCommentVC.swift
+//  HDSSL_orderShareVC.swift
 //  HDMiusiSpace
 //
-//  Created by SSLong on 2018/11/20.
+//  Created by SSLong on 2018/12/11.
 //  Copyright © 2018 hengdawb. All rights reserved.
 //
 
 import UIKit
 
-class HDSSL_shareCommentVC: HDItemBaseVC {
-
-    @IBOutlet weak var largeImgView: UIImageView!
-    @IBOutlet weak var btn_share: UIButton!
-    var imgPath: String?
+class HDSSL_orderShareVC: HDItemBaseVC {
+    @IBOutlet weak var bgView: UIImageView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var shareBtn: UIButton!
+    
+    var sharePath: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        self.largeImgView.kf.setImage(with: URL.init(string: self.imgPath!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
-    @IBAction func action_shareImg(_ sender: Any) {
-        //分享
+    @IBAction func action_share(_ sender: UIButton) {
         let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         tipView.delegate = self
@@ -43,10 +42,10 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
 
 }
 //MARK:--- 分享
-extension HDSSL_shareCommentVC: UMShareDelegate {
+extension HDSSL_orderShareVC: UMShareDelegate {
     func shareDelegate(platformType: UMSocialPlatformType) {
         
-        guard let url  = self.imgPath else {
+        guard let url  = self.sharePath else {
             return
         }
         

@@ -41,7 +41,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         loadMyViews()
         bindViewModel()
         
-        viewModel.requestMyOrderDetail(apiToken: HDDeclare.shared.api_token ?? "", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
+        viewModel.requestMyOrderDetail(apiToken: "123456", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
     
     func loadMyViews() {
@@ -118,6 +118,16 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         viewModel.orderDetail.bind { (model) in
             weakSelf?.reloadMyViewWithData(model)
         }
+        viewModel.orderPicPath.bind { (path) in
+            //订单分享图
+            print(path)
+            //进入分享页面
+            if path.count > 0 {
+                let shareOrderVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_orderShareVC") as! HDSSL_orderShareVC
+                shareOrderVC.sharePath = path
+                self.navigationController?.pushViewController(shareOrderVC, animated: true)
+            }
+        }
     }
     func reloadMyViewWithData(_ model: OrderDetailModel){
         self.orderDetail = model
@@ -146,8 +156,14 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             
             if order?.cateID == 1 { //课程
                 //评论晒图
+                //请求图片地址，然后跳转页面
+                viewModel.getOrderSharePicPath(apiToken: "123456", order_id: (order?.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
             }else { //展览门票
                 //待评价
+                let storyboard = UIStoryboard.init(name: "RootD", bundle: nil)
+                let commentvc = storyboard.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
+                commentvc.exhibition_id = self.order?.goodsID
+                self.navigationController?.pushViewController(commentvc, animated: true)
             }
             
         }
@@ -162,8 +178,10 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             
             if order?.cateID == 1 { //课程
                 //立即学习
+                
             }else { //展览门票
                 //进入导览
+                
             }
             
         }

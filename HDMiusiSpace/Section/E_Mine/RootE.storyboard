@@ -2431,6 +2431,70 @@
             </objects>
             <point key="canvasLocation" x="1828" y="-3511.394302848576"/>
         </scene>
+        <!--order ShareVC-->
+        <scene sceneID="BDa-zG-PfU">
+            <objects>
+                <viewController storyboardIdentifier="HDSSL_orderShareVC" id="vsd-rf-1mV" customClass="HDSSL_orderShareVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fIB-Rr-lC7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlpl_img_share_bg" translatesAutoresizingMaskIntoConstraints="NO" id="bDk-5X-B2Z">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUP-Rj-a17">
+                                <rect key="frame" x="20" y="591" width="335" height="56"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KUP-Rj-a17" secondAttribute="height" multiplier="335:56" id="sCP-AA-ZGO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <state key="normal" title="分享订单画报">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="action_share:" destination="vsd-rf-1mV" eventType="touchUpInside" id="99K-7a-dw6"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hQ6-dC-LpD">
+                                <rect key="frame" x="34.5" y="40" width="306" height="511"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hQ6-dC-LpD" secondAttribute="height" multiplier="335:560" id="1SN-MZ-IQi"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bDk-5X-B2Z" firstAttribute="leading" secondItem="SFj-hQ-mQK" secondAttribute="leading" id="75k-y8-Hhq"/>
+                            <constraint firstItem="bDk-5X-B2Z" firstAttribute="top" secondItem="fIB-Rr-lC7" secondAttribute="top" id="DkR-Bo-emK"/>
+                            <constraint firstItem="KUP-Rj-a17" firstAttribute="width" secondItem="KUP-Rj-a17" secondAttribute="height" multiplier="335:56" id="K3q-eM-Laa"/>
+                            <constraint firstItem="bDk-5X-B2Z" firstAttribute="bottom" secondItem="SFj-hQ-mQK" secondAttribute="bottom" id="Keg-Gw-ua6"/>
+                            <constraint firstItem="hQ6-dC-LpD" firstAttribute="top" secondItem="SFj-hQ-mQK" secondAttribute="top" constant="20" id="U5U-7d-6cT"/>
+                            <constraint firstItem="bDk-5X-B2Z" firstAttribute="trailing" secondItem="SFj-hQ-mQK" secondAttribute="trailing" id="YoK-99-fDI"/>
+                            <constraint firstItem="SFj-hQ-mQK" firstAttribute="bottom" secondItem="KUP-Rj-a17" secondAttribute="bottom" constant="20" id="cnQ-yP-6NR"/>
+                            <constraint firstItem="hQ6-dC-LpD" firstAttribute="centerX" secondItem="fIB-Rr-lC7" secondAttribute="centerX" id="m1D-ms-sJK"/>
+                            <constraint firstItem="KUP-Rj-a17" firstAttribute="top" secondItem="hQ6-dC-LpD" secondAttribute="bottom" constant="40" id="sfE-OH-szv"/>
+                            <constraint firstItem="SFj-hQ-mQK" firstAttribute="trailing" secondItem="KUP-Rj-a17" secondAttribute="trailing" constant="20" id="srN-jJ-r8d"/>
+                            <constraint firstItem="hQ6-dC-LpD" firstAttribute="width" secondItem="hQ6-dC-LpD" secondAttribute="height" multiplier="335:560" id="u5S-aQ-EY3"/>
+                            <constraint firstItem="KUP-Rj-a17" firstAttribute="leading" secondItem="SFj-hQ-mQK" secondAttribute="leading" constant="20" id="wwZ-8l-RVD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SFj-hQ-mQK"/>
+                    </view>
+                    <connections>
+                        <outlet property="bgView" destination="bDk-5X-B2Z" id="aiU-eV-OqJ"/>
+                        <outlet property="imgView" destination="hQ6-dC-LpD" id="U5A-A7-M3h"/>
+                        <outlet property="shareBtn" destination="KUP-Rj-a17" id="XE9-qh-lKI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCc-SK-K5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-3506"/>
+        </scene>
         <!--My WalletVC-->
         <scene sceneID="s4D-PM-wsA">
             <objects>
@@ -3052,5 +3116,6 @@ AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
         <image name="xz_icon_share_black_default" width="22" height="22"/>
         <image name="xz_icon_share_white_default" width="22" height="22"/>
         <image name="xz_icon_video_black_default" width="12" height="10"/>
+        <image name="zlpl_img_share_bg" width="375" height="736"/>
     </resources>
 </document>

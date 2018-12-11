@@ -122,6 +122,17 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    //我的订单分享图地址
+    var orderPicPath: Bindable = Bindable(String())
+    func getOrderSharePicPath(apiToken:String,order_id:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderSharePicPath(api_token: apiToken, orderId: order_id), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:HDSSLMyOrderSharePicModel = try! jsonDecoder.decode(HDSSLMyOrderSharePicModel.self, from: result)
+            self.orderPicPath.value = model.data!
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 

@@ -70,3 +70,9 @@ struct OrderDetailModel: Codable {
         case isShare = "is_share"
     }
 }
+//---订单分享图片
+struct HDSSLMyOrderSharePicModel: Codable {
+    var status: Int
+    var msg: String?
+    var data: String?
+}

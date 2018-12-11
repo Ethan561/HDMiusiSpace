@@ -12,7 +12,6 @@ class HDSSL_commentListVC: HDItemBaseVC {
 
     var listType: Int?  //1全部，2有图
     var exhibition_id: Int?
-    var exdataModel: ExhibitionDetailDataModel?//展览详情数据
     
     @IBOutlet weak var btn_all: UIButton!
     @IBOutlet weak var btn_pic: UIButton!
@@ -122,7 +121,6 @@ class HDSSL_commentListVC: HDItemBaseVC {
     //发表评论，跳页
     @IBAction func action_writeComment(_ sender: Any) {
         let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
-        commentvc.exdataModel = self.exdataModel
         commentvc.exhibition_id = self.exhibition_id
         self.navigationController?.pushViewController(commentvc, animated: true)
     }

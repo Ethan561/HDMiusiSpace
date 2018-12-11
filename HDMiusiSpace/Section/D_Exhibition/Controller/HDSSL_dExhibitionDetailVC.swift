@@ -396,7 +396,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 ////0去评论，1全部，2有图
                 if index == 0 {
                     let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
-                    commentvc.exdataModel = self.exdataModel
                     commentvc.exhibition_id = self.exhibition_id
                     self.navigationController?.pushViewController(commentvc, animated: true)
                 }else {
@@ -404,7 +403,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
                     commentListvc.listType = index
                     commentListvc.exhibition_id = self.exhibition_id!
-                    commentListvc.exdataModel = self.exdataModel!
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }
@@ -727,7 +725,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
         commentListvc.listType = 1
         commentListvc.exhibition_id = self.exhibition_id!
-        commentListvc.exdataModel = self.exdataModel!
         self.navigationController?.pushViewController(commentListvc, animated: true)
     }
     //点赞

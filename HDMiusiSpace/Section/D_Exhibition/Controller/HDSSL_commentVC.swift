@@ -26,7 +26,8 @@ class HDSSL_commentVC: HDItemBaseVC {
     var ImagePathArray: Array<String> = Array.init() //上传图片地址数组
     
     //mvvm
-    var viewModel: HDSSL_commentVM = HDSSL_commentVM()
+    var exViewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()  //获取展览详情
+    var viewModel: HDSSL_commentVM = HDSSL_commentVM()      //发布评论
     var commentId: Int? //发布成功，返回评论id
     var htmlShareUrl:String? //发布成功，返回分享地址
     
@@ -38,19 +39,33 @@ class HDSSL_commentVC: HDItemBaseVC {
         loadTableView()
         bindViewModel()
         //Data
-        
+        loadMyDatas()
     }
     override func viewDidLayoutSubviews() {
         
         super.viewDidLayoutSubviews()
         
     }
-    
+    //MARK: 加载数据
+    func loadMyDatas() {
+        //请求数据
+        guard let exID = exhibition_id else {
+            return
+        }
+        exViewModel.request_getExhibitionDetail(exhibitionId: exID, vc: self)
+    }
     //MARK: - MVVM
     func bindViewModel() {
         weak var weakSelf = self
         
+        
         //展览data
+        exViewModel.exhibitionData.bind { (data) in
+            
+            weakSelf?.showViewData(data)
+            
+        }
+        //发布成功
         viewModel.backDic.bind { (dic) in
 
             let model: HDSSL_commentResultModel = dic
@@ -63,6 +78,12 @@ class HDSSL_commentVC: HDItemBaseVC {
         }
         
         
+    }
+    //处理返回数据
+    func showViewData(_ data:ExhibitionDetailDataModel) {
+        self.exdataModel = data
+        
+        self.dTableView.reloadData()
     }
     func jumpSuccessVC()  {
         //上传图片，得到图片地址，开始发布
@@ -223,7 +244,7 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             //图片
             cell.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.imgList?[0]) ?? "")), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
             //标题
-            cell.cell_titleT.text = String.init(format: "%@", (self.exdataModel?.data?.title!)!)
+            cell.cell_titleT.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
             
             cell.BlockBackStarNumber { (number) in
                 print("评分%d",number)

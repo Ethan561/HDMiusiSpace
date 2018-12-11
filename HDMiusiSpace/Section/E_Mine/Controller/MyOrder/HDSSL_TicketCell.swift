@@ -67,6 +67,11 @@ class HDSSL_TicketCell: UITableViewCell {
             
         }else if order?.status == 2 {
             //交易成功
+            cell_btn1.layer.cornerRadius = 14
+            cell_btn1.layer.borderColor = UIColor.black.cgColor
+            cell_btn1.layer.borderWidth = 0.5
+            cell_btn1.layer.masksToBounds = true
+            
             cell_btn2.layer.cornerRadius = 14
             cell_btn2.layer.borderColor = UIColor.HexColor(0xE8593E).cgColor
             cell_btn2.layer.borderWidth = 0.5

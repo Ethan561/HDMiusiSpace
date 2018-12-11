@@ -18,6 +18,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     @IBOutlet weak var cell_tagBg: UIView!
     @IBOutlet weak var tagL: UILabel!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var shadowBg: UIView!
     
     var model: HDLY_dExhibitionListD? {
         didSet {
@@ -28,7 +29,8 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        bgView.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
+        shadowBg.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.6, shadowRadius: 10, shadowOffset: CGSize.zero)
+
     }
 
     func showCellData() {

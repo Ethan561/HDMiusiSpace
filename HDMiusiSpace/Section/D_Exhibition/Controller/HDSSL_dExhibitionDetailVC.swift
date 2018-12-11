@@ -14,24 +14,24 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     
     //接收
     var exhibition_id: Int?
-    var exhibitionCellH: Double?
-    var exhibitCellH: Double?
+    var exhibitionCellH: Double?  //展览介绍高度
+    var exhibitCellH: Double?     //展品介绍高度
     
     //
-    @IBOutlet weak var bannerBg: UIView!
-    @IBOutlet weak var dTableView: UITableView!
-    @IBOutlet weak var bannerNumL: UILabel!
-    @IBOutlet weak var likeBtn: UIButton!
-    @IBOutlet weak var shareBtn: UIButton!
-    @IBOutlet weak var errorBtn: UIButton!
-    @IBOutlet weak var navBgView: UIView!
-    @IBOutlet weak var navView: UIView!
-    @IBOutlet weak var navHeightCons: NSLayoutConstraint!
-    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var bannerBg  : UIView!      //
+    @IBOutlet weak var dTableView: UITableView! //
+    @IBOutlet weak var bannerNumL: UILabel!     //轮播图数量
+    @IBOutlet weak var likeBtn   : UIButton!    //点赞
+    @IBOutlet weak var shareBtn  : UIButton!    //分享
+    @IBOutlet weak var errorBtn  : UIButton!    //报错
+    @IBOutlet weak var navBgView : UIView!      //导航栏背景
+    @IBOutlet weak var navView   : UIView!      //导航栏
+    @IBOutlet weak var navHeightCons: NSLayoutConstraint!//导航栏高度
+    @IBOutlet weak var backBtn   : UIButton!    //返回按钮
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     //
-    var exdataModel: ExhibitionDetailDataModel?
+    var exdataModel: ExhibitionDetailDataModel? //展览详情模型
     //
     var bannerView: ScrollBannerView!//banner
     var bannerImgArr: [String]? = Array.init() //轮播图数组
@@ -48,11 +48,6 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var likeCellIndex: Int! //点赞指纹
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
-    
-    //评论header
-//    lazy var commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
-    //基本信息footer
-//    lazy var firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +129,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         //img绝对地址
         bannerView.imgPathArr = bannerImgArr!
         imgsArr = bannerImgArr
+        //轮播图数量
+        let str = "\(1)/\(imgsArr!.count)"
+        self.bannerNumL.text = str
 
         self.dTableView.reloadData()
     }
@@ -194,7 +192,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     */
 
 }
-
+//MARK:--- 分享
 extension HDSSL_dExhibitionDetailVC: UMShareDelegate {
     func shareDelegate(platformType: UMSocialPlatformType) {
         
@@ -233,7 +231,7 @@ extension HDSSL_dExhibitionDetailVC: UMShareDelegate {
     }
 }
 
-
+//MARK:--- banner
 extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
     //MARK:---显示banner View
     func setupBannerView() {
@@ -269,7 +267,6 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
             LOG("闭包回调---\(index)")
         }
         
-        
     }
     
     func cycleScrollView(_ scrollView: ScrollBannerView, didScorllToIndex index: Int) {
@@ -300,7 +297,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         }
     }
 }
-
+//MARK:--- TableView
 extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -311,7 +308,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         return 3 + (arr?.count)!
     }
-    //0基本信息5条，1展览介绍合展品介绍两个H5，2评论，3同馆展览
+    //section=0基本信息5条，section=1展览介绍和展品介绍两个H5，section=2评论，section=3同馆展览
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
@@ -336,12 +333,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }else if indexPath.section == 1 {
             //H5
             if indexPath.row == 0 {
-                return CGFloat(self.exhibitionCellH ?? 0)
+                return CGFloat(self.exhibitionCellH ?? 0)  //展览介绍
             }else if indexPath.row == 1 {
                 if self.exdataModel?.data?.isExhibit == 0{
                     return 0.01
                 }
-                return CGFloat(self.exhibitCellH ?? 0)
+                return CGFloat(self.exhibitCellH ?? 0) //展品介绍
             }
             
         }else if indexPath.section == 2 {
@@ -349,7 +346,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
             let model = self.commentArr![indexPath.row]
             
-            let comH = self.getCommentCellHeight(model)
+            let comH = self.getCommentCellHeight(model)//一条评论的高度
             
             cell?.setNeedsUpdateConstraints()
             cell?.updateConstraints()
@@ -358,14 +355,14 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }else {
             let arr = self.exdataModel?.data?.dataList!
             let model = arr![indexPath.section-3]
-            if model.type == 1{
+            if model.type == 1{//同馆展览
                 return 250
-            }else if model.type == 2{
+            }else if model.type == 2{//展览攻略
                 return 330
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
-                return 160*ScreenWidth/375.0
+                return 160*ScreenWidth/375.0 + 20
             }else if model.type == 5 {//免费听
                 return (ScreenWidth - 20 * 3)/2.0 + 30
             }
@@ -377,7 +374,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     //MARK: ---------Header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
-            return 85
+            return 90
         }
         if section > 2{
             return 44
@@ -388,7 +385,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
             //评论
-            let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 75))
+            let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 90))
+//            commentHeader.contentView.backgroundColor = UIColor.clear
             let totalNum = self.exdataModel?.data?.commentList?.total
             let picNum = self.exdataModel?.data?.commentList?.imgNum
             commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)
@@ -410,6 +408,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
             }
+            
             return commentHeader
         }
         if section > 2 {
@@ -473,13 +472,17 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return firstSecFooter
         }
         if section == 2 {
-            let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
-            btn.backgroundColor = UIColor.white
-            btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
-            btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
-            btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
+            if (self.exdataModel?.data?.commentList?.total)! > 2 {
+                let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+                btn.backgroundColor = UIColor.white
+                btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
+                btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
+                btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
+                
+                return btn
+            }
             
-            return btn
+            return nil
         }
         //其他footer
         return nil
@@ -490,6 +493,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         weak var weakSelf = self
 
         if indexPath.section == 0 {
+            
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
@@ -563,6 +567,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 }
                 return cell
             }
+            
         }
         else if indexPath.section == 2 {
             weak var weakSelf = self

@@ -19,6 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="269.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phD-sH-KsA">
+                        <rect key="frame" x="22" y="12" width="276" height="245.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-ps-TEc">
                         <rect key="frame" x="20" y="10" width="280" height="249.5"/>
                         <subviews>
@@ -102,8 +106,12 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4cY-ps-TEc" secondAttribute="trailing" constant="20" id="E9Z-SE-ccX"/>
+                    <constraint firstAttribute="trailing" secondItem="phD-sH-KsA" secondAttribute="trailing" constant="22" id="KQA-pL-aqN"/>
+                    <constraint firstItem="phD-sH-KsA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="LyP-fE-2cS"/>
+                    <constraint firstItem="phD-sH-KsA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="N0y-jj-iw0"/>
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="P0P-ub-o7g"/>
                     <constraint firstAttribute="bottom" secondItem="4cY-ps-TEc" secondAttribute="bottom" constant="10" id="WYb-MJ-xbz"/>
+                    <constraint firstAttribute="bottom" secondItem="phD-sH-KsA" secondAttribute="bottom" constant="12" id="ccb-WZ-rpj"/>
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sOB-sn-WwH"/>
                 </constraints>
             </tableViewCellContentView>
@@ -117,6 +125,7 @@
                 <outlet property="cell_number" destination="u57-hm-PUb" id="W92-Rk-Pm0"/>
                 <outlet property="cell_star" destination="1CS-iu-7gQ" id="ZEq-gT-1qi"/>
                 <outlet property="cell_tagBg" destination="Vhq-9c-sqK" id="wxw-XE-doo"/>
+                <outlet property="shadowBg" destination="phD-sH-KsA" id="CWu-aN-hh8"/>
             </connections>
             <point key="canvasLocation" x="-3.2000000000000002" y="104.34782608695653"/>
         </tableViewCell>

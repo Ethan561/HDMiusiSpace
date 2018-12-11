@@ -11,7 +11,7 @@ import Kingfisher
 import ESPullToRefresh
 
 let PageMenuH = 45.0
-let HeaderViewH:CGFloat = (ScreenWidth - 40) * 200 / 335 + 100
+let HeaderViewH:CGFloat = (ScreenWidth - 40) * 190 / 335 + 100
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
     

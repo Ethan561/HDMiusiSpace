@@ -282,8 +282,13 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        //let result = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight")
+//        let result = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight")
         LOG("加载完成")
+//        let dHeight = Double(result ?? "0")
+//        //返回的double是个可选值，所以需要给个默认值或者用!强制解包
+//        let floatH = CGFloat(dHeight ?? 0)
+//        
+//        webView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height:floatH * 0.5)
     }
     
     //查看大图

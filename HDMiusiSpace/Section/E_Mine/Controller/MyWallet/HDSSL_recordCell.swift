@@ -26,11 +26,12 @@ class HDSSL_recordCell: UITableViewCell {
         cell_timeL.text = cellData?.payTime
         cell_priceL.text = cellData?.payAmount
         
-        if cellData?.cardID == 1 {
-            cell_img.image = UIImage.init(named: "wd_img_jyjl_ke")
-        }else {
-            cell_img.image = UIImage.init(named: "wd_img_jyjl_m")
-        }
+        cell_img.kf.setImage(with: URL.init(string: (cellData?.img)!), placeholder: UIImage.init(named: "wd_img_jyjl_m"), options: nil, progressBlock: nil, completionHandler: nil)
+//        if cellData?.cardID == 1 {
+//            cell_img.image = UIImage.init(named: "wd_img_jyjl_ke")
+//        }else {
+//            cell_img.image = UIImage.init(named: "wd_img_jyjl_m")
+//        }
         
     }
     

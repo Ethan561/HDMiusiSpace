@@ -57,13 +57,14 @@ struct OrderRecordModel: Codable {
     let payTime: String?
     let goodsID, cardID: Int? //订单类型1购买课程，2购买普通展览，3购买景区导览，4购买vip,5充值空间币
     let payAmount, title: String?
+    let img: String?
     
     enum CodingKeys: String, CodingKey {
         case payTime = "pay_time"
         case goodsID = "goods_id"
         case cardID = "card_id"
         case payAmount = "pay_amount"
-        case title
+        case title, img
     }
 }
 

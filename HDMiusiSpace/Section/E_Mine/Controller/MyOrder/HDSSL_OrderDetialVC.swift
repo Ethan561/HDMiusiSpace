@@ -41,7 +41,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         loadMyViews()
         bindViewModel()
         
-        viewModel.requestMyOrderDetail(apiToken: "123456", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
+        viewModel.requestMyOrderDetail(apiToken: HDDeclare.shared.api_token ?? "", orderId: (order?.orderID)!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
     
     func loadMyViews() {
@@ -162,7 +162,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             if order?.cateID == 1 { //课程
                 //评论晒图
                 //请求图片地址，然后跳转页面
-                viewModel.getOrderSharePicPath(apiToken: "123456", order_id: (order?.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
+                viewModel.getOrderSharePicPath(apiToken: HDDeclare.shared.api_token ?? "", order_id: (order?.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
             }else { //展览门票
                 //待评价
                 let storyboard = UIStoryboard.init(name: "RootD", bundle: nil)

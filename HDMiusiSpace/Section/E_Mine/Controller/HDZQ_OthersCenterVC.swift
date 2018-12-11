@@ -58,6 +58,11 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         } else {
             tabHeader.followBtn.setTitle("+关注", for: .normal)
         }
+        
+        tabHeader.followBtn.addTouchUpInSideBtnAction { (btn) in
+            self.followAction(id: self.model.toid!, cate_id: "3", api_token: HDDeclare.shared.api_token ?? "")
+        }
+        
         if model.is_vip == 1 {
             tabHeader.vipImg.isHidden = false
         } else {
@@ -65,6 +70,28 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         }
         tableView.reloadData()
         
+    }
+    
+    func followAction(id:String,cate_id:String,api_token:String) {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.tabHeader.followBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.tabHeader.followBtn.setTitle("+关注", for: .normal)
+                }
+                self.model.is_focus = is_focus
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
     }
     
     func requestDynamicData(toid:Int) {

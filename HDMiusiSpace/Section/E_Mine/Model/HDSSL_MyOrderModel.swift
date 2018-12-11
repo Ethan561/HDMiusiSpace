@@ -53,7 +53,7 @@ struct OrderDetailModel: Codable {
     var classNum:Int? //课时
     var isComment:Int?//是否评论1已评论0未评论
     var isShare:Int? //是否分享1已分享0未分享
-    
+    var phone: String?//客服电话
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
@@ -64,7 +64,7 @@ struct OrderDetailModel: Codable {
         case orderNo = "order_no"
         case createdAt = "created_at"
         case payTime = "pay_time"
-        case discount, title, img, author
+        case discount, title, img, author, phone
         case classNum = "class_num"
         case isComment = "is_comment"
         case isShare = "is_share"

@@ -147,7 +147,12 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
     }
     //客服电话
     @objc func action_server(){
-        UIApplication.shared.openURL(URL(string: "telprompt:131***")!)
+        let str = orderDetail!.phone
+        if str != "" {
+            UIApplication.shared.openURL(URL(string: String.init(format: "telprompt:%@", str!))!)
+        }else {
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "连接失败，请稍后再试")
+        }
     }
     
     //评价

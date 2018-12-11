@@ -95,7 +95,7 @@ extension HDLY_StrategyListVC: UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = dataArr[indexPath.row]
 
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
         vc.topic_id = "\(model.strategyID!)"
         vc.fromRootAChoiceness = true
         self.navigationController?.pushViewController(vc, animated: true)

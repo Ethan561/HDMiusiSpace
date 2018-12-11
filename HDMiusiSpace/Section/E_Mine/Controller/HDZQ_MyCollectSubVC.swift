@@ -169,7 +169,7 @@ extension HDZQ_MyCollectSubVC:UITableViewDelegate,UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
           } else {
             let model = news[indexPath.row]
-            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             vc.topic_id = String(model.article_id ?? 0)
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)

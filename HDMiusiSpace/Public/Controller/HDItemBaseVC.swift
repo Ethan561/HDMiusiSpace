@@ -132,7 +132,7 @@ class HDItemBaseVC: UIViewController {
             vc.navigationController?.pushViewController(desVC, animated: true)
         }
         else if model.cate_id?.int == 3 {
-            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDectail_VC") as! HDLY_TopicDetail_VC
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             desVC.topic_id = model.mid?.string
             desVC.fromRootAChoiceness = true
             vc.navigationController?.pushViewController(desVC, animated: true)

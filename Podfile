@@ -22,7 +22,8 @@
  pod 'JPush'#极光推送
  # 集成百度统计
  pod 'BaiduMobStatCodeless'
- 
+ pod 'SwiftyStoreKit'
+ pod 'Alamofire'
  
  
  

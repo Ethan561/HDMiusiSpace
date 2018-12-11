@@ -17,6 +17,7 @@ PODS:
     - Result (~> 4.0)
   - Result (4.0.0)
   - SnapKit (4.2.0)
+  - SwiftyStoreKit (0.14.1)
   - UMengUShare/Core (6.4.8.2):
     - UMengUShare/Network
   - UMengUShare/Network (6.4.8.2)
@@ -31,6 +32,7 @@ PODS:
   - ZZCircleProgress (0.2.1)
 
 DEPENDENCIES:
+  - Alamofire
   - BaiduMobStatCodeless
   - Bugly (~> 2.5.0)
   - ESPullToRefresh
@@ -40,6 +42,7 @@ DEPENDENCIES:
   - Masonry
   - Moya (~> 12.0)
   - SnapKit
+  - SwiftyStoreKit
   - UMengUShare/Social/ReducedQQ
   - UMengUShare/Social/ReducedSina
   - UMengUShare/Social/ReducedWeChat
@@ -60,6 +63,7 @@ SPEC REPOS:
     - Moya
     - Result
     - SnapKit
+    - SwiftyStoreKit
     - UMengUShare
     - ZZCircleProgress
 
@@ -76,9 +80,10 @@ SPEC CHECKSUMS:
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyStoreKit: a5cdece4327f3943eb72fa81aebe3aa6684b5eab
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 0975d35cf272adb8f17d9f1fcf130a8a190504d5
+PODFILE CHECKSUM: a16aab8bb9b1a0b6bb86bf7d2981670780b77776
 
 COCOAPODS: 1.5.3

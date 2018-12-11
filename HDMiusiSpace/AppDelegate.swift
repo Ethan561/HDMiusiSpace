@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyStoreKit
 
 //极光推送是否是发布模式
 let isProduction = false
@@ -68,7 +69,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          */
         BaiduMobStat.default()?.logEvent("0001", eventLabel: "单击一下按钮")
         
+        setupIAP()
+
         return true
+    }
+    
+    
+    func setupIAP() {
+        //在启动时添加应用程序的观察者 可确保在应用程序的所有启动过程中都会持续，从而允许您的应用程序 接收所有支付队列通知。如果此时有任何待处理的事务，将触发block，以便可以更新应用程序状态和UI。如果没有待处理的事务，则不会调用
+        
+        //掉单恢复内购处理
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+            
+            for purchase in purchases {
+                switch purchase.transaction.transactionState {
+                case .purchased, .restored:
+                    let downloads = purchase.transaction.downloads
+                    if !downloads.isEmpty {
+                        SwiftyStoreKit.start(downloads)
+                    } else if purchase.needsFinishTransaction {
+                        // Deliver content from server, then:
+                        SwiftyStoreKit.finishTransaction(purchase.transaction)
+                    }
+                    print("\(purchase.transaction.transactionState.debugDescription): \(purchase.productId)")
+                case .failed, .purchasing, .deferred:
+                    break // do nothing
+                }
+            }
+        }
+        
+        SwiftyStoreKit.updatedDownloadsHandler = { downloads in
+            
+            // contentURL is not nil if downloadState == .finished
+            let contentURLs = downloads.compactMap { $0.contentURL }
+            if contentURLs.count == downloads.count {
+                print("Saving: \(contentURLs)")
+                SwiftyStoreKit.finishTransaction(downloads[0].transaction)
+            }
+        }
     }
     
     func setRootVC() {

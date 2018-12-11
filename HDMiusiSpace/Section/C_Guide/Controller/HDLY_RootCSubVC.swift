@@ -135,6 +135,9 @@ extension HDLY_RootCSubVC {
             }
             let model:MuseumListData = dataArr[indexPath.section]
             if model.type == 1 {
+                if ScreenWidth == 320 {
+                    return 200
+                }
                 return 223*ScreenWidth/375.0
             }else if model.type == 2 {
                 return 300*ScreenWidth/320.0
@@ -151,13 +154,14 @@ extension HDLY_RootCSubVC {
             if model.type == 1 {
                 let listData = model.list
                 if index == 0 {
-                    let cell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
-                    cell?.moreBtn.tag = 100 + indexPath.row
-                    cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
-                    cell?.nameLabel.text = listData?.title
-                    cell?.subNameL.text = "\(listData?.count ?? 0)处展览讲解"
-                    cell?.disL.text = listData?.distance
-                    return cell!
+                    let cell:HDLY_GuideSectionCell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
+                    cell.moreBtn.tag = 100 + indexPath.row
+                    cell.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
+                    cell.nameLabel.text = listData?.title
+                    cell.subNameL.text = "\(listData?.count ?? 0)处展览讲解"
+                    
+                    cell.disL.text = listData?.distance
+                    return cell
                 }
                 
                 let cell = HDLY_GuideCard2Cell.getMyTableCell(tableV: tableView)
@@ -170,7 +174,7 @@ extension HDLY_RootCSubVC {
                 
             }else if model.type == 2 {
                 let mapData = model.map
-
+                
                 if index == 0 {
                     let cell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
                     cell?.moreBtn.isHidden = true

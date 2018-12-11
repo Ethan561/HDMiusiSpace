@@ -201,7 +201,10 @@ class HDLY_Listen_SubVC:                                                        
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if section == 0 {
             let width:CGFloat   = 54
-            let space = (ScreenWidth-5*width)/6
+            var space = (ScreenWidth-5*width)/6
+            if ScreenWidth == 320 {
+                space = 5
+            }
             return UIEdgeInsets.init(top: 10, left: space, bottom: 10, right: space)
         }
         return UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)

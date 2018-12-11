@@ -25,14 +25,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFx-ST-ZJe">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qtsk_course_img2" translatesAutoresizingMaskIntoConstraints="NO" id="fQq-o0-NpL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img2" translatesAutoresizingMaskIntoConstraints="NO" id="fQq-o0-NpL">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="fQq-o0-NpL" firstAttribute="top" secondItem="HFx-ST-ZJe" secondAttribute="top" id="711-4T-lsS"/>
+                                    <constraint firstAttribute="bottom" secondItem="fQq-o0-NpL" secondAttribute="bottom" id="Gdf-hB-Iuk"/>
+                                    <constraint firstAttribute="trailing" secondItem="fQq-o0-NpL" secondAttribute="trailing" id="HIH-Yf-Hwz"/>
                                     <constraint firstAttribute="width" secondItem="HFx-ST-ZJe" secondAttribute="height" multiplier="40:31" id="XBX-y0-RbN"/>
+                                    <constraint firstItem="fQq-o0-NpL" firstAttribute="leading" secondItem="HFx-ST-ZJe" secondAttribute="leading" id="s2d-RE-VCl"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轻松学习，启蒙教育孩子成长" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0y-yx-d1a">
@@ -95,14 +98,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDJ-Ic-0DP">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="4wo-xs-LKj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="4wo-xs-LKj">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4wo-xs-LKj" secondAttribute="trailing" id="22k-Ip-Vyd"/>
                                     <constraint firstAttribute="width" secondItem="JDJ-Ic-0DP" secondAttribute="height" multiplier="40:31" id="8y6-By-mcS"/>
+                                    <constraint firstItem="4wo-xs-LKj" firstAttribute="leading" secondItem="JDJ-Ic-0DP" secondAttribute="leading" id="IJg-zF-zgm"/>
+                                    <constraint firstItem="4wo-xs-LKj" firstAttribute="top" secondItem="JDJ-Ic-0DP" secondAttribute="top" id="MlY-fl-6cP"/>
+                                    <constraint firstAttribute="bottom" secondItem="4wo-xs-LKj" secondAttribute="bottom" id="ZXK-Bm-mJT"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轻松学习，启蒙教育孩子成长" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcR-Fe-1Dh">

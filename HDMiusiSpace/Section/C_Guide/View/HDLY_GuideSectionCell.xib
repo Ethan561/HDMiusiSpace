@@ -41,6 +41,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3f-LC-URf">
                         <rect key="frame" x="264" y="10" width="46" height="24"/>
+                        <color key="backgroundColor" red="0.84705882349999995" green="0.72549019609999998" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="46" id="cz1-jW-fvG"/>
                             <constraint firstAttribute="height" constant="24" id="eKG-HR-HEO"/>
@@ -61,6 +62,7 @@
                     <constraint firstItem="fV1-u8-0cA" firstAttribute="top" secondItem="KQK-Lu-A1Y" secondAttribute="bottom" constant="8" id="6jd-Nd-Mbs"/>
                     <constraint firstItem="fD3-BW-6B3" firstAttribute="centerY" secondItem="KQK-Lu-A1Y" secondAttribute="centerY" id="7AP-6P-1X3"/>
                     <constraint firstAttribute="trailing" secondItem="V3f-LC-URf" secondAttribute="trailing" constant="10" id="E92-GA-omy"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="KQK-Lu-A1Y" secondAttribute="trailing" constant="120" id="SY4-Qq-CeR"/>
                     <constraint firstItem="V3f-LC-URf" firstAttribute="centerY" secondItem="KQK-Lu-A1Y" secondAttribute="centerY" id="i6x-Jj-SPw"/>
                     <constraint firstItem="fD3-BW-6B3" firstAttribute="leading" secondItem="KQK-Lu-A1Y" secondAttribute="trailing" constant="8" id="oco-Qp-71c"/>
                     <constraint firstItem="KQK-Lu-A1Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="vbn-wm-A93"/>

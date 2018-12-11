@@ -23,7 +23,7 @@
  # 集成百度统计
  pod 'BaiduMobStatCodeless'
  pod 'SwiftyStoreKit'
- pod 'Alamofire'
+ #pod 'Alamofire'
  
  
  

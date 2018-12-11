@@ -32,7 +32,6 @@ PODS:
   - ZZCircleProgress (0.2.1)
 
 DEPENDENCIES:
-  - Alamofire
   - BaiduMobStatCodeless
   - Bugly (~> 2.5.0)
   - ESPullToRefresh
@@ -84,6 +83,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: a16aab8bb9b1a0b6bb86bf7d2981670780b77776
+PODFILE CHECKSUM: 4b8fb7ea1cebd1960c4c8f1d612c9892b303e3e1
 
 COCOAPODS: 1.5.3

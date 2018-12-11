@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,6 +69,13 @@
                         <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6V-30-rQ6">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="71"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="71" id="3bq-iS-f2a"/>
+                        <constraint firstAttribute="width" constant="128" id="QHh-ds-ajE"/>
+                    </constraints>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -77,9 +84,11 @@
                 <constraint firstItem="Dxj-ZI-Twf" firstAttribute="leading" secondItem="BPu-zg-9eb" secondAttribute="trailing" constant="10" id="5xj-Mb-aTh"/>
                 <constraint firstItem="BPu-zg-9eb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="BZC-Ye-n7k"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qcS-cy-jNB" secondAttribute="trailing" constant="20" id="CiX-5P-tbP"/>
+                <constraint firstItem="v6V-30-rQ6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="EL3-ny-WHx"/>
                 <constraint firstItem="BYA-Dn-I94" firstAttribute="leading" secondItem="Dxj-ZI-Twf" secondAttribute="leading" id="Fr6-Vq-GOa"/>
                 <constraint firstItem="9yA-aN-2M4" firstAttribute="leading" secondItem="BYA-Dn-I94" secondAttribute="leading" id="Q5H-m2-96H"/>
                 <constraint firstItem="iG9-dI-uAm" firstAttribute="trailing" secondItem="BYA-Dn-I94" secondAttribute="trailing" id="QgV-Js-tCL"/>
+                <constraint firstItem="v6V-30-rQ6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gKi-KP-lR1"/>
                 <constraint firstItem="qcS-cy-jNB" firstAttribute="top" secondItem="BPu-zg-9eb" secondAttribute="bottom" constant="5" id="oo6-4c-wqM"/>
                 <constraint firstItem="qcS-cy-jNB" firstAttribute="leading" secondItem="Dxj-ZI-Twf" secondAttribute="leading" id="pLP-jW-ZaF"/>
                 <constraint firstItem="BYA-Dn-I94" firstAttribute="top" secondItem="qcS-cy-jNB" secondAttribute="bottom" constant="8" id="pyv-A1-Vyh"/>
@@ -91,13 +100,14 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="avaImgV" destination="BPu-zg-9eb" id="v8h-Ov-E3J"/>
+                <outlet property="avatarBtn" destination="v6V-30-rQ6" id="Z0n-8Y-mKo"/>
                 <outlet property="contentL" destination="BYA-Dn-I94" id="FYm-il-oPa"/>
                 <outlet property="likeBtn" destination="iG9-dI-uAm" id="EyY-vi-jUo"/>
                 <outlet property="nameL" destination="Dxj-ZI-Twf" id="5FN-E6-Ay9"/>
                 <outlet property="questionL" destination="qcS-cy-jNB" id="MkA-Gz-3Kt"/>
                 <outlet property="timeL" destination="9yA-aN-2M4" id="6Ri-UF-Cha"/>
             </connections>
-            <point key="canvasLocation" x="-36.5" y="-205"/>
+            <point key="canvasLocation" x="-37.600000000000001" y="-205.09745127436284"/>
         </view>
     </objects>
     <resources>

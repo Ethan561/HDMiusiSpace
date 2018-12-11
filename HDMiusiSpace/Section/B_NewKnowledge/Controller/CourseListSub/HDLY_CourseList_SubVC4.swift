@@ -136,6 +136,9 @@ extension HDLY_CourseList_SubVC4 {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
- 
+        guard let commentModel:CourseMessageModel = self.infoModel!.data[indexPath.row] else {
+            return
+        }
+        self.pushToOthersPersonalCenterVC(commentModel.uid.int)
     }
 }

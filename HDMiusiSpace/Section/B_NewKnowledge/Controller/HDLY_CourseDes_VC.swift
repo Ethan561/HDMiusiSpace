@@ -515,8 +515,15 @@ extension HDLY_CourseDes_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-//        self.navigationController?.pushViewController(vc, animated: true)
+
+        if indexPath.section == 1 {
+            guard let recommendsMessage = infoModel?.data.recommendsMessage else {
+                return
+            }
+            let  model  = recommendsMessage[indexPath.row]
+            self.pushToOthersPersonalCenterVC(model.uid ?? 0)
+        }
+
     }
 }
 

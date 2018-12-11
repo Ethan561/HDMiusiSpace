@@ -105,6 +105,13 @@ class HDItemBaseVC: UIViewController {
         vc.navigationController?.pushViewController(logVC, animated: true)
     }
     
+    func pushToOthersPersonalCenterVC(_ uid: Int) {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
+        vc.toid = uid
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func pushToWKWebVC(vc: UIViewController, url:String, titleName: String ) {
 //        let webVC = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_WKWeb_VC") as! HDLY_WKWeb_VC
 //        webVC.urlPath = url

@@ -434,7 +434,13 @@ extension HDLY_ListenDetail_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if indexPath.section != 0 {
+            guard let recommendsMessage = infoModel?.commentList else {
+                return
+            }
+            let  model  = recommendsMessage[indexPath.row]
+            self.pushToOthersPersonalCenterVC(model.uid ?? 0)
+        }
     }
     
 }

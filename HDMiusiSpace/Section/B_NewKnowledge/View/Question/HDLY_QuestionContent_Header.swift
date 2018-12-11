@@ -14,7 +14,8 @@ class HDLY_QuestionContent_Header: UIView {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var contentL: UILabel!
     @IBOutlet weak var questionL: UILabel!
-
+    @IBOutlet weak var avatarBtn: UIButton!
+    
     @IBOutlet weak var timeL: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     

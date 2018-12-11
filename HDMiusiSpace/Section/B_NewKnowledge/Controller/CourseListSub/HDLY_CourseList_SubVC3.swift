@@ -145,6 +145,9 @@ extension HDLY_CourseList_SubVC3 {
             }else {
                 header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
             }
+            header.avatarBtn.tag = section - 1
+            header.avatarBtn.addTarget(self, action: #selector(pushPersonalCenter(_:)), for: .touchUpInside)
+            
             return header
         }
         
@@ -271,6 +274,15 @@ extension HDLY_CourseList_SubVC3 {
 
 
 extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
+    
+    //点击用户头像
+    @objc func pushPersonalCenter(_ sender: UIButton) {
+        let index = sender.tag
+        let secModel = infoModel!.data.list[index]
+        self.pushToOthersPersonalCenterVC(secModel.uid)
+        
+    }
+    
     
     func voiceBubbleStratOrStop(_ cell: HDLY_AnswerAudio_Cell, _ model: QuestionReturnInfo) {
         if model.video.isEmpty == true || model.video.contains(".mp3") == false {

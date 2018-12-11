@@ -339,7 +339,20 @@ extension HDLY_TopicDetail_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section ==  2 {
+            let model = infoModel
+            guard let commentModel = model?.commentList[indexPath.row] else {
+                return
+            }
+            
+            self.pushToOthersPersonalCenterVC(commentModel.uid)
+            
+//            let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+//            let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
+//            vc.toid = commentModel.uid
+//            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
 }

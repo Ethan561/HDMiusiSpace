@@ -88,9 +88,10 @@ extension HDLY_SameExhibitionListVC: UITableViewDelegate,UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         //展览详情
+        let model = dataArr[indexPath.row]
         let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
         let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-        
+        vc.exhibition_id = model.exhibitionID
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

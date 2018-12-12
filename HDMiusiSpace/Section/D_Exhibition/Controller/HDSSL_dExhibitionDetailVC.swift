@@ -603,8 +603,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if model.type == 1{
                 let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                 cell?.listArray = model.exhibition?.list
-                cell?.BlockTapItemFunc(block: { (index) in
-                    print(index) //点击同馆展览
+                cell?.BlockTapItemFunc(block: { (model) in
+                    print(model) //点击同馆展览
+                    self.exhibition_id = model.exhibitionID
+                    self.loadMyDatas()
                 })
                 
                 return cell!

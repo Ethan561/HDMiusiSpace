@@ -22,6 +22,10 @@ class HDLY_GuideCard2Cell: UITableViewCell {
     @IBOutlet weak var tapBtn1: UIButton!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var bgView1: UIView!
+    
+    @IBOutlet weak var ypriceL: UILabel!
+    @IBOutlet weak var vippriceL: UILabel!
+    
 
     @IBOutlet weak var img1BgV: UIView!
     @IBOutlet weak var imgV1: UIImageView!
@@ -29,6 +33,9 @@ class HDLY_GuideCard2Cell: UITableViewCell {
     @IBOutlet weak var typeL1: UILabel!
     @IBOutlet weak var priceL1: UILabel!
     @IBOutlet weak var tapBtn2: UIButton!
+    @IBOutlet weak var ypriceL1: UILabel!
+    @IBOutlet weak var vippriceL1: UILabel!
+
     
     weak var delegate: HDLY_GuideCard2Cell_Delegate?
     
@@ -46,7 +53,6 @@ class HDLY_GuideCard2Cell: UITableViewCell {
 
         imgV.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 10, height: 10))
         imgV1.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 10, height: 10))
-        
     }
 
     func showViewData() {
@@ -55,7 +61,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 return
             }
             if  model.img != nil  {
-                imgV.kf.setImage(with: URL.init(string: (model.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                imgV.kf.setImage(with: URL.init(string: (model.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL.text = model.title
             if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
@@ -66,13 +72,20 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 typeL.text = "扫一扫版"
             }
             
-            //0限时免费1SVIP免费2收费
+            // 免费类型：0不免费,1所有人免费,2svip免费
             if model.priceType == 0 {
-                priceL.text = "限时免费"
-            }else if model.type == 1 {
+                ypriceL.isHidden = false
+                vippriceL.isHidden = false
+                ypriceL.text = "￥\(model.price)"
+                vippriceL.text = "SVIP￥\(model.vipPrice)"
+            }else if model.priceType == 1 {
+                priceL.isHidden = false
+                priceL.text = "免费"
+                priceL.textColor = UIColor.HexColor(0x4A4A4A)
+            }else if model.priceType == 2 {
+                priceL.isHidden = false
                 priceL.text = "SVIP免费"
-            }else if model.type == 2 {
-                priceL.text = "收费"
+                priceL.textColor = UIColor.HexColor(0xD8B98D)
             }
             
             guard let model1 = dataArray?.last else {
@@ -80,7 +93,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
             }
             
             if  model1.img != nil  {
-                imgV1.kf.setImage(with: URL.init(string: (model1.img)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                imgV1.kf.setImage(with: URL.init(string: (model1.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL1.text = model1.title
             //0数字编号版 1列表版 2扫一扫版
@@ -92,17 +105,23 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 typeL1.text = "扫一扫版"
             }
             
-            //0限时免费1SVIP免费2收费
+            // 免费类型：0不免费,1所有人免费,2svip免费
             if model1.priceType == 0 {
-                priceL1.text = "限时免费"
-            }else if model1.type == 1 {
+                ypriceL1.isHidden = false
+                vippriceL1.isHidden = false
+                ypriceL1.text = "￥\(model1.price)"
+                vippriceL1.text = "SVIP￥\(model1.vipPrice)"
+            }else if model1.priceType == 1 {
+                priceL1.isHidden = false
+                priceL1.text = "免费"
+                priceL1.textColor = UIColor.HexColor(0x4A4A4A)
+
+            }else if model1.priceType == 2 {
+                priceL1.isHidden = false
                 priceL1.text = "SVIP免费"
-            }else if model1.type == 2 {
-                priceL1.text = "收费"
+                priceL1.textColor = UIColor.HexColor(0xD8B98D)
             }
-   
         }
-        
         
     }
     

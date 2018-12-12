@@ -36,7 +36,7 @@ struct MuseumListCard: Codable {
 
 struct MuseumListModel: Codable {
     let id: Int
-    let img: String
+    let img: String?
     let title: String
     let type, priceType: Int
     var price, vipPrice: String

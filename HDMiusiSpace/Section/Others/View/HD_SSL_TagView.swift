@@ -126,25 +126,33 @@ class HD_SSL_TagView: UIView {
                 btn.setTitleColor(titleColorSelect, for: .selected)
                 btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
                 btn.titleLabel?.lineBreakMode = .byTruncatingTail
-                let rect = tagTitle.boundingRect(with: CGSize.init(width: self.frame.size.width-20, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
                 
-                let BtnW = rect.size.width + 20
-                let BtnH = rect.size.height + 10
+                var space = 10.0
+                var kkWith = self.frame.size.width
+                if Device_Is_iPhoneSE == true {
+                    space = 5.0
+                    kkWith = 320
+                }
+                    
+                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith - CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
+                
+                let BtnW = rect.size.width + CGFloat(space * 2)
+                let BtnH = rect.size.height + CGFloat(space)
                 
                 btn.layer.masksToBounds = true
-                btn.layer.cornerRadius = (rect.size.height + 10) / 2
+                btn.layer.cornerRadius = (rect.size.height + CGFloat(space)) / 2
                 btn.layer.borderWidth = 0.5
                 btn.layer.borderColor = borderColor.cgColor
                 
                 //布局
                 if i == 0 {
-                    btn.frame = CGRect.init(x: 10, y: 10, width: BtnW, height: BtnH)
+                    btn.frame = CGRect.init(x: CGFloat(space), y: CGFloat(space), width: BtnW, height: BtnH)
                 } else {
-                    let yuWidth = self.frame.size.width - 20 - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
-                    if yuWidth >= (BtnW + 10) {
-                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 10, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
+                    let yuWidth = kkWith - CGFloat(space * 2) - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
+                    if yuWidth >= (BtnW + CGFloat(space)) {
+                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + CGFloat(space), y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
                     }else {
-                        btn.frame = CGRect.init(x: 10, y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + 10, width: BtnW, height: BtnH) //另起一行
+                        btn.frame = CGRect.init(x: CGFloat(space), y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + CGFloat(space), width: BtnW, height: BtnH) //另起一行
                     }
                     
                 }
@@ -154,7 +162,7 @@ class HD_SSL_TagView: UIView {
                 
                 self.addSubview(btn)
                 
-                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: btn.frame.maxY)
+                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: kkWith, height: btn.frame.maxY)
                 
                 recordBtn = btn
                 
@@ -186,25 +194,31 @@ class HD_SSL_TagView: UIView {
                 
                 btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
                 btn.titleLabel?.lineBreakMode = .byTruncatingTail
-                let rect = tagTitle.boundingRect(with: CGSize.init(width: self.frame.size.width-20, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
+                var space = 10.0
+                var kkWith = self.frame.size.width
+                if Device_Is_iPhoneSE == true {
+                    space = 5.0
+                    kkWith = 320
+                }
+                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith-CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
                 
-                let BtnW = rect.size.width + 20
-                let BtnH = rect.size.height + 10
+                let BtnW = rect.size.width + CGFloat(space * 2)
+                let BtnH = rect.size.height + CGFloat(space)
                 
                 btn.layer.masksToBounds = true
-                btn.layer.cornerRadius = (rect.size.height + 10) / 2
+                btn.layer.cornerRadius = (rect.size.height + CGFloat(space)) / 2
                 btn.layer.borderWidth = 0.5
                 btn.layer.borderColor = borderColor.cgColor
                 
                 //布局
                 if i == 0 {
-                    btn.frame = CGRect.init(x: 10, y: 10, width: BtnW, height: BtnH)
+                    btn.frame = CGRect.init(x: CGFloat(space), y: CGFloat(space), width: BtnW, height: BtnH)
                 } else {
-                    let yuWidth = self.frame.size.width - 20 - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
-                    if yuWidth >= (BtnW + 10) {
-                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + 10, y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
+                    let yuWidth = kkWith - CGFloat(space * 2) - (lastTagOrigin?.x == 0.0 ? 0.0 : (lastTagOrigin?.x)!) - (lastTagSize?.width == 0.0 ? 0.0 : (lastTagSize?.width)!) //计算剩余宽度
+                    if yuWidth >= (BtnW + CGFloat(space)) {
+                        btn.frame = CGRect.init(x: (lastTagOrigin?.x)! + (lastTagSize?.width)! + CGFloat(space), y: (lastTagOrigin?.y)!, width: BtnW, height: BtnH) //拼在上一个Tag末尾
                     }else {
-                        btn.frame = CGRect.init(x: 10, y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + 10, width: BtnW, height: BtnH) //另起一行
+                        btn.frame = CGRect.init(x: CGFloat(space), y: (lastTagOrigin?.y)! + (lastTagSize?.height)! + CGFloat(space), width: BtnW, height: BtnH) //另起一行
                     }
                     
                 }
@@ -214,7 +228,7 @@ class HD_SSL_TagView: UIView {
                 
                 self.addSubview(btn)
                 
-                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: btn.frame.maxY)
+                self.frame = CGRect.init(x: self.frame.origin.x, y: self.frame.origin.y, width: kkWith, height: btn.frame.maxY)
                 
                 recordBtn = btn
                 

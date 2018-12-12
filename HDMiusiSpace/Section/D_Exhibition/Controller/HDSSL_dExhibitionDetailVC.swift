@@ -475,6 +475,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return firstSecFooter
         }
         if section == 2 {
+            if self.exdataModel == nil {
+                return nil
+            }
             if (self.exdataModel?.data?.commentList?.total)! > 2 {
                 let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
                 btn.backgroundColor = UIColor.white

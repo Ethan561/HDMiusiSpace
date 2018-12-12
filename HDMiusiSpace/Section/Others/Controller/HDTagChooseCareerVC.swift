@@ -170,6 +170,7 @@ extension HDTagChooseCareerVC: UIScrollViewDelegate {
         
         pageControl.numberOfPages = 3
         pageControl.currentPage = 0
+        pageControl.backgroundColor = UIColor.clear
         
     }
     

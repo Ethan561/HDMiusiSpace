@@ -47,7 +47,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         tableView.separatorStyle = .none
         audioPlayer.showFloatingBtn = false
-
+        
         dataRequest()
 //        audioPlayer.delegate = self
     }

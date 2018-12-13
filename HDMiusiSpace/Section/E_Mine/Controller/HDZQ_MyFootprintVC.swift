@@ -31,11 +31,15 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
 
 extension HDZQ_MyFootprintVC {
     func requestFootPrintData() {
-        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFootPrint(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 10), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFootPrint(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 1000), success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:FootprintData = try? jsonDecoder.decode(FootprintData.self, from: result) else { return }
-            self.dayList = model.data
-            self.tableView.reloadData()
+            do {
+                let model:FootprintData = try jsonDecoder.decode(FootprintData.self, from: result)
+                self.dayList = model.data
+                self.tableView.reloadData()
+            } catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (error, msg) in
             
         }
@@ -155,6 +159,12 @@ extension HDZQ_MyFootprintVC : UITableViewDelegate {
 }
 
 extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
+    func showRelatedCoursesDetail(courseId: String) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = courseId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func exhibitPlayAction(index: IndexPath,row:Int,idxStrig:String,url:String) {
         let indexPath = IndexPath.init(row: index.row, section: index.section)
         let cell =  tableView.cellForRow(at: indexPath) as? HDZQ_FoorprintCell

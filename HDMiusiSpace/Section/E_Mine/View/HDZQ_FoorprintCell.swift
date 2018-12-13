@@ -10,6 +10,7 @@ import UIKit
 
 protocol HDZQ_FPExhibitPlayActionDelegate:NSObjectProtocol {
     func exhibitPlayAction(index:IndexPath,row:Int,idxStrig:String,url:String)
+    func showRelatedCoursesDetail(courseId:String)
 }
 
 class HDZQ_FoorprintCell: UITableViewCell {
@@ -141,7 +142,12 @@ extension HDZQ_FoorprintCell: UICollectionViewDataSource {
 }
 
 extension HDZQ_FoorprintCell:UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let model = self.model.class_list[indexPath.row]
+        if self.delegate != nil {
+            self.delegate?.showRelatedCoursesDetail(courseId:String(model.class_id))
+        }
+    }
 }
 
 

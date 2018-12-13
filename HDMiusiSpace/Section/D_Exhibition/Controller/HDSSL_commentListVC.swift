@@ -7,11 +7,13 @@
 //
 
 import UIKit
-
+import ESPullToRefresh
 class HDSSL_commentListVC: HDItemBaseVC {
 
     var listType: Int?  //1全部，2有图
     var exhibition_id: Int?
+    private var take = 10
+    private var skip = 0
     
     @IBOutlet weak var btn_all: UIButton!
     @IBOutlet weak var btn_pic: UIButton!
@@ -41,6 +43,9 @@ class HDSSL_commentListVC: HDItemBaseVC {
         bindViewModel()
         
         setupCommentView()
+        
+        addRefresh() //刷新
+        
         //请求数据
         viewModel.request_getExhibitionCommentList(type: 1, skip: 0, take: 10, exhibitionID: self.exhibition_id!, vc: self)
     }
@@ -103,20 +108,77 @@ class HDSSL_commentListVC: HDItemBaseVC {
         self.myModel = model
         self.allCommentCount = model.total
         self.picCommentCount = model.imgNum
-        self.commentArray = model.list!
+        
+        refreshTableView(model)
         
         btn_all.setTitle(String.init(format: "全部(%d)", allCommentCount ?? 0), for: .normal)
         btn_pic.setTitle(String.init(format: "有图(%d)", picCommentCount ?? 0), for: .normal)
-
-        dTableView.reloadData()
      
     }
-    
+    //刷新列表
+    func refreshTableView(_ model:ExComListModel) {
+        if model.list!.count > 0 {
+            if skip == 0 {
+                self.commentArray.removeAll()
+                self.myModel = nil
+            }
+            self.myModel = model
+            self.commentArray += model.list!
+            
+            self.dTableView.es.stopPullToRefresh()
+            self.dTableView.es.stopLoadingMore()
+        }else{
+            self.dTableView.es.noticeNoMoreData()
+        }
+        
+        self.dTableView.reloadData()
+        
+        if self.commentArray.count == 0 {
+            self.dTableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.dTableView.ly_showEmptyView()
+        }
+        
+    }
     //切换列表
     @IBAction func action_tapButton(_ sender: UIButton) {
         print(sender.tag)
+//        self.commentArray.removeAll()
+//        self.myModel = nil
+        
+        skip = 0
+        listType = sender.tag//类型
         //请求数据
-        viewModel.request_getExhibitionCommentList(type: sender.tag, skip: 0, take: 10, exhibitionID: self.exhibition_id!, vc: self)
+        requestData()
+    }
+    func requestData() {
+        //请求数据
+        viewModel.request_getExhibitionCommentList(type: listType!, skip: skip*10, take: take, exhibitionID: self.exhibition_id!, vc: self)
+    }
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+//        self.dTableView.es.addPullToRefresh(animator: header) { [weak self] in
+//            self?.refresh()
+//        }
+        self.dTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.dTableView.refreshIdentifier = String.init(describing: self)
+        self.dTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        skip = 0
+        requestData()
+    }
+    
+    private func loadMore() {
+        skip += 1
+        requestData()
     }
     //发表评论，跳页
     @IBAction func action_writeComment(_ sender: Any) {
@@ -166,24 +228,24 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.row == 0 {
             //评论
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
+            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell//tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
             
             let comH = self.getCommentCellHeight(model)
             
-            cell?.setNeedsUpdateConstraints()
-            cell?.updateConstraints()
+            cell.setNeedsUpdateConstraints()
+            cell.updateConstraints()
             
             return comH
         }
         else {
             //评论回复
-            let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_commentReplyCell")
+            let cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell//tableView.dequeueReusableCell(withIdentifier: "HDSSL_commentReplyCell")
             
             let replymodel = model.commentList![indexPath.row-1]
             let comH = self.getReplyCommentCellHeight(replymodel)
             
-            cell?.setNeedsUpdateConstraints()
-            cell?.updateConstraints()
+            cell.setNeedsUpdateConstraints()
+            cell.updateConstraints()
             
             return comH
         }
@@ -198,7 +260,13 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.row == 0 {
             
-            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
+            var cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
+            
+            while (cell.contentView.subviews.last != nil) {
+                cell.contentView.subviews.last!.removeFromSuperview()  //删除并进行重新分配
+            }
+            cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
+            
             cell.tag = indexPath.section
             cell.selectionStyle = .none
             cell.listModel = model
@@ -218,7 +286,12 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         } else {
             let modelreply = model.commentList![indexPath.row-1]
             
-            let cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell
+            var cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell
+            while (cell.contentView.subviews.last != nil) {
+                cell.contentView.subviews.last!.removeFromSuperview()  //删除并进行重新分配
+            }
+            cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell
+            
             cell.indexpath = indexPath
             cell.myModel = modelreply
             cell.BlockTapLikeButtonFunc { (model,indexpath) in
@@ -241,6 +314,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
     //点赞这个评论
     func likeTheComment(_ index:Int) -> Void {
         currentCommentModel = self.commentArray[index]
+        
         currentSection = index
         tapLikeType = 1
         
@@ -259,14 +333,14 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         //
         tapLikeType = 2
         currentIndexPath = indexp
-        if currentCommentModel.commentID != nil {
-            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                self.pushToLoginVC(vc: self)
-                return
-            }
-            //API--点赞
-            publicViewModel.doLikeRequest(id: String.init(format: "%d", m.returnId!), cate_id: "5", self)
+        
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
         }
+        //API--点赞
+        publicViewModel.doLikeRequest(id: String.init(format: "%d", m.returnId!), cate_id: "5", self)
+        
         
     }
 

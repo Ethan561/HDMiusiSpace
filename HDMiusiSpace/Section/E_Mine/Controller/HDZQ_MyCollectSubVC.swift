@@ -15,7 +15,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     private var viewModel = HDZQ_MyViewModel()
     
-    private var take = 2
+    private var take = 10
     private var skip = 0
     
     lazy var tableView: UITableView = {
@@ -36,8 +36,11 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
         view.addSubview(self.tableView)
         addRefresh()
         bindViewModel()
-        requestData()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         requestData()
     }
     
     func requestData() {

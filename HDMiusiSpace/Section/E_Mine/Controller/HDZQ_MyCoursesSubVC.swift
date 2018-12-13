@@ -36,8 +36,11 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
         view.addSubview(self.tableView)
         addRefresh()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestData()
-        
     }
     
     func requestData() {

@@ -88,6 +88,10 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 priceL.textColor = UIColor.HexColor(0xD8B98D)
             }
             
+            if dataArray!.count < 2 {
+                bgView1.isHidden = true
+                return
+            }
             guard let model1 = dataArray?.last else {
                 return
             }

@@ -27,8 +27,13 @@ class ListenDetailViewModel: NSObject {
             let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
             //JSON转Model：
             let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
-            let model:ListenDetail = try! jsonDecoder.decode(ListenDetail.self, from: dataA)
-            self.listenDetail.value = model
+            do {
+                let model:ListenDetail = try jsonDecoder.decode(ListenDetail.self, from: dataA)
+                self.listenDetail.value = model
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             self.showEmptyView.value = true

@@ -22,7 +22,10 @@ struct TopicModelData: Codable {
     var isFavorite, isLike, isComment: Int
     var recommendsList: [TopicRecommendsList]
     var commentList: [TopicCommentList]
-    
+    var platform_title: String?
+    var platform_icon: String?
+    var created_at: String?
+
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
         case img, title
@@ -32,6 +35,10 @@ struct TopicModelData: Codable {
         case isLike = "is_like"
         case recommendsList = "recommends_list"
         case commentList = "comment_list"
+        case platform_title
+        case platform_icon
+        case created_at
+
     }
 }
 

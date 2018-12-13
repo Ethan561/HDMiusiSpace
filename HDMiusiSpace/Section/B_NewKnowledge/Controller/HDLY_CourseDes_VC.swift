@@ -33,7 +33,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var infoModel: CourseModel?
     var isMp3Course = false
     var orderTipView: HDLY_CreateOrderTipView?
-    
+    var isStatusBarHidden = false//是否隐藏状态栏
     
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     
@@ -59,6 +59,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
+    var shareView: HDLY_ShareView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         
         weak var _self = self
         self.videoPlayer.orientationWillChange = { (player,isFullScreen) -> (Void) in
+            _self?.isStatusBarHidden = isFullScreen
             _self?.setNeedsStatusBarAppearanceUpdate()
         }
         
@@ -105,11 +107,13 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         audioPlayer.stop()
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        
+        return self.isStatusBarHidden
     }
     
     
@@ -692,7 +696,7 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
         if kWindow != nil {
             kWindow!.addSubview(tipView)
         }
-        
+        shareView = tipView
     }
     
     
@@ -712,7 +716,7 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
         shareObject?.webpageUrl = url
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
-        
+        weak var weakS = self
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
@@ -728,6 +732,7 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
                 } else {
                     LOG(data)
                 }
+                weakS?.shareView?.removeFromSuperview()
             }
         }
     }

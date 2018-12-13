@@ -58,7 +58,7 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
     @objc func modifyUserInfoRequest() {
         if showNicknameVIew == true {
             if nameTF.text?.isEmpty == false {
-                if (nameTF.text?.count)! > 8 && (nameTF.text?.count)! < 4 {
+                if (nameTF.text?.count)! > 8 || (nameTF.text?.count)! < 4 {
                     HDAlert.showAlertTipWith(type: .onlyText, text: "请输入4-8个字符")
                 } else {
                     modifyNicknameRequest()
@@ -127,6 +127,10 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
 extension HDLY_ModifyName_VC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         print( textView.text.count)
+        
+        if textView.text.count > 30 {
+            textView.text = String(textView.text.prefix(30))
+        }
         countL.text = "\(textView.text.count)/30"
     }
 }

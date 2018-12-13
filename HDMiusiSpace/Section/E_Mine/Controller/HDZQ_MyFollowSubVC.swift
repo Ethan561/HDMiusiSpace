@@ -90,6 +90,7 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
     }
     
     private func refresh() {
+        skip = 0
         requestData()
     }
     

@@ -548,23 +548,34 @@
                                     <action selector="loginBtnAction:" destination="8Pl-c5-VXd" eventType="touchUpInside" id="cHv-Fb-zuS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rx-Wq-n5m">
-                                <rect key="frame" x="116" y="246" width="143" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="FU1-Id-Ywq"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rx-Wq-n5m">
+                                <rect key="frame" x="192" y="246" width="143" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="已阅读并同意以下协议">
+                                <state key="normal" title="《缪斯空间服务协议》">
                                     <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="showProtocolDetailAction:" destination="8Pl-c5-VXd" eventType="touchUpInside" id="xsw-EL-HbE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已阅读并同意以下协议" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mH4-x1-TzE">
+                                <rect key="frame" x="49" y="252" width="143" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rG6-SP-1hS">
+                                <rect key="frame" x="30" y="249.5" width="16" height="22"/>
+                                <state key="normal" image="icon_choose_red"/>
+                                <state key="selected" image="icon_choose_red"/>
+                                <connections>
+                                    <action selector="agreeProtocolAction:" destination="8Pl-c5-VXd" eventType="touchUpInside" id="NtK-91-Trv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7rx-Wq-n5m" firstAttribute="centerX" secondItem="UxL-9E-Kc9" secondAttribute="centerX" id="3GW-ao-mxM"/>
+                            <constraint firstItem="7rx-Wq-n5m" firstAttribute="centerY" secondItem="mH4-x1-TzE" secondAttribute="centerY" id="BS7-IY-RKs"/>
                             <constraint firstItem="HAp-F3-9s5" firstAttribute="top" secondItem="VZh-bY-qgo" secondAttribute="top" constant="20" id="CIm-qI-BvE"/>
                             <constraint firstItem="XTU-ga-UJF" firstAttribute="top" secondItem="AaW-QE-n6V" secondAttribute="bottom" constant="25" id="F9c-0P-HPK"/>
                             <constraint firstItem="VZh-bY-qgo" firstAttribute="trailing" secondItem="HAp-F3-9s5" secondAttribute="trailing" constant="20" id="G3P-nu-Ee7"/>
@@ -574,7 +585,11 @@
                             <constraint firstItem="AaW-QE-n6V" firstAttribute="trailing" secondItem="HAp-F3-9s5" secondAttribute="trailing" id="bY3-so-4bb"/>
                             <constraint firstItem="VZh-bY-qgo" firstAttribute="trailing" secondItem="XTU-ga-UJF" secondAttribute="trailing" constant="20" id="d2J-MX-9yg"/>
                             <constraint firstItem="AaW-QE-n6V" firstAttribute="top" secondItem="HAp-F3-9s5" secondAttribute="bottom" constant="15" id="jsp-Tg-lFs"/>
+                            <constraint firstItem="mH4-x1-TzE" firstAttribute="leading" secondItem="rG6-SP-1hS" secondAttribute="trailing" constant="3" id="tdj-GZ-eEn"/>
+                            <constraint firstItem="mH4-x1-TzE" firstAttribute="centerY" secondItem="rG6-SP-1hS" secondAttribute="centerY" id="x4D-sC-ABF"/>
+                            <constraint firstItem="rG6-SP-1hS" firstAttribute="leading" secondItem="VZh-bY-qgo" secondAttribute="leading" constant="30" id="xNv-Jg-6Je"/>
                             <constraint firstItem="7rx-Wq-n5m" firstAttribute="top" secondItem="XTU-ga-UJF" secondAttribute="bottom" constant="30" id="xrG-fP-PvO"/>
+                            <constraint firstItem="7rx-Wq-n5m" firstAttribute="leading" secondItem="mH4-x1-TzE" secondAttribute="trailing" id="xwn-99-Jj3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VZh-bY-qgo"/>
                     </view>
@@ -587,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prk-Ul-dMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="591"/>
+            <point key="canvasLocation" x="717.60000000000002" y="590.55472263868069"/>
         </scene>
         <!--Third Bind PhoneVC-->
         <scene sceneID="xme-PZ-6Hz">
@@ -732,5 +747,6 @@
         <image name="dl_icon_qq" width="19" height="20"/>
         <image name="dl_icon_wb" width="25" height="20"/>
         <image name="dl_icon_wc" width="25" height="20"/>
+        <image name="icon_choose_red" width="16" height="16"/>
     </resources>
 </document>

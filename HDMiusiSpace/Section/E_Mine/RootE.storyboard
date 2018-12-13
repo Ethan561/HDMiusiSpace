@@ -310,6 +310,13 @@
                                     <action selector="changeAvatarAction:" destination="98e-Jv-yaV" eventType="touchUpInside" id="01i-GP-7f9"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wd_icon_ghzp" translatesAutoresizingMaskIntoConstraints="NO" id="jfX-P3-fLF">
+                                <rect key="frame" x="196.5" y="89" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="iSJ-a6-AKX"/>
+                                    <constraint firstAttribute="height" constant="24" id="yTY-fh-b32"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9XQ-tK-9No">
                                 <rect key="frame" x="20" y="140" width="335" height="60"/>
                                 <subviews>
@@ -520,6 +527,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9XQ-tK-9No" firstAttribute="top" secondItem="HO2-kX-sGq" secondAttribute="bottom" constant="30" id="1oQ-ID-cZ2"/>
+                            <constraint firstItem="HO2-kX-sGq" firstAttribute="trailing" secondItem="jfX-P3-fLF" secondAttribute="trailing" constant="-3" id="9F2-8r-HbH"/>
                             <constraint firstItem="Gwf-EN-DaR" firstAttribute="trailing" secondItem="9XQ-tK-9No" secondAttribute="trailing" id="DAX-W0-IXD"/>
                             <constraint firstItem="OOJ-ft-CEi" firstAttribute="top" secondItem="Gwf-EN-DaR" secondAttribute="bottom" id="F2M-3v-4aF"/>
                             <constraint firstItem="9XQ-tK-9No" firstAttribute="leading" secondItem="gxE-N9-4in" secondAttribute="leading" constant="20" id="NJ2-ux-zFl"/>
@@ -528,6 +536,7 @@
                             <constraint firstItem="OOJ-ft-CEi" firstAttribute="trailing" secondItem="Gwf-EN-DaR" secondAttribute="trailing" id="Rbd-9X-Jy4"/>
                             <constraint firstItem="gxE-N9-4in" firstAttribute="trailing" secondItem="9XQ-tK-9No" secondAttribute="trailing" constant="20" id="j1j-7D-CW6"/>
                             <constraint firstItem="bpf-kS-fbs" firstAttribute="trailing" secondItem="OOJ-ft-CEi" secondAttribute="trailing" id="jrX-o8-Z4E"/>
+                            <constraint firstItem="HO2-kX-sGq" firstAttribute="bottom" secondItem="jfX-P3-fLF" secondAttribute="bottom" constant="-3" id="sfQ-ha-qIw"/>
                             <constraint firstItem="bpf-kS-fbs" firstAttribute="leading" secondItem="OOJ-ft-CEi" secondAttribute="leading" id="sx0-dx-BsN"/>
                             <constraint firstItem="Gwf-EN-DaR" firstAttribute="top" secondItem="9XQ-tK-9No" secondAttribute="bottom" id="vY8-OP-hVP"/>
                             <constraint firstItem="bpf-kS-fbs" firstAttribute="top" secondItem="OOJ-ft-CEi" secondAttribute="bottom" id="yXg-9R-buO"/>
@@ -3105,6 +3114,7 @@ AAAAAAAAWQAAAAAAAAAAAAAAAAAAGrE
         <image name="jxtj_img3" width="140" height="100"/>
         <image name="nav_back" width="12" height="20"/>
         <image name="wd_icon_ddwc_white" width="16" height="16"/>
+        <image name="wd_icon_ghzp" width="24" height="24"/>
         <image name="wd_icon_sz" width="20" height="20"/>
         <image name="wd_icon_xx" width="20" height="20"/>
         <image name="wd_icon_yj" width="10" height="15"/>

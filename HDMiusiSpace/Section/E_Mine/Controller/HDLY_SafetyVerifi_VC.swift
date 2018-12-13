@@ -37,13 +37,15 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
 
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
-        if (phoneTF.text?.isEmpty)! || phoneTF.text == "" {
-            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
-            return
-        }
-        guard  Validate.phoneNum(phoneTF.text!).isRight  else {
-            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
-            return
+        if isFindPwd == true {
+            if (phoneTF.text?.isEmpty)! || phoneTF.text == "" {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
+                return
+            }
+            guard  Validate.phoneNum(phoneTF.text!).isRight  else {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
+                return
+            }
         }
         
         if isFindPwd == false {

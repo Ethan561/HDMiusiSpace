@@ -127,7 +127,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     }
     
     @IBAction func thridLoginAction(_ sender: UIButton) {
-        let index = sender.tag - 100
+        let index = sender.tag - 200
         if index == 1 {//微信
             self.getAuthWithUserInfoWithType(type: .wechatSession)
         }
@@ -200,7 +200,8 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
             HDLY_UserModel.shared.requestUserInfo()
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
-                self.back()
+//                self.back()
+                self.navigationController?.popToRootViewController(animated: true)
             })
             
         }) { (errorCode, msg) in

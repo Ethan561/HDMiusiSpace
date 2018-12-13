@@ -9,6 +9,7 @@
 import UIKit
 
 class HDZQ_DayCardBrowserVC: HDItemBaseVC {
+    private var tipView = HDLY_ShareView()
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var shareBtn: UIButton!
     public var index = 0
@@ -62,7 +63,7 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
     }
     
     @IBAction func shareAction(_ sender: Any) {
-        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         tipView.delegate = self
         if kWindow != nil {
@@ -92,7 +93,7 @@ extension HDZQ_DayCardBrowserVC: UMShareDelegate {
                     var resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    
+                    self.tipView.removeFromSuperview()
                     //第三方原始返回的数据
                     print(resp?.originalResponse)
                 } else {

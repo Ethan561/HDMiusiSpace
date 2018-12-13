@@ -86,7 +86,7 @@ class HDSSL_commentVM: NSObject {
     
     //请求评论列表
     func request_getExhibitionCommentList(type:Int,skip: Int,take: Int,exhibitionID: Int,vc: HDItemBaseVC) {
-        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getExhibitionCommentList(api_token: HDDeclare.shared.api_token!, skip: skip, take: take, type: type, exhibitionID: exhibitionID), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getExhibitionCommentList(api_token: HDDeclare.shared.api_token ?? "", skip: skip, take: take, type: type, exhibitionID: exhibitionID), showHud: true, loadingVC: vc, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

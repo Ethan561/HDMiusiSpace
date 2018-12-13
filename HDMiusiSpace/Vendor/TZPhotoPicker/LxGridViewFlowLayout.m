@@ -253,7 +253,7 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             NSIndexPath * movingItemIndexPath = _movingItemIndexPath;
             
             //手势结束，判断是否移动到删除按钮上
-            [self jumentDeleteItemWith:_beingMovedPromptView.center];//判断是否移动到删除按钮位置
+            [self jumentDeleteItemWith:_beingMovedPromptView.center atIndexpath:movingItemIndexPath];//判断是否移动到删除按钮位置
             ////
             
             
@@ -314,8 +314,6 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
         {
             CGPoint panTranslation = [pan translationInView:self.collectionView];
             _beingMovedPromptView.center = CGPointOffset(_sourceItemCollectionViewCellCenter, panTranslation.x, panTranslation.y);
-            
-//            [self jumentDeleteItemWith:panTranslation];//判断是否移动到删除按钮位置
             
             NSIndexPath * sourceIndexPath = _movingItemIndexPath;
             NSIndexPath * destinationIndexPath = [self.collectionView indexPathForItemAtPoint:_beingMovedPromptView.center];
@@ -414,7 +412,7 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
     _panGestureRecognizer.enabled = YES;
 }
 //判断是否移动到删除按钮处
-- (void)jumentDeleteItemWith:(CGPoint)panCenterPoint{
+- (void)jumentDeleteItemWith:(CGPoint)panCenterPoint atIndexpath:(NSIndexPath*)indexp{
     //获取相对屏幕坐标
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     
@@ -430,19 +428,19 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
     if (point.y>window.frame.size.height-40) {
         //删除移动cell
         isDeleteBack  = YES;
-        [self performSelector:@selector(deletAction) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(deletAction:) withObject:indexp afterDelay:0.5];
     }
 }
 //延迟删除item
-- (void)deletAction{
+- (void)deletAction:(NSIndexPath*)indexp{
     
     isDeleteBack  = NO;
     
     typeof(self) __weak weakSelf = self;
     
     if ([weakSelf.dataSource respondsToSelector:@selector(moveOnDeleteButtonAt:)]) {
-        
-        [weakSelf.dataSource moveOnDeleteButtonAt:_movingItemIndexPath];
+        NSLog(@"移动位置是-%d",indexp.item);
+        [weakSelf.dataSource moveOnDeleteButtonAt:indexp];
         
     }
 }

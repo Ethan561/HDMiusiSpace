@@ -9,7 +9,7 @@
 import UIKit
 
 class HDZQ_MyFootprintVC: HDItemBaseVC {
-
+    private var tipView = HDLY_ShareView()
     private var dayList = [FootprintModel]()
     private var lastIndex : IndexPath?
     private var lastRow : Int?
@@ -31,11 +31,15 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
 
 extension HDZQ_MyFootprintVC {
     func requestFootPrintData() {
-        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFootPrint(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 10), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFootPrint(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 1000), success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:FootprintData = try? jsonDecoder.decode(FootprintData.self, from: result) else { return }
-            self.dayList = model.data
-            self.tableView.reloadData()
+            do {
+                let model:FootprintData = try jsonDecoder.decode(FootprintData.self, from: result)
+                self.dayList = model.data
+                self.tableView.reloadData()
+            } catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (error, msg) in
             
         }
@@ -63,11 +67,11 @@ extension HDZQ_MyFootprintVC : UITableViewDataSource {
         cell?.currentIndex = self.currentIndex
         cell?.delegate = self
         cell?.shareBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-            let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
-            tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
-            tipView.delegate = self
+            self?.tipView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+            self?.tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+            self?.tipView.delegate = self
             if kWindow != nil {
-                kWindow!.addSubview(tipView)
+                kWindow!.addSubview((self?.tipView)!)
             }
             self?.shareModel = model
         })
@@ -125,7 +129,7 @@ extension HDZQ_MyFootprintVC: UMShareDelegate {
                     var resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    
+                    self.tipView.removeFromSuperview()
                     //第三方原始返回的数据
                     print(resp?.originalResponse)
                 } else {
@@ -155,6 +159,12 @@ extension HDZQ_MyFootprintVC : UITableViewDelegate {
 }
 
 extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
+    func showRelatedCoursesDetail(courseId: String) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = courseId
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func exhibitPlayAction(index: IndexPath,row:Int,idxStrig:String,url:String) {
         let indexPath = IndexPath.init(row: index.row, section: index.section)
         let cell =  tableView.cellForRow(at: indexPath) as? HDZQ_FoorprintCell
@@ -214,74 +224,4 @@ extension HDZQ_MyFootprintVC : HDLY_AudioPlayer_Delegate {
 }
 
 
-
-typealias BtnAction = (UIButton)->()
-
-extension UIButton{
-    
-    ///  gei button 添加一个属性 用于记录点击tag
-    private struct AssociatedKeys{
-        static var actionKey = "actionKey"
-    }
-    
-    @objc dynamic var actionDic: NSMutableDictionary? {
-        set{
-            objc_setAssociatedObject(self,&AssociatedKeys.actionKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
-        }
-        get{
-            if let dic = objc_getAssociatedObject(self, &AssociatedKeys.actionKey) as? NSDictionary{
-                return NSMutableDictionary.init(dictionary: dic)
-            }
-            return nil
-        }
-    }
-    
-    @objc dynamic fileprivate func DIY_button_add(action:@escaping  BtnAction ,for controlEvents: UIControlEvents) {
-        let eventStr = NSString.init(string: String.init(describing: controlEvents.rawValue))
-        if let actions = self.actionDic {
-            actions.setObject(action, forKey: eventStr)
-            self.actionDic = actions
-        }else{
-            self.actionDic = NSMutableDictionary.init(object: action, forKey: eventStr)
-        }
-        
-        switch controlEvents {
-        case .touchUpInside:
-            self.addTarget(self, action: #selector(touchUpInSideBtnAction), for: .touchUpInside)
-        case .touchUpOutside:
-            self.addTarget(self, action: #selector(touchUpOutsideBtnAction), for: .touchUpOutside)
-        default:
-            self.addTarget(self, action: #selector(touchUpInSideBtnAction), for: .touchUpInside)
-        }
-    }
-    
-    @objc fileprivate func touchUpInSideBtnAction(btn: UIButton) {
-        if let actionDic = self.actionDic  {
-            if let touchUpInSideAction = actionDic.object(forKey: String.init(describing: UIControlEvents.touchUpInside.rawValue)) as? BtnAction{
-                touchUpInSideAction(self)
-            }
-        }
-    }
-    
-    @objc fileprivate func touchUpOutsideBtnAction(btn: UIButton) {
-        if let actionDic = self.actionDic  {
-            if let touchUpOutsideBtnAction = actionDic.object(forKey:   String.init(describing: UIControlEvents.touchUpOutside.rawValue)) as? BtnAction{
-                touchUpOutsideBtnAction(self)
-            }
-        }
-    }
-    
-    
-    @discardableResult
-    func addTouchUpInSideBtnAction(_ action:@escaping BtnAction) -> UIButton{
-        self.DIY_button_add(action: action, for: .touchUpInside)
-        return self
-    }
-    @discardableResult
-    func addTouchUpOutSideBtnAction(_ action:@escaping BtnAction) -> UIButton{
-        self.DIY_button_add(action: action, for: .touchUpOutside)
-        return self
-    }
-    
-}
 

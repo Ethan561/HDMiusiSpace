@@ -25,10 +25,14 @@ extension HDZQ_DayCardVC {
     private func requestDayCardData() {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDayCards(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 10), success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:DayCardData = try? jsonDecoder.decode(DayCardData.self, from: result) else { return }
-            self.daycardList = (model.data?.date_list)!
-            self.title = "收藏的日卡(\(model.data?.total_num ?? 0))"
-            self.tableView.reloadData()
+            do {
+                let model:DayCardData = try jsonDecoder.decode(DayCardData.self, from: result)
+                self.daycardList = (model.data?.date_list)!
+                self.title = "收藏的日卡(\(model.data?.total_num ?? 0))"
+                self.tableView.reloadData()
+            } catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (error, msg) in
             
         }

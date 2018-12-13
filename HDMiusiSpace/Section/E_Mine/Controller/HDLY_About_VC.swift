@@ -35,7 +35,7 @@ class HDLY_About_VC: HDItemBaseVC {
         myTableView.backgroundColor = UIColor.HexColor(0xF0F0F0)
         
         let h = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 210*ScreenWidth/375.0))
-        let headerView = Bundle.main.loadNibNamed("HDZQ_AboutMuseHeaderView", owner: nil, options: nil)?.last as? HDZQ_AboutMuseHeaderView
+        let headerView = Bundle.main.loadNibNamed("HDZQ_AboutMuseHeaderView", owner: nil, options: nil)?.last as?  HDZQ_AboutMuseHeaderView
         headerView!.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 210*ScreenWidth/375.0)
         h.addSubview(headerView!)
         myTableView.tableHeaderView = h

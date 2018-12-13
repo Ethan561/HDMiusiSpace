@@ -36,6 +36,11 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
         tableView.register(UINib.init(nibName: "HDZQ_MyFollowCell", bundle: nil), forCellReuseIdentifier: "HDZQ_MyFollowCell")
         addRefresh()
         bindViewModel()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestData()
     }
     
@@ -54,6 +59,7 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
             if (self?.dataArr.count)! > 0 {
                 self?.tableView.reloadData()
             } else {
+                self?.tableView.reloadData()
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
             }

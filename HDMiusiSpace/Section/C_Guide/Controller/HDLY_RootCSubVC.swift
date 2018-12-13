@@ -236,9 +236,25 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
     
     func didSelectItemAt(_ model:MuseumListModel, _ cell: HDLY_GuideCard2Cell) {
         let sb = UIStoryboard.init(name: "RootC", bundle: nil)
+        
+        if model.isLock != 0 {//1已锁住 0已解锁
+            //购买弹窗
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
+                self.navigationController?.pushViewController(logVC, animated: true)
+                return
+            }
+
+            //获取订单信息
+            let goodId = model.id 
+            publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 2, goods_id: goodId, self)
+            return
+        }
+        
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             //typeL.text = "数字编号版"
             let vc:HDLY_NumGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
+            vc.titleName = model.title
 //            vc.exhibit_num = model.id
 //            vc.exhibition_id = model.e
             self.navigationController?.pushViewController(vc, animated: true)

@@ -147,15 +147,19 @@ extension HDRootEVC {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG(" 获取用户信息： \(String(describing: dic))")
             let jsonDecoder = JSONDecoder()
-            guard let model:UserDynamicModel = try? jsonDecoder.decode(UserDynamicModel.self, from: result) else { return }
-            self.user = model.data!
-            if self.user.sex == 1 {
-                self.declare.gender = "男"
+            do {
+                let model:UserDynamicModel = try jsonDecoder.decode(UserDynamicModel.self, from: result)
+                self.user = model.data!
+                if self.user.sex == 1 {
+                    self.declare.gender = "男"
+                }
+                if self.user.sex == 2 {
+                    self.declare.gender = "女"
+                }
+                self.refreshUserInfo()
+            } catch let error {
+                LOG("解析错误：\(error)")
             }
-            if self.user.sex == 2 {
-                self.declare.gender = "女"
-            }
-            self.refreshUserInfo()
         }) { (errorCode, msg) in
             if errorCode != nil && errorCode! == Status_Code_ErrorToken {
                self.declare.loginStatus = Login_Status.kLogin_Status_Logout
@@ -167,19 +171,25 @@ extension HDRootEVC {
     func getMyDynamicList() {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicList(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:DynamicData = try? jsonDecoder.decode(DynamicData.self, from: result) else { return }
-            // 将字符串转换为富文本字符串，比较耗时，提前转换
-            for i in 0..<model.data!.count {
-                let m = model.data![i]
-                var attrStr: NSAttributedString? = nil
-                if let anEncoding = m.comment!.data(using: .unicode) {
-                    attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                    self.htmls.append(attrStr!)
+            do {
+                let model:DynamicData = try jsonDecoder.decode(DynamicData.self, from: result)
+                // 将字符串转换为富文本字符串，比较耗时，提前转换
+                for i in 0..<model.data!.count {
+                    let m = model.data![i]
+                    var attrStr: NSAttributedString? = nil
+                    if let anEncoding = m.comment!.data(using: .unicode) {
+                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                        self.htmls.append(attrStr!)
+                    }
                 }
+                self.myDynamics = model.data!
+                let indexSet = NSIndexSet(index: 1)
+                self.myTableView.reloadSections(indexSet as IndexSet, with: .automatic)
             }
-             self.myDynamics = model.data!
-            let indexSet = NSIndexSet(index: 1)
-            self.myTableView.reloadSections(indexSet as IndexSet, with: .automatic)
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+            
         }) { (errorCode, msg) in
             if errorCode != nil && errorCode! == Status_Code_ErrorToken {
                 self.declare.loginStatus = Login_Status.kLogin_Status_Logout
@@ -191,10 +201,18 @@ extension HDRootEVC {
     func getMyStudyCourses() {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyStudyCourses(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:MyCollectCourseData = try? jsonDecoder.decode(MyCollectCourseData.self, from: result) else { return }
-            self.courses = model.data
-            let indexPath = IndexPath(row: 4, section: 0)
-            self.myTableView.reloadRows(at: [indexPath], with: .none)
+            
+            do {
+                let model:MyCollectCourseData = try jsonDecoder.decode(MyCollectCourseData.self, from: result)
+                self.courses = model.data
+                let indexPath = IndexPath(row: 4, section: 0)
+                self.myTableView.reloadRows(at: [indexPath], with: .none)
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+            
+            
         }) { (errorCode, msg) in
             if errorCode != nil && errorCode! == Status_Code_ErrorToken {
                 self.declare.loginStatus = Login_Status.kLogin_Status_Logout

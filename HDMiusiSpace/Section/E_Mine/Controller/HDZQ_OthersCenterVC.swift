@@ -97,17 +97,21 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
     func requestDynamicData(toid:Int) {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getOtherDynamicIndex(api_token: HDDeclare.shared.api_token ?? "", toid: toid), success: { (result) in
             let jsonDecoder = JSONDecoder()
-            guard let model:OtherDynamicData = try? jsonDecoder.decode(OtherDynamicData.self, from: result) else { return }
-            self.model = model.data ?? OtherDynamic()
-            for i in 0..<self.model.dynamic_list.count {
-                let m = self.model.dynamic_list[i]
-                var attrStr: NSAttributedString? = nil
-                if let anEncoding = m.comment!.data(using: .unicode) {
-                    attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                    self.htmls.append(attrStr!)
+            do {
+                let model:OtherDynamicData = try jsonDecoder.decode(OtherDynamicData.self, from: result)
+                self.model = model.data ?? OtherDynamic()
+                for i in 0..<self.model.dynamic_list.count {
+                    let m = self.model.dynamic_list[i]
+                    var attrStr: NSAttributedString? = nil
+                    if let anEncoding = m.comment!.data(using: .unicode) {
+                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                        self.htmls.append(attrStr!)
+                    }
                 }
+                self.refreshUI()
+            } catch let error {
+                LOG("解析错误：\(error)")
             }
-            self.refreshUI()
         }) { (error, msg) in
             
         }

@@ -36,8 +36,11 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
         view.addSubview(self.tableView)
         addRefresh()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         requestData()
-        
     }
     
     func requestData() {
@@ -72,6 +75,7 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
         if self.courses.count > 0 {
             self.tableView.reloadData()
         } else {
+            self.tableView.reloadData()
             self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
             self.tableView.ly_showEmptyView()
         }
@@ -100,6 +104,7 @@ class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     }
     
     private func refresh() {
+        skip = 0
         requestData()
     }
     

@@ -239,6 +239,11 @@ extension HDLY_Setting_VC {
             //mapSize = mapSize == nil ? 0 : mapSize! + Int64(catchSize)
             mapSize = Int64(catchSize)
             
+            if mapSize == 0 {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "当前没有缓存")
+                return
+            }
+            
             let size = ceilf(Float(mapSize!)/1024.0/1024.0)
             let alertController = UIAlertController(title: "系统提示",
                                                     message: "缓存大小\(size)MB是否清除", preferredStyle: .alert)

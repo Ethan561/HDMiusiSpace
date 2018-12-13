@@ -324,6 +324,7 @@ extension HDLY_TopicDetail_VC {
                 cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
+                cell?.nameL.text = commentModel.nickname
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.isLike == 0 {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
@@ -425,7 +426,12 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
                 self.pushToLoginVC(vc: self)
                 return
             }
-            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
+            if fromRootAChoiceness == true {
+                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "1", self)
+
+            }else {
+                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
+            }
         }
     }
     

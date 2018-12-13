@@ -15,7 +15,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
     public var type = 1 // 1,2
     private var viewModel = HDZQ_MyViewModel()
     
-    private var take = 2
+    private var take = 10
     private var skip = 0
     
     lazy var tableView: UITableView = {
@@ -25,7 +25,6 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
-        
         return tableView
     }()
     
@@ -34,10 +33,16 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
         self.isShowNavShadowLayer = false
         tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
+        if type != 1 {
+            tableView.separatorStyle = .none
+        }
         addRefresh()
         bindViewModel()
-        requestData()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         requestData()
     }
     
     func requestData() {
@@ -58,6 +63,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
             if (self?.news.count)! > 0 {
                  self?.tableView.reloadData()
             } else {
+                self?.tableView.reloadData()
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
             }
@@ -76,6 +82,7 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
             if (self?.exhibitions.count)! > 0 {
                 self?.tableView.reloadData()
             } else {
+                self?.tableView.reloadData()
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
             }

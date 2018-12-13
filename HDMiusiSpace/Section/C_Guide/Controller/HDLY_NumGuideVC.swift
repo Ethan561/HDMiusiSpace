@@ -20,7 +20,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     var numStr = ""
     var exhibit_num = 0
     var exhibition_id: Int?
-    
+    var titleName = ""
+
     var dataArr = ["1","2","3","4","5","6","7","8","9","","0",""]
     var exhibitInfo: HDLY_ExhibitListM?
     var isPlaying = false
@@ -28,7 +29,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "古蜀华章——四川古代文物展"
+        self.title = titleName
         let layout = UICollectionViewFlowLayout()
         let itemW = 90
         let itemH = 60

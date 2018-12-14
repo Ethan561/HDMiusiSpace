@@ -43,10 +43,16 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:HDLY_ExhibitList = try! jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
-            self.infoModel = model
-            self.tableView.reloadData()
-            self.topImgV.kf.setImage(with: URL.init(string: model.data.img), placeholder: UIImage.grayImage(sourceImageV: self.topImgV), options: nil, progressBlock: nil, completionHandler: nil)
+            do {
+                let model:HDLY_ExhibitList = try jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
+                self.infoModel = model
+                self.tableView.reloadData()
+                self.topImgV.kf.setImage(with: URL.init(string: model.data.img), placeholder: UIImage.grayImage(sourceImageV: self.topImgV), options: nil, progressBlock: nil, completionHandler: nil)
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))

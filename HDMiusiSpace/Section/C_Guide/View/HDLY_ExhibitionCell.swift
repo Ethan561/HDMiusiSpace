@@ -64,7 +64,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
             vipPriceL.text = "SVIP免费"
             vipPriceL.textColor = UIColor.HexColor(0xD8B98D)
         }
-        
+        timeL.text = model.times
 //        UIFont.showAllFonts()
         if model.isTz == 1 {
             let maTitleString: NSMutableAttributedString = NSMutableAttributedString.init(string: model.title!)

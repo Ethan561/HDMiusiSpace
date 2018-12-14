@@ -85,11 +85,12 @@ struct HDLY_ExhibitionListM: Codable {
 struct HDLY_ExhibitionListData: Codable {
     var exhibitionID: Int = 0
     var title: String?
-    let img: String?
+    var img: String?
     var type: Int, priceType: Int = 0
     var price, vipPrice: String
     var isLock: Int, isTz: Int = 0
-    
+    var times: String?
+
     enum CodingKeys: String, CodingKey {
         case exhibitionID = "exhibition_id"
         case title, img, type
@@ -98,6 +99,7 @@ struct HDLY_ExhibitionListData: Codable {
         case vipPrice = "vip_price"
         case isLock = "is_lock"
         case isTz = "is_tz"
+        case times
     }
 }
 

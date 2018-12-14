@@ -161,7 +161,7 @@ extension HDLY_Recommend_SubVC {
         if model.type?.int == 0 {
             let cell = RecommendSectionCell.getMyTableCell(tableV: tableView)
             cell?.nameLabel.text = model.category?.title
-            if model.category?.type == 4 {
+            if model.category?.type == 5 {
                 cell?.moreL.text = ""
             } else if model.category?.type == 6 {
                 cell?.moreL.text = "换一换"

@@ -111,6 +111,7 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     //充值
     @IBAction func action_recharge(_ sender: UIButton) {
         print("充值")
+        HDLY_IAPStore.shared.requestProducts(nil)
     }
     
     /*

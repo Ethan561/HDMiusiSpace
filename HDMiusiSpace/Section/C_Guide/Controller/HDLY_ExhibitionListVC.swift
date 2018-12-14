@@ -40,10 +40,15 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:HDLY_ExhibitionListM = try! jsonDecoder.decode(HDLY_ExhibitionListM.self, from: result)
-            self.dataArr = model.data
-            if self.dataArr.count > 0 {
-                self.tableView.reloadData()
+            do {
+                let model:HDLY_ExhibitionListM = try jsonDecoder.decode(HDLY_ExhibitionListM.self, from: result)
+                self.dataArr = model.data
+                if self.dataArr.count > 0 {
+                    self.tableView.reloadData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
             }
             
         }) { (errorCode, msg) in

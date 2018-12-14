@@ -72,6 +72,8 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
             if index == 0 {//修改密码
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "修改密码"
+                cell?.subNameL.text = ""
+                cell?.moreImgV.isHidden = false
                 return cell!
             }else if index == 1 {//手机号
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
@@ -131,19 +133,120 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifi_VC_Line", sender: "1")
             }else if index == 1 {//手机号
                 self.performSegue(withIdentifier: "PushTo_HDLY_SafetyVerifi_VC_Line", sender: "2")
-            }else if index == 2 {//邮箱
+            }else if index == 2 {//微信
+                if declare.isBindWechat == 1 {
+                    self.cancelBindThird(b_from: "wx")
+                } else {
+                    self.getAuthWithUserInfoWithType(type: .wechatSession)
+                }
                 
+            } else if index == 3 {//微博
+                if declare.isBindWeibo == 1 {
+                    self.cancelBindThird(b_from: "wb")
+                } else {
+                    self.getAuthWithUserInfoWithType(type: .sina)
+                }
+                
+            } else if index == 4 {//QQ
+                if declare.isBindQQ == 1 {
+                    self.cancelBindThird(b_from: "qq")
+                } else {
+                    self.getAuthWithUserInfoWithType(type: .QQ)
+                }
             }
         }
-        
-        if section == 1 {
-            if index == 0 {//微信
-      
-            }else if index == 1 {//新浪微博
+    }
     
-            }else if index == 2 {//邮箱
-
+    func getAuthWithUserInfoWithType(type: UMSocialPlatformType) {
+        
+        
+        if UMSocialManager.default().isInstall(type) == false {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "未安装，无法绑定")
+            return
+        }
+        
+        var from = "qq"
+        if type == .wechatSession {
+            from = "wx"
+        }else if type == .sina {
+            from = "wb"
+        }
+    
+        UMSocialManager.default().getUserInfo(with: type, currentViewController: self) { (result, error) in
+            if error != nil {
+                LOG("\(String(describing: error?.localizedDescription))")
+                HDAlert.showAlertTipWith(type: .onlyText, text: "绑定失败")
+            }else {
+                let resp:UMSocialUserInfoResponse = result as! UMSocialUserInfoResponse
+                self.thirdLoginRequestWithInfo(resp: resp, from: from)
             }
+        }
+    }
+    
+    func thirdLoginRequestWithInfo(resp:UMSocialUserInfoResponse, from: String) {
+        let api_token = HDDeclare.shared.api_token ?? ""
+        let openid   = resp.uid!
+        let b_nickname = resp.name!
+        let b_avatar = resp.iconurl ?? ""
+        let params: [String: Any] = ["openid": openid,
+                                     "b_from": from,
+                                     "b_nickname": b_nickname,
+                                     "b_avatar": b_avatar,
+                                     "api_token": api_token,
+                                     ]
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .bindThirdAccount(params: params), showHud: true, loadingVC: self, success: { (result) in
+             
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" dic ： \(String(describing: dic))")
+            guard let data : Int = dic!["data"] as? Int else {
+                return
+            }
+            
+            if data == 1 {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "绑定成功")
+            }
+            if from == "wx" {
+                self.declare.isBindWechat = 1
+                self.declare.wechatName = b_nickname
+            }
+            if from == "wb" {
+                self.declare.isBindWeibo = 1
+                self.declare.weiboName = b_nickname
+            }
+            if from == "qq" {
+                self.declare.isBindQQ = 1
+                self.declare.QQName = b_nickname
+            }
+            self.myTableView.reloadData()
+        }) { (errorCode, msg) in
+            HDAlert.showAlertTipWith(type: .onlyText, text: "绑定失败")
+        }
+    }
+    
+    
+    func cancelBindThird(b_from:String) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .cancelBindThirdAccount(api_token: HDDeclare.shared.api_token ?? "", b_from: b_from), success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG(" dic ： \(String(describing: dic))")
+            guard let data : Int = dic!["data"] as? Int else {
+                return
+            }
+            
+            if data == 1 {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "已解除绑定")
+            }
+            if b_from == "wx" {
+                self.declare.isBindWechat = 0
+            }
+            if b_from == "wb" {
+                self.declare.isBindWeibo = 0
+            }
+            if b_from == "qq" {
+                self.declare.isBindQQ = 0
+            }
+            self.myTableView.reloadData()
+        }) { (error, msg) in
+            HDAlert.showAlertTipWith(type: .onlyText, text: "解除绑定失败")
         }
     }
     

@@ -97,6 +97,8 @@ final class HDLY_AudioPlayer: NSObject {
     //停止播放
     func stop() {
         audioPlayer.stop()
+        fileno = ""
+        url = ""
 //        queue = []
 //        currentIndex = -1
     }

@@ -225,7 +225,7 @@ extension UIImage {
     
     //用Color生成图片
     class func getImgWithColor(_ color: UIColor, imgSize: CGSize) -> UIImage? {
-        
+    
         let rect = CGRect.init(x: 0, y: 0, width: imgSize.width, height: imgSize.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         let ctx: CGContext? = UIGraphicsGetCurrentContext()
@@ -240,6 +240,37 @@ extension UIImage {
     
     
 }
+
+// MARK: 图片设置圆角
+extension UIImage {
+    
+    public func roundImage(byRoundingCorners: UIRectCorner = UIRectCorner.allCorners, cornerRadi: CGFloat) -> UIImage? {
+        return roundImage(byRoundingCorners: byRoundingCorners, cornerRadii: CGSize(width: cornerRadi, height: cornerRadi))
+    }
+    
+    public func roundImage(byRoundingCorners: UIRectCorner = UIRectCorner.allCorners, cornerRadii: CGSize) -> UIImage? {
+        
+        let imageRect = CGRect(origin: CGPoint.zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        let context = UIGraphicsGetCurrentContext()
+        guard context != nil else {
+            return nil
+        }
+        context?.setShouldAntialias(true)
+        let bezierPath = UIBezierPath(roundedRect: imageRect,
+                                      byRoundingCorners: byRoundingCorners,
+                                      cornerRadii: cornerRadii)
+        bezierPath.close()
+        bezierPath.addClip()
+        self.draw(in: imageRect)
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+}
+
 
 ////  颜色转换为背景图片
 //- (UIImage *)imageWithColor:(UIColor *)color {

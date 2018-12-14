@@ -257,8 +257,7 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
             //typeL.text = "数字编号版"
             let vc:HDLY_NumGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
             vc.titleName = model.title
-//            vc.exhibit_num = model.id
-//            vc.exhibition_id = model.e
+            vc.exhibition_id = model.id
             self.navigationController?.pushViewController(vc, animated: true)
             
         }else if model.type == 1 {

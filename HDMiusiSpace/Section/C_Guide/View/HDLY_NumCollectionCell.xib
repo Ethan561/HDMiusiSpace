@@ -52,7 +52,7 @@
                 <outlet property="tagBtn" destination="jEj-jw-GXh" id="y1C-3T-vca"/>
                 <outlet property="titleL" destination="fcO-Uq-9yX" id="jbp-1b-fHS"/>
             </connections>
-            <point key="canvasLocation" x="6" y="58"/>
+            <point key="canvasLocation" x="4.7999999999999998" y="57.571214392803604"/>
         </collectionViewCell>
     </objects>
 </document>

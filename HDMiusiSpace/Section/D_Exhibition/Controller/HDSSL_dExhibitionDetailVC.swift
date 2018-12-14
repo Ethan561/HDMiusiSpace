@@ -695,7 +695,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     //HDLY_MuseumInfoType5Cell_Delegate
     func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int) {
         playingSelectRow = selectRow
-        if model.title == playModel?.title {
+        if model.listenID == playModel?.listenID {
             if player.state == .playing {
                 player.pause()
                 item.playBtn.isSelected = false

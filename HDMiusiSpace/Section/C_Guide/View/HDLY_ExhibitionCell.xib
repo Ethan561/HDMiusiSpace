@@ -133,7 +133,7 @@
                 <outlet property="typeL" destination="tiZ-vT-TAn" id="G6h-ba-LwS"/>
                 <outlet property="vipPriceL" destination="lXy-dQ-1R6" id="8Ae-Xg-vee"/>
             </connections>
-            <point key="canvasLocation" x="205.59999999999999" y="25.187406296851577"/>
+            <point key="canvasLocation" x="-73" y="4"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -55,6 +55,11 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         player.delegate = self
         numL.text = ""
         
+        let dotImg = UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: CGSize.init(width: 10, height: 10))
+        if dotImg != nil {
+         let img = dotImg!.roundImage(cornerRadi: 5)
+            slide.setThumbImage(img, for: UIControlState.normal)
+        }
     }
     
     func setupNavBarItem() {
@@ -237,6 +242,10 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
             }
             
             if indexPath.row == 11 {
+                if numStr.count == 0 {
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入展品编号！")
+                    return
+                }
                 if player.fileno != numStr && numStr.count > 0 {
                     dataRequest(exhibit_num: Int(numStr) ?? 0)
                 }else {

@@ -221,6 +221,8 @@
 		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
 		D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */; };
+		D61D5D1821C246F3005EA3A6 /* HDLY_PlatformCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */; };
+		D61D5D1921C246F3005EA3A6 /* HDLY_PlatformCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -856,6 +858,8 @@
 		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCVM.swift; sourceTree = "<group>"; };
+		D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PlatformCell.swift; sourceTree = "<group>"; };
+		D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_PlatformCell.xib; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -2758,6 +2762,8 @@
 				D670D38521257BB40064750A /* Recommend */,
 				D6AA0B02213530C60036320F /* HDLY_TopicRecmd_Cell.swift */,
 				D6AA0B03213530C60036320F /* HDLY_TopicRecmd_Cell.xib */,
+				D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */,
+				D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */,
 				D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */,
 				D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */,
 				D628268121B9323700693DEC /* HDLY_CreateOrderTipView.swift */,
@@ -2986,6 +2992,7 @@
 				D696C3F221A3A78300B7E3FA /* HDLY_dMuseumHeader.xib in Resources */,
 				D6866A612126CA680044EEAA /* HDLY_CourseList_Header.xib in Resources */,
 				D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */,
+				D61D5D1921C246F3005EA3A6 /* HDLY_PlatformCell.xib in Resources */,
 				A7C59E4A219BFE0400F67F0C /* HDSSL_Sec0_Cell0.xib in Resources */,
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
@@ -3515,6 +3522,7 @@
 				D60E85782191769E00072BF9 /* HDLY_ExhibitionCell.swift in Sources */,
 				D672462D211D5F4400239109 /* HDLY_Recommend_Cell2.swift in Sources */,
 				1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */,
+				D61D5D1821C246F3005EA3A6 /* HDLY_PlatformCell.swift in Sources */,
 				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
 				D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */,
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
@@ -3855,7 +3863,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

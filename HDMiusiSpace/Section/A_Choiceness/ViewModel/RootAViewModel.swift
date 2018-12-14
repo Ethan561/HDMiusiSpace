@@ -25,9 +25,17 @@ class RootAViewModel: NSObject {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             myTableView.ly_endLoading()
+            
             let jsonDecoder = JSONDecoder()
-            let model:ChoicenessModel = try! jsonDecoder.decode(ChoicenessModel.self, from: result)
-            self.rootAData.value = model
+            //JSON转Model：
+            do {
+                let model:ChoicenessModel = try jsonDecoder.decode(ChoicenessModel.self, from: result)
+                self.rootAData.value = model
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+            
             myTableView.es.stopPullToRefresh()
             myTableView.es.stopLoadingMore()
 

@@ -73,6 +73,9 @@ class HDLY_GuideCard2Cell: UITableViewCell {
             }
             
             // 免费类型：0不免费,1所有人免费,2svip免费
+            ypriceL.isHidden = true
+            vippriceL.isHidden = true
+            priceL.isHidden = true
             if model.priceType == 0 {
                 ypriceL.isHidden = false
                 vippriceL.isHidden = false
@@ -88,6 +91,12 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 priceL.textColor = UIColor.HexColor(0xD8B98D)
             }
             
+            if dataArray!.count < 2 {
+                bgView1.isHidden = true
+                return
+            }else {
+                bgView1.isHidden = false
+            }
             guard let model1 = dataArray?.last else {
                 return
             }
@@ -106,6 +115,10 @@ class HDLY_GuideCard2Cell: UITableViewCell {
             }
             
             // 免费类型：0不免费,1所有人免费,2svip免费
+            ypriceL1.isHidden = true
+            vippriceL1.isHidden = true
+            priceL1.isHidden = true
+
             if model1.priceType == 0 {
                 ypriceL1.isHidden = false
                 vippriceL1.isHidden = false

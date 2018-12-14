@@ -198,6 +198,9 @@ extension HDSSL_dCommentCell{
         if imgs?.count == 0 {
             return
         }
+        for v in cell_imgBg.subviews {
+            v.removeFromSuperview()
+        }
         for i in 0..<imgs!.count {
             let imgPath = imgs![i]
             

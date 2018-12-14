@@ -185,6 +185,10 @@ extension HDLY_TopicDetail_VC {
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
+            if  infoModel?.title != nil {
+                let height = infoModel!.title.getContentHeight(font: UIFont.init(name: "PingFangSC-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20), width: ScreenWidth-40)
+                return height+16
+            }
             return 60
         }
         if section == 1 {
@@ -250,6 +254,9 @@ extension HDLY_TopicDetail_VC {
     
     //row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 2
+        }
         if section == 1 {
             if  let recommendsList = infoModel?.recommendsList {
                 return recommendsList.count
@@ -262,12 +269,18 @@ extension HDLY_TopicDetail_VC {
             }
             return 0
         }
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let index = indexPath.row
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                if infoModel?.platform_icon != nil {
+                    return 80
+                }
+                return 0.01
+            }
             return webViewH
         }
         if indexPath.section == 1 {
@@ -296,6 +309,15 @@ extension HDLY_TopicDetail_VC {
         let model = infoModel
         let index = indexPath.row
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = HDLY_PlatformCell.getMyTableCell(tableV: tableView)
+                if model?.platform_icon != nil {
+                    cell?.imgV.kf.setImage(with: URL.init(string: model!.platform_icon!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.titleL.text = model?.platform_title
+                    cell?.timeL.text = model?.created_at
+                }
+                return cell!
+            }
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
             guard let url = model?.url else {
                 return cell!
@@ -340,6 +362,14 @@ extension HDLY_TopicDetail_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            let model = infoModel!.recommendsList[indexPath.row]
+            vc.topic_id = "\(model.articleID)"
+            vc.fromRootAChoiceness = self.fromRootAChoiceness
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
         if indexPath.section ==  2 {
             let model = infoModel
             guard let commentModel = model?.commentList[indexPath.row] else {

@@ -143,6 +143,7 @@ struct DMuseumRaiders: Codable {
     var img: String?
     var title: String?
     var isFavorite: Int = 0
+    var strategyUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case author
@@ -151,6 +152,7 @@ struct DMuseumRaiders: Codable {
         case strategyID = "strategy_id"
         case img, title
         case isFavorite = "is_favorite"
+        case strategyUrl = "strategy_url"
     }
 }
 
@@ -167,6 +169,7 @@ struct DStrategyListData: Codable {
     var img: String?
     var title: String?
     var isFavorite: Int?
+    var strategyUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case author
@@ -175,6 +178,7 @@ struct DStrategyListData: Codable {
         case strategyID = "strategy_id"
         case img, title
         case isFavorite = "is_favorite"
+        case strategyUrl = "strategy_url"
     }
 }
 

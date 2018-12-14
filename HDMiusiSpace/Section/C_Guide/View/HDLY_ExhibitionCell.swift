@@ -56,16 +56,16 @@ class HDLY_ExhibitionCell: UITableViewCell {
             vipPriceL.text = "SVIP￥\(model.vipPrice)"
             vipPriceL.textColor = UIColor.HexColor(0xCCCCCC)
 
-        }else if model.type == 1 {
+        }else if model.priceType == 1 {
             vipPriceL.text = "限时免费"
             vipPriceL.textColor = UIColor.HexColor(0x4A4A4A)
             
-        }else if model.type == 2 {
+        }else if model.priceType == 2 {
             vipPriceL.text = "SVIP免费"
             vipPriceL.textColor = UIColor.HexColor(0xD8B98D)
         }
         
-        UIFont.showAllFonts()
+//        UIFont.showAllFonts()
         if model.isTz == 1 {
             let maTitleString: NSMutableAttributedString = NSMutableAttributedString.init(string: model.title!)
             

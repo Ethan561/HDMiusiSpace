@@ -81,7 +81,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
                 cell.nameL.text = model.exhibitName
                 cell.progressV.progress = 0
                 if playModel != nil {
-                    if playModel?.title == model.title && playModel?.isPlaying == true {
+                    if playModel?.listenID == model.listenID && playModel?.isPlaying == true {
                         cell.playBtn.isSelected = true
                     }else {
                         cell.playBtn.isSelected = false

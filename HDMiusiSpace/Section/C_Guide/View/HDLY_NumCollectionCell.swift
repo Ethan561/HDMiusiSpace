@@ -28,7 +28,27 @@ class HDLY_NumCollectionCell: UICollectionViewCell {
         
     }
     
+    // 设置高亮效果
+    override var isHighlighted: Bool {
+        willSet {
+            if newValue {
+                titleL.backgroundColor = UIColor.darkGray
+            } else {
+                titleL.backgroundColor = UIColor.HexColor(0xEEEEEE)
+            }
+        }
+    }
     
+    // 设置选中选中
+    override var isSelected: Bool {
+        willSet {
+            if newValue {
+                
+            } else {
+                
+            }
+        }
+    }
 }
 
 

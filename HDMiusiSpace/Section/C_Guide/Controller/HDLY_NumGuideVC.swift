@@ -17,6 +17,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     @IBOutlet weak var numL: UILabel!
     let player = HDLY_AudioPlayer.shared
     
+    @IBOutlet weak var numViewHCons: NSLayoutConstraint!
     var numStr = ""
     var exhibit_num = 0
     var exhibition_id: Int?
@@ -28,13 +29,16 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = titleName
         let layout = UICollectionViewFlowLayout()
         let itemW = 90
         let itemH = 60
         
-        
+        numViewHCons.constant = ScreenHeight * 0.55
+        if ScreenWidth == 320 {
+             numViewHCons.constant = ScreenHeight * 0.6
+        }
         layout.itemSize = CGSize(width: itemW, height: itemH)
         layout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = layout
@@ -270,8 +274,10 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let width:CGFloat   = 90
         let space = (ScreenWidth-3*width)/4.0
-        let spaceH:CGFloat = 20.0
-        
+        var spaceH:CGFloat = 20.0
+//        if ScreenWidth == 320 {
+//            spaceH = 10
+//        }
         return UIEdgeInsets.init(top: spaceH, left: space, bottom: spaceH, right: space)
     }
     

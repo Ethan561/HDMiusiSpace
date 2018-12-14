@@ -137,7 +137,7 @@ enum HD_LY_API {
     case getMapListAll(museum_id: Int, api_token: String)
 
     //获取博物馆列表
-    case guideMuseumList(city_id: String, longitude: String, latitude: String, type:Int, skip:Int, take:Int)
+    case guideMuseumList(city_name: String, longitude: String, latitude: String, type:Int, skip:Int, take:Int, api_token: String)
 
     //展览列表
     case guideExhibitionList(museum_id: Int, skip:Int, take:Int, token: String)
@@ -381,7 +381,7 @@ extension HD_LY_API: TargetType {
             return "/api/guide/map_guide"
             
             
-        case .guideMuseumList(city_id: _, longitude: _, latitude: _, type: _, skip: _, take: _):
+        case .guideMuseumList(_):
             return "/api/guide/museum_list"
             
             
@@ -862,9 +862,9 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             
-        case .guideMuseumList(let city_id, let longitude, let latitude, let type, let skip, let take):
-            
-            params = params.merging(["city_id": city_id, "longitude": longitude, "latitude": latitude, "type": type, "skip": skip, "take": take], uniquingKeysWith: {$1})
+        case .guideMuseumList(let city_name, let longitude, let latitude, let type, let skip, let take, let api_token):
+
+            params = params.merging(["city_name": city_name, "longitude": longitude, "latitude": latitude, "type": type, "skip": skip, "take": take, "api_token": api_token], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

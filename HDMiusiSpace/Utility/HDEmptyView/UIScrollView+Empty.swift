@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 extension UIScrollView {
     struct RuntimeKey {
@@ -17,12 +18,12 @@ extension UIScrollView {
         set {
             objc_setAssociatedObject(self, RuntimeKey.kEmptyViewKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             for view in self.subviews {
-                if view.isKind(of: HDEmptyView.self) {
+                if view.isKind(of: HDEmptyView.classForCoder()) {
                     view.removeFromSuperview()
                 }
             }
          self.addSubview(ly_emptyView!)
-         self.ly_emptyView!.isHidden = true
+         self.ly_emptyView?.isHidden = true
         }
         get {
             return objc_getAssociatedObject(self, RuntimeKey.kEmptyViewKey!) as? HDEmptyView
@@ -50,13 +51,12 @@ extension UIScrollView {
     
     public func ly_hideEmptyView() {
         self.ly_emptyView?.isHidden = true
-        
     }
     
     //MARK: - Private Method
     fileprivate func totalDataCount() -> NSInteger {
         var totalCount: NSInteger = 0
-        if self.isKind(of: UITableView.self) {
+        if self.isKind(of: UITableView.classForCoder()) {
             let tableView = self as? UITableView
             if (tableView?.numberOfSections)! >= 1 {
                 for section in 0...(tableView?.numberOfSections)!-1 {
@@ -141,23 +141,23 @@ extension UITableView:SelfAware {
     
 
     //section
-    @objc  func ly_insertSections(_ sections: NSIndexSet, with animation: UITableViewRowAnimation) {
+    @objc  func ly_insertSections(_ sections: NSIndexSet, with animation: UITableView.RowAnimation) {
         ly_insertSections(sections, with: animation)
         getDataAndSet()
     }
     
-    @objc  func ly_deleteSections(_ sections: NSIndexSet, with animation: UITableViewRowAnimation) {
+    @objc  func ly_deleteSections(_ sections: NSIndexSet, with animation: UITableView.RowAnimation) {
         ly_deleteSections(sections, with: animation)
         getDataAndSet()
     }
     
     //row
-    @objc  func ly_insertRowsAtIndexPaths(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+    @objc  func ly_insertRowsAtIndexPaths(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){
         ly_insertRowsAtIndexPaths(at: indexPaths, with: animation)
         getDataAndSet()
     }
     
-    @objc func ly_deleteRowsAtIndexPaths(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation){
+    @objc func ly_deleteRowsAtIndexPaths(at indexPaths: [IndexPath], with animation: UITableView.RowAnimation){
         ly_deleteRowsAtIndexPaths(at: indexPaths, with: animation)
         getDataAndSet()
     }
@@ -268,7 +268,6 @@ extension UIApplication {
         return super.next
     }
 }
-
 
 
 

@@ -35,7 +35,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         setupViews()
-        let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+        let empV = EmptyConfigView.NoDataEmptyView()
         self.myTableView.ly_emptyView = empV
         myTableView.ly_endLoading()
 
@@ -107,6 +107,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
             weakSelf?.bannerArr = banner
             weakSelf?.tabHeader.pageControl.numberOfPages = banner.count
             weakSelf?.tabHeader.pagerView.reloadData()
+        }
+        viewModel.isNeedRefresh.bind { (_) in
+            weakSelf?.refreshAction()
         }
         //收藏
         publicViewModel.isCollection.bind { (flag) in

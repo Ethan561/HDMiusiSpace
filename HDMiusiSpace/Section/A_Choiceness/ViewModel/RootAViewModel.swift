@@ -11,9 +11,9 @@ import UIKit
 class RootAViewModel: NSObject {
     
     var rootAData: Bindable = Bindable(ChoicenessModel())
-//    let showEmptyView: Bindable = Bindable(false)
+    var isNeedRefresh: Bindable = Bindable(false)
     var bannerArr =  Bindable([BbannerModel]())
-
+    
     //
     func dataRequest(deviceno : String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
         myTableView.ly_startLoading()
@@ -40,10 +40,17 @@ class RootAViewModel: NSObject {
             myTableView.es.stopLoadingMore()
 
         }) { (errorCode, msg) in
+            let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            myTableView.ly_emptyView = empV
             myTableView.ly_endLoading()
             myTableView.es.stopPullToRefresh()
         }
     }
+    
+    @objc func refreshAction() {
+        self.isNeedRefresh.value = true
+    }
+    
     
     func dataRequestGetMoreNews(deviceno : String, num: String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
         var token:String = ""

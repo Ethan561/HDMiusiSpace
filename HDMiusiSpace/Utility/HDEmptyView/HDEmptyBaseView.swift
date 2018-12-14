@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 public typealias  HDTapBlock = () -> ()
 
@@ -73,8 +74,11 @@ public class HDEmptyBaseView: UIView {
     override public func layoutSubviews() {
         super.layoutSubviews()
         let view = self.superview
-        if (view?.isKind(of: UIScrollView.self))! {
+        if (view?.isKind(of: UIScrollView.classForCoder()))! {
+//            self.width = view!.width
+//            self.height = view!.height
             self.frame = CGRect.init(x: 0, y: 0, width: view!.ly_width, height: view!.ly_height)
+            
         }
         self.setupSubviews()
     }
@@ -108,7 +112,7 @@ public class HDEmptyBaseView: UIView {
     
     //Block 回调方法
     public class func emptyActionViewWithImageStr(imageStr: NSString, titleStr: NSString, detailStr: NSString, btnTitleStr: NSString, btnClickBlock:@escaping HDTapBlock) -> HDEmptyView {
-//      let emptyView = HDEmptyView.init(frame: CGRect.zero)
+//        let emptyView = HDEmptyView.init(frame: CGRect.zero)
         let emptyView:HDEmptyView = HDEmptyView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
 
         emptyView.creatEmptyViewWithImageStr(imageStr: imageStr, titleStr: titleStr, detailStr: detailStr, btnTitleStr: btnTitleStr, btnClickBlock: btnClickBlock)
@@ -117,18 +121,18 @@ public class HDEmptyBaseView: UIView {
     }
     
     //没有刷新操作
-    public class func emptyActionViewWithImageStr(imageStr: NSString, titleStr: NSString, detailStr: NSString) -> HDEmptyView {
-        
-        let emptyView:HDEmptyView = HDEmptyView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        emptyView.creatEmptyViewWithImageStr(imageStr: imageStr, titleStr: titleStr, detailStr: detailStr)
-        
-        return emptyView
-    }
+//    public class func emptyActionViewWithImageStr(imageStr: NSString, titleStr: NSString, detailStr: NSString) -> HDEmptyView {
+//        let emptyView = self
+//        
+//        emptyView.creatEmptyViewWithImageStr(imageStr: imageStr, titleStr: titleStr, detailStr: detailStr)
+//        
+//        return emptyView
+//    }
     
     //自定义显示界面
     public class func emptyViewWithCustomView(customView: UIView) -> AnyObject {
         let emptyView:HDEmptyView = HDEmptyView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        
+
         emptyView.creatEmptyViewWithCustomView(customView: customView)
         
         return emptyView
@@ -148,6 +152,7 @@ public class HDEmptyBaseView: UIView {
             self.addSubview(contentView!)
             let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapContentView(_:)))
             contentView?.addGestureRecognizer(tap)
+            
         }
     }
     
@@ -193,3 +198,7 @@ public class HDEmptyBaseView: UIView {
         }
     }
 }
+
+
+
+

@@ -42,7 +42,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.origin.x = right - frame.size.width
+            frame.origin.x = ly_right - frame.size.width
             self.frame = frame
         }
     }
@@ -54,7 +54,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.origin.y = bottom - frame.origin.y
+            frame.origin.y = ly_bottom - frame.origin.y
             self.frame = frame
         }
     }
@@ -66,7 +66,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.size.width = width
+            frame.size.width = ly_width
             self.frame = frame
         }
     }
@@ -78,7 +78,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.size.height = height
+            frame.size.height = ly_height
             self.frame = frame
         }
     }
@@ -89,7 +89,7 @@ extension UIView {
             return self.center.x
         }
         set {
-            self.center = CGPoint.init(x: centerX, y: self.center.y)
+            self.center = CGPoint.init(x: ly_centerX, y: self.center.y)
         }
     }
     
@@ -99,7 +99,7 @@ extension UIView {
             return self.center.y
         }
         set {
-            self.center = CGPoint.init(x: self.center.x, y: centerY)
+            self.center = CGPoint.init(x: self.center.x, y: ly_centerY)
         }
     }
     
@@ -110,7 +110,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.origin = origin
+            frame.origin = ly_origin
             self.frame = frame
         }
     }
@@ -122,7 +122,7 @@ extension UIView {
         }
         set {
             var frame = self.frame
-            frame.size = size
+            frame.size = ly_size
             self.frame = frame
         }
     }
@@ -140,6 +140,8 @@ extension UIView {
             return self.frame.origin.y + self.frame.size.height
         }
     }
+    
+    
 }
 
 

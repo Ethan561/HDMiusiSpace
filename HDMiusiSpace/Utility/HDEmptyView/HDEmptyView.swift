@@ -49,7 +49,7 @@ public class HDEmptyView: HDEmptyBaseView {
         return detailL
     }()
     //
-    lazy var actionButton: UIButton = {
+    fileprivate  lazy var actionButton: UIButton = {
         let btn = UIButton()
         btn.layer.masksToBounds = true
         return btn
@@ -258,20 +258,18 @@ public class HDEmptyView: HDEmptyBaseView {
         let scrollViewWidth = self.ly_width
         let scrollViewHeight = self.ly_height
         //重新设置self的frame（大小为content的大小）
-        self.size = CGSize.init(width: contentWidth!, height: contentHeight!)
+        self.ly_size = CGSize.init(width: contentWidth!, height: contentHeight!)
         self.center = CGPoint.init(x: scrollViewWidth*0.5, y: scrollViewHeight*0.5)
         
         //设置contentView
         self.contentView?.frame = self.bounds
         
         //子控件的centerX设置
-        let myCenterX:CGFloat = self.contentView.ly_centerX
-        
+        let centerX = self.ly_centerX
         if self._customView != nil {
             self._customView?.frame = self.bounds
-            self.contentView!.addSubview(_customView!)//自定义界面
+            self.contentView!.addSubview(_customView!)
         }else {
-            
             if promptImageView.image != nil {
                 self.contentView?.addSubview(promptImageView)
             }
@@ -279,10 +277,11 @@ public class HDEmptyView: HDEmptyBaseView {
             self.contentView!.addSubview(detailLabel)
             self.contentView!.addSubview(actionButton)
             //
-            self.promptImageView.center = CGPoint.init(x: myCenterX, y: self.promptImageView.ly_centerY)
-            self.titleLabel.center = CGPoint.init(x: myCenterX, y: self.titleLabel.ly_centerY)
-            detailLabel.center = CGPoint.init(x: myCenterX, y: self.detailLabel.ly_centerY)
-            actionButton.center = CGPoint.init(x: myCenterX, y: self.actionButton.ly_centerY)
+            self.promptImageView.ly_centerX = centerX
+            self.promptImageView.ly_centerY = self.ly_centerY
+            self.titleLabel.ly_centerX = centerX
+            detailLabel.ly_centerX = centerX
+            actionButton.ly_centerX = centerX
         }
         
         //有无偏移
@@ -316,7 +315,7 @@ extension HDEmptyView {
         }
         
         self.promptImageView.frame = CGRect.init(x: 0, y: 0, width: imgViewWidth, height: imgViewHeight)
-        self.promptImageView.center = CGPoint.init(x: self.contentView.ly_centerX, y: self.contentView.ly_centerY-imgViewHeight*0.5)
+        self.promptImageView.center = CGPoint.init(x: self.ly_centerX, y: self.ly_centerY-imgViewHeight*0.5)
         contentWidth = self.promptImageView.ly_width
         contentHeight = self.promptImageView.ly_maxY
         
@@ -376,20 +375,18 @@ extension HDEmptyView {
         actionButton.layer.cornerRadius = self.actionBtnCornerRadius
         
         if action != nil {
-            actionButton.addTarget(target!, action: action!, for: UIControlEvents.touchUpInside)
-            actionButton.addTarget(self, action: #selector(actionBtnClick(_:)), for: UIControlEvents.touchUpInside)
+            actionButton.addTarget(target!, action: action!, for: UIControl.Event.touchUpInside)
+            actionButton.addTarget(self, action: #selector(actionBtnClick(_:)), for: UIControl.Event.touchUpInside)
 
         }else {
-            actionButton.addTarget(self, action: #selector(actionBtnClick(_:)), for: UIControlEvents.touchUpInside)
+            actionButton.addTarget(self, action: #selector(actionBtnClick(_:)), for: UIControl.Event.touchUpInside)
 
         }
-        contentHeight = actionButton.ly_maxY
-
     }
     
     //MARK: ----
     func getTextWidth(text: NSString , size: CGSize, font: UIFont) -> CGSize {
-        let textSize: CGSize = (text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: font], context: nil)).size
+        let textSize: CGSize = (text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedString.Key: font], context: nil)).size
         return textSize
     }
     

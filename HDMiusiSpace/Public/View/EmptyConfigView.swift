@@ -11,22 +11,25 @@ import UIKit
 class EmptyConfigView: HDEmptyView {
 
     //空数据界面
-    public class func NoDataEmptyView() -> EmptyConfigView {
+    public class func NoDataEmptyView() -> HDEmptyView {
         
-        let emptyView:EmptyConfigView = EmptyConfigView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        emptyView.creatEmptyViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "暂时没有数据", detailStr: "")
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_nothing", titleStr: "还没有内容呢～", detailStr: "", btnTitleStr: "") {
+            
+        }
+        
         emptyView.contentViewY = -50
         emptyView.titleLabTextColor = UIColor.lightGray
+        emptyView.backgroundColor = UIColor.white
+        emptyView.contentView.backgroundColor = UIColor.clear
         
         return emptyView
     }
     
     //无网络界面
-    public class func NoNetworkEmptyWithTarget(target:AnyObject, action: Selector) -> EmptyConfigView {
+    public class func NoNetworkEmptyWithTarget(target:AnyObject, action: Selector) -> HDEmptyView {
         
-        let emptyView:EmptyConfigView = EmptyConfigView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
-        emptyView.creatEmptyViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "数据获取失败，试试重新加载吧～", detailStr: "", btnTitleStr: "重新加载", target: target, action: action)
-        emptyView.backgroundColor = UIColor.clear
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "数据获取失败，试试重新加载吧～", detailStr: "", btnTitleStr: "重新加载", target: target, action: action) as! HDEmptyView
+        emptyView.backgroundColor = UIColor.white
         emptyView.contentView.backgroundColor = UIColor.clear
         emptyView.contentViewY = 0
         emptyView.titleLabTextColor = UIColor.HexColor(0x9B9B9B)
@@ -38,6 +41,20 @@ class EmptyConfigView: HDEmptyView {
         return emptyView
     }
     
+    //未搜到结果
+    public class func NoSearchDataEmptyView() -> HDEmptyView {
+        
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_wujieguo", titleStr: "未搜到结果～", detailStr: "", btnTitleStr: "") {
+            
+        }
+        
+        emptyView.contentViewY = -50
+        emptyView.titleLabTextColor = UIColor.lightGray
+        emptyView.backgroundColor = UIColor.white
+        emptyView.contentView.backgroundColor = UIColor.clear
+        
+        return emptyView
+    }
     
     
 }

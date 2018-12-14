@@ -46,7 +46,6 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.dataRequest()
         addRefresh()
         bindViewModel()
-
         NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
         
     }
@@ -79,20 +78,33 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     }
     
     @objc func dataRequest()  {
+        tableView.ly_startLoading()
+        
         LOG("HDDeclare.shared.locModel.cityName: \(HDDeclare.shared.locModel.cityName)")
         let token = HDDeclare.shared.api_token ?? ""
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.ly_endLoading()
+
             let jsonDecoder = JSONDecoder()
             let model:HDLY_MuseumListModel = try! jsonDecoder.decode(HDLY_MuseumListModel.self, from: result)
             self.dataArr = model.data
+            if self.dataArr.count == 0 {
+                let empV = EmptyConfigView.NoDataEmptyView()//空数据显示
+                self.tableView.ly_emptyView = empV
+            }
             self.tableView.reloadData()
             
         }) { (errorCode, msg) in
-            
+            let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_emptyView = empV
+            self.tableView.ly_endLoading()
         }
+    }
+    
+    @objc func refreshAction()  {
+        dataRequest()
     }
     
     override func didReceiveMemoryWarning() {

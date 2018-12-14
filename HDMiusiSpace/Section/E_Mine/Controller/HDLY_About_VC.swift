@@ -17,7 +17,7 @@ class HDLY_About_VC: HDItemBaseVC {
     private var gnjs  = "http://www.muspace.net/api/users/about_html/gnjs?p=i"
     private var ysxy  = "http://www.muspace.net/api/users/about_html/ysxy?p=i"
     private var syxy  = "http://www.muspace.net/api/users/about_html/syxy?p=i"
-    
+    private var version = "1.0.0"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "关于缪斯空间"
@@ -50,6 +50,7 @@ class HDLY_About_VC: HDItemBaseVC {
         guard let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  else {
             return
         }
+        self.version = version
         headerView!.versionLabel.text = "v\(version)"
     }
     
@@ -142,7 +143,17 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "检查版本"
                 cell?.subNameLTrainingCons.constant = 45
-                cell?.subNameL.text = "已是最新版本"
+                
+                if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
+                    if version == self.version {
+                        cell?.subNameL.text = "已是最新版本"
+                    } else {
+                       cell?.subNameL.text = "可更新到V\(self.version)"
+                    }
+                }
+                
+                
+                
                 cell?.bottomLine.isHidden = true
 
                 return cell!
@@ -169,9 +180,10 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         }
         if section == 1 && index == 1 {
             // 弹窗评分
+            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
         }
         if section == 1 && index == 2 {
-            
+            open(scheme: "https://itunes.apple.com/cn/app/id1130149052")
         }
     }
     
@@ -189,7 +201,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func showAlert(msg: String) {
-        open(scheme: "<#T##String#>")
+        open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
     }
     
 }
@@ -210,6 +222,8 @@ extension HDLY_About_VC {
             self.syxy = syxy
             guard let ysxy = dataDic["ysxy"] as? String else {return}
             self.ysxy = ysxy
+            guard let version = dataDic["version"] as? String else {return}
+            self.version = version
             self.myTableView.reloadData()
         }) { (error, msg) in
             

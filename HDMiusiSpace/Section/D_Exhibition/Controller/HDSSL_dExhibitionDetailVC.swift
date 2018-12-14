@@ -652,7 +652,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             let model = arr![indexPath.section-3]
             if model.type == 2 {//展览攻略
                 if model.raiders?.strategyID != nil {
-                    self.showRelatedStrategyVC(exhibitionID: model.raiders!.strategyID!)
+                    self.showRelatedStrategyVC(model.raiders!)
                 }
             }
         }
@@ -780,6 +780,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     @objc func action_guide(){
         print("开始导览")
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+        vc.museum_id = self.exdataModel?.data?.museum_id ?? 0
+        vc.titleName = self.exdataModel?.data?.museumTitle ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     //刷新webview，是否显示
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -920,11 +924,12 @@ extension HDSSL_dExhibitionDetailVC {
     }
     
     //展览攻略详情
-    func showRelatedStrategyVC(exhibitionID: Int)  {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-        vc.topic_id = "\(exhibitionID)"
-        vc.fromRootAChoiceness = true
-        self.navigationController?.pushViewController(vc, animated: true)
+    func showRelatedStrategyVC(_ raider: DMuseumRaiders)  {
+        
+        let webVC = HDItemBaseWebVC()
+        webVC.urlPath = raider.strategyUrl
+        webVC.titleName = raider.title
+        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
     //精选推荐详情

@@ -37,7 +37,10 @@ enum HD_ZQ_Person_API {
     case getMyDynamicIndex(api_token: String)
     //他人中心页面
     case getOtherDynamicIndex(api_token: String,toid:Int)
-
+    //绑定第三方账号
+    case bindThirdAccount(params:Dictionary<String, Any>)
+    //解除绑定第三方账号
+    case cancelBindThirdAccount(api_token: String,b_from:String)
 }
 extension HD_ZQ_Person_API: TargetType {
     //--- 服务器地址 ---
@@ -73,6 +76,10 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/dynamic/index"
         case .getOtherDynamicIndex(api_token: _,toid:_):
             return "/api/dynamic/user_index"
+        case .bindThirdAccount(_):
+            return "/api/users/bind_account_number"
+        case .cancelBindThirdAccount(_,_):
+            return "/api/users/unbind_account_number"
         }
     }
     
@@ -81,6 +88,10 @@ extension HD_ZQ_Person_API: TargetType {
     var method: Moya.Method {
         switch self {
         case .thirdBindPhone(params:_):
+             return  .post
+        case .bindThirdAccount(params:_):
+             return  .post
+        case .cancelBindThirdAccount(_,_):
             return  .post
 
         default:
@@ -181,6 +192,19 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        case .bindThirdAccount(params: let paramsTemp):
+            params = params.merging(paramsTemp, uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .cancelBindThirdAccount(let apiToken,let b_from):
+            params = params.merging(["api_token": apiToken,
+                                     "b_from":b_from], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         default:
             return .requestPlain//无参数
         }

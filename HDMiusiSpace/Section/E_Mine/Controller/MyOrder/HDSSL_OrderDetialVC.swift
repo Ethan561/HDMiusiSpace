@@ -183,10 +183,17 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             
             if order?.cateID == 1 { //课程
                 //立即学习
-                
+                let storyBoard = UIStoryboard.init(name: "RootB", bundle: Bundle.main)
+                let vc: HDLY_CourseList_VC = storyBoard.instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+                vc.courseId = String.init(format: "%d", order!.goodsID ?? 0)
+                self.navigationController?.pushViewController(vc, animated: true)
+
             }else { //展览门票
                 //进入导览
-                
+                let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+                vc.museum_id = order?.goodsID ?? 0
+                vc.titleName = order?.title ?? ""
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             
         }

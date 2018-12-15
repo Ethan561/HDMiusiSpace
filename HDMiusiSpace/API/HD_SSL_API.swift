@@ -54,6 +54,8 @@ enum HD_SSL_API {
     case requestMyOrderDetail(api_token: String,orderId: Int)
     //订单详情
     case requestMyOrderSharePicPath(api_token: String,orderId: Int)
+    //订单详情
+    case deleteMyOrderBy(orderId: Int,api_token: String)
 }
 
 extension HD_SSL_API: TargetType {
@@ -119,6 +121,8 @@ extension HD_SSL_API: TargetType {
             return "/api/order/order_info"
         case .requestMyOrderSharePicPath(api_token: _, orderId: _):
             return "/api/order/save_photo"
+        case .deleteMyOrderBy(orderId: _, api_token: _):
+            return "/api/order/order_delete"
         //...
             
             
@@ -130,7 +134,8 @@ extension HD_SSL_API: TargetType {
     var method: Moya.Method {
         switch self {
         case .saveSelectedTags(api_token:_,label_id_str: _,deviceno: _),
-             .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _):
+             .publishCommentWith(api_token: _, exhibitId: _, star: _, content: _, imgsPaths: _),
+             .deleteMyOrderBy(orderId: _, api_token: _):
             
             return  .post
             
@@ -276,7 +281,16 @@ extension HD_SSL_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-        //...
+            
+        case .deleteMyOrderBy(orderId: let orderId, api_token: let api_token):
+            params = params.merging(["order_id":orderId,"api_token":api_token], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        
+            //...
             
             
         default:

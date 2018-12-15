@@ -336,7 +336,7 @@ extension HDLY_RootCSubVC {
         guard let goodId = Int(model.goodsID ?? "") else {
             return
         }
-        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 3, goods_id: goodId, pay_type: 1, self)
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: Int(model.cateID!)!, goods_id: goodId, pay_type: 1, self)
         
     }
     

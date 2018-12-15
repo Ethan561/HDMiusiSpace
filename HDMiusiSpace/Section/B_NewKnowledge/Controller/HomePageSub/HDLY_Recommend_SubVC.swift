@@ -306,9 +306,13 @@ extension HDLY_Recommend_SubVC {
                 for  tempDic in dataA {
                     let dataDic = tempDic as Dictionary<String, Any>
                     //JSON转Model：
-                    let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
-                    let model:BRecmdModel = try! jsonDecoder.decode(BRecmdModel.self, from: dataA)
-                    newTopicsArr.append(model)
+                    do {
+                        let dataA: Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
+                        let model: BRecmdModel = try jsonDecoder.decode(BRecmdModel.self, from: dataA)
+                        newTopicsArr.append(model)
+                    } catch let error {
+                        LOG("\(error)")
+                    }
                 }
                 var model = self.dataArr.last
                 model?.topic = newTopicsArr

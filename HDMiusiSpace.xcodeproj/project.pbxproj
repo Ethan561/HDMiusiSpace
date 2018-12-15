@@ -564,6 +564,7 @@
 		D6C9FCD921183989007C8E56 /* RootD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6C9FCD821183989007C8E56 /* RootD.storyboard */; };
 		D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */; };
 		D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */; };
+		D6E725CB21C4EA4300C7E714 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725CA21C4EA4300C7E714 /* ViewController+Extension.swift */; };
 		D6EEDD9D218FEFE700F730BA /* HDLY_RootCSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDD9C218FEFE700F730BA /* HDLY_RootCSubVC.swift */; };
 		D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */; };
 		D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */; };
@@ -1261,6 +1262,7 @@
 		D6C9FCD821183989007C8E56 /* RootD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RootD.storyboard; sourceTree = "<group>"; };
 		D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseVC.swift; sourceTree = "<group>"; };
 		D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Feedback_VC.swift; sourceTree = "<group>"; };
+		D6E725CA21C4EA4300C7E714 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		D6EEDD9C218FEFE700F730BA /* HDLY_RootCSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCSubVC.swift; sourceTree = "<group>"; };
 		D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GuideSectionCell.swift; sourceTree = "<group>"; };
 		D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GuideSectionCell.xib; sourceTree = "<group>"; };
@@ -2285,6 +2287,7 @@
 				D61D36D5219BC41B0019586B /* UIFont+Extension.swift */,
 				D67A202A21A6924F009D6270 /* CoreLocation+Extension.swift */,
 				D618E85C21B21D43001C05FC /* Date+Extension.swift */,
+				D6E725CA21C4EA4300C7E714 /* ViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3452,6 +3455,7 @@
 				D66C88292127BC0E003597C8 /* HDLY_ListenTags_CollectionCell.swift in Sources */,
 				D68D541B2133D173000CD258 /* HDLY_SmsLogin_VC.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
+				D6E725CB21C4EA4300C7E714 /* ViewController+Extension.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D62277D421368069008F1416 /* MTImagePickerAssetsController.swift in Sources */,
 				A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */,

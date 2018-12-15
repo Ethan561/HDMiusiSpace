@@ -133,6 +133,22 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    //回复评论结果
+    let isDeleteOrder: Bindable = Bindable(Int())
+    func deleteOrderBy(apiToken:String,order_id:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .deleteMyOrderBy(orderId: order_id, api_token: apiToken), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
     
+            do {
+                let model:HDSSLDeleteOrderModel = try! jsonDecoder.decode(HDSSLDeleteOrderModel.self, from: result)
+                self.isDeleteOrder.value = (model.data?.int)!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+        }) { (errorCode, msg) in
+            
+        }
+    }
 }
 

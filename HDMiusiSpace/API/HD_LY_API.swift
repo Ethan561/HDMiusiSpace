@@ -92,6 +92,8 @@ enum HD_LY_API {
     
     //报错/举报选项获取接口
     case getErrorOption( id: String, cate_id: String)
+    //评论举报
+    case commentReportOption(api_token: String,comment_id:Int,option_id_str:String)
     
     //报错提交
     case sendError(api_token: String, option_id_str: String, parent_id: String , cate_id: String, content:String, uoload_img: Array<String>)
@@ -322,7 +324,9 @@ extension HD_LY_API: TargetType {
         //报错/举报选项获取接口
         case .getErrorOption( id: _, cate_id: _):
             return "/api/deviceno/get_error_option"
-            
+        //评论举报提交
+        case .commentReportOption(_,_,_):
+            return "/api/comment/report"
         //报错提交
         case .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _):
             return "/api/deviceno/send_error"
@@ -463,6 +467,7 @@ extension HD_LY_API: TargetType {
              .modifyAvatar(api_token: _, avatar: _),
              .sendSmsForCheck(username: _),
              .uploadImg(api_token: _, uoload_img: _),
+             .commentReportOption(_,_,_),
              .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
              .sendFeedback(api_token: _, cate_id: _ , content:_ ),
              .usersProfile(api_token: _, profile: _),
@@ -740,7 +745,13 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-
+         //评论举报提交
+        case .commentReportOption(let api_token, let comment_id,let option_id_str):
+            params = params.merging(["api_token": api_token, "option_id_str": option_id_str, "comment_id": comment_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         //报错提交
         case .sendError(api_token: let api_token, option_id_str: let option_id_str, parent_id: let parent_id , cate_id: let cate_id , content: let content , uoload_img: let uoload_img):
             params = params.merging(["api_token": api_token, "option_id_str": option_id_str, "parent_id": parent_id, "cate_id": cate_id, "content": content, "uoload_img": uoload_img], uniquingKeysWith: {$1})

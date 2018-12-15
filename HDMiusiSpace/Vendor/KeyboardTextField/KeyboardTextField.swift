@@ -55,6 +55,8 @@ open class KeyboardTextField: UIView {
         case down
     }
     
+    public var type : Int?  // type = 1时，表示对评论进行评论 .type=0 表示对内容评论
+    public var returnID : Int? 
     //Delegate
     open weak var delegate : KeyboardTextFieldDelegate?
     

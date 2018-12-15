@@ -151,7 +151,36 @@ class CoursePublicViewModel: NSObject {
         }
     }
     
-
+    var reportErrorModel: Bindable = Bindable(ReportErrorModel())
+    
+    //获取举报相关内容
+    func getErrorContent( commentId: Int)  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(commentId), cate_id: "5"), success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let jsonDecoder = JSONDecoder()
+            //JSON转Model：
+            let model:ReportErrorModel = try! jsonDecoder.decode(ReportErrorModel.self, from: result)
+            self.reportErrorModel.value = model
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    //对评论内容进行举报
+    func reportCommentContent(api_token: String, option_id_str: String, comment_id: Int)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .commentReportOption(api_token: api_token, comment_id: comment_id, option_id_str: option_id_str), success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+           
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "举报成功")
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
     
 }

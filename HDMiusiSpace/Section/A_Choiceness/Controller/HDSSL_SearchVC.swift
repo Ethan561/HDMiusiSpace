@@ -88,14 +88,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
         //搜索结果数组
         viewModel.resultArray.bind { (resultArray) in
             
-//            weakSelf?.resultArray = resultArray
-//            weakSelf?.dealSearchResultData()
-//
-//            //显示搜索结果
-//            self.resultTableView.isHidden = false
-//            self.textFeild.resignFirstResponder()
-//            self.resultTableView.reloadData()
-            
             weakSelf?.refreshTableView(models: resultArray)
         }
     }
@@ -185,14 +177,17 @@ class HDSSL_SearchVC: HDItemBaseVC {
     //标签搜索
     func searchByTag(_ tagIndex:Int){
         
-        self.currentType = tagIndex + 1 //设置搜索类型
+        self.currentType = tagIndex + 1 //设置搜索类型1、2、3、4
         
-        self.textFeild.text = typeTitleArray[tagIndex]
+//        self.textFeild.text = typeTitleArray[tagIndex] //资讯、新知、展览、博物馆
+//
+//        //保存搜索历史
+//        self.func_saveHistory(self.textFeild.text!)
+//
+//        self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: tagIndex+1, vc: self)
         
-        //保存搜索历史
-        self.func_saveHistory(self.textFeild.text!)
-        
-        self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: tagIndex+1, vc: self)
+        self.textFeild.placeholder = String.init(format: "搜索%@", typeTitleArray[tagIndex])
+        self.textFeild.becomeFirstResponder()
     }
     //MARK: - 自定义导航栏
     func loadSearchBar() {
@@ -498,6 +493,9 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         if tableView == dTableView {
             return 0
         }else {
+            if section == resultArray.count-1 {
+                return 0
+            }
             return 8
         }
     }
@@ -505,6 +503,9 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         if tableView == dTableView {
             return nil
         }else {
+            if section == resultArray.count-1 {
+                return nil
+            }
             let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 8))
             view.backgroundColor = UIColor.RGBColor(238, 238, 238)
             return view

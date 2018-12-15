@@ -11,13 +11,21 @@ import UIKit
 class HD_goodsCell: UICollectionViewCell {
     @IBOutlet weak var goldNumberLab: UILabel!
     @IBOutlet weak var itemContentLab: UILabel!
+    @IBOutlet weak var seleBtn: UIButton!
     
     var cellData: GoodsList? {
         didSet{
             reloadDatas()
         }
     }
-    
+    //单选判断，通过indexPathsForSelectedItems获取旋转数组，allowsMultipleSelection控制多选
+    override var isSelected: Bool{
+        didSet{
+            print(isSelected)
+            seleBtn.isSelected = isSelected
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -49,6 +49,30 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         viewModel.orderList.bind { (models) in
             self.refreshTableView(models: models)
         }
+        viewModel.isDeleteOrder.bind { (isdelete) in
+            print(isdelete)
+            if isdelete == 1 {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "删除订单成功")
+                
+                self.skip = 0
+                self.requestData()
+                
+            }else {
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "删除订单失败")
+            }
+            
+        }
+        viewModel.orderPicPath.bind { (path) in
+            //订单分享图
+            print(path)
+            //进入分享页面
+            if path.count > 0 {
+                let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+                let shareOrderVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_orderShareVC") as! HDSSL_orderShareVC
+                shareOrderVC.sharePath = path
+                self.navigationController?.pushViewController(shareOrderVC, animated: true)
+            }
+        }
         
     }
     //刷新列表
@@ -180,17 +204,31 @@ extension HDSSL_MyOrderSubVC{
     //开始上课
     func beginClassForOrderOf(_ index: Int) {
         let order = orderArray[index]
+        
+        let storyBoard = UIStoryboard.init(name: "RootB", bundle: Bundle.main)
+        let vc: HDLY_CourseList_VC = storyBoard.instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+        vc.courseId = String.init(format: "%d", order.goodsID ?? 0)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     //晒单分享
     func shareMyOrderOf(_ index: Int) {
         let order = orderArray[index]
+        //请求图片地址，然后跳转页面
+        viewModel.getOrderSharePicPath(apiToken: HDDeclare.shared.api_token ?? "", order_id: (order.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
     }
     //删除订单
     func deleteMyOrderOf(_ index: Int) {
         let order = orderArray[index]
+        viewModel.deleteOrderBy(apiToken: HDDeclare.shared.api_token ?? "", order_id: order.orderID!, vc: self)
     }
     //评价订单
     func commentMyOrderOf(_ index: Int) {
         let order = orderArray[index]
+        
+        let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+        let commentvc = storyBoard.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
+        commentvc.exhibition_id = order.goodsID
+        self.navigationController?.pushViewController(commentvc, animated: true)
+        
     }
 }

@@ -77,6 +77,13 @@ class HDSSL_TicketCell: UITableViewCell {
             cell_btn2.layer.borderWidth = 0.5
             cell_btn2.layer.masksToBounds = true
             cell_btn2.setTitleColor(UIColor.HexColor(0xE8593E), for: .normal)
+            
+            if order?.isComment == 1 {
+                cell_btn2.isHidden = true
+            }else {
+                cell_btn2.isHidden = false
+            }
+            
         }else if order?.status == 3 {
             //交易取消
             cell_btn2.isHidden = true

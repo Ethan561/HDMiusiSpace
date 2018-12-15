@@ -51,14 +51,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQE-n4-siD">
+                                <rect key="frame" x="122" y="0.0" width="38" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="Mk0-g9-3rT"/>
+                                    <constraint firstAttribute="height" constant="32" id="uZH-bq-Eh9"/>
+                                </constraints>
+                                <state key="selected" image="wdqb_icon_choose"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.87843137250000003" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="qnf-9L-Bsc" firstAttribute="leading" secondItem="qba-gF-CLa" secondAttribute="trailing" id="0jD-Vk-7uZ"/>
                             <constraint firstItem="EQX-yb-KPz" firstAttribute="top" secondItem="qba-gF-CLa" secondAttribute="bottom" constant="15" id="1D0-AY-ci7"/>
+                            <constraint firstAttribute="trailing" secondItem="NQE-n4-siD" secondAttribute="trailing" id="1V7-Px-m0t"/>
                             <constraint firstItem="qba-gF-CLa" firstAttribute="top" secondItem="WJ6-p2-04K" secondAttribute="top" constant="20" id="duX-8D-T0j"/>
                             <constraint firstItem="qnf-9L-Bsc" firstAttribute="bottom" secondItem="qba-gF-CLa" secondAttribute="bottom" id="p4B-CJ-zZ0"/>
                             <constraint firstAttribute="trailing" secondItem="EQX-yb-KPz" secondAttribute="trailing" id="qle-PJ-tK2"/>
+                            <constraint firstItem="NQE-n4-siD" firstAttribute="top" secondItem="WJ6-p2-04K" secondAttribute="top" id="sW4-7l-9vn"/>
                             <constraint firstItem="EQX-yb-KPz" firstAttribute="leading" secondItem="WJ6-p2-04K" secondAttribute="leading" constant="15" id="xcd-4c-EeV"/>
                             <constraint firstItem="qba-gF-CLa" firstAttribute="leading" secondItem="WJ6-p2-04K" secondAttribute="leading" constant="15" id="z1V-Xd-C77"/>
                         </constraints>
@@ -81,8 +91,12 @@
             <connections>
                 <outlet property="goldNumberLab" destination="qba-gF-CLa" id="l8H-x3-jfZ"/>
                 <outlet property="itemContentLab" destination="EQX-yb-KPz" id="L3T-Hi-AJc"/>
+                <outlet property="seleBtn" destination="NQE-n4-siD" id="4Ib-vz-f9A"/>
             </connections>
             <point key="canvasLocation" x="89.599999999999994" y="155.62218890554723"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="wdqb_icon_choose" width="38" height="32"/>
+    </resources>
 </document>

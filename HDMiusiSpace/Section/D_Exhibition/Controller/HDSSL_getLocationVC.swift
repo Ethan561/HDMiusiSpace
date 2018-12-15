@@ -13,6 +13,7 @@ private let hotCityCell = "hotCityCell"
 private let recentCell = "rencentCityCell"
 private let currentCell = "currentCityCell"
 
+let recentCityArrayKey : String = "recentCityArrayKey"
 
 
 class HDSSL_getLocationVC: HDItemBaseVC {
@@ -94,23 +95,42 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         viewModel.request_getWorldCityList(kind: 1, type: 0, isrecommand: true, vc: self) //请求国际数据
     }
     func loadMyDatas() {
-        var city1 = CityModel()
-        city1.city_id = 244
-        city1.city_name = "鞍山"
-        var city2 = CityModel()
-        city2.city_id = 332
-        city2.city_name = "安庆"
-        var city3 = CityModel()
-        city3.city_id = 387
-        city3.city_name = "安阳"
-        var city4 = CityModel()
-        city4.city_id = 325
-        city4.city_name = "阜阳"
+//        var city1 = CityModel()
+//        city1.city_id = 244
+//        city1.city_name = "鞍山"
+//        var city2 = CityModel()
+//        city2.city_id = 332
+//        city2.city_name = "安庆"
+//        var city3 = CityModel()
+//        city3.city_id = 387
+//        city3.city_name = "安阳"
+//        var city4 = CityModel()
+//        city4.city_id = 325
+//        city4.city_name = "阜阳"
+//
+//        recentArray.append(city1)
+//        recentArray.append(city2)
+//        recentArray.append(city3)
         
-        recentArray.append(city1)
-        recentArray.append(city2)
-        recentArray.append(city3)
-        
+        //
+        let manager = UserDefaults()
+        let storedData:Data?  = manager.object(forKey: recentCityArrayKey) as?  Data
+        guard storedData != nil else {
+            return
+        }
+        do {
+            let arr = try JSONDecoder().decode([CityModel].self, from: storedData!)
+            if arr.count > 0 {
+                for city in arr {
+                    recentArray.append(city)
+                }
+            }
+        }
+        catch let error {
+            LOG("\(error)")
+        }
+
+ 
     }
     //MVVM
     func bindViewModel() {
@@ -340,10 +360,12 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 c.city_id = city.city_id
                 c.city_name = city.city_name
                 
-                
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
+                
+                self.saveRecentCityArr(city)
+                
                 //保存选中城市，返回首页
                 self.backUP()
             }
@@ -361,6 +383,7 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 c.city_id = city.city_id
                 c.city_name = city.city_name
                 
+                self.saveRecentCityArr(city)
                 
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
@@ -399,6 +422,7 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         c.city_id = city.city_id
         c.city_name = city.city_name
         
+        self.saveRecentCityArr(city)
         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
         UserDefaults.standard.synchronize()
@@ -448,8 +472,11 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
 
         return view
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 && recentArray.count == 0 {
+            return 0.01
+        }
         return sectionMargin
     }
 
@@ -458,7 +485,9 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         if indexPath.section == 0 {
             return 0.01 //btnHeight + 2 * btnMargin
         }else if indexPath.section == 1 {
-
+            if recentArray.count == 0 {
+                return 0.01
+            }
             let row = (recentArray.count - 1) / 3
             return (btnHeight + 2 * btnMargin) + (btnMargin + btnHeight) * CGFloat(row)
         }else if indexPath.section == 2 {
@@ -471,6 +500,30 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
     
     
 }
+
+extension HDSSL_getLocationVC {
+    func saveRecentCityArr(_ city: CityModel) {
+        var contain = false
+        for (i,c) in self.recentArray.enumerated() {
+            if c.city_name == city.city_name {
+                contain = true
+                self.recentArray.remove(at: i)
+                self.recentArray.insert(city, at: 0)
+            }
+        }
+        if contain == false {
+            self.recentArray.insert(city, at: 0)
+        }
+        do {
+            let data = try JSONEncoder().encode(self.recentArray)
+            UserDefaults().set(data, forKey: recentCityArrayKey)
+        } catch let error {
+            LOG("\(error)")
+        }
+    }
+    
+}
+
 extension HDSSL_getLocationVC:UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

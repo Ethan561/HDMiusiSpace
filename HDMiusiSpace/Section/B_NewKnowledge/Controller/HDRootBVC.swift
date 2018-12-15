@@ -33,7 +33,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         page.dividingLine.isHidden = true
         page.selectedItemTitleColor = UIColor.HexColor(0x333333)
         page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
-        page.tracker.backgroundColor = UIColor.clear
+        page.tracker.backgroundColor = UIColor.red
         page.backgroundColor = UIColor.white
         page.permutationWay = SPPageMenuPermutationWay.scrollAdaptContent
         page.bridgeScrollView = self.contentScrollView

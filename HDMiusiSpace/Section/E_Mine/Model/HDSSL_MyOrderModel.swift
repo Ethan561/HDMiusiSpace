@@ -76,3 +76,9 @@ struct HDSSLMyOrderSharePicModel: Codable {
     var msg: String?
     var data: String?
 }
+//---订单删除
+struct HDSSLDeleteOrderModel: Codable {
+    var status: Int
+    var msg: String?
+    var data: TStrInt?
+}

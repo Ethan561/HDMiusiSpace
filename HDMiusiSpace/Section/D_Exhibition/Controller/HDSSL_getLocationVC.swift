@@ -273,6 +273,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         menu_line1.isHidden = false
         menu_line2.isHidden = true
     }
+    
     func refreshMenu() {
         if menu_btn1.isSelected == true {
             menu_btn1.setTitleColor(UIColor.HexColor(0x333333), for: .normal)

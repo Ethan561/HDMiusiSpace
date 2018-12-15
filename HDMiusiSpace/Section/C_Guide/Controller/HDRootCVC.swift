@@ -129,7 +129,11 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             return
         }
         tipView.frame = win.bounds
-        if HDLY_LocationTool.shared.city != nil {
+        guard let topVC = self.getTopVC() else {
+            return
+        }
+        
+        if HDLY_LocationTool.shared.city != nil && topVC.isKind(of: HDRootCVC.self){
             win.addSubview(tipView)
             tipView.tipL.text = "定位到您在 \(HDLY_LocationTool.shared.city!)，是否切换至该城市？"
         }

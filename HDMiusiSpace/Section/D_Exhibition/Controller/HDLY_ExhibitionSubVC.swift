@@ -43,28 +43,27 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         self.dataRequest()
         addRefresh()
         NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"), object: nil)
-
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
    @objc func dataRequest()  {
+        tableView.ly_startLoading()
         let cityName: String = HDDeclare.shared.locModel.cityName
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 2, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
             self.tableView.es.stopLoadingMore()
-            
+            self.tableView.ly_endLoading()
+            //
             let jsonDecoder = JSONDecoder()
             let model:HDLY_dExhibitionListM = try! jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
             self.dataArr = model.data
-            if model.data.count == 0 {
-                self.tableView.es.noticeNoMoreData()
-            }else {
-                self.dataArr += model.data
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
             
         }) { (errorCode, msg) in
+            self.tableView.ly_endLoading()
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
             self.tableView.es.stopPullToRefresh()
@@ -88,14 +87,44 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         self.tableView.expiredTimeInterval = 20.0
     }
     
-    private func loadMore() {
-        page = page + 1
-        dataRequest()
-    }
     
     @objc func refreshAction() {
         page = 0
         dataRequest()
+    }
+    
+    private func loadMore() {
+        page = page + 10
+        dataRequestLoadMore()
+    }
+    
+    func dataRequestLoadMore()  {
+        
+        let cityName: String = HDDeclare.shared.locModel.cityName
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_dExhibitionListM = try jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
+                if model.data.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
+            self.tableView.es.stopLoadingMore()
+        }
     }
     
     @objc func pageTitleViewToTop() {

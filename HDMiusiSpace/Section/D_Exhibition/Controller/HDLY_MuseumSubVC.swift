@@ -10,6 +10,7 @@ import UIKit
 import ESPullToRefresh
 
 class HDLY_MuseumSubVC: HDItemBaseVC {
+    var page = 0
 
     var dataArr =  [HDLY_dMuseumListD]()
     var type = -1 // 0全部 1推荐 2最近
@@ -43,7 +44,10 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
         self.dataRequest()
         addRefresh()
         NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"), object: nil)
-
+        
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
+        
     }
     
     @objc func dataRequest()  {
@@ -52,31 +56,83 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
+        
         let cityName: String = HDDeclare.shared.locModel.cityName
+        tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            self.tableView.es.stopPullToRefresh()
 
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: 0, take: 20, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model: HDLY_dMuseumListM = try jsonDecoder.decode(HDLY_dMuseumListM.self, from: result)
+                self.dataArr = model.data
+                self.tableView.reloadData()
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+        }) { (errorCode, msg) in
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
+        }
+    }
+    
+    func dataRequestLoadMore() {
+        var token:String = ""
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        let cityName: String = HDDeclare.shared.locModel.cityName
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model: HDLY_dMuseumListM = try! jsonDecoder.decode(HDLY_dMuseumListM.self, from: result)
-            self.dataArr = model.data
-            self.tableView.reloadData()
+            do {
+                let model: HDLY_dMuseumListM = try jsonDecoder.decode(HDLY_dMuseumListM.self, from: result)
+                if model.data.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
         }) { (errorCode, msg) in
-            //            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            //            self.tableView.ly_showEmptyView()
+            self.tableView.es.stopLoadingMore()
         }
     }
     
     func addRefresh() {
-        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
+    @objc func refreshAction() {
+        page = 0
+        dataRequest()
     }
     
     private func loadMore() {
-        self.tableView.es.noticeNoMoreData()
+        page = page + 10
+        dataRequestLoadMore()
     }
     
     @objc func pageTitleViewToTop() {

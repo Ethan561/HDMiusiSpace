@@ -33,6 +33,9 @@ class HDLY_MuseumInfoType2Cell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        likeBtn.setImage(UIImage.init(named: "zl_icon_star_gray"), for: .normal)
+        likeBtn.setImage(UIImage.init(named: "zl_icon_star_red"), for: .selected)
+            
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

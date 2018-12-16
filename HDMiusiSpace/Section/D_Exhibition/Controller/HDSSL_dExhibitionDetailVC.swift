@@ -49,6 +49,12 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     //mvvm
     var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     
+    //攻略收藏
+    var collectionSection = -1
+    var collectionRow = -1
+    var isCollection: Bool?
+    let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -120,6 +126,16 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: (weakSelf?.likeCellIndex!)!, section:2)], with: .fade)
             
         }
+        
+        collectionViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.isCollection = false
+            } else {
+                weakSelf?.isCollection = true
+            }
+            weakSelf?.dTableView.reloadRows(at: [IndexPath.init(row: weakSelf?.collectionRow ?? 0, section: weakSelf?.collectionSection ?? 0)], with: .none)
+        }
+        
     }
     //处理返回数据
     func showViewData() {
@@ -132,7 +148,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         //轮播图数量
         let str = "\(1)/\(imgsArr!.count)"
         self.bannerNumL.text = str
-
+        if self.exdataModel?.data?.isFavorite == 1 {
+            self.likeBtn.isSelected = true
+        }
         self.dTableView.reloadData()
     }
     
@@ -613,6 +631,23 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }else if model.type == 2 {//展览攻略
                 let cell = HDLY_MuseumInfoType2Cell.getMyTableCell(tableV: tableView)
                 cell?.model = model.raiders
+                //收藏
+                collectionSection = indexPath.section
+                collectionRow = indexPath.row
+                cell?.likeBtn.tag = model.raiders?.strategyID ?? 0
+                cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                if isCollection != nil {
+                    cell?.likeBtn.isSelected = isCollection!
+                }else {
+                    if model.raiders?.isFavorite == 1 {
+                        self.isCollection = true
+                        cell?.likeBtn.isSelected = true
+                    } else {
+                        cell?.likeBtn.isSelected = false
+                        self.isCollection = false
+                    }
+                }
+                
                 return cell!
             }else if model.type == 3 {//相关活动
                 let cell = HDLY_MuseumInfoType3Cell.getMyTableCell(tableV: tableView)
@@ -971,3 +1006,18 @@ extension HDSSL_dExhibitionDetailVC: UIScrollViewDelegate {
         }
     }
 }
+
+extension HDSSL_dExhibitionDetailVC {
+    
+    //展览攻略收藏
+    @objc func strategyCollectionBtnAction(_ sender: UIButton) {
+        let strategyID:String = String(sender.tag)
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        collectionViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: strategyID, cate_id: "9", self)
+    }
+    
+}
+

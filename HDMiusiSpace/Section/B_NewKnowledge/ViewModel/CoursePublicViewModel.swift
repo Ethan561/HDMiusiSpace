@@ -33,7 +33,7 @@ class CoursePublicViewModel: NSObject {
         }
     }
     
-    //收藏（cate_id：分类id,1日卡,2资讯,3课程,4轻听随看,5看展,6精选专题）
+    //收藏（cate_id：分类id,1日卡,2资讯,3课程,4轻听随看,6精选专题,7展览，8博物馆，9攻略）
     func doFavoriteRequest(api_token: String, id: String, cate_id: String, _ vc: UIViewController)  {
         
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFavoriteRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: true, loadingVC: vc, success: { (result) in

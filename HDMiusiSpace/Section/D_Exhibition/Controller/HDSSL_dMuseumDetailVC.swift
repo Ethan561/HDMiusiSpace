@@ -24,7 +24,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-    
+    let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
+
     var webViewH: CGFloat = 0
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
@@ -41,6 +42,11 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         return webV
     }()
     
+    //攻略收藏
+    var collectionSection = -1
+    var collectionRow = -1
+    var isCollection: Bool?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -52,7 +58,6 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
-//        myTableView.separatorStyle = .none
         dataRequest()
         likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
         likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
@@ -79,6 +84,14 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             } else {
                 weakSelf?.likeBtn.isSelected = true
             }
+        }
+        collectionViewModel.isCollection.bind { (flag) in
+            if flag == false {
+                weakSelf?.isCollection = false
+            } else {
+                weakSelf?.isCollection = true
+            }
+            weakSelf?.myTableView.reloadRows(at: [IndexPath.init(row: weakSelf?.collectionRow ?? 0, section: weakSelf?.collectionSection ?? 0)], with: .none)
         }
     }
     
@@ -413,6 +426,22 @@ extension HDSSL_dMuseumDetailVC {
                 else if model.type == 2 {//展览攻略
                     let cell = HDLY_MuseumInfoType2Cell.getMyTableCell(tableV: tableView)
                     cell?.model = model.raiders
+                    //收藏
+                    collectionSection = indexPath.section
+                    collectionRow = indexPath.row
+                    cell?.likeBtn.tag = model.raiders?.strategyID ?? 0
+                    cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                    if isCollection != nil {
+                        cell?.likeBtn.isSelected = isCollection!
+                    }else {
+                        if model.raiders?.isFavorite == 1 {
+                            self.isCollection = true
+                            cell?.likeBtn.isSelected = true
+                        } else {
+                            cell?.likeBtn.isSelected = false
+                            self.isCollection = false
+                        }
+                    }
                     return cell!
                 }else if model.type == 3 {//相关活动
                     let cell = HDLY_MuseumInfoType3Cell.getMyTableCell(tableV: tableView)
@@ -479,7 +508,6 @@ extension HDSSL_dMuseumDetailVC {
                 if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://map/")!) {
                     alertController.addAction(okAction2)
                 }
-                
                 self.present(alertController, animated: true, completion: nil)
             }
         }
@@ -586,6 +614,7 @@ extension HDSSL_dMuseumDetailVC {
         
     }
     
+    
     func showExhibitionDetailVC(exhibitionID: Int) {
         //展览详情
         let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
@@ -644,3 +673,16 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
 }
 
 
+extension HDSSL_dMuseumDetailVC {
+    
+    //展览攻略收藏
+    @objc func strategyCollectionBtnAction(_ sender: UIButton) {
+        let strategyID:String = String(sender.tag)
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        collectionViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: strategyID, cate_id: "9", self)
+    }
+    
+}

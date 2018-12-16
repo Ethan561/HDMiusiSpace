@@ -33,7 +33,7 @@ enum HD_SSL_API {
     case searchCityByString(keyname: String,kind: Int)
     
     //展览详情
-    case getExhibitionDetail(exhibitionId: Int)
+    case getExhibitionDetail(exhibitionId: Int, api_token: String)
     
     //获取听过未评论列表
     case getHeartedButCommentList(api_token: String,skip: Int,take: Int)
@@ -95,7 +95,7 @@ extension HD_SSL_API: TargetType {
         case .searchCityByString(keyname: _,kind: _):
             return "/api/guide/city_select"
             
-        case .getExhibitionDetail(exhibitionId: _):
+        case .getExhibitionDetail(_):
             return "/api/exhibition/exhibition_info"
             
         case .getHeartedButCommentList(api_token: _,skip: _, take: _):
@@ -212,8 +212,8 @@ extension HD_SSL_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-        case .getExhibitionDetail(exhibitionId: let exhibitionId):
-            params = params.merging(["exhibition_id":exhibitionId,"api_token":""], uniquingKeysWith: {$1})
+        case .getExhibitionDetail(exhibitionId: let exhibitionId, api_token: let api_token):
+            params = params.merging(["exhibition_id":exhibitionId,"api_token": api_token], uniquingKeysWith: {$1})
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]

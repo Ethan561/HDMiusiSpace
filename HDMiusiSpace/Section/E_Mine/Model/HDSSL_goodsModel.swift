@@ -27,12 +27,16 @@ struct GoodsList: Codable {
     var goodsID: Int?
     var price: String?
     var spaceMoney, vipSpaceMoney: Int?
-    
+    var msg: String?
+    var product_id: String?
+
     enum CodingKeys: String, CodingKey {
         case goodsID = "goods_id"
         case price
         case spaceMoney = "space_money"
         case vipSpaceMoney = "vip_space_money"
+        case msg
+        case product_id
     }
 }
 

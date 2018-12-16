@@ -20,6 +20,7 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     private var viewModel = HDZQ_MyViewModel()
     
     var goodsData: GoodsData?
+    var chooseProduct: GoodsList?
     
     var goodArray: [UIView] = Array.init() //商品
     
@@ -28,8 +29,10 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
 
         loadMyViews()
         bindViewModel()
+        dataRequest()
+        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)
+
         
-        viewModel.requestMyWalletData(apiToken: HDDeclare.shared.api_token!, vc: self)
     }
     //MVVM
     func bindViewModel() {
@@ -42,6 +45,11 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         
         
     }
+    
+    @objc func dataRequest() {
+        viewModel.requestMyWalletData(apiToken: HDDeclare.shared.api_token!, vc: self)
+    }
+    
     func loadMyViews() {
         
         title = "我的钱包"
@@ -89,9 +97,17 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         self.goodsData = goodd
         //刷新界面
         goldNumberL.text = self.goodsData?.spaceMoney
-        
         //
+        var productIDArr:Array<String> = Array.init()
         if (self.goodsData?.goodsList?.count)! > 0 {
+            for model in goodsData!.goodsList! {
+                if model.product_id != nil {
+                    productIDArr.append(model.product_id!)
+                }
+            }
+            if productIDArr.count > 0 {
+                HDLY_IAPStore.shared.getList(productIDArr)
+            }
              collectionview.reloadData()
         }
        
@@ -111,6 +127,11 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     //充值
     @IBAction func action_recharge(_ sender: UIButton) {
         print("充值")
+        if chooseProduct != nil {
+            HDLY_IAPStore.shared.buyProduceWithProdectID(chooseProduct!.product_id!)
+        } else {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请先选择充值金额")
+        }
         HDLY_IAPStore.shared.requestProducts(nil)
     }
     
@@ -162,6 +183,11 @@ extension HDSSL_MyWalletVC :UICollectionViewDelegate,UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row)
+        if goodsData?.goodsList != nil {
+            let model = goodsData!.goodsList![indexPath.row]
+            chooseProduct = model
+        }
+        
     }
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------

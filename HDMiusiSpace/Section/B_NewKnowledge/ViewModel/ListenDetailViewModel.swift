@@ -33,6 +33,7 @@ class ListenDetailViewModel: NSObject {
             }
             catch let error {
                 LOG("解析错误：\(error)")
+                self.showEmptyView.value = true
             }
             
         }) { (errorCode, msg) in

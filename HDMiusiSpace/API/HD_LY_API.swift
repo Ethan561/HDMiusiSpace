@@ -173,7 +173,7 @@ enum HD_LY_API {
     case uploadCourseRecords(chapter_id: Int , api_token: String, study_time: String)
 
     //内购票据校验
-    case  verifyTransaction(receipt_data: String, password: String, is_sandbox: String, uuid: String, api_token: String)
+    case verifyTransaction(cate_id: Int,receipt_data: String, password: String, is_sandbox: String, uuid: String, api_token: String)
     
     //消息中心接口
     case messageCenter(api_token: String)
@@ -473,7 +473,7 @@ extension HD_LY_API: TargetType {
              .register_bind(params: _),
              .uploadFavoritesFootprint(exhibit_id: _, api_token: _),
              .uploadCourseRecords(chapter_id: _, api_token: _, study_time: _),
-             .verifyTransaction(receipt_data: _, password: _, is_sandbox: _, uuid: _, api_token: _),
+             .verifyTransaction(_),
              .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
             
             return  .post
@@ -952,13 +952,13 @@ extension HD_LY_API: TargetType {
             
             
             
-        case .verifyTransaction(let receipt_data, let password, let is_sandbox, let uuid, let api_token):
+        case .verifyTransaction(let cate_id, let receipt_data, let password, let is_sandbox, let uuid, let api_token):
             
-            params = params.merging(["receipt_data": receipt_data, "password": password, "is_sandbox": is_sandbox, "uuid": uuid, "·": api_token], uniquingKeysWith: {$1})
-//            let signKey =  HDDeclare.getSignKey(params)
-//            let dic2 = ["Sign": signKey]
-//            params.merge(dic2, uniquingKeysWith: { $1 })
-            
+            params = params.merging(["cate_id": cate_id, "receipt_data": receipt_data, "password": password, "is_sandbox": is_sandbox, "uuid": uuid, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            LOG("\(params)")
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         case .messageCenter(let api_token):

@@ -40,7 +40,15 @@ class HDLY_Listen_SubVC:                                                        
         view.addSubview(self.collectionView)
         
         collectionView.register(UINib.init(nibName: HDLY_Listen_CollectionCell.className, bundle: nil), forCellWithReuseIdentifier: HDLY_Listen_CollectionCell.className)
-
+        
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_nothing", titleStr: "还没有内容呢～", detailStr: "", btnTitleStr: "") {
+            
+        }
+        emptyView.contentViewY = 80
+        emptyView.titleLabTextColor = UIColor.lightGray
+        emptyView.backgroundColor = UIColor.white
+        emptyView.contentView.backgroundColor = UIColor.clear
+//        collectionView.ly_emptyView = emptyView
         
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
@@ -69,7 +77,8 @@ class HDLY_Listen_SubVC:                                                        
     }
     
     func dataRequest(cate_id: String) {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "10", cate_id: cate_id), showHud: false, loadingVC: self, success: { (result) in
+
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "10", cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -77,6 +86,12 @@ class HDLY_Listen_SubVC:                                                        
             let model:CourseListen = try! jsonDecoder.decode(CourseListen.self, from: result)
             self.tagsArr = model.data.cates
             self.listArr = model.data.list
+            if self.listArr.count == 0 {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "该分类暂无数据")
+//                self.collectionView.ly_showEmptyView()
+            } else {
+//                self.collectionView.ly_hideEmptyView()
+            }
             if cate_id == "-1" {
                 self.collectionView.reloadData()
             }else {
@@ -84,6 +99,8 @@ class HDLY_Listen_SubVC:                                                        
             }
             
         }) { (errorCode, msg) in
+            
+            self.collectionView.ly_endLoading()
             self.collectionView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.collectionView.ly_showEmptyView()
         }

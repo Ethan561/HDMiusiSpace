@@ -50,7 +50,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
-
+        LOG("deviceno: \(deviceno)")
         if phoneTF.text?.isEmpty == false && pwdTF.text?.isEmpty == false {
             guard  Validate.phoneNum(phoneTF.text!).isRight  else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
@@ -77,6 +77,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 if arr.count > 0 {
                     let tags = NSSet.init(array: arr)
                     JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+                    
                 }
                 self.declare.loginStatus = .kLogin_Status_Login
                 //

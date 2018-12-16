@@ -91,7 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         // Deliver content from server, then:
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
-                    print("\(purchase.transaction.transactionState.debugDescription): \(purchase.productId)")
+                    print("====掉单恢复内购处理=====\(purchase.transaction.transactionState.debugDescription): \(purchase.productId)")
+                    
+                    
                 case .failed, .purchasing, .deferred:
                     break // do nothing
                 }
@@ -292,8 +294,9 @@ extension AppDelegate : JPUSHRegisterDelegate {
         guard let alias =  myJPushAlias else {
             return
         }
-        JPUSHService.setAlias(alias, completion: { (iResCode, iAlias, seq) in
-            print("=== setAliasSuccess,\(alias) . completion,\(iResCode),\(iAlias),\(seq)")
+        let signKey1:String = MD5(alias)+HengDaSignKey
+        JPUSHService.setAlias(MD5(signKey1), completion: { (iResCode, iAlias, seq) in
+            print("=== setAliasSuccess,\(MD5(signKey1)) . completion,\(iResCode),\(iAlias),\(seq)")
         }, seq: 0)
         
     }

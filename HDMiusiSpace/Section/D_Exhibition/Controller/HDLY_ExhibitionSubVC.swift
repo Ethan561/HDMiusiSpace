@@ -13,6 +13,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     
     var dataArr =  [HDLY_dExhibitionListD]()
     var type = -1 // 0全部 1推荐 2最近
+    var page = 0
     
     //tableView
     lazy var tableView: UITableView = {
@@ -47,31 +48,54 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     
    @objc func dataRequest()  {
         let cityName: String = HDDeclare.shared.locModel.cityName
-        
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: 0, take: 20, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 2, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
+            self.tableView.es.stopPullToRefresh()
+            self.tableView.es.stopLoadingMore()
             
             let jsonDecoder = JSONDecoder()
             let model:HDLY_dExhibitionListM = try! jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
             self.dataArr = model.data
-            self.tableView.reloadData()
+            if model.data.count == 0 {
+                self.tableView.es.noticeNoMoreData()
+            }else {
+                self.dataArr += model.data
+                self.tableView.reloadData()
+            }
             
         }) { (errorCode, msg) in
-            //            tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            //            tableView.ly_showEmptyView()
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
+            self.tableView.es.stopLoadingMore()
         }
     }
     
     func addRefresh() {
-        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
     }
     
     private func loadMore() {
-        self.tableView.es.noticeNoMoreData()
+        page = page + 1
+        dataRequest()
+    }
+    
+    @objc func refreshAction() {
+        page = 0
+        dataRequest()
     }
     
     @objc func pageTitleViewToTop() {
@@ -111,6 +135,7 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
         return cell
         
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)

@@ -71,18 +71,17 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
         let receiptData = NSData(contentsOf: receiptURL!)
         
         let encodeStr = receiptData?.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
-        
-        var token:String = ""
-        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
-            token = HDDeclare.shared.api_token!
+        guard let token  = HDDeclare.shared.api_token else {
+            return
         }
         let uuid = UIDevice.current.getUUID()
         LOG("uuid:\(uuid)")
-
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(receipt_data: encodeStr!, password: "", is_sandbox: "1", uuid: uuid, api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr!, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)
+
  
         }) { (errorCode, msg) in
             
@@ -118,7 +117,7 @@ extension HDLY_IAPStore {
             print("===产品标题 ==========\(product.localizedTitle)")
             print("====产品描述信息==========\(product.localizedDescription)")
             print("=====价格: =========\(product.price)")
-            if (product.productIdentifier == "0060")
+            if (product.productIdentifier == "spacecoin30")
             {
                 if(SKPaymentQueue.canMakePayments()){
                     buyProduct(product: product)
@@ -237,30 +236,54 @@ extension HDLY_IAPStore {
 
 extension HDLY_IAPStore {
     //获取商品列表并保存
-    func getList() {
-        let produceSet = NSSet(array: ["0060","0012","0018","888","spacecoin30"])
+    func getList(_ productArr: Array<String>) {
         
+        //let produceSet = NSSet(array: ["com.hengdawb.smart.HDMiusiSpace.30","com.hengdawb.smart.HDMiusiSpace.60","com.hengdawb.smart.HDMiusiSpace.108"])
+        let produceSet = NSSet(array: productArr)
+
         SwiftyStoreKit.retrieveProductsInfo(produceSet as! Set<String>) { result in
-            if let product = result.retrievedProducts.first {
-                let priceString = product.localizedPrice!
-                print("Product: \(product.localizedDescription), price: \(priceString)")
-            } else if let invalidProductId = result.invalidProductIDs.first {
-                print("Invalid product identifier: \(invalidProductId)")
-            } else {
-                print("Error: \(result.error)")
+            
+            for product in result.retrievedProducts {
+                // 激活了对应的销售操作按钮，相当于商店的商品上架允许销售
+                print("=======Product id=======\(product.productIdentifier)")
+                print("===产品标题 ==========\(product.localizedTitle)")
+                print("====产品描述信息==========\(product.localizedDescription)")
+                print("=====价格: =========\(product.price)")
+                if (product.productIdentifier == "spacecoin30")
+                {
+                    if(SKPaymentQueue.canMakePayments()){
+//                        buyProduct(product: product)
+                        print("==内购功能可以使用 === ")
+                    }
+                    else {
+                        print("============不支持内购功能")
+                    }
+                }
             }
+            
+            
+//            if let product = result.retrievedProducts.first {
+//                let priceString = product.localizedPrice!
+//                print("Product: \(product.localizedDescription), price: \(priceString)")
+//            } else if let invalidProductId = result.invalidProductIDs.first {
+//                print("Invalid product identifier: \(invalidProductId)")
+//            } else {
+//                print("Error: \(String(describing: result.error))")
+//            }
         }
     }
     
     //点击购买按钮操作
-    @IBAction func onBuyBtnClick(_ sender: Any) {
-        let prodectID:String = "spacecoin30"
+    func buyProduceWithProdectID(_ prodectID: String) {
+//        let prodectID:String = "spacecoin30"
+        let prodectID:String = prodectID
         
-        SwiftyStoreKit.purchaseProduct(prodectID, quantity: 3, atomically: true) { result in
+        SwiftyStoreKit.purchaseProduct(prodectID, quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 
+                self.verifyPruchase()
                 //上传后台验证订单信息
                 //                let receipt = HDIAPReceiptValidator(service: .sandbox)
                 
@@ -269,6 +292,7 @@ extension HDLY_IAPStore {
                 //                #else
                 ////                let service: VerifyReceiptURLType = .production
                 //                #endif
+                /*
                 
                 let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: "your-shared-secret")
                 
@@ -282,7 +306,8 @@ extension HDLY_IAPStore {
                         print("error--->\(error)")
                         break
                     }
-                })
+                })*/
+                
                 
             case .error(let error):
                 switch error.code {
@@ -319,11 +344,6 @@ extension HDLY_IAPStore {
     }
     
 }
-
-
-
-
-
 
 
 

@@ -16,6 +16,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
+    var page = 0
 
     //tableView
     lazy var tableView: UITableView = {
@@ -48,18 +49,97 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         bindViewModel()
         NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
         
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func addRefresh() {
-        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
+    @objc func refreshAction() {
+        page = 0
+        dataRequest()
     }
     
     private func loadMore() {
-        self.tableView.es.noticeNoMoreData()
+        page = page + 10
+        dataRequestLoadMore()
     }
+    
+    @objc func dataRequest()  {
+        tableView.ly_startLoading()
+        
+        LOG("HDDeclare.shared.locModel.cityName: \(HDDeclare.shared.locModel.cityName)")
+        let token = HDDeclare.shared.api_token ?? ""
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            self.tableView.ly_endLoading()
+            self.tableView.es.stopPullToRefresh()
+
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_MuseumListModel = try jsonDecoder.decode(HDLY_MuseumListModel.self, from: result)
+                self.dataArr = model.data
+                if self.dataArr.count == 0 {
+                    let empV = EmptyConfigView.NoDataEmptyView()//空数据显示
+                    self.tableView.ly_emptyView = empV
+                }
+                self.tableView.reloadData()
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_emptyView = empV
+            self.tableView.ly_endLoading()
+            self.tableView.es.stopPullToRefresh()
+        }
+    }
+    
+    func dataRequestLoadMore()  {
+        
+        let token = HDDeclare.shared.api_token ?? ""
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_MuseumListModel = try jsonDecoder.decode(HDLY_MuseumListModel.self, from: result)
+                if model.data.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.es.stopLoadingMore()
+        }
+    }
+    
     
     @objc func pageTitleViewToTop() {
         self.tableView.contentOffset = CGPoint.init(x: 0, y: 0)
@@ -77,35 +157,8 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-CGFloat(PageMenuH)-15)
     }
     
-    @objc func dataRequest()  {
-        tableView.ly_startLoading()
-        
-        LOG("HDDeclare.shared.locModel.cityName: \(HDDeclare.shared.locModel.cityName)")
-        let token = HDDeclare.shared.api_token ?? ""
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: true, loadingVC: self, success: { (result) in
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG("\(String(describing: dic))")
-            self.tableView.ly_endLoading()
-
-            let jsonDecoder = JSONDecoder()
-            let model:HDLY_MuseumListModel = try! jsonDecoder.decode(HDLY_MuseumListModel.self, from: result)
-            self.dataArr = model.data
-            if self.dataArr.count == 0 {
-                let empV = EmptyConfigView.NoDataEmptyView()//空数据显示
-                self.tableView.ly_emptyView = empV
-            }
-            self.tableView.reloadData()
-            
-        }) { (errorCode, msg) in
-            let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            self.tableView.ly_emptyView = empV
-            self.tableView.ly_endLoading()
-        }
-    }
+  
     
-    @objc func refreshAction()  {
-        dataRequest()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

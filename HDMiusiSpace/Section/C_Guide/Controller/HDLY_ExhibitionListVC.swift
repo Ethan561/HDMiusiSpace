@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDLY_ExhibitionListVC: HDItemBaseVC {
     
@@ -15,7 +16,8 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
     var museum_id = 0
     var titleName = ""
     var vipTipView:HDLY_OpenVipTipView?
-    
+    var page = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
@@ -28,17 +30,19 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         dataRequest()
+        addRefresh()
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func dataRequest()  {
-        var token:String = ""
-        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
-            token = HDDeclare.shared.api_token!
-        }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitionList(museum_id: museum_id, skip: 0, take: 20, token: token), showHud: true, loadingVC: self, success: { (result) in
+        let token:String =  HDDeclare.shared.api_token ?? ""
+        tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitionList(museum_id: museum_id, skip: page, take: 20, token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.es.stopPullToRefresh()
+
             let jsonDecoder = JSONDecoder()
             do {
                 let model:HDLY_ExhibitionListM = try jsonDecoder.decode(HDLY_ExhibitionListM.self, from: result)
@@ -46,6 +50,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
                 if self.dataArr.count > 0 {
                     self.tableView.reloadData()
                 }
+                self.tableView.ly_endLoading()
             }
             catch let error {
                 LOG("\(error)")
@@ -54,11 +59,62 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
+
         }
     }
     
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
     @objc func refreshAction() {
+        page = 0
         dataRequest()
+    }
+    
+    private func loadMore() {
+        page = page + 10
+        dataRequestLoadMore()
+    }
+    
+    func dataRequestLoadMore()  {
+        let token:String =  HDDeclare.shared.api_token ?? ""
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitionList(museum_id: museum_id, skip: page, take: 20, token: token), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_ExhibitionListM = try jsonDecoder.decode(HDLY_ExhibitionListM.self, from: result)
+                if model.data.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.es.stopLoadingMore()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

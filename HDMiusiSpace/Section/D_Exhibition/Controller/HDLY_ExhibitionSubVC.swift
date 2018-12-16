@@ -101,7 +101,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     func dataRequestLoadMore()  {
         
         let cityName: String = HDDeclare.shared.locModel.cityName
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "") , showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -122,7 +122,6 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            self.tableView.ly_showEmptyView()
             self.tableView.es.stopLoadingMore()
         }
     }

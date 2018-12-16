@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     
@@ -17,35 +18,41 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     
     let player = HDLY_AudioPlayer.shared
     var infoModel: HDLY_ExhibitList?
+    var dataArr =  [HDLY_ExhibitListM]()
+    
     var exhibition_id = 0
     private var currentModel = HDLY_ExhibitListM()
     var selectRow = -1
     //
     var isUpload = false
     let uploadVM = HDLY_RootCVM()
-    
+    var page = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         dataRequest()
+        addRefresh()
         player.delegate = self
-
+        
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func dataRequest()  {
-        var token:String = ""
-        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
-            token = HDDeclare.shared.api_token!
-        }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: 0, take: 20, api_token: token), showHud: false, loadingVC: self, success: { (result) in
+        let token:String =  HDDeclare.shared.api_token ?? ""
+        self.tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: page, take: 20, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.es.stopPullToRefresh()
+            self.tableView.ly_endLoading()
             let jsonDecoder = JSONDecoder()
             do {
                 let model:HDLY_ExhibitList = try jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
                 self.infoModel = model
+                self.dataArr = model.data.exhibitList
                 self.tableView.reloadData()
                 self.topImgV.kf.setImage(with: URL.init(string: model.data.img), placeholder: UIImage.grayImage(sourceImageV: self.topImgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
@@ -53,16 +60,66 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
                 LOG("\(error)")
             }
             
-            
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
         }
     }
     
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
     @objc func refreshAction() {
+        page = 0
         dataRequest()
     }
+    
+    private func loadMore() {
+        page = page + 10
+        dataRequestLoadMore()
+    }
+    
+    func dataRequestLoadMore()  {
+        let token:String =  HDDeclare.shared.api_token ?? ""
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: page, take: 20, api_token: token), showHud: false, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_ExhibitList = try jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
+                if model.data.exhibitList.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data.exhibitList
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.es.stopLoadingMore()
+        }
+    }
+    
     
     @IBAction func backAction(_ sender: UIButton) {
         self.back()
@@ -108,7 +165,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     
     //row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return infoModel?.data.exhibitList.count ?? 0
+        return dataArr.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,8 +174,8 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = HDLY_ExhibitCell.getMyTableCell(tableV: tableView, indexP: indexPath)
-        if infoModel?.data.exhibitList != nil {
-            let listModel = infoModel!.data.exhibitList[indexPath.row]
+        if dataArr.count > 0 {
+            let listModel = dataArr[indexPath.row]
             cell?.model = listModel
             if selectRow == indexPath.row {
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
@@ -137,7 +194,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
         selectRow = indexPath.row
         let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
 
-        let listModel = infoModel!.data.exhibitList[indexPath.row]
+        let listModel = dataArr[indexPath.row]
         guard let video = listModel.audio else {
             return
         }

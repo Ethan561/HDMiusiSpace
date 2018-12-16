@@ -37,6 +37,10 @@
 		1B6022EF21B5513000BD6DBC /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */; };
 		1B6022F121B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */; };
 		1B6022F321B5515100BD6DBC /* RootE.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B6022F221B5515100BD6DBC /* RootE.storyboard */; };
+		1B7A668F21C4A00000DDFE5E /* HDZQ_CommentActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A668E21C4A00000DDFE5E /* HDZQ_CommentActionView.swift */; };
+		1B7A669121C4A00900DDFE5E /* HDZQ_CommentActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A669021C4A00900DDFE5E /* HDZQ_CommentActionView.xib */; };
+		1B7A669421C4A32400DDFE5E /* HDZQ_CommentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */; };
+		1B7A669521C4A32400DDFE5E /* HDZQ_CommentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */; };
 		1B87792721B27D1D00850B55 /* HDZQ_FoorprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */; };
 		1B87792821B27D1D00850B55 /* HDZQ_FoorprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */; };
 		1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */; };
@@ -623,6 +627,10 @@
 		1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
 		1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardBrowserVC.swift; sourceTree = "<group>"; };
 		1B6022F221B5515100BD6DBC /* RootE.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RootE.storyboard; sourceTree = "<group>"; };
+		1B7A668E21C4A00000DDFE5E /* HDZQ_CommentActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_CommentActionView.swift; sourceTree = "<group>"; };
+		1B7A669021C4A00900DDFE5E /* HDZQ_CommentActionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_CommentActionView.xib; sourceTree = "<group>"; };
+		1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_CommentActionCell.swift; sourceTree = "<group>"; };
+		1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_CommentActionCell.xib; sourceTree = "<group>"; };
 		1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FoorprintCell.swift; sourceTree = "<group>"; };
 		1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FoorprintCell.xib; sourceTree = "<group>"; };
 		1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPExhibitPlayCell.swift; sourceTree = "<group>"; };
@@ -2824,6 +2832,10 @@
 				A7AC35BE214A521A004E8BC1 /* HDSSL_MuseumCell.xib */,
 				A753D10E21B6269F009C14D7 /* HDSSL_defaultAlertView.swift */,
 				A753D11021B626A9009C14D7 /* HDSSL_defaultAlertView.xib */,
+				1B7A668E21C4A00000DDFE5E /* HDZQ_CommentActionView.swift */,
+				1B7A669021C4A00900DDFE5E /* HDZQ_CommentActionView.xib */,
+				1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */,
+				1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3003,6 +3015,7 @@
 				D670D3922125864C0064750A /* HDLY_CourseTeacher_Cell.xib in Resources */,
 				D6EEDDB02190202D00F730BA /* HDLY_GuideCard2Cell.xib in Resources */,
 				D6375680219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.xib in Resources */,
+				1B7A669521C4A32400DDFE5E /* HDZQ_CommentActionCell.xib in Resources */,
 				D66991C22130E964002568B2 /* HDLY_QuestionTip_Header.xib in Resources */,
 				A799C035219FE99700BA526C /* HDSSL_dHeaderNormal.xib in Resources */,
 				D60E857D21918B3400072BF9 /* HDLY_ExhibitCell.xib in Resources */,
@@ -3018,6 +3031,7 @@
 				A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */,
 				1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
+				1B7A669121C4A00900DDFE5E /* HDZQ_CommentActionView.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
 				D66EDF94212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib in Resources */,
@@ -3383,6 +3397,7 @@
 				D67A202D21A6A1D9009D6270 /* HDItemBaseWebVC.swift in Sources */,
 				D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */,
 				D61E94C12192D12400C5299F /* HDAnnotation.m in Sources */,
+				1B7A669421C4A32400DDFE5E /* HDZQ_CommentActionCell.swift in Sources */,
 				D61E94CD2192D12400C5299F /* SDWebImageDownloader.m in Sources */,
 				D6694737212FE62D0068945A /* HDLY_LeaveMsg_VC.swift in Sources */,
 				D6C9FC8E21181FD1007C8E56 /* NSObject+HDTopVC.swift in Sources */,
@@ -3515,6 +3530,7 @@
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
+				1B7A668F21C4A00000DDFE5E /* HDZQ_CommentActionView.swift in Sources */,
 				A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */,
 				D6F5A92721AE7C4C00811A79 /* Device+Extension.swift in Sources */,
 				D62277D221368069008F1416 /* MTImagePickerPreviewController.swift in Sources */,

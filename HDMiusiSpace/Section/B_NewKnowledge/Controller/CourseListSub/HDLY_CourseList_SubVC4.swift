@@ -121,7 +121,7 @@ extension HDLY_CourseList_SubVC4 {
                 return  cell!
             }
             if commentModel.avatar != nil {
-                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.contentL.text = commentModel.content
             cell?.timeL.text = commentModel.time

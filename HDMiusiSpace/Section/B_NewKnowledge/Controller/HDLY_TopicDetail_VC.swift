@@ -35,6 +35,13 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         webV.isOpaque = false
         return webV
     }()
+
+    lazy var commentView: HDZQ_CommentActionView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tmp?.delegate = self
+        return tmp!
+    }()
     
     var webViewH:CGFloat = 0
     
@@ -90,6 +97,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
+            weakSelf?.keyboardTextField.textView.text = " "
+            weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
         }
         //
@@ -109,6 +118,21 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                 weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
             }
         }
+        
+        publicViewModel.reportErrorModel.bind { [weak self] (model) in
+            var strs = [String]()
+            var reportType = [Int]()
+            model.data?.optionList.forEach({ (m) in
+                strs.append(m.optionTitle)
+                reportType.append(m.optionID)
+            })
+            self?.commentView.dataArr = strs
+            self?.commentView.reportType = reportType
+            self?.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+            self?.commentView.type = 1
+            self?.commentView.tableView.reloadData()
+        }
+
         
     }
     
@@ -138,6 +162,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     }
         
     @IBAction func commentBtnAction(_ sender: UIButton) {
+        keyboardTextField.placeholderLabel.text = "写下你的评论吧"
+        keyboardTextField.type = 0
         showKeyBoardView()
     }
     
@@ -343,7 +369,8 @@ extension HDLY_TopicDetail_VC {
                 guard let commentModel = model?.commentList[index] else {
                     return  cell!
                 }
-                cell?.avaImgV.kf.setImage(with: URL.init(string: commentModel.avatar), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.commentId = commentModel.commentID
+                cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
@@ -352,6 +379,19 @@ extension HDLY_TopicDetail_VC {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
                 }else {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                }
+                
+                cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    self?.pushToOthersPersonalCenterVC(commentModel.uid)
+                })
+                
+                cell?.longPress  = { [weak self] (commentId) in
+                    self?.commentView.type = 0
+                    self?.commentView.model = commentModel
+                    self?.commentView.dataArr = ["回复","复制","举报"]
+                    self?.commentView.tableHeightConstraint.constant = CGFloat(150)
+                    self?.commentView.tableView.reloadData()
+                    self?.navigationController?.view.addSubview((self?.commentView)!)
                 }
             }
             
@@ -369,24 +409,36 @@ extension HDLY_TopicDetail_VC {
             vc.fromRootAChoiceness = self.fromRootAChoiceness
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        if indexPath.section ==  2 {
-            let model = infoModel
-            guard let commentModel = model?.commentList[indexPath.row] else {
-                return
-            }
-            
-            self.pushToOthersPersonalCenterVC(commentModel.uid)
-            
-//            let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
-//            let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
-//            vc.toid = commentModel.uid
-//            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
     }
     
 }
+
+extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+        if type == 0 {
+            if index == 0 {
+                print(model.nickname)
+                keyboardTextField.placeholderLabel.text = "回复@\(model.nickname)"
+                keyboardTextField.returnID = model.commentID
+                keyboardTextField.type = 1
+                showKeyBoardView()
+                self.commentView.removeFromSuperview()
+            } else if index == 1 {
+                let paste = UIPasteboard.general
+                paste.string = model.comment
+                HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
+                self.commentView.removeFromSuperview()
+            } else  {
+                print("举报")
+                publicViewModel.getErrorContent(commentId: model.commentID)
+                
+            }
+        } else {
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token!, option_id_str:String(reportType!) , comment_id: model.commentID)
+        }
+    }
+}
+
 
 //MARK: ---- WebView Delegate ----
 
@@ -443,36 +495,38 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
     
     //隐藏评论显示
     @objc func closeKeyBoardView() {
-        keyboardTextField.textView.text = ""
         keyboardTextField.hide()
         keyboardTextField.isHidden = true
     }
     
     //MARK: ==== KeyboardTextFieldDelegate ====
     func keyboardTextFieldPressReturnButton(_ keyboardTextField: KeyboardTextField) {
-        commentText =  keyboardTextField.textView.text
-        if commentText.isEmpty == false && infoModel?.articleID != nil {
-            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                self.pushToLoginVC(vc: self)
-                return
-            }
-            if fromRootAChoiceness == true {
-                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "1", self)
-
-            }else {
-                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
-            }
-        }
+        sendCommentContent(keyboardTextField)
     }
     
     func keyboardTextFieldPressRightButton(_ keyboardTextField :KeyboardTextField) {
+        sendCommentContent(keyboardTextField)
+    }
+    
+    func sendCommentContent(_ keyboardTextField: KeyboardTextField) {
         commentText =  keyboardTextField.textView.text
         if commentText.isEmpty == false && infoModel?.articleID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
                 return
             }
-            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
+            
+            if keyboardTextField.type == 0 {
+                if fromRootAChoiceness == true {
+                    publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "1", self)
+                    
+                }else {
+                    publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
+                }
+            } else {
+                 publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: String(keyboardTextField.returnID!), cate_id: "1", self)
+            }
+
         }
     }
     

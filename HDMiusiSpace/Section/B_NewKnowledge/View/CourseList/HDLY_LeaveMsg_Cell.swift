@@ -8,26 +8,44 @@
 
 import UIKit
 
-class HDLY_LeaveMsg_Cell: UITableViewCell {
+typealias LongPressActionClouser = (_ type: Int)->Void
 
-    @IBOutlet weak var avaImgV: UIImageView!
+class HDLY_LeaveMsg_Cell: UITableViewCell {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var contentL: UILabel!
     @IBOutlet weak var timeL: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
-    
+    @IBOutlet weak var avatarBtn: UIButton!
+    public var commentId = 0
+    public var longPress: LongPressActionClouser!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        avaImgV.layer.cornerRadius = 15
+        avatarBtn.layer.cornerRadius = 15
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
+        longPress.minimumPressDuration = 0.5
+        self.addGestureRecognizer(longPress)
         
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
+   
+    @objc func alertAction(ges:UILongPressGestureRecognizer) {
+        if ges.state == .began {
+//            UIImpactFeedbackGenerator*impactLight = [[UIImpactFeedbackGeneratoralloc]initWithStyle:UIImpactFeedbackStyleLight];
+//            [impactLight impactOccurred];
+        
+            if #available(iOS 10.0, *) {
+                let impactLight = UIImpactFeedbackGenerator.init(style: .medium)
+                 impactLight.impactOccurred()
+            } else {
+                // Fallback on earlier versions
+            }
+           
+            if self.longPress != nil {
+                self.longPress(commentId)
+            }
+        }
     }
-    
     
     class  func getMyTableCell(tableV: UITableView) -> HDLY_LeaveMsg_Cell! {
         var cell: HDLY_LeaveMsg_Cell? = tableV.dequeueReusableCell(withIdentifier: HDLY_LeaveMsg_Cell.className) as? HDLY_LeaveMsg_Cell

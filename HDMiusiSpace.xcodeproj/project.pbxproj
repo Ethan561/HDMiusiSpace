@@ -31,6 +31,8 @@
 		1B3126B621B7C8AB003785C0 /* HDLY_ChangeCityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3126B421B7C8AA003785C0 /* HDLY_ChangeCityAlert.swift */; };
 		1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */; };
 		1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */; };
+		1B48151A21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */; };
+		1B48151B21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B48151921C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib */; };
 		1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */; };
 		1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */; };
 		1B6022ED21B5511700BD6DBC /* HDItemBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022EC21B5511700BD6DBC /* HDItemBaseVC.swift */; };
@@ -621,6 +623,8 @@
 		1B3126B421B7C8AA003785C0 /* HDLY_ChangeCityAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_ChangeCityAlert.swift; sourceTree = "<group>"; };
 		1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_RelatedClassCell.swift; sourceTree = "<group>"; };
 		1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RelatedClassCell.xib; sourceTree = "<group>"; };
+		1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MoreCommentsCell.swift; sourceTree = "<group>"; };
+		1B48151921C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_MoreCommentsCell.xib; sourceTree = "<group>"; };
 		1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesVC.swift; sourceTree = "<group>"; };
 		1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesSubVC.swift; sourceTree = "<group>"; };
 		1B6022EC21B5511700BD6DBC /* HDItemBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemBaseVC.swift; sourceTree = "<group>"; };
@@ -2125,6 +2129,8 @@
 				D6866A602126CA680044EEAA /* HDLY_CourseList_Header.xib */,
 				D66EDF91212A6867004DACE0 /* HDLY_LeaveMsg_Cell.swift */,
 				D66EDF92212A6867004DACE0 /* HDLY_LeaveMsg_Cell.xib */,
+				1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */,
+				1B48151921C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib */,
 				D66EDF95212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.swift */,
 				D66EDF96212AA34D004DACE0 /* HDLY_QuestionNotice_Cell.xib */,
 			);
@@ -3031,6 +3037,7 @@
 				A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */,
 				1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
+				1B48151B21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib in Resources */,
 				1B7A669121C4A00900DDFE5E /* HDZQ_CommentActionView.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
@@ -3448,6 +3455,7 @@
 				D6C9FCCE2118354E007C8E56 /* HDRootEVC.swift in Sources */,
 				D6866A5F2126CA5C0044EEAA /* HDLY_CourseList_Header.swift in Sources */,
 				D6179E2E219AB5BE009A2C10 /* HDLY_WKWebVC.swift in Sources */,
+				1B48151A21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift in Sources */,
 				A7441D4021A2A0D50064E6A6 /* TZGifPhotoPreviewController.m in Sources */,
 				1B6022F121B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift in Sources */,
 				A7A90A6421A3E17D005BD37F /* HDSSL_shareCommentVC.swift in Sources */,

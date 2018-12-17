@@ -137,10 +137,30 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     }
     
     func showViewData() {
-        guard let model = viewModel.topicDetail.value.data else {
+        guard var model = viewModel.topicDetail.value.data else {
             return
         }
+        
+        // 计算总高度 保存到模型中去
+        for i in 0..<model.commentList.count {
+             for j in 0..<model.commentList[i].list.count {
+                let str = "\(model.commentList[i].list[j].uNickname)：\(model.commentList[i].list[j].comment)"
+                let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
+                model.commentList[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                model.commentList[i].height = model.commentList[i].height + model.commentList[i].list[j].height
+                
+                if j == 0 {
+                    model.commentList[i].topHeight = model.commentList[i].list[j].height
+                }
+                if j == 1 {
+                    model.commentList[i].topHeight = model.commentList[i].topHeight + model.commentList[i].list[j].height
+                }
+            }
+            model.commentList[i].height = model.commentList[i].height
+        }
+        
         self.infoModel = model
+        
         self.getWebHeight()
         //点赞
         likeNumL.text = infoModel!.likes.string
@@ -325,7 +345,19 @@ extension HDLY_TopicDetail_VC {
                     return  0.01
                 }
                 let textH = commentModel.comment.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
-                return textH + 90
+                var subCommentsH = 0
+                
+                if commentModel.list.count < 3 {
+                    subCommentsH = commentModel.height + 30
+                } else {
+                    if commentModel.showAll {
+                        subCommentsH = commentModel.height + 20
+                    } else {
+                      subCommentsH = commentModel.topHeight + 40
+//                        subCommentsH = 90
+                    }
+                }
+                return textH + 90 + CGFloat(subCommentsH)
             }
         }
         return 0.01
@@ -375,6 +407,16 @@ extension HDLY_TopicDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+                if commentModel.list.count > 0 {
+                    cell?.subContainerView.isHidden = false
+                    cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
+                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ (btn) in
+                        self.infoModel?.commentList[index].showAll = true
+                        self.myTableView.reloadRows(at: [indexPath], with: .none)
+                    })
+                } else {
+                    cell?.subContainerView.isHidden = true
+                }
                 if commentModel.isLike == 0 {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
                 }else {
@@ -418,6 +460,8 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
         if type == 0 {
             if index == 0 {
                 print(model.nickname)
+                keyboardTextField.textView.text = " "
+                keyboardTextField.textView.deleteBackward()
                 keyboardTextField.placeholderLabel.text = "回复@\(model.nickname)"
                 keyboardTextField.returnID = model.commentID
                 keyboardTextField.type = 1
@@ -523,8 +567,13 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
                 }else {
                     publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: "0", cate_id: "4", self)
                 }
-            } else {
-                 publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: String(keyboardTextField.returnID!), cate_id: "1", self)
+            } else {   
+                if fromRootAChoiceness == true {
+                    publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: String(keyboardTextField.returnID!), cate_id: "1", self)
+                    
+                }else {
+                    publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: String(keyboardTextField.returnID!), cate_id: "4", self)
+                }
             }
 
         }

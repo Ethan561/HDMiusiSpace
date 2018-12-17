@@ -143,17 +143,13 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "检查版本"
                 cell?.subNameLTrainingCons.constant = 45
-                
                 if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
                     if version == self.version {
-                        cell?.subNameL.text = "已是最新版本"
+                        cell?.subNameL.text = "已经是最新版本"
                     } else {
                        cell?.subNameL.text = "可更新到V\(self.version)"
                     }
                 }
-                
-                
-                
                 cell?.bottomLine.isHidden = true
 
                 return cell!
@@ -208,7 +204,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
 
 extension HDLY_About_VC {
     func requestMuseSpaceInfo() {
-        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getAboutMuseSpaceInfo(), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getAboutMuseSpaceInfo(versionId:0), success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG(" dic ： \(String(describing: dic))")
             guard let dataDic: Dictionary<String,Any> = dic!["data"] as? Dictionary else { return }

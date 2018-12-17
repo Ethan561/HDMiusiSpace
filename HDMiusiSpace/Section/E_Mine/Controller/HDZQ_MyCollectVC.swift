@@ -25,14 +25,15 @@ class HDZQ_MyCollectVC: HDItemBaseVC {
         page.layer.shadowColor = UIColor.lightGray.cgColor
         page.layer.shadowOffset = CGSize.init(width: 0, height: 5)
         page.layer.shadowOpacity = 0.2
-        page.permutationWay = SPPageMenuPermutationWay.notScrollAdaptContent
+        page.permutationWay = SPPageMenuPermutationWay.scrollAdaptContent
+        page.itemPadding = 55
         return page
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false
-        let menuTitleArr = ["资讯","展览"]
+        let menuTitleArr = ["资讯","展览","攻略","精选专题","轻听随看"]
         self.view.addSubview(pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         addContentSubViewsWithArr(titleArr: menuTitleArr)
@@ -57,6 +58,18 @@ extension HDZQ_MyCollectVC:SPPageMenuDelegate {
                 baseVC.type = 1
                 self.scrollView.addSubview(self.childViewControllers[0].view)
             case 1://展览
+                let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
+                baseVC.type = 2
+                self.addChildViewController(baseVC)
+            case 2://展览
+                let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
+                baseVC.type = 2
+                self.addChildViewController(baseVC)
+            case 3://展览
+                let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
+                baseVC.type = 2
+                self.addChildViewController(baseVC)
+            case 4://展览
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
                 baseVC.type = 2
                 self.addChildViewController(baseVC)

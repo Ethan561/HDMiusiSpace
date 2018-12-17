@@ -184,7 +184,7 @@ extension HDRootEVC {
                 }
                 self.myDynamics = model.data!
                 let indexSet = NSIndexSet(index: 1)
-                self.myTableView.reloadSections(indexSet as IndexSet, with: .automatic)
+                self.myTableView.reloadSections(indexSet as IndexSet, with: .none)
             }
             catch let error {
                 LOG("解析错误：\(error)")

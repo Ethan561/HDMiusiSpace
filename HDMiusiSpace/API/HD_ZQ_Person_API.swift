@@ -30,7 +30,7 @@ enum HD_ZQ_Person_API {
     //我的导览足迹
     case getMyFootPrint(api_token: String, skip:Int, take:Int)
     //关于缪斯空间
-    case getAboutMuseSpaceInfo()
+    case getAboutMuseSpaceInfo(versionId:Int)
     //我的动态
     case getMyDynamicList(api_token: String, skip:Int, take:Int)
     //个人中心页面
@@ -41,6 +41,8 @@ enum HD_ZQ_Person_API {
     case bindThirdAccount(params:Dictionary<String, Any>)
     //解除绑定第三方账号
     case cancelBindThirdAccount(api_token: String,b_from:String)
+    //版本更新检测
+    case checkVersion(version_id: Int,device_id:String)
 }
 extension HD_ZQ_Person_API: TargetType {
     //--- 服务器地址 ---
@@ -68,7 +70,7 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/users/bind_phone"
         case .getMyFootPrint(api_token: _,  skip: _, take: _):
             return "/api/favorites/my_footprint"
-        case .getAboutMuseSpaceInfo:
+        case .getAboutMuseSpaceInfo(versionId:_):
             return "/api/users/about"
         case .getMyDynamicList(api_token: _,  skip: _, take: _):
             return "/api/dynamic/dynamic_list"
@@ -80,6 +82,8 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/users/bind_account_number"
         case .cancelBindThirdAccount(_,_):
             return "/api/users/unbind_account_number"
+        case .checkVersion(_,_):
+            return "/api/version/check_version"
         }
     }
     
@@ -170,7 +174,8 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-        case .getAboutMuseSpaceInfo():
+        case .getAboutMuseSpaceInfo(let versionId):
+            params = params.merging(["version_id": versionId], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -205,6 +210,12 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .checkVersion(let version_id,let device_id):
+            params = params.merging(["version_id": version_id,
+                                     "device_id":device_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         default:
             return .requestPlain//无参数
         }

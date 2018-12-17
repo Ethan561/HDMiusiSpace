@@ -70,6 +70,7 @@ class HDSSL_dMuseumCell: UITableViewCell {
                 }
             }
             if model!.isFree == 0 && model!.price != "¥0.00"{
+                
                 cell_ticketPrice.text = "\(model!.price!)"
             }else {
                 cell_ticketPrice.text = ""

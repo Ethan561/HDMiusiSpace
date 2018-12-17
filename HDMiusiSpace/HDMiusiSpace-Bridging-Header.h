@@ -53,6 +53,7 @@
 // 如果需要使用 idfa 功能所需要引入的头文件（可选）
 //#import <AdSupport/AdSupport.h>
 
+#import "UITableView+CCPIndexView.h"
 
 
 

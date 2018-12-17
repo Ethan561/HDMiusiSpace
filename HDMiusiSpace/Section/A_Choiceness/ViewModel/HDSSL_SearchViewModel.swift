@@ -25,10 +25,15 @@ class HDSSL_SearchViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_searchPlaceholderModel = try! jsonDecoder.decode(HDSSL_searchPlaceholderModel.self, from: result)
             
-            self.searchPlaceholder.value = model.data!
-            
+            do {
+                let model: HDSSL_searchPlaceholderModel = try jsonDecoder.decode(HDSSL_searchPlaceholderModel.self, from: result)
+                
+                self.searchPlaceholder.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //
@@ -44,9 +49,14 @@ class HDSSL_SearchViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_searchTagModel = try! jsonDecoder.decode(HDSSL_searchTagModel.self, from: result)
-            self.tagArray.value = model.data!
             
+            do {
+                let model: HDSSL_searchTagModel = try jsonDecoder.decode(HDSSL_searchTagModel.self, from: result)
+                self.tagArray.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //
@@ -62,9 +72,14 @@ class HDSSL_SearchViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_SearchResultModel = try! jsonDecoder.decode(HDSSL_SearchResultModel.self, from: result)
-            self.resultArray.value = model.data!
             
+            do {
+                let model: HDSSL_SearchResultModel = try jsonDecoder.decode(HDSSL_SearchResultModel.self, from: result)
+                self.resultArray.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             //
         }

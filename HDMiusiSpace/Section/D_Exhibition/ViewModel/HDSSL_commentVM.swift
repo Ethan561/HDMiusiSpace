@@ -31,10 +31,15 @@ class HDSSL_commentVM: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_commentModel = try! jsonDecoder.decode(HDSSL_commentModel.self, from: result)
-
-            self.dataList.value = model.data!
             
+            do {
+                let model: HDSSL_commentModel = try jsonDecoder.decode(HDSSL_commentModel.self, from: result)
+                
+                self.dataList.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //
@@ -49,15 +54,18 @@ class HDSSL_commentVM: NSObject {
             LOG("\(String(describing: dic))")
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_backCommentModel = try! jsonDecoder.decode(HDSSL_backCommentModel.self, from: result)
             
-            self.backDic.value = model.data!
-            
-            HDAlert.showAlertTipWith(type: .onlyText, text: "发布成功")
-            
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
-//                vc.navigationController?.popViewController(animated: true)
-//            })
+            do {
+                let model: HDSSL_backCommentModel = try jsonDecoder.decode(HDSSL_backCommentModel.self, from: result)
+                
+                self.backDic.value = model.data!
+                
+                HDAlert.showAlertTipWith(type: .onlyText, text: "发布成功")
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+
             
         }) { (errorCode, msg) in
             //
@@ -73,10 +81,15 @@ class HDSSL_commentVM: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_PaperModel = try! jsonDecoder.decode(HDSSL_PaperModel.self, from: result)
             
-            self.paperModel.value = model
-            
+            do {
+                let model: HDSSL_PaperModel = try jsonDecoder.decode(HDSSL_PaperModel.self, from: result)
+                
+                self.paperModel.value = model
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //
@@ -93,10 +106,15 @@ class HDSSL_commentVM: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: HDSSL_commentListModel = try! jsonDecoder.decode(HDSSL_commentListModel.self, from: result)
             
-            self.exComListModel.value = model.data!
-            
+            do {
+                let model: HDSSL_commentListModel = try jsonDecoder.decode(HDSSL_commentListModel.self, from: result)
+                
+                self.exComListModel.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //

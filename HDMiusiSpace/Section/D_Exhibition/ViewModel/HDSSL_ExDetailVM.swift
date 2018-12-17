@@ -21,10 +21,15 @@ class HDSSL_ExDetailVM: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: ExhibitionDetailDataModel = try! jsonDecoder.decode(ExhibitionDetailDataModel.self, from: result)
             
-            self.exhibitionData.value = model
-            
+            do {
+                let model: ExhibitionDetailDataModel = try jsonDecoder.decode(ExhibitionDetailDataModel.self, from: result)
+                
+                self.exhibitionData.value = model
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //

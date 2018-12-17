@@ -19,6 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="220"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8e-kQ-HeZ">
+                        <rect key="frame" x="5" y="5" width="150" height="210"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFy-42-6do">
                         <rect key="frame" x="5" y="5" width="150" height="210"/>
                         <subviews>
@@ -90,11 +94,21 @@
                             <constraint firstItem="KNM-7A-mk2" firstAttribute="leading" secondItem="anz-ao-SM1" secondAttribute="trailing" id="ugh-kh-nn2"/>
                             <constraint firstItem="Fkd-ba-CHU" firstAttribute="leading" secondItem="BFy-42-6do" secondAttribute="leading" constant="5" id="w6h-as-xBA"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="j8e-kQ-HeZ" secondAttribute="trailing" constant="5" id="6Xs-XV-6cK"/>
                 <constraint firstItem="BFy-42-6do" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Bbq-Be-Aa9"/>
+                <constraint firstAttribute="bottom" secondItem="j8e-kQ-HeZ" secondAttribute="bottom" constant="5" id="Bqr-4N-kV2"/>
+                <constraint firstItem="j8e-kQ-HeZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="KVG-Nx-IwS"/>
+                <constraint firstItem="j8e-kQ-HeZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Sa8-xm-rAN"/>
                 <constraint firstAttribute="trailing" secondItem="BFy-42-6do" secondAttribute="trailing" constant="5" id="aWk-xT-HKG"/>
                 <constraint firstItem="BFy-42-6do" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="eer-Pr-vSC"/>
                 <constraint firstAttribute="bottom" secondItem="BFy-42-6do" secondAttribute="bottom" constant="5" id="zQq-Nl-OVI"/>
@@ -109,6 +123,7 @@
                 <outlet property="item_star" destination="anz-ao-SM1" id="Iq9-5J-KV6"/>
                 <outlet property="item_starNum" destination="KNM-7A-mk2" id="t9H-HH-Ju4"/>
                 <outlet property="item_title" destination="Fkd-ba-CHU" id="TTW-Pc-Ow2"/>
+                <outlet property="shadowView" destination="j8e-kQ-HeZ" id="8ke-gB-Xq9"/>
             </connections>
             <point key="canvasLocation" x="-203.19999999999999" y="125.93703148425789"/>
         </collectionViewCell>

@@ -24,13 +24,18 @@ class HDSSL_locationViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: CityDataModel = try! jsonDecoder.decode(CityDataModel.self, from: result)
             
-            let dictionary:CityDataSecModel? = model.data!
-            
-            self.cityArray.value = dictionary!.city_list!
-            self.hotAray.value = model.data!.hot_city!
-            
+            do {
+                let model: CityDataModel = try jsonDecoder.decode(CityDataModel.self, from: result)
+                
+                let dictionary:CityDataSecModel? = model.data!
+                
+                self.cityArray.value = dictionary!.city_list!
+                self.hotAray.value = model.data!.hot_city!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             //
         }
@@ -46,15 +51,21 @@ class HDSSL_locationViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: CountyDataModel = try! jsonDecoder.decode(CountyDataModel.self, from: result)
             
-            let dictionary:CountyDataSecModel? = model.data!
-           
-            if isrecommand == true {
-                self.leftTableList.value = dictionary!.type_list!
+            do {
+                let model: CountyDataModel = try jsonDecoder.decode(CountyDataModel.self, from: result)
+                
+                let dictionary:CountyDataSecModel? = model.data!
+                
+                if isrecommand == true {
+                    self.leftTableList.value = dictionary!.type_list!
+                }
+                
+                self.countyList.value = dictionary!.country_list!
             }
-            
-            self.countyList.value = dictionary!.country_list!
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //
@@ -71,11 +82,17 @@ class HDSSL_locationViewModel: NSObject {
             
             //JSON转Model：
             let jsonDecoder = JSONDecoder()
-            let model: SearchCityModel = try! jsonDecoder.decode(SearchCityModel.self, from: result)
             
-            let arr:[CityModel]? = model.data!
-            
-            self.searchResultA.value = arr!
+            do {
+                let model: SearchCityModel = try jsonDecoder.decode(SearchCityModel.self, from: result)
+                
+                let arr:[CityModel]? = model.data!
+                
+                self.searchResultA.value = arr!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
             
         }) { (errorCode, msg) in
             //

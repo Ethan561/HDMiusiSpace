@@ -81,9 +81,13 @@ class HDZQ_MyViewModel: NSObject {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyWallet(api_token: apiToken), showHud: true, loadingVC: vc, success: { (result) in
             let jsonDecoder = JSONDecoder()
             
-            let model:HDSSL_goodsModel = try! jsonDecoder.decode(HDSSL_goodsModel.self, from: result)
-            self.goodsData.value = model.data!
-            
+            do {
+                let model:HDSSL_goodsModel = try jsonDecoder.decode(HDSSL_goodsModel.self, from: result)
+                self.goodsData.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -93,8 +97,14 @@ class HDZQ_MyViewModel: NSObject {
     func requestMyOrderList(apiToken:String,skip:Int,take:Int,status:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderList(api_token: apiToken, status: status, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
             let jsonDecoder = JSONDecoder()
-            let model:HDSSLMyOrderModel = try! jsonDecoder.decode(HDSSLMyOrderModel.self, from: result)
-            self.orderList.value = model.data!
+            
+            do {
+                let model:HDSSLMyOrderModel = try jsonDecoder.decode(HDSSLMyOrderModel.self, from: result)
+                self.orderList.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -104,8 +114,14 @@ class HDZQ_MyViewModel: NSObject {
     func requestMyOrderDetail(apiToken:String,orderId:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderDetail(api_token: apiToken, orderId: orderId), showHud: true, loadingVC: vc, success: { (result) in
             let jsonDecoder = JSONDecoder()
-            let model:HDSSLMyOrderDetailModel = try! jsonDecoder.decode(HDSSLMyOrderDetailModel.self, from: result)
-            self.orderDetail.value = model.data!
+            
+            do {
+                let model:HDSSLMyOrderDetailModel = try jsonDecoder.decode(HDSSLMyOrderDetailModel.self, from: result)
+                self.orderDetail.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -116,8 +132,14 @@ class HDZQ_MyViewModel: NSObject {
     func getOrderRecordList(apiToken:String,skip:Int,take:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestOrderRecordList(api_token: apiToken, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
             let jsonDecoder = JSONDecoder()
-            let model:HDSSL_OrderRecordModel = try! jsonDecoder.decode(HDSSL_OrderRecordModel.self, from: result)
-            self.orderRecordList.value = model.data!
+            
+            do {
+                let model:HDSSL_OrderRecordModel = try jsonDecoder.decode(HDSSL_OrderRecordModel.self, from: result)
+                self.orderRecordList.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -127,8 +149,14 @@ class HDZQ_MyViewModel: NSObject {
     func getOrderSharePicPath(apiToken:String,order_id:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderSharePicPath(api_token: apiToken, orderId: order_id), showHud: true, loadingVC: vc, success: { (result) in
             let jsonDecoder = JSONDecoder()
-            let model:HDSSLMyOrderSharePicModel = try! jsonDecoder.decode(HDSSLMyOrderSharePicModel.self, from: result)
-            self.orderPicPath.value = model.data!
+            
+            do {
+                let model:HDSSLMyOrderSharePicModel = try jsonDecoder.decode(HDSSLMyOrderSharePicModel.self, from: result)
+                self.orderPicPath.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -140,7 +168,7 @@ class HDZQ_MyViewModel: NSObject {
             let jsonDecoder = JSONDecoder()
     
             do {
-                let model:HDSSLDeleteOrderModel = try! jsonDecoder.decode(HDSSLDeleteOrderModel.self, from: result)
+                let model:HDSSLDeleteOrderModel = try jsonDecoder.decode(HDSSLDeleteOrderModel.self, from: result)
                 self.isDeleteOrder.value = (model.data?.int)!
             }
             catch let error {

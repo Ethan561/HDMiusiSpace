@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 private let nomalCell = "nomalCell"
 private let hotCityCell = "hotCityCell"
@@ -39,7 +40,6 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     var worldTypeArray : [CountyTypeListModel]    = Array.init() //大洲
     var countyArray    : [CountyListModel]    = Array.init() //国家
     var currentLeftType: Int = 0 //当前类型
-    
     
     //mvvm
     var viewModel: HDSSL_locationViewModel = HDSSL_locationViewModel()
@@ -93,24 +93,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         loadMyDatas()
         viewModel.request_getCityList(type: 1, vc: self) //请求国内城市数据
         viewModel.request_getWorldCityList(kind: 1, type: 0, isrecommand: true, vc: self) //请求国际数据
+        self.dTableView.ccpIndexView()
     }
+    
     func loadMyDatas() {
-//        var city1 = CityModel()
-//        city1.city_id = 244
-//        city1.city_name = "鞍山"
-//        var city2 = CityModel()
-//        city2.city_id = 332
-//        city2.city_name = "安庆"
-//        var city3 = CityModel()
-//        city3.city_id = 387
-//        city3.city_name = "安阳"
-//        var city4 = CityModel()
-//        city4.city_id = 325
-//        city4.city_name = "阜阳"
-//
-//        recentArray.append(city1)
-//        recentArray.append(city2)
-//        recentArray.append(city3)
         
         //
         let manager = UserDefaults()
@@ -312,16 +298,6 @@ class HDSSL_getLocationVC: HDItemBaseVC {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -364,7 +340,7 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
-                
+                LOG("city.city_name: \(city.city_name)")
                 self.saveRecentCityArr(city)
                 
                 //保存选中城市，返回首页
@@ -480,7 +456,22 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
         }
         return sectionMargin
     }
-
+    
+    //点击索引，移动TableView的组位置
+    func tableView(_ tableView: UITableView,
+                   sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        var tpIndex:Int = 0
+        //遍历索引值
+        for character in titleArray{
+            //判断索引值和组名称相等，返回组坐标
+            if character == title {
+                return tpIndex
+            }
+            tpIndex += 1
+        }
+        return 0
+    }
+    
     // MARK: row高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {

@@ -17,7 +17,12 @@ class HDLY_MessageCenterVC: HDItemBaseVC {
         super.viewDidLoad()
         self.title = "消息中心"
         tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         dataRequest()
+
     }
     
     func dataRequest()  {
@@ -31,9 +36,14 @@ class HDLY_MessageCenterVC: HDItemBaseVC {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let m:HDLY_NotiMsgModel = try! jsonDecoder.decode(HDLY_NotiMsgModel.self, from: result)
-            self.model = m
-            self.tableView.reloadData()
+            do {
+                let m:HDLY_NotiMsgModel = try jsonDecoder.decode(HDLY_NotiMsgModel.self, from: result)
+                self.model = m
+                self.tableView.reloadData()
+            }
+            catch let error {
+                LOG("\(error)")
+            }
             
         }) { (errorCode, msg) in
             

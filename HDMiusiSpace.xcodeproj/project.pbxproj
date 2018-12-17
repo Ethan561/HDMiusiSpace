@@ -230,6 +230,8 @@
 		D6193B9D21C3842B00367356 /* HDEmptyBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6193B9821C3842B00367356 /* HDEmptyBaseView.swift */; };
 		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
 		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
+		D61D246521C73F0100F054E5 /* UITableView+CCPIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */; };
+		D61D246621C73F0200F054E5 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246421C73F0100F054E5 /* Aspects.m */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
 		D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */; };
 		D61D5D1821C246F3005EA3A6 /* HDLY_PlatformCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */; };
@@ -874,6 +876,10 @@
 		D6193B9821C3842B00367356 /* HDEmptyBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDEmptyBaseView.swift; sourceTree = "<group>"; };
 		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
 		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D61D246121C73F0100F054E5 /* UITableView+CCPIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CCPIndexView.h"; sourceTree = "<group>"; };
+		D61D246221C73F0100F054E5 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CCPIndexView.m"; sourceTree = "<group>"; };
+		D61D246421C73F0100F054E5 /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
 		D61D36D5219BC41B0019586B /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCVM.swift; sourceTree = "<group>"; };
 		D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PlatformCell.swift; sourceTree = "<group>"; };
@@ -1680,6 +1686,17 @@
 			path = HDEmptyView;
 			sourceTree = "<group>";
 		};
+		D61D246021C73F0100F054E5 /* IndexView */ = {
+			isa = PBXGroup;
+			children = (
+				D61D246121C73F0100F054E5 /* UITableView+CCPIndexView.h */,
+				D61D246221C73F0100F054E5 /* Aspects.h */,
+				D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */,
+				D61D246421C73F0100F054E5 /* Aspects.m */,
+			);
+			path = IndexView;
+			sourceTree = "<group>";
+		};
 		D61E947C2192CA0200C5299F /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -2261,6 +2278,7 @@
 		D6C9FC3F21181EAA007C8E56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D61D246021C73F0100F054E5 /* IndexView */,
 				A7441D0221A2A0D50064E6A6 /* TZPhotoPicker */,
 				D62B44E3219A7AE100A977CF /* XHStarRateView */,
 				D6115AA8218FD490004A05DA /* ZFPlayer */,
@@ -3235,6 +3253,7 @@
 				D6694740213005390068945A /* CourseQuestion.swift in Sources */,
 				D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */,
 				D61E94C52192D12400C5299F /* HDMapView+Download.m in Sources */,
+				D61D246521C73F0100F054E5 /* UITableView+CCPIndexView.m in Sources */,
 				D60E856F2191659500072BF9 /* HDLY_MapGuideVC.swift in Sources */,
 				A7AC35B3214A518B004E8BC1 /* HDSSL_newsCell.swift in Sources */,
 				D6C9FC5921181F28007C8E56 /* EmptyConfigView.swift in Sources */,
@@ -3557,6 +3576,7 @@
 				1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */,
 				D61D5D1821C246F3005EA3A6 /* HDLY_PlatformCell.swift in Sources */,
 				D67ABF84212BAD4700276CDE /* STKDataSource.m in Sources */,
+				D61D246621C73F0200F054E5 /* Aspects.m in Sources */,
 				D62277E821369869008F1416 /* ReportErrorModel.swift in Sources */,
 				D6C9FC6521181F54007C8E56 /* UIButton+GifImage.swift in Sources */,
 				D6C9FC972118202A007C8E56 /* Bindable.swift in Sources */,

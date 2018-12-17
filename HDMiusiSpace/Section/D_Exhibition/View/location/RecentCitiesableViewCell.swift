@@ -19,7 +19,7 @@ class RecentCitiesTableViewCell: UITableViewCell {
     // 使用tableView.dequeueReusableCell会自动调用这个方法
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.setupUI()
+        //self.setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,6 +56,7 @@ class RecentCitiesTableViewCell: UITableViewCell {
             //            btn.layer.borderColor = mainColor.cgColor
             //            btn.layer.borderWidth = 0.5
             btn.layer.cornerRadius = 1
+            btn.tag = i
             btn.setBackgroundImage(btnHighlightImage, for: .highlighted)
             btn .addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
             self.addSubview(btn)

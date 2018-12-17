@@ -87,23 +87,42 @@ class HDSSL_worldLocView: UIView {
         rightTable.register(WorldHotCell.self, forCellReuseIdentifier: hotCityCell)
         
         //右侧数据
-        //最近
-        var city1 = CityModel()
-        city1.city_id = 244
-        city1.city_name = "鞍山"
-        var city2 = CityModel()
-        city2.city_id = 332
-        city2.city_name = "安庆"
-        var city3 = CityModel()
-        city3.city_id = 387
-        city3.city_name = "安阳"
-        var city4 = CityModel()
-        city4.city_id = 325
-        city4.city_name = "阜阳"
         
-        recentArray.append(city1)
-        recentArray.append(city2)
-        recentArray.append(city3)
+        //最近
+//        var city1 = CityModel()
+//        city1.city_id = 244
+//        city1.city_name = "鞍山"
+//        var city2 = CityModel()
+//        city2.city_id = 332
+//        city2.city_name = "安庆"
+//        var city3 = CityModel()
+//        city3.city_id = 387
+//        city3.city_name = "安阳"
+//        var city4 = CityModel()
+//        city4.city_id = 325
+//        city4.city_name = "阜阳"
+//
+//        recentArray.append(city1)
+//        recentArray.append(city2)
+//        recentArray.append(city3)
+        
+        let manager = UserDefaults()
+        let storedData:Data?  = manager.object(forKey: recentCityArrayKey) as?  Data
+        guard storedData != nil else {
+            return
+        }
+        do {
+            let arr = try JSONDecoder().decode([CityModel].self, from: storedData!)
+            if arr.count > 0 {
+                for city in arr {
+                    recentArray.append(city)
+                }
+            }
+        }
+        catch let error {
+            LOG("\(error)")
+        }
+        
         
         //右侧标题
         let arr1 = ["定位","最近访问","热门"]
@@ -220,7 +239,8 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                         UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                         UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                         UserDefaults.standard.synchronize()
-                        
+                        self.saveRecentCityArr(city)
+
                         //回调，改变城市
                         weak var weakSelf = self
                         if weakSelf?.blockTapRightTableItem != nil {
@@ -364,4 +384,29 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
         }
         return 0
     }
+}
+
+
+extension HDSSL_worldLocView {
+    
+    func saveRecentCityArr(_ city: CityModel) {
+        var contain = false
+        for (i,c) in self.recentArray.enumerated() {
+            if c.city_name == city.city_name {
+                contain = true
+                self.recentArray.remove(at: i)
+                self.recentArray.insert(city, at: 0)
+            }
+        }
+        if contain == false {
+            self.recentArray.insert(city, at: 0)
+        }
+        do {
+            let data = try JSONEncoder().encode(self.recentArray)
+            UserDefaults().set(data, forKey: recentCityArrayKey)
+        } catch let error {
+            LOG("\(error)")
+        }
+    }
+    
 }

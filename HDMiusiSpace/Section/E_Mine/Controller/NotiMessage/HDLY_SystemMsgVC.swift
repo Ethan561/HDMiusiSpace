@@ -31,10 +31,15 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model: HDLY_SystemMsgModel = try! jsonDecoder.decode(HDLY_SystemMsgModel.self, from: result)
-            if model.data != nil {
-                self.dataArr = model.data!
-                self.tableView.reloadData()
+            do {
+                let model: HDLY_SystemMsgModel = try jsonDecoder.decode(HDLY_SystemMsgModel.self, from: result)
+                if model.data != nil {
+                    self.dataArr = model.data!
+                    self.tableView.reloadData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
             }
             
         }) { (errorCode, msg) in
@@ -53,8 +58,6 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
     private func loadMore() {
         self.tableView.es.noticeNoMoreData()
     }
-
-    
 }
 
 

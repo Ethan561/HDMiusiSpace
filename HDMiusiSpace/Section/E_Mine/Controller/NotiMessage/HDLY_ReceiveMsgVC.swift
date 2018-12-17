@@ -34,11 +34,17 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:HDLY_DynamicMsgModel = try! jsonDecoder.decode(HDLY_DynamicMsgModel.self, from: result)
-            if model.data != nil {
-                self.dataArr = model.data!
-                self.tableView.reloadData()
+            do {
+                let model:HDLY_DynamicMsgModel = try jsonDecoder.decode(HDLY_DynamicMsgModel.self, from: result)
+                if model.data != nil {
+                    self.dataArr = model.data!
+                    self.tableView.reloadData()
+                }
             }
+            catch let error {
+                LOG("\(error)")
+            }
+            
             
         }) { (errorCode, msg) in
             //            tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))

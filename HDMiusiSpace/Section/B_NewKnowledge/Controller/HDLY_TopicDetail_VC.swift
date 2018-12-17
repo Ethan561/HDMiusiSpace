@@ -478,7 +478,11 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 
             }
         } else {
-            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token!, option_id_str:String(reportType!) , comment_id: model.commentID)
+            if HDDeclare.shared.api_token == nil {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录你的账号")
+                return
+            }
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
         }
     }
 }

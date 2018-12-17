@@ -47,10 +47,14 @@ class TopicDetailViewModel: NSObject {
             self.showEmptyView.value = false
             
             let jsonDecoder = JSONDecoder()
-            
-            //JSON转Model：
-            let model:TopicModel = try! jsonDecoder.decode(TopicModel.self, from: result)
-            self.topicDetail.value = model
+            do {
+                //JSON转Model：
+                let model:TopicModel = try jsonDecoder.decode(TopicModel.self, from: result)
+                self.topicDetail.value = model
+            }
+            catch let error {
+                LOG("\(error)")
+            }
             
         }) { (errorCode, msg) in
             self.showEmptyView.value = true

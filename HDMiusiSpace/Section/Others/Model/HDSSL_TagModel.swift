@@ -27,3 +27,23 @@ struct HDSSL_Tag : Codable {
     var title    : String?           // 标签名称
     var is_chose : Int?              // 是否选择，1 Yes，0 No
 }
+
+
+struct UpdateData: Codable {
+    var status : Int = 0
+    var msg : String
+    var data : UpdateModel?
+}
+
+struct UpdateModel: Codable {
+    var version_id: Int = 0
+    var version_no : String
+    var version_url : String
+    var version_info : String
+    var install : String
+    var created_at : String
+    var is_new : String
+}
+
+
+

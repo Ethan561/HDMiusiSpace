@@ -32,8 +32,13 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
+        
+        getVersionData()
+        
         setupViews()
         let empV = EmptyConfigView.NoDataEmptyView()
         self.myTableView.ly_emptyView = empV
@@ -367,3 +372,32 @@ extension HDRootAVC {
     }
 }
 
+extension HDRootAVC {
+    func showUpdateAlertView(model:UpdateModel) {
+        let alertView = Bundle.main.loadNibNamed("HDZQ_UpdateAlertView", owner: nil, options: nil)?.last as! HDZQ_UpdateAlertView
+        alertView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        kWindow?.addSubview(alertView)
+    }
+    
+    func getVersionData() {
+        guard let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  else {
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkVersion(version_id: 0, device_id: HDDeclare.shared.deviceno ?? "") , success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:UpdateData = try jsonDecoder.decode(UpdateData.self, from: result)
+                if model.status == 1 {
+                    let m = model.data
+                    self.showUpdateAlertView(model:m!)
+                }
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+        }) { (error, msg) in
+//            self.showUpdateAlertView(model:nil)
+        }
+    }
+    
+}

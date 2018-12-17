@@ -31,7 +31,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
     
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
-    
+
     //mvvm
     var viewModel: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
     

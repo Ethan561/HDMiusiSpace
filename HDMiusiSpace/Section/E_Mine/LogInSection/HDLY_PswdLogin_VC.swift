@@ -86,7 +86,10 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 HDLY_UserModel.shared.requestUserInfo()
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
-                    self.backToRootEVC()
+//                    self.backToRootEVC()
+//                    self.navigationController?.popToRootViewController(animated: true)
+                    self.navigationController?.popViewController(animated: true)
+                    self.navigationController?.popViewController(animated: false)
                 })
                 
             }) { (errorCode, msg) in
@@ -202,7 +205,9 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
 //                self.back()
-                self.navigationController?.popToRootViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+//                self.navigationController?.popToRootViewController(animated: true)
             })
             
         }) { (errorCode, msg) in

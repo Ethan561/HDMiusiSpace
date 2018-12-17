@@ -16,7 +16,7 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         webView.scrollView.isScrollEnabled = false
-        
+        webView.isUserInteractionEnabled = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

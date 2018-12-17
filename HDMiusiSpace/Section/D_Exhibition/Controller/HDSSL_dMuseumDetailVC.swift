@@ -276,7 +276,7 @@ extension HDSSL_dMuseumDetailVC {
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![section-2]
                 if model.type == 1 {//同馆展览
-                    header.titleL.text = model.exhibition?.categoryTitle
+                    header.titleL.text = String.init(format: "同馆展览(%d)", model.exhibition?.exhibitionNum ?? 0)//model.exhibition?.categoryTitle
                 }
                 else if model.type == 2 {
                     header.titleL.text = model.raiders?.categoryTitle

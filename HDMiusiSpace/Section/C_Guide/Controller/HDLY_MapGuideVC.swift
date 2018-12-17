@@ -107,7 +107,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             mapV!.levelsOfDetail = 3
             
             //
-            let urlPrefix:String   = map.mapPath
+            let urlPrefix:String   = map.mapPath + "/"
             let mapItemCachePath:String = String.init(format: "%@/Resource/WebMap", kCachePath)
             mapV!.initMinMapImage(withUrlPrefix: urlPrefix, mapItemCachePath: mapItemCachePath)
             
@@ -180,7 +180,7 @@ extension HDLY_MapGuideVC {
             
             self.poiArray!.forEach({ (model) in
                 
-                let poiLocation:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: Double(model.latitude), longitude: Double(model.longitude))
+                let poiLocation:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: Double(model.latitude) ?? 0, longitude: Double(model.longitude) ?? 0)
                 let poiPoint: CGPoint = self.changeLocateToPoint(locate: poiLocation)
                 
                 let x = CGFloat(poiPoint.x) * mapTemp.zoomScale
@@ -195,9 +195,9 @@ extension HDLY_MapGuideVC {
                 if isRead == true {
                     ann.annType = kAnnotationType_ReadOne
                 }
-                ann.star = String(model.star)
+                ann.star = model.star.string
                 ann.type = model.type
-                ann.identify = String(model.exhibitionID)
+                ann.identify = model.exhibitionID.string
                 ann.size = CGSize.init(width: 35, height: 35)
                 mapTemp.add(ann, animated: true)
             })
@@ -217,12 +217,16 @@ extension HDLY_MapGuideVC {
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            guard let model:HDLY_MapModel = try? jsonDecoder.decode(HDLY_MapModel.self, from: result) else {
-                return
+            do {
+                let model:HDLY_MapModel = try jsonDecoder.decode(HDLY_MapModel.self, from: result)
+                
+                self.mapInfo = model.data
+                self.poiArray = model.data.list
+                self.mapViewInit()
             }
-            self.mapInfo = model.data
-            self.poiArray = model.data.list
-            self.mapViewInit()
+            catch let error {
+                LOG("\(error)")
+            }
         }) { (errorCode, msg) in
             
         }
@@ -328,8 +332,8 @@ extension HDLY_MapGuideVC : CLLocationManagerDelegate {
         guard let map = self.mapInfo else {
             return []
         }
-        let coordinate:CLLocationCoordinate2D? = CLLocationCoordinate2D.init(latitude: map.leftTopLatitude, longitude: map.leftTopLongitude)
-        let endCoordi:CLLocationCoordinate2D? = CLLocationCoordinate2D.init(latitude: map.rightBottomLatitude, longitude: map.rightBottomLongitude)
+        let coordinate:CLLocationCoordinate2D? = CLLocationCoordinate2D.init(latitude:Double(map.leftTopLatitude) ?? 0, longitude: Double(map.leftTopLongitude) ?? 0)
+        let endCoordi:CLLocationCoordinate2D? = CLLocationCoordinate2D.init(latitude:Double( map.rightBottomLatitude) ?? 0, longitude:Double( map.rightBottomLongitude) ?? 0)
         return [coordinate!,endCoordi!]
     }
     
@@ -338,10 +342,9 @@ extension HDLY_MapGuideVC : CLLocationManagerDelegate {
         guard let map = self.mapInfo else {
             return size
         }
-        size = CGSize(width: ceil(Double(map.width)/8), height: ceil(Double(map.height)/8))
+        size = CGSize(width: ceil(Double(map.width.int)/8.0), height: ceil(Double(map.height.int)/8.0))
         return size
     }
-    
     
     private func isInThisArea(point:CLLocationCoordinate2D) -> Bool {
         let latArr = self.getMapCoordinate()

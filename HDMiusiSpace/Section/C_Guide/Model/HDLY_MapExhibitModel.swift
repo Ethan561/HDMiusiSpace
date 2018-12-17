@@ -17,9 +17,9 @@ struct HDLY_MapModel: Codable {
 
 struct HDLY_MapData: Codable {
     let mapPath: String
-    let width, height: Int
-    let leftTopLongitude, leftTopLatitude, rightBottomLongitude, rightBottomLatitude: Double
-    let list: [HDLY_MapList]
+    let width, height: TStrInt
+    let leftTopLongitude, leftTopLatitude, rightBottomLongitude, rightBottomLatitude: String
+    var list: [HDLY_MapList]?
     
     enum CodingKeys: String, CodingKey {
         case mapPath = "map_path"
@@ -36,8 +36,8 @@ struct HDLY_MapList: Codable {
     let type: Int
     let title: String
     let audio: String
-    let longitude, latitude: Double
-    let star, exhibitionID: Int
+    let longitude, latitude: String
+    let star, exhibitionID: TStrInt
     
     enum CodingKeys: String, CodingKey {
         case type, title, audio, longitude, latitude, star

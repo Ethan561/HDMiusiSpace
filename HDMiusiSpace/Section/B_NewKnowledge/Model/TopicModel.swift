@@ -51,7 +51,9 @@ struct TopicCommentList: Codable {
     var avatar, nickname: String
     var isLike: Int
     var list: [TopicSecdCommentList]
-    
+    var showAll = false
+    var height = 0
+    var topHeight = 0
     enum CodingKeys: String, CodingKey {
         case uid, comment
         case likeNum = "like_num"
@@ -66,7 +68,7 @@ struct TopicCommentList: Codable {
 struct TopicSecdCommentList: Codable {
     var commentID, uid, parentUid: Int
     var comment, uNickname, parentNickname: String
-    
+    var height = 0
     enum CodingKeys: String, CodingKey {
         case commentID = "comment_id"
         case uid

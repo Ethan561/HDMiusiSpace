@@ -479,8 +479,8 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 
             }
         } else {
-            if HDDeclare.shared.api_token == nil {
-                HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录你的账号")
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
                 return
             }
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)

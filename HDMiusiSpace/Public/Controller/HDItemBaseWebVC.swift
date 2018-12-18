@@ -164,21 +164,6 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
         decisionHandler(.allow)
     }
     
-    func open(scheme: String) {
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                          completionHandler: {
-                                            (success) in
-                                            print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

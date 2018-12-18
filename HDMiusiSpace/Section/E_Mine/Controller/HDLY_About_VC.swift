@@ -143,13 +143,14 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "检查版本"
                 cell?.subNameLTrainingCons.constant = 45
-                if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
-                    if version == self.version {
-                        cell?.subNameL.text = "已经是最新版本"
-                    } else {
-                       cell?.subNameL.text = "可更新到V\(self.version)"
-                    }
-                }
+//                if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
+//                    if version == self.version {
+//                        cell?.subNameL.text = "已经是最新版本"
+//                    } else {
+//                       cell?.subNameL.text = "可更新到V\(self.version)"
+//                    }
+//                }
+                cell?.subNameL.text = self.version
                 cell?.bottomLine.isHidden = true
 
                 return cell!
@@ -176,25 +177,15 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         }
         if section == 1 && index == 1 {
             // 弹窗评分
-            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
+//            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
+            open(scheme: "https://fir.im/musespace")
         }
         if section == 1 && index == 2 {
-            open(scheme: "https://itunes.apple.com/cn/app/id1130149052")
+            open(scheme: "https://fir.im/musespace")
         }
     }
     
-    func open(scheme: String) {
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],completionHandler: { (success) in
-                     print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
+    
     
     func showAlert(msg: String) {
         open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")

@@ -136,9 +136,9 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         lab_contentTitle.text = orderDetail?.title
         classTimeLab.text = String.init(format: "%d", orderDetail?.classNum ?? 0)
         authorLab.text = String.init(format: "%@", orderDetail?.author ?? "")
-        lab_contentSalePrice.text = String.init(format: "%@", orderDetail?.amount ?? "")
+        lab_contentSalePrice.text = String.init(format: "¥%@", orderDetail?.amount ?? "")
         lab_contentVIP.text = String.init(format: "%@", orderDetail?.discount ?? "")
-        lab_contentRealPrice.text = String.init(format: "%@", orderDetail?.payAmount ?? "")
+        lab_contentRealPrice.text = String.init(format: "¥%@", orderDetail?.payAmount ?? "")
         
         lab_orderNumber.text = String.init(format: "%@", orderDetail?.orderNo ?? "")
         lab_orderCreTime.text = String.init(format: "%@", orderDetail?.createdAt ?? "")

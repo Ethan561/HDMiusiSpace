@@ -210,7 +210,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         view.addSubview(imgView)
         
         //输入
-        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         
         textFeild = UITextField.init(frame: CGRect.init(x: 20, y: 3, width: view.frame.size.width-20-30, height: 30))
         view.addSubview(textFeild)

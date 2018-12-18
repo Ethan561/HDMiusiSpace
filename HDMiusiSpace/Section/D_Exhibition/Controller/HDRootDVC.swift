@@ -111,7 +111,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         museumScrollV.isHidden = true
         
         //
-        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         searchPlaceLab.text = placeholder
         
         //定位按钮设置

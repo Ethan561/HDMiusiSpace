@@ -43,6 +43,29 @@ class HDZQ_MyViewModel: NSObject {
         }
     }
     
+    var collectListens: Bindable = Bindable([MyCollectListenModel]())
+    func requestMyListens(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFavoriteListens(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectListenData = try! jsonDecoder.decode(MyCollectListenData.self, from: result)
+            self.collectListens.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    var collectJingxuans: Bindable = Bindable([MyCollectJingxuanModel]())
+    func requestMyCollectJingxuans(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target:.getMyFavoriteJingxuan(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectJingxuanData = try! jsonDecoder.decode(MyCollectJingxuanData.self, from: result)
+            self.collectJingxuans.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    
     var collectCourses: Bindable = Bindable([MyCollectCourseModel]())
     func requestMyCollectCourses(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFavoriteCourses(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in

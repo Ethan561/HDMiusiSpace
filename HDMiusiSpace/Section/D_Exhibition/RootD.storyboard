@@ -652,6 +652,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlpl_img_share_bg" translatesAutoresizingMaskIntoConstraints="NO" id="cxE-ZS-gOn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-ML-KD7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPg-r5-GHW">
                                 <rect key="frame" x="20" y="591" width="335" height="56"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -671,24 +674,19 @@
                                     <action selector="action_shareImg:" destination="kL7-BB-Z91" eventType="touchUpInside" id="tRh-Nr-dE4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-ML-KD7">
-                                <rect key="frame" x="34.5" y="40" width="306" height="511"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="BvE-ML-KD7" secondAttribute="height" multiplier="335:560" id="xcZ-Fs-YNZ"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="BvE-ML-KD7" firstAttribute="trailing" secondItem="NVe-IE-4pm" secondAttribute="trailing" id="0ya-i9-iZB"/>
+                            <constraint firstItem="BvE-ML-KD7" firstAttribute="leading" secondItem="NVe-IE-4pm" secondAttribute="leading" id="5eM-Sd-I4D"/>
                             <constraint firstItem="cxE-ZS-gOn" firstAttribute="trailing" secondItem="NVe-IE-4pm" secondAttribute="trailing" id="Al4-dm-Pfd"/>
                             <constraint firstItem="NVe-IE-4pm" firstAttribute="bottom" secondItem="PPg-r5-GHW" secondAttribute="bottom" constant="20" id="B3O-wB-Nfy"/>
                             <constraint firstItem="NVe-IE-4pm" firstAttribute="trailing" secondItem="PPg-r5-GHW" secondAttribute="trailing" constant="20" id="HWH-Kf-0IK"/>
                             <constraint firstItem="cxE-ZS-gOn" firstAttribute="bottom" secondItem="NVe-IE-4pm" secondAttribute="bottom" id="Sg5-UZ-bRO"/>
                             <constraint firstItem="cxE-ZS-gOn" firstAttribute="leading" secondItem="NVe-IE-4pm" secondAttribute="leading" id="TdL-bH-xgD"/>
-                            <constraint firstItem="BvE-ML-KD7" firstAttribute="top" secondItem="NVe-IE-4pm" secondAttribute="top" constant="20" id="azD-Mx-Xfe"/>
+                            <constraint firstItem="BvE-ML-KD7" firstAttribute="top" secondItem="jKv-w6-1d4" secondAttribute="top" id="Wur-vp-vZS"/>
+                            <constraint firstItem="BvE-ML-KD7" firstAttribute="bottom" secondItem="NVe-IE-4pm" secondAttribute="bottom" id="n5Q-Jk-Vay"/>
                             <constraint firstItem="PPg-r5-GHW" firstAttribute="leading" secondItem="NVe-IE-4pm" secondAttribute="leading" constant="20" id="oNZ-Gy-WDd"/>
-                            <constraint firstItem="BvE-ML-KD7" firstAttribute="centerX" secondItem="jKv-w6-1d4" secondAttribute="centerX" id="ojF-NV-gJw"/>
-                            <constraint firstItem="PPg-r5-GHW" firstAttribute="top" secondItem="BvE-ML-KD7" secondAttribute="bottom" constant="40" id="tqQ-hY-3AZ"/>
                             <constraint firstItem="cxE-ZS-gOn" firstAttribute="top" secondItem="jKv-w6-1d4" secondAttribute="top" id="xRD-oZ-67Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NVe-IE-4pm"/>

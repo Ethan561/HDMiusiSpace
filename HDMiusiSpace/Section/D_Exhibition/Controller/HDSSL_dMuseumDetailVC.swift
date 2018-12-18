@@ -440,6 +440,7 @@ extension HDSSL_dMuseumDetailVC {
                     if self.infoModel?.price != nil {
                         title = "\(self.infoModel!.price!)"
                     }
+                    cell.accessoryType = .none
                 }else if indexPath.row == 3 {
                     name = "地址："
                     title = self.infoModel?.address

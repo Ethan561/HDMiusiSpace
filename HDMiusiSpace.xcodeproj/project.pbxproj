@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B1824B521C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */; };
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
 		1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */; };
 		1B1C2D9321AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */; };
@@ -601,6 +602,7 @@
 
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectCollectionSubVC.swift; sourceTree = "<group>"; };
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
 		1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFootprintVC.swift; sourceTree = "<group>"; };
 		1B1C2D9221AD2F6700254854 /* HDZQ_AboutMuseFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_AboutMuseFooterView.swift; sourceTree = "<group>"; };
@@ -2602,6 +2604,7 @@
 				1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */,
 				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
 				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
+				1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */,
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
 				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
 				1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */,
@@ -3246,6 +3249,7 @@
 				D6AA0AF92134DED00036320F /* HDLY_ModifyName_VC.swift in Sources */,
 				D6A1E230211C13CF00E1E893 /* FSPageViewLayout.swift in Sources */,
 				A7676BF42192B414004C7F8A /* ExhibitionModel.swift in Sources */,
+				1B1824B521C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift in Sources */,
 				D66991C92130EDD5002568B2 /* HDLY_AnswerText_Cell.swift in Sources */,
 				D66C7AB62123D89700B34221 /* NewKnowledgeModel.swift in Sources */,
 				D670D389212585A00064750A /* HDLY_CourseTitle_Cell.swift in Sources */,

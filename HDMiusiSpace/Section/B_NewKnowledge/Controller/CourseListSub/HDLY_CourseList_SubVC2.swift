@@ -17,7 +17,9 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bottomHCons: NSLayoutConstraint!
     @IBOutlet weak var buyBtn: UIButton!
-    
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
     //
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
@@ -38,6 +40,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         dataRequest()
         self.bottomHCons.constant = 0
+        bindViewModel()
 
     }
     
@@ -103,7 +106,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func buyBtnAction(_ sender: Any) {
-        
+        bugGoodsAction()
     }
 }
 
@@ -249,5 +252,82 @@ extension HDLY_CourseList_SubVC2: UIWebViewDelegate {
         }
     }
     
+}
 
+extension  HDLY_CourseList_SubVC2{
+    func bugGoodsAction() {
+        if  self.infoModel?.data  != nil {
+            if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self.pushToLoginVC(vc: self)
+                    return
+                }
+                //获取订单信息
+                guard let goodId = self.infoModel?.data.articleID.int else {
+                    return
+                }
+                publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, self)
+                return
+                
+            }
+        }
+    }
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = "¥\(model.price!)"
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction()
+        }
+        
+    }
+    
+    func orderBuyAction() {
+        guard let goodId = self.infoModel?.data.articleID.int else {
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+        }
+        
+    }
+    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind { (model) in
+            weakSelf?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind { (model) in
+            weakSelf?.showPaymentResult(model)
+        }
+        
+    }
 }

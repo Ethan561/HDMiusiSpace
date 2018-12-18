@@ -82,7 +82,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     let uploadVM = HDLY_RootCVM()
     var listPlayModel: ChapterList?
     var currentPlayTime: TimeInterval = 0
-    
+    var isStatusBarHidden = false//是否隐藏状态栏
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -113,12 +114,16 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.player.isViewControllerDisappear = true
         
     }
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        
+        return self.isStatusBarHidden
+    }
+    
     //MVVM
     
     func bindViewModel() {
@@ -140,8 +145,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         
         weak var _self = self
         self.player.orientationWillChange = { (player,isFullScreen) -> (Void) in
+            _self?.isStatusBarHidden = isFullScreen
             _self?.setNeedsStatusBarAppearanceUpdate()
         }
+        
         // 播放完自动播放下一个
         self.player.playerDidToEnd = { (asset) -> () in
             

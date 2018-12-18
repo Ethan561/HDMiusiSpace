@@ -47,6 +47,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         tableView.separatorStyle = .none
         audioPlayer.showFloatingBtn = false
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
         
         dataRequest()
 //        audioPlayer.delegate = self
@@ -76,17 +78,25 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
+        tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestionList(skip: "0", take: "100", api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:CourseQuestion = try! jsonDecoder.decode(CourseQuestion.self, from: result)
-            self.infoModel = model
-            self.getWebHeight()
-            self.tableView.reloadData()
-            
+            do {
+                let model:CourseQuestion = try jsonDecoder.decode(CourseQuestion.self, from: result)
+                self.infoModel = model
+                self.getWebHeight()
+                self.tableView.reloadData()
+                self.tableView.ly_endLoading()
+            }
+            catch let error {
+                LOG("\(error)")
+                self.tableView.ly_endLoading()
+            }
+
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()

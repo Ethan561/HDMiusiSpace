@@ -982,6 +982,15 @@ extension HDSSL_dExhibitionDetailVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //       LOG("*****:\(scrollView.contentOffset.y)")
         if self.dTableView == scrollView {
+            //滚动时刷新webview
+            for view in self.dTableView.visibleCells {
+                if view.isKind(of: HDSSL_Sec1Cell.self) {
+                    let cell = view as! HDSSL_Sec1Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+            
+            //导航栏
             let offSetY = scrollView.contentOffset.y
             if offSetY >= kTableHeaderViewH1 {
                 navBgView.isHidden = false

@@ -46,6 +46,30 @@ struct MyCollectNewsModel:Codable {
     }
 }
 
+struct MyCollectListenData:Codable {
+    var status: Int = 0
+    var data = [MyCollectListenModel]()
+    var msg: String?
+}
+
+struct MyCollectListenModel:Codable {
+    var listen_id: Int = 0
+    var title, img: String
+    var listening : Int
+}
+
+struct MyCollectJingxuanData:Codable {
+    var status: Int = 0
+    var data = [MyCollectJingxuanModel]()
+    var msg: String?
+}
+
+struct MyCollectJingxuanModel:Codable {
+    var article_id: Int = 0
+    var title, img: String
+}
+
+
 struct MyCollectExhibitionData:Codable {
     var status: Int = 0
     var data = [MyCollectExhibitionModel]()

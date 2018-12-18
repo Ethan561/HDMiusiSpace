@@ -15,6 +15,12 @@ enum HD_ZQ_Person_API {
     case getMyFollow(api_token: String, skip:Int, take:Int,type:Int)
     //我的收藏资讯
     case getMyFavoriteNews(api_token: String, skip:Int, take:Int,type:Int)
+    //我的收藏攻略
+    case getMyFavoriteGonglve(api_token: String, skip:Int, take:Int,type:Int)
+    //我的收藏精选
+    case getMyFavoriteJingxuan(api_token: String, skip:Int, take:Int,type:Int)
+    //我的收藏轻听随看
+    case getMyFavoriteListens(api_token: String, skip:Int, take:Int,type:Int)
     //我的收藏课程
     case getMyFavoriteCourses(api_token: String, skip:Int, take:Int,type:Int)
     //我的收藏展览
@@ -56,6 +62,12 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/focus/my_focus"
         case .getMyFavoriteNews(api_token: _,  skip: _, take: _, type: _):
             return "/api/favorites/my_news"
+        case .getMyFavoriteGonglve(api_token: _,  skip: _, take: _, type: _):
+            return "/api/favorites/my_news"
+        case .getMyFavoriteJingxuan(api_token: _,  skip: _, take: _, type: _):
+            return "/api/favorites/my_topics"
+        case .getMyFavoriteListens(api_token: _,  skip: _, take: _, type: _):
+            return "/api/favorites/my_listen"
         case .getMyFavoriteCourses(api_token: _,  skip: _, take: _, type: _):
             return "/api/myclass/favorites_list"
         case .getMyFavoriteExhibition(api_token: _,  skip: _, take: _, type: _):
@@ -125,6 +137,30 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
+        case .getMyFavoriteGonglve(let apiToken,let page,let size,let type):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size,
+                                     "type":type], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyFavoriteListens(let apiToken,let page,let size,let type):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size,
+                                     "type":type], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyFavoriteJingxuan(let apiToken,let page,let size,let type):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size,
+                                     "type":type], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         case .getMyFavoriteCourses(let apiToken,let page,let size,let type):
             params = params.merging(["api_token": apiToken,
                                      "skip":page,

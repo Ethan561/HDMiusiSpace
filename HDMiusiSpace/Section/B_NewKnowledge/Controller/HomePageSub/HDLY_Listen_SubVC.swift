@@ -78,7 +78,7 @@ class HDLY_Listen_SubVC:                                                        
     
     func dataRequest(cate_id: String) {
 
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "10", cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "100", cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

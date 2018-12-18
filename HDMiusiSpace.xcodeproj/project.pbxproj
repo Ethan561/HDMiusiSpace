@@ -428,9 +428,7 @@
 		D671F747211A871D00A9EE57 /* SPPageMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D671F745211A871D00A9EE57 /* SPPageMenu.m */; };
 		D671F74B211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */; };
 		D671F74D211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */; };
-		D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */; };
 		D671F751211A953E00A9EE57 /* HDLY_Art_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */; };
-		D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */; };
 		D671F755211A96A700A9EE57 /* RecommendHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F754211A96A700A9EE57 /* RecommendHeader.swift */; };
 		D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D671F756211A96BC00A9EE57 /* RecommendHeader.xib */; };
 		D671F759211A98A600A9EE57 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D671F758211A98A600A9EE57 /* UIView+Nib.swift */; };
@@ -1117,9 +1115,7 @@
 		D671F746211A871D00A9EE57 /* SPPageMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPageMenu.h; sourceTree = "<group>"; };
 		D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Recommend_SubVC.swift; sourceTree = "<group>"; };
 		D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Listen_SubVC.swift; sourceTree = "<group>"; };
-		D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Newest_SubVC.swift; sourceTree = "<group>"; };
 		D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Art_SubVC.swift; sourceTree = "<group>"; };
-		D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Kids_SubVC.swift; sourceTree = "<group>"; };
 		D671F754211A96A700A9EE57 /* RecommendHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendHeader.swift; sourceTree = "<group>"; };
 		D671F756211A96BC00A9EE57 /* RecommendHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendHeader.xib; sourceTree = "<group>"; };
 		D671F758211A98A600A9EE57 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
@@ -2004,8 +2000,6 @@
 				D671F74A211A8FCF00A9EE57 /* HDLY_Recommend_SubVC.swift */,
 				D671F74C211A94BE00A9EE57 /* HDLY_Listen_SubVC.swift */,
 				D671F750211A953E00A9EE57 /* HDLY_Art_SubVC.swift */,
-				D671F74E211A951500A9EE57 /* HDLY_Newest_SubVC.swift */,
-				D671F752211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift */,
 			);
 			path = HomePageSub;
 			sourceTree = "<group>";
@@ -3277,7 +3271,6 @@
 				D620E1BD21A28EDD0034E258 /* HDLY_SameExhibitionListVC.swift in Sources */,
 				D6115AFB218FD490004A05DA /* ZFLoadingView.m in Sources */,
 				A7441D3521A2A0D50064E6A6 /* TZAssetModel.m in Sources */,
-				D671F753211A95DC00A9EE57 /* HDLY_Kids_SubVC.swift in Sources */,
 				D6115AF2218FD490004A05DA /* ZFUtilities.m in Sources */,
 				A738B1F62194073800B78D21 /* HotCityTableViewCell.swift in Sources */,
 				D67ABF80212BAD4700276CDE /* STKCoreFoundationDataSource.m in Sources */,
@@ -3323,7 +3316,6 @@
 				D696C3F021A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift in Sources */,
 				D620E1BF21A2B2CD0034E258 /* HDLY_StrategyListVC.swift in Sources */,
 				D6375683219FFC36004AD093 /* HDLY_MuseumInfoType2Cell.swift in Sources */,
-				D671F74F211A951500A9EE57 /* HDLY_Newest_SubVC.swift in Sources */,
 				D62277D321368069008F1416 /* MTImagePickerAlbumsController.swift in Sources */,
 				D6193B9C21C3842B00367356 /* UIScrollView+Empty.swift in Sources */,
 				D6694734212FA97A0068945A /* CourseChapter.swift in Sources */,

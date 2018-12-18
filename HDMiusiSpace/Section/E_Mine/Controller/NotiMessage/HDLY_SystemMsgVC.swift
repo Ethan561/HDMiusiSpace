@@ -13,23 +13,27 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
     var dataArr = [SystemMsgModelData]()
-
+    var skip = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "系统消息"
         tableView.separatorStyle = .none
-
-        // Do any additional setup after loading the view.
+        
         self.dataRequest()
         addRefresh()
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func dataRequest()  {
         let token = HDDeclare.shared.api_token ?? ""
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterSystemList(skip: 0, take: 100, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+        self.tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterSystemList(skip: skip, take: 10, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.ly_endLoading()
+            self.tableView.es.stopPullToRefresh()
             let jsonDecoder = JSONDecoder()
             do {
                 let model: HDLY_SystemMsgModel = try jsonDecoder.decode(HDLY_SystemMsgModel.self, from: result)
@@ -40,24 +44,72 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
             }
             catch let error {
                 LOG("\(error)")
+                self.tableView.es.stopPullToRefresh()
             }
             
         }) { (errorCode, msg) in
-            //            tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            //            tableView.ly_showEmptyView()
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
+
         }
     }
     
     func addRefresh() {
-        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
     }
-
+    
+    
+    @objc func refreshAction() {
+        skip = 0
+        dataRequest()
+    }
+    
     private func loadMore() {
-        self.tableView.es.noticeNoMoreData()
+        skip = skip + 10
+        dataRequestLoadMore()
     }
+    
+    func dataRequestLoadMore()  {
+        let token = HDDeclare.shared.api_token ?? ""
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterSystemList(skip: skip, take: 10, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model: HDLY_SystemMsgModel = try jsonDecoder.decode(HDLY_SystemMsgModel.self, from: result)
+                if model.data?.count ?? 0 > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data!
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.es.stopLoadingMore()
+        }
+    }
+    
+    
 }
 
 

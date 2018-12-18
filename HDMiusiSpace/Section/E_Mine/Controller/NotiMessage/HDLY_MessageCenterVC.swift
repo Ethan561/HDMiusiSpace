@@ -71,7 +71,7 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
                 cell?.subTitleL.text = model.data?.systemMsgTitle
             }else {
                 cell?.timeL.text = model.data?.systemMsgTime
-                cell?.subTitleL.text = model.data?.systemMsgTitle
+                cell?.subTitleL.text = "暂无消息"
             }
             
         } else {
@@ -87,7 +87,7 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
                 cell?.subTitleL.text = model.data?.dynamicMsgTitle
             } else {
                 cell?.timeL.text = model.data?.dynamicMsgTime
-                cell?.subTitleL.text = model.data?.dynamicMsgTitle
+                cell?.subTitleL.text = "暂无消息"
             }
         }
         return cell!

@@ -61,17 +61,17 @@ extension HDZQ_MyCollectVC:SPPageMenuDelegate {
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
                 baseVC.type = 2
                 self.addChildViewController(baseVC)
-            case 2://展览
+            case 2://攻略
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
-                baseVC.type = 2
+                baseVC.type = 3
                 self.addChildViewController(baseVC)
-            case 3://展览
+            case 3://精选
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
-                baseVC.type = 2
+                baseVC.type = 4
                 self.addChildViewController(baseVC)
-            case 4://展览
+            case 4://轻听
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
-                baseVC.type = 2
+                baseVC.type = 5
                 self.addChildViewController(baseVC)
             default: break
                 

@@ -30,7 +30,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-    
+    let commentViewModel: CoursePublicViewModel = CoursePublicViewModel()
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.isOpaque = false
@@ -101,6 +101,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
+            weakSelf?.refreshAction()
         }
         //
         publicViewModel.likeModel.bind { (model) in
@@ -110,6 +111,10 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             }else {
                 weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
             }
+        }
+        
+        commentViewModel.likeModel.bind { (model) in
+            weakSelf?.refreshAction()
         }
         
         publicViewModel.isCollection.bind { (flag) in
@@ -133,8 +138,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             self?.commentView.type = 1
             self?.commentView.tableView.reloadData()
         }
-
-        
     }
     
     func showViewData() {
@@ -215,12 +218,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBAction func backAction(_ sender: Any) {
         self.back()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
 
 extension HDLY_TopicDetail_VC {
@@ -279,7 +276,7 @@ extension HDLY_TopicDetail_VC {
             }
         }
         if section == 2 {
-            guard let cmtNum = infoModel?.commentList.count else {
+            guard let cmtNum = infoModel?.comments.int else {
                 return nil
             }
             if cmtNum > 0{
@@ -355,7 +352,6 @@ extension HDLY_TopicDetail_VC {
                         subCommentsH = commentModel.height + 50
                     } else {
                       subCommentsH = commentModel.topHeight + 70
-//                        subCommentsH = 90
                     }
                 }
                 return textH + 60 + CGFloat(subCommentsH)
@@ -424,6 +420,10 @@ extension HDLY_TopicDetail_VC {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
                 }
                 
+                cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    self?.commentViewModel.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", self!)
+                })
+                
                 cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     self?.pushToOthersPersonalCenterVC(commentModel.uid)
                 })
@@ -461,6 +461,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
         if type == 0 {
             if index == 0 {
                 print(model.nickname)
+                //此处操作是为了恢复placeholder显示
                 keyboardTextField.textView.text = " "
                 keyboardTextField.textView.deleteBackward()
                 keyboardTextField.placeholderLabel.text = "回复@\(model.nickname)"

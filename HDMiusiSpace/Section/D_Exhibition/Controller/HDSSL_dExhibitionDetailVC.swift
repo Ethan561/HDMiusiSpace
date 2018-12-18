@@ -759,6 +759,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         dTableView.delegate = self
         dTableView.dataSource = self
         dTableView.tableFooterView = getTableFooterView()
+        
+        //导览按钮
+        let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))
+        guideBtn.setTitle("导览", for: .normal)
+        guideBtn.setTitleColor(UIColor.white, for: .normal)
+        guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        guideBtn.layer.cornerRadius = 25
+        guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+        guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+        self.view.addSubview(guideBtn)
     }
     //查看更多评论
     @objc func action_showMoreComment(){
@@ -786,6 +796,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
     }
     
+    //MARK:--- 列表的footerview
     func getTableFooterView() -> UIView {
         let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
         tFooter.backgroundColor = UIColor.white
@@ -798,16 +809,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         
         tFooter.addSubview(tipEnd)
         
-        let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: 25, width: ScreenWidth-40, height: 50))
-        guideBtn.setTitle("导览", for: .normal)
-        guideBtn.setTitleColor(UIColor.white, for: .normal)
-        guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        guideBtn.layer.cornerRadius = 25
-        guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
-        guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
-        
-        tFooter.addSubview(guideBtn)
-        
         return tFooter
     }
     
@@ -818,18 +819,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         vc.titleName = self.exdataModel?.data?.museumTitle ?? ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    //刷新webview，是否显示
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let cells = self.dTableView.visibleCells
-//
-//        for cell in cells {
-//            if cell.isKind(of: HDSSL_Sec1Cell.self) {
-//                let webCell = cell as! HDSSL_Sec1Cell
-//                webCell.webview.setNeedsLayout()
-//            }
-//        }
-//
-//    }
     
 }
 extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {

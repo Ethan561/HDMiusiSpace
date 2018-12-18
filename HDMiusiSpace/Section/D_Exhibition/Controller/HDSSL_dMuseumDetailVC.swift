@@ -72,6 +72,58 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             HDLY_LocationTool.shared.startLocation()
         }
         
+        loadMyViews()
+    }
+    func loadMyViews(){
+        myTableView.tableFooterView = getTableFooterView()
+        //参观指南、导览
+        let radierBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
+        radierBtn.setTitle("参观指南", for: .normal)
+        radierBtn.setTitleColor(UIColor.white, for: .normal)
+        radierBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        radierBtn.layer.cornerRadius = 25
+        radierBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+        radierBtn.addTarget(self, action: #selector(action_rader), for: .touchUpInside)
+
+        self.view.addSubview(radierBtn)
+        
+        let guideBtn = UIButton.init(frame: CGRect.init(x: ScreenWidth/2+10, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
+        guideBtn.setTitle("导览", for: .normal)
+        guideBtn.setTitleColor(UIColor.white, for: .normal)
+        guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        guideBtn.layer.cornerRadius = 25
+        guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+        guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+        
+        self.view.addSubview(guideBtn)
+        
+    }
+    @objc func action_rader(){
+        let webVC = HDItemBaseWebVC()
+        webVC.urlPath = self.infoModel?.tourGuide
+        webVC.titleName = self.infoModel?.title
+        self.navigationController?.pushViewController(webVC, animated: true)
+    }
+    @objc func action_guide(){
+        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+        vc.museum_id = self.infoModel?.museum_id ?? 0
+        vc.titleName = self.infoModel?.title ?? ""
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    //MARK:--- 列表的footerview
+    func getTableFooterView() -> UIView {
+        let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
+        tFooter.backgroundColor = UIColor.white
+        
+        let tipEnd = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 20))
+        tipEnd.text = "到底了～"
+        tipEnd.textColor = UIColor.lightGray
+        tipEnd.font = UIFont.systemFont(ofSize: 11)
+        tipEnd.textAlignment = .center
+        
+        tFooter.addSubview(tipEnd)
+        
+        return tFooter
     }
     
     //MVVM

@@ -18,6 +18,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(sharePath!)
         self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.grayImage(sourceImageV: self.imgView), options: nil, progressBlock: nil, completionHandler: nil)
     }
     

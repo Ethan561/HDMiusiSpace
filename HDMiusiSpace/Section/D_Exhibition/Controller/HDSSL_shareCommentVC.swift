@@ -18,7 +18,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.largeImgView.kf.setImage(with: URL.init(string: self.imgPath!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        self.largeImgView.kf.setImage(with: URL.init(string: self.imgPath!), placeholder: UIImage.grayImage(sourceImageV: self.largeImgView), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     @IBAction func action_shareImg(_ sender: Any) {

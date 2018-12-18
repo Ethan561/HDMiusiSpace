@@ -24,7 +24,9 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         bgView.layer.cornerRadius = 19
         bottomView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
-        
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
+
         dataRequest()
     }
 
@@ -36,15 +38,23 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
+        tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseMessageList(skip: "0", take: "100", api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
-            
+
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
 
             let jsonDecoder = JSONDecoder()
-            let model:CourseMessageList = try! jsonDecoder.decode(CourseMessageList.self, from: result)
-            self.infoModel = model
-            self.tableView.reloadData()
+            do {
+                let model:CourseMessageList = try jsonDecoder.decode(CourseMessageList.self, from: result)
+                self.infoModel = model
+                self.tableView.reloadData()
+                self.tableView.ly_endLoading()
+            }
+            catch let error {
+                LOG("\(error)")
+                self.tableView.ly_endLoading()
+            }
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))

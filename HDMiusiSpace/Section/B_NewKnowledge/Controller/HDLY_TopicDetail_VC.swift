@@ -23,6 +23,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var showFeedbackChooseTip = false
     //
     var infoModel: TopicModelData?
+    var commentModels = [TopicCommentList]()
     var topic_id:String?
     var commentText = ""
     var shareView: HDLY_ShareView?
@@ -64,18 +65,27 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         //MVVM
         bindViewModel()
         refreshAction()
-        
+        requestComments(skip: 0, take: 10)
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
 
     }
     
     @objc func refreshAction() {
-        
         if topic_id != nil {
             if fromRootAChoiceness == true {
                 viewModel.dataRequestWithArticleID(article_id: topic_id!, self)
             }else {
                 viewModel.dataRequestWithTopicID(listenID: topic_id!, self)
+            }
+        }
+    }
+    
+    @objc func requestComments(skip:Int,take:Int) {
+        if topic_id != nil {
+            if fromRootAChoiceness == true {
+                viewModel.requestCommentList(cate_id: 1, id: Int(topic_id!)!, skip: skip, take: take, vc: self)
+            }else {
+                 viewModel.requestCommentList(cate_id: 4, id: Int(topic_id!)!, skip: skip, take: take, vc: self)
             }
         }
     }
@@ -86,6 +96,30 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         weak var weakSelf = self
         viewModel.topicDetail.bind { (_) in
             weakSelf?.showViewData()
+        }
+        
+        viewModel.commentModels.bind { (models) in
+            var comments = models
+            for i in 0..<comments.count {
+                for j in 0..<comments[i].list.count {
+                    let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
+                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
+                    comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                    comments[i].height = comments[i].height + comments[i].list[j].height
+                    
+                    if j == 0 {
+                        comments[i].topHeight = comments[i].list[j].height
+                    }
+                    if j == 1 {
+                        comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
+                    }
+                }
+                comments[i].height = comments[i].height
+            }
+            weakSelf?.commentModels = comments
+            
+            let set = NSIndexSet.init(index: 2)
+            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
         }
         
         viewModel.showEmptyView.bind() { (show) in
@@ -101,7 +135,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
-            weakSelf?.refreshAction()
+//            weakSelf?.refreshAction()
+            weakSelf?.requestComments(skip: 0, take: 10)
         }
         //
         publicViewModel.likeModel.bind { (model) in
@@ -114,7 +149,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         }
         
         commentViewModel.likeModel.bind { (model) in
-            weakSelf?.refreshAction()
+            weakSelf?.requestComments(skip: 0, take: 10)
         }
         
         publicViewModel.isCollection.bind { (flag) in
@@ -141,26 +176,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     }
     
     func showViewData() {
-        guard var model = viewModel.topicDetail.value.data else {
+        guard let model = viewModel.topicDetail.value.data else {
             return
-        }
-        
-        // 计算总高度 保存到模型中去
-        for i in 0..<model.commentList.count {
-             for j in 0..<model.commentList[i].list.count {
-                let str = "\(model.commentList[i].list[j].uNickname)：\(model.commentList[i].list[j].comment)"
-                let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
-                model.commentList[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
-                model.commentList[i].height = model.commentList[i].height + model.commentList[i].list[j].height
-                
-                if j == 0 {
-                    model.commentList[i].topHeight = model.commentList[i].list[j].height
-                }
-                if j == 1 {
-                    model.commentList[i].topHeight = model.commentList[i].topHeight + model.commentList[i].list[j].height
-                }
-            }
-            model.commentList[i].height = model.commentList[i].height
         }
         
         self.infoModel = model
@@ -308,10 +325,7 @@ extension HDLY_TopicDetail_VC {
             return 0
         }
         if section == 2 {
-            if  let commentList = infoModel?.commentList {
-                return commentList.count
-            }
-            return 0
+           return commentModels.count
         }
         return 0
     }
@@ -338,24 +352,19 @@ extension HDLY_TopicDetail_VC {
             return 0.01
         }
         if indexPath.section == 2 {
-            if infoModel?.commentList != nil {
-                guard let commentModel = infoModel?.commentList[index] else {
-                    return  0.01
-                }
-                let textH = commentModel.comment.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
-                var subCommentsH = 0
-                
-                if commentModel.list.count < 3 {
-                    subCommentsH = commentModel.height + 60
+            let commentModel = commentModels[index]
+            let textH = commentModel.comment.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
+            var subCommentsH = 0
+            if commentModel.list.count < 3 {
+                subCommentsH = commentModel.height + 60
+            } else {
+                if commentModel.showAll {
+                    subCommentsH = commentModel.height + 50
                 } else {
-                    if commentModel.showAll {
-                        subCommentsH = commentModel.height + 50
-                    } else {
-                      subCommentsH = commentModel.topHeight + 70
-                    }
+                    subCommentsH = commentModel.topHeight + 70
                 }
-                return textH + 60 + CGFloat(subCommentsH)
             }
+            return textH + 60 + CGFloat(subCommentsH)
         }
         return 0.01
     }
@@ -394,10 +403,7 @@ extension HDLY_TopicDetail_VC {
         }
         else if indexPath.section ==  2 {
             let cell = HDLY_LeaveMsg_Cell.getMyTableCell(tableV: tableView)
-            if model?.commentList != nil {
-                guard let commentModel = model?.commentList[index] else {
-                    return  cell!
-                }
+                let commentModel = self.commentModels[index]
                 cell?.commentId = commentModel.commentID
                 cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.text = commentModel.comment
@@ -408,7 +414,7 @@ extension HDLY_TopicDetail_VC {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
                     cell?.showMoreBtn.addTouchUpInSideBtnAction({ (btn) in
-                        self.infoModel?.commentList[index].showAll = true
+                        self.commentModels[index].showAll = true
                         self.myTableView.reloadRows(at: [indexPath], with: .none)
                     })
                 } else {
@@ -422,6 +428,13 @@ extension HDLY_TopicDetail_VC {
                 
                 cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     self?.commentViewModel.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", self!)
+                    if self!.commentModels[index].isLike == 0 {
+                        self!.commentModels[index].isLike = 1
+                        cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                    }else {
+                        self!.commentModels[index].isLike = 0
+                        cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                    }
                 })
                 
                 cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
@@ -436,8 +449,6 @@ extension HDLY_TopicDetail_VC {
                     self?.commentView.tableView.reloadData()
                     self?.navigationController?.view.addSubview((self?.commentView)!)
                 }
-            }
-            
             return cell!
         }
         

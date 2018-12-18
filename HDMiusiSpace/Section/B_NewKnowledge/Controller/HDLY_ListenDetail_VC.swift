@@ -44,6 +44,13 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         return webV
     }()
     
+    lazy var commentView: HDZQ_CommentActionView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tmp?.delegate = self
+        return tmp!
+    }()
+    
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
     
@@ -95,6 +102,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
+            weakSelf?.keyboardTextField.textView.text = " "
+            weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
         }
         //
@@ -117,9 +126,44 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         publicViewModel.isFocus.bind { (flag) in
             weakSelf?.showFocusView(flag)
         }
+        
+        publicViewModel.reportErrorModel.bind { [weak self] (model) in
+            var strs = [String]()
+            var reportType = [Int]()
+            model.data?.optionList.forEach({ (m) in
+                strs.append(m.optionTitle)
+                reportType.append(m.optionID)
+            })
+            self?.commentView.dataArr = strs
+            self?.commentView.reportType = reportType
+            self?.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+            self?.commentView.type = 1
+            self?.commentView.tableView.reloadData()
+        }
+        
     }
     
     func showViewData() {
+        var model = viewModel.listenDetail.value
+        // 计算总高度 保存到模型中去
+        for i in 0..<model.commentList!.count {
+            for j in 0..<model.commentList![i].list.count {
+                let str = "\(model.commentList![i].list[j].uNickname)：\(model.commentList![i].list[j].comment)"
+                let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
+                model.commentList![i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                model.commentList![i].height = model.commentList![i].height + model.commentList![i].list[j].height
+                
+                if j == 0 {
+                    model.commentList![i].topHeight = model.commentList![i].list[j].height
+                }
+                if j == 1 {
+                    model.commentList![i].topHeight = model.commentList![i].topHeight + model.commentList![i].list[j].height
+                }
+            }
+            model.commentList![i].height = model.commentList![i].height
+        }
+        
+        
         self.infoModel = viewModel.listenDetail.value
         HDFloatingButtonManager.manager.infoModel = infoModel
         if infoModel?.img != nil {
@@ -207,6 +251,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     }
     
     @IBAction func commentBtnAction(_ sender: UIButton) {
+        keyboardTextField.placeholderLabel.text = "写下你的评论吧"
+        keyboardTextField.type = 0
         showKeyBoardView()
     }
     
@@ -352,11 +398,21 @@ extension HDLY_ListenDetail_VC {
                 guard let commentModel = infoModel?.commentList![index] else {
                     return  0.01
                 }
-                if let text = commentModel.comment {
-                    let textH = text.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
-                    return textH + 90
+                let textH = commentModel.comment.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
+                var subCommentsH = 0
+                
+                if commentModel.list.count < 3 {
+                    subCommentsH = commentModel.height + 30
+                } else {
+                    if commentModel.showAll {
+                        subCommentsH = commentModel.height + 20
+                    } else {
+                        subCommentsH = commentModel.topHeight + 40
+                    }
                 }
+                return textH + 90 + CGFloat(subCommentsH)
             }
+            
         }
         return 0.01
     }
@@ -415,16 +471,30 @@ extension HDLY_ListenDetail_VC {
                     return  cell!
                 }
                 if commentModel.avatar != nil {
-                    cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
-                cell?.likeBtn.setTitle(commentModel.likeNum?.string, for: UIControlState.normal)
+                cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.isLike == 0 {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
                 }else {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
                 }
+                
+                cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    self?.pushToOthersPersonalCenterVC(commentModel.uid)
+                })
+                
+                cell?.longPress  = { [weak self] (commentId) in
+                    self?.commentView.type = 0
+                    self?.commentView.model = commentModel
+                    self?.commentView.dataArr = ["回复","复制","举报"]
+                    self?.commentView.tableHeightConstraint.constant = CGFloat(150)
+                    self?.commentView.tableView.reloadData()
+                    self?.navigationController?.view.addSubview((self?.commentView)!)
+                }
+                
             }
             
             return cell!
@@ -432,17 +502,34 @@ extension HDLY_ListenDetail_VC {
         
         return UITableViewCell.init()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 0 {
-            guard let recommendsMessage = infoModel?.commentList else {
-                return
+}
+
+extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+        if type == 0 {
+            if index == 0 {
+                print(model.nickname)
+                keyboardTextField.textView.text = " "
+                keyboardTextField.textView.deleteBackward()
+                keyboardTextField.placeholderLabel.text = "回复@\(model.nickname)"
+                keyboardTextField.returnID = model.commentID
+                keyboardTextField.type = 1
+                showKeyBoardView()
+                self.commentView.removeFromSuperview()
+            } else if index == 1 {
+                let paste = UIPasteboard.general
+                paste.string = model.comment
+                HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
+                self.commentView.removeFromSuperview()
+            } else  {
+                print("举报")
+                publicViewModel.getErrorContent(commentId: model.commentID)
+                
             }
-            let  model  = recommendsMessage[indexPath.row]
-            self.pushToOthersPersonalCenterVC(model.uid ?? 0)
+        } else {
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
         }
     }
-    
 }
 
 //MARK: ---- WKNavigationDelegate ----
@@ -509,7 +596,6 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
     
     //隐藏评论显示
     @objc func closeKeyBoardView() {
-        keyboardTextField.textView.text = ""
         keyboardTextField.hide()
         keyboardTextField.isHidden = true
     }

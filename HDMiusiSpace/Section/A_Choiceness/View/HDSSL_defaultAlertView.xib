@@ -24,11 +24,11 @@
                     <rect key="frame" x="67.5" y="268.5" width="240" height="130"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认删除全部历史记录吗？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNe-dM-oZ5">
-                            <rect key="frame" x="10" y="10" width="220" height="40"/>
+                            <rect key="frame" x="15" y="30" width="215" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="7ia-d3-tly"/>
+                                <constraint firstAttribute="height" constant="40" id="FoY-Tm-ISJ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -58,17 +58,27 @@
                                 <constraint firstAttribute="height" constant="40" id="XYR-br-IPf"/>
                             </constraints>
                         </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-jH-tlc">
+                            <rect key="frame" x="15" y="8" width="215" height="22"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="wn6-jH-tlc" secondAttribute="trailing" constant="10" id="2GY-lI-4cy"/>
                         <constraint firstAttribute="bottom" secondItem="Uyz-F0-16C" secondAttribute="bottom" constant="10" id="8uB-k5-ho2"/>
                         <constraint firstAttribute="trailing" secondItem="Uyz-F0-16C" secondAttribute="trailing" id="Bqd-KM-gdQ"/>
-                        <constraint firstAttribute="trailing" secondItem="TNe-dM-oZ5" secondAttribute="trailing" constant="10" id="EDG-sT-bwv"/>
                         <constraint firstAttribute="height" constant="130" id="J7z-tM-1gI"/>
+                        <constraint firstItem="wn6-jH-tlc" firstAttribute="top" secondItem="p9n-DR-cOu" secondAttribute="top" constant="8" id="KPD-De-yff"/>
+                        <constraint firstItem="wn6-jH-tlc" firstAttribute="leading" secondItem="p9n-DR-cOu" secondAttribute="leading" constant="15" id="Li3-We-pEr"/>
+                        <constraint firstItem="TNe-dM-oZ5" firstAttribute="leading" secondItem="p9n-DR-cOu" secondAttribute="leading" constant="15" id="Qd0-Da-DoX"/>
+                        <constraint firstAttribute="trailing" secondItem="TNe-dM-oZ5" secondAttribute="trailing" constant="10" id="f6R-3O-a31"/>
                         <constraint firstAttribute="width" constant="240" id="lpt-hC-ol5"/>
                         <constraint firstItem="Uyz-F0-16C" firstAttribute="leading" secondItem="p9n-DR-cOu" secondAttribute="leading" id="lv8-Ih-Ej5"/>
-                        <constraint firstItem="TNe-dM-oZ5" firstAttribute="leading" secondItem="p9n-DR-cOu" secondAttribute="leading" constant="10" id="pCw-54-yrX"/>
-                        <constraint firstItem="TNe-dM-oZ5" firstAttribute="top" secondItem="p9n-DR-cOu" secondAttribute="top" constant="10" id="s7o-vB-vfI"/>
+                        <constraint firstItem="TNe-dM-oZ5" firstAttribute="top" secondItem="wn6-jH-tlc" secondAttribute="bottom" id="pEj-9I-3GC"/>
+                        <constraint firstItem="Uyz-F0-16C" firstAttribute="top" secondItem="TNe-dM-oZ5" secondAttribute="bottom" constant="10" id="tEc-rY-ucD"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -94,6 +104,7 @@
                 <outlet property="btn_cancel" destination="Xv4-Fy-Cp1" id="Kly-xO-1ND"/>
                 <outlet property="btn_sure" destination="vb9-QQ-Sjh" id="oiR-I6-LDe"/>
                 <outlet property="titleLab" destination="TNe-dM-oZ5" id="nl4-6R-vzV"/>
+                <outlet property="topTitleLabel" destination="wn6-jH-tlc" id="d90-fi-G5e"/>
             </connections>
             <point key="canvasLocation" x="-95.200000000000003" y="141.67916041979012"/>
         </view>

@@ -149,7 +149,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         }
         
         commentViewModel.likeModel.bind { (model) in
-            weakSelf?.requestComments(skip: 0, take: 10)
+//            weakSelf?.requestComments(skip: 0, take: 10)
         }
         
         publicViewModel.isCollection.bind { (flag) in

@@ -176,6 +176,11 @@ extension HDLY_Recommend_SubVC {
             if  model.boutiquelist?.img != nil  {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.grayImage(sourceImageV: (cell?.imgV)!), options: nil, progressBlock: nil, completionHandler: nil)
             }
+            if model.boutiquelist?.is_top?.int  == 1 {
+                cell?.newTipL.isHidden = false
+            }else {
+                cell?.newTipL.isHidden = true
+            }
             cell?.titleL.text = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
             cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0" :(model.boutiquelist?.views?.string)! + "人在学"

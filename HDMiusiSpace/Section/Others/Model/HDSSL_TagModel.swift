@@ -40,9 +40,9 @@ struct UpdateModel: Codable {
     var version_no : String
     var version_url : String
     var version_info : String
-    var install : String
+    var install : Int
     var created_at : String
-    var is_new : String
+    var is_new : Int
 }
 
 

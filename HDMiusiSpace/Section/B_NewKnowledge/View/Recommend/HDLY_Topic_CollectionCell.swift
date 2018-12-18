@@ -12,12 +12,14 @@ class HDLY_Topic_CollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleL: UILabel!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var newTipL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgV.layer.cornerRadius = 8
-        imgV.layer.masksToBounds = true
+        bgView.layer.cornerRadius = 8
+        bgView.layer.masksToBounds = true
         
     }
 

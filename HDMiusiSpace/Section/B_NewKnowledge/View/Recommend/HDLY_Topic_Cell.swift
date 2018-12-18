@@ -82,11 +82,16 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
         let cell:HDLY_Topic_CollectionCell = HDLY_Topic_CollectionCell.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
          if self.listArray != nil {
             if self.listArray!.count > 0 {
-                let model = listArray![indexPath.row]
+                var model = listArray![indexPath.row]
                 if  model.img != nil  {
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
+                if model.is_top?.int  == 1 {
+                    cell.newTipL.isHidden = false
+                }else {
+                    cell.newTipL.isHidden = true
+                }
             }
         }
         return cell

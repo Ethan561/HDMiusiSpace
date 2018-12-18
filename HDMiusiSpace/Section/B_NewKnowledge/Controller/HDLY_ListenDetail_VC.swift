@@ -165,7 +165,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         }
         
         
-        self.infoModel = viewModel.listenDetail.value
+        self.infoModel = model
         HDFloatingButtonManager.manager.infoModel = infoModel
         if infoModel?.img != nil {
             self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.grayImage(sourceImageV: self.imgV), options: nil, progressBlock: nil, completionHandler: nil)
@@ -403,15 +403,15 @@ extension HDLY_ListenDetail_VC {
                 var subCommentsH = 0
                 
                 if commentModel.list.count < 3 {
-                    subCommentsH = commentModel.height + 30
+                    subCommentsH = commentModel.height + 60
                 } else {
                     if commentModel.showAll {
-                        subCommentsH = commentModel.height + 20
+                        subCommentsH = commentModel.height + 50
                     } else {
-                        subCommentsH = commentModel.topHeight + 40
+                        subCommentsH = commentModel.topHeight + 70
                     }
                 }
-                return textH + 90 + CGFloat(subCommentsH)
+                return textH + 60 + CGFloat(subCommentsH)
             }
             
         }
@@ -477,6 +477,16 @@ extension HDLY_ListenDetail_VC {
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+                if commentModel.list.count > 0 {
+                    cell?.subContainerView.isHidden = false
+                    cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
+                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ (btn) in
+                        self.infoModel?.commentList![index].showAll = true
+                        self.myTableView.reloadRows(at: [indexPath], with: .none)
+                    })
+                } else {
+                    cell?.subContainerView.isHidden = true
+                }
                 if commentModel.isLike == 0 {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
                 }else {
@@ -603,29 +613,28 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
     
     //MARK: ==== KeyboardTextFieldDelegate ====
     func keyboardTextFieldPressReturnButton(_ keyboardTextField: KeyboardTextField) {
-       commentText =  keyboardTextField.textView.text
-        if commentText.isEmpty == false && infoModel?.listenID != nil {
-            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                self.pushToLoginVC(vc: self)
-                return
-            }
-            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
-        }
+        sendCommentContent(keyboardTextField)
     }
     
     func keyboardTextFieldPressRightButton(_ keyboardTextField :KeyboardTextField) {
+        sendCommentContent(keyboardTextField)
+    }
+    
+    func sendCommentContent(_ keyboardTextField: KeyboardTextField) {
         commentText =  keyboardTextField.textView.text
         if commentText.isEmpty == false && infoModel?.listenID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
                 return
             }
-            publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: "\(infoModel!.listenID!)", return_id: "0", cate_id: "2", self)
+            
+            if keyboardTextField.type == 0 {
+                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: (infoModel?.listenID?.string)!, return_id: "0", cate_id: "2", self)
+            } else {
+                publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: (infoModel?.listenID?.string)!, return_id: String(keyboardTextField.returnID!), cate_id: "2", self)
+            }
+            
         }
-    }
-    
-    func keyboardTextField(_ keyboardTextField :KeyboardTextField , didChangeText text:String) {
-
     }
     
 }

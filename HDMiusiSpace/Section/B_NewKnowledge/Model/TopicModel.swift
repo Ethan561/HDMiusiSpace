@@ -25,7 +25,8 @@ struct TopicModelData: Codable {
     var platform_title: String?
     var platform_icon: String?
     var created_at: String?
-
+    var share_url: String?
+    
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
         case img, title
@@ -38,7 +39,7 @@ struct TopicModelData: Codable {
         case platform_title
         case platform_icon
         case created_at
-
+        case share_url
     }
 }
 

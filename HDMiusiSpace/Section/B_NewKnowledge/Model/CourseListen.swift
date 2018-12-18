@@ -53,6 +53,7 @@ struct ListenDetail: Codable {
     var isFavorite, isFocus, isLike: Int?
     var teacherName, teacherTitle: String?
     var commentList: [ListenCommentList]?
+    var share_url: String?
     
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
@@ -67,6 +68,7 @@ struct ListenDetail: Codable {
         case teacherName = "teacher_name"
         case teacherTitle = "teacher_title"
         case commentList = "comment_list"
+        case share_url
     }
 }
 

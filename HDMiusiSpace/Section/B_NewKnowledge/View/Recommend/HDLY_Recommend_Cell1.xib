@@ -41,6 +41,17 @@
                                     <constraint firstAttribute="height" constant="4" id="7MZ-yl-oks"/>
                                 </constraints>
                             </progressView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtY-Hf-PpI">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="26"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="HTZ-Ub-Dgm"/>
+                                    <constraint firstAttribute="height" constant="26" id="pq0-xJ-LRV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -48,11 +59,13 @@
                             <constraint firstAttribute="trailing" secondItem="8cL-jz-Iba" secondAttribute="trailing" id="7Yt-ia-yl4"/>
                             <constraint firstItem="MWy-hy-BoN" firstAttribute="centerX" secondItem="Kdm-0U-y4J" secondAttribute="centerX" id="Bg0-T2-dPA"/>
                             <constraint firstAttribute="bottom" secondItem="pk1-sW-BVH" secondAttribute="bottom" id="G6w-je-V5G"/>
+                            <constraint firstItem="MtY-Hf-PpI" firstAttribute="top" secondItem="Kdm-0U-y4J" secondAttribute="top" id="IJy-ek-JJl"/>
                             <constraint firstItem="pk1-sW-BVH" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="NGv-x3-yet"/>
                             <constraint firstAttribute="width" secondItem="Kdm-0U-y4J" secondAttribute="height" multiplier="7:5" id="QtQ-m3-vjc"/>
                             <constraint firstItem="pk1-sW-BVH" firstAttribute="top" secondItem="MWy-hy-BoN" secondAttribute="bottom" constant="5" id="STe-iI-KUW"/>
                             <constraint firstAttribute="trailing" secondItem="pk1-sW-BVH" secondAttribute="trailing" id="Sbf-V8-GcY"/>
                             <constraint firstItem="8cL-jz-Iba" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="YO4-d0-Nyx"/>
+                            <constraint firstItem="MtY-Hf-PpI" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="c2m-at-oeN"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="丝绸之路谈中国历史文化" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwZ-2g-Hce">
@@ -138,6 +151,7 @@
                 <outlet property="countL" destination="Ezk-EM-Eaj" id="PVx-ev-dcm"/>
                 <outlet property="courseL" destination="tPz-Kd-5Vj" id="ely-lH-1BU"/>
                 <outlet property="imgV" destination="8cL-jz-Iba" id="R5U-Dp-VfH"/>
+                <outlet property="newTipL" destination="MtY-Hf-PpI" id="NG6-sU-Cl7"/>
                 <outlet property="percentLabel" destination="MWy-hy-BoN" id="UjA-x0-Glw"/>
                 <outlet property="priceL" destination="V31-cU-waC" id="o7V-eJ-oxN"/>
                 <outlet property="progress" destination="pk1-sW-BVH" id="yMH-ez-syg"/>

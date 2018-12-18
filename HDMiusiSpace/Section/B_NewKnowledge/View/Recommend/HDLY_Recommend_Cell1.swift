@@ -21,6 +21,7 @@ class HDLY_Recommend_Cell1: UITableViewCell {
     @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var bgView: UIView!
     
+    @IBOutlet weak var newTipL: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

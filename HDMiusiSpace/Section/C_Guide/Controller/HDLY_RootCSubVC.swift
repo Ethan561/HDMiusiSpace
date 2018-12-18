@@ -85,7 +85,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
         LOG("HDDeclare.shared.locModel.cityName: \(HDDeclare.shared.locModel.cityName)")
         let token = HDDeclare.shared.api_token ?? ""
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: page, take: 10, api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.ly_endLoading()
@@ -116,7 +116,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     func dataRequestLoadMore()  {
         
         let token = HDDeclare.shared.api_token ?? ""
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: 0, take: 100, api_token: token), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: "", latitude: "", type: type, skip: page, take: 10, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

@@ -43,6 +43,12 @@ struct TopicModelData: Codable {
     }
 }
 
+struct CommentListData: Codable {
+    var status: Int?
+    var msg: String?
+    var data: [TopicCommentList]
+}
+
 struct TopicCommentList: Codable {
     var uid: Int
     var comment: String

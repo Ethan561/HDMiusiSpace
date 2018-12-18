@@ -47,6 +47,8 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         }
         self.dataRequest()
         addRefresh()
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func addRefresh() {
@@ -89,8 +91,13 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
                     let dataDic = tempDic as Dictionary<String, Any>
                     //JSON转Model：
                     let dataA:Data = HD_LY_NetHelper.jsonToData(jsonDic: dataDic)!
-                    let model:BItemModel = try! jsonDecoder.decode(BItemModel.self, from: dataA)
-                    self.dataArr.append(model)
+                    do {
+                        let model:BItemModel = try jsonDecoder.decode(BItemModel.self, from: dataA)
+                        self.dataArr.append(model)
+                    }
+                    catch let error {
+                        LOG("\(error)")
+                    }
                 }
                 self.tableView.reloadData()
             }

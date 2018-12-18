@@ -194,7 +194,8 @@ enum HD_LY_API {
     //获得购买信息
     case orderGetBuyInfo(cate_id:Int, goods_id:Int , api_token: String)
     
-    
+    //获取评论列表
+    case getCommentList(cate_id:Int, id:Int , api_token: String,skip:Int,take:Int)
     
     
 }
@@ -439,15 +440,8 @@ extension HD_LY_API: TargetType {
             
         case .orderGetBuyInfo(cate_id: _, goods_id: _, api_token: _):
             return "/api/order/get_buy_info"
-            
-            
-            
-            
-            
-            
-            
-            
-            
+        case .getCommentList(let cate_id, let id, let api_token, let skip, let take):
+            return "/api/comment/index"
         }
         
     }
@@ -1006,17 +1000,11 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+        case .getCommentList(let cate_id, let id, let api_token, let skip, let take):
+            params = params.merging(["cate_id": cate_id, "id": id,"api_token": api_token,"skip":skip,"take":take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         }
         
         //GET 请求返回

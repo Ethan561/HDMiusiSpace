@@ -13,6 +13,7 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
     
     @IBOutlet weak var tableView: UITableView!
     var dataArr = [DynamicMsgModelData]()
+    var skip = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +22,23 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
         
         self.dataRequest()
         addRefresh()
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
     
     func dataRequest()  {
         
-        var token = HDDeclare.shared.api_token
+        let token = HDDeclare.shared.api_token
         if token == nil {
-            token = "123456"
+            //token = "123456"
+            self.pushToLoginVC(vc: self)
+            return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: 0, take: 100, api_token: token!) , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: skip, take: 10, api_token: token!) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.ly_endLoading()
+            self.tableView.es.stopPullToRefresh()
             let jsonDecoder = JSONDecoder()
             do {
                 let model:HDLY_DynamicMsgModel = try jsonDecoder.decode(HDLY_DynamicMsgModel.self, from: result)
@@ -47,23 +53,71 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
             
             
         }) { (errorCode, msg) in
-            //            tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-            //            tableView.ly_showEmptyView()
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
         }
     }
     
     func addRefresh() {
-        let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
+    @objc func refreshAction() {
+        skip = 0
+        dataRequest()
     }
     
     private func loadMore() {
-        self.tableView.es.noticeNoMoreData()
+        skip = skip + 10
+        dataRequestLoadMore()
     }
     
-    
+    func dataRequestLoadMore()  {
+        let token = HDDeclare.shared.api_token
+        if token == nil {
+            //token = "123456"
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        self.tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterDynamicList(skip: skip, take: 10, api_token: token!) , showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:HDLY_DynamicMsgModel = try jsonDecoder.decode(HDLY_DynamicMsgModel.self, from: result)
+                if model.data?.count ?? 0 > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data!
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.es.stopLoadingMore()
+        }
+    }
 }
 
 
@@ -126,7 +180,6 @@ class HDLY_ReceiveMsgCell1: UITableViewCell {
         super.awakeFromNib()
         avatarImgV.layer.cornerRadius = 22
         avatarImgV.layer.masksToBounds = true
-        
         
     }
 }

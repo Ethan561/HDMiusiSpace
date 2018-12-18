@@ -29,6 +29,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         avatarBtn.layer.cornerRadius = 15
+        avatarBtn.layer.masksToBounds = true
         let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
         longPress.minimumPressDuration = 0.5
         self.longPressView.addGestureRecognizer(longPress)

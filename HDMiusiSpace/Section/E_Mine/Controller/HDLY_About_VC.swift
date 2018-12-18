@@ -112,50 +112,44 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         
         let section = indexPath.section
         let index = indexPath.row
+        let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+        cell?.isUserInteractionEnabled = true
         if section == 0 {
             if index == 0 {//客服热线
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "客服热线"
                 cell?.subNameL.text = self.phone
                 cell?.moreImgV.isHidden = true
                 return cell!
             }else if index == 1 {//个人资料设置
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "联系邮箱"
                 cell?.subNameL.text = self.email
                 cell?.moreImgV.isHidden = true
                 cell?.bottomLine.isHidden = true
-
                 return cell!
             }
         }
         if section == 1 {
             if index == 0 {//功能介绍
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "功能介绍"
                 return cell!
             }else if index == 1 {//喜欢我们
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "喜欢我们"
                  cell?.subNameL.text = ""
                 return cell!
             }else if index == 2 {//检查版本
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "检查版本"
                 cell?.subNameLTrainingCons.constant = 45
-//                if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
-//                    if version == self.version {
-//                        cell?.subNameL.text = "已经是最新版本"
-//                    } else {
-//                       cell?.subNameL.text = "可更新到V\(self.version)"
-//                    }
-//                }
-                cell?.subNameL.text = self.version
+                if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
+                    if version == self.version || self.version == "" {
+                        cell?.subNameL.text = "已经是最新版本"
+                        cell?.isUserInteractionEnabled = false
+                    } else {
+                       cell?.subNameL.text = "可更新到V\(self.version)"
+                    }
+                }
                 cell?.bottomLine.isHidden = true
-
                 return cell!
             }
-            
         }
         return UITableViewCell.init()
     }
@@ -209,7 +203,7 @@ extension HDLY_About_VC {
             self.syxy = syxy
             guard let ysxy = dataDic["ysxy"] as? String else {return}
             self.ysxy = ysxy
-            guard let version = dataDic["version"] as? String else {return}
+            guard let version = dataDic["version_code"] as? String else {return}
             self.version = version
             self.myTableView.reloadData()
         }) { (error, msg) in

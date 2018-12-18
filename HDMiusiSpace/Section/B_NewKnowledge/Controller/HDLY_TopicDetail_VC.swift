@@ -349,16 +349,16 @@ extension HDLY_TopicDetail_VC {
                 var subCommentsH = 0
                 
                 if commentModel.list.count < 3 {
-                    subCommentsH = commentModel.height + 30
+                    subCommentsH = commentModel.height + 60
                 } else {
                     if commentModel.showAll {
-                        subCommentsH = commentModel.height + 20
+                        subCommentsH = commentModel.height + 50
                     } else {
-                      subCommentsH = commentModel.topHeight + 40
+                      subCommentsH = commentModel.topHeight + 70
 //                        subCommentsH = 90
                     }
                 }
-                return textH + 90 + CGFloat(subCommentsH)
+                return textH + 60 + CGFloat(subCommentsH)
             }
         }
         return 0.01

@@ -32,6 +32,7 @@ struct ExhibitionMuseumData: Codable {
     var share_url: String?
     var longitude: String?
     var latitude: String?
+    var tourGuideHtml: String?
     
     enum CodingKeys: String, CodingKey {
         case img
@@ -48,6 +49,7 @@ struct ExhibitionMuseumData: Codable {
         case share_url
         case longitude
         case latitude
+        case tourGuideHtml = "tour_guide_html"
     }
 }
 

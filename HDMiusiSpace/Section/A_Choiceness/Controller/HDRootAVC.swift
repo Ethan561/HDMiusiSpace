@@ -369,6 +369,14 @@ extension HDRootAVC {
 
 extension HDRootAVC {
     func showUpdateAlertView(model:UpdateModel) {
+        guard let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  else {
+            return
+        }
+        
+        if model.version_no == "" || model.version_no == version {
+            return
+        }
+        
         let alertView = Bundle.main.loadNibNamed("HDZQ_UpdateAlertView", owner: nil, options: nil)?.last as! HDZQ_UpdateAlertView
         alertView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         alertView.contentCiew.text = model.version_info
@@ -380,10 +388,6 @@ extension HDRootAVC {
     }
     
     func getVersionData() {
-        guard let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  else {
-            return
-        }
-        
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkVersion(version_id: 0, device_id: HDDeclare.shared.deviceno ?? ""), cache: false, showHud: false, showErrorTip: false, loadingVC: self, success: { (result) in
             let jsonDecoder = JSONDecoder()
             do {

@@ -49,8 +49,8 @@ class HDSSL_OrderCell: UITableViewCell {
         
         cell_title.text = String.init(format: "%@", order?.title ?? "")
         cell_author.text = String.init(format: "%@", order?.author ?? "")
-        cell_salePrice.text = String.init(format: "%@", order?.amount ?? "")
-        cell_realPrice.text = String.init(format: "%@", order?.payAmount ?? "")
+        cell_salePrice.text = String.init(format: "¥%@", order?.amount ?? "")
+        cell_realPrice.text = String.init(format: "¥%@", order?.payAmount ?? "")
         var payStateStr = "交易成功"
         if order?.status == 1 {
             payStateStr = "待支付"

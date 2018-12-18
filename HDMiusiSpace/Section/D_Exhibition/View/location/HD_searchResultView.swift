@@ -85,10 +85,10 @@ extension HD_searchResultView:UITableViewDelegate,UITableViewDataSource{
         //本地保存城市，返回首页
         var c = HDSSL_selectedCity()
         c.city_id = model.city_id
-        c.city_name = model.city_name
+        c.city_name = model.city_title
         
         
-        UserDefaults.standard.set(model.city_name, forKey: "MyLocationCityName")
+        UserDefaults.standard.set(model.city_title, forKey: "MyLocationCityName")
         UserDefaults.standard.set(model.city_id, forKey: "MyLocationCityId")
         UserDefaults.standard.synchronize()
         
@@ -100,6 +100,7 @@ extension HD_searchResultView:UITableViewDelegate,UITableViewDataSource{
         }
         
     }
+    
 }
 extension HD_searchResultView{
     //处理文本变色

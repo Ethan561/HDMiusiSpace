@@ -118,7 +118,6 @@ class HDLY_ReceiveMsgVC: HDItemBaseVC {
             self.tableView.es.stopLoadingMore()
         }
     }
-    
 }
 
 

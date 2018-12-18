@@ -248,6 +248,18 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         self.view.addSubview(searchresultView)
         searchresultView.isHidden = true
         searchresultView.BlockDidFunc { (index) in
+            let city = self.searchArray[index]
+            
+            //保存选中城市，返回首页
+            UserDefaults.standard.set(city.city_title, forKey: "MyLocationCityName")
+            UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
+            UserDefaults.standard.synchronize()
+            
+            var c = CityModel()
+            c.city_id = city.city_id
+            c.city_name = city.city_title
+            self.saveRecentCityArr(c)
+            
             //保存选中城市，返回首页
             self.backUP()
         }

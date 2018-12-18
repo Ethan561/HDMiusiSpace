@@ -53,6 +53,7 @@ struct ListenDetail: Codable {
     var isFavorite, isFocus, isLike: Int?
     var teacherName, teacherTitle: String?
     var commentList: [TopicCommentList]?
+    var share_url: String?
     
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
@@ -67,6 +68,7 @@ struct ListenDetail: Codable {
         case teacherName = "teacher_name"
         case teacherTitle = "teacher_title"
         case commentList = "comment_list"
+        case share_url
     }
 }
 
@@ -80,7 +82,7 @@ struct ListenCommentList: Codable {
     var commentID: Int?
     var avatar, nickname: String?
     var isLike: Int?
-    var list: [String]?
+    var list: [ListenReturnList]?
     
     enum CodingKeys: String, CodingKey {
         case uid, comment
@@ -92,6 +94,21 @@ struct ListenCommentList: Codable {
         case list
     }
 }
+
+struct ListenReturnList: Codable {
+    let commentID, uid, parentUid: Int?
+    let comment, uNickname, parentNickname: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case commentID = "comment_id"
+        case uid
+        case parentUid = "parent_uid"
+        case comment
+        case uNickname = "u_nickname"
+        case parentNickname = "parent_nickname"
+    }
+}
+
 
 struct LikeModel: Codable {
     var is_like: TStrInt?

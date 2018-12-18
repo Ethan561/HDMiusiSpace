@@ -25,6 +25,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var infoModel: TopicModelData?
     var topic_id:String?
     var commentText = ""
+    var shareView: HDLY_ShareView?
     
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
@@ -628,7 +629,7 @@ extension HDLY_TopicDetail_VC {
     func feedbackChooseAction(index: Int) {
         if index == 1 {
             //分享
-            
+            shareBtnAction()
         }else {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
@@ -641,3 +642,54 @@ extension HDLY_TopicDetail_VC {
     
 }
 
+
+extension HDLY_TopicDetail_VC: UMShareDelegate {
+    
+    func shareBtnAction() {
+        let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.delegate = self
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+        shareView = tipView
+    }
+    
+    
+    func shareDelegate(platformType: UMSocialPlatformType) {
+        
+        guard let url  = self.infoModel?.url else {
+            return
+        }
+        
+        //创建分享消息对象
+        let messageObject = UMSocialMessageObject()
+        //创建网页内容对象
+        let thumbURL = url
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.title, thumImage: thumbURL)
+        
+        //设置网页地址
+        shareObject?.webpageUrl = url
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject
+        weak var weakS = self
+        UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
+            if error != nil {
+                //UMSocialLog(error)
+                LOG(error)
+            } else {
+                if (data is UMSocialShareResponse) {
+                    var resp = data as? UMSocialShareResponse
+                    //分享结果消息
+                    LOG(resp?.message)
+                    
+                    //第三方原始返回的数据
+                    print(resp?.originalResponse)
+                } else {
+                    LOG(data)
+                }
+                weakS?.shareView?.removeFromSuperview()
+            }
+        }
+    }
+}

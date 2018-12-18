@@ -53,6 +53,14 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         guard str != nil else {
+            let city = HDLY_LocationTool.shared.city ?? ""
+            btn_location.setTitle(city, for: .normal)
+            UserDefaults.standard.set(city, forKey: "MyLocationCityName")
+            HDDeclare.shared.locModel.cityName = city
+            //定位按钮设置
+            btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+            btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+            btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
             return
         }
         
@@ -103,7 +111,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         museumScrollV.isHidden = true
         
         //
-        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         searchPlaceLab.text = placeholder
         
         //定位按钮设置

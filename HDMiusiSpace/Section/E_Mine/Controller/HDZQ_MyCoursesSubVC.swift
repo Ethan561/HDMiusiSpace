@@ -142,7 +142,6 @@ extension HDZQ_MyCoursesSubVC:UITableViewDelegate,UITableViewDataSource {
         if model.isFree == 0 {
             cell?.priceL.text = "¥\(model.price)"
             cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
-            
         }else {
             cell?.priceL.text = "免费"
             cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)

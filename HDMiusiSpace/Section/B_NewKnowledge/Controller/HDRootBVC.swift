@@ -97,7 +97,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
         tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
-        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         self.tabHeader.placeholderLab.text = placeholder
         
         //

@@ -31,7 +31,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
     
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
-    
+
     //mvvm
     var viewModel: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
     
@@ -210,7 +210,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         view.addSubview(imgView)
         
         //输入
-        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as! String)
+        let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         
         textFeild = UITextField.init(frame: CGRect.init(x: 20, y: 3, width: view.frame.size.width-20-30, height: 30))
         view.addSubview(textFeild)

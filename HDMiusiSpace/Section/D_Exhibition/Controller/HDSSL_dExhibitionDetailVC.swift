@@ -567,26 +567,24 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
                 cell.loadWebView(path)
                 cell.delegate = self
-//                cell.blockHeightFunc { (height) in
-//                    print(height)
-////                    weakSelf?.reloadExhibitionCellHeight( 2, height)
-//
-//                }
-//                cell.blockRefreshHeight = { (model) in
-//                    let webH: Double = Double(model.height!) ?? 0
-//                    let flag: Int = Int(model.isfolder!) ?? 1
-//                    weakSelf?.reloadExhibitionCellHeight( flag, webH)
-//                }
+                cell.blockHeightFunc { (height) in
+                    print(height)
+                    weakSelf?.reloadExhibitionCellHeight(height)
+                }
                 
                 return cell
             }else if indexPath.row == 1{
+                if self.exdataModel?.data?.isExhibit == 0{
+                    let cell = UITableViewCell.init()
+                    return cell
+                }
                 let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
                 let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
                 cell.loadWebView(path)
                 cell.blockHeightFunc { (height) in
                     print(height)
                     weak var weakSelf = self
-//                    weakSelf?.reloadExhibitCellHeight(height)
+                    weakSelf?.reloadExhibitCellHeight(height)
                     
                 }
                 return cell
@@ -847,7 +845,7 @@ extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
     func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
         let webH: Double = Double(model.height!) ?? 0
         let flag: Int = Int(model.isfolder!) ?? 1
-        self.reloadExhibitionCellHeight( flag, webH)
+        self.reloadExhibitionCellHeight(webH)
     }
     
     
@@ -876,14 +874,13 @@ extension HDSSL_dExhibitionDetailVC{
         return imgH! + size.height + CGFloat(otherH)
     }
     //刷新展览介绍cell高度
-    func reloadExhibitionCellHeight(_ flag: Int, _ height: Double) {
-        let isFloder = flag == 2 ? true : false
+    func reloadExhibitionCellHeight(_ height: Double) {
         
         if self.exhibitionCellH == nil {
             self.exhibitionCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-        }else if self.isExhibitionCellFloder != isFloder {
-            self.isExhibitionCellFloder = isFloder
+        }else if self.exhibitionCellH != height {
+            
             self.exhibitionCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
         }
@@ -891,11 +888,12 @@ extension HDSSL_dExhibitionDetailVC{
     }
     //刷新展品介绍cell高度
     func reloadExhibitCellHeight(_ height: Double) {
+        print("返回的webview高度是\(height)")
         if self.exhibitCellH == nil{
             self.exhibitCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
         }
-        if self.exhibitCellH! < height {
+        if self.exhibitCellH! != height {
             self.exhibitCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
         }

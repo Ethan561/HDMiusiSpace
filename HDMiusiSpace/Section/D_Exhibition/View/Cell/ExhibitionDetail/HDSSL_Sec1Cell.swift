@@ -22,9 +22,31 @@ class HDSSL_Sec1Cell: UITableViewCell {
     var delegate: HDSSL_Sec1CellDelegate?
     var blockRefreshHeight: (( _ model: FoldModel) -> ( Void))?
 
-    lazy var webview:WKWebView  = WKWebView.init(frame: CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height))
+    // MARK: - 懒加载
     
-    //点击图片，放大
+    lazy var webview: WKWebView = {
+        let webConfiguration = WKWebViewConfiguration()
+        //初始化偏好设置属性：preferences
+        webConfiguration.preferences = WKPreferences()
+        //是否支持JavaScript
+        webConfiguration.preferences.javaScriptEnabled = true
+        //不通过用户交互，是否可以打开窗口
+        webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = false
+        
+        let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
+        let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
+        webView.backgroundColor = UIColor.blue
+        webView.navigationDelegate = self
+        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.bounces = false
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
+        
+        return webView
+    }()
+    
+    
+    //block
     func blockHeightFunc(block: @escaping BloclkCellHeight) {
         blockHeight = block
     }
@@ -35,18 +57,21 @@ class HDSSL_Sec1Cell: UITableViewCell {
         self.contentView.addSubview(webview)
     }
 
-    func loadWebView(_ path: String) {
+    func loadWebView(_ path: String?) {
         //
-        if path == "" || path.count == 0 {
+        if path == "" || path?.count == 0 {
             return
         }
-//        webview.frame = CGRect.init(x: 16, y: 0, width: ScreenWidth - 16*2, height: self.bounds.size.height)
-        webview.navigationDelegate = self
-        webview.uiDelegate = self
-        webview.scrollView.isScrollEnabled = false
-//        webview.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.flexibleHeight.rawValue)
-        webview.load(URLRequest.init(url: URL.init(string: path)!))
-//        webview.scrollView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
+
+        if let webUrlString = path {
+            if let encodedStr = webUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let myUrl = URL(string: encodedStr) {
+                    let myRequest = URLRequest(url: myUrl)
+                    self.webview.load(myRequest)
+                }
+            }
+        }
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -66,39 +91,6 @@ class HDSSL_Sec1Cell: UITableViewCell {
         return cell!
     }
     
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        if keyPath == "contentSize" {
-//            //
-//            var webheight = 0.0
-//
-//            // 获取内容实际高度
-//            self.webview.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
-//
-//                if let tempHeight: Double = result as? Double {
-//                    webheight = tempHeight
-//                    print("webheight: \(webheight)")
-//                }
-//
-//                DispatchQueue.main.async {
-//
-//                    var tempFrame: CGRect = self.webview.frame
-//                    tempFrame.size.height = CGFloat(webheight)
-//                    self.webview.frame = tempFrame
-//
-//                    //返回高度，刷新cell
-//                    weak var weakSelf = self
-//                    if weakSelf?.blockHeight != nil {
-//                        weakSelf?.blockHeight!(webheight)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    func dealloc()
-//    {
-//        webview.scrollView.removeObserver(self, forKeyPath: "contentSize")
-//    }
 }
 
 extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
@@ -113,25 +105,20 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
                 print("webheight: \(webheight)")
             }
             
-            self.delegate?.backWebviewHeight(webheight, self)
-
             DispatchQueue.main.async { [unowned self] in
-                
-//                var tempFrame: CGRect = self.webview.frame
-//                tempFrame.size.height = CGFloat(webheight)
-//                self.webview.frame = tempFrame
-                
-//                self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight))
-                
+                var tempFrame: CGRect = self.webview.frame
+                tempFrame.size.height = CGFloat(webheight)
+                self.webview.frame = tempFrame
                 //返回高度，刷新cell
                 
                 weak var weakSelf = self
-//                if weakSelf?.blockHeight != nil {
-//                    weakSelf?.blockHeight!(webheight)
-//                }
+                if weakSelf?.blockHeight != nil {
+                    weakSelf?.blockHeight!(webheight)
+                }
             }
         }
     }
+    
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         

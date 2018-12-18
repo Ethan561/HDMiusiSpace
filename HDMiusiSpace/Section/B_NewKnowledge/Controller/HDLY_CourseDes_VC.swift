@@ -172,7 +172,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         
         tipView.titleL.text = model.title
         if model.price != nil {
-            tipView.priceL.text = String.init(format: "￥%.f", model.price!)
+            tipView.priceL.text = "¥\(model.price!)"
             tipView.spaceCoinL.text = model.spaceMoney
             tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
         }

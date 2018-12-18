@@ -18,7 +18,8 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        print(sharePath!)
+        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.grayImage(sourceImageV: self.imgView), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     @IBAction func action_share(_ sender: UIButton) {

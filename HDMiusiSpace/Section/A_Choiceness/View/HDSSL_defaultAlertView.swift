@@ -14,7 +14,8 @@ class HDSSL_defaultAlertView: UIView {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var alertBg: UIView!
-    @IBOutlet weak var titleLab: UILabel!
+    @IBOutlet weak var topTitleLabel: UILabel! //标题
+    @IBOutlet weak var titleLab: UILabel!//描述
     @IBOutlet weak var btn_cancel: UIButton!
     @IBOutlet weak var btn_sure: UIButton!
     

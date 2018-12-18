@@ -52,7 +52,7 @@ struct ListenDetail: Codable {
     var url, teacherImg: String?
     var isFavorite, isFocus, isLike: Int?
     var teacherName, teacherTitle: String?
-    var commentList: [ListenCommentList]?
+    var commentList: [TopicCommentList]?
     var share_url: String?
     
     enum CodingKeys: String, CodingKey {

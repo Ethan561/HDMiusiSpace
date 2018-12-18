@@ -32,13 +32,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
-        
         getVersionData()
-        
         setupViews()
         let empV = EmptyConfigView.NoDataEmptyView()
         self.myTableView.ly_emptyView = empV
@@ -55,7 +51,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         if cityName != nil {
             HDDeclare.shared.locModel.cityName = cityName!
         }
-        
         //获取搜索默认提示信息
         searchVM.request_getSearchPlaceholder(vc: self)
     }

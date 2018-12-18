@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import ESPullToRefresh
 
 class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
@@ -24,7 +25,8 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
     }()
     
     var dataArr =  [CourseListModel]()
-    
+    var skip = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
@@ -40,29 +42,92 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
             self.automaticallyAdjustsScrollViewInsets = false
         }
         dataRequest()
+        addRefresh()
+        let empV = EmptyConfigView.NoDataEmptyView()
+        self.tableView.ly_emptyView = empV
     }
 
     func dataRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "0", take: "10", type: "1", cate_id: "0"), showHud: true, loadingVC: self, success: { (result) in
+        self.tableView.ly_startLoading()
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "\(skip)", take: "10", type: "1", cate_id: "0"), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            
+            self.tableView.ly_endLoading()
+            self.tableView.es.stopPullToRefresh()
             let jsonDecoder = JSONDecoder()
-            let model:RecmdMoreModel = try! jsonDecoder.decode(RecmdMoreModel.self, from: result)
-            self.dataArr = model.data
-            if self.dataArr.count > 0 {
-                self.tableView.reloadData()
+            do {
+                let model:RecmdMoreModel = try jsonDecoder.decode(RecmdMoreModel.self, from: result)
+                self.dataArr = model.data
+                if self.dataArr.count > 0 {
+                    self.tableView.reloadData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+                self.tableView.es.stopPullToRefresh()
             }
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
         }
     }
     
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refreshAction()
+        }
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    
     @objc func refreshAction() {
+        skip = 0
         dataRequest()
     }
+    
+    private func loadMore() {
+        skip = skip + 10
+        dataRequestLoadMore()
+    }
+    
+    func dataRequestLoadMore()  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "\(skip)", take: "10", type: "1", cate_id: "0"), showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:RecmdMoreModel = try jsonDecoder.decode(RecmdMoreModel.self, from: result)
+                if model.data.count > 0 {
+                    self.tableView.es.stopLoadingMore()
+                    self.dataArr += model.data
+                    self.tableView.reloadData()
+                } else {
+                    self.tableView.es.noticeNoMoreData()
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.tableView.es.stopLoadingMore()
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -118,7 +183,7 @@ extension HDLY_RecmdMore_VC {
             cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.titleL.text = model.title
             cell?.authorL.text = String.init(format: "%@  %@",model.teacher_name, model.teacher_title)
-
+            
             cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
             if model.fileType == 1 {//mp3
@@ -152,8 +217,6 @@ extension HDLY_RecmdMore_VC {
             
             return cell!
         }
-        
-//        return UITableViewCell.init()
         
     }
     

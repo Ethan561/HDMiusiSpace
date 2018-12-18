@@ -218,8 +218,24 @@ extension HDSSL_MyOrderSubVC{
     }
     //删除订单
     func deleteMyOrderOf(_ index: Int) {
-        let order = orderArray[index]
-        viewModel.deleteOrderBy(apiToken: HDDeclare.shared.api_token ?? "", order_id: order.orderID!, vc: self)
+        //提示
+        weak var weakself = self
+        
+        let tipView: HDSSL_defaultAlertView = HDSSL_defaultAlertView.createViewFromNib() as! HDSSL_defaultAlertView
+        tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tipView.topTitleLabel.text = "温馨提示"
+        tipView.titleLab.text = "删除当前订单？"
+        tipView.blockSelected { (type) in
+            if type == 1 {
+                let order = weakself?.orderArray[index]
+                weakself?.viewModel.deleteOrderBy(apiToken: HDDeclare.shared.api_token ?? "", order_id: order!.orderID!, vc: self)
+            }
+        }
+        if kWindow != nil {
+            kWindow!.addSubview(tipView)
+        }
+        
+        
     }
     //评价订单
     func commentMyOrderOf(_ index: Int) {

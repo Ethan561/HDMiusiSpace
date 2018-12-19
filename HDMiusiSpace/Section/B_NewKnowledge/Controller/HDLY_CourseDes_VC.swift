@@ -705,7 +705,6 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
         guard let url  = self.infoModel?.data.url else {
             return
         }
-        
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
@@ -717,23 +716,32 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
         weak var weakS = self
+        
+        
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
                 LOG(error)
+                weakS?.shareView?.alertWithShareError(error!)
             } else {
                 if (data is UMSocialShareResponse) {
-                    var resp = data as? UMSocialShareResponse
+                    let resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    
                     //第三方原始返回的数据
-                    print(resp?.originalResponse)
+                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
+                HDAlert.showAlertTipWith(type: .onlyText, text: "分享成功")
+                HDLY_ShareGrowth.shareGrowthRequest()
                 weakS?.shareView?.removeFromSuperview()
             }
         }
+        
+        
     }
+    
+
+    
 }

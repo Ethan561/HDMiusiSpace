@@ -312,7 +312,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             let model = myDynamics[indexPath.row]
             let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
             cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
-            cell?.avaImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            cell?.avaImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.timeL.text = model.created_at
             cell?.nameL.text = model.nickname
             cell?.contentL.attributedText = self.htmls[index]

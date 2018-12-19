@@ -67,7 +67,7 @@ enum HD_LY_API {
     case courseQuestionList(skip: String, take: String, api_token: String, id: String)
 
     //注册：
-    case register(username: String, smscode:String )
+    case register(username: String, smscode:String , deviceno:String)
     //登录
     case usersLogin(username: String, password: String,smscode: String, deviceno: String)
     //获取用户信息
@@ -197,6 +197,10 @@ enum HD_LY_API {
     //获取评论列表
     case getCommentList(cate_id:Int, id:Int , api_token: String,skip:Int,take:Int)
     
+    //分享增加成长值
+    case growthShare(api_token: String)
+
+    
     
 }
 
@@ -290,7 +294,7 @@ extension HD_LY_API: TargetType {
             return "/api/course/questionlist"
             
         //注册：
-        case .register(username: _, smscode:_ ):
+        case .register(username: _, smscode:_ ,deviceno:_):
             return "/api/users/register"
         //登录
         case .usersLogin(username: _, password: _,smscode: _, deviceno: _):
@@ -440,8 +444,15 @@ extension HD_LY_API: TargetType {
             
         case .orderGetBuyInfo(cate_id: _, goods_id: _, api_token: _):
             return "/api/order/get_buy_info"
-        case .getCommentList(let cate_id, let id, let api_token, let skip, let take):
+        case .getCommentList(_):
             return "/api/comment/index"
+        case .growthShare(_):
+            return "/api/growth/share"
+            
+            
+            
+            
+            
         }
         
     }
@@ -455,7 +466,7 @@ extension HD_LY_API: TargetType {
              .doFocusRequest( id: _, cate_id: _,api_token:_),
              .courseLeaveMessage(api_token: _, id: _, content: _),
              .courseQuestion(api_token: _, id: _,title: _, content: _),
-             .register(username: _, smscode:_ ),
+             .register(username: _, smscode:_, deviceno:_),
              .usersLogin(username: _, password: _,smscode: _, deviceno: _),
              .modifyNickname(api_token: _, nickname: _),
              .modifyAvatar(api_token: _, avatar: _),
@@ -473,7 +484,8 @@ extension HD_LY_API: TargetType {
              .uploadFavoritesFootprint(exhibit_id: _, api_token: _),
              .uploadCourseRecords(chapter_id: _, api_token: _, study_time: _),
              .verifyTransaction(_),
-             .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
+             .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _),
+             .growthShare(api_token: _):
             
             return  .post
         default:
@@ -638,9 +650,9 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //注册：
-        case .register(username: let username, smscode: let smscode):
+        case .register(username: let username, smscode: let smscode, deviceno: let deviceno):
             
-            params = params.merging(["username": username, "smscode": smscode], uniquingKeysWith: {$1})
+            params = params.merging(["username": username, "smscode": smscode, "deviceno": deviceno], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -1005,6 +1017,19 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        
+        
+        case .growthShare(let api_token):
+            
+            params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        
+        
         }
         
         //GET 请求返回

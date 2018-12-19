@@ -43,7 +43,7 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的验证码")
                 return
             }
-            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register(username: phoneTF.text!, smscode: smsTF.text!), showHud: true, loadingVC: self , success: { (result) in
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register(username: phoneTF.text ?? "", smscode: smsTF.text ?? "", deviceno: HDDeclare.shared.deviceno ?? ""), showHud: true, loadingVC: self , success: { (result) in
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
                 let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary

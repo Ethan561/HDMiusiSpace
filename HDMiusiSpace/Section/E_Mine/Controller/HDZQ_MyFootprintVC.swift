@@ -15,6 +15,7 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     private var lastRow : Int?
     private var currentIndex : String?
     private var shareModel :FPContent?
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,23 +121,29 @@ extension HDZQ_MyFootprintVC: UMShareDelegate {
         shareObject?.webpageUrl = thumbURL
         messageObject.shareObject = shareObject
         
+        weak var weakS = self
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
                 LOG(error)
+                weakS?.tipView.alertWithShareError(error!)
             } else {
                 if (data is UMSocialShareResponse) {
-                    var resp = data as? UMSocialShareResponse
+                    let resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    self.tipView.removeFromSuperview()
                     //第三方原始返回的数据
-                    print(resp?.originalResponse)
+                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
+                HDAlert.showAlertTipWith(type: .onlyText, text: "分享成功")
+                HDLY_ShareGrowth.shareGrowthRequest()
+                weakS?.tipView.removeFromSuperview()
             }
         }
+        
+        
     }
 }
 

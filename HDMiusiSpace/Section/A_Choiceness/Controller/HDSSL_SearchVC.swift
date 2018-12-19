@@ -117,7 +117,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
             self.resultTableView.es.noticeNoMoreData()
         }
         if self.resultArray.count == 0 {
-            self.resultTableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.resultTableView.ly_emptyView = EmptyConfigView.NoSearchDataEmptyView()
             self.resultTableView.ly_showEmptyView()
         }
         

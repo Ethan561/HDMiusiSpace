@@ -36,6 +36,7 @@ struct ExCommentModel: Codable {
     var isLike, likeNum, commentNum: Int?
     var commentDate: String?
     var commentList: [ReplyCommentModel]?
+    var uid: Int
     
     enum CodingKeys: String, CodingKey {
         case commentID = "comment_id"
@@ -48,6 +49,7 @@ struct ExCommentModel: Codable {
         case commentNum = "comment_num"
         case commentDate = "comment_date"
         case commentList = "comment_list"
+        case uid
     }
 }
 
@@ -58,6 +60,7 @@ struct ReplyCommentModel: Codable {
     var likeNum: Int?
     var content, commentDate: String?
     var isLike: Int?
+    var uid: Int
     
     enum CodingKeys: String, CodingKey {
         case avatar, nickname
@@ -66,5 +69,6 @@ struct ReplyCommentModel: Codable {
         case commentDate = "comment_date"
         case isLike = "is_like"
         case returnId = "return_id"
+        case uid
     }
 }

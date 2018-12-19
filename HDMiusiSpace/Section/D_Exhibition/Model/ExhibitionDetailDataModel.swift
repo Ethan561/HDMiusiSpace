@@ -82,6 +82,7 @@ struct CommentListModel: Codable {
     var isLike, likeNum, commentNum: Int
     var commentDate: String
     var commentId: Int
+    var uid: Int
     
     enum CodingKeys: String, CodingKey {
         case avatar
@@ -93,6 +94,7 @@ struct CommentListModel: Codable {
         case likeNum = "like_num"
         case commentNum = "comment_num"
         case commentDate = "comment_date"
+        case uid
     }
 }
 
@@ -130,72 +132,3 @@ struct ExhibitionList: Codable {
         case iconList = "icon_list"
     }
 }
-
-//精选推荐1
-//struct Featured: Codable {
-//    let categoryTitle: String
-//    var list: [FeaturedList]?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case categoryTitle = "category_title"
-//        case list
-//    }
-//}
-////精选推荐2
-//struct FeaturedList: Codable {
-//    let classNum, classID: Int
-//    let img: String
-//    let purchases: Int
-//    let teacherTitle, teacherName, title: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case classNum = "class_num"
-//        case classID = "class_id"
-//        case img, purchases
-//        case teacherTitle = "teacher_title"
-//        case teacherName = "teacher_name"
-//        case title
-//    }
-//}
-////免费听
-//struct FreeListenModel: Codable {
-//    let categoryTitle, subTitle: String
-//    var list: [FreeListenList]?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case categoryTitle = "category_title"
-//        case subTitle = "sub_title"
-//        case list
-//    }
-//}
-//
-//struct FreeListenList: Codable {
-//    let audio: String
-//    let listenID: Int
-//    let img: String
-//    let title, exhibitName: String
-//
-//    enum CodingKeys: String, CodingKey {
-//        case audio
-//        case listenID = "listen_id"
-//        case img, title
-//        case exhibitName = "exhibit_name"
-//    }
-//}
-////展览攻略
-//struct Raiders: Codable {
-//    let author, categoryTitle: String
-//    let commentNum, strategyID: Int
-//    let img: String
-//    let title: String
-//    let isFavorite: Int
-//
-//    enum CodingKeys: String, CodingKey {
-//        case author
-//        case categoryTitle = "category_title"
-//        case commentNum = "comment_num"
-//        case strategyID = "strategy_id"
-//        case img, title
-//        case isFavorite = "is_favorite"
-//    }
-//}

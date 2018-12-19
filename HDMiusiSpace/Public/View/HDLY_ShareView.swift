@@ -71,4 +71,33 @@ class HDLY_ShareView: UIView {
     }
     
     
+    func alertWithShareError(_ error: Error ) {
+        let code = (error as NSError).code
+        var result:String = "0000"
+        switch code {
+        case 2000:
+            result = "未知错误"
+        case 2001:
+            result = "未安装软件或版本不支持"
+        case 2002:
+            result = "授权失败"
+        case 2003:
+            result = "分享失败"
+        case 2005:
+            result = "分享内容为空"
+        case 2008:
+            result = "应用为安装"
+        case 2009:
+            result = "分享取消"
+        case 2010:
+            result = "网络错误"
+            
+        default:
+            result = "分享失败"
+            break
+        }
+        HDAlert.showAlertTipWith(type: .onlyText, text: result)
+    }
+    
+    
 }

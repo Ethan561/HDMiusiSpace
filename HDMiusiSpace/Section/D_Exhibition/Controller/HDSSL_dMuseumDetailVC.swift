@@ -35,7 +35,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     var playItem:HDLY_FreeListenItem?
     var playModel:DMuseumListenList?
     var playingSelectRow = -1
-
+    var shareView: HDLY_ShareView?
+    
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.isOpaque = false
@@ -198,6 +199,7 @@ extension HDSSL_dMuseumDetailVC: UMShareDelegate {
         if kWindow != nil {
             kWindow!.addSubview(tipView)
         }
+        shareView = tipView
     }
     
     func shareDelegate(platformType: UMSocialPlatformType) {
@@ -217,23 +219,29 @@ extension HDSSL_dMuseumDetailVC: UMShareDelegate {
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
         
+        weak var weakS = self
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
                 LOG(error)
+                weakS?.shareView?.alertWithShareError(error!)
             } else {
                 if (data is UMSocialShareResponse) {
-                    var resp = data as? UMSocialShareResponse
+                    let resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    
                     //第三方原始返回的数据
-                    print(resp?.originalResponse)
+                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
+                HDAlert.showAlertTipWith(type: .onlyText, text: "分享成功")
+                HDLY_ShareGrowth.shareGrowthRequest()
+                weakS?.shareView?.removeFromSuperview()
             }
         }
+        
+        
     }
 }
 

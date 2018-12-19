@@ -14,6 +14,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     @IBOutlet weak var shareBtn: UIButton!
     
     var sharePath: String?
+    var shareView:HDLY_ShareView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
         if kWindow != nil {
             kWindow!.addSubview(tipView)
         }
+        shareView = tipView
     }
     
     /*
@@ -61,22 +63,29 @@ extension HDSSL_orderShareVC: UMShareDelegate {
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
         
+        weak var weakS = self
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
                 LOG(error)
+                weakS?.shareView?.alertWithShareError(error!)
             } else {
                 if (data is UMSocialShareResponse) {
                     let resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    
                     //第三方原始返回的数据
-                    print(resp?.originalResponse)
+                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
+                HDAlert.showAlertTipWith(type: .onlyText, text: "分享成功")
+                HDLY_ShareGrowth.shareGrowthRequest()
+                weakS?.shareView?.removeFromSuperview()
             }
         }
+        
+        
+        
     }
 }

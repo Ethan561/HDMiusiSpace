@@ -177,10 +177,9 @@ extension HDZQ_OthersCenterVC {
         }else {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
-//            if infoModel?.data.articleID.string != nil {
-//                vc.articleID = infoModel!.data.articleID.string
-//                vc.typeID = "1"
-//            }
+            
+            vc.articleID = String(toid)
+            vc.typeID = "8"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }

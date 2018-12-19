@@ -31,4 +31,13 @@ class HDZQ_MyFollowCell: UITableViewCell {
         desLabel.text = model.subTitle
         isVipView.isHidden = model.isVip == 0 ? true : false
     }
+    
+    func setCellWithModel(model:FollowPerModel) {
+        if let img = URL.init(string: model.img) {
+            headerView.kf.setImage(with: img, placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        }
+        nameLabel.text = model.title
+        desLabel.text = model.sub_title
+        isVipView.isHidden = model.is_focus == 0 ? true : false
+    }
 }

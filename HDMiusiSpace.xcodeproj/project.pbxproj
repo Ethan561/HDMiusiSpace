@@ -52,6 +52,7 @@
 		1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
+		6725EB6A21CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */; };
 		A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */; };
 		A70C686A21AD11180033C488 /* HDSSL_MyOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */; };
 		A71B315021424D3C00D6BA9B /* HDSSL_SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */; };
@@ -648,6 +649,7 @@
 		1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FPExhibitPlayCell.xib; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
+		6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDHSP_PersonSearchVC.swift; sourceTree = "<group>"; };
 		A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyWalletVC.swift; sourceTree = "<group>"; };
 		A70C686921AD11180033C488 /* HDSSL_MyOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyOrderVC.swift; sourceTree = "<group>"; };
 		A71B314F21424D3C00D6BA9B /* HDSSL_SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchViewModel.swift; sourceTree = "<group>"; };
@@ -2613,6 +2615,7 @@
 				1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */,
 				1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */,
 				1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */,
+				6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3442,6 +3445,7 @@
 				D6884E59211E7D5200ABDE5E /* HDLY_Kids_Cell1.swift in Sources */,
 				D61E94D02192D12400C5299F /* SDWebImageCompat.m in Sources */,
 				A7AA22A621AE274200CDA6CE /* HDSSL_recordCell.swift in Sources */,
+				6725EB6A21CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift in Sources */,
 				D6C9FC4321181EED007C8E56 /* HDCommonHeader.swift in Sources */,
 				D6C9FC5421181F28007C8E56 /* HDItemBaseNaviVC.swift in Sources */,
 				A7B645BA21BF83F500B4D83B /* HDSSL_orderShareVC.swift in Sources */,

@@ -195,11 +195,12 @@ extension HDSSL_dCommentCell{
     }
     //img list
     func getImgListView(_ imgs:[String]?) {
-        if imgs?.count == 0 {
-            return
-        }
+        
         for v in cell_imgBg.subviews {
             v.removeFromSuperview()
+        }
+        if imgs?.count == 0 {
+            return
         }
         for i in 0..<imgs!.count {
             let imgPath = imgs![i]

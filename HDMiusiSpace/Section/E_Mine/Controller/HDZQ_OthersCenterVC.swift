@@ -171,7 +171,7 @@ extension HDZQ_OthersCenterVC {
         if index == 1 {
             //反馈
             let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
-            vc.typeID = "1"
+            vc.typeID = "0"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }else {

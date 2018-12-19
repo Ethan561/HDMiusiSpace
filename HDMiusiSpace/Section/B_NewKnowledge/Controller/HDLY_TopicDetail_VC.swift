@@ -66,7 +66,11 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         bindViewModel()
         refreshAction()
         requestComments(skip: 0, take: 10)
-//        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(refreshAction))  // 会导致内存 泄漏
+        weak var weakS = self
+        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
+            weakS?.refreshAction()
+        }
+
 
     }
     
@@ -415,6 +419,7 @@ extension HDLY_TopicDetail_VC {
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
+
                     cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                         self?.commentModels[index].showAll = true
                         self?.myTableView.reloadRows(at: [indexPath], with: .none)

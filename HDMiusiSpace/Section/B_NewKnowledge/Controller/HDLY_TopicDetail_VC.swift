@@ -37,7 +37,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         webV.isOpaque = false
         return webV
     }()
-
+    
     lazy var commentView: HDZQ_CommentActionView = {
         let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
         tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -66,7 +66,11 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         bindViewModel()
         refreshAction()
         requestComments(skip: 0, take: 10)
-        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+        weak var weakS = self
+        self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
+            weakS?.refreshAction()
+        }
+
 
     }
     
@@ -121,9 +125,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                 comments[i].height = comments[i].height
             }
             weakSelf?.commentModels = comments
-            
-//            let set = NSIndexSet.init(index: 2)
-//            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
             weakSelf?.myTableView.reloadData()
         }
         
@@ -418,9 +419,10 @@ extension HDLY_TopicDetail_VC {
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
-                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ (btn) in
-                        self.commentModels[index].showAll = true
-                        self.myTableView.reloadRows(at: [indexPath], with: .none)
+
+                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                        self?.commentModels[index].showAll = true
+                        self?.myTableView.reloadRows(at: [indexPath], with: .none)
                     })
                 } else {
                     cell?.subContainerView.isHidden = true

@@ -144,6 +144,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         print(sender.tag)
 //        self.commentArray.removeAll()
 //        self.myModel = nil
+//        self.dTableView.reloadData()
         
         skip = 0
         listType = sender.tag//类型
@@ -228,17 +229,19 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.row == 0 {
             //评论
-            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell//tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
+//            let cell = tableView.cellForRow(at: indexPath)
+            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
             
             let comH = self.getCommentCellHeight(model)
             
             cell.setNeedsUpdateConstraints()
             cell.updateConstraints()
-            
+//            cell?.setNeedsLayout()
             return comH
         }
         else {
             //评论回复
+//            let cell = tableView.cellForRow(at: indexPath)
             let cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell//tableView.dequeueReusableCell(withIdentifier: "HDSSL_commentReplyCell")
             
             let replymodel = model.commentList![indexPath.row-1]
@@ -246,7 +249,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             
             cell.setNeedsUpdateConstraints()
             cell.updateConstraints()
-            
+//            cell?.setNeedsLayout()
             return comH
         }
         
@@ -261,7 +264,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         if indexPath.row == 0 {
             
             var cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
-            
+
             while (cell.contentView.subviews.last != nil) {
                 cell.contentView.subviews.last!.removeFromSuperview()  //删除并进行重新分配
             }
@@ -282,6 +285,15 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 print("点击评论按钮，位置\(index)")
                 weakSelf?.replayTheComment(index)
             }
+            
+            cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    self?.pushToOthersPersonalCenterVC(model.uid)
+                }
+            })
+
             return cell
         } else {
             let modelreply = model.commentList![indexPath.row-1]
@@ -298,11 +310,25 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 //点赞回复，调用接口
                 weakSelf?.likeTheReplyComment(indexpath,model)
             }
-            
+            cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    self?.pushToOthersPersonalCenterVC(modelreply.uid)
+                }
+            })
             return cell
         }
         
         
+    }
+    
+    func goToUserCenter(_ model:ExCommentModel){
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+        } else {
+            self.pushToOthersPersonalCenterVC(model.uid)
+        }
     }
     //评论这个评论
     func replayTheComment(_ index:Int) -> Void {
@@ -328,7 +354,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         }
         
     }
-    
+    //点赞这个评论回复
     func likeTheReplyComment(_ indexp: IndexPath,_ m: ReplyCommentModel) {
         //
         tapLikeType = 2

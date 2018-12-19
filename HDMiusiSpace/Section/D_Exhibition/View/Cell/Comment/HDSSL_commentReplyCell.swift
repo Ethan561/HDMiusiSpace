@@ -12,6 +12,7 @@ typealias BlockTapLikeButton = (_ model:ReplyCommentModel,_ indexpath: IndexPath
 
 class HDSSL_commentReplyCell: UITableViewCell {
 
+    @IBOutlet weak var cell_portrialBtn: UIButton!
     @IBOutlet weak var cell_portrial: UIImageView!
     @IBOutlet weak var cell_usreName: UILabel!
     @IBOutlet weak var cell_content: UILabel!
@@ -54,6 +55,8 @@ class HDSSL_commentReplyCell: UITableViewCell {
         if weakself?.blockTapLikeButton != nil {
             weakself?.blockTapLikeButton!(myModel!,indexpath!)
         }
+    }
+    @IBAction func action_tapPortrial(_ sender: UIButton) {
     }
     
     override func awakeFromNib() {

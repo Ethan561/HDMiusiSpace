@@ -14,6 +14,9 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
     @IBOutlet weak var shareBtn: UIButton!
     public var index = 0
     public var dayList = [DayCardModel]()
+    var shareView: HDLY_ShareView?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\(index + 1)/\(dayList.count)"
@@ -84,23 +87,29 @@ extension HDZQ_DayCardBrowserVC: UMShareDelegate {
         shareObject.shareImage = thumbURL
         messageObject.shareObject = shareObject
         
+        weak var weakS = self
         UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { data, error in
             if error != nil {
                 //UMSocialLog(error)
                 LOG(error)
+                weakS?.shareView?.alertWithShareError(error!)
             } else {
                 if (data is UMSocialShareResponse) {
-                    var resp = data as? UMSocialShareResponse
+                    let resp = data as? UMSocialShareResponse
                     //分享结果消息
                     LOG(resp?.message)
-                    self.tipView.removeFromSuperview()
                     //第三方原始返回的数据
-                    print(resp?.originalResponse)
+                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
+                HDAlert.showAlertTipWith(type: .onlyText, text: "分享成功")
+                HDLY_ShareGrowth.shareGrowthRequest()
+                weakS?.shareView?.removeFromSuperview()
             }
         }
+        
+        
     }
 }
 

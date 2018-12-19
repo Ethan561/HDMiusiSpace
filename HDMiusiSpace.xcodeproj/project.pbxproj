@@ -347,6 +347,7 @@
 		D63F8D5F2199517900686AB3 /* HDBigAnnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D5E2199517900686AB3 /* HDBigAnnView.xib */; };
 		D63F8D622199521300686AB3 /* HDCallOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = D63F8D612199521300686AB3 /* HDCallOutView.m */; };
 		D63F8D642199522300686AB3 /* HDCallOutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D63F8D632199522300686AB3 /* HDCallOutView.xib */; };
+		D646860C21C9D86A00CD33CE /* HDLY_ShareGrowth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D646860B21C9D86A00CD33CE /* HDLY_ShareGrowth.swift */; };
 		D659071021BA25E500F5E7BA /* OrderInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D659070F21BA25E500F5E7BA /* OrderInfoModel.swift */; };
 		D668CF9D21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D668CF9C21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift */; };
 		D668CF9F21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */; };
@@ -1029,6 +1030,7 @@
 		D63F8D602199521300686AB3 /* HDCallOutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDCallOutView.h; sourceTree = "<group>"; };
 		D63F8D612199521300686AB3 /* HDCallOutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDCallOutView.m; sourceTree = "<group>"; };
 		D63F8D632199522300686AB3 /* HDCallOutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDCallOutView.xib; sourceTree = "<group>"; };
+		D646860B21C9D86A00CD33CE /* HDLY_ShareGrowth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ShareGrowth.swift; sourceTree = "<group>"; };
 		D659070F21BA25E500F5E7BA /* OrderInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoModel.swift; sourceTree = "<group>"; };
 		D668CF9C21435C210024BBCE /* HDLY_SafetyVerifi_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SafetyVerifi_VC.swift; sourceTree = "<group>"; };
 		D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_SafetyVerifiSms_VC.swift; sourceTree = "<group>"; };
@@ -2354,6 +2356,7 @@
 		D6C9FC4921181F28007C8E56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D646860B21C9D86A00CD33CE /* HDLY_ShareGrowth.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3371,6 +3374,7 @@
 				A788E40521AF912000E2FC62 /* HDSSL_OrderCell.swift in Sources */,
 				A7441D3E21A2A0D50064E6A6 /* TZImagePickerController.m in Sources */,
 				D62277AC21367D4D008F1416 /* AnimationType.swift in Sources */,
+				D646860C21C9D86A00CD33CE /* HDLY_ShareGrowth.swift in Sources */,
 				D670D39D212588C20064750A /* HDLY_CourseRecmd_Cell.swift in Sources */,
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
 				1B6022ED21B5511700BD6DBC /* HDItemBaseVC.swift in Sources */,

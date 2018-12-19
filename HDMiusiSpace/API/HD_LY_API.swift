@@ -197,6 +197,10 @@ enum HD_LY_API {
     //获取评论列表
     case getCommentList(cate_id:Int, id:Int , api_token: String,skip:Int,take:Int)
     
+    //分享增加成长值
+    case growthShare(api_token: String)
+
+    
     
 }
 
@@ -440,8 +444,15 @@ extension HD_LY_API: TargetType {
             
         case .orderGetBuyInfo(cate_id: _, goods_id: _, api_token: _):
             return "/api/order/get_buy_info"
-        case .getCommentList(let cate_id, let id, let api_token, let skip, let take):
+        case .getCommentList(_):
             return "/api/comment/index"
+        case .growthShare(_):
+            return "/api/growth/share"
+            
+            
+            
+            
+            
         }
         
     }
@@ -473,7 +484,8 @@ extension HD_LY_API: TargetType {
              .uploadFavoritesFootprint(exhibit_id: _, api_token: _),
              .uploadCourseRecords(chapter_id: _, api_token: _, study_time: _),
              .verifyTransaction(_),
-             .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _):
+             .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _),
+             .growthShare(api_token: _):
             
             return  .post
         default:
@@ -1005,6 +1017,19 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        
+        
+        case .growthShare(let api_token):
+            
+            params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        
+        
         }
         
         //GET 请求返回

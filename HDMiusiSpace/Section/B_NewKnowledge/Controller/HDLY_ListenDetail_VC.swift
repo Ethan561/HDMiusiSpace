@@ -70,7 +70,6 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         player.delegate = self
-        HDFloatingButtonManager.manager.floatingBtnView.show = false
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         
@@ -85,6 +84,12 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+
+    }
+    
     @objc func refreshAction() {
         if listen_id != nil {
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)

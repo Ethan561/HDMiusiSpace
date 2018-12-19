@@ -70,6 +70,10 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
 
     }
     
+    deinit {
+        print("released###############")
+    }
+    
     @objc func refreshAction() {
         if topic_id != nil {
             if fromRootAChoiceness == true {
@@ -118,8 +122,9 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             }
             weakSelf?.commentModels = comments
             
-            let set = NSIndexSet.init(index: 2)
-            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
+//            let set = NSIndexSet.init(index: 2)
+//            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
+            weakSelf?.myTableView.reloadData()
         }
         
         viewModel.showEmptyView.bind() { (show) in
@@ -427,18 +432,26 @@ extension HDLY_TopicDetail_VC {
                 }
                 
                 cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-                    self?.commentViewModel.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", self!)
-                    if self!.commentModels[index].isLike == 0 {
-                        self!.commentModels[index].isLike = 1
-                        cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
-                    }else {
-                        self!.commentModels[index].isLike = 0
-                        cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self?.pushToLoginVC(vc: self!)
+                    } else {
+                        self?.commentViewModel.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", self!)
+                        if self?.commentModels[index].isLike == 0 {
+                            self?.commentModels[index].isLike = 1
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                        }else {
+                            self?.commentModels[index].isLike = 0
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                        }
                     }
                 })
                 
                 cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-                    self?.pushToOthersPersonalCenterVC(commentModel.uid)
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self?.pushToLoginVC(vc: self!)
+                    } else {
+                        self?.pushToOthersPersonalCenterVC(commentModel.uid)
+                    }
                 })
                 
                 cell?.longPress  = { [weak self] (commentId) in
@@ -447,7 +460,7 @@ extension HDLY_TopicDetail_VC {
                     self?.commentView.dataArr = ["回复","复制","举报"]
                     self?.commentView.tableHeightConstraint.constant = CGFloat(150)
                     self?.commentView.tableView.reloadData()
-                    self?.navigationController?.view.addSubview((self?.commentView)!)
+                    kWindow?.addSubview((self?.commentView)!)
                 }
             return cell!
         }
@@ -492,6 +505,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
             }
         } else {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.commentView.removeFromSuperview()
                 self.pushToLoginVC(vc: self)
                 return
             }

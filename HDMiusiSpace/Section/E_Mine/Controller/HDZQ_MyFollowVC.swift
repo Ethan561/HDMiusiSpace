@@ -37,6 +37,23 @@ class HDZQ_MyFollowVC: HDItemBaseVC {
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         addContentSubViewsWithArr(titleArr: menuTitleArr)
         title = "我的关注"
+        addRightBarButtonItem()
+    }
+    
+    func addRightBarButtonItem() {
+        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
+        leftBarBtn.setImage(UIImage.init(named: "search_icon_search_small_default"), for: UIControlState.normal)
+        //        leftBarBtn.setTitle("back", for: .normal)
+        leftBarBtn.addTarget(self, action: #selector(searchAction), for: UIControlEvents.touchUpInside)
+        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
+        self.navigationItem.setRightBarButton(leftBarButtonItem, animated: false)
+        
+    }
+    
+    @objc func searchAction() {
+        let vc = HDHSP_PersonSearchVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

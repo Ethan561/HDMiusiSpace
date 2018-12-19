@@ -29,6 +29,20 @@ struct MyFollowModel:Codable {
     }
 }
 
+struct SearResultData:Codable {
+    var status: Int = 0
+    var data = [FollowPerModel]()
+    var msg: String?
+}
+
+struct FollowPerModel:Codable {
+    var uid: Int = 0
+    var is_focus: Int = 0
+//    var cateId: Int = 0
+    var title: String
+    var img: String
+    var sub_title: String
+}
 
 struct MyCollectNewsData:Codable {
     var status: Int = 0

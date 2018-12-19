@@ -21,6 +21,19 @@ class HDZQ_MyViewModel: NSObject {
         }
     }
     
+    var searchResults: Bindable = Bindable([FollowPerModel]())
+    func requestSearchResults(apiToken:String,keywords:String,skip:Int,take:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: HD_ZQ_Person_API.getMySearch(api_token:apiToken , keywords:keywords, skip:skip, take:take), showHud: true, loadingVC: vc, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            print("\(dic)")
+            let jsonDecoder = JSONDecoder()
+            let model:SearResultData = try! jsonDecoder.decode(SearResultData.self, from: result)
+            self.searchResults.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     var collectNews: Bindable = Bindable([HDSSL_SearchNews]())
     func requestMyCollectNews(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFavoriteNews(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in

@@ -601,6 +601,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         else if indexPath.section == 2 {
             weak var weakSelf = self
+            let model = self.commentArr![indexPath.row]
             
             let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
             cell.tag = indexPath.row
@@ -619,6 +620,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 
                 weakSelf?.action_showMoreComment()
             }
+            //
+            cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    self?.pushToOthersPersonalCenterVC(model.uid)
+                }
+            })
+            
             return cell
         }
         else  {
@@ -630,8 +640,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 weak var weakSelf = self
                 cell?.BlockTapItemFunc(block: { (model) in
                     print(model) //点击同馆展览
-//                    self.exhibition_id = model.exhibitionID
-//                    self.loadMyDatas()
+
                     //进入新页
                     weakSelf?.showExhibitionDetailVC(exhibitionID: model.exhibitionID)
                 })

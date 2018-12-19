@@ -171,16 +171,15 @@ extension HDZQ_OthersCenterVC {
         if index == 1 {
             //反馈
             let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
-            vc.typeID = "1"
+            vc.typeID = "0"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }else {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
-//            if infoModel?.data.articleID.string != nil {
-//                vc.articleID = infoModel!.data.articleID.string
-//                vc.typeID = "1"
-//            }
+            
+            vc.articleID = String(toid)
+            vc.typeID = "8"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }

@@ -15,9 +15,11 @@ let kItemWidth: CGFloat = CGFloat((UIScreen.main.bounds.width-55-20)/3.0)
 typealias BlockTapImgAt = (_ index: Int,_ cellIndex: Int) -> Void //点击图片，返回点击位置
 typealias BlockTapLikeBtn = (_ index: Int) -> Void //点击点赞，返回点击位置
 typealias BlockTapCommentBtn = (_ index: Int) -> Void //点击评论，返回点击位置
+typealias BlockTapPortrialBtn = (_ index: Int) -> Void //点击评论，返回点击位置
 
 class HDSSL_dCommentCell: UITableViewCell {
 
+    @IBOutlet weak var cell_portrialBtn: UIButton!
     @IBOutlet weak var cell_portrial: UIImageView! //头像
     @IBOutlet weak var cell_userName: UILabel!//昵称
     @IBOutlet weak var cell_content : UILabel!
@@ -49,6 +51,7 @@ class HDSSL_dCommentCell: UITableViewCell {
     var blockTapImg : BlockTapImgAt?
     var blockTapLike : BlockTapLikeBtn?
     var blockTapComment : BlockTapCommentBtn?
+    var blockTapPortrialBtn :BlockTapPortrialBtn?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -146,6 +149,12 @@ class HDSSL_dCommentCell: UITableViewCell {
             weakSelf?.blockTapComment!(self.tag)
         }
     }
+    @IBAction func action_tapPortrial(_ sender: UIButton) {
+        weak var weakSelf = self
+        if weakSelf?.blockTapPortrialBtn != nil {
+            weakSelf?.blockTapPortrialBtn!(self.tag)
+        }
+    }
     
     
     //点击图片，放大
@@ -159,6 +168,10 @@ class HDSSL_dCommentCell: UITableViewCell {
     //评论
     func BlockTapCommentFunc(block: @escaping BlockTapCommentBtn) {
         blockTapComment = block
+    }
+    //典籍头像
+    func BlockTapPortrialBtnFunc(block: @escaping BlockTapPortrialBtn) {
+        blockTapPortrialBtn = block
     }
 }
 extension HDSSL_dCommentCell{
@@ -195,11 +208,12 @@ extension HDSSL_dCommentCell{
     }
     //img list
     func getImgListView(_ imgs:[String]?) {
-        if imgs?.count == 0 {
-            return
-        }
+        
         for v in cell_imgBg.subviews {
             v.removeFromSuperview()
+        }
+        if imgs?.count == 0 {
+            return
         }
         for i in 0..<imgs!.count {
             let imgPath = imgs![i]

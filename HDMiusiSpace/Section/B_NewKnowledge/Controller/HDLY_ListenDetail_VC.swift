@@ -132,8 +132,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             }
             weakSelf?.commentModels = comments
             
-            let set = NSIndexSet.init(index: 1)
-            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
+//            let set = NSIndexSet.init(index: 1)
+//            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
+            weakSelf?.myTableView.reloadData()
         }
         
         //评论
@@ -493,9 +494,9 @@ extension HDLY_ListenDetail_VC {
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
-                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ (btn) in
-                        self.commentModels[index].showAll = true
-                        self.myTableView.reloadRows(at: [indexPath], with: .none)
+                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                        self?.commentModels[index].showAll = true
+                        self?.myTableView.reloadRows(at: [indexPath], with: .none)
                     })
                 } else {
                     cell?.subContainerView.isHidden = true

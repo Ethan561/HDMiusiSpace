@@ -116,7 +116,7 @@ final class HDDeclare: NSObject {
     public func saveUserMessage(myDic: NSDictionary) {
         if (myDic.count > 0) {
             let avatarStr = myDic["avatar"] as? String == nil ? self.avatar : myDic["avatar"] as? String
-            self.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+            self.avatar = String.init(format: "%@%@", HDDeclare.IP_Request_Header(), avatarStr ?? "")
             self.birthday = myDic["birthday"] as? String == nil ? self.birthday : myDic["birthday"] as? String
             self.email = myDic["email"] as? String == nil ? self.email : myDic["email"] as? String
             self.nickname = myDic["nickname"] as? String == nil ? self.nickname : myDic["nickname"] as? String

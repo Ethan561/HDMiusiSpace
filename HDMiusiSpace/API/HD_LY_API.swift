@@ -67,7 +67,7 @@ enum HD_LY_API {
     case courseQuestionList(skip: String, take: String, api_token: String, id: String)
 
     //注册：
-    case register(username: String, smscode:String )
+    case register(username: String, smscode:String , deviceno:String)
     //登录
     case usersLogin(username: String, password: String,smscode: String, deviceno: String)
     //获取用户信息
@@ -290,7 +290,7 @@ extension HD_LY_API: TargetType {
             return "/api/course/questionlist"
             
         //注册：
-        case .register(username: _, smscode:_ ):
+        case .register(username: _, smscode:_ ,deviceno:_):
             return "/api/users/register"
         //登录
         case .usersLogin(username: _, password: _,smscode: _, deviceno: _):
@@ -455,7 +455,7 @@ extension HD_LY_API: TargetType {
              .doFocusRequest( id: _, cate_id: _,api_token:_),
              .courseLeaveMessage(api_token: _, id: _, content: _),
              .courseQuestion(api_token: _, id: _,title: _, content: _),
-             .register(username: _, smscode:_ ),
+             .register(username: _, smscode:_, deviceno:_),
              .usersLogin(username: _, password: _,smscode: _, deviceno: _),
              .modifyNickname(api_token: _, nickname: _),
              .modifyAvatar(api_token: _, avatar: _),
@@ -638,9 +638,9 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //注册：
-        case .register(username: let username, smscode: let smscode):
+        case .register(username: let username, smscode: let smscode, deviceno: let deviceno):
             
-            params = params.merging(["username": username, "smscode": smscode], uniquingKeysWith: {$1})
+            params = params.merging(["username": username, "smscode": smscode, "deviceno": deviceno], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

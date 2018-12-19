@@ -184,7 +184,7 @@ struct Date_list:Codable {
 
 struct DynamicData:Codable {
     var status: Int = 0
-    var data: [MyDynamic]?
+    var data : [MyDynamic]
     var msg: String?
 }
 
@@ -193,6 +193,13 @@ struct MyDynamic:Codable {
     var created_at: String?
     var avatar: String?
     var nickname: String?
+    var height = 0
+    enum CodingKeys: String, CodingKey {
+        case comment
+        case created_at
+        case avatar
+        case nickname
+    }
 }
 
 

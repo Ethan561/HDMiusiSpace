@@ -172,17 +172,19 @@ extension HDRootEVC {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicList(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
             let jsonDecoder = JSONDecoder()
             do {
-                let model:DynamicData = try jsonDecoder.decode(DynamicData.self, from: result)
+                var model:DynamicData = try jsonDecoder.decode(DynamicData.self, from: result)
                 // 将字符串转换为富文本字符串，比较耗时，提前转换
-                for i in 0..<model.data!.count {
-                    let m = model.data![i]
+                for i in 0..<model.data.count {
+                    let m = model.data[i]
                     var attrStr: NSAttributedString? = nil
                     if let anEncoding = m.comment!.data(using: .unicode) {
                         attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
                         self.htmls.append(attrStr!)
                     }
+                    let height = m.comment?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 80)
+                    model.data[i].height = Int(height!)
                 }
-                self.myDynamics = model.data!
+                self.myDynamics = model.data
                 let indexSet = NSIndexSet(index: 1)
                 self.myTableView.reloadSections(indexSet as IndexSet, with: .none)
             }
@@ -260,13 +262,9 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         if section == 1 {
-            return declare.loginStatus == .kLogin_Status_Login ? tableView.estimatedRowHeight : 0
+            return declare.loginStatus == .kLogin_Status_Login ? CGFloat(self.myDynamics[index].height + 75) : 0
         }
         return 0.01
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-         return declare.loginStatus == .kLogin_Status_Login ? 100 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

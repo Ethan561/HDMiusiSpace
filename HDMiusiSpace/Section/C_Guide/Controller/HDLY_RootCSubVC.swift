@@ -222,7 +222,8 @@ extension HDLY_RootCSubVC {
                 let listData = model.list
                 if index == 0 {
                     let cell:HDLY_GuideSectionCell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
-                    cell.moreBtn.tag = 100 + indexPath.row
+                    cell.moreBtn.tag = 100 + indexPath.section
+                    cell.moreBtn.isHidden = false
                     cell.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
                     cell.nameLabel.text = listData?.title
                     cell.subNameL.text = "\(listData?.count ?? 0)处展览讲解"

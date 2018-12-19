@@ -627,10 +627,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if model.type == 1{
                 let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                 cell?.listArray = model.exhibition?.list
+                weak var weakSelf = self
                 cell?.BlockTapItemFunc(block: { (model) in
                     print(model) //点击同馆展览
-                    self.exhibition_id = model.exhibitionID
-                    self.loadMyDatas()
+//                    self.exhibition_id = model.exhibitionID
+//                    self.loadMyDatas()
+                    //进入新页
+                    weakSelf?.showExhibitionDetailVC(exhibitionID: model.exhibitionID)
                 })
                 
                 return cell!
@@ -778,6 +781,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
         self.view.addSubview(guideBtn)
     }
+
     //查看更多评论
     @objc func action_showMoreComment(){
         print("查看更多评论")

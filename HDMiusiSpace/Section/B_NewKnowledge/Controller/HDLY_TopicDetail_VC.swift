@@ -71,6 +71,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             weakS?.refreshAction()
         }
 
+
     }
     
     deinit {
@@ -124,9 +125,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                 comments[i].height = comments[i].height
             }
             weakSelf?.commentModels = comments
-            
-//            let set = NSIndexSet.init(index: 2)
-//            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
             weakSelf?.myTableView.reloadData()
         }
         
@@ -421,7 +419,11 @@ extension HDLY_TopicDetail_VC {
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
+<<<<<<< HEAD
                     cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self](btn) in
+=======
+                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+>>>>>>> 6e598c4ea1269987e1cd30782b278fc8f2bedd57
                         self?.commentModels[index].showAll = true
                         self?.myTableView.reloadRows(at: [indexPath], with: .none)
                     })

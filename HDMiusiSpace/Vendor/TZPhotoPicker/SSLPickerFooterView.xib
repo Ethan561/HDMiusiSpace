@@ -15,24 +15,8 @@
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SSLPickerFooterView" id="U6b-Vx-4bR">
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmW-Iw-LWw">
-                    <rect key="frame" x="0.0" y="20" width="320" height="60"/>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title=" 拖到此处删除" image="icon_delete"/>
-                </button>
-            </subviews>
-            <constraints>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="top" secondItem="9Gg-ye-v9C" secondAttribute="top" constant="20" id="M3m-Jr-JCL"/>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" id="e4I-f4-Zyf"/>
-                <constraint firstItem="9Gg-ye-v9C" firstAttribute="bottom" secondItem="KmW-Iw-LWw" secondAttribute="bottom" id="qal-dG-iBA"/>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="trailing" secondItem="9Gg-ye-v9C" secondAttribute="trailing" id="uzt-iV-fqP"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
-            <point key="canvasLocation" x="105.59999999999999" y="98.050974512743636"/>
+            <point key="canvasLocation" x="-330" y="42"/>
         </collectionReusableView>
     </objects>
-    <resources>
-        <image name="icon_delete" width="14" height="18"/>
-    </resources>
 </document>

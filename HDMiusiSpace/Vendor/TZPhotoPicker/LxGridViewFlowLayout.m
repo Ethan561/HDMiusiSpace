@@ -211,9 +211,14 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             
             [_beingMovedPromptView addSubview:snapshotView];
             [_beingMovedPromptView addSubview:highlightedSnapshotView];
-            [self.collectionView addSubview:_beingMovedPromptView];
+//            [self.collectionView addSubview:_beingMovedPromptView];
+            UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+            [window addSubview:_beingMovedPromptView];
+            CGPoint poi = [longPress locationInView:window];
+            _beingMovedPromptView.center = poi;
 
-             _sourceItemCollectionViewCellCenter = sourceCollectionViewCell.center;
+//             _sourceItemCollectionViewCellCenter = sourceCollectionViewCell.center;
+            _sourceItemCollectionViewCellCenter = poi;//sourceCollectionViewCell.center;
             
             typeof(self) __weak weakSelf = self;
             [UIView animateWithDuration:0
@@ -276,7 +281,11 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
                                  animations:^{
                                      typeof(self) __strong strongSelf = weakSelf;
                                      if (strongSelf) {
-                                         self->_beingMovedPromptView.center = movingItemCollectionViewLayoutAttributes.center;
+//                                         self->_beingMovedPromptView.center = movingItemCollectionViewLayoutAttributes.center;
+                                         UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+                                         
+                                         CGPoint poi = [longPress locationInView:window];
+                                         self->_beingMovedPromptView.center = poi;
                                      }
                                  }
                                  completion:^(BOOL finished) {
@@ -312,11 +321,21 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:
         {
-            CGPoint panTranslation = [pan translationInView:self.collectionView];
+//            CGPoint panTranslation = [pan translationInView:self.collectionView];
+            UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+            CGPoint panTranslation = [pan translationInView:window];
+            
             _beingMovedPromptView.center = CGPointOffset(_sourceItemCollectionViewCellCenter, panTranslation.x, panTranslation.y);
             
+            //
             NSIndexPath * sourceIndexPath = _movingItemIndexPath;
-            NSIndexPath * destinationIndexPath = [self.collectionView indexPathForItemAtPoint:_beingMovedPromptView.center];
+//            NSIndexPath * destinationIndexPath = [self.collectionView indexPathForItemAtPoint:_beingMovedPromptView.center];
+            
+            
+            CGRect originP = [self.collectionView convertRect:self.collectionView.frame toView:window];
+            NSLog(@"point=(%f,%f),size=(%f,%f)",originP.origin.x,originP.origin.y,originP.size.width,originP.size.height);
+            NSIndexPath * destinationIndexPath = [self.collectionView indexPathForItemAtPoint:CGPointMake(_beingMovedPromptView.center.x, _beingMovedPromptView.center.y-originP.origin.y)];
+            
             
             if ((destinationIndexPath == nil) || [destinationIndexPath isEqual:sourceIndexPath]) {
                 return;

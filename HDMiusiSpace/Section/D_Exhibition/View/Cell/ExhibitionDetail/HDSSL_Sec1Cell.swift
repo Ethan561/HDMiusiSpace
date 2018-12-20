@@ -102,7 +102,7 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
             
             if let tempHeight: Double = result as? Double {
                 webheight = tempHeight
-                print("webheight: \(webheight)")
+//                print("webheight: \(webheight)")
             }
             
             DispatchQueue.main.async { [unowned self] in
@@ -124,11 +124,11 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
         
         let arr = message.components(separatedBy: ",")
         let webheight = Double(arr.last ?? "0")
-        print(message,arr)//展开是1 , 收起是2
+//        print(message,arr)//展开是1 , 收起是2
         
         DispatchQueue.main.async { [unowned self] in
             self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight ?? 0))
-            print("(webView.frame: \(webView.frame)")
+//            print("(webView.frame: \(webView.frame)")
             
             let model = FoldModel()
             model.isfolder = arr.first

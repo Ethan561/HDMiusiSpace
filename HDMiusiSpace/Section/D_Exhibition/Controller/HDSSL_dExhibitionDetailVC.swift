@@ -30,25 +30,19 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     @IBOutlet weak var backBtn   : UIButton!    //返回按钮
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var viewModel      : HDSSL_ExDetailVM = HDSSL_ExDetailVM()
     //
-    var exdataModel: ExhibitionDetailDataModel? //展览详情模型
-    //
-    var bannerView: ScrollBannerView!//banner
+    var exdataModel : ExhibitionDetailDataModel? //展览详情模型
+    var bannerView  : ScrollBannerView!//banner
     var bannerImgArr: [String]? = Array.init() //轮播图数组
-    var imgsArr: Array<String>?
-    let player = HDLY_AudioPlayer.shared
-    var playModel: DMuseumListenList?
-    var playingSelectRow = -1
-    var shareView: HDLY_ShareView?
-    
-    var isExhibitionCellFloder = true//折叠状态
-    
-    //评论
-    var commentArr: [CommentListModel]? = Array.init()
-    //
+    var imgsArr     : Array<String>? //banner图数量
+    var commentArr  : [CommentListModel]? = Array.init()//评论
+    var playModel   : DMuseumListenList?//播放
+    var shareView   : HDLY_ShareView?//分享
     var likeCellIndex: Int! //点赞指纹
-    //mvvm
-    var viewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()
+    let player = HDLY_AudioPlayer.shared//播放
+    var playingSelectRow = -1
+    var isExhibitionCellFloder = true//折叠状态
     
     //攻略收藏
     var collectionSection = -1
@@ -138,7 +132,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         }
         
     }
-    //处理返回数据
+    //MARK: - 处理返回数据
     func showViewData() {
         self.exdataModel = viewModel.exhibitionData.value
         self.commentArr = exdataModel!.data?.commentList?.list //评论
@@ -155,11 +149,11 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         self.dTableView.reloadData()
     }
     
-    //MARK: action
+    //MARK: -----action
     @IBAction func action_back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
+    //MARK: - 点赞
     @IBAction func likeBtnAction(_ sender: UIButton) {
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
@@ -169,7 +163,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: "\(self.exdataModel!.data!.exhibition_id!)", cate_id: "7", self)
         }
     }
-    
+    //MARK: - 分享
     @IBAction func shareBtnAction(_ sender: UIButton) {
         let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -179,7 +173,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         }
         shareView = tipView
     }
-    
+    //MARK: - 报错
     @IBAction func errorBtnAction(_ sender: UIButton) {
         //报错
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
@@ -243,7 +237,7 @@ extension HDSSL_dExhibitionDetailVC: UMShareDelegate {
                     //分享结果消息
                     LOG(resp?.message)
                     //第三方原始返回的数据
-                    print(resp?.originalResponse ?? 0)
+//                    print(resp?.originalResponse ?? 0)
                 } else {
                     LOG(data)
                 }
@@ -307,17 +301,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         showBigImageAtIndex(index)
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-//        let result = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight")
-        LOG("加载完成")
-//        let dHeight = Double(result ?? "0")
-//        //返回的double是个可选值，所以需要给个默认值或者用!强制解包
-//        let floatH = CGFloat(dHeight ?? 0)
-//        
-//        webView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height:floatH * 0.5)
-    }
-    
-    //查看大图
+    //MARK: - 查看大图
     func showBigImageAtIndex(_ index: NSInteger) {
         if imgsArr != nil {
             let vc = HD_SSL_BigImageVC.init()
@@ -417,13 +401,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         if section == 2 {
             //评论
             let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 90))
-//            commentHeader.contentView.backgroundColor = UIColor.clear
             let totalNum = self.exdataModel?.data?.commentList?.total
             let picNum = self.exdataModel?.data?.commentList?.imgNum
             commentHeader.btn_all.setTitle(String.init(format: "全部(%d)",totalNum ?? 0), for: .normal)
             commentHeader.btn_havePic.setTitle(String.init(format: "有图(%d)",picNum ?? 0), for: .normal)
             commentHeader.BlockTapBtnFunc { (index) in
-                print(index)
+                
                 ////0去评论，1全部，2有图
                 if index == 0 {
                     let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
@@ -462,7 +445,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             normalHeader.headerTitle.text = titleStr
             normalHeader.tag = section
             normalHeader.BlockShowmore { (index) in
-                print(index)
+                
                 //查看更多
                 self.moreBtnAction(index)
             }
@@ -576,7 +559,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell.loadWebView(path)
                 cell.delegate = self
                 cell.blockHeightFunc { (height) in
-                    print(height)
+                    
                     weakSelf?.reloadExhibitionCellHeight(height)
                 }
                 
@@ -590,7 +573,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
                 cell.loadWebView(path)
                 cell.blockHeightFunc { (height) in
-                    print(height)
+                    
                     weak var weakSelf = self
                     weakSelf?.reloadExhibitCellHeight(height)
                     
@@ -608,15 +591,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             cell.selectionStyle = .none
             cell.myModel = self.commentArr![indexPath.row]
             cell.BlockTapImgItemFunc { (index,cellIndex) in
-                print("点击第\(index)张图片，第\(cellIndex)个cell")
+//                print("点击第\(index)张图片，第\(cellIndex)个cell")
                 weakSelf?.showCommentBigImgAt(cellIndex, index)
             }
             cell.BlockTapLikeFunc { (index) in
-                print("点击喜欢按钮，位置\(index)")
+//                print("点击喜欢按钮，位置\(index)")
                 weakSelf?.commentTapLikeButton(index)
             }
             cell.BlockTapCommentFunc { (index) in
-                print("点击评论按钮，位置\(index)")
+//                print("点击评论按钮，位置\(index)")
                 
                 weakSelf?.action_showMoreComment()
             }
@@ -639,9 +622,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell?.listArray = model.exhibition?.list
                 weak var weakSelf = self
                 cell?.BlockTapItemFunc(block: { (model) in
-                    print(model) //点击同馆展览
-
-                    //进入新页
+                    //点击同馆展览，进入新页
                     weakSelf?.showExhibitionDetailVC(exhibitionID: model.exhibitionID)
                 })
                 
@@ -696,7 +677,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         return cell
         
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -791,17 +771,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         self.view.addSubview(guideBtn)
     }
 
-    //查看更多评论
+    //MARK: - 查看更多评论
     @objc func action_showMoreComment(){
-        print("查看更多评论")
-        //
         // 1全部，2有图
         let commentListvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
         commentListvc.listType = 1
         commentListvc.exhibition_id = self.exhibition_id!
         self.navigationController?.pushViewController(commentListvc, animated: true)
     }
-    //点赞
+    //MARK: - 点赞
     func commentTapLikeButton(_ index:Int) -> Void {
         //
         let myModel = self.commentArr![index]
@@ -817,7 +795,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
     }
     
-    //MARK:--- 列表的footerview
+    //MARK: - 列表的footerview
     func getTableFooterView() -> UIView {
         let  tFooter = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 80))
         tFooter.backgroundColor = UIColor.white
@@ -832,9 +810,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         
         return tFooter
     }
-    
+    //MARK: - 开始导览
     @objc func action_guide(){
-        print("开始导览")
         let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
         vc.museum_id = self.exdataModel?.data?.museum_id ?? 0
         vc.titleName = self.exdataModel?.data?.museumTitle ?? ""
@@ -842,6 +819,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
 }
+//MARK: - webview高度计算（第一版不做展开收起）
 extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
     
     func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
@@ -898,7 +876,7 @@ extension HDSSL_dExhibitionDetailVC{
     }
     //刷新展品介绍cell高度
     func reloadExhibitCellHeight(_ height: Double) {
-        print("返回的webview高度是\(height)")
+//        print("返回的webview高度是\(height)")
         if self.exhibitCellH == nil{
             self.exhibitCellH = height
             self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)

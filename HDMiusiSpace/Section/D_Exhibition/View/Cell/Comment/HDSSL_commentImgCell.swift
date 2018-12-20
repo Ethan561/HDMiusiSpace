@@ -11,6 +11,7 @@ import UIKit
 class HDSSL_commentImgCell: UITableViewCell {
 
     @IBOutlet weak var cell_collectBg: UIView!
+    @IBOutlet weak var img_tip: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

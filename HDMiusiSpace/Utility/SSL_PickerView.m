@@ -172,7 +172,7 @@
 // 设置区尾尺寸高度
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     
-    CGSize size = CGSizeMake(self.tz_width, 10);
+    CGSize size = CGSizeMake(self.tz_width, 40);
     return size;
 }
 
@@ -192,14 +192,11 @@
     UICollectionReusableView *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
     
     //控件绑定tag
-    
-//    UILabel *label = (UILabel *)[view viewWithTag:1];
+    UILabel *label = (UILabel *)[view viewWithTag:666];
     
     if ([kind isEqualToString:UICollectionElementKindSectionFooter]){
-        
-//        view.backgroundColor = [UIColor lightGrayColor];
-        
-//        label.text = [NSString stringWithFormat:@"这是footer:%ld",(long)indexPath.section];
+        //显示图片数量
+        label.text = [NSString stringWithFormat:@"%ld/9",_selectedPhotos.count];
         
     }
     

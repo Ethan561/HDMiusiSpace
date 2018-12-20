@@ -266,7 +266,12 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             imagePickerView.superVC = self
             imagePickerView.delegate = self
             pickerImgCell?.cell_collectBg.addSubview(imagePickerView)
-            
+            pickerImgCell?.img_tip.frame.origin.x = (ScreenWidth-30)/6 + 15-40 //计算提示位置
+            if self.commentPhotos.count > 0 {
+                pickerImgCell?.img_tip.isHidden = true
+            }else{
+                pickerImgCell?.img_tip.isHidden = false
+            }
             return pickerImgCell!
         }
         

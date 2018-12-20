@@ -30,6 +30,13 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="89.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_show" translatesAutoresizingMaskIntoConstraints="NO" id="80W-2H-LP1">
+                        <rect key="frame" x="20" y="0.0" width="80" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="JcR-Wy-gXj"/>
+                            <constraint firstAttribute="width" constant="80" id="m5I-DG-aaa"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="DoA-TT-xS1" secondAttribute="bottom" id="9D9-qW-kzD"/>
@@ -38,14 +45,20 @@
                     <constraint firstAttribute="trailing" secondItem="2x5-7K-dTX" secondAttribute="trailing" id="SaP-Vd-6u3"/>
                     <constraint firstItem="DoA-TT-xS1" firstAttribute="top" secondItem="2x5-7K-dTX" secondAttribute="bottom" id="TVS-TN-Ms2"/>
                     <constraint firstItem="2x5-7K-dTX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WTH-eV-eZj"/>
+                    <constraint firstItem="80W-2H-LP1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eGr-qR-lKW"/>
                     <constraint firstItem="2x5-7K-dTX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rF2-R8-etA"/>
+                    <constraint firstItem="80W-2H-LP1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="uSc-5H-NTf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cell_collectBg" destination="DoA-TT-xS1" id="rkg-9H-h9c"/>
+                <outlet property="img_tip" destination="80W-2H-LP1" id="5aQ-KI-ipC"/>
             </connections>
-            <point key="canvasLocation" x="124.8" y="143.92803598200899"/>
+            <point key="canvasLocation" x="124.8" y="143.02848575712144"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="img_show" width="80" height="36"/>
+    </resources>
 </document>

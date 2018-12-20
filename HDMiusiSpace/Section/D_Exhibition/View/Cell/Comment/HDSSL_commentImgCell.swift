@@ -8,16 +8,34 @@
 
 import UIKit
 
+typealias BlockHideDropImg = (_ Index: Int) -> Void //
+
 class HDSSL_commentImgCell: UITableViewCell {
 
     @IBOutlet weak var cell_collectBg: UIView!
     @IBOutlet weak var img_tip: UIImageView!
+    @IBOutlet weak var img_drop: UIButton!
     
+    
+    var blockHideDropImg: BlockHideDropImg?
+    func BlockHideDropImgFunc(block :@escaping BlockHideDropImg) {
+        blockHideDropImg = block
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        img_tip.frame.origin.x = (ScreenWidth-30)/6 + 15-40 //计算提示位置
     }
-
+    @IBAction func action_dropimgTap(_ sender: UIButton) {
+        
+        img_drop.isHidden = true
+        
+        weak var weakself = self
+        if weakself?.blockHideDropImg != nil {
+            weakself?.blockHideDropImg!(self.tag)
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

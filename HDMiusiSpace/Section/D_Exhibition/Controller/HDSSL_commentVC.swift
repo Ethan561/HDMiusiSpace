@@ -30,6 +30,7 @@ class HDSSL_commentVC: HDItemBaseVC {
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()      //发布评论
     var commentId: Int? //发布成功，返回评论id
     var htmlShareUrl:String? //发布成功，返回分享地址
+    var isHideDropimg: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -266,11 +267,20 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             imagePickerView.superVC = self
             imagePickerView.delegate = self
             pickerImgCell?.cell_collectBg.addSubview(imagePickerView)
-            pickerImgCell?.img_tip.frame.origin.x = (ScreenWidth-30)/6 + 15-40 //计算提示位置
+            pickerImgCell?.BlockHideDropImgFunc(block: { (index) in
+                self.isHideDropimg = true;
+            })
             if self.commentPhotos.count > 0 {
                 pickerImgCell?.img_tip.isHidden = true
+                if isHideDropimg == true {
+                    pickerImgCell?.img_drop.isHidden = true
+                }else {
+                    pickerImgCell?.img_drop.isHidden = false
+                }
+                
             }else{
                 pickerImgCell?.img_tip.isHidden = false
+                pickerImgCell?.img_drop.isHidden = true
             }
             return pickerImgCell!
         }

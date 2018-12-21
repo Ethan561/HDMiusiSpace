@@ -493,6 +493,7 @@ extension HDLY_ListenDetail_VC {
                 
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
+                cell?.nameL.text = commentModel.nickname
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false

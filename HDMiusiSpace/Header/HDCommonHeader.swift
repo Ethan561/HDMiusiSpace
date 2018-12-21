@@ -67,37 +67,42 @@ struct BaseColor {
     /**
      用于重要级段落文字信息 标题信息
      */
-    static let BlackColor = UIColor.HexColor(0x000000,1.0)
+    static let blackColor = UIColor.HexColor(0x000000,1.0)
     
     /**
      用于普通级段落文字 引导词
      */
-    static let DarkGrayColor = UIColor.HexColor(0x343434)
+    static let darkGrayColor = UIColor.HexColor(0x343434)
     
     /**
      用于辅助次要文字信息
      */
-    static let GrayColor = UIColor.HexColor(0x585858)
+    static let grayColor = UIColor.HexColor(0x585858)
     
     /**
      用于提示文字
      */
-    static let LightGrayColor = UIColor.HexColor(0x9c9c9c)
+    static let lightGrayColor = UIColor.HexColor(0x9c9c9c)
     
     /**
      用于边框颜色
      */
-    static let BorderColor = UIColor.HexColor(0xe5e5e5)
+    static let borderColor = UIColor.HexColor(0xe5e5e5)
     
     /**
      用于界面背景颜色
      */
-    static let BackGroundColor = UIColor.HexColor(0xefefef)
+    static let backGroundColor = UIColor.HexColor(0xefefef)
     
     /**
      用于头部导航颜色(红色)
      */
-    static let RedColor = UIColor.HexColor(0xE43941)
+    static let redColor = UIColor.HexColor(0xE43941)
+    
+    //
+    static let mainRedColor = UIColor.RGBColor(232, 89, 62)
+
+    
 }
 
 

@@ -246,7 +246,7 @@ extension HDRootAVC {
             return 100
         }else if model?.type.int == 2 {//日卡
             return 520*ScreenWidth/375.0
-        }else if model?.type.int == 3 {//精选好课
+        }else if model?.type.int == 3 {//精选推荐
             return 160*ScreenWidth/375.0
         }
         return 0.01
@@ -263,6 +263,7 @@ extension HDRootAVC {
                 cell?.moreBtn.isHidden  = true
             }else {
                 cell?.moreL.text = "更多"
+                cell?.moreBtn.isHidden  = false
             }
             cell?.moreBtn.tag = 100 + indexPath.row
             cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)

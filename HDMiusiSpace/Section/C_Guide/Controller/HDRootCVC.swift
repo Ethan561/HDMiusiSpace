@@ -46,7 +46,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         self.hd_navigationBarHidden = true
                 
         setupScrollView()
-        menuView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.init(width: 0, height: 5))
+       // menuView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.init(width: 0, height: 5))
         
         let menuTitleArr = ["最近","最火"]
         self.menuView.addSubview(self.pageMenu)

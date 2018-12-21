@@ -413,6 +413,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 
                 ////0去评论，1全部，2有图
                 if index == 0 {
+                    //判断是否登录
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self.pushToLoginVC(vc: self)
+                        return
+                    }
                     let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
                     commentvc.exhibition_id = self.exhibition_id
                     self.navigationController?.pushViewController(commentvc, animated: true)

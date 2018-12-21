@@ -47,7 +47,7 @@ public class HDEmptyBaseView: UIView {
         }
     }
     
-    var _target: AnyObject?
+    weak var _target: AnyObject?
     var _selector: Selector?
     //自定义视图界面
     var _customView: UIView?

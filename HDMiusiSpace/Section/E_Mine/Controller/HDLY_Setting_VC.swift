@@ -14,10 +14,11 @@ class HDLY_Setting_VC: HDItemBaseVC {
     @IBOutlet weak var myTableView: UITableView!
     var logoutTip:HDLY_LogoutTip_View = HDLY_LogoutTip_View.createViewFromNib() as! HDLY_LogoutTip_View
     var isLogin = false
-    
+    var cacheSize = "0MB"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"
+        setCacheSize()
         setupViews()
         
     }
@@ -90,13 +91,25 @@ extension HDLY_Setting_VC: UITableViewDelegate, UITableViewDataSource {
             return 5
         }
         if section == 1 {
-            return 1
+            if isLogin == true {
+                return 1
+            }else {
+                return 0
+            }
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        if indexPath.section == 0 {
+            return 60
+        } else {
+            if isLogin == true {
+                 return 60
+            }else {
+                 return 0
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -116,7 +129,7 @@ extension HDLY_Setting_VC: UITableViewDelegate, UITableViewDataSource {
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "清理缓存"
                 cell?.moreImgV.isHidden = true
-
+                cell?.subNameL.text = self.cacheSize
                 return cell!
             }else if index == 3 {//意见反馈
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
@@ -224,8 +237,35 @@ extension HDLY_Setting_VC {
     }
     
     func clearCacheRes() {
+        if self.cacheSize == "0MB" {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "当前没有缓存")
+            return
+        }
+        let alertController = UIAlertController(title: "系统提示",
+                                                message: "缓存大小\(self.cacheSize)是否清除", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: "好的", style: .default, handler: {
+            action in
+            KingfisherManager.shared.cache.clearDiskCache()
+            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "清除缓存成功！")
+            let mapPath = String.init(format: "%@/Resource/WebMap", kCachePath)
+            do {
+                try FileManager.default.removeItem(atPath: mapPath)
+            } catch  {
+                LOG("error :\(error)")
+            }
+            self.cacheSize =  "0MB"
+            let index = NSIndexPath.init(row: 2, section: 0)
+            self.myTableView.reloadRows(at: [index as IndexPath], with: .none)
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func setCacheSize() {
         KingfisherManager.shared.cache.calculateDiskCacheSize { (catchSize) in
-            
             var mapSize:Int64?
             let mapPath = String.init(format: "%@/Resource/WebMap", kCachePath)
             let fileManager = FileManager.default
@@ -237,31 +277,21 @@ extension HDLY_Setting_VC {
             }
             
             //mapSize = mapSize == nil ? 0 : mapSize! + Int64(catchSize)
-            mapSize = Int64(catchSize)
+            if mapSize != nil {
+                mapSize = Int64(catchSize) + mapSize!
+            } else {
+                mapSize = Int64(catchSize)
+            }
             
             if mapSize == 0 {
-                HDAlert.showAlertTipWith(type: .onlyText, text: "当前没有缓存")
+                self.cacheSize = "0MB"
                 return
             }
             
             let size = ceilf(Float(mapSize!)/1024.0/1024.0)
-            let alertController = UIAlertController(title: "系统提示",
-                                                    message: "缓存大小\(size)MB是否清除", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            let okAction = UIAlertAction(title: "好的", style: .default, handler: {
-                action in
-                KingfisherManager.shared.cache.clearDiskCache()
-                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "清除缓存成功！")
-                let mapPath = String.init(format: "%@/Resource/WebMap", kCachePath)
-                do {
-                    try FileManager.default.removeItem(atPath: mapPath)
-                } catch  {
-                    LOG("error :\(error)")
-                }
-            })
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            self.cacheSize =  "\(size)MB"
+            let index = NSIndexPath.init(row: 2, section: 0)
+            self.myTableView.reloadRows(at: [index as IndexPath], with: .none)
         }
     }
     

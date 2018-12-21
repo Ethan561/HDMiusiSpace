@@ -71,13 +71,15 @@ class HDZQ_ThirdBindPhoneVC: HDItemBaseVC, UITextFieldDelegate {
                 defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
                 
                 HDAlert.showAlertTipWith(type: .onlyText, text: "绑定成功")
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
-                    for vc in self.navigationController!.viewControllers {
-                        if vc.isKind(of: HDRootEVC.self) {
-                            self.navigationController?.popToViewController(vc, animated: true)
-                        }
-                    }
-                })
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+//                    for vc in self.navigationController!.viewControllers {
+//                        if vc.isKind(of: HDRootEVC.self) {
+//                            self.navigationController?.popToViewController(vc, animated: true)
+//                        }
+//                    }
+//                })
                 
             }) { (error, msg) in
                 

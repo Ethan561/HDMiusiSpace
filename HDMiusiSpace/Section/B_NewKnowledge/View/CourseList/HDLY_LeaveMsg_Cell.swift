@@ -9,6 +9,7 @@
 import UIKit
 
 typealias LongPressActionClouser = (_ type: Int)->Void
+typealias TapActionClouser = (_ type: Int)->Void
 
 class HDLY_LeaveMsg_Cell: UITableViewCell {
     
@@ -25,6 +26,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
     private var subCommentsList: [TopicSecdCommentList]?
     public var commentId = 0
     public var longPress: LongPressActionClouser!
+    public var tapPress: TapActionClouser!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,6 +35,8 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
         let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
         longPress.minimumPressDuration = 0.5
         self.longPressView.addGestureRecognizer(longPress)
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAction(ges:)))
+        self.longPressView.addGestureRecognizer(tap)
         tableView.register(UINib.init(nibName: "HDZQ_MoreCommentsCell", bundle: nil), forCellReuseIdentifier: "HDZQ_MoreCommentsCell")
         subContainerView.isHidden = true
     }
@@ -47,6 +51,12 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
             if self.longPress != nil {
                 self.longPress(commentId)
             }
+        }
+    }
+    
+    @objc func tapAction(ges:UITapGestureRecognizer) {
+        if self.tapPress != nil {
+            self.tapPress(commentId)
         }
     }
     

@@ -659,6 +659,10 @@ extension HDLY_TopicDetail_VC {
             //分享
             shareBtnAction()
         }else {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             vc.articleID = infoModel?.articleID.string

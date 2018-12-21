@@ -40,6 +40,9 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         super.viewDidLoad()
         scrollVBottomCons.constant = CGFloat(kTabBarHeight)
         navbarCons.constant = CGFloat(kTopHeight)
+        if kTopHeight == 64 {
+            navbarCons.constant = 72
+        }
         self.hd_navigationBarHidden = true
                 
         setupScrollView()

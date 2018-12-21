@@ -9,12 +9,13 @@
 import UIKit
 import ESPullToRefresh
 
-class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate  {
+class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate,UIScrollViewDelegate {
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
-    
+    @IBOutlet weak var searchBtn: UIButton!
+
     var tabHeader: RootBHeaderView!
     var bannerArr =  [BbannerModel]()
     //
@@ -34,6 +35,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
+        if kTopHeight == 64 {
+            navbarCons.constant = 72
+        }
         getVersionData()
         setupViews()
         let empV = EmptyConfigView.NoDataEmptyView()
@@ -53,6 +57,8 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }
         //获取搜索默认提示信息
         searchVM.request_getSearchPlaceholder(vc: self)
+        searchBtn.isHidden = true
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +150,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }
         
         //
-        tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as! RootBHeaderView
+        tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as? RootBHeaderView
         tabHeader.pagerView.dataSource = self
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
@@ -170,6 +176,22 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         // Dispose of any resources that can be recreated.
     }
      
+    
+    //跳转搜索入口
+    @IBAction func searchBtnItemAction(_ sender: UIButton) {
+        let storyborad = UIStoryboard.init(name: "RootA", bundle: nil)
+        let vc: HDSSL_SearchVC = storyborad.instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if self.myTableView.contentOffset.y <  60{
+            searchBtn.isHidden = true
+        } else {
+            searchBtn.isHidden = false
+        }
+    }
     
     /*
     // MARK: - Navigation

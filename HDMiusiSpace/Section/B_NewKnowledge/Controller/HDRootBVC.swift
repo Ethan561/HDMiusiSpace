@@ -61,6 +61,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         super.viewDidLoad()
         tabVBottomCons.constant = CGFloat(kTabBarHeight)
         navbarCons.constant = CGFloat(kTopHeight)
+        if kTopHeight == 64 {
+            navbarCons.constant = 72
+        }
         self.hd_navigationBarHidden = true
         setupViews()
         //
@@ -316,6 +319,11 @@ extension HDRootBVC {
         } else {
             notiScrollView.showsVerticalScrollIndicator = true
             myTableView.showsVerticalScrollIndicator = false
+            searchBtn.isHidden = false
+        }
+        if self.myTableView.contentOffset.y <  60{
+            searchBtn.isHidden = true
+        } else {
             searchBtn.isHidden = false
         }
     }

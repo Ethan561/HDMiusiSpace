@@ -175,6 +175,10 @@ extension HDZQ_OthersCenterVC {
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }else {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             

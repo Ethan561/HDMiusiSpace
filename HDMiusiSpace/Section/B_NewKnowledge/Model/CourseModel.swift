@@ -26,7 +26,7 @@ struct CourseInfoModel: Codable {
     var timg, teacherName, teacherTitle, teacherContent: String
     var isFavorite, isFocus, isBuy: Int
     var recommendsMessage: [ListenCommentList]?
-    var recommendsList: [CourseInfoRecommends]
+    var recommendsList: [CourseInfoRecommends]?
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"

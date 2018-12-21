@@ -140,7 +140,7 @@
         [self setImage:[UIImage imageNamed:@"map_loc_icon"] forState:UIControlStateNormal];
         self.userInteractionEnabled = NO;
     }
-
+    
 }
 
 #pragma mark -------- 大图点位或弹窗视图 --------

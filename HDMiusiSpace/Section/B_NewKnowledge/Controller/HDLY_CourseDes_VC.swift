@@ -450,13 +450,22 @@ extension HDLY_CourseDes_VC {
         }
         else if indexPath.section == 2 {
             guard let buynotice = infoModel?.data.buynotice else {
-                return 80
+                return 0.01
+            }
+            if buynotice.count < 3 {
+                return 0.01
             }
             let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
             return textH + 80 + 15
         }
         else if indexPath.section == 3 {
-            return 220*ScreenWidth/375.0
+            guard let recommendsList = infoModel?.data.recommendsList else {
+                return 0.01
+            }
+            if recommendsList.count > 0 {
+                return 220*ScreenWidth/375.0
+            }
+            return 0.01
         }
         
         return 0.01
@@ -517,16 +526,20 @@ extension HDLY_CourseDes_VC {
             }
             return cell!
         }
+            
         else if indexPath.section == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
-            cell?.titleL.text = "购买须知"
-            cell?.contentL.text = model?.buynotice
-            
+            if model?.buynotice.count ?? 0 > 3 {
+                cell?.titleL.text = "购买须知"
+                cell?.contentL.text = model?.buynotice
+            }
             return cell!
         }
         else if indexPath.section == 3 {
             let cell = HDLY_CourseRecmd_Cell.getMyTableCell(tableV: tableView)
-            cell?.listArray = model?.recommendsList
+            if model?.recommendsList?.count ?? 0 > 0 {
+                cell?.listArray = model?.recommendsList
+            }
             return cell!
         }
         

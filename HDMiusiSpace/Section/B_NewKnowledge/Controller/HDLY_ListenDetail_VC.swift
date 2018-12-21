@@ -121,7 +121,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             for i in 0..<comments.count {
                 for j in 0..<comments[i].list.count {
                     let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
-                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
+                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 100)
                     comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
                     comments[i].height = comments[i].height + comments[i].list[j].height
                     
@@ -558,7 +558,14 @@ extension HDLY_ListenDetail_VC {
                     self?.commentView.tableView.reloadData()
                     kWindow!.addSubview((self?.commentView)!)
                 }
-                
+                cell?.answer  = { [weak self] (commentId,nickname) in
+                    self?.keyboardTextField.textView.text = " "
+                    self?.keyboardTextField.textView.deleteBackward()
+                    self?.keyboardTextField.placeholderLabel.text = "回复@\(nickname)"
+                    self?.keyboardTextField.returnID = commentId
+                    self?.keyboardTextField.type = 1
+                    self?.showKeyBoardView()
+                }
             }
             
             return cell!

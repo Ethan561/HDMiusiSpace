@@ -255,7 +255,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7O-6M-Pxe">
-                                <rect key="frame" x="295" y="375" width="160" height="50"/>
+                                <rect key="frame" x="295" y="442" width="160" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试听" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOT-qR-lWM">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
@@ -313,7 +313,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="B7O-6M-Pxe" firstAttribute="centerY" secondItem="ZWo-ii-Wh1" secondAttribute="centerY" multiplier="1.2" id="ADu-jz-krn"/>
+                            <constraint firstItem="B7O-6M-Pxe" firstAttribute="centerY" secondItem="ZWo-ii-Wh1" secondAttribute="centerY" multiplier="1.4" id="ADu-jz-krn"/>
                             <constraint firstItem="uyj-ZJ-KHD" firstAttribute="leading" secondItem="b1d-6K-LSN" secondAttribute="leading" id="Fwk-uG-ngX"/>
                             <constraint firstItem="fji-GN-KDq" firstAttribute="leading" secondItem="b1d-6K-LSN" secondAttribute="leading" id="HVw-it-75X"/>
                             <constraint firstItem="b1d-6K-LSN" firstAttribute="trailing" secondItem="UAh-GF-4Aa" secondAttribute="trailing" id="KTc-I2-gRP"/>

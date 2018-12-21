@@ -110,7 +110,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             for i in 0..<comments.count {
                 for j in 0..<comments[i].list.count {
                     let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
-                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 80)
+                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 100)
                     comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
                     comments[i].height = comments[i].height + comments[i].list[j].height
                     
@@ -405,6 +405,7 @@ extension HDLY_TopicDetail_VC {
         else if indexPath.section ==  2 {
             let cell = HDLY_LeaveMsg_Cell.getMyTableCell(tableV: tableView)
                 let commentModel = self.commentModels[index]
+                cell?.uid = commentModel.uid
                 cell?.commentId = commentModel.commentID
                 cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.text = commentModel.comment
@@ -447,7 +448,7 @@ extension HDLY_TopicDetail_VC {
                         }, failure: { (error, msg) in })
                     }
                 })
-                
+            
                 cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                         self?.pushToLoginVC(vc: self!)
@@ -467,14 +468,24 @@ extension HDLY_TopicDetail_VC {
                 
             }
             // 长按复制与举报
-                cell?.longPress  = { [weak self] (commentId) in
-                    self?.commentView.type = 0
-                    self?.commentView.model = commentModel
-                    self?.commentView.dataArr = ["复制","举报"]
-                    self?.commentView.tableHeightConstraint.constant = CGFloat(100)
-                    self?.commentView.tableView.reloadData()
-                    kWindow?.addSubview((self?.commentView)!)
-                }
+            cell?.longPress  = { [weak self] (commentId) in
+                self?.commentView.type = 0
+                self?.commentView.model = commentModel
+                self?.commentView.dataArr = ["复制","举报"]
+                self?.commentView.tableHeightConstraint.constant = CGFloat(100)
+                self?.commentView.tableView.reloadData()
+                kWindow?.addSubview((self?.commentView)!)
+            }
+            
+            cell?.answer  = { [weak self] (commentId,nickname) in
+                self?.keyboardTextField.textView.text = " "
+                self?.keyboardTextField.textView.deleteBackward()
+                self?.keyboardTextField.placeholderLabel.text = "回复@\(nickname)"
+                self?.keyboardTextField.returnID = commentId
+                self?.keyboardTextField.type = 1
+                self?.showKeyBoardView()
+            }
+            
             return cell!
         }
         

@@ -90,7 +90,7 @@
 }
 - (void)configCollectionView {
     // 如不需要长按排序效果，将LxGridViewFlowLayout类改成UICollectionViewFlowLayout即可
-    CGFloat _itemWH = (self.tz_width - 50) / 3;
+    CGFloat _itemWH = (self.tz_width - 60) / 3;
     
     _layout = [[LxGridViewFlowLayout alloc] init];
     
@@ -102,7 +102,7 @@
     
     _collectionView.alwaysBounceVertical = YES;
     _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+    _collectionView.contentInset = UIEdgeInsetsMake(10, 20, 10, 20);
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.scrollEnabled = NO;
@@ -172,7 +172,7 @@
 // 设置区尾尺寸高度
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     
-    CGSize size = CGSizeMake(self.tz_width, 80);
+    CGSize size = CGSizeMake(self.tz_width, 40);
     return size;
 }
 
@@ -192,14 +192,11 @@
     UICollectionReusableView *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
     
     //控件绑定tag
-    
-//    UILabel *label = (UILabel *)[view viewWithTag:1];
+    UILabel *label = (UILabel *)[view viewWithTag:666];
     
     if ([kind isEqualToString:UICollectionElementKindSectionFooter]){
-        
-//        view.backgroundColor = [UIColor lightGrayColor];
-        
-//        label.text = [NSString stringWithFormat:@"这是footer:%ld",(long)indexPath.section];
+        //显示图片数量
+        label.text = [NSString stringWithFormat:@"%ld/9",_selectedPhotos.count];
         
     }
     
@@ -230,6 +227,7 @@
     [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
     [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
     
+    //延迟刷新
     [_collectionView reloadData];
     //代理回调
     [self getBackPhotosWith];

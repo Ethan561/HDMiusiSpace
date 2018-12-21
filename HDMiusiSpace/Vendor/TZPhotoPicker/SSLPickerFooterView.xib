@@ -12,27 +12,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SSLPickerFooterView" id="U6b-Vx-4bR">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SSLPickerFooterView" id="U6b-Vx-4bR" customClass="SSLPickerFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmW-Iw-LWw">
-                    <rect key="frame" x="0.0" y="20" width="320" height="60"/>
-                    <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" title=" 拖到此处删除" image="icon_delete"/>
-                </button>
+                <label opaque="NO" userInteractionEnabled="NO" tag="666" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/9" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVZ-pf-4bQ">
+                    <rect key="frame" x="0.0" y="0.0" width="315" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="cF5-Tf-mFV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <constraints>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="top" secondItem="9Gg-ye-v9C" secondAttribute="top" constant="20" id="M3m-Jr-JCL"/>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" id="e4I-f4-Zyf"/>
-                <constraint firstItem="9Gg-ye-v9C" firstAttribute="bottom" secondItem="KmW-Iw-LWw" secondAttribute="bottom" id="qal-dG-iBA"/>
-                <constraint firstItem="KmW-Iw-LWw" firstAttribute="trailing" secondItem="9Gg-ye-v9C" secondAttribute="trailing" id="uzt-iV-fqP"/>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="trailing" secondItem="WVZ-pf-4bQ" secondAttribute="trailing" constant="5" id="Q3I-UA-h2i"/>
+                <constraint firstItem="WVZ-pf-4bQ" firstAttribute="top" secondItem="9Gg-ye-v9C" secondAttribute="top" id="Zh7-yK-Ov7"/>
+                <constraint firstItem="WVZ-pf-4bQ" firstAttribute="leading" secondItem="9Gg-ye-v9C" secondAttribute="leading" id="ryS-jX-53T"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
-            <point key="canvasLocation" x="105.59999999999999" y="98.050974512743636"/>
+            <connections>
+                <outlet property="lab_picNum" destination="WVZ-pf-4bQ" id="Phz-7u-dBk"/>
+            </connections>
+            <point key="canvasLocation" x="-331.19999999999999" y="18.890554722638683"/>
         </collectionReusableView>
     </objects>
-    <resources>
-        <image name="icon_delete" width="14" height="18"/>
-    </resources>
 </document>

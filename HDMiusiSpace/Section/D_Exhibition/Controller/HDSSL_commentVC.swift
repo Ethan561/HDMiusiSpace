@@ -30,6 +30,7 @@ class HDSSL_commentVC: HDItemBaseVC {
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()      //发布评论
     var commentId: Int? //发布成功，返回评论id
     var htmlShareUrl:String? //发布成功，返回分享地址
+    var isHideDropimg: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,6 +219,11 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
     func loadTableView() {
         dTableView.delegate = self
         dTableView.dataSource = self
+        if #available(iOS 11.0, *){
+            self.dTableView.estimatedRowHeight = 0
+            self.dTableView.estimatedSectionFooterHeight = 0
+            self.dTableView.estimatedSectionHeaderHeight = 0
+        }
     }
     //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -261,7 +267,21 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             imagePickerView.superVC = self
             imagePickerView.delegate = self
             pickerImgCell?.cell_collectBg.addSubview(imagePickerView)
-            
+            pickerImgCell?.BlockHideDropImgFunc(block: { (index) in
+                self.isHideDropimg = true;
+            })
+            if self.commentPhotos.count > 0 {
+                pickerImgCell?.img_tip.isHidden = true
+                if isHideDropimg == true {
+                    pickerImgCell?.img_drop.isHidden = true
+                }else {
+                    pickerImgCell?.img_drop.isHidden = false
+                }
+                
+            }else{
+                pickerImgCell?.img_tip.isHidden = false
+                pickerImgCell?.img_drop.isHidden = true
+            }
             return pickerImgCell!
         }
         
@@ -274,6 +294,25 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
         
         
     }
+    //ios11以下，重置高度，防止页面刷新时发生抖动
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 410
+        }
+        if commentPhotos.count >= 0 && commentPhotos.count < 3{
+            return 80 + 58 + 80
+        }else if commentPhotos.count >= 3  && commentPhotos.count < 6 {
+            return 80 * 2 + 96 + 80
+        }else {
+            return 80 * 3 + 130 + 80
+        }
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
 }
 
 extension HDSSL_commentVC:SSL_PickerViewDelegate {
@@ -281,7 +320,9 @@ extension HDSSL_commentVC:SSL_PickerViewDelegate {
     func getBackSelectedPhotos(_ images: [Any]!) {
         print(images)
         self.commentPhotos = images as! [UIImage]
-        self.dTableView.reloadData()
+        //ios11系统后tableView刷新时，会自动估算cell、header、footer的高度，导致视图抖动
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .none) //刷新某个row
+//        self.dTableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none) //刷新某个section
     }
     
     func didSelectedItem(at itemIndex: Int) {

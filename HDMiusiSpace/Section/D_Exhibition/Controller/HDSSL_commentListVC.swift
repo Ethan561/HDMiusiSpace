@@ -19,20 +19,20 @@ class HDSSL_commentListVC: HDItemBaseVC {
     @IBOutlet weak var btn_pic: UIButton!
     @IBOutlet weak var dTableView: UITableView!
     
-    var myModel : ExComListModel? //data所有返回数据
+    var myModel        : ExComListModel? //data所有返回数据
     var allCommentCount: Int? //全部评论
     var picCommentCount: Int? //有图评论
-    var commentArray:[ExCommentModel] = Array.init() //评论数组
-    var keyboardTextField : KeyboardTextField! //评论输入
+    var currentSection : Int? //当前section
+    var tapLikeType    : Int? //1点赞评论，2点赞评论回复
+    var commentArray   :[ExCommentModel] = Array.init() //评论数组
+    var keyboardTextField  : KeyboardTextField! //评论输入
     var currentCommentModel: ExCommentModel!  //当前回复评论对象
-    var currentSection: Int? //当前section
-    var currentIndexPath: IndexPath? //当前位置
-    var commentText: String = ""
-    var tapLikeType: Int? //1点赞评论，2点赞评论回复
+    var currentIndexPath   : IndexPath? //当前位置
+    var commentText        : String = ""//评论内容
+    
     
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
-    //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
     override func viewDidLoad() {
@@ -103,6 +103,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
             
         }
     }
+    //MARK: ---处理数据
     func dealMyDatas(_ model:ExComListModel) -> Void {
         //
         self.myModel = model
@@ -115,7 +116,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         btn_pic.setTitle(String.init(format: "有图(%d)", picCommentCount ?? 0), for: .normal)
      
     }
-    //刷新列表
+    //MARK: ---刷新列表
     func refreshTableView(_ model:ExComListModel) {
         if model.list!.count > 0 {
             if skip == 0 {
@@ -131,6 +132,8 @@ class HDSSL_commentListVC: HDItemBaseVC {
             self.dTableView.es.noticeNoMoreData()
         }
         
+        self.calculateCellHeight()
+        
         self.dTableView.reloadData()
         
         if self.commentArray.count == 0 {
@@ -139,32 +142,54 @@ class HDSSL_commentListVC: HDItemBaseVC {
         }
         
     }
-    //切换列表
+    //MARK: --计算cell高度
+    func calculateCellHeight(){
+        var arr :[ExCommentModel]? = Array.init()
+        
+        for var model in self.commentArray {
+            let comH = self.getCommentCellHeight(model)
+            model.cellHeight = comH
+            
+            var arr1 :[ReplyCommentModel]? = Array.init()
+            if (model.commentList?.count)! > 0 {
+                for var reply in model.commentList! {
+                    let comH = self.getReplyCommentCellHeight(reply)
+                    reply.cellHeight = comH
+                    
+                    arr1?.append(reply)
+                }
+                model.commentList?.removeAll()
+                model.commentList = arr1!
+            }
+            arr?.append(model)
+        }
+        self.commentArray.removeAll()
+        self.commentArray = arr!
+    }
+    //MARK: ---切换列表
     @IBAction func action_tapButton(_ sender: UIButton) {
         print(sender.tag)
-//        self.commentArray.removeAll()
-//        self.myModel = nil
-//        self.dTableView.reloadData()
         
         skip = 0
         listType = sender.tag//类型
         //请求数据
         requestData()
     }
+    //MARK: ---请求数据
     func requestData() {
         //请求数据
         viewModel.request_getExhibitionCommentList(type: listType!, skip: skip*10, take: take, exhibitionID: self.exhibition_id!, vc: self)
     }
-    
+    //MARK: ---添加刷新机制
     func addRefresh() {
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
         header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         
-//        self.dTableView.es.addPullToRefresh(animator: header) { [weak self] in
-//            self?.refresh()
-//        }
+        self.dTableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
         self.dTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }
@@ -181,7 +206,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         skip += 1
         requestData()
     }
-    //发表评论，跳页
+    //MARK: - 发表评论，跳页
     @IBAction func action_writeComment(_ sender: Any) {
         let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
         commentvc.exhibition_id = self.exhibition_id
@@ -189,7 +214,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
     }
     
     
-    //显示评论图片大图
+    //MARK: - 显示评论图片大图
     func showCommentBigImgAt(_ cellLoc: Int,_ index: Int) {
         let model = self.commentArray[cellLoc]
         
@@ -229,28 +254,12 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.row == 0 {
             //评论
-//            let cell = tableView.cellForRow(at: indexPath)
-            let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell
-            
-            let comH = self.getCommentCellHeight(model)
-            
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraints()
-//            cell?.setNeedsLayout()
-            return comH
+            return model.cellHeight!
         }
         else {
             //评论回复
-//            let cell = tableView.cellForRow(at: indexPath)
-            let cell = HDSSL_commentReplyCell.getMyTableCell(tableV: tableView) as HDSSL_commentReplyCell//tableView.dequeueReusableCell(withIdentifier: "HDSSL_commentReplyCell")
-            
             let replymodel = model.commentList![indexPath.row-1]
-            let comH = self.getReplyCommentCellHeight(replymodel)
-            
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraints()
-//            cell?.setNeedsLayout()
-            return comH
+            return replymodel.cellHeight!
         }
         
     }
@@ -323,6 +332,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    //MARK: --- 进入个人中心
     func goToUserCenter(_ model:ExCommentModel){
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
@@ -330,14 +340,14 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             self.pushToOthersPersonalCenterVC(model.uid)
         }
     }
-    //评论这个评论
+    //MARK: ---评论这个评论
     func replayTheComment(_ index:Int) -> Void {
         //
         currentCommentModel = self.commentArray[index]
         
         self.showKeyBoardView()
     }
-    //点赞这个评论
+    //MARK: ---点赞这个评论
     func likeTheComment(_ index:Int) -> Void {
         currentCommentModel = self.commentArray[index]
         
@@ -354,7 +364,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         }
         
     }
-    //点赞这个评论回复
+    //MARK: ---点赞这个评论回复
     func likeTheReplyComment(_ indexp: IndexPath,_ m: ReplyCommentModel) {
         //
         tapLikeType = 2
@@ -370,7 +380,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
     }
 
-    //获取评论cell的高度
+    //MARK: ---获取评论cell的高度
     func getCommentCellHeight(_ model: ExCommentModel) -> CGFloat {
         let content = String.init(format: "%@", model.content!)
         
@@ -391,6 +401,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         
         return imgH! + size.height + CGFloat(otherH)
     }
+    //MARK: ---获取评论回复cell高度
     func getReplyCommentCellHeight(_ model: ReplyCommentModel) -> CGFloat {
         let content = String.init(format: "%@", model.content!)
         
@@ -403,7 +414,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
 }
 //MARK: ---- 评论 ----
 extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
-    
+    //MARK: ---初始化评论视图
     func setupCommentView() {
         keyboardTextField = HDLY_KeyboardView(point: CGPoint(x: 0, y: 0), width: self.view.bounds.size.width)
         keyboardTextField.delegate = self
@@ -452,9 +463,9 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
         self.replyCommentWith()
         
     }
-    
+    //MARK: ---判断是否登陆
     func replyCommentWith(){
-        //判断是否登陆
+        
         if commentText.isEmpty == false && currentCommentModel.commentID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)

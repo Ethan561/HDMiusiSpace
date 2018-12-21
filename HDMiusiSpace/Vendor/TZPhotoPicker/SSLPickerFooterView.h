@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SSLPickerFooterView : UICollectionReusableView
+@property (weak, nonatomic) IBOutlet UILabel *lab_picNum;//图片数量统计
 
 @end
 

@@ -236,7 +236,7 @@ extension HDSSL_dCommentCell{
     }
     //点击图片
     @objc func tapAction(_ ges:UITapGestureRecognizer){
-        print(ges.view!.tag)
+        
         weak var weakSelf = self
         if weakSelf?.blockTapImg != nil {
             weakSelf?.blockTapImg!(ges.view!.tag, self.tag)

@@ -10,7 +10,7 @@ import UIKit
 
 typealias LongPressActionClouser = (_ type: Int)->Void
 typealias TapActionClouser = (_ type: Int)->Void
-
+typealias AnswerActionClouser = (_ commentId: Int,_ nickname: String )->Void
 class HDLY_LeaveMsg_Cell: UITableViewCell {
     
     @IBOutlet weak var longPressView: UIView!
@@ -25,8 +25,10 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
     @IBOutlet weak var showMoreBtn: UIButton!
     private var subCommentsList: [TopicSecdCommentList]?
     public var commentId = 0
+    public var uid = 0
     public var longPress: LongPressActionClouser!
     public var tapPress: TapActionClouser!
+    public var answer: AnswerActionClouser!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -99,7 +101,11 @@ extension HDLY_LeaveMsg_Cell : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.subCommentsList![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_MoreCommentsCell") as! HDZQ_MoreCommentsCell
-        cell.commentLabel.text = "\(model.uNickname)：\(model.comment)"
+//        if model.parentUid != self.uid {
+//             cell.commentLabel.text = "\(model.uNickname)回复\(model.parentNickname)：\(model.comment)"
+//        } else {
+            cell.commentLabel.text = "\(model.uNickname)：\(model.comment)"
+//        }
         return cell
     }
 }
@@ -108,5 +114,11 @@ extension HDLY_LeaveMsg_Cell : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = self.subCommentsList![indexPath.row]
         return CGFloat(model.height)
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.subCommentsList![indexPath.row]
+        if self.answer != nil {
+            self.answer(model.commentID,model.uNickname)
+        }
     }
 }

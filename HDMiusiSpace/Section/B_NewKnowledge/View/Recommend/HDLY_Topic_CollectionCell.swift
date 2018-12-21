@@ -20,6 +20,7 @@ class HDLY_Topic_CollectionCell: UICollectionViewCell {
         // Initialization code
         bgView.layer.cornerRadius = 8
         bgView.layer.masksToBounds = true
+        newTipL.backgroundColor = BaseColor.mainRedColor
         
     }
 

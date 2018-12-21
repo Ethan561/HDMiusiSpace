@@ -29,7 +29,9 @@ class HDLY_Recommend_Cell1: UITableViewCell {
 //        imgV.layer.masksToBounds = true
         bgView.layer.cornerRadius = 8
         bgView.clipsToBounds = true
+        newTipL.backgroundColor = BaseColor.mainRedColor
         
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -11,9 +11,12 @@ import UIKit
 class HDLY_CourseRecmd_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
+    @IBOutlet weak var sectionL: UILabel!
+    
     var listArray: Array<CourseInfoRecommends>? {
         didSet{
             myCollectionView.reloadData()
+            sectionL.text = "相关推荐"
         }
     }
     

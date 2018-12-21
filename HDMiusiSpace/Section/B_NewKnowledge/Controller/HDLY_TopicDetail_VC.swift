@@ -31,7 +31,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-    let commentViewModel: CoursePublicViewModel = CoursePublicViewModel()
     lazy var testWebV: UIWebView = {
         let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
         webV.isOpaque = false
@@ -152,10 +151,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             }else {
                 weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
             }
-        }
-        
-        commentViewModel.likeModel.bind { (model) in
-//            weakSelf?.requestComments(skip: 0, take: 10)
         }
         
         publicViewModel.isCollection.bind { (flag) in
@@ -432,19 +427,24 @@ extension HDLY_TopicDetail_VC {
                 }else {
                     cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
                 }
-                
+            
                 cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                         self?.pushToLoginVC(vc: self!)
                     } else {
-                        self?.commentViewModel.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", self!)
-                        if self?.commentModels[index].isLike == 0 {
-                            self?.commentModels[index].isLike = 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
-                        }else {
-                            self?.commentModels[index].isLike = 0
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
-                        }
+                        self?.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", success: { (result) in
+                            if self?.commentModels[index].isLike == 0 {
+                                self?.commentModels[index].isLike = 1
+                                self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
+                                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                                cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
+                            }else {
+                                self?.commentModels[index].isLike = 0
+                                self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
+                                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                                cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
+                            }
+                        }, failure: { (error, msg) in })
                     }
                 })
                 
@@ -455,12 +455,23 @@ extension HDLY_TopicDetail_VC {
                         self?.pushToOthersPersonalCenterVC(commentModel.uid)
                     }
                 })
+            
+            // 单击回复
+            cell?.tapPress = { [weak self] (commentId) in
+                self?.keyboardTextField.textView.text = " "
+                self?.keyboardTextField.textView.deleteBackward()
+                self?.keyboardTextField.placeholderLabel.text = "回复@\(commentModel.nickname)"
+                self?.keyboardTextField.returnID = commentModel.commentID
+                self?.keyboardTextField.type = 1
+                self?.showKeyBoardView()
                 
+            }
+            // 长按复制与举报
                 cell?.longPress  = { [weak self] (commentId) in
                     self?.commentView.type = 0
                     self?.commentView.model = commentModel
-                    self?.commentView.dataArr = ["回复","复制","举报"]
-                    self?.commentView.tableHeightConstraint.constant = CGFloat(150)
+                    self?.commentView.dataArr = ["复制","举报"]
+                    self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                     self?.commentView.tableView.reloadData()
                     kWindow?.addSubview((self?.commentView)!)
                 }
@@ -486,16 +497,6 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
     func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
         if type == 0 {
             if index == 0 {
-                print(model.nickname)
-                //此处操作是为了恢复placeholder显示
-                keyboardTextField.textView.text = " "
-                keyboardTextField.textView.deleteBackward()
-                keyboardTextField.placeholderLabel.text = "回复@\(model.nickname)"
-                keyboardTextField.returnID = model.commentID
-                keyboardTextField.type = 1
-                showKeyBoardView()
-                self.commentView.removeFromSuperview()
-            } else if index == 1 {
                 let paste = UIPasteboard.general
                 paste.string = model.comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
@@ -723,5 +724,25 @@ extension HDLY_TopicDetail_VC: UMShareDelegate {
             }
         }
         
+    }
+}
+
+extension HDLY_TopicDetail_VC {
+    func doLikeRequest( id: String, cate_id: String,success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? )  {
+        var token :String = ""
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doLikeRequest(id: id, cate_id: cate_id, api_token: token, deviceno: deviceno), showHud: true, loadingVC: self, success: { (result) in
+            success(result)
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+        }) { (errorCode, msg) in
+            failure!(errorCode,msg)
+        }
     }
 }

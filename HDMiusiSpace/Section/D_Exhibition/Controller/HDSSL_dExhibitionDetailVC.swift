@@ -175,6 +175,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     }
     //MARK: - 报错
     @IBAction func errorBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         //报错
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
         if self.exdataModel?.data?.exhibition_id != nil {

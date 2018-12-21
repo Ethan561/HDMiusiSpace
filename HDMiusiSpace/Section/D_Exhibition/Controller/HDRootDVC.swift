@@ -97,6 +97,9 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navBarHeight.constant = CGFloat(kTopHeight)
+        if kTopHeight == 64 {
+            navBarHeight.constant = 72
+        }
         self.hd_navigationBarHidden = true
         
         if HDLY_LocationTool.shared.city == nil {

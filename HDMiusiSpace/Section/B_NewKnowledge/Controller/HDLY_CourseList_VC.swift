@@ -383,6 +383,10 @@ extension HDLY_CourseList_VC {
             closeFeedbackChooseTip()
             
         }else {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             if infoModel?.data.articleID.string != nil {

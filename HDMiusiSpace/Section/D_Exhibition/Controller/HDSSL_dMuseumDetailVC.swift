@@ -173,6 +173,10 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     
     @IBAction func errorBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         //报错
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
         vc.articleID = "\(museumId)"

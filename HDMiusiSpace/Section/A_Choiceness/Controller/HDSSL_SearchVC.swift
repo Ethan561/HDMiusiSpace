@@ -21,8 +21,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
     @IBOutlet weak var tagBgView      : UIView!      //标签背景页
     @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
     @IBOutlet weak var resultTableView: UITableView! //搜索结果
-    @IBOutlet weak var searchBtn: UIButton!
-
+    
+    @IBOutlet weak var searcgTagBgView: UIView!
+    
     var searchTypeArray: [HDSSL_SearchTag] = Array.init()  //搜索类型数组
     var resultArray    : [HDSSL_SearchType] = Array.init()  //搜索类型数组
     var newsArray      : [HDSSL_SearchNews] = Array.init()  //资讯
@@ -177,18 +178,19 @@ class HDSSL_SearchVC: HDItemBaseVC {
     }
     //标签搜索
     func searchByTag(_ tagIndex:Int){
-        
+        //资讯、新知、展览、博物馆
         self.currentType = tagIndex + 1 //设置搜索类型1、2、3、4
-        
-//        self.textFeild.text = typeTitleArray[tagIndex] //资讯、新知、展览、博物馆
-//
-//        //保存搜索历史
-//        self.func_saveHistory(self.textFeild.text!)
-//
-//        self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: tagIndex+1, vc: self)
-        
+
         self.textFeild.placeholder = String.init(format: "搜索%@", typeTitleArray[tagIndex])
+        
         self.textFeild.becomeFirstResponder()
+        
+        //选择标签后，标签模块隐藏
+        let tagframe = searcgTagBgView.frame
+        var historyframe = dTableView.frame
+        historyframe.origin.y -= tagframe.size.height
+        searcgTagBgView.isHidden = true
+        dTableView.frame = historyframe
     }
     //MARK: - 自定义导航栏
     func loadSearchBar() {
@@ -244,6 +246,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         if (arr?.count)! > 0 {
             historyArray = Array(arr!) as! [String]
+        }else {
+            self.dTableView.isHidden = true
         }
         
     }
@@ -270,6 +274,12 @@ class HDSSL_SearchVC: HDItemBaseVC {
         print(historyArray)
         
         UserDefaults().set(historyArray, forKey: SearchHistory)
+        
+        if historyArray.count > 0 {
+            self.dTableView.isHidden = false
+        }else {
+            self.dTableView.isHidden = true
+        }
         
         self.dTableView.reloadData()
     }
@@ -300,6 +310,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
             if type == 1 {
                 weakself!.historyArray.removeAll()
                 weakself!.dTableView.reloadData()
+                weakself!.dTableView.isHidden = true
                 UserDefaults().set(weakself!.historyArray, forKey: SearchHistory)
             }
         }

@@ -58,9 +58,14 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
             self.tableView.ly_endLoading()
             //
             let jsonDecoder = JSONDecoder()
-            let model:HDLY_dExhibitionListM = try! jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
-            self.dataArr = model.data
-            self.tableView.reloadData()
+            do {
+                let model:HDLY_dExhibitionListM = try jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
+                self.dataArr = model.data
+                self.tableView.reloadData()
+            }
+            catch let error {
+                LOG("\(error)")
+            }
             
         }) { (errorCode, msg) in
             self.tableView.ly_endLoading()

@@ -229,6 +229,11 @@ extension HDLY_RootCSubVC {
                     cell.subNameL.text = "\(listData?.count ?? 0)处展览讲解"
                     
                     cell.disL.text = listData?.distance
+                    if model.list?.count ?? 0 < 2 {
+                        cell.moreBtn.isHidden = true
+                    }else {
+                        cell.moreBtn.isHidden = false
+                    }
                     return cell
                 }
                 
@@ -240,7 +245,7 @@ extension HDLY_RootCSubVC {
 
                 return cell!
                 
-            }else if model.type == 2 {
+            } else if model.type == 2 {
                 let mapData = model.map
                 
                 if index == 0 {

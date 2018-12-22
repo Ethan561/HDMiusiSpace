@@ -89,6 +89,11 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
     @objc func refreshAction() {
         if listen_id != nil {
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)

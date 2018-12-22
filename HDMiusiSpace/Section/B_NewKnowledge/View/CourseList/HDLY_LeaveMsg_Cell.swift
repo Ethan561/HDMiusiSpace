@@ -24,6 +24,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showMoreBtn: UIButton!
     private var subCommentsList: [TopicSecdCommentList]?
+    public var htmls: [NSAttributedString]?
     public var commentId = 0
     public var uid = 0
     public var longPress: LongPressActionClouser!
@@ -99,13 +100,9 @@ extension HDLY_LeaveMsg_Cell : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = self.subCommentsList![indexPath.row]
+        let attStr = self.htmls![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_MoreCommentsCell") as! HDZQ_MoreCommentsCell
-//        if model.parentUid != self.uid {
-//             cell.commentLabel.text = "\(model.uNickname)回复\(model.parentNickname)：\(model.comment)"
-//        } else {
-            cell.commentLabel.text = "\(model.uNickname)：\(model.comment)"
-//        }
+        cell.commentLabel.attributedText = attStr
         return cell
     }
 }

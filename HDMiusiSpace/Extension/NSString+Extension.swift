@@ -23,6 +23,8 @@ extension String {
         return ceil(rect.height)
     }
     
+    
+    
     func getContentForMaxHeight(fontSize: CGFloat, width: CGFloat, maxHeight: CGFloat) -> CGFloat {
         let font = UIFont.systemFont(ofSize: fontSize)
         let rect = NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: font], context: nil)
@@ -36,3 +38,9 @@ extension String {
     }
 }
 
+extension NSAttributedString {
+    func getAttributeContentHeight(width: CGFloat) -> CGFloat {
+        let rect = NSAttributedString.init(attributedString: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin,.usesFontLeading], context: nil)
+        return rect.height
+    }
+}

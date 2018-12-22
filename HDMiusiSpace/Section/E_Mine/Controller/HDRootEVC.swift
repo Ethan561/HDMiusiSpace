@@ -41,8 +41,8 @@ class HDRootEVC: HDItemBaseVC {
             getMyStudyCourses()
         } else {
             //未登录
-            self.myTableView.es.removeRefreshHeader()
             self.myTableView.es.removeRefreshFooter()
+            self.myTableView.es.removeRefreshHeader()
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")

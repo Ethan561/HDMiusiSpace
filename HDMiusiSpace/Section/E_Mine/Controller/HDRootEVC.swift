@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class HDRootEVC: HDItemBaseVC {
     @IBOutlet weak var msgBtn: UIButton!
@@ -21,22 +22,27 @@ class HDRootEVC: HDItemBaseVC {
     
     var tabHeader = HDLY_MineHome_Header()
     
+    private var take = 10
+    private var skip = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navbarCons.constant = kTopHeight
         setupViews()
-        
+        getMyDynamicList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if declare.loginStatus == .kLogin_Status_Login {
+            addRefresh()
             getUserInfo()
-            getMyDynamicList()
             getMyStudyCourses()
         } else {
             //未登录
+            self.myTableView.es.removeRefreshHeader()
+            self.myTableView.es.removeRefreshFooter()
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
@@ -139,6 +145,35 @@ class HDRootEVC: HDItemBaseVC {
     @IBAction func pushToNotiMsgVC(_ sender: UIButton) {
         
     }
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.myTableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.myTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.myTableView.refreshIdentifier = String.init(describing: self)
+        self.myTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        skip = 0
+        self.myDynamics.removeAll()
+        getMyDynamicList()
+    }
+    
+    private func loadMore() {
+        skip = skip + take
+        getMyDynamicList()
+    }
+    
+    
 }
 
 extension HDRootEVC {
@@ -169,7 +204,7 @@ extension HDRootEVC {
     }
     
     func getMyDynamicList() {
-        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicList(api_token: HDDeclare.shared.api_token ?? "", skip: 0, take: 100), cache: false, showHud: false , success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyDynamicList(api_token: HDDeclare.shared.api_token ?? "", skip: skip, take: take), cache: false, showHud: false , success: { (result) in
             let jsonDecoder = JSONDecoder()
             do {
                 var model:DynamicData = try jsonDecoder.decode(DynamicData.self, from: result)
@@ -184,9 +219,15 @@ extension HDRootEVC {
                     let height = m.comment?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 80)
                     model.data[i].height = Int(height!)
                 }
-                self.myDynamics = model.data
+                self.myDynamics.append(contentsOf: model.data)
                 let indexSet = NSIndexSet(index: 1)
                 self.myTableView.reloadSections(indexSet as IndexSet, with: .none)
+                self.myTableView.es.stopLoadingMore()
+                self.myTableView.es.stopPullToRefresh()
+                if model.data.count < 10 {
+                     self.myTableView.es.noticeNoMoreData()
+                }
+                
             }
             catch let error {
                 LOG("解析错误：\(error)")

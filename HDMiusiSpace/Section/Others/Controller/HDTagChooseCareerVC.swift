@@ -12,7 +12,8 @@ class HDTagChooseCareerVC: UIViewController {
 
     @IBOutlet weak var lab_title: UILabel!
     @IBOutlet weak var lab_des  : UILabel!
-    @IBOutlet weak var TagBgView: UIView!
+//    @IBOutlet weak var TagBgView: UIView!
+    @IBOutlet weak var TagBgView: UIScrollView!
     
     // firstGuideView
     @IBOutlet weak var firstGuideView: UIView!
@@ -52,10 +53,22 @@ class HDTagChooseCareerVC: UIViewController {
         //MVVM
         bindViewModel()
         //获取启动标签
-        self.viewModel.request_getLaunchTagList(self)
+        self.viewModel.request_getLaunchTagList(self,TagBgView)
         
         //
         setupFirstGuideView()
+        
+        //空数据界面
+        weak var weakSelf = self
+        let emptyV:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "net_error", titleStr: "暂无数据", detailStr: "请检查网络连接或稍后再试", btnTitleStr: "重新加载") {
+            LOG("点击刷新")
+            weakSelf!.refreshAction()
+        }
+        
+        emptyV.contentViewY = -100
+        emptyV.actionBtnBackGroundColor = .lightGray
+        self.TagBgView.ly_emptyView = emptyV
+        self.TagBgView.ly_hideEmptyView()
         
         if UIDevice.current.isiPhoneXSeries() == true {
             //iPhoneX
@@ -83,12 +96,15 @@ class HDTagChooseCareerVC: UIViewController {
         super.viewDidLayoutSubviews()
         
     }
-    
+    @objc func refreshAction() {
+        self.viewModel.request_getLaunchTagList(self,TagBgView)
+    }
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
         
         viewModel.tagModel.bind { (tagDataArray) in
+            
             
             weakSelf?.dataArr = tagDataArray  //返回标签数据，需要保存到本地
             

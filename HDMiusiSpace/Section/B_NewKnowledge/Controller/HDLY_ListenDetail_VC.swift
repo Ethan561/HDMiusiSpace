@@ -32,7 +32,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     var timeL: UILabel!
     var commentText = ""
     var shareView: HDLY_ShareView?
-
+    var htmls = [Int:[NSAttributedString]]()
     //MVVM
     let viewModel: ListenDetailViewModel = ListenDetailViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
@@ -118,13 +118,19 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         
         commentListViewModel.commentModels.bind { (models) in
             var comments = models
+            weakSelf!.htmls.removeAll()
             for i in 0..<comments.count {
+                var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {
                     let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
-                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 100)
-                    comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                    var attrStr: NSAttributedString? = nil
+                    if let anEncoding = str.data(using: .unicode) {
+                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                    }
+                    hms.append(attrStr!)
+                    let textH = attrStr!.getAttributeContentHeight(width: ScreenWidth - 90)
+                    comments[i].list[j].height = Int(textH + 5)
                     comments[i].height = comments[i].height + comments[i].list[j].height
-                    
                     if j == 0 {
                         comments[i].topHeight = comments[i].list[j].height
                     }
@@ -132,12 +138,10 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
                         comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
                     }
                 }
+                weakSelf?.htmls.updateValue(hms, forKey: i)
                 comments[i].height = comments[i].height
             }
             weakSelf?.commentModels = comments
-            
-//            let set = NSIndexSet.init(index: 1)
-//            weakSelf?.myTableView.reloadSections(set as IndexSet, with: .none)
             weakSelf?.myTableView.reloadData()
         }
         
@@ -494,6 +498,8 @@ extension HDLY_ListenDetail_VC {
                 cell?.contentL.text = commentModel.comment
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
+                cell?.htmls = self.htmls[indexPath.row]
+                cell?.commentContent = commentModel.comment
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
@@ -550,9 +556,10 @@ extension HDLY_ListenDetail_VC {
                     
                 }
                 
-                cell?.longPress  = { [weak self] (commentId) in
+                cell?.longPress  = { [weak self] (commentId, comment) in
                     self?.commentView.type = 0
                     self?.commentView.model = commentModel
+                    self?.commentView.commentContent = comment
                     self?.commentView.dataArr = ["复制","举报"]
                     self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                     self?.commentView.tableView.reloadData()
@@ -576,11 +583,11 @@ extension HDLY_ListenDetail_VC {
 }
 
 extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
-    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
         if type == 0 {
             if index == 0 {
                 let paste = UIPasteboard.general
-                paste.string = model.comment
+                paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
             } else  {

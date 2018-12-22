@@ -234,6 +234,8 @@
 		D6193B9D21C3842B00367356 /* HDEmptyBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6193B9821C3842B00367356 /* HDEmptyBaseView.swift */; };
 		D619533D21A5369B0039D151 /* HDLY_LocationTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */; };
 		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
+		D619C0CC21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619C0CA21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift */; };
+		D619C0CD21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D619C0CB21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib */; };
 		D61D246521C73F0100F054E5 /* UITableView+CCPIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */; };
 		D61D246621C73F0200F054E5 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246421C73F0100F054E5 /* Aspects.m */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
@@ -883,6 +885,8 @@
 		D6193B9821C3842B00367356 /* HDEmptyBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDEmptyBaseView.swift; sourceTree = "<group>"; };
 		D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_LocationTool.swift; sourceTree = "<group>"; };
 		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D619C0CA21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PlatformFoucsCell.swift; sourceTree = "<group>"; };
+		D619C0CB21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_PlatformFoucsCell.xib; sourceTree = "<group>"; };
 		D61D246121C73F0100F054E5 /* UITableView+CCPIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CCPIndexView.h"; sourceTree = "<group>"; };
 		D61D246221C73F0100F054E5 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CCPIndexView.m"; sourceTree = "<group>"; };
@@ -2808,6 +2812,8 @@
 				D6AA0B03213530C60036320F /* HDLY_TopicRecmd_Cell.xib */,
 				D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */,
 				D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */,
+				D619C0CA21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift */,
+				D619C0CB21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib */,
 				D622777F21363349008F1416 /* HDLY_FeedbackChoose_View.swift */,
 				D62277812136335B008F1416 /* HDLY_FeedbackChoose_View.xib */,
 				D628268121B9323700693DEC /* HDLY_CreateOrderTipView.swift */,
@@ -3026,6 +3032,7 @@
 				A7441D2F21A2A0D50064E6A6 /* photo_delete@2x.png in Resources */,
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
 				A799C03D219FF1E900BA526C /* HDSSL_sameMuseumItem.xib in Resources */,
+				D619C0CD21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
@@ -3382,6 +3389,7 @@
 				D6884E69211E816200ABDE5E /* HDLY_Listen_Cell.swift in Sources */,
 				1B6022ED21B5511700BD6DBC /* HDItemBaseVC.swift in Sources */,
 				A7C59E3A219BED5E00F67F0C /* ScrollBannerView.swift in Sources */,
+				D619C0CC21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift in Sources */,
 				A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */,
 				A7AC35BF214A521A004E8BC1 /* HDSSL_MuseumCell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,

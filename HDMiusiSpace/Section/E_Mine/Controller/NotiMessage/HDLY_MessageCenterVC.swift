@@ -69,9 +69,11 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
                 cell?.countL.text = "\(self.model.data?.systemMsgNum ?? 0)"
                 cell?.timeL.text = model.data?.systemMsgTime
                 cell?.subTitleL.text = model.data?.systemMsgTitle
+                cell?.countL.isHidden = false
             }else {
                 cell?.timeL.text = model.data?.systemMsgTime
                 cell?.subTitleL.text = "暂无消息"
+                cell?.countL.isHidden = true
             }
             
         } else {
@@ -88,6 +90,7 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
             } else {
                 cell?.timeL.text = model.data?.dynamicMsgTime
                 cell?.subTitleL.text = "暂无消息"
+                cell?.countL.isHidden = true
             }
         }
         return cell!

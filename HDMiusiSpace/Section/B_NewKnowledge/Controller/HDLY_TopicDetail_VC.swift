@@ -18,7 +18,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
-    
+
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     //
@@ -27,6 +27,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var topic_id:String?
     var commentText = ""
     var shareView: HDLY_ShareView?
+    var currentRow : Int?
+    var htmls = [Int:[NSAttributedString]]()
     
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
@@ -107,13 +109,19 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         viewModel.commentModels.bind { (models) in
             var comments = models
+            weakSelf!.htmls.removeAll()
             for i in 0..<comments.count {
+                var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {
                     let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
-                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 100)
-                    comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                    var attrStr: NSAttributedString? = nil
+                    if let anEncoding = str.data(using: .unicode) {
+                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                    }
+                    hms.append(attrStr!)
+                    let textH = attrStr!.getAttributeContentHeight(width: ScreenWidth - 90)
+                    comments[i].list[j].height = Int(textH + 5)
                     comments[i].height = comments[i].height + comments[i].list[j].height
-                    
                     if j == 0 {
                         comments[i].topHeight = comments[i].list[j].height
                     }
@@ -121,10 +129,20 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                         comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
                     }
                 }
+                weakSelf?.htmls.updateValue(hms, forKey: i)
                 comments[i].height = comments[i].height
             }
             weakSelf?.commentModels = comments
             weakSelf?.myTableView.reloadData()
+            
+//            guard let row = weakSelf?.currentRow else {
+//                weakSelf?.myTableView.reloadData()
+//                return
+//            }
+//            let indexPath = NSIndexPath.init(row: row, section: 2)
+//            weakSelf?.myTableView.reloadRows(at: [indexPath as IndexPath], with: .none)
+            
+            
         }
         
         viewModel.showEmptyView.bind() { (show) in
@@ -317,6 +335,9 @@ extension HDLY_TopicDetail_VC {
     //row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            if fromRootAChoiceness == true {
+                return 3
+            }
             return 2
         }
         if section == 1 {
@@ -339,6 +360,9 @@ extension HDLY_TopicDetail_VC {
                     return 80
                 }
                 return 0.01
+            }
+            if fromRootAChoiceness == true && indexPath.row == 2{
+                return 120
             }
             return webViewH
         }
@@ -383,6 +407,27 @@ extension HDLY_TopicDetail_VC {
                 }
                 return cell!
             }
+            
+            if fromRootAChoiceness == true && indexPath.row == 2 {
+                let cell = HDLY_PlatformFoucsCell.getMyTableCell(tableV: tableView)
+                if model?.platform_icon != nil {
+                    cell?.imgV.kf.setImage(with: URL.init(string: model!.platform_icon!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.titleL.text = model?.platform_title
+                    if model?.platform_title != nil {
+                        cell?.fromL.text = "本文章来自" + model!.platform_title!
+                    }
+                    cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                    focusBtn = cell?.focusBtn
+                    if model?.is_focus == 1 {
+                        focusBtn.setTitle("已关注", for: .normal)
+                    }else {
+                        focusBtn.setTitle("+关注", for: .normal)
+                    }
+                    
+                }
+                return cell!
+            }
+            
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
             guard let url = model?.url else {
                 return cell!
@@ -412,6 +457,8 @@ extension HDLY_TopicDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+                cell?.htmls = self.htmls[indexPath.row]
+                cell?.commentContent = commentModel.comment
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
@@ -459,6 +506,7 @@ extension HDLY_TopicDetail_VC {
             
             // 单击回复
             cell?.tapPress = { [weak self] (commentId) in
+                self?.currentRow = indexPath.row
                 self?.keyboardTextField.textView.text = " "
                 self?.keyboardTextField.textView.deleteBackward()
                 self?.keyboardTextField.placeholderLabel.text = "回复@\(commentModel.nickname)"
@@ -468,9 +516,10 @@ extension HDLY_TopicDetail_VC {
                 
             }
             // 长按复制与举报
-            cell?.longPress  = { [weak self] (commentId) in
+            cell?.longPress  = { [weak self] (commentId,comment) in
                 self?.commentView.type = 0
                 self?.commentView.model = commentModel
+                self?.commentView.commentContent = comment
                 self?.commentView.dataArr = ["复制","举报"]
                 self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                 self?.commentView.tableView.reloadData()
@@ -505,11 +554,11 @@ extension HDLY_TopicDetail_VC {
 }
 
 extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
-    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
         if type == 0 {
             if index == 0 {
                 let paste = UIPasteboard.general
-                paste.string = model.comment
+                paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
             } else  {
@@ -526,6 +575,45 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
         }
     }
+ 
+
+    //平台关注
+    @objc func focusBtnAction()  {
+        if let idnum = infoModel?.platform_id {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            doFocusRequest(api_token: HDDeclare.shared.api_token!, id: "\(idnum)", cate_id: "1")
+        }
+    }
+    
+    //关注
+    func doFocusRequest(api_token: String, id: String, cate_id: String)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.infoModel!.is_focus = 1
+                    self.focusBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.infoModel!.is_focus  = 0
+                    self.focusBtn.setTitle("+关注", for: .normal)
+                }
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    
 }
 
 

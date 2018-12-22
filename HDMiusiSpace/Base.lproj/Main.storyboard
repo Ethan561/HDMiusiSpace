@@ -27,7 +27,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="KBz-Ia-hHd" kind="show" identifier="HD_PushToChooseSateVCLine" id="JwV-5z-iZb"/>
+                                    <segue destination="RID-x2-jwm" kind="show" identifier="HD_PushToTabBarVCLine" id="9fg-It-IEC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您现在属于" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcZ-Sx-Pje">
@@ -52,6 +52,9 @@
                                 <rect key="frame" x="0.0" y="152" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X08-v4-UWp">
+                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74d-gD-SA2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -219,6 +222,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vdy-7z-eaQ" firstAttribute="trailing" secondItem="KcZ-Sx-Pje" secondAttribute="trailing" constant="16" id="1kg-P8-hh8"/>
+                            <constraint firstItem="X08-v4-UWp" firstAttribute="leading" secondItem="vdy-7z-eaQ" secondAttribute="leading" id="3U4-ph-Ta3"/>
                             <constraint firstItem="74d-gD-SA2" firstAttribute="trailing" secondItem="vdy-7z-eaQ" secondAttribute="trailing" id="3hX-cF-3f3"/>
                             <constraint firstItem="kju-eZ-A4b" firstAttribute="trailing" secondItem="vdy-7z-eaQ" secondAttribute="trailing" id="CME-hc-f2c"/>
                             <constraint firstItem="kju-eZ-A4b" firstAttribute="top" secondItem="Y8N-w9-dPb" secondAttribute="bottom" constant="20" id="Etw-8B-SWq"/>
@@ -228,9 +232,12 @@
                             <constraint firstItem="vdy-7z-eaQ" firstAttribute="bottom" secondItem="74d-gD-SA2" secondAttribute="bottom" id="M9p-na-8nf"/>
                             <constraint firstItem="KcZ-Sx-Pje" firstAttribute="leading" secondItem="vdy-7z-eaQ" secondAttribute="leading" constant="16" id="NOH-Se-uGG"/>
                             <constraint firstItem="kju-eZ-A4b" firstAttribute="bottom" secondItem="vdy-7z-eaQ" secondAttribute="bottom" id="NUW-Je-2cq"/>
+                            <constraint firstItem="vdy-7z-eaQ" firstAttribute="trailing" secondItem="X08-v4-UWp" secondAttribute="trailing" id="RQe-eE-9Gb"/>
                             <constraint firstItem="74d-gD-SA2" firstAttribute="top" secondItem="47b-pY-mbE" secondAttribute="top" id="Rsl-lS-NGy"/>
+                            <constraint firstItem="vdy-7z-eaQ" firstAttribute="bottom" secondItem="X08-v4-UWp" secondAttribute="bottom" id="Yzf-q6-5QT"/>
                             <constraint firstItem="vdy-7z-eaQ" firstAttribute="trailing" secondItem="Zst-sR-Vgb" secondAttribute="trailing" constant="16" id="aua-71-CJ3"/>
                             <constraint firstItem="KcZ-Sx-Pje" firstAttribute="top" secondItem="Zst-sR-Vgb" secondAttribute="bottom" constant="20" id="hnL-R6-hFJ"/>
+                            <constraint firstItem="X08-v4-UWp" firstAttribute="top" secondItem="Y8N-w9-dPb" secondAttribute="bottom" constant="20" id="lJo-s3-vJ4"/>
                             <constraint firstItem="Zst-sR-Vgb" firstAttribute="top" secondItem="vdy-7z-eaQ" secondAttribute="top" id="mwI-9R-tcJ"/>
                             <constraint firstItem="vdy-7z-eaQ" firstAttribute="trailing" secondItem="Y8N-w9-dPb" secondAttribute="trailing" constant="16" id="tZc-qC-C9Y"/>
                             <constraint firstItem="Y8N-w9-dPb" firstAttribute="leading" secondItem="vdy-7z-eaQ" secondAttribute="leading" constant="16" id="zPR-aa-QM6"/>
@@ -238,7 +245,7 @@
                         <viewLayoutGuide key="safeArea" id="vdy-7z-eaQ"/>
                     </view>
                     <connections>
-                        <outlet property="TagBgView" destination="kju-eZ-A4b" id="EUD-FH-d4B"/>
+                        <outlet property="TagBgView" destination="X08-v4-UWp" id="kF3-1q-Ia9"/>
                         <outlet property="firstGuideBtn" destination="ROr-NX-b23" id="P3w-32-95w"/>
                         <outlet property="firstGuideScrollView" destination="nze-F1-ffM" id="2Y6-wG-uzV"/>
                         <outlet property="firstGuideView" destination="74d-gD-SA2" id="2bH-GW-Leb"/>
@@ -251,11 +258,12 @@
                         <outlet property="lab_des" destination="Y8N-w9-dPb" id="MyC-Bq-WhO"/>
                         <outlet property="lab_title" destination="KcZ-Sx-Pje" id="epp-dC-cGV"/>
                         <outlet property="pageControl" destination="KfD-PK-4uT" id="iae-GV-keo"/>
+                        <segue destination="KBz-Ia-hHd" kind="show" identifier="HD_PushToChooseSateVCLine" id="99w-Gb-Sk7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SNK-dQ-bP0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1612" y="-658.02098950524737"/>
+            <point key="canvasLocation" x="-1458" y="104"/>
         </scene>
         <!--Tag Choose StateVC-->
         <scene sceneID="vaB-fr-nzX">
@@ -275,7 +283,7 @@
                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="HD_PushToChooseVCLine" id="C5Y-tw-wok"/>
+                                    <segue destination="RID-x2-jwm" kind="show" identifier="HD_PushToTabBarVCLine" id="2NE-NP-hZq"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您现在的状态是" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44g-99-kTn">
@@ -336,11 +344,12 @@
                         <outlet property="labDes" destination="6V6-t2-dee" id="Qpw-Qg-uR9"/>
                         <outlet property="labTitle" destination="44g-99-kTn" id="TBa-jH-JfU"/>
                         <outlet property="tagBgView" destination="OSz-1P-IFy" id="SXY-wU-52T"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="HD_PushToChooseVCLine" id="h5R-j2-U3U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAn-VU-Rxr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-734" y="133"/>
+            <point key="canvasLocation" x="-1458" y="804"/>
         </scene>
         <!--Tag ChooseVC-->
         <scene sceneID="tne-QT-ifu">
@@ -459,12 +468,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-1458" y="1513"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="AG6-iq-HvD">
             <objects>
                 <tabBarController storyboardIdentifier="HDTabBarVC" id="RID-x2-jwm" customClass="HDTabBarVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4UC-Bj-dUL"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t3t-uS-zQz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -473,7 +483,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJr-wA-r62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="133"/>
+            <point key="canvasLocation" x="-156" y="654"/>
         </scene>
     </scenes>
     <resources>
@@ -482,4 +492,7 @@
         <image name="img_03-1" width="375" height="468"/>
         <image name="nav_back" width="12" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="63a-hJ-TPQ"/>
+    </inferredMetricsTieBreakers>
 </document>

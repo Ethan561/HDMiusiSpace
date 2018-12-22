@@ -24,7 +24,7 @@ class HDZQ_SignLabelVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-        self.viewModel.request_getLaunchTagList(self)
+        self.viewModel.request_getLaunchTagList(self,UIScrollView())
     }
     
     func bindViewModel() {

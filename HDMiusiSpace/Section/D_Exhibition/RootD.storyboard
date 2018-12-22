@@ -991,15 +991,17 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dw_line" translatesAutoresizingMaskIntoConstraints="NO" id="l3S-1m-Q9A">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l3S-1m-Q9A">
                                         <rect key="frame" x="96.5" y="42" width="15" height="2"/>
+                                        <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="2Qu-kY-Lx2"/>
                                             <constraint firstAttribute="height" constant="2" id="57h-Up-WCX"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dw_line" translatesAutoresizingMaskIntoConstraints="NO" id="lKS-0S-bkW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lKS-0S-bkW">
                                         <rect key="frame" x="264" y="42" width="15" height="2"/>
+                                        <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="0c4-dG-naa"/>
                                             <constraint firstAttribute="height" constant="2" id="GwH-VW-sJN"/>
@@ -1108,7 +1110,6 @@
         <image name="Star_white" width="22" height="22"/>
         <image name="d_search_icon" width="14" height="14"/>
         <image name="d_search_icon_Voice" width="12" height="19"/>
-        <image name="dw_line" width="15" height="2"/>
         <image name="float_icon_close" width="20" height="20"/>
         <image name="icon_baocuo_white" width="22" height="22"/>
         <image name="icon_delete" width="15" height="19"/>

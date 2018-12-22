@@ -27,6 +27,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var topic_id:String?
     var commentText = ""
     var shareView: HDLY_ShareView?
+    var currentRow : Int?
+    var htmls = [Int:[NSAttributedString]]()
     
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
@@ -107,13 +109,19 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         viewModel.commentModels.bind { (models) in
             var comments = models
+            weakSelf!.htmls.removeAll()
             for i in 0..<comments.count {
+                var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {
                     let str = "\(comments[i].list[j].uNickname)：\(comments[i].list[j].comment)"
-                    let textH = str.getContentHeight(font: UIFont.systemFont(ofSize: 12), width: ScreenWidth - 100)
-                    comments[i].list[j].height = Int(textH > 20 ? textH + 5 : 20)
+                    var attrStr: NSAttributedString? = nil
+                    if let anEncoding = str.data(using: .unicode) {
+                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                    }
+                    hms.append(attrStr!)
+                    let textH = attrStr!.getAttributeContentHeight(width: ScreenWidth - 90)
+                    comments[i].list[j].height = Int(textH + 5)
                     comments[i].height = comments[i].height + comments[i].list[j].height
-                    
                     if j == 0 {
                         comments[i].topHeight = comments[i].list[j].height
                     }
@@ -121,10 +129,20 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                         comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
                     }
                 }
+                weakSelf?.htmls.updateValue(hms, forKey: i)
                 comments[i].height = comments[i].height
             }
             weakSelf?.commentModels = comments
             weakSelf?.myTableView.reloadData()
+            
+//            guard let row = weakSelf?.currentRow else {
+//                weakSelf?.myTableView.reloadData()
+//                return
+//            }
+//            let indexPath = NSIndexPath.init(row: row, section: 2)
+//            weakSelf?.myTableView.reloadRows(at: [indexPath as IndexPath], with: .none)
+            
+            
         }
         
         viewModel.showEmptyView.bind() { (show) in
@@ -439,6 +457,8 @@ extension HDLY_TopicDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+                cell?.htmls = self.htmls[indexPath.row]
+                cell?.commentContent = commentModel.comment
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
@@ -486,6 +506,7 @@ extension HDLY_TopicDetail_VC {
             
             // 单击回复
             cell?.tapPress = { [weak self] (commentId) in
+                self?.currentRow = indexPath.row
                 self?.keyboardTextField.textView.text = " "
                 self?.keyboardTextField.textView.deleteBackward()
                 self?.keyboardTextField.placeholderLabel.text = "回复@\(commentModel.nickname)"
@@ -495,9 +516,10 @@ extension HDLY_TopicDetail_VC {
                 
             }
             // 长按复制与举报
-            cell?.longPress  = { [weak self] (commentId) in
+            cell?.longPress  = { [weak self] (commentId,comment) in
                 self?.commentView.type = 0
                 self?.commentView.model = commentModel
+                self?.commentView.commentContent = comment
                 self?.commentView.dataArr = ["复制","举报"]
                 self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                 self?.commentView.tableView.reloadData()
@@ -532,11 +554,11 @@ extension HDLY_TopicDetail_VC {
 }
 
 extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
-    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
         if type == 0 {
             if index == 0 {
                 let paste = UIPasteboard.general
-                paste.string = model.comment
+                paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
             } else  {

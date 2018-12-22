@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias LongPressActionClouser = (_ type: Int)->Void
+typealias LongPressActionClouser = (_ type: Int,_ comment:String)->Void
 typealias TapActionClouser = (_ type: Int)->Void
 typealias AnswerActionClouser = (_ commentId: Int,_ nickname: String )->Void
 class HDLY_LeaveMsg_Cell: UITableViewCell {
@@ -24,7 +24,9 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var showMoreBtn: UIButton!
     private var subCommentsList: [TopicSecdCommentList]?
+    public var htmls: [NSAttributedString]?
     public var commentId = 0
+    public var commentContent : String?
     public var uid = 0
     public var longPress: LongPressActionClouser!
     public var tapPress: TapActionClouser!
@@ -51,7 +53,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
                  impactLight.impactOccurred()
             }
             if self.longPress != nil {
-                self.longPress(commentId)
+                self.longPress(commentId,self.commentContent ?? "")
             }
         }
     }
@@ -100,12 +102,16 @@ extension HDLY_LeaveMsg_Cell : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.subCommentsList![indexPath.row]
+        let attStr = self.htmls![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_MoreCommentsCell") as! HDZQ_MoreCommentsCell
-//        if model.parentUid != self.uid {
-//             cell.commentLabel.text = "\(model.uNickname)回复\(model.parentNickname)：\(model.comment)"
-//        } else {
-            cell.commentLabel.text = "\(model.uNickname)：\(model.comment)"
-//        }
+        cell.commentId = model.commentID
+        cell.commentContent = model.comment
+        cell.commentLabel.attributedText = attStr
+        cell.longPress = { [weak self] (commentId, comment) in
+            if self?.longPress != nil {
+                self?.longPress(commentId,comment)
+            }
+        }
         return cell
     }
 }

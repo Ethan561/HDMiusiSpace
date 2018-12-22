@@ -12,7 +12,7 @@ class HDSSL_TagViewModel: NSObject {
     var tagModel: Bindable = Bindable([HDSSL_TagData]())
     
     //MARK: - 获取标签
-    func request_getLaunchTagList(_ vc: UIViewController)  {
+    func request_getLaunchTagList(_ vc: UIViewController,_ tagView: UIScrollView)  {
         
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
@@ -29,9 +29,11 @@ class HDSSL_TagViewModel: NSObject {
             let model: HDSSL_TagModel = try! jsonDecoder.decode(HDSSL_TagModel.self, from: result)
             self.tagModel.value = model.data!
             
+            tagView.ly_hideEmptyView()
             
         }) { (errorCode, msg) in
-            //self.showEmptyView.value = true
+            
+            tagView.ly_showEmptyView()//显示空数据页面
         }
     }
     

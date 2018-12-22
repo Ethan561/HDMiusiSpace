@@ -499,6 +499,7 @@ extension HDLY_ListenDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.htmls = self.htmls[indexPath.row]
+                cell?.commentContent = commentModel.comment
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
@@ -555,9 +556,10 @@ extension HDLY_ListenDetail_VC {
                     
                 }
                 
-                cell?.longPress  = { [weak self] (commentId) in
+                cell?.longPress  = { [weak self] (commentId, comment) in
                     self?.commentView.type = 0
                     self?.commentView.model = commentModel
+                    self?.commentView.commentContent = comment
                     self?.commentView.dataArr = ["复制","举报"]
                     self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                     self?.commentView.tableView.reloadData()
@@ -581,11 +583,11 @@ extension HDLY_ListenDetail_VC {
 }
 
 extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
-    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, reportType: Int?) {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
         if type == 0 {
             if index == 0 {
                 let paste = UIPasteboard.general
-                paste.string = model.comment
+                paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
             } else  {

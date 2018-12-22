@@ -10,15 +10,27 @@ import UIKit
 
 class HDZQ_MoreCommentsCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
+    public var longPress: LongPressActionClouser!
+    public var tapPress: TapActionClouser!
+    public var commentId = 0
+    public var commentContent : String?
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
+        longPress.minimumPressDuration = 0.5
+        self.addGestureRecognizer(longPress)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @objc func alertAction(ges:UILongPressGestureRecognizer) {
+        if ges.state == .began {
+            if #available(iOS 10.0, *) {
+                let impactLight = UIImpactFeedbackGenerator.init(style: .medium)
+                impactLight.impactOccurred()
+            }
+            if self.longPress != nil {
+                self.longPress(commentId,commentContent ?? "")
+            }
+        }
     }
     
 }

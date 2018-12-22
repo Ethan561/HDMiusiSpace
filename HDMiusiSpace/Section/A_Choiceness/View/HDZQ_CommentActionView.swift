@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HDZQ_CommentActionDelegate : NSObjectProtocol {
-    func commentActionSelected(type:Int,index:Int,model:TopicCommentList,reportType:Int?)
+    func commentActionSelected(type:Int,index:Int,model:TopicCommentList,comment:String,reportType:Int?)
 }
 
 
@@ -21,6 +21,7 @@ class HDZQ_CommentActionView: UIView {
     public var reportType = [Int]()
     public weak var delegate:HDZQ_CommentActionDelegate?
     public var model : TopicCommentList?
+    public var commentContent : String?
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,9 +58,9 @@ extension HDZQ_CommentActionView:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if delegate != nil {
             if type == 1 {
-                delegate?.commentActionSelected(type: type, index: indexPath.row,model: model!,reportType:reportType[indexPath.row])
+                delegate?.commentActionSelected(type: type, index: indexPath.row,model: model!, comment: commentContent ?? "",reportType:reportType[indexPath.row])
             } else {
-                delegate?.commentActionSelected(type: type, index: indexPath.row,model: model!,reportType:nil)
+                delegate?.commentActionSelected(type: type, index: indexPath.row,model: model!, comment: commentContent ?? "",reportType:nil)
             }
             
         }

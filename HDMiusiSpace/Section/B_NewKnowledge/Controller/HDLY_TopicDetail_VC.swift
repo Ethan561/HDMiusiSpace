@@ -18,7 +18,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
-    
+
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     //
@@ -335,6 +335,9 @@ extension HDLY_TopicDetail_VC {
     //row
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            if fromRootAChoiceness == true {
+                return 3
+            }
             return 2
         }
         if section == 1 {
@@ -357,6 +360,9 @@ extension HDLY_TopicDetail_VC {
                     return 80
                 }
                 return 0.01
+            }
+            if fromRootAChoiceness == true && indexPath.row == 2{
+                return 120
             }
             return webViewH
         }
@@ -401,6 +407,27 @@ extension HDLY_TopicDetail_VC {
                 }
                 return cell!
             }
+            
+            if fromRootAChoiceness == true && indexPath.row == 2 {
+                let cell = HDLY_PlatformFoucsCell.getMyTableCell(tableV: tableView)
+                if model?.platform_icon != nil {
+                    cell?.imgV.kf.setImage(with: URL.init(string: model!.platform_icon!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.titleL.text = model?.platform_title
+                    if model?.platform_title != nil {
+                        cell?.fromL.text = "本文章来自" + model!.platform_title!
+                    }
+                    cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                    focusBtn = cell?.focusBtn
+                    if model?.is_focus == 1 {
+                        focusBtn.setTitle("已关注", for: .normal)
+                    }else {
+                        focusBtn.setTitle("+关注", for: .normal)
+                    }
+                    
+                }
+                return cell!
+            }
+            
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
             guard let url = model?.url else {
                 return cell!
@@ -548,6 +575,45 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
         }
     }
+ 
+
+    //平台关注
+    @objc func focusBtnAction()  {
+        if let idnum = infoModel?.platform_id {
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            doFocusRequest(api_token: HDDeclare.shared.api_token!, id: "\(idnum)", cate_id: "1")
+        }
+    }
+    
+    //关注
+    func doFocusRequest(api_token: String, id: String, cate_id: String)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.infoModel!.is_focus = 1
+                    self.focusBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.infoModel!.is_focus  = 0
+                    self.focusBtn.setTitle("+关注", for: .normal)
+                }
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    
 }
 
 

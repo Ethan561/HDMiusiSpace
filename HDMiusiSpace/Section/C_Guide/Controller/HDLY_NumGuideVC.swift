@@ -64,6 +64,9 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
          let img = dotImg!.roundImage(cornerRadi: 5)
             slide.setThumbImage(img, for: UIControlState.normal)
         }
+        numL.addObserver(self, forKeyPath: "text", options: NSKeyValueObservingOptions.new, context: nil)
+        cleanBtn.isHidden = true
+        
     }
     
     func setupNavBarItem() {
@@ -81,6 +84,20 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         if kWindow != nil {
             kWindow!.addSubview(tipView)
         }
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "text" {
+            let numLabel = object as! UILabel
+            LOG("当前的text: \(String(describing: numLabel.text))")
+            if numLabel.text?.count ?? 0 > 0 {
+                cleanBtn.isHidden = false
+            }else {
+                cleanBtn.isHidden = true
+            }
+        }
+        
     }
     
     @IBAction func cleanAction(_ sender: Any) {
@@ -168,6 +185,11 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
             player.stop()
         }
     }
+    
+    deinit {
+        LOG("==== \(self.className) 释放了")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

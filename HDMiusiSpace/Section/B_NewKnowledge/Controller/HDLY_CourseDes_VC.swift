@@ -24,7 +24,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var courseId:String?
     @IBOutlet weak var timeL: UILabel!
     var focusBtn: UIButton!
-
+    @IBOutlet weak var tryListenL: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
@@ -265,9 +265,10 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 //1是MP3;2是MP4
                 self.isMp3Course = true
                 self.audioPlayer.delegate = self
-                
+                self.tryListenL.text = "试听"
             }else {
                 self.isMp3Course = false
+                self.tryListenL.text = "试学"
             }
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买

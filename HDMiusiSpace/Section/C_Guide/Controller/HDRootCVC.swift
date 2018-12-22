@@ -129,6 +129,9 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     //弹窗提醒切换城市
     func showChangeCityTipView() {
+        if HDDeclare.shared.showChangeCityTip == true {
+            return
+        }
         let tipView:HDLY_ChangeCityAlert = HDLY_ChangeCityAlert.createViewFromNib() as! HDLY_ChangeCityAlert
         guard let win = kWindow else {
             return
@@ -142,6 +145,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             win.addSubview(tipView)
             tipView.tipL.text = "定位到您在 \(HDLY_LocationTool.shared.city!)，是否切换至该城市？"
         }
+        HDDeclare.shared.showChangeCityTip = true
         weak var weakS = self
         tipView.sureBtnBlock = {
             weakS?.changeCityAction()

@@ -93,6 +93,8 @@ final class HDDeclare: NSObject {
     //选择当前的定位 Model
     var locModel = HDLY_LocModel()
     
+    var showChangeCityTip = false
+    
     
     //保存地图信息
 //    public var mapInfoArray : []?

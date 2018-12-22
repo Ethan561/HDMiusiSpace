@@ -345,6 +345,7 @@
                         <outlet property="statusBarHCons" destination="hyu-Sy-I1r" id="PXu-vh-2w4"/>
                         <outlet property="timeL" destination="Nnm-4p-zRI" id="H65-2V-hsn"/>
                         <outlet property="topView" destination="UAh-GF-4Aa" id="Goo-jo-ryD"/>
+                        <outlet property="tryListenL" destination="eOT-qR-lWM" id="wtq-DI-RZM"/>
                         <segue destination="NPJ-qO-nK6" kind="show" identifier="PushTo_HDLY_CourseList_VC_line" id="Yve-By-v2P"/>
                     </connections>
                 </viewController>

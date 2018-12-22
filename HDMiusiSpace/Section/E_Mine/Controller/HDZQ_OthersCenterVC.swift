@@ -41,7 +41,7 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
     }
     
     func refreshUI() {
-        tabHeader.avatar.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+        tabHeader.avatar.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         tabHeader.nickNameL.text = model.nickname
         tabHeader.desLabel.text = model.profile
         tabHeader.followNumberL.text = "\(model.focus_num)"
@@ -130,7 +130,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dynamic = self.model.dynamic_list[indexPath.row]
         let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
-        cell?.avaImgV.kf.setImage(with: URL.init(string: dynamic.avatar!), placeholder: nil, options: nil, progressBlock: nil, completionHandler: nil)
+        cell?.avaImgV.kf.setImage(with: URL.init(string: dynamic.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         cell?.contentL.attributedText = self.htmls[indexPath.row]
         cell?.timeL.text = dynamic.created_at
         cell?.nameL.text = dynamic.nickname

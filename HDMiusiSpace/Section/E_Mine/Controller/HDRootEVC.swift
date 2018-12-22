@@ -30,17 +30,19 @@ class HDRootEVC: HDItemBaseVC {
         self.hd_navigationBarHidden = true
         navbarCons.constant = kTopHeight
         setupViews()
-        addRefresh()
         getMyDynamicList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if declare.loginStatus == .kLogin_Status_Login {
+            addRefresh()
             getUserInfo()
             getMyStudyCourses()
         } else {
             //未登录
+            self.myTableView.es.removeRefreshHeader()
+            self.myTableView.es.removeRefreshFooter()
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")

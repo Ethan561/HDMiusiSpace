@@ -75,6 +75,15 @@
                                     <constraint firstAttribute="height" constant="18" id="cKa-CT-uFh"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评星" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ful-Aa-3Yu">
+                                <rect key="frame" x="224" y="216" width="53" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Blj-md-su4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -85,15 +94,18 @@
                             <constraint firstItem="Gls-on-cf6" firstAttribute="leading" secondItem="4cY-ps-TEc" secondAttribute="leading" constant="8" id="83c-9c-MlA"/>
                             <constraint firstItem="8T0-dL-3S9" firstAttribute="leading" secondItem="4cY-ps-TEc" secondAttribute="leading" constant="8" id="8yN-UR-f8S"/>
                             <constraint firstAttribute="trailing" secondItem="LVe-UC-o7B" secondAttribute="trailing" id="A3f-dz-hyG"/>
+                            <constraint firstItem="Ful-Aa-3Yu" firstAttribute="leading" secondItem="Vhq-9c-sqK" secondAttribute="trailing" id="BHF-ma-AiJ"/>
                             <constraint firstAttribute="trailing" secondItem="u57-hm-PUb" secondAttribute="trailing" constant="14" id="Bqj-Ud-gwp"/>
                             <constraint firstAttribute="trailing" secondItem="8T0-dL-3S9" secondAttribute="trailing" constant="8" id="PDQ-qP-wBG"/>
                             <constraint firstItem="Vhq-9c-sqK" firstAttribute="leading" secondItem="4cY-ps-TEc" secondAttribute="leading" constant="8" id="XUY-Fv-cUR"/>
                             <constraint firstItem="LVe-UC-o7B" firstAttribute="leading" secondItem="4cY-ps-TEc" secondAttribute="leading" id="YcG-4c-SDd"/>
+                            <constraint firstAttribute="trailing" secondItem="Ful-Aa-3Yu" secondAttribute="trailing" constant="3" id="ePc-f4-tao"/>
                             <constraint firstItem="Gls-on-cf6" firstAttribute="top" secondItem="8T0-dL-3S9" secondAttribute="bottom" constant="5" id="gX8-lf-dpZ"/>
                             <constraint firstItem="u57-hm-PUb" firstAttribute="centerY" secondItem="1CS-iu-7gQ" secondAttribute="centerY" id="hCl-a7-wsV"/>
                             <constraint firstItem="u57-hm-PUb" firstAttribute="leading" secondItem="1CS-iu-7gQ" secondAttribute="trailing" constant="2" id="kde-Pz-kCc"/>
                             <constraint firstItem="LVe-UC-o7B" firstAttribute="top" secondItem="4cY-ps-TEc" secondAttribute="top" id="tfU-NS-zW7"/>
                             <constraint firstAttribute="trailing" secondItem="Gls-on-cf6" secondAttribute="trailing" constant="8" id="wde-Hu-JgY"/>
+                            <constraint firstItem="Ful-Aa-3Yu" firstAttribute="centerY" secondItem="Vhq-9c-sqK" secondAttribute="centerY" id="ykw-59-7EC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -122,6 +134,7 @@
                 <outlet property="cellTitle" destination="8T0-dL-3S9" id="mUG-bX-rbD"/>
                 <outlet property="cell_img" destination="LVe-UC-o7B" id="Gh4-c2-DBq"/>
                 <outlet property="cell_locaAndPrice" destination="Gls-on-cf6" id="2dQ-PV-zOY"/>
+                <outlet property="cell_noStarLab" destination="Ful-Aa-3Yu" id="ZD2-0g-WOm"/>
                 <outlet property="cell_number" destination="u57-hm-PUb" id="W92-Rk-Pm0"/>
                 <outlet property="cell_star" destination="1CS-iu-7gQ" id="ZEq-gT-1qi"/>
                 <outlet property="cell_tagBg" destination="Vhq-9c-sqK" id="wxw-XE-doo"/>

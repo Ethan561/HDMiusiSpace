@@ -74,10 +74,9 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2s-ua-4dn">
-                                        <rect key="frame" x="17" y="15" width="80" height="30"/>
+                                        <rect key="frame" x="17" y="15" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cKF-O6-hT5"/>
-                                            <constraint firstAttribute="width" constant="80" id="qk0-PD-ZZj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal">
@@ -87,11 +86,19 @@
                                             <action selector="action_location:" destination="a4P-nd-McC" eventType="touchUpInside" id="uDz-cP-l4n"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gag-EU-Jgu">
+                                        <rect key="frame" x="59" y="8" width="308" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gag-EU-Jgu" secondAttribute="bottom" constant="8" id="2Vy-wY-bdK"/>
+                                    <constraint firstItem="gag-EU-Jgu" firstAttribute="top" secondItem="gwU-9I-vMs" secondAttribute="top" constant="8" id="4CD-up-Sdq"/>
+                                    <constraint firstItem="gag-EU-Jgu" firstAttribute="leading" secondItem="g2s-ua-4dn" secondAttribute="trailing" constant="12" id="GVH-wR-J4P"/>
                                     <constraint firstItem="g2s-ua-4dn" firstAttribute="leading" secondItem="gwU-9I-vMs" secondAttribute="leading" constant="17" id="MRH-eU-ek6"/>
                                     <constraint firstItem="g2s-ua-4dn" firstAttribute="centerY" secondItem="gwU-9I-vMs" secondAttribute="centerY" id="Vvv-7t-rYE"/>
+                                    <constraint firstAttribute="trailing" secondItem="gag-EU-Jgu" secondAttribute="trailing" constant="8" id="dcW-Rh-2xa"/>
                                     <constraint firstAttribute="height" constant="60" id="nD4-8T-8Re"/>
                                 </constraints>
                             </view>
@@ -119,6 +126,7 @@
                     <connections>
                         <outlet property="btn_location" destination="g2s-ua-4dn" id="A7i-Ok-md4"/>
                         <outlet property="contentScrollView" destination="ENm-UY-r1J" id="GxO-yv-0Mf"/>
+                        <outlet property="menuContentView" destination="gag-EU-Jgu" id="e2O-hc-FWC"/>
                         <outlet property="menuView" destination="gwU-9I-vMs" id="hTh-t1-hNc"/>
                         <outlet property="navBar" destination="LSv-ax-UiO" id="n5W-Ux-3CF"/>
                         <outlet property="navbarCons" destination="tGE-op-Olp" id="d7K-LA-tg1"/>
@@ -129,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zg-6A-ByW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2513" y="-1052"/>
+            <point key="canvasLocation" x="2497" y="-1052"/>
         </scene>
         <!--Map GuideVC-->
         <scene sceneID="xKo-Y4-wQD">

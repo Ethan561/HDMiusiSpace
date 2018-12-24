@@ -16,11 +16,11 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var contentScrollView: UIScrollView!
     @IBOutlet weak var scrollVBottomCons: NSLayoutConstraint!
     @IBOutlet weak var btn_location: UIButton!
-    
+    @IBOutlet weak var menuContentView: UIView!
     var currentCityName: String?
     
     lazy var pageMenu: SPPageMenu = {
-        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:100, y: 8, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:0, y: 0, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
         page.delegate = self
         page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
@@ -49,7 +49,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
        // menuView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.init(width: 0, height: 5))
         
         let menuTitleArr = ["最近","最火"]
-        self.menuView.addSubview(self.pageMenu)
+        self.menuContentView.addSubview(self.pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         self.addContentSubViewsWithArr(titleArr: menuTitleArr)
         
@@ -67,18 +67,25 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-  
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
-        guard str != nil else {
+        if str?.count == 0 {
             let city = HDLY_LocationTool.shared.city ?? ""
             btn_location.setTitle(city, for: .normal)
-            UserDefaults.standard.set(city, forKey: "MyLocationCityName")
-            HDDeclare.shared.locModel.cityName = city
             //定位按钮设置
             btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
             btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
             btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+            if city.count == 0  {
+                btn_location.setTitle("无法获取定位", for: .normal)
+                //定位按钮设置
+                btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
+                btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
+                btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+                if HDDeclare.shared.isSystemLocateEnable == false {
+                    showOpenLocServiceTipView()
+                }
+            }
             return
         }
         
@@ -88,11 +95,12 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
                 currentCityName = str
                 btn_location.setTitle(str, for: .normal)
                 HDDeclare.shared.locModel.cityName = str!
-
+                
                 //定位按钮设置
                 btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
                 btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
                 btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
                 
             }
         }else {
@@ -151,6 +159,22 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             weakS?.changeCityAction()
         }
         
+    }
+    
+    //弹窗提醒开启定位
+    func showOpenLocServiceTipView() {
+        let tipView: HDLY_OpenLocServiceTip = HDLY_OpenLocServiceTip.createViewFromNib() as! HDLY_OpenLocServiceTip
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        guard let topVC = self.getTopVC() else {
+            return
+        }
+        
+        if topVC.isKind(of: HDRootCVC.self){
+            win.addSubview(tipView)
+        }
     }
     
     func changeCityAction() {

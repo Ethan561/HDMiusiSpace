@@ -94,6 +94,7 @@ final class HDDeclare: NSObject {
     var locModel = HDLY_LocModel()
     
     var showChangeCityTip = false
+    var isSystemLocateEnable = false
     
     
     //保存地图信息

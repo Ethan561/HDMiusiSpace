@@ -244,6 +244,8 @@
 		D61D5D1921C246F3005EA3A6 /* HDLY_PlatformCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */; };
 		D61E512621D088FD0083BECA /* HDLY_QuestionNoticeTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E512521D088FD0083BECA /* HDLY_QuestionNoticeTip.swift */; };
 		D61E512821D089070083BECA /* HDLY_QuestionNoticeTip.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E512721D089070083BECA /* HDLY_QuestionNoticeTip.xib */; };
+		D61E512A21D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E512921D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift */; };
+		D61E512C21D0CDD80083BECA /* HDLY_OpenLocServiceTip.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E512B21D0CDD80083BECA /* HDLY_OpenLocServiceTip.xib */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -899,6 +901,8 @@
 		D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_PlatformCell.xib; sourceTree = "<group>"; };
 		D61E512521D088FD0083BECA /* HDLY_QuestionNoticeTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionNoticeTip.swift; sourceTree = "<group>"; };
 		D61E512721D089070083BECA /* HDLY_QuestionNoticeTip.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionNoticeTip.xib; sourceTree = "<group>"; };
+		D61E512921D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_OpenLocServiceTip.swift; sourceTree = "<group>"; };
+		D61E512B21D0CDD80083BECA /* HDLY_OpenLocServiceTip.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_OpenLocServiceTip.xib; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -2775,6 +2779,8 @@
 			children = (
 				1B3126B421B7C8AA003785C0 /* HDLY_ChangeCityAlert.swift */,
 				1B3126B321B7C8A4003785C0 /* HDLY_ChangeCityAlert.xib */,
+				D61E512921D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift */,
+				D61E512B21D0CDD80083BECA /* HDLY_OpenLocServiceTip.xib */,
 				D6EEDDAF2190202D00F730BA /* HDLY_GuideCard2Cell.swift */,
 				D6EEDDAE2190202D00F730BA /* HDLY_GuideCard2Cell.xib */,
 				D6EEDDB22190271100F730BA /* HDLY_GuideMapCell.swift */,
@@ -3095,6 +3101,7 @@
 				D6C9FC1C2117FA3A007C8E56 /* LaunchScreen.storyboard in Resources */,
 				D6884E6A211E816200ABDE5E /* HDLY_Listen_Cell.xib in Resources */,
 				D672462A211D5C8F00239109 /* HDLY_Recommend_Cell1.xib in Resources */,
+				D61E512C21D0CDD80083BECA /* HDLY_OpenLocServiceTip.xib in Resources */,
 				D6699FFF2119871C006339D3 /* RootBHeaderView.xib in Resources */,
 				A788E40A21AFBA0E00E2FC62 /* HDSSL_TicketCell.xib in Resources */,
 				D6375690219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.xib in Resources */,
@@ -3349,6 +3356,7 @@
 				A7441D4221A2A0D50064E6A6 /* LxGridViewFlowLayout.m in Sources */,
 				D694518E2196840C00E7DA44 /* HDLY_NumGuideHelpView.swift in Sources */,
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,
+				D61E512A21D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift in Sources */,
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
 				D6115AF0218FD490004A05DA /* ZFIJKPlayerManager.m in Sources */,

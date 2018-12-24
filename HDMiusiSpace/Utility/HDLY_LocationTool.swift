@@ -99,7 +99,32 @@ final class HDLY_LocationTool: NSObject,CLLocationManagerDelegate {
 
 extension HDLY_LocationTool {
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways:
+            print("获得前后台授权")
+        case .authorizedWhenInUse:
+            print("获得前台授权")
+            HDDeclare.shared.isSystemLocateEnable = true
+        case .denied:
+            if CLLocationManager.locationServicesEnabled() == true {
+                print("定位服务开启，被拒绝")
+            } else {
+                print("定位服务关闭，不可用")
+            }
+            HDDeclare.shared.isSystemLocateEnable = false
+        case .notDetermined:
+            print("用户还未决定授权，检查plist是否添加Privacy - Location When In Use Usage Description 权限")
+        case .restricted:
+            print("访问受限")
+            
+        default:
+            break
+            
+        }
+    }
     
+    //
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last?.locationMarsFromEarth()
         if newLocation != nil {
@@ -135,16 +160,6 @@ extension HDLY_LocationTool {
         }
     }
     
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .notDetermined://用户还未决定授权
-            manager.requestWhenInUseAuthorization()
-            
-        default:
-            break
-        }
-    }
     
 }
 

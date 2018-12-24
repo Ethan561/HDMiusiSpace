@@ -453,7 +453,16 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
             
         }
         
-        if section == 1 || section == 2 {
+        if section == 1 {
+            view.backgroundColor = cellColor
+            title.textColor = UIColor.lightGray
+            title.font = UIFont.systemFont(ofSize: 18)
+            if recentArray.count == 0 {
+                title.text = ""
+            }
+        }
+        
+        if section == 2 {
             view.backgroundColor = cellColor
             title.textColor = UIColor.lightGray
             title.font = UIFont.systemFont(ofSize: 18)

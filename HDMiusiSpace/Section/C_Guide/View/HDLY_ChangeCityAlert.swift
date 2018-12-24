@@ -24,7 +24,6 @@ class HDLY_ChangeCityAlert: UIView {
         bgView.layer.cornerRadius = 4
         bgView.layer.masksToBounds = true
         
-        
     }
     
     

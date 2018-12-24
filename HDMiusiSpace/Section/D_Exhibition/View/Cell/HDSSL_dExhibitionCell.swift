@@ -19,6 +19,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     @IBOutlet weak var tagL: UILabel!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var shadowBg: UIView!
+    @IBOutlet weak var cell_noStarLab: UILabel!
     
     var model: HDLY_dExhibitionListD? {
         didSet {
@@ -46,7 +47,16 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             cell_number.text = model!.star?.string
             let star: Float! = Float(model!.star?.string ?? "0")
             var imgStr = ""
-            if star < 2 {
+            
+            cell_noStarLab.isHidden = true
+            cell_number.isHidden = false
+            cell_star.isHidden = false
+            
+            if star == 0 {
+                cell_noStarLab.isHidden = false
+                cell_number.isHidden = true
+                cell_star.isHidden = true
+            }else if star < 2 {
                 imgStr = "exhibitionCmt_1_5"
             }else if star >= 2 && star < 4 {
                 imgStr = "exhibitionCmt_2_5"

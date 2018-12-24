@@ -53,6 +53,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             cell_star.isHidden = false
             
             if star == 0 {
+                //评分为0的时候显示暂无评星
                 cell_noStarLab.isHidden = false
                 cell_number.isHidden = true
                 cell_star.isHidden = true

@@ -9,15 +9,15 @@
 import UIKit
 
 struct CourseQuestion: Codable {
-    let status: Int
-    let msg: String
-    let data: CourseQuestionData
+    var status: Int
+    var msg: String
+    var data: CourseQuestionData
 }
 
 struct CourseQuestionData: Codable {
-    let isBuy, isFree, answerNum: Int
-    let url: String
-    let list: [CourseQuestionList]
+    var isBuy, isFree, answerNum: Int
+    var url: String
+    var list: [CourseQuestionList]
     
     enum CodingKeys: String, CodingKey {
         case isBuy = "is_buy"
@@ -28,12 +28,12 @@ struct CourseQuestionData: Codable {
 }
 
 struct CourseQuestionList: Codable {
-    let uid: Int
-    let avatar, nickname, title, content: String
-    let questionID: Int
-    let createdAt: String
+    var uid: Int
+    var avatar, nickname, title, content: String
+    var questionID: Int
+    var createdAt: String
     var likes, isLike: TStrInt?
-    let returnInfo: [QuestionReturnInfo]
+    var returnInfo: [QuestionReturnInfo]
     
     enum CodingKeys: String, CodingKey {
         case uid, avatar, nickname, title, content

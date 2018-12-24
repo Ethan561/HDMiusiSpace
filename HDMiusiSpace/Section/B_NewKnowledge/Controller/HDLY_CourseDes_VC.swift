@@ -68,21 +68,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         myTableView.separatorStyle = .none
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
-        //
-        self.videoPlayer.controlView = self.controlView
-        // 设置退到后台继续播放
-        self.videoPlayer.pauseWhenAppResignActive = false
-        
-        weak var _self = self
-        self.videoPlayer.orientationWillChange = { (player,isFullScreen) -> (Void) in
-            _self?.isStatusBarHidden = isFullScreen
-            _self?.setNeedsStatusBarAppearanceUpdate()
-        }
-        
-        // 播放完自动播放下一个
-        self.videoPlayer.playerDidToEnd = { (asset) -> () in
-            
-        }
+        setupvideoPlayer()
         dataRequest()
         self.bottomHCons.constant = 0
         self.listenBgView.isHidden = true
@@ -116,6 +102,23 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         return self.isStatusBarHidden
     }
     
+    private func setupvideoPlayer() {
+        //
+        self.videoPlayer.controlView = self.controlView
+        // 设置退到后台继续播放
+        self.videoPlayer.pauseWhenAppResignActive = false
+        
+        weak var _self = self
+        self.videoPlayer.orientationWillChange = { (player,isFullScreen) -> (Void) in
+            _self?.isStatusBarHidden = isFullScreen
+            _self?.setNeedsStatusBarAppearanceUpdate()
+        }
+        
+        // 播放完自动播放下一个
+        self.videoPlayer.playerDidToEnd = { (asset) -> () in
+            
+        }
+    }
     
     @IBAction func playClick(_ sender: UIButton) {
         guard let course = infoModel?.data else {
@@ -198,6 +201,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }
         if result == 2 {
             orderTipView?.successView.isHidden = false
+            self.dataRequest()
         }
         
     }

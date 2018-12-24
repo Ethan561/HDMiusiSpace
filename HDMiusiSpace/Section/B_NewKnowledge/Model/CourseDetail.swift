@@ -47,7 +47,7 @@ struct CourseDetailModel: Codable {
 struct CourseMessageList: Codable {
     let status: Int
     let msg: String
-    let data: [CourseMessageModel]
+    var data: [CourseMessageModel]
 }
 
 struct CourseMessageModel: Codable {

@@ -16,6 +16,9 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var buyBtn: UIButton!
     @IBOutlet weak var leaveMsgView: UIView!
     @IBOutlet weak var leaveMsgBgV: UIView!
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
     
     let audioPlayer = HDLY_AudioPlayer.shared
 
@@ -52,6 +55,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         
         dataRequest()
 //        audioPlayer.delegate = self
+        bindViewModel()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,7 +65,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     }
 
     @IBAction func buyBtnAction(_ sender: Any) {
-        
+        buyGoodsAction()
     }
     
     @IBAction func questionBtnAction(_ sender: UIButton) {
@@ -91,6 +96,15 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                 self.getWebHeight()
                 self.tableView.reloadData()
                 self.tableView.ly_endLoading()
+                if self.infoModel?.data.isBuy == 1 {//0未购买，1已购买
+                    self.buyBtn.isHidden = true
+                    self.leaveMsgView.isHidden = false
+                    self.bottomHCons.constant = 56
+                }else {
+                    self.buyBtn.isHidden = false
+                    self.leaveMsgView.isHidden = true
+                    self.bottomHCons.constant = 74
+                }
             }
             catch let error {
                 LOG("\(error)")
@@ -125,6 +139,9 @@ extension HDLY_CourseList_SubVC3 {
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
+            if infoModel?.data.isBuy == 1 {
+                return 0.01
+            }
             return 45
         }
         if infoModel?.data.list != nil && section > 0{
@@ -137,9 +154,13 @@ extension HDLY_CourseList_SubVC3 {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
+            if infoModel?.data.isBuy == 1 {
+                return nil
+            }
             return HDLY_QuestionTip_Header.createViewFromNib() as! HDLY_QuestionTip_Header
         }
         if infoModel?.data.list != nil && section > 0{
+            let index = section - 1
             let secModel = infoModel!.data.list[section-1]
             let header = HDLY_QuestionContent_Header.createViewFromNib() as!  HDLY_QuestionContent_Header
             header.questionL.text = secModel.title
@@ -157,6 +178,26 @@ extension HDLY_CourseList_SubVC3 {
             }
             header.avatarBtn.tag = section - 1
             header.avatarBtn.addTarget(self, action: #selector(pushPersonalCenter(_:)), for: .touchUpInside)
+
+            header.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    CoursePublicViewModel.doLikeRequest(id: "\(secModel.questionID)", cate_id: "8", vc: self!, success: { (result) in
+                        if self?.infoModel!.data.list[index].isLike!.int == 0 {
+                            self?.infoModel!.data.list[index].isLike!.int = 1
+                            self?.infoModel!.data.list[index].likes!.int = (self?.infoModel!.data.list[index].likes!.int)! + 1
+                            header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            header.likeBtn.setTitle(self?.infoModel!.data.list[index].likes!.string, for: .normal)
+                        }else {
+                            self?.infoModel!.data.list[index].isLike!.int = 0
+                            self?.infoModel!.data.list[index].likes!.int = (self?.infoModel!.data.list[index].likes!.int)! - 1
+                            header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            header.likeBtn.setTitle(self?.infoModel!.data.list[index].likes!.string, for: .normal)
+                        }
+                    }, failure: { (error, msg) in })
+                }
+            })
             
             return header
         }
@@ -192,6 +233,9 @@ extension HDLY_CourseList_SubVC3 {
 
         if section == 0 {
             if row == 0 {
+                if infoModel?.data.isBuy == 1 {
+                    return 0.01
+                }
                 return webViewH
             }else {
                 return 42
@@ -228,11 +272,16 @@ extension HDLY_CourseList_SubVC3 {
                 return cell!
             }else if row == 1 {
                 let cell = HDLY_QuestionNumTitle_Cell.getMyTableCell(tableV: tableView)
-                cell?.noticeL.isHidden = true
-                cell?.noticeImgV.isHidden = true
-                
                 if infoModel?.data != nil {
                     cell?.countL.text = "讲师共回答了\(infoModel!.data.answerNum)个问题"
+                }
+                if infoModel?.data.isBuy == 1 {
+                    cell?.noticeBtn.addTarget(self, action: #selector(noticeBtnAction), for: UIControlEvents.touchUpInside)
+                    cell?.noticeL.isHidden = false
+                    cell?.noticeImgV.isHidden = false
+                } else {
+                    cell?.noticeL.isHidden = true
+                    cell?.noticeImgV.isHidden = true
                 }
                 
                 return cell!
@@ -285,6 +334,20 @@ extension HDLY_CourseList_SubVC3 {
 
 extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
     
+    @objc func noticeBtnAction() {
+        let tipView:HDLY_QuestionNoticeTip = HDLY_QuestionNoticeTip.createViewFromNib() as! HDLY_QuestionNoticeTip
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        guard let url = self.infoModel?.data.url else {
+            return
+        }
+        tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+        
+    }
+
     //点击用户头像
     @objc func pushPersonalCenter(_ sender: UIButton) {
         let index = sender.tag
@@ -361,5 +424,84 @@ extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
     
     
     //
+}
+
+extension  HDLY_CourseList_SubVC3 {
+    func buyGoodsAction() {
+        if  self.infoModel?.data  != nil {
+            if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self.pushToLoginVC(vc: self)
+                    return
+                }
+                //获取订单信息
+                guard let idnum = self.courseId else {
+                    return
+                }
+                publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: Int(idnum) ?? 0, self)
+                return
+                
+            }
+        }
+    }
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = "¥\(model.price!)"
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction()
+        }
+        
+    }
+    
+    func orderBuyAction() {
+        guard let idnum = self.courseId else {
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: Int(idnum) ?? 0, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+            self.dataRequest()
+        }
+        
+    }
+    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind { (model) in
+            weakSelf?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind { (model) in
+            weakSelf?.showPaymentResult(model)
+        }
+        
+    }
 }
 

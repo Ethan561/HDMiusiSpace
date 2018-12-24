@@ -84,6 +84,24 @@ class CoursePublicViewModel: NSObject {
         }
     }
     
+   class func doLikeRequest( id: String, cate_id: String, vc: UIViewController, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? )  {
+        var token :String = ""
+        let deviceno = HDLY_UserModel.shared.getDeviceNum()
+        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            token = HDDeclare.shared.api_token!
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doLikeRequest(id: id, cate_id: cate_id, api_token: token, deviceno: deviceno), showHud: true, loadingVC: vc, success: { (result) in
+            success(result)
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+        }) { (errorCode, msg) in
+            failure!(errorCode,msg)
+        }
+    }
+    
     //关注（cate_id：1平台，2教师,3用户）
     func doFocusRequest(api_token: String, id: String, cate_id: String, _ vc: UIViewController)  {
         

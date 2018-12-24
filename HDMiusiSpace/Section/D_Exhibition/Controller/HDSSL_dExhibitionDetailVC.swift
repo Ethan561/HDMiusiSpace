@@ -930,9 +930,9 @@ extension HDSSL_dExhibitionDetailVC {
             vc.museumId = self.exdataModel?.data?.museum_id ?? 0
             vc.titleName = "展览攻略"
             self.navigationController?.pushViewController(vc, animated: true)
-        }else if model.type == 3{
+        }else if model.type == 3 {
             titleStr = "相关活动"
-        }else if model.type == 4{
+        }else if model.type == 4 {
             titleStr = "精选推荐"
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
             self.navigationController?.pushViewController(vc, animated: true)

@@ -54,8 +54,22 @@ class HDSSL_commentListVC: HDItemBaseVC {
         self.title = "全部评论"
         dTableView.delegate = self
         dTableView.dataSource = self
+        
+        reloadButtonState()
     }
-    
+    func reloadButtonState() {
+        if listType == 1 {
+            btn_all.backgroundColor = UIColor.HexColor(0xE8C4AE)
+            btn_all.setTitleColor(UIColor.HexColor(0xE8593E), for: .normal)
+            btn_pic.backgroundColor = UIColor.lightGray
+            btn_pic.setTitleColor(UIColor.black, for: .normal)
+        }else{
+            btn_pic.backgroundColor = UIColor.HexColor(0xE8C4AE)
+            btn_pic.setTitleColor(UIColor.HexColor(0xE8593E), for: .normal)
+            btn_all.backgroundColor = UIColor.lightGray
+            btn_all.setTitleColor(UIColor.black, for: .normal)
+        }
+    }
     //
     //MARK: - MVVM
     func bindViewModel() {
@@ -172,6 +186,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         
         skip = 0
         listType = sender.tag//类型
+        reloadButtonState()
         //请求数据
         requestData()
     }

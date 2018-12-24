@@ -16,10 +16,13 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
     
+    @IBOutlet weak var wwanTipView: UIView!
+    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
+    @IBOutlet weak var wwanTipBtn: UIButton!
     
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
@@ -101,7 +104,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         dataRequest()
         addContentSubViewsWithArr(titleArr: titleArray)
         bindViewModel()
-    
+        
+        wwanTipView.isHidden = true
+        ZFReachabilityManager.shared().startMonitoring()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,6 +150,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     private func setupPlayer() {
         // 设置退到后台继续播放
         self.player.pauseWhenAppResignActive = false
+        self.player.shouldAutoPlay = false
+        self.player.isWWANAutoPlay = false//3G、4G网络
         
         weak var _self = self
         self.player.orientationWillChange = { (player,isFullScreen) -> (Void) in
@@ -170,6 +178,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
         }
+    }
+    
+    
+    @IBAction func WWANBtnAction(_ sender: Any) {
+        wwanTipView.isHidden = true
+        autoPlayAction()
     }
     
     func uploadRecordActions() {
@@ -206,6 +220,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         guard let course = infoModel?.data else {
             return
         }
+        if ZFReachabilityManager.shared().isReachableViaWWAN == true {
+            wwanTipView.isHidden = false
+            return
+        }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
 
         if isMp3Course {
@@ -214,6 +232,27 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
         
+            }
+        }else {
+            if course.video.isEmpty == false && course.video.contains(".mp4") {
+                self.player.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
+        }
+    }
+    
+    func autoPlayAction() {
+        guard let course = infoModel?.data else {
+            return
+        }
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+        
+        if isMp3Course {
+            if course.video.isEmpty == false && course.video.contains(".mp3") {
+                self.player.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.coverImageHidden = false
+                
             }
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
@@ -270,6 +309,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
                 self.isMp3Course = false
             }
+//            self.autoPlayAction()
+            
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
             }else {
             }

@@ -414,6 +414,42 @@
                                             <constraint firstItem="udt-PD-E6M" firstAttribute="centerX" secondItem="Uex-bo-XY8" secondAttribute="centerX" id="tyP-dC-Zy8"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Vs-R8-Ldf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您正在使用非WIFI网络，播放将产生流量费用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ord-sh-ZMr">
+                                                <rect key="frame" x="30" y="79.5" width="315" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-jp-4Fk">
+                                                <rect key="frame" x="137.5" y="106.5" width="100" height="30"/>
+                                                <color key="backgroundColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="NiZ-gk-0Ch"/>
+                                                    <constraint firstAttribute="width" constant="100" id="xUK-MU-Eph"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="22M流量" image="kt_icon_play_xiao">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="WWANBtnAction:" destination="NPJ-qO-nK6" eventType="touchUpInside" id="FmD-IP-clz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ord-sh-ZMr" firstAttribute="centerY" secondItem="5Vs-R8-Ldf" secondAttribute="centerY" constant="-20" id="1K1-IK-6ui"/>
+                                            <constraint firstItem="rRy-jp-4Fk" firstAttribute="centerX" secondItem="5Vs-R8-Ldf" secondAttribute="centerX" id="EXp-1I-ZZb"/>
+                                            <constraint firstItem="rRy-jp-4Fk" firstAttribute="top" secondItem="ord-sh-ZMr" secondAttribute="bottom" constant="15" id="Ljq-jO-zN7"/>
+                                            <constraint firstItem="ord-sh-ZMr" firstAttribute="centerX" secondItem="5Vs-R8-Ldf" secondAttribute="centerX" id="OEY-AD-slk"/>
+                                            <constraint firstAttribute="trailing" secondItem="ord-sh-ZMr" secondAttribute="trailing" constant="30" id="UgZ-Nq-fUy"/>
+                                            <constraint firstItem="ord-sh-ZMr" firstAttribute="leading" secondItem="5Vs-R8-Ldf" secondAttribute="leading" constant="30" id="gnj-F1-PQB"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjA-Hs-Tz5">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                         <constraints>
@@ -473,10 +509,14 @@
                                 <constraints>
                                     <constraint firstItem="PjA-Hs-Tz5" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="A1E-75-bgc"/>
                                     <constraint firstAttribute="width" secondItem="LYw-Ag-CD4" secondAttribute="height" multiplier="16:9" id="IhP-Cp-ca8"/>
+                                    <constraint firstItem="5Vs-R8-Ldf" firstAttribute="leading" secondItem="Uex-bo-XY8" secondAttribute="leading" id="JO5-x6-vjx"/>
+                                    <constraint firstItem="5Vs-R8-Ldf" firstAttribute="bottom" secondItem="Uex-bo-XY8" secondAttribute="bottom" id="MJo-yb-DRe"/>
                                     <constraint firstAttribute="bottom" secondItem="Uex-bo-XY8" secondAttribute="bottom" id="Owc-2z-Sfc"/>
                                     <constraint firstItem="W9g-Jw-6xn" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="RfV-ze-IVw"/>
                                     <constraint firstItem="Uex-bo-XY8" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="Tos-nP-mkg"/>
+                                    <constraint firstItem="5Vs-R8-Ldf" firstAttribute="trailing" secondItem="Uex-bo-XY8" secondAttribute="trailing" id="YSh-5i-TjG"/>
                                     <constraint firstAttribute="trailing" secondItem="W9g-Jw-6xn" secondAttribute="trailing" id="cng-tg-G1S"/>
+                                    <constraint firstItem="5Vs-R8-Ldf" firstAttribute="top" secondItem="Uex-bo-XY8" secondAttribute="top" id="jGP-eD-rNM"/>
                                     <constraint firstAttribute="trailing" secondItem="Uex-bo-XY8" secondAttribute="trailing" id="kfZ-8q-cLk"/>
                                     <constraint firstItem="Uex-bo-XY8" firstAttribute="leading" secondItem="LYw-Ag-CD4" secondAttribute="leading" id="rS1-Bw-xsx"/>
                                     <constraint firstItem="PjA-Hs-Tz5" firstAttribute="leading" secondItem="LYw-Ag-CD4" secondAttribute="leading" id="yQR-8M-kqK"/>
@@ -522,11 +562,13 @@
                         <outlet property="shareBtn" destination="Wax-vw-LrH" id="xb5-Te-Ucg"/>
                         <outlet property="statusBarHCons" destination="ESs-9h-pgu" id="3xQ-LQ-gNo"/>
                         <outlet property="topView" destination="LYw-Ag-CD4" id="rvP-oH-ula"/>
+                        <outlet property="wwanTipBtn" destination="rRy-jp-4Fk" id="bSi-5x-7ev"/>
+                        <outlet property="wwanTipView" destination="5Vs-R8-Ldf" id="REG-7x-sXX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEe-1G-cn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5191" y="-1200"/>
+            <point key="canvasLocation" x="5189.6000000000004" y="-1200.4497751124438"/>
         </scene>
         <!--Listen DetailVC-->
         <scene sceneID="BrW-zI-4sJ">
@@ -1123,6 +1165,7 @@
         <image name="Star_white" width="22" height="22"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
         <image name="icon_like_default" width="24" height="24"/>
+        <image name="kt_icon_play_xiao" width="12" height="14"/>
         <image name="nav_back_white" width="12" height="20"/>
         <image name="qtsk_course_img1" width="375" height="210"/>
         <image name="search_icon_search_big_default" width="18" height="18"/>

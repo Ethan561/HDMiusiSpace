@@ -136,6 +136,22 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    func autoPlayAction() {
+        guard let course = infoModel?.data else {
+            return
+        }
+        
+        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+        if isMp3Course {
+            audioPlayOrPauseAction()
+        }else {
+            if course.video.isEmpty == false && course.video.contains(".mp4") {
+                self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
+        }
+    }
+    
     @IBAction func listenBtnAction(_ sender: UIButton) {
         self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
     }
@@ -274,6 +290,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.isMp3Course = false
                 self.tryListenL.text = "试学"
             }
+            self.autoPlayAction()
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {

@@ -84,6 +84,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var currentPlayTime: TimeInterval = 0
     var isStatusBarHidden = false//是否隐藏状态栏
     var shareView: HDLY_ShareView?
+    var playState: ZFPlayerPlaybackState =  ZFPlayerPlaybackState.playStateUnknown
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,6 +157,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         
         self.player.playerPlayStateChanged = { (asset,state) -> () in
+            _self?.playState = state
             if state == ZFPlayerPlaybackState.playStatePaused {
                 _self?.uploadRecordActions()
             }
@@ -211,6 +213,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
+        
             }
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
@@ -224,12 +227,20 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     func playWithCurrentPlayUrl(_ model: ChapterList) {
         
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+        self.controlView.showWith(animated: true)
+        
         listPlayModel = model
         let video = model.video
         if video.isEmpty == false && video.contains(".mp3") {
-            self.player.assetURL = NSURL.init(string: video)! as URL
-            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-            self.controlView.coverImageHidden = false
+            if self.player.currentPlayerManager.playState == .playStatePlaying {
+                self.player.currentPlayerManager.pause!()
+            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
+                self.player.currentPlayerManager.play!()
+            }else {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.coverImageHidden = false
+            }
         }
         else if video.isEmpty == false && video.contains(".mp4") {
             self.player.assetURL = NSURL.init(string: video)! as URL

@@ -105,7 +105,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func buyBtnAction(_ sender: Any) {
-        bugGoodsAction()
+        buyGoodsAction()
     }
     
     override func didReceiveMemoryWarning() {
@@ -208,7 +208,7 @@ extension HDLY_CourseList_SubVC1 {
 }
 
 extension  HDLY_CourseList_SubVC1{
-    func bugGoodsAction() {
+    func buyGoodsAction() {
         if  self.infoModel?.data  != nil {
             if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
@@ -264,6 +264,7 @@ extension  HDLY_CourseList_SubVC1{
         }
         if result == 2 {
             orderTipView?.successView.isHidden = false
+            self.dataRequest()
         }
         
     }

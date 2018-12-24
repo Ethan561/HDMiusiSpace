@@ -242,6 +242,8 @@
 		D61D52CB21A7DD5100C12F58 /* HDLY_RootCVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */; };
 		D61D5D1821C246F3005EA3A6 /* HDLY_PlatformCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */; };
 		D61D5D1921C246F3005EA3A6 /* HDLY_PlatformCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */; };
+		D61E512621D088FD0083BECA /* HDLY_QuestionNoticeTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E512521D088FD0083BECA /* HDLY_QuestionNoticeTip.swift */; };
+		D61E512821D089070083BECA /* HDLY_QuestionNoticeTip.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E512721D089070083BECA /* HDLY_QuestionNoticeTip.xib */; };
 		D61E947A21928E1400C5299F /* HDLY_NumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */; };
 		D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */; };
 		D61E947E2192CA0200C5299F /* QRCode_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61E947D2192CA0200C5299F /* QRCode_View.swift */; };
@@ -895,6 +897,8 @@
 		D61D52CA21A7DD5100C12F58 /* HDLY_RootCVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCVM.swift; sourceTree = "<group>"; };
 		D61D5D1621C246F3005EA3A6 /* HDLY_PlatformCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PlatformCell.swift; sourceTree = "<group>"; };
 		D61D5D1721C246F3005EA3A6 /* HDLY_PlatformCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_PlatformCell.xib; sourceTree = "<group>"; };
+		D61E512521D088FD0083BECA /* HDLY_QuestionNoticeTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_QuestionNoticeTip.swift; sourceTree = "<group>"; };
+		D61E512721D089070083BECA /* HDLY_QuestionNoticeTip.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_QuestionNoticeTip.xib; sourceTree = "<group>"; };
 		D61E947821928E1400C5299F /* HDLY_NumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_NumCollectionCell.swift; sourceTree = "<group>"; };
 		D61E947921928E1400C5299F /* HDLY_NumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_NumCollectionCell.xib; sourceTree = "<group>"; };
 		D61E947D2192CA0200C5299F /* QRCode_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCode_View.swift; sourceTree = "<group>"; };
@@ -1975,6 +1979,8 @@
 				D66991C82130EDD5002568B2 /* HDLY_AnswerText_Cell.xib */,
 				D66991CB2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift */,
 				D66991CC2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.xib */,
+				D61E512521D088FD0083BECA /* HDLY_QuestionNoticeTip.swift */,
+				D61E512721D089070083BECA /* HDLY_QuestionNoticeTip.xib */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -2475,8 +2481,8 @@
 		D6C9FC9E211825DC007C8E56 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				A7F1C50B213E51CE009039D8 /* ViewModel */,
 				D6C9FC9F211825DC007C8E56 /* Controller */,
+				A7F1C50B213E51CE009039D8 /* ViewModel */,
 				D6C9FCA2211825DC007C8E56 /* Model */,
 				D6C9FCA4211825DC007C8E56 /* View */,
 			);
@@ -3082,6 +3088,7 @@
 				D63F8D642199522300686AB3 /* HDCallOutView.xib in Resources */,
 				D6884E6E211E817800ABDE5E /* HDLY_Topic_Cell.xib in Resources */,
 				D62277E221368069008F1416 /* MTImagePicker.storyboard in Resources */,
+				D61E512821D089070083BECA /* HDLY_QuestionNoticeTip.xib in Resources */,
 				D68D54212133D1ED000CD258 /* LogInSection.storyboard in Resources */,
 				1B21CBAF21B10658006246DF /* HDZQ_PersonOthersHeaderView.xib in Resources */,
 				D6884E66211E7F3C00ABDE5E /* HDLY_Topic_CollectionCell.xib in Resources */,
@@ -3353,6 +3360,7 @@
 				D62277A521367D4D008F1416 /* PhotoLoader.swift in Sources */,
 				D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */,
 				D62277D621368069008F1416 /* LoadingViewController.swift in Sources */,
+				D61E512621D088FD0083BECA /* HDLY_QuestionNoticeTip.swift in Sources */,
 				D66C35CA213FA80600363D7C /* HDLY_MineInfo_Cell.swift in Sources */,
 				1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */,
 				D6115AFC218FD490004A05DA /* ZFSpeedLoadingView.m in Sources */,

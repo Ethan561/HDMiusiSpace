@@ -133,6 +133,14 @@ extension HDLY_CourseList_SubVC4 {
             if commentModel.avatar != nil {
                 cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
+            cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    self?.pushToOthersPersonalCenterVC(commentModel.uid.int)
+                }
+            })
+            
             cell?.contentL.text = commentModel.content
             cell?.timeL.text = commentModel.time
             cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
@@ -141,14 +149,32 @@ extension HDLY_CourseList_SubVC4 {
             }else {
                 cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
             }
+            cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    CoursePublicViewModel.doLikeRequest(id: commentModel.messageID.string, cate_id: "7", vc: self!, success: { (result) in
+                        if self?.infoModel!.data[index].isLike == 0 {
+                            self?.infoModel!.data[index].isLike = 1
+                            self?.infoModel!.data[index].likeNum.int = (self?.infoModel!.data[index].likeNum.int)! + 1
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            cell?.likeBtn.setTitle(self?.infoModel!.data[index].likeNum.string, for: .normal)
+                        }else {
+                            self?.infoModel!.data[index].isLike = 0
+                            self?.infoModel!.data[index].likeNum.int = (self?.infoModel!.data[index].likeNum.int)! - 1
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            cell?.likeBtn.setTitle(self?.infoModel!.data[index].likeNum.string, for: .normal)
+                        }
+                    }, failure: { (error, msg) in })
+                }
+            })
         }
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let commentModel:CourseMessageModel = self.infoModel!.data[indexPath.row] else {
-            return
-        }
-        self.pushToOthersPersonalCenterVC(commentModel.uid.int)
+        
     }
 }
+
+

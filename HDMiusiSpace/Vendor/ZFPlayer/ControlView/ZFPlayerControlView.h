@@ -64,4 +64,8 @@
 /// 重置控制层
 - (void)resetControlView;
 
+/// 显示控制层
+- (void)showControlViewWithAnimated:(BOOL)animated;
+
+
 @end

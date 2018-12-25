@@ -914,7 +914,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph6-bQ-2aM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="585"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wLl-Dq-zSW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
@@ -1134,14 +1134,13 @@
                                     <constraint firstItem="wLl-Dq-zSW" firstAttribute="top" secondItem="ph6-bQ-2aM" secondAttribute="top" id="rie-Yt-kev"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idy-wg-MG4">
-                                <rect key="frame" x="20" y="593" width="335" height="54"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idy-wg-MG4">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="phq-6c-tZe"/>
+                                    <constraint firstAttribute="height" constant="60" id="phq-6c-tZe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="提交">
+                                <state key="normal" title=" 拖拽到此处删除" image="icon_delete">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -1154,10 +1153,10 @@
                         <constraints>
                             <constraint firstItem="ph6-bQ-2aM" firstAttribute="top" secondItem="gCg-RG-gqD" secondAttribute="top" id="1eT-SK-fYU"/>
                             <constraint firstItem="ph6-bQ-2aM" firstAttribute="trailing" secondItem="mtL-Uv-lTr" secondAttribute="trailing" id="3jS-LH-j15"/>
-                            <constraint firstItem="Idy-wg-MG4" firstAttribute="leading" secondItem="mtL-Uv-lTr" secondAttribute="leading" constant="20" id="PPy-P4-svP"/>
-                            <constraint firstItem="mtL-Uv-lTr" firstAttribute="bottom" secondItem="Idy-wg-MG4" secondAttribute="bottom" constant="20" id="Yz5-WW-ts4"/>
-                            <constraint firstItem="mtL-Uv-lTr" firstAttribute="trailing" secondItem="Idy-wg-MG4" secondAttribute="trailing" constant="20" id="hhb-Gu-Pe6"/>
-                            <constraint firstItem="Idy-wg-MG4" firstAttribute="top" secondItem="ph6-bQ-2aM" secondAttribute="bottom" constant="8" id="o31-mC-YMr"/>
+                            <constraint firstItem="Idy-wg-MG4" firstAttribute="leading" secondItem="mtL-Uv-lTr" secondAttribute="leading" id="PPy-P4-svP"/>
+                            <constraint firstItem="mtL-Uv-lTr" firstAttribute="bottom" secondItem="Idy-wg-MG4" secondAttribute="bottom" id="Yz5-WW-ts4"/>
+                            <constraint firstItem="mtL-Uv-lTr" firstAttribute="trailing" secondItem="Idy-wg-MG4" secondAttribute="trailing" id="hhb-Gu-Pe6"/>
+                            <constraint firstItem="Idy-wg-MG4" firstAttribute="top" secondItem="ph6-bQ-2aM" secondAttribute="bottom" id="o31-mC-YMr"/>
                             <constraint firstItem="ph6-bQ-2aM" firstAttribute="leading" secondItem="mtL-Uv-lTr" secondAttribute="leading" id="rIZ-Ma-LBN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mtL-Uv-lTr"/>
@@ -1188,6 +1187,7 @@
     <resources>
         <image name="Star_white" width="22" height="22"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
+        <image name="icon_delete" width="15" height="19"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="kt_icon_play_xiao" width="12" height="14"/>
         <image name="nav_back_white" width="12" height="20"/>

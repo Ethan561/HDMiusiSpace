@@ -77,12 +77,22 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     
     func setup() {
+        //发布按钮
+        let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 44))
+        publishBtn.setTitle("提交", for: .normal)
+        publishBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        publishBtn.setTitleColor(UIColor.HexColor(0xE8593E), for: .normal)
+        publishBtn.addTarget(self, action: #selector(action_publish), for: .touchUpInside)
+        
+        let item = UIBarButtonItem.init(customView: publishBtn)
+        self.navigationItem.rightBarButtonItem = item
+        
         imgV.layer.cornerRadius = 8
         
         textBgView.layer.cornerRadius = 4
         textBgView.layer.borderWidth = 1
         textBgView.layer.borderColor = UIColor.HexColor(0xDADADA).cgColor
-        commitBtn.layer.cornerRadius = 27
+        
         
         errorBtn1.isHidden = true
         errorBtn1.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
@@ -108,6 +118,33 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         errorBtn6.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
         errorBtn6.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
         
+    }
+    //actions
+    @objc func action_publish(){
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        
+        var optionIdStr = getErrorOptionIdStr()
+        if optionIdStr.contains("#") {
+            optionIdStr.removeLast()
+        }else {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请选择报错类型")
+            return
+        }
+        
+        if textView.text.isEmpty == true {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
+            return
+        }
+        if commentPhotos.count ==  0 {
+//            HDAlert.showAlertTipWith(type: .onlyText, text: "请选择要上传的图片")
+//            return
+            self.viewModel.sendErrorWithID(api_token: HDDeclare.shared.api_token!, option_id_str: optionIdStr, parent_id: self.articleID!, cate_id: self.typeID!, content: self.textView.text, uoload_img: self.imgPathArr, self)
+        }else if commentPhotos.count > 0 {
+            uploadImgsAction(optionIdStr: optionIdStr)
+        }
     }
     
     // 初始化选择器
@@ -214,29 +251,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     
     @IBAction func commitBtnAction(_ sender: UIButton) {
-        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-            self.pushToLoginVC(vc: self)
-            return
-        }
-        
-        var optionIdStr = getErrorOptionIdStr()
-        if optionIdStr.contains("#") {
-            optionIdStr.removeLast()
-        }else {
-            HDAlert.showAlertTipWith(type: .onlyText, text: "请选择报错类型")
-            return
-        }
-        
-        if textView.text.isEmpty == true {
-            HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
-            return
-        }
-        if commentPhotos.count ==  0 {
-            HDAlert.showAlertTipWith(type: .onlyText, text: "请选择要上传的图片")
-            return
-        }else if commentPhotos.count > 0 {
-            uploadImgsAction(optionIdStr: optionIdStr)
-        }
+        //拖拽删除
 
     }
     

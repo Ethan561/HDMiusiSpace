@@ -60,13 +60,21 @@ class HDTagChooseCareerVC: UIViewController {
         
         //空数据界面
         weak var weakSelf = self
-        let emptyV:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "net_error", titleStr: "暂无数据", detailStr: "请检查网络连接或稍后再试", btnTitleStr: "重新加载") {
+        let emptyV:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "暂无数据", detailStr: "请检查网络连接或稍后再试", btnTitleStr: "重新加载") {
             LOG("点击刷新")
             weakSelf!.refreshAction()
         }
         
+        emptyV.backgroundColor = UIColor.white
+        emptyV.contentView.backgroundColor = UIColor.clear
+        emptyV.contentViewY = 0
+        emptyV.titleLabTextColor = UIColor.HexColor(0x9B9B9B)
+        emptyV.actionBtnWidth = 60
+        emptyV.actionBtnCornerRadius = 15
+        emptyV.actionBtnTitleColor = UIColor.white
+        emptyV.actionBtnBackGroundColor = UIColor.HexColor(0xE8593E)
+        
         emptyV.contentViewY = -100
-        emptyV.actionBtnBackGroundColor = .lightGray
         self.TagBgView.ly_emptyView = emptyV
         self.TagBgView.ly_hideEmptyView()
         

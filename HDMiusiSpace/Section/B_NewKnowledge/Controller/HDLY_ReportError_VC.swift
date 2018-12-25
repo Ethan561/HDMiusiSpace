@@ -29,6 +29,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     @IBOutlet weak var countL: UILabel!
     @IBOutlet weak var commitBtn: UIButton!
     @IBOutlet weak var imgBgView: UIView!
+    @IBOutlet weak var scrollContentView: UIView!
     
     var textNum:Int = 0
     var articleID: String?
@@ -36,6 +37,11 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     var imgPathArr: Array<String> = Array.init()
     var errorModel: ReportErrorModel?
+    
+    //图片选择器
+    var commentPhotos: [UIImage] = Array.init() //选择照片数组
+    lazy var imagePickerView = SSL_PickerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 600))
+    
     //MVVM
     let viewModel: ReportErrorViewModel = ReportErrorViewModel()
     
@@ -106,16 +112,14 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     // 初始化选择器
     func initCollectionView() {
-        photoSelectorView = HDLY_PhotoSelectorView(self.navigationController)
-        photoSelectorView.currentVC = self
-//        let newImage = image!.scaleImage()
-//        // 将选中的图片添加到图片数组
-//        photoSelectorView.photos.append(newImage)
-//        photoSelectorView.originalPhotos.append(image!)
-        
-        photoSelectorView.frame = imgBgView.bounds
-        imgBgView.addSubview(photoSelectorView)
-        
+//        photoSelectorView = HDLY_PhotoSelectorView(self.navigationController)
+//        photoSelectorView.currentVC = self
+//
+//        photoSelectorView.frame = imgBgView.bounds
+//        imgBgView.addSubview(photoSelectorView)
+        imagePickerView.superVC = self
+        imagePickerView.delegate = self
+        imgBgView.addSubview(imagePickerView)
     }
     
 
@@ -232,10 +236,10 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
             return
         }
-        if photoSelectorView.originalPhotos.count ==  0 {
+        if commentPhotos.count ==  0 {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请选择要上传的图片")
             return
-        }else if photoSelectorView.originalPhotos.count > 0 {
+        }else if commentPhotos.count > 0 {
             uploadImgsAction(optionIdStr: optionIdStr)
         }
 
@@ -244,7 +248,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     @objc func uploadImgsAction(optionIdStr: String) {
         self.view.endEditing(true)
         
-        if photoSelectorView.originalPhotos.count > 0 {
+        if commentPhotos.count > 0 {
             self.imgPathArr.removeAll()
             DispatchQueue.main.async {
 //                let hud = self.pleaseWait()
@@ -252,8 +256,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                 loadingView?.frame = self.view.bounds
                 self.view.addSubview(loadingView!)
                 
-                for i in 0..<self.photoSelectorView.originalPhotos.count {
-                    let img = self.photoSelectorView.originalPhotos[i]
+                for i in 0..<self.commentPhotos.count {
+                    let img = self.commentPhotos[i]
                     var imgData = UIImagePNGRepresentation(img)!
                     if imgData.count/1024/1204 > 1 {
                         imgData = UIImage.resetImgSize(sourceImage: img, maxImageLenght: img.size.width*0.5, maxSizeKB: 1024)//最大1M
@@ -265,7 +269,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                         let imgPath:String? = dic!["data"] as? String
                         let imgUrl: String =  (imgPath != nil ? imgPath! : "")
                         self.imgPathArr.append(imgUrl)
-                        if self.imgPathArr.count == self.photoSelectorView.photos.count {
+                        if self.imgPathArr.count == self.commentPhotos.count {
 //                            hud.hide()
                             loadingView?.removeFromSuperview()
                             self.viewModel.sendErrorWithID(api_token: HDDeclare.shared.api_token!, option_id_str: optionIdStr, parent_id: self.articleID!, cate_id: self.typeID!, content: self.textView.text, uoload_img: self.imgPathArr, self)
@@ -377,4 +381,20 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     }
     */
 
+}
+extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
+    //MARK:返回图片数组
+    func getBackSelectedPhotos(_ images: [Any]!) {
+        print(images)
+        self.commentPhotos = images as! [UIImage]
+        
+    }
+    
+    func didSelectedItem(at itemIndex: Int) {
+        print(itemIndex)
+        let vc = HD_SSL_BigImageVC.init()
+        vc.imageArray = commentPhotos
+        vc.atIndex = itemIndex
+        self.present(vc, animated: true, completion: nil)
+    }
 }

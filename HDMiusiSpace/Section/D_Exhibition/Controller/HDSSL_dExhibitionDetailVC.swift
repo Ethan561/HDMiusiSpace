@@ -956,10 +956,15 @@ extension HDSSL_dExhibitionDetailVC {
     //展览攻略详情
     func showRelatedStrategyVC(_ raider: DMuseumRaiders)  {
         
-        let webVC = HDItemBaseWebVC()
-        webVC.urlPath = raider.strategyUrl
-        webVC.titleName = raider.title
-        self.navigationController?.pushViewController(webVC, animated: true)
+//        let webVC = HDItemBaseWebVC()
+//        webVC.urlPath = raider.strategyUrl
+//        webVC.titleName = raider.title
+//        self.navigationController?.pushViewController(webVC, animated: true)
+        //
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+        vc.topic_id = String(raider.strategyID ?? 0)
+        vc.fromRootAChoiceness = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //精选推荐详情

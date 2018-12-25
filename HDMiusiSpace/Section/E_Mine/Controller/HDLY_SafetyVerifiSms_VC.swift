@@ -45,6 +45,9 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
             beginCount()
             tipL.text = "短信验证码已发送至" + String(head) + "····" + String(foot)
         }
+        if smsTF.canBecomeFirstResponder == true {
+            smsTF.becomeFirstResponder()
+        }
     }
     
     
@@ -93,10 +96,16 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
             HDLY_UserModel.shared.sendSmsForCheck(username: phone!, vc: self)
             beginCount()
             tipL.text = "短信验证码已发送至" + phone!
+            if smsTF.canBecomeFirstResponder == true {
+                smsTF.becomeFirstResponder()
+            }
         } else if declare.phone != nil {
             HDLY_UserModel.shared.sendSmsForCheck(username: declare.phone!, vc: self)
             beginCount()
             tipL.text = "短信验证码已发送至" + HDDeclare.shared.phone!
+            if smsTF.canBecomeFirstResponder == true {
+                smsTF.becomeFirstResponder()
+            }
         }
         
     }

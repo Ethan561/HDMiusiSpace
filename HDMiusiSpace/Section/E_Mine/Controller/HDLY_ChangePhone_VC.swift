@@ -84,6 +84,9 @@ class HDLY_ChangePhone_VC: HDItemBaseVC, UITextFieldDelegate {
             }
             HDLY_UserModel.shared.sendSmsForCheck(username: phoneTF.text!, vc: self)
             beginCount()
+            if smsTF.canBecomeFirstResponder == true {
+                smsTF.becomeFirstResponder()
+            }
         }
     }
     

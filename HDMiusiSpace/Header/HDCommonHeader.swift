@@ -23,9 +23,8 @@ let NavigationHeight = (ScreenHeight == 812.0) ? 88 : 64
 
 //馆方地址
 let kWLAN_Ip_Address : String  =  "http://192.168.10.158:8667"//内网
-//let kNet_Ip_Address  : String  =  "http://59.49.25.69:65200"//外网
-//let kNet_Ip_Address  : String  =  "http://192.168.10.158:8302"//外网
 let kNet_Ip_Address  : String  =  "http://www.muspace.net"//外网
+//let kNet_Ip_Address  : String  =  "http://47.105.71.75"//外网
 
 
 //kCachePath

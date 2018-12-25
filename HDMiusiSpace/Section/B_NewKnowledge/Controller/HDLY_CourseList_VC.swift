@@ -271,15 +271,15 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         listPlayModel = model
         let video = model.video
         if video.isEmpty == false && video.contains(".mp3") {
-            if self.player.currentPlayerManager.playState == .playStatePlaying {
-                self.player.currentPlayerManager.pause!()
-            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
-                self.player.currentPlayerManager.play!()
-            }else {
-                self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.controlView.coverImageHidden = false
-            }
+//            if self.player.currentPlayerManager.playState == .playStatePlaying {
+//                self.player.currentPlayerManager.pause!()
+//            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
+//                self.player.currentPlayerManager.play!()
+//            }else {
+//            }
+            self.player.assetURL = NSURL.init(string: video)! as URL
+            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            self.controlView.coverImageHidden = false
         }
         else if video.isEmpty == false && video.contains(".mp4") {
             self.player.assetURL = NSURL.init(string: video)! as URL

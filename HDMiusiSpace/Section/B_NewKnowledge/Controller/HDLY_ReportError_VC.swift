@@ -112,11 +112,6 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     // 初始化选择器
     func initCollectionView() {
-//        photoSelectorView = HDLY_PhotoSelectorView(self.navigationController)
-//        photoSelectorView.currentVC = self
-//
-//        photoSelectorView.frame = imgBgView.bounds
-//        imgBgView.addSubview(photoSelectorView)
         imagePickerView.superVC = self
         imagePickerView.delegate = self
         imgBgView.addSubview(imagePickerView)

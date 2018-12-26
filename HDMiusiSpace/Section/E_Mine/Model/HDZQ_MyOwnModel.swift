@@ -346,8 +346,6 @@ struct UserModel:Codable {
     var bind_qq: Int = 0
     var profile: String?
     var space_money: String?
-    var uid : String?
-    
 }
 
 struct OtherDynamicData:Codable {

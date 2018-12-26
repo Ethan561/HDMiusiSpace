@@ -179,6 +179,8 @@ final class HDDeclare: NSObject {
         self.nickname = self.user.nickname
         self.sign = self.user.profile
         self.phone = self.user.phone
+        self.uid = model.uid
+        
         LOG(self.user.label_str)
         if self.user.sex == 1 {
             self.gender = "男"

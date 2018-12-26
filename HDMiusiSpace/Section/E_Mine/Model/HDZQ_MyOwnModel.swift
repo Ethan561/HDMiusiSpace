@@ -204,14 +204,15 @@ struct DynamicData:Codable {
 
 //我的动态
 struct MyDynamic: Codable {
-    let commentID, cateID, articleID: Int?
-    let comment, createdAt: String?
-    let avatar: String?
-    let nickname: String?
-    let newsInfo: MyDynamicListenInfo?
-    let listenInfo, topicInfo: MyDynamicListenInfo?
-    let strategyInfo: MyDynamicStrategyInfo?
-    let exhibitionInfo: MyDynamicExhibitionInfo?
+    var commentID, cateID, articleID: Int?
+    var comment, createdAt: String?
+    var avatar: String?
+    var nickname: String?
+    var newsInfo: MyDynamicListenInfo?
+    var listenInfo, topicInfo: MyDynamicListenInfo?
+    var strategyInfo: MyDynamicStrategyInfo?
+    var exhibitionInfo: MyDynamicExhibitionInfo?
+    var height = 0
     
     enum CodingKeys: String, CodingKey {
         case commentID = "comment_id"
@@ -225,6 +226,7 @@ struct MyDynamic: Codable {
         case topicInfo = "topic_info"
         case strategyInfo = "strategy_info"
         case exhibitionInfo = "exhibition_info"
+        case height
     }
 }
 

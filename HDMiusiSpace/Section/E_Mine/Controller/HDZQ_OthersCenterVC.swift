@@ -132,7 +132,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
         cell?.avaImgV.kf.setImage(with: URL.init(string: dynamic.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         cell?.contentL.attributedText = self.htmls[indexPath.row]
-        cell?.timeL.text = dynamic.created_at
+        cell?.timeL.text = dynamic.createdAt
         cell?.nameL.text = dynamic.nickname
         return cell!
     }

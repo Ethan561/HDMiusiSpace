@@ -451,7 +451,7 @@ extension HD_LY_API: TargetType {
         case .growthShare(_):
             return "/api/growth/share"
         case .deleteComment(api_token: _, comment_id: _):
-            return "/api/comment/del_comment"
+            return "/api/exhibition/del_exhibition_comment"
             
             
             

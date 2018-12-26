@@ -209,7 +209,7 @@ class CoursePublicViewModel: NSObject {
             let jsonDecoder = JSONDecoder()
             
             do {
-                let model: HDSSL_PaperModel = try jsonDecoder.decode(HDSSL_PaperModel.self, from: result)
+                let model: HDSSL_resutModel = try jsonDecoder.decode(HDSSL_resutModel.self, from: result)
                 
                 if model.status == 1 {
                     HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: model.msg!)

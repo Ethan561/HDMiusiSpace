@@ -77,3 +77,9 @@ struct ReplyCommentModel: Codable {
         case cellHeight
     }
 }
+//生成画报
+struct HDSSL_resutModel: Codable {
+    var status      : Int?
+    var msg         : String?
+    var data        : Int?
+}

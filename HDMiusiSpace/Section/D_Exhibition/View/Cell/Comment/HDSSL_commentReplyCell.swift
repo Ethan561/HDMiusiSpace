@@ -9,6 +9,9 @@
 import UIKit
 
 typealias BlockTapLikeButton = (_ model:ReplyCommentModel,_ indexpath: IndexPath) -> Void //点赞
+//手势
+typealias LongPressReplyClouser = (_ type: Int,_ comment:String)->Void //长按文本手势
+typealias TapReplyClouser = (_ type: Int)->Void //点击文本手势
 
 class HDSSL_commentReplyCell: UITableViewCell {
 
@@ -22,6 +25,8 @@ class HDSSL_commentReplyCell: UITableViewCell {
     var indexpath: IndexPath? //对象指纹
     
     var blockTapLikeButton: BlockTapLikeButton?
+    public var longPress: LongPressReplyClouser!
+    public var tapPress: TapReplyClouser!
     
     func BlockTapLikeButtonFunc(block :@escaping BlockTapLikeButton) {
         blockTapLikeButton = block
@@ -44,8 +49,31 @@ class HDSSL_commentReplyCell: UITableViewCell {
         }else{
             btn_like.isSelected = false
         }
+        //长按
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
+        longPress.minimumPressDuration = 0.5
+        self.contentView.addGestureRecognizer(longPress)
+        //点击
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAction(ges:)))
+        self.contentView.addGestureRecognizer(tap)
     }
-    
+    //MARK:---评论列表手势
+    @objc func alertAction(ges:UILongPressGestureRecognizer) {
+        if ges.state == .began {
+            if #available(iOS 10.0, *) {
+                let impactLight = UIImpactFeedbackGenerator.init(style: .medium)
+                impactLight.impactOccurred()
+            }
+            if self.longPress != nil {
+                self.longPress((myModel?.returnId)!,myModel?.content ?? "")
+            }
+        }
+    }
+    @objc func tapAction(ges:UITapGestureRecognizer) {
+        if self.tapPress != nil {
+            self.tapPress((myModel?.returnId)!)
+        }
+    }
     //点赞评论回复
     @IBAction func action_tapLike(_ sender: UIButton) {
         

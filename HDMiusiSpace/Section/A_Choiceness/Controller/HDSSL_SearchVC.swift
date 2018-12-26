@@ -21,7 +21,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
     @IBOutlet weak var tagBgView      : UIView!      //标签背景页
     @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
     @IBOutlet weak var resultTableView: UITableView! //搜索结果
-    
     @IBOutlet weak var searcgTagBgView: UIView!
     
     var searchTypeArray: [HDSSL_SearchTag] = Array.init()  //搜索类型数组

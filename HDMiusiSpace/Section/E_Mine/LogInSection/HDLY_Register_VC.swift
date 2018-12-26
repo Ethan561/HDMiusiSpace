@@ -73,6 +73,9 @@ class HDLY_Register_VC: HDItemBaseVC,UITextFieldDelegate {
             }
             HDLY_UserModel.shared.sendSmsForCheck(username: phoneTF.text!, vc: self)
             beginCount()
+            if smsTF.canBecomeFirstResponder == true {
+                smsTF.becomeFirstResponder()
+            }
         } else {
             HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入您的手机号")
         }

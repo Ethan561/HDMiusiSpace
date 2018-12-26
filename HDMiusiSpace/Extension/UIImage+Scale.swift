@@ -222,6 +222,14 @@ extension UIImage {
         return img
     }
     
+    class func getImgWithUrl(_ url : String) -> UIImage? {
+        let imgV = UIImageView()
+        imgV.kf.setImage(with: URL.init(string: url), placeholder: nil, options: nil, progressBlock: nil) { (img, error, type, url) in
+            
+        }
+        return imgV.image
+    }
+    
     
     //用Color生成图片
     class func getImgWithColor(_ color: UIColor, imgSize: CGSize) -> UIImage? {

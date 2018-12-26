@@ -202,21 +202,87 @@ struct DynamicData:Codable {
     var msg: String?
 }
 
-struct MyDynamic:Codable {
-    var comment: String?
-    var created_at: String?
+//我的动态
+struct MyDynamic: Codable {
+    var commentID, cateID, articleID: Int?
+    var comment, createdAt: String?
     var avatar: String?
     var nickname: String?
+    var newsInfo: MyDynamicNewsInfo?
+    var listenInfo, topicInfo: MyDynamicListenInfo?
+    var strategyInfo: MyDynamicNewsInfo?
+    var exhibitionInfo: MyDynamicExhibitionInfo?
     var height = 0
+    
     enum CodingKeys: String, CodingKey {
+        case commentID = "comment_id"
+        case cateID = "cate_id"
+        case articleID = "article_id"
         case comment
-        case created_at
-        case avatar
-        case nickname
+        case createdAt = "created_at"
+        case avatar, nickname
+        case newsInfo = "news_info"
+        case listenInfo = "listen_info"
+        case topicInfo = "topic_info"
+        case strategyInfo = "strategy_info"
+        case exhibitionInfo = "exhibition_info"
     }
 }
 
+//展览
+struct MyDynamicExhibitionInfo: Codable {
+    let articleID: Int?
+    let title, price: String?
+    let isFree: Int?
+    let img: String?
+    let star, address: String?
+    let iconList: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+        case title, price
+        case isFree = "is_free"
+        case img, star, address
+        case iconList = "icon_list"
+    }
+}
 
+//轻听和专题
+struct MyDynamicListenInfo: Codable {
+    let articleID: Int?
+    let title: String?
+    let listening: Int?
+    let img: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+        case title, listening, img
+    }
+}
+//资讯
+struct MyDynamicNewsInfo: Codable {
+    let articleID: Int?
+    let img: String?
+    let title, platTitle, keywords: String?
+    let likes, comments: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+        case img, title
+        case platTitle = "plat_title"
+        case keywords, likes, comments
+    }
+}
+//攻略
+struct MyDynamicStrategyInfo: Codable {
+    let articleID: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+    }
+}
+
+//
 struct UserDynamicModel:Codable {
     var status: Int = 0
     var data: UserDynamic?

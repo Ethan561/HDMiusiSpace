@@ -14,12 +14,23 @@ class HDLY_MyDynamicCell: UITableViewCell {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var contentL: UILabel!
     @IBOutlet weak var timeL: UILabel!
+    //
+    @IBOutlet weak var exhibitionView: UIView!
+    @IBOutlet weak var imgV: UIImageView!
+    @IBOutlet weak var titleL: UILabel!
+    @IBOutlet weak var locL: UILabel!
+    @IBOutlet weak var desView: UIView!
+    @IBOutlet weak var des1L: UILabel!
+    @IBOutlet weak var des2L: UILabel!
+    
+    @IBOutlet weak var titleLTopCons: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         avaImgV.layer.cornerRadius = 15
-        
+        titleLTopCons.constant = 16
+        desView.isHidden = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

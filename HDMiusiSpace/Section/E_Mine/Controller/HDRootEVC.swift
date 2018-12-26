@@ -303,7 +303,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
         if section == 1 {
-            return declare.loginStatus == .kLogin_Status_Login ? CGFloat(self.myDynamics[index].height + 75) : 0
+            return declare.loginStatus == .kLogin_Status_Login ? CGFloat(self.myDynamics[index].height + 175) : 0
         }
         return 0.01
     }
@@ -315,7 +315,6 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             if index == 0 {//会员
                 let cell = HDLY_Membership_Cell.getMyTableCell(tableV: tableView)
-                
                 return cell!
             }else if index == 1 {//我的钱包
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
@@ -355,6 +354,101 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             cell?.timeL.text = model.createdAt
             cell?.nameL.text = model.nickname
             cell?.contentL.attributedText = self.htmls[index]
+         
+            if model.cateID == 10 {
+                cell?.titleLTopCons.constant = 10
+                cell?.desView.isHidden = false
+                guard let infoM = model.exhibitionInfo else { return cell!}
+                if infoM.img != nil {
+                    cell?.imgV.kf.setImage(with: URL.init(string: infoM.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
+                }
+                cell?.titleL.text = infoM.title
+                cell?.locL.text = infoM.address
+                if infoM.iconList?.count ?? 0 > 0 {
+                    let iconTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+                    for icon in infoM.iconList! {
+                        let urlStr = NSURL(string: icon)
+                        let data = NSData(contentsOf: urlStr! as URL)
+                        let image = UIImage(data: data! as Data)
+                        let attach = NSTextAttachment()
+                        let width = image!.size.width * 16 / image!.size.height
+                        attach.bounds = CGRect.init(x: 2, y: 0, width: width, height: 16)
+                        attach.image = image
+                        let imgStr = NSAttributedString.init(attachment: attach)
+                        iconTitleString.append(imgStr)
+                        iconTitleString.append(NSAttributedString.init(string: " "))
+                    }
+                    cell?.des1L.attributedText = iconTitleString
+                }
+                let star: Float! = Float(infoM.star ?? "0")
+                var imgStr = ""
+                if star == 0 {
+                    cell?.des1L.text = "暂无评分"
+                }else if star < 2 {
+                    imgStr = "exhibitionCmt_1_5"
+                }else if star >= 2 && star < 4 {
+                    imgStr = "exhibitionCmt_2_5"
+                }else if star >= 4 && star < 6 {
+                    imgStr = "exhibitionCmt_3_5"
+                }else if star >= 6 && star < 8 {
+                    imgStr = "exhibitionCmt_4_5"
+                }else if star >= 8 {
+                    imgStr = "exhibitionCmt_5_5"
+                }
+                //
+                let starTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+                let starImg = UIImage.init(named: imgStr)
+                let attach = NSTextAttachment()
+                attach.bounds = CGRect.init(x: 2, y: 0, width: 12, height: 12)
+                attach.image = starImg
+                let starimgStr = NSAttributedString.init(attachment: attach)
+                starTitleString.append(starimgStr)
+                starTitleString.append(NSAttributedString.init(string: " "))
+                starTitleString.append(NSAttributedString.init(string: infoM.star ?? "0"))
+                cell?.des2L.attributedText = starTitleString
+            } else {
+                cell?.titleLTopCons.constant = 16
+                cell?.desView.isHidden = true
+                //1资讯，2轻听随看,4精选专题,5攻略,  10展览
+                if  model.cateID == 1 {
+                    if let newsInfo = model.newsInfo {
+                        if newsInfo.img != nil {
+                            cell?.imgV.kf.setImage(with: URL.init(string: newsInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
+                        }
+                        cell?.titleL.text = newsInfo.title
+                        cell?.locL.text = String.init(format: "%@|%@", newsInfo.keywords!,newsInfo.platTitle!)
+                    }
+                }
+                else if  model.cateID == 2 {
+                    if let listenInfo = model.listenInfo {
+                        if listenInfo.img != nil {
+                            cell?.imgV.kf.setImage(with: URL.init(string: listenInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
+                        }
+                        cell?.titleL.text = listenInfo.title
+                        cell?.locL.text = String.init(format: "%d人听过", listenInfo.listening!)
+                    }
+                }
+                else if  model.cateID == 4 {
+                    if let topicInfo = model.topicInfo {
+                        if topicInfo.img != nil {
+                            cell?.imgV.kf.setImage(with: URL.init(string: topicInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
+                        }
+                        cell?.titleL.text = topicInfo.title
+                        cell?.locL.text = "精选专题"
+                    }
+                }
+                else if  model.cateID == 5 {
+                    if let strategyInfo = model.strategyInfo {
+                        if strategyInfo.img != nil {
+                            cell?.imgV.kf.setImage(with: URL.init(string: strategyInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
+                        }
+                        cell?.titleL.text = strategyInfo.title
+                        cell?.locL.text = String.init(format: "%@|%@", strategyInfo.keywords!,strategyInfo.platTitle!)
+                    }
+
+                }
+            }
+            
             return cell!
         }
         return UITableViewCell.init()

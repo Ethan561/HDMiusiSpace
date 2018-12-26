@@ -208,9 +208,9 @@ struct MyDynamic: Codable {
     var comment, createdAt: String?
     var avatar: String?
     var nickname: String?
-    var newsInfo: MyDynamicListenInfo?
+    var newsInfo: MyDynamicNewsInfo?
     var listenInfo, topicInfo: MyDynamicListenInfo?
-    var strategyInfo: MyDynamicStrategyInfo?
+    var strategyInfo: MyDynamicNewsInfo?
     var exhibitionInfo: MyDynamicExhibitionInfo?
     var height = 0
     
@@ -226,7 +226,6 @@ struct MyDynamic: Codable {
         case topicInfo = "topic_info"
         case strategyInfo = "strategy_info"
         case exhibitionInfo = "exhibition_info"
-        case height
     }
 }
 

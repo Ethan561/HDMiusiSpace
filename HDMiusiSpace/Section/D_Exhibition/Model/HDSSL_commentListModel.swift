@@ -33,7 +33,8 @@ struct ExCommentModel: Codable {
     var star: TStrInt?
     var content: String?
     var imgList: [String]?
-    var isLike, likeNum, commentNum: Int?
+    var likeNum:TStrInt?
+    var isLike, commentNum: Int?
     var commentDate: String?
     var commentList: [ReplyCommentModel]?
     var uid: Int

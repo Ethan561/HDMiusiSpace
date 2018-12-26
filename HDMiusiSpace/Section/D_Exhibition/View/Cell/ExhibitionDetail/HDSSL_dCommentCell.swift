@@ -15,7 +15,11 @@ let kItemWidth: CGFloat = CGFloat((UIScreen.main.bounds.width-55-20)/3.0)
 typealias BlockTapImgAt = (_ index: Int,_ cellIndex: Int) -> Void //点击图片，返回点击位置
 typealias BlockTapLikeBtn = (_ index: Int) -> Void //点击点赞，返回点击位置
 typealias BlockTapCommentBtn = (_ index: Int) -> Void //点击评论，返回点击位置
-typealias BlockTapPortrialBtn = (_ index: Int) -> Void //点击评论，返回点击位置
+typealias BlockTapPortrialBtn = (_ index: Int) -> Void //点击头像
+//手势
+typealias LongPressClouser = (_ type: Int,_ comment:String)->Void //长按文本手势
+typealias TapClouser = (_ type: Int)->Void //点击文本手势
+
 
 class HDSSL_dCommentCell: UITableViewCell {
 
@@ -52,6 +56,9 @@ class HDSSL_dCommentCell: UITableViewCell {
     var blockTapLike : BlockTapLikeBtn?
     var blockTapComment : BlockTapCommentBtn?
     var blockTapPortrialBtn :BlockTapPortrialBtn?
+    
+    public var longPress: LongPressClouser!
+    public var tapPress: TapClouser!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -91,12 +98,20 @@ class HDSSL_dCommentCell: UITableViewCell {
         self.getStarView(listModel?.star?.int)
         //评论内容
         cell_content.text = String.init(format: "%@", listModel!.content!)
+        //长按
+        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(alertAction(ges:)))
+        longPress.minimumPressDuration = 0.5
+        self.contentView.addGestureRecognizer(longPress)
+        //点击
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAction(ges:)))
+        self.contentView.addGestureRecognizer(tap)
+        
         //评论图片
         self.getImgListView(listModel!.imgList)
         //时间
         cell_time.text = String.init(format: "%@", listModel!.commentDate!)
         //点赞数量
-        cell_btnLike.setTitle(String.init(format: "%d", listModel!.likeNum!), for: .normal)
+        cell_btnLike.setTitle(String.init(format: "%d", (listModel!.likeNum?.int)!), for: .normal)
         if listModel?.isLike == 1 {
             cell_btnLike.isSelected = true
         }else{
@@ -134,6 +149,24 @@ class HDSSL_dCommentCell: UITableViewCell {
         cell_btnComment.setTitle(String.init(format: "%d", myModel!.commentNum), for: .normal)
     }
 
+    //MARK:---评论列表手势
+    @objc func alertAction(ges:UILongPressGestureRecognizer) {
+        if ges.state == .began {
+            if #available(iOS 10.0, *) {
+                let impactLight = UIImpactFeedbackGenerator.init(style: .medium)
+                impactLight.impactOccurred()
+            }
+            if self.longPress != nil {
+                self.longPress((listModel?.commentID)!,listModel?.content ?? "")
+            }
+        }
+    }
+    @objc func tapAction(ges:UITapGestureRecognizer) {
+        if self.tapPress != nil {
+            self.tapPress((listModel?.commentID)!)
+        }
+    }
+    
     @IBAction func action_tapLikeBtn(_ sender: UIButton) {
         
 //        sender.isSelected = !sender.isSelected;

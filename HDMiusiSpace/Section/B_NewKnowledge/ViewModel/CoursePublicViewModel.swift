@@ -199,7 +199,35 @@ class CoursePublicViewModel: NSObject {
             
         }
     }
-    
+    //评论删除
+    //回复评论结果
+    let deleteCommentSuccess: Bindable = Bindable(false)
+    func deleteComment(api_token: String, comment_id: Int,_ vc:UIViewController)  {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .deleteComment(api_token: api_token, comment_id: comment_id), success: { (result) in
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            
+            do {
+                let model: HDSSL_PaperModel = try jsonDecoder.decode(HDSSL_PaperModel.self, from: result)
+                
+                if model.status == 1 {
+                    HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: model.msg!)
+                    //返回刷新列表
+                    self.deleteCommentSuccess.value = true
+                }
+                
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "删除失败")
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 

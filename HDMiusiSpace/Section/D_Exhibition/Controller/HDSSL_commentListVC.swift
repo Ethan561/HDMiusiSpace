@@ -29,11 +29,18 @@ class HDSSL_commentListVC: HDItemBaseVC {
     var currentCommentModel: ExCommentModel!  //当前回复评论对象
     var currentIndexPath   : IndexPath? //当前位置
     var commentText        : String = ""//评论内容
-    
+    var currentRow : Int? //当前手势cell
     
     //mvvm
     var viewModel: HDSSL_commentVM = HDSSL_commentVM()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    
+    lazy var commentView: HDZQ_CommentActionView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tmp?.delegate = self
+        return tmp!
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +98,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
                 var mode = weakSelf?.commentArray[(weakSelf?.currentSection!)!]
                 
                 mode!.isLike = m.is_like?.int
-                mode!.likeNum = m.like_num?.int
+                mode!.likeNum = m.like_num
                 
                 weakSelf?.commentArray.remove(at: (weakSelf?.currentSection!)!)
                 weakSelf?.commentArray.insert(mode!, at: (weakSelf?.currentSection!)!)
@@ -115,6 +122,28 @@ class HDSSL_commentListVC: HDItemBaseVC {
             }
             
             
+        }
+        
+        //举报
+        publicViewModel.reportErrorModel.bind { [weak self] (model) in
+            var strs = [String]()
+            var reportType = [Int]()
+            model.data?.optionList.forEach({ (m) in
+                strs.append(m.optionTitle)
+                reportType.append(m.optionID)
+            })
+            self?.commentView.dataArr = strs
+            self?.commentView.reportType = reportType
+            self?.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+            self?.commentView.type = 1
+            self?.commentView.tableView.reloadData()
+        }
+        //删除
+        publicViewModel.deleteCommentSuccess.bind { (ret) in
+            //
+            if ret == true {
+                weakSelf?.refresh()
+            }
         }
     }
     //MARK: ---处理数据
@@ -253,6 +282,42 @@ class HDSSL_commentListVC: HDItemBaseVC {
     */
 
 }
+extension HDSSL_commentListVC: HDZQ_CommentActionDelegate {
+    func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
+        //一级弹出框
+        if type == 0 {
+            if index == 0 {
+                let paste = UIPasteboard.general
+                paste.string = comment
+                HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
+                self.commentView.removeFromSuperview()
+            } else  if index == 1{
+                print("举报")
+                //获取举报类别列表接口
+                publicViewModel.getErrorContent(commentId: model.commentID)
+                
+            }else  if index == 1{
+                print("删除")
+                //删除自己评论接口
+                self.commentView.removeFromSuperview()
+                publicViewModel.deleteComment(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                
+            }
+        } else {
+            //二级弹出列表
+            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                self.commentView.removeFromSuperview()
+                self.pushToLoginVC(vc: self)
+                return
+            }
+            self.commentView.removeFromSuperview()
+            //调用举报接口
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
+        }
+    }
+    
+    
+}
 extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.commentArray.count
@@ -309,7 +374,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 print("点击评论按钮，位置\(index)")
                 weakSelf?.replayTheComment(index)
             }
-            
+            //点击头像，进入个人中心
             cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self?.pushToLoginVC(vc: self!)
@@ -317,6 +382,35 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                     self?.pushToOthersPersonalCenterVC(model.uid)
                 }
             })
+            // 单击回复
+            cell.tapPress = { [weak self] (commentId) in
+//                self?.currentRow = indexPath.row
+//                self?.keyboardTextField.textView.text = " "
+//                self?.keyboardTextField.textView.deleteBackward()
+//                self?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
+//                self?.keyboardTextField.returnID = model.commentID
+//                self?.keyboardTextField.type = 1
+//                self?.showKeyBoardView()
+                self?.replayTheComment(indexPath.row)
+            }
+            // 长按复制与举报
+            cell.longPress  = { [weak self] (commentId,comment) in
+                self?.commentView.type = 0
+                //模型转换
+                let model1 = TopicCommentList.init(uid: model.uid, comment: model.content!, likeNum: model.likeNum!, createdAt: model.commentDate!, commentID: model.commentID!, avatar: model.avatar!, nickname: model.nickname!, isLike: model.isLike!, list: [], showAll: true, height: 44, topHeight: 64)
+                self?.commentView.model = model1
+                
+                self?.commentView.commentContent = comment
+                if model.uid == HDDeclare.shared.uid {
+                    self?.commentView.dataArr = ["复制","举报","删除"]
+                }else{
+                    self?.commentView.dataArr = ["复制","举报"]
+                }
+                
+                self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
+                self?.commentView.tableView.reloadData()
+                kWindow?.addSubview((self?.commentView)!)
+            }
 
             return cell
         } else {
@@ -480,6 +574,7 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
     }
     //MARK: ---判断是否登陆
     func replyCommentWith(){
+        commentText =  keyboardTextField.textView.text
         
         if commentText.isEmpty == false && currentCommentModel.commentID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {

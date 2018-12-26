@@ -200,7 +200,6 @@ class CoursePublicViewModel: NSObject {
         }
     }
     //评论删除
-    //回复评论结果
     let deleteCommentSuccess: Bindable = Bindable(false)
     func deleteComment(api_token: String, comment_id: Int,_ vc:UIViewController)  {
         

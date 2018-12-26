@@ -296,7 +296,7 @@ extension HDSSL_commentListVC: HDZQ_CommentActionDelegate {
                 //获取举报类别列表接口
                 publicViewModel.getErrorContent(commentId: model.commentID)
                 
-            }else  if index == 1{
+            }else  if index == 2{
                 print("删除")
                 //删除自己评论接口
                 self.commentView.removeFromSuperview()

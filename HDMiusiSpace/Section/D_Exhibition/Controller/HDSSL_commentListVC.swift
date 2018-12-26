@@ -109,7 +109,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
                 var mode = weakSelf?.commentArray[(weakSelf?.currentIndexPath?.section)!]
                 var reply = mode?.commentList![((weakSelf?.currentIndexPath?.row)! - 1)]
                 reply?.isLike = m.is_like?.int
-                reply?.likeNum = m.like_num?.int
+                reply?.likeNum = m.like_num
                 
                 mode?.commentList?.remove(at: ((weakSelf?.currentIndexPath?.row)! - 1))
                 mode?.commentList?.insert(reply!, at: ((weakSelf?.currentIndexPath?.row)! - 1))
@@ -138,11 +138,18 @@ class HDSSL_commentListVC: HDItemBaseVC {
             self?.commentView.type = 1
             self?.commentView.tableView.reloadData()
         }
-        //删除
+        //删除评论
         publicViewModel.deleteCommentSuccess.bind { (ret) in
             //
             if ret == true {
-                weakSelf?.refresh()
+                weakSelf?.refreListByNow()
+            }
+        }
+        //删除回复
+        publicViewModel.deleteCommentReplySuccess.bind { (ret) in
+            //
+            if ret == true {
+                weakSelf?.refreListByNow()
             }
         }
     }
@@ -224,6 +231,15 @@ class HDSSL_commentListVC: HDItemBaseVC {
         //请求数据
         viewModel.request_getExhibitionCommentList(type: listType!, skip: skip*10, take: take, exhibitionID: self.exhibition_id!, vc: self)
     }
+    func refreListByNow(){
+        //请求数据
+        var skip1 :Int=1
+        if skip > 0 {
+            skip1 = skip
+        }
+        skip = 0
+        viewModel.request_getExhibitionCommentList(type: listType!, skip: 0, take: skip1*10, exhibitionID: self.exhibition_id!, vc: self)
+    }
     //MARK: ---添加刷新机制
     func addRefresh() {
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
@@ -300,7 +316,13 @@ extension HDSSL_commentListVC: HDZQ_CommentActionDelegate {
                 print("删除")
                 //删除自己评论接口
                 self.commentView.removeFromSuperview()
-                publicViewModel.deleteComment(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                if model.showAll == true {
+                    //借用showAll字断，true表示删除评论，false表示删除回复
+                    publicViewModel.deleteComment(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                }else{
+                    publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                }
+                
                 
             }
         } else {
@@ -372,7 +394,14 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             }
             cell.BlockTapCommentFunc { (index) in
                 print("点击评论按钮，位置\(index)")
-                weakSelf?.replayTheComment(index)
+//                weakSelf?.replayTheComment(index)
+                weakSelf?.currentRow = indexPath.section
+                weakSelf?.keyboardTextField.textView.text = " "
+                weakSelf?.keyboardTextField.textView.deleteBackward()
+//                weakSelf?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
+                weakSelf?.keyboardTextField.returnID = 0
+                weakSelf?.keyboardTextField.type = 1
+                weakSelf?.showKeyBoardView()
             }
             //点击头像，进入个人中心
             cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
@@ -384,14 +413,14 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
             })
             // 单击回复
             cell.tapPress = { [weak self] (commentId) in
-//                self?.currentRow = indexPath.row
-//                self?.keyboardTextField.textView.text = " "
-//                self?.keyboardTextField.textView.deleteBackward()
+                self?.currentRow = indexPath.section
+                self?.keyboardTextField.textView.text = " "
+                self?.keyboardTextField.textView.deleteBackward()
 //                self?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
-//                self?.keyboardTextField.returnID = model.commentID
-//                self?.keyboardTextField.type = 1
-//                self?.showKeyBoardView()
-                self?.replayTheComment(indexPath.row)
+                self?.keyboardTextField.returnID = 0
+                self?.keyboardTextField.type = 1
+                self?.showKeyBoardView()
+//                self?.replayTheComment(indexPath.row)
             }
             // 长按复制与举报
             cell.longPress  = { [weak self] (commentId,comment) in
@@ -428,6 +457,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 //点赞回复，调用接口
                 weakSelf?.likeTheReplyComment(indexpath,model)
             }
+            //点击头像，进入个人中心
             cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self?.pushToLoginVC(vc: self!)
@@ -435,6 +465,36 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                     self?.pushToOthersPersonalCenterVC(modelreply.uid)
                 }
             })
+            // 单击回复
+            cell.tapPress = { [weak self] (commentId) in
+                self?.currentRow = indexPath.section
+                self?.keyboardTextField.textView.text = " "
+                self?.keyboardTextField.textView.deleteBackward()
+                self?.keyboardTextField.placeholderLabel.text = "回复@\(modelreply.nickname!)"
+                self?.keyboardTextField.returnID = modelreply.returnId
+                self?.keyboardTextField.type = 1
+                self?.showKeyBoardView()
+//                self?.replayTheComment(indexPath.row)
+            }
+            // 长按复制与举报
+            cell.longPress  = { [weak self] (commentId,comment) in
+                self?.commentView.type = 0
+                //模型转换
+                let model1 = TopicCommentList.init(uid: modelreply.uid, comment: modelreply.content!, likeNum: modelreply.likeNum!, createdAt: modelreply.commentDate!, commentID: modelreply.returnId!, avatar: modelreply.avatar!, nickname: modelreply.nickname!, isLike: modelreply.isLike!, list: [], showAll: false, height: 44, topHeight: 64)
+                self?.commentView.model = model1
+                
+                self?.commentView.commentContent = comment
+                if modelreply.uid == HDDeclare.shared.uid {
+                    //自己的回复可以进行删除操作
+                    self?.commentView.dataArr = ["复制","举报","删除"]
+                }else{
+                    self?.commentView.dataArr = ["复制","举报"]
+                }
+                
+                self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
+                self?.commentView.tableView.reloadData()
+                kWindow?.addSubview((self?.commentView)!)
+            }
             return cell
         }
         
@@ -561,28 +621,37 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
     //MARK: ==== KeyboardTextFieldDelegate ====
     func keyboardTextFieldPressReturnButton(_ keyboardTextField: KeyboardTextField) {
         //回复文本
-        commentText =  keyboardTextField.textView.text
-        self.replyCommentWith()
+        self.replyCommentWith(keyboardTextField)
     }
     
     func keyboardTextFieldPressRightButton(_ keyboardTextField :KeyboardTextField) {
         //回复文本
-        commentText =  keyboardTextField.textView.text
-        
-        self.replyCommentWith()
+        self.replyCommentWith(keyboardTextField)
         
     }
     //MARK: ---判断是否登陆
-    func replyCommentWith(){
+    func replyCommentWith(_ keyboardTextField: KeyboardTextField){
         commentText =  keyboardTextField.textView.text
+        currentCommentModel = self.commentArray[currentRow!]
         
         if commentText.isEmpty == false && currentCommentModel.commentID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
                 return
             }
-            //API,发布评论回复
-            viewModel.request_replycommentWith(api_token: HDDeclare.shared.api_token!, comment: commentText, id: String.init(format: "%d", currentCommentModel.commentID!), return_id: "0", cate_id: "3", self)
+            if keyboardTextField.type == 0 {
+                
+            }else if keyboardTextField.type == 1{
+                if keyboardTextField.returnID == 0 {
+                    //API,发布评论回复
+                    viewModel.request_replycommentWith(api_token: HDDeclare.shared.api_token!, comment: commentText, id: String.init(format: "%d", currentCommentModel.commentID!), return_id: "0", cate_id: "3", self)
+                }else{
+                    //发布回复的评论，盖楼
+                    viewModel.request_replycommentWith(api_token: HDDeclare.shared.api_token!, comment: commentText, id: String.init(format: "%d", currentCommentModel.commentID!), return_id: String(keyboardTextField.returnID!), cate_id: "3", self)
+                    
+                }
+            }
+            
             
         }
     }

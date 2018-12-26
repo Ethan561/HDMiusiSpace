@@ -94,8 +94,10 @@ enum HD_LY_API {
     case getErrorOption( id: String, cate_id: String)
     //评论举报
     case commentReportOption(api_token: String,comment_id:Int,option_id_str:String)
-    //评论删除
+    //展览评星评论删除
     case deleteComment(api_token: String,comment_id:Int)
+    //评论回复删除
+    case deleteCommentReply(api_token: String,comment_id:Int)
     
     //报错提交
     case sendError(api_token: String, option_id_str: String, parent_id: String , cate_id: String, content:String, uoload_img: Array<String>)
@@ -452,7 +454,8 @@ extension HD_LY_API: TargetType {
             return "/api/growth/share"
         case .deleteComment(api_token: _, comment_id: _):
             return "/api/exhibition/del_exhibition_comment"
-            
+        case .deleteCommentReply(api_token: _, comment_id: _):
+            return "/api/comment/del_comment"
             
             
             
@@ -489,7 +492,8 @@ extension HD_LY_API: TargetType {
              .verifyTransaction(_),
              .orderCreateOrder(cate_id: _, goods_id: _, pay_type: _, api_token: _),
              .growthShare(api_token: _),
-             .deleteComment(api_token: _, comment_id: _):
+             .deleteComment(api_token: _, comment_id: _),
+             .deleteCommentReply(api_token: _, comment_id: _):
             
             return  .post
         default:
@@ -1038,7 +1042,13 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-        
+        case .deleteCommentReply(api_token: let api_token, comment_id: let comment_id):
+            params = params.merging(["api_token": api_token,"comment_id":comment_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         
         }
         

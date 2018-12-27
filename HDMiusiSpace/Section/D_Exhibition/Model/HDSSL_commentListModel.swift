@@ -60,7 +60,7 @@ struct ReplyCommentModel: Codable {
     var returnId: Int?
     var avatar: String?
     var nickname: String?
-    var likeNum: Int?
+    var likeNum: TStrInt?
     var content, commentDate: String?
     var isLike: Int?
     var uid: Int
@@ -77,7 +77,7 @@ struct ReplyCommentModel: Codable {
         case cellHeight
     }
 }
-//生成画报
+//通用结果，删除展览评论
 struct HDSSL_resutModel: Codable {
     var status      : Int?
     var msg         : String?

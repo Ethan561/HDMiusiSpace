@@ -2812,7 +2812,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFR-ob-tRp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2582" y="-2821"/>
+            <point key="canvasLocation" x="4223" y="-2651"/>
         </scene>
         <!--Day Card BrowserVC-->
         <scene sceneID="Yr7-uK-bdG">
@@ -2983,6 +2983,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ar-X8-leA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048.8" y="-1738.3808095952024"/>
+        </scene>
+        <!--Teachers CenterVC-->
+        <scene sceneID="k5t-fC-FxE">
+            <objects>
+                <viewController storyboardIdentifier="HDLY_TeachersCenterVC" id="46N-7f-b36" customClass="HDLY_TeachersCenterVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dTw-St-wDm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-PJ-gPn">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="46N-7f-b36" id="CBB-9Q-Twb"/>
+                                    <outlet property="delegate" destination="46N-7f-b36" id="g9S-DG-BhN"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KSo-dD-kSs" firstAttribute="bottom" secondItem="yMv-PJ-gPn" secondAttribute="bottom" id="9vB-tD-NL7"/>
+                            <constraint firstItem="yMv-PJ-gPn" firstAttribute="top" secondItem="KSo-dD-kSs" secondAttribute="top" id="Ct6-ba-Xbd"/>
+                            <constraint firstItem="yMv-PJ-gPn" firstAttribute="leading" secondItem="KSo-dD-kSs" secondAttribute="leading" id="rlp-db-quH"/>
+                            <constraint firstItem="KSo-dD-kSs" firstAttribute="trailing" secondItem="yMv-PJ-gPn" secondAttribute="trailing" id="yzt-HI-SzT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KSo-dD-kSs"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="yMv-PJ-gPn" id="mpW-z3-L0P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xHC-JI-GNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4945" y="-2651"/>
         </scene>
     </scenes>
     <resources>

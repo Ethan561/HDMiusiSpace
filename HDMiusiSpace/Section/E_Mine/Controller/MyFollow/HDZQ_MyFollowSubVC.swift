@@ -127,6 +127,17 @@ extension HDZQ_MyFollowSubVC:UITableViewDelegate,UITableViewDataSource {
             let model = dataArr[indexPath.row]
             vc.toid = model.toid
             self.navigationController?.pushViewController(vc, animated: true)
+        }else {
+            let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+            let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+            let model = dataArr[indexPath.row]
+            if model.cateId == 1 {
+                vc.type = 2
+            }else if model.cateId == 2 {
+                vc.type = 1
+            }
+            vc.detailId = model.toid
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

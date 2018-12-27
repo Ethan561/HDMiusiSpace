@@ -19,6 +19,12 @@ class HDZQ_PersonOthersHeaderView: UIView {
     @IBOutlet weak var genderImg: UIImageView!
     @IBOutlet weak var vipImg: UIImageView!
     
+    //
+    @IBOutlet weak var teacherDesL: UILabel!
+    @IBOutlet weak var leftView: UIView!
+    @IBOutlet weak var rightView: UIView!
+    @IBOutlet weak var lineView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         followBtn.layer.cornerRadius = 15

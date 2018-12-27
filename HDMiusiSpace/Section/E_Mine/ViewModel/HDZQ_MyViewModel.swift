@@ -214,5 +214,52 @@ class HDZQ_MyViewModel: NSObject {
             
         }
     }
+    
+    
+    //MARK: -- 我的关注教师、机构详情 --
+    var teacherDynamic: Bindable = Bindable(TeacherDynamicData())
+    
+    func requestMyFollowForTeacher(apiToken:String, skip:Int, take:Int, teacher_id:Int, vc:UIViewController) {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .dynamicTeacherIndex(teacher_id: teacher_id, api_token: apiToken, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:TeacherDynamic = try jsonDecoder.decode(TeacherDynamic.self, from: result)
+                if model.data != nil {
+                    self.teacherDynamic.value = model.data!
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    var platDynamic: Bindable = Bindable(PlatDynamicData())
+    
+    func requestMyFollowForPlat(apiToken:String, skip:Int, take:Int, platform_id:Int, vc:UIViewController) {
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .dynamicPlatIndex(platform_id: platform_id, api_token: apiToken, skip: skip, take: take), showHud: true, loadingVC: vc, success: { (result) in
+            
+            
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:PlatDynamic = try jsonDecoder.decode(PlatDynamic.self, from: result)
+                if model.data != nil {
+                    self.platDynamic.value = model.data!
+                }
+            }
+            catch let error {
+                LOG("\(error)")
+            }
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
+    
 }
+
 

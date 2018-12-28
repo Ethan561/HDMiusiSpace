@@ -17,7 +17,7 @@ class HDZQ_MyViewModel: NSObject {
             let model:MyFollowData = try! jsonDecoder.decode(MyFollowData.self, from: result)
             self.follows.value = model.data
         }) { (errorCode, msg) in
-
+            
         }
     }
     

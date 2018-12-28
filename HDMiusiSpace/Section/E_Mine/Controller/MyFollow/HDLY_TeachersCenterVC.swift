@@ -246,20 +246,21 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
         }
         
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if type == 2 {
-//            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
-//            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-//            let model = exhibitions[indexPath.row]
-//            vc.exhibition_id = model.exhibitionID
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        } else {
-//            let model = news[indexPath.row]
-//            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-//            vc.topic_id = String(model.article_id ?? 0)
-//            vc.fromRootAChoiceness = true
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        if type == 2 {//资讯
+            let model = news[indexPath.row]
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld", model.articleID ?? 0)
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } else {//课程
+            let model = classList[indexPath.row]
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+            vc.courseId = "\(model.classID!)"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
     

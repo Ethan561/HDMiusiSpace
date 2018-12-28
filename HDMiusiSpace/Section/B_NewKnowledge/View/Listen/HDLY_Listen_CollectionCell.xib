@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,20 +43,25 @@
                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_icon_listen_default" translatesAutoresizingMaskIntoConstraints="NO" id="aKI-Ru-ZgL">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwX-tK-DYv">
                         <rect key="frame" x="0.0" y="108" width="72" height="72"/>
-                    </imageView>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="72" id="sr0-6g-L5k"/>
+                            <constraint firstAttribute="width" secondItem="gwX-tK-DYv" secondAttribute="height" multiplier="1:1" id="xV2-DX-y57"/>
+                        </constraints>
+                        <state key="normal" image="xz_icon_listen_default"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="heY-0w-MPB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="9Mk-JS-qCU"/>
+                <constraint firstItem="gwX-tK-DYv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IJn-T3-Cex"/>
                 <constraint firstAttribute="trailing" secondItem="Bwq-79-hed" secondAttribute="trailing" id="L2z-Le-RKD"/>
-                <constraint firstItem="aKI-Ru-ZgL" firstAttribute="bottom" secondItem="9gn-eD-b8m" secondAttribute="bottom" id="P4M-fV-Fl2"/>
                 <constraint firstItem="heY-0w-MPB" firstAttribute="top" secondItem="Bwq-79-hed" secondAttribute="bottom" constant="5" id="WSA-PL-M9L"/>
-                <constraint firstItem="aKI-Ru-ZgL" firstAttribute="leading" secondItem="9gn-eD-b8m" secondAttribute="leading" id="fx0-aI-6aM"/>
                 <constraint firstItem="Bwq-79-hed" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="i4P-iY-7cu"/>
                 <constraint firstItem="9gn-eD-b8m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="k6v-fD-HNf"/>
                 <constraint firstItem="Bwq-79-hed" firstAttribute="top" secondItem="9gn-eD-b8m" secondAttribute="bottom" constant="8" id="mi1-37-rY6"/>
+                <constraint firstItem="Bwq-79-hed" firstAttribute="top" secondItem="gwX-tK-DYv" secondAttribute="bottom" constant="8" id="sZX-t7-4Vo"/>
                 <constraint firstAttribute="trailing" secondItem="9gn-eD-b8m" secondAttribute="trailing" id="uF3-DK-r1x"/>
                 <constraint firstItem="9gn-eD-b8m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vYr-CO-jh0"/>
                 <constraint firstAttribute="trailing" secondItem="heY-0w-MPB" secondAttribute="trailing" id="wC2-yt-h0a"/>
@@ -68,6 +72,7 @@
                 <outlet property="countL" destination="heY-0w-MPB" id="zLs-1u-31q"/>
                 <outlet property="imgV" destination="9gn-eD-b8m" id="bsG-LR-eU6"/>
                 <outlet property="titleL" destination="Bwq-79-hed" id="fLP-CV-VfJ"/>
+                <outlet property="voiceBtn" destination="gwX-tK-DYv" id="me7-Xs-7Sm"/>
             </connections>
             <point key="canvasLocation" x="93" y="170"/>
         </collectionViewCell>

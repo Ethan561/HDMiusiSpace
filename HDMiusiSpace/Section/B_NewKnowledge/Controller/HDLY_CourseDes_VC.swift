@@ -34,7 +34,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var isMp3Course = false
     var orderTipView: HDLY_CreateOrderTipView?
     var isStatusBarHidden = false//是否隐藏状态栏
-    
+    var isFromTeacherCenter = false
+
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     
     lazy var controlView:ZFPlayerControlView = {
@@ -569,7 +570,13 @@ extension HDLY_CourseDes_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if indexPath.section == 0 && indexPath.row == 0 && isFromTeacherCenter == false {
+            let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+            let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+            vc.type = 1
+            vc.detailId = infoModel?.data.teacherID.int ?? 0
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         if indexPath.section == 1 {
             guard let recommendsMessage = infoModel?.data.recommendsMessage else {
                 return

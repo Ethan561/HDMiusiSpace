@@ -198,7 +198,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         let model = viewModel.listenDetail.value
         // 计算总高度 保存到模型中去
         self.infoModel = model
-        HDFloatingButtonManager.manager.infoModel = infoModel
+        HDFloatingButtonManager.manager.listenID = model.listenID?.string ?? ""
+        HDFloatingButtonManager.manager.iconUrl = model.icon ?? ""
+
         if infoModel?.img != nil {
             self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.grayImage(sourceImageV: self.imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }

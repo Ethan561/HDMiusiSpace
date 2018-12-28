@@ -14,11 +14,13 @@ final class HDFloatingButtonManager: NSObject {
     var showFloatingBtnVCs:[String] = [String]()
     lazy var floatingBtnView = HDFloatingButtonView()
     //
-    var infoModel: ListenDetail? {
+    var iconUrl: String? {
         didSet {
             showViewImg()
         }
     }
+    
+    var listenID: String?
     
     private override init() {
         super.init()
@@ -43,16 +45,23 @@ final class HDFloatingButtonManager: NSObject {
     }
     
     func showViewImg() {
-        guard let url = infoModel?.icon else {
+        guard let url = iconUrl else {
             return
         }
-        self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.grayImage(sourceImageV: self.floatingBtnView.imgBtn), options: nil, progressBlock: nil, completionHandler: nil);
+        if url.contains("http") {
+            self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.grayImage(sourceImageV: self.floatingBtnView.imgBtn), options: nil, progressBlock: nil, completionHandler: nil)
+        } else {
+            self.floatingBtnView.imgBtn.image = UIImage.init(named: url)
+        }
     }
     
     func pushToPlayerVC()  {
         
+        guard let id = listenID else {
+            return
+        }
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
-        vc.listen_id = infoModel?.listenID?.string
+        vc.listen_id = id
         
         //防止恶意点击
         UIApplication.shared.beginIgnoringInteractionEvents()

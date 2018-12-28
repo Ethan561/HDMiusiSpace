@@ -259,6 +259,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
             let model = classList[indexPath.row]
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
             vc.courseId = "\(model.classID!)"
+            vc.isFromTeacherCenter = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

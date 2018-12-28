@@ -35,13 +35,14 @@ struct ListenList: Codable {
     var cateID, listening: Int?
     var img: String?
     var is_voice: Int = 0
-    
+    var voice: String?
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
         case title
         case cateID = "cate_id"
         case listening, img
         case is_voice
+        case voice
     }
 }
 

@@ -225,9 +225,35 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
 extension HDLY_ExhibitListVC {
     
     func finishPlaying() {
-        let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
-        cell?.setSelected(false, animated: true)
-
+        let cell0:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
+        cell0?.setSelected(false, animated: true)
+        if selectRow + 1 < dataArr.count {
+            selectRow = selectRow + 1
+            let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
+            let listModel = dataArr[selectRow]
+            guard let video = listModel.audio else {
+                return
+            }
+            if listModel.title == currentModel.title {
+                cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                if player.state == .playing {
+                    player.pause()
+                    cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
+                }else {
+                    player.play()
+                    cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                }
+            } else {
+                if video.isEmpty == false && video.contains(".mp3") {
+                    player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+                    player.url = video
+                    currentModel = listModel
+                    cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                    cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                    isUpload = false
+                }
+            }
+        }
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {

@@ -192,6 +192,14 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             self?.commentView.type = 1
             self?.commentView.tableView.reloadData()
         }
+        
+        //删除评论
+        publicViewModel.deleteCommentReplySuccess.bind { (ret) in
+            //
+            if ret == true {
+                weakSelf?.requestComments(skip: 0, take: 10)
+            }
+        }
     }
     
     func showViewData() {
@@ -517,11 +525,45 @@ extension HDLY_TopicDetail_VC {
             }
             // 长按复制与举报
             cell?.longPress  = { [weak self] (commentId,comment) in
-                self?.commentView.type = 0
-                self?.commentView.model = commentModel
-                self?.commentView.commentContent = comment
-                self?.commentView.dataArr = ["复制","举报"]
-                self?.commentView.tableHeightConstraint.constant = CGFloat(100)
+                
+//                self?.commentView.dataArr = ["复制","举报"]
+//                self?.commentView.tableHeightConstraint.constant = CGFloat(100)
+                if commentModel.commentID == commentId{
+                    //长按评论
+                    self?.commentView.type = 0
+                    self?.commentView.model = commentModel
+                    self?.commentView.commentContent = comment
+                    if commentModel.uid == HDDeclare.shared.uid {
+                        self?.commentView.dataArr = ["复制","举报","删除"]
+                    }else{
+                        self?.commentView.dataArr = ["复制","举报"]
+                    }
+                }else{
+                    //长按回复
+                    self?.commentView.type = 0
+                    self?.commentView.model = commentModel
+                    self?.commentView.commentContent = comment
+                    self?.commentView.dataArr = ["复制","举报"]
+                    
+                    let returnArr = commentModel.list
+                    if returnArr.count > 0{
+                        for returnModel in returnArr {
+                            if returnModel.uid == HDDeclare.shared.uid {
+                                //自己的回复，模型转换
+                                let model1 = TopicCommentList.init(uid: returnModel.uid, comment: returnModel.comment, likeNum: commentModel.likeNum, createdAt: "", commentID: returnModel.commentID, avatar: "", nickname: returnModel.uNickname, isLike: 0, list: [], showAll: true, height: 44, topHeight: 64)
+                                self?.commentView.model = model1
+                                self?.commentView.commentContent = returnModel.comment
+                                self?.commentView.dataArr = ["复制","举报","删除"]
+                                break
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
                 self?.commentView.tableView.reloadData()
                 kWindow?.addSubview((self?.commentView)!)
             }
@@ -561,9 +603,15 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
-            } else  {
+            } else if index == 1 {
                 print("举报")
                 publicViewModel.getErrorContent(commentId: model.commentID)
+                
+            }else if index == 2 {
+                print("删除")
+                self.commentView.removeFromSuperview()
+                //删除评论
+                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
                 
             }
         } else {

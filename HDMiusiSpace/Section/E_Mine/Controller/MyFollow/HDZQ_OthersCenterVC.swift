@@ -72,7 +72,7 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         
     }
     
-    func followAction(id:String,cate_id:String,api_token:String) {
+    func followAction(id:String, cate_id:String, api_token:String) {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)

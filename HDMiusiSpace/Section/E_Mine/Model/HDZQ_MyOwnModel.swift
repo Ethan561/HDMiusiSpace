@@ -367,3 +367,88 @@ struct OtherDynamic:Codable {
     var profile: String?
 }
 
+//
+struct TeacherDynamic: Codable {
+    var status: Int?
+    var msg: String?
+    var data: TeacherDynamicData?
+}
+
+struct TeacherDynamicData: Codable {
+    var teacherID: Int?
+    var title, subTitle, des: String?
+    var avatar: String?
+    var isFocus: Int?
+    var classList: [TeacherClassList]?
+    
+    enum CodingKeys: String, CodingKey {
+        case teacherID = "teacher_id"
+        case title
+        case subTitle = "sub_title"
+        case des, avatar
+        case isFocus = "is_focus"
+        case classList = "class_list"
+    }
+}
+
+struct TeacherClassList: Codable {
+    var classID, uid: Int?
+    var title, price: String?
+    var isFree: Int?
+    var img: String?
+    var classNum, purchases, fileType, teacherID: Int?
+    var teacherName, teacherTitle: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case classID = "class_id"
+        case uid, title, price
+        case isFree = "is_free"
+        case img
+        case classNum = "class_num"
+        case purchases
+        case fileType = "file_type"
+        case teacherID = "teacher_id"
+        case teacherName = "teacher_name"
+        case teacherTitle = "teacher_title"
+    }
+}
+
+
+struct PlatDynamic: Codable {
+    var status: Int?
+    var msg: String?
+    var data: PlatDynamicData?
+}
+
+struct PlatDynamicData: Codable {
+    var title, des: String?
+    var avatar: String?
+    var platformID, isFocus: Int?
+    var newsList: [PlatNewsList]?
+    
+    enum CodingKeys: String, CodingKey {
+        case title, des, avatar
+        case platformID = "platform_id"
+        case isFocus = "is_focus"
+        case newsList = "news_list"
+    }
+}
+
+struct PlatNewsList: Codable {
+    var articleID: Int?
+    var img: String?
+    var title, keywords, createdAt: String?
+    var avatar: String?
+    var platformTitle: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case articleID = "article_id"
+        case img, title, keywords
+        case createdAt = "created_at"
+        case avatar
+        case platformTitle = "platform_title"
+    }
+}
+
+
+

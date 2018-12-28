@@ -470,7 +470,35 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
             }
         }
-        
+        if indexPath.section == 1 {
+            //1资讯，2轻听随看,4精选专题,5攻略,  10展览
+            let model = myDynamics[indexPath.row]
+            if model.cateID == 1 {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+                vc.topic_id = String.init(format: "%ld", model.newsInfo?.articleID ?? 0)
+                vc.fromRootAChoiceness = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.cateID == 2 {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+                vc.listen_id = String.init(format: "%ld", model.listenInfo?.articleID ?? 0)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.cateID == 4 {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+                vc.topic_id = String.init(format: "%ld", model.topicInfo?.articleID ?? 0)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.cateID == 5 {
+                
+            }
+            else if model.cateID == 10 {
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+                vc.exhibition_id = model.topicInfo?.articleID ?? 0
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
 }

@@ -173,9 +173,20 @@ class HDLY_Listen_SubVC:                                                        
         let cell:HDLY_Listen_CollectionCell = HDLY_Listen_CollectionCell.getMyCollectionCell(collectionView: collectionView, indexPath: indexPath)
         if self.listArr.count > 0 {
             let model = self.listArr[indexPath.row]
-            cell.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+            if model.img != nil {
+                cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+            }
             cell.titleL.text = model.title
-            cell.countL.text = "\(model.listening)人听过"
+            cell.countL.text = "\(model.listening!)人听过"
+            if model.is_voice == 0 {
+                cell.voiceBtn.isHidden = true
+            }else {
+                cell.voiceBtn.isHidden = false
+                cell.voiceBtn.addTouchUpInSideBtnAction { (btn) in
+                    
+                }
+                
+            }
         }
     
         return cell
@@ -199,7 +210,7 @@ class HDLY_Listen_SubVC:                                                        
         if indexPath.section == 1 {
             let model = self.listArr[indexPath.row]
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
-            vc.listen_id = "\(model.listenID)"
+            vc.listen_id = "\(model.listenID!)"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

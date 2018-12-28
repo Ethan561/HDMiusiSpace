@@ -422,6 +422,9 @@ extension HDLY_ListenDetail_VC {
                 return 182*ScreenWidth/375.0
             }
             else if index == 1 {
+                if infoModel?.is_voice == 0 {
+                    return 0.01
+                }
                 return 95
             }
             else if index == 2 {
@@ -468,6 +471,9 @@ extension HDLY_ListenDetail_VC {
                 return cell!
             }
             else if index == 1 {
+                if infoModel?.is_voice == 0 {
+                    return UITableViewCell.init()
+                }
                 let cell = HDLY_ListenPlayer_Cell.getMyTableCell(tableV: tableView)
                 playerBtn = cell?.playerBtn
                 timeL = cell?.timeL

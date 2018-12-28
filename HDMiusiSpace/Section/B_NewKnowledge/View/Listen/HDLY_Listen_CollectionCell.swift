@@ -13,6 +13,7 @@ class HDLY_Listen_CollectionCell: UICollectionViewCell {
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var countL: UILabel!
+    @IBOutlet weak var voiceBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

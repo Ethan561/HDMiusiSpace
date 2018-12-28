@@ -461,6 +461,7 @@
 		D67ABF87212BAF1800276CDE /* HDLY_AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */; };
 		D67E3AA5213CE7920058FBA6 /* HDRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */; };
 		D67E3AA7213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */; };
+		D67F82B721D4A3D700F8941D /* HDLY_TeachersCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67F82B621D4A3D700F8941D /* HDLY_TeachersCenterVC.swift */; };
 		D6865A37212D35850037B371 /* KeyboardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A36212D35850037B371 /* KeyboardTextField.swift */; };
 		D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */; };
 		D6865A3B212D57C80037B371 /* HDLY_KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */; };
@@ -1167,6 +1168,7 @@
 		D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_AudioPlayer.swift; sourceTree = "<group>"; };
 		D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		D67E3AA6213CE7A90058FBA6 /* HDRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
+		D67F82B621D4A3D700F8941D /* HDLY_TeachersCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_TeachersCenterVC.swift; sourceTree = "<group>"; };
 		D6865A36212D35850037B371 /* KeyboardTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTextField.swift; sourceTree = "<group>"; };
 		D6865A38212D51B90037B371 /* ListenDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenDetailViewModel.swift; sourceTree = "<group>"; };
 		D6865A3A212D57C80037B371 /* HDLY_KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_KeyboardView.swift; sourceTree = "<group>"; };
@@ -2147,6 +2149,28 @@
 			path = StreamingKit;
 			sourceTree = "<group>";
 		};
+		D67F82B421D47A5A00F8941D /* MyFollow */ = {
+			isa = PBXGroup;
+			children = (
+				6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */,
+				1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */,
+				1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */,
+				1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */,
+				D67F82B621D4A3D700F8941D /* HDLY_TeachersCenterVC.swift */,
+			);
+			path = MyFollow;
+			sourceTree = "<group>";
+		};
+		D67F82B521D47AAF00F8941D /* MyCollection */ = {
+			isa = PBXGroup;
+			children = (
+				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
+				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
+				1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */,
+			);
+			path = MyCollection;
+			sourceTree = "<group>";
+		};
 		D6865A35212D35850037B371 /* KeyboardTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -2603,6 +2627,8 @@
 		D6C9FCB4211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D67F82B521D47AAF00F8941D /* MyCollection */,
+				D67F82B421D47A5A00F8941D /* MyFollow */,
 				A70C686621AD10980033C488 /* MyWallet */,
 				A70C686521AD10940033C488 /* MyOrder */,
 				D699A3B321AB814B00ADF45E /* NotiMessage */,
@@ -2618,18 +2644,11 @@
 				D668CF9E21435C8C0024BBCE /* HDLY_SafetyVerifiSms_VC.swift */,
 				D668CFA021435CD40024BBCE /* HDLY_ChangePwd_VC.swift */,
 				D668CFA221435D0A0024BBCE /* HDLY_ChangePhone_VC.swift */,
-				1B27950021A554F500518A34 /* HDZQ_MyFollowVC.swift */,
-				1B2928EC21A6594900FEF21C /* HDZQ_MyFollowSubVC.swift */,
-				1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */,
-				1B2928F421A6A43A00FEF21C /* HDZQ_MyCollectVC.swift */,
-				1B2928F621A6A44D00FEF21C /* HDZQ_MyCollectSubVC.swift */,
-				1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */,
 				1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */,
 				1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */,
 				1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */,
 				1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */,
 				1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */,
-				6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3441,6 +3460,7 @@
 				D68D54112133868D000CD258 /* ReplicatorAnimation.swift in Sources */,
 				D6193B9A21C3842B00367356 /* HDRunTime.swift in Sources */,
 				A788E3FE21AF8DE000E2FC62 /* HDSSL_MyOrderSubVC.swift in Sources */,
+				D67F82B721D4A3D700F8941D /* HDLY_TeachersCenterVC.swift in Sources */,
 				D66C35BA213F5E2100363D7C /* YYCache.m in Sources */,
 				D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */,
 				D6866A5C2126CA1C0044EEAA /* HDLY_CourseList_Cell.swift in Sources */,

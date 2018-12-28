@@ -234,6 +234,36 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         return 10
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let model = self.model.dynamic_list[indexPath.row]
+        if model.cateID == 1 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld", model.newsInfo?.articleID ?? 0)
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.cateID == 2 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            vc.listen_id = String.init(format: "%ld", model.listenInfo?.articleID ?? 0)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.cateID == 4 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld", model.topicInfo?.articleID ?? 0)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.cateID == 5 {
+            
+        }
+        else if model.cateID == 10 {
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            vc.exhibition_id = model.topicInfo?.articleID ?? 0
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
 }
 
 extension HDZQ_OthersCenterVC {

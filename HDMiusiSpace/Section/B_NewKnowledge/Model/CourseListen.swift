@@ -30,16 +30,18 @@ struct ListenTags: Codable {
 }
 
 struct ListenList: Codable {
-    let listenID: Int
-    let title: String
-    let cateID, listening: Int
-    let img: String
+    var listenID: Int?
+    var title: String?
+    var cateID, listening: Int?
+    var img: String?
+    var is_voice: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
         case title
         case cateID = "cate_id"
         case listening, img
+        case is_voice
     }
 }
 
@@ -54,7 +56,8 @@ struct ListenDetail: Codable {
     var teacherName, teacherTitle: String?
     var commentList: [TopicCommentList]?
     var share_url: String?
-    
+    var is_voice: Int = 0
+
     enum CodingKeys: String, CodingKey {
         case listenID = "listen_id"
         case title, img, voice, timelong, likes, icon
@@ -69,6 +72,7 @@ struct ListenDetail: Codable {
         case teacherTitle = "teacher_title"
         case commentList = "comment_list"
         case share_url
+        case is_voice
     }
 }
 

@@ -139,6 +139,12 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="d5t-MB-sZh">
                     <rect key="frame" x="93" y="78" width="12" height="12"/>
                 </imageView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清华教授，从事历史学十年载，学术知识丰富，出刊众多，北京大学文学硕士，从事历史学十年载，学术知识丰富，出刊众多。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wol-kA-TbP">
+                    <rect key="frame" x="20" y="95" width="335" height="93"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -159,13 +165,17 @@
                 <constraint firstItem="seh-Ru-D2d" firstAttribute="top" secondItem="v2q-Sc-vDF" secondAttribute="top" id="S2b-8E-jPr"/>
                 <constraint firstItem="seh-Ru-D2d" firstAttribute="leading" secondItem="v2q-Sc-vDF" secondAttribute="trailing" constant="1" id="UKW-aH-Bas"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="seh-Ru-D2d" secondAttribute="trailing" id="YYO-Tg-dRs"/>
+                <constraint firstItem="wol-kA-TbP" firstAttribute="top" secondItem="c4y-va-qXY" secondAttribute="bottom" constant="20" id="YbM-Jn-7je"/>
                 <constraint firstItem="v2q-Sc-vDF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cHD-LP-SrQ"/>
                 <constraint firstItem="seh-Ru-D2d" firstAttribute="height" secondItem="v2q-Sc-vDF" secondAttribute="height" id="dL2-Rc-9Eg"/>
                 <constraint firstItem="g0e-WX-Fdh" firstAttribute="centerY" secondItem="v2q-Sc-vDF" secondAttribute="centerY" id="hok-81-DlU"/>
                 <constraint firstItem="T7P-Q3-A5q" firstAttribute="centerY" secondItem="FDD-5E-HF2" secondAttribute="centerY" id="hzb-D0-uiY"/>
                 <constraint firstItem="seh-Ru-D2d" firstAttribute="width" secondItem="v2q-Sc-vDF" secondAttribute="width" id="jxi-y8-7IY"/>
+                <constraint firstItem="wol-kA-TbP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="kOs-GT-V6m"/>
                 <constraint firstItem="c4y-va-qXY" firstAttribute="centerY" secondItem="I74-7t-UcR" secondAttribute="centerY" id="lap-8z-d2c"/>
                 <constraint firstItem="d5t-MB-sZh" firstAttribute="bottom" secondItem="I74-7t-UcR" secondAttribute="bottom" id="oaa-z2-d6r"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="wol-kA-TbP" secondAttribute="bottom" constant="20" id="uiL-wh-v8n"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wol-kA-TbP" secondAttribute="trailing" constant="20" id="y6D-lS-uCD"/>
                 <constraint firstItem="I74-7t-UcR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="zhQ-XC-Zga"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -177,7 +187,11 @@
                 <outlet property="followBtn" destination="c4y-va-qXY" id="8iz-0Q-HWu"/>
                 <outlet property="followNumberL" destination="pc1-yG-h1b" id="rcp-Lm-esl"/>
                 <outlet property="genderImg" destination="T7P-Q3-A5q" id="wGN-Md-X1Y"/>
+                <outlet property="leftView" destination="v2q-Sc-vDF" id="ba8-MW-qdt"/>
+                <outlet property="lineView" destination="g0e-WX-Fdh" id="rwr-Ki-LGa"/>
                 <outlet property="nickNameL" destination="FDD-5E-HF2" id="V80-C0-aow"/>
+                <outlet property="rightView" destination="seh-Ru-D2d" id="fiQ-jO-4X1"/>
+                <outlet property="teacherDesL" destination="wol-kA-TbP" id="puJ-CV-13O"/>
                 <outlet property="vipImg" destination="d5t-MB-sZh" id="aS9-rT-Ffq"/>
             </connections>
             <point key="canvasLocation" x="53.600000000000001" y="-158.32083958020991"/>

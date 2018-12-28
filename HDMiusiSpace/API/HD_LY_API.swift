@@ -204,6 +204,14 @@ enum HD_LY_API {
     //分享增加成长值
     case growthShare(api_token: String)
 
+    //教师主页
+    case dynamicTeacherIndex(teacher_id:Int, api_token: String, skip:Int, take:Int)
+    
+    //平台主页
+    case dynamicPlatIndex(platform_id:Int, api_token: String, skip:Int, take:Int)
+    
+    
+    
     
     
 }
@@ -454,6 +462,10 @@ extension HD_LY_API: TargetType {
             return "/api/growth/share"
         case .deleteComment(api_token: _, comment_id: _):
             return "/api/exhibition/del_exhibition_comment"
+        case .dynamicTeacherIndex(_):
+            return "/api/dynamic/teacher_index"
+        case .dynamicPlatIndex(_):
+            return "/api/dynamic/plat_index"
         case .deleteCommentReply(api_token: _, comment_id: _):
             return "/api/comment/del_comment"
             
@@ -1050,6 +1062,23 @@ extension HD_LY_API: TargetType {
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         
+        case .dynamicTeacherIndex(let teacher_id, let api_token, let skip, let take):
+            params = params.merging(["teacher_id": teacher_id, "api_token": api_token, "skip": skip, "take": take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+        case .dynamicPlatIndex(let platform_id, let api_token, let skip, let take):
+            params = params.merging(["platform_id": platform_id, "api_token": api_token, "skip": skip, "take": take], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
+            
+            
+            
+            
         }
         
         //GET 请求返回

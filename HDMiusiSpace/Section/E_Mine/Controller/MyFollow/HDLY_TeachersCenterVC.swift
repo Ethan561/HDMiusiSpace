@@ -144,8 +144,8 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
             tabHeader.followBtn.setTitle("+关注", for: .normal)
         }
         
-        tabHeader.followBtn.addTouchUpInSideBtnAction { (btn) in
-//            self.followAction(id: self.model.toid!, cate_id: "3", api_token: HDDeclare.shared.api_token ?? "")
+        tabHeader.followBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
+            self?.followAction(id: "\(model.teacherID!)" , cate_id: "2", api_token: HDDeclare.shared.api_token ?? "")
         }
         tableView.reloadData()
     }
@@ -168,12 +168,34 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
             tabHeader.followBtn.setTitle("+关注", for: .normal)
         }
         
-        tabHeader.followBtn.addTouchUpInSideBtnAction { (btn) in
-            //            self.followAction(id: self.model.toid!, cate_id: "3", api_token: HDDeclare.shared.api_token ?? "")
+        tabHeader.followBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
+            self?.followAction(id: "\(model.platformID!)", cate_id: "1", api_token: HDDeclare.shared.api_token ?? "")
         }
         tableView.reloadData()
         
     }
+    
+    func followAction(id:String,cate_id:String,api_token:String) {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .doFocusRequest(id: id, cate_id: cate_id, api_token: api_token), showHud: false, loadingVC: self, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                if is_focus == 1 {
+                    self.tabHeader.followBtn.setTitle("已关注", for: .normal)
+                }else {
+                    self.tabHeader.followBtn.setTitle("+关注", for: .normal)
+                }
+            }
+            if let msg:String = dic!["msg"] as? String{
+                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     
 }
 
@@ -259,6 +281,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
             let model = classList[indexPath.row]
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
             vc.courseId = "\(model.classID!)"
+            vc.isFromTeacherCenter = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

@@ -21,6 +21,7 @@ class HDLY_Listen_SubVC:                                                        
     var tagsSelectIndex = 0
     var listArr = [ListenList]()
     var tagsArr = [ListenTags]()
+    var player = HDLY_AudioPlayer.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class HDLY_Listen_SubVC:                                                        
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         dataRequest(cate_id: "-1")
+        player.showFloatingBtn = true
+
     }
     
     @objc func pageTitleViewToTop() {
@@ -182,8 +185,10 @@ class HDLY_Listen_SubVC:                                                        
                 cell.voiceBtn.isHidden = true
             }else {
                 cell.voiceBtn.isHidden = false
-                cell.voiceBtn.addTouchUpInSideBtnAction { (btn) in
-                    
+                cell.voiceBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
+                    if model.voice?.contains(".mp3") == true {
+                        self?.playingAction(model)
+                    }
                 }
                 
             }
@@ -238,15 +243,19 @@ class HDLY_Listen_SubVC:                                                        
         return UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func playingAction(_ model: ListenList) {
+        guard let url = model.voice else {
+            return
+        }
+        player.play(file: Music.init(name: "", url:URL.init(string: url)!))
+        player.url = url
+        HDFloatingButtonManager.manager.floatingBtnView.show = true
+        HDFloatingButtonManager.manager.listenID = "\(model.listenID!)"
+        HDFloatingButtonManager.manager.iconUrl =  "dl_icon_map_gray"
+        
     }
-    */
+    
+    
 
 }
 

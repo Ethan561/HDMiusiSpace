@@ -56,6 +56,8 @@ enum HD_SSL_API {
     case requestMyOrderSharePicPath(api_token: String,orderId: Int)
     //订单详情
     case deleteMyOrderBy(orderId: Int,api_token: String)
+    //获取画报数据信息
+    case getInformationOfPaperWith(api_token: String,commentId: Int)
 }
 
 extension HD_SSL_API: TargetType {
@@ -123,6 +125,9 @@ extension HD_SSL_API: TargetType {
             return "/api/order/save_photo"
         case .deleteMyOrderBy(orderId: _, api_token: _):
             return "/api/order/order_delete"
+        case .getInformationOfPaperWith(api_token: _, commentId: _):
+            return "/api/exhibition/get_share_data"
+            
         //...
             
             
@@ -290,6 +295,12 @@ extension HD_SSL_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         
+        case .getInformationOfPaperWith(api_token: let api_token, commentId: let commentId):
+            params = params.merging(["api_token":api_token,"comment_id":commentId], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             //...
             
             

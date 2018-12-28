@@ -137,5 +137,29 @@ class HDSSL_commentVM: NSObject {
             HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "评论失败")
         }
     }
+    //获取画报数据
+    var paperShareDataModel: Bindable = Bindable(HDSSL_PaperDataModel())
+    func get_informationOfPaper(api_token: String,commentId: Int,vc: HDItemBaseVC) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getInformationOfPaperWith(api_token: api_token, commentId: commentId), showHud: true, loadingVC: vc, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model: HDSSL_GetPaperDataModel = try jsonDecoder.decode(HDSSL_GetPaperDataModel.self, from: result)
+                
+                self.paperShareDataModel.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            //
+        }
+        
+    }
     
 }

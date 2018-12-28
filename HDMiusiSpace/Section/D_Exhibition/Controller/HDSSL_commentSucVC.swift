@@ -65,7 +65,7 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         
         let commentSvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_shareCommentVC") as! HDSSL_shareCommentVC
         commentSvc.imgPath = self.paperPath
-        
+        commentSvc.commentId = self.commentId
         self.navigationController?.pushViewController(commentSvc, animated: true)
     }
     func dealData(data:[HDSSL_uncommentModel]) {

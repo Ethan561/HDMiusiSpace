@@ -36,4 +36,27 @@ struct HDSSL_PaperModel: Codable {
     var msg         : String?
     var data        : String?
 }
-
+//获取画报数据
+struct HDSSL_GetPaperDataModel: Codable {
+    var status      : Int?
+    var msg         : String?
+    var data        : HDSSL_PaperDataModel?
+}
+struct HDSSL_PaperDataModel: Codable {
+    var avatar            : String?//用户头像
+    var nickname          : String?//用户昵称
+    var content           : String?//评论内容
+    
+    var title             : String?//展览标题
+    var exhibition_address: String?//展览地址
+    var img               : String?//展览图片
+    var star              : Int?//评星
+    var is_card           : Int?//是否有证件
+    var is_tour           : Int?//是否有导览图标
+    var museum_address    : String?//博物馆地址
+    
+    var qr_code           : String?//二维码地址
+    var qr_code_des       : String?//二维码描述
+    var qr_code_title     : String?//二维码标题
+    
+}

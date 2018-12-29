@@ -17,6 +17,8 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
     private var take = 10
     private var skip = 0
     
+    var currentShareOrder:MyOrder?
+    
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
         tableView.dataSource = self
@@ -69,6 +71,7 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
                 let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
                 let shareOrderVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_orderShareVC") as! HDSSL_orderShareVC
                 shareOrderVC.sharePath = path
+                shareOrderVC.orderID = self.currentShareOrder?.orderID
                 self.navigationController?.pushViewController(shareOrderVC, animated: true)
             }
         }
@@ -212,6 +215,7 @@ extension HDSSL_MyOrderSubVC{
     //晒单分享
     func shareMyOrderOf(_ index: Int) {
         let order = orderArray[index]
+        currentShareOrder = order
         //请求图片地址，然后跳转页面
         viewModel.getOrderSharePicPath(apiToken: HDDeclare.shared.api_token ?? "", order_id: (order.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
     }

@@ -125,6 +125,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             if path.count > 0 {
                 let shareOrderVC = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_orderShareVC") as! HDSSL_orderShareVC
                 shareOrderVC.sharePath = path
+                shareOrderVC.orderID = self.orderDetail?.orderID!
                 self.navigationController?.pushViewController(shareOrderVC, animated: true)
             }
         }

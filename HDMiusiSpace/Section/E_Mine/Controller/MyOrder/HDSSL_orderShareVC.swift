@@ -10,17 +10,37 @@ import UIKit
 
 class HDSSL_orderShareVC: HDItemBaseVC {
     @IBOutlet weak var bgView: UIImageView!
-    @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var contentBgView: UIView!
+    //user
+    @IBOutlet weak var user_nickName: UILabel!
+    @IBOutlet weak var user_portrial: UIImageView!
+    //展览信息
+    @IBOutlet weak var exhibition_starBg: UIView!
+    @IBOutlet weak var exhibition_img: UIImageView!
+    @IBOutlet weak var exhibition_name: UILabel!
+    @IBOutlet weak var exhibition_des: UILabel!
+    //课程信息
+    @IBOutlet weak var calss_price: UILabel!
+    @IBOutlet weak var calss_studentNum: UILabel!
+    @IBOutlet weak var class_timeNum: UILabel!
+    //二维码
+    @IBOutlet weak var qr_img: UIImageView!
+    @IBOutlet weak var qr_title: UILabel!
+    @IBOutlet weak var qr_des: UILabel!
+    //评论文字
+    @IBOutlet weak var commentLab: UITextView!
+    
     
     var sharePath: String?
+    var orderID  :Int?
     var shareView:HDLY_ShareView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print(sharePath!)
-        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.grayImage(sourceImageV: self.imgView), options: nil, progressBlock: nil, completionHandler: nil)
+//        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.grayImage(sourceImageV: self.imgView), options: nil, progressBlock: nil, completionHandler: nil)
     }
     
     @IBAction func action_share(_ sender: UIButton) {

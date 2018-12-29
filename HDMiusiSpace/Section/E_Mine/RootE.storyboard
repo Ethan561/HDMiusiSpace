@@ -2712,7 +2712,21 @@
                     </view>
                     <connections>
                         <outlet property="bgView" destination="bDk-5X-B2Z" id="aiU-eV-OqJ"/>
+                        <outlet property="calss_price" destination="XpA-6L-GJg" id="VfS-Qd-wRC"/>
+                        <outlet property="calss_studentNum" destination="1RS-nZ-jJf" id="wDg-9S-wlC"/>
+                        <outlet property="class_timeNum" destination="YRp-as-gKh" id="dlQ-Ql-Ui9"/>
+                        <outlet property="commentLab" destination="UTz-3C-hVM" id="fSa-uM-Gar"/>
+                        <outlet property="contentBgView" destination="8Dg-TP-3ri" id="6GZ-C2-oex"/>
+                        <outlet property="exhibition_des" destination="ewM-OL-1Oy" id="zDV-NT-ag8"/>
+                        <outlet property="exhibition_img" destination="bcy-7l-qYO" id="Tk3-zj-OFV"/>
+                        <outlet property="exhibition_name" destination="EiF-Br-tgM" id="D8P-Sc-80l"/>
+                        <outlet property="exhibition_starBg" destination="9by-gv-gU2" id="193-xR-pdh"/>
+                        <outlet property="qr_des" destination="doY-jv-VKp" id="lqR-GT-xrP"/>
+                        <outlet property="qr_img" destination="7oO-Ks-NMC" id="AWw-Kd-DCp"/>
+                        <outlet property="qr_title" destination="vrb-no-tgV" id="nV1-77-YCX"/>
                         <outlet property="shareBtn" destination="KUP-Rj-a17" id="XE9-qh-lKI"/>
+                        <outlet property="user_nickName" destination="WVz-fg-Z9C" id="SGK-pF-KZH"/>
+                        <outlet property="user_portrial" destination="AYG-LL-6g5" id="dFO-9j-yFE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCc-SK-K5B" userLabel="First Responder" sceneMemberID="firstResponder"/>

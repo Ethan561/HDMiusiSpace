@@ -259,7 +259,30 @@ class HDZQ_MyViewModel: NSObject {
         }
     }
     
-    
+    //分享订单数据
+    var orderShareDataModel: Bindable = Bindable(HDSSL_shareOrderModel())
+    func getOrderShareDataWith(api_token: String,orderId: Int,vc: HDItemBaseVC) {
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getMyOrderShareData(api_token: api_token, orderId: orderId), showHud: true, loadingVC: vc, success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            
+            //JSON转Model：
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model: HDSSL_shareOrderDataModel = try jsonDecoder.decode(HDSSL_shareOrderDataModel.self, from: result)
+                
+                self.orderShareDataModel.value = model.data!
+            }
+            catch let error {
+                LOG("解析错误：\(error)")
+            }
+            
+        }) { (errorCode, msg) in
+            //
+        }
+        
+    }
 }
 
 

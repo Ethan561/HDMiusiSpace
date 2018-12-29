@@ -82,3 +82,26 @@ struct HDSSLDeleteOrderModel: Codable {
     var msg: String?
     var data: TStrInt?
 }
+//获取画报数据
+struct HDSSL_shareOrderDataModel: Codable {
+    var status      : Int?
+    var msg         : String?
+    var data        : HDSSL_shareOrderModel?
+}
+struct HDSSL_shareOrderModel: Codable {
+    var uid               : Int?   //uid
+    var goods_id          : Int?   //课程id
+    var pay_amount        : String?//支付金额
+    var title             : String?//课程标题
+    var img               : String?//课程图片
+    var avatar            : String?//用户头像
+    var nickname          : String?//用户昵称
+    var des               : String?//课程描述
+    var author            : String?//作者
+    var sub_title         : String?//作者头衔
+    var class_num         : Int?   //课时
+    var study_num         : Int?   //学习人数
+    var qr_code           : String?//二维码地址
+    var qr_code_des       : String?//二维码描述
+    var qr_code_title     : String?//二维码标题
+}

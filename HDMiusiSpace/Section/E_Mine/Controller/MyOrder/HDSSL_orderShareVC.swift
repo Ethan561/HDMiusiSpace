@@ -16,7 +16,6 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     @IBOutlet weak var user_nickName: UILabel!
     @IBOutlet weak var user_portrial: UIImageView!
     //展览信息
-    @IBOutlet weak var exhibition_starBg: UIView!
     @IBOutlet weak var exhibition_img: UIImageView!
     @IBOutlet weak var exhibition_name: UILabel!
     @IBOutlet weak var exhibition_des: UILabel!
@@ -35,14 +34,56 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     var sharePath: String?
     var orderID  :Int?
     var shareView:HDLY_ShareView?
-    
+    //mvvm
+    var viewModel: HDZQ_MyViewModel = HDZQ_MyViewModel()
+    var shareModel: HDSSL_shareOrderModel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(sharePath!)
-//        self.imgView.kf.setImage(with: URL.init(string: sharePath!), placeholder: UIImage.grayImage(sourceImageV: self.imgView), options: nil, progressBlock: nil, completionHandler: nil)
+        bindViewModel()
+        user_portrial.layer.cornerRadius = 57/2
+        user_portrial.layer.masksToBounds = true
+        exhibition_img.layer.cornerRadius = 10
+        exhibition_img.layer.masksToBounds = true
+        self.contentBgView.layer.cornerRadius = 10
+        
+        //获取画报信息
+        viewModel.getOrderShareDataWith(api_token: HDDeclare.shared.api_token ?? "", orderId: orderID!, vc: self)
     }
-    
+    //MARK: - MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        viewModel.orderShareDataModel.bind { (model) in
+            weakSelf?.loadMyViews(model)
+        }
+    }
+    func loadMyViews(_ model:HDSSL_shareOrderModel){
+        self.shareModel = model
+        DispatchQueue.main.async {
+            //加载页面数据
+            self.user_portrial.kf.setImage(with: URL.init(string: self.shareModel.avatar ?? ""), placeholder: UIImage.grayImage(sourceImageV: self.user_portrial), options: nil, progressBlock: nil, completionHandler: nil)
+            
+            self.user_nickName.text = self.shareModel.nickname
+            self.exhibition_img.kf.setImage(with: URL.init(string: self.shareModel.img ?? ""), placeholder: UIImage.grayImage(sourceImageV: self.exhibition_img), options: nil, progressBlock: nil, completionHandler: nil)
+            
+            self.exhibition_name.text = self.shareModel.title
+            self.exhibition_des.text = self.shareModel.author! + self.shareModel.sub_title!
+            
+            self.class_timeNum.text = String.init(format: "%d课时", self.shareModel.class_num!)
+            self.calss_price.text = "¥" + self.shareModel.pay_amount!
+            self.calss_studentNum.text = String.init(format: "%d人在学", self.shareModel.study_num!)
+            
+            
+            self.commentLab.text = self.shareModel.des
+            
+            self.qr_img.kf.setImage(with: URL.init(string: self.shareModel.qr_code ?? ""), placeholder: UIImage.grayImage(sourceImageV: self.qr_img), options: nil, progressBlock: nil, completionHandler: nil)
+            self.qr_title.text = self.shareModel.qr_code_title
+            self.qr_des.text = self.shareModel.qr_code_des
+            
+
+        }
+        
+    }
     @IBAction func action_share(_ sender: UIButton) {
         let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)

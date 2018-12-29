@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_StrategyListVC: HDItemBaseVC {
     
     @IBOutlet weak var tableView: UITableView!

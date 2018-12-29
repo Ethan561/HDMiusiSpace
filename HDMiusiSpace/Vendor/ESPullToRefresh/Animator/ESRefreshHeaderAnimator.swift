@@ -29,6 +29,12 @@ import QuartzCore
 import UIKit
 
 open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimatorProtocol, ESRefreshImpactProtocol {
+    
+    /*
+     "Pull to refresh" = "下拉刷新";
+     "Release to refresh" = "松开刷新";
+     "Loading..." = "加载中...";
+     */
     open var pullToRefreshDescription = NSLocalizedString("Pull to refresh", comment: "") {
         didSet {
             if pullToRefreshDescription != oldValue {
@@ -87,7 +93,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         indicatorView.startAnimating()
         indicatorView.isHidden = false
         imageView.isHidden = true
-        titleLabel.text = loadingDescription
+        titleLabel.text = loadingDescription//加载中。。。
         imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
     }
   
@@ -95,7 +101,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
         imageView.isHidden = false
-        titleLabel.text = pullToRefreshDescription
+        titleLabel.text = pullToRefreshDescription//下拉刷新...
         imageView.transform = CGAffineTransform.identity
     }
     
@@ -112,11 +118,11 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         
         switch state {
         case .refreshing, .autoRefreshing:
-            titleLabel.text = loadingDescription
+            titleLabel.text = loadingDescription//加载中
             self.setNeedsLayout()
             break
         case .releaseToRefresh:
-            titleLabel.text = releaseToRefreshDescription
+            titleLabel.text = releaseToRefreshDescription//松开刷新
             self.setNeedsLayout()
             self.impact()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: {
@@ -125,7 +131,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             }) { (animated) in }
             break
         case .pullToRefresh:
-            titleLabel.text = pullToRefreshDescription
+            titleLabel.text = pullToRefreshDescription//下拉刷新
             self.setNeedsLayout()
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: {
                 [weak self] in

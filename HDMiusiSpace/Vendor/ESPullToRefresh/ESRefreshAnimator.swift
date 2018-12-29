@@ -57,6 +57,8 @@ open class ESRefreshAnimator: ESRefreshProtocol, ESRefreshAnimatorProtocol {
     
     open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         /// Do nothing!
+        print("refresh progress:\(progress)")
+
     }
     
     open func refresh(view: ESRefreshComponent, stateDidChange state: ESRefreshViewState) {

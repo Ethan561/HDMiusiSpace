@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_ExhibitionSubVC: HDItemBaseVC {
     
     var dataArr =  [HDLY_dExhibitionListD]()

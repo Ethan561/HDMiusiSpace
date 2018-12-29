@@ -6,8 +6,7 @@
 //  Copyright © 2018 hengdawb. All rights reserved.
 //
 
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDZQ_MyCollectCollectionSubVC: HDItemBaseVC {
     
     private var listens =  [MyCollectListenModel]()

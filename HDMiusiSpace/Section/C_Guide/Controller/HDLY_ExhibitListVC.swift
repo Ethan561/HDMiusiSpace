@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     
     @IBOutlet weak var tableView: UITableView!

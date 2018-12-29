@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_MuseumSubVC: HDItemBaseVC {
     var page = 0
 

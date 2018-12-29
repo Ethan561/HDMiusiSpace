@@ -8,8 +8,7 @@
 
 import UIKit
 import Kingfisher
-import ESPullToRefresh
-
+//import ESPullToRefresh
 let PageMenuH = 45.0
 let HeaderViewH:CGFloat = (ScreenWidth - 40) * 190 / 335 + 100
 

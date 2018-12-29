@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
     //tableView

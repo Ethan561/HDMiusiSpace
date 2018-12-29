@@ -17,7 +17,6 @@
  pod 'UMengUShare/Social/ReducedQQ'
  # 集成新浪微博(精简版1M)
  pod 'UMengUShare/Social/ReducedSina'
- pod 'ESPullToRefresh'
  pod 'Bugly', '~> 2.5.0'
  pod 'JPush'#极光推送
  # 集成百度统计
@@ -25,6 +24,5 @@
  pod 'SwiftyStoreKit'
  #pod 'Alamofire'
  
- 
- 
+
  end

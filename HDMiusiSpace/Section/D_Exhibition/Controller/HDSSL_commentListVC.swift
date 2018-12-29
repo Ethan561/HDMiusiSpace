@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import ESPullToRefresh
+//import ESPullToRefresh
+
 class HDSSL_commentListVC: HDItemBaseVC {
 
     var listType: Int?  //1全部，2有图

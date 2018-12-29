@@ -8,8 +8,7 @@
 
 import UIKit
 import Kingfisher
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
     
     //tableView

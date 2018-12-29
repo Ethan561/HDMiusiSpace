@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_ReceiveMsgVC: HDItemBaseVC {
     
     @IBOutlet weak var tableView: UITableView!

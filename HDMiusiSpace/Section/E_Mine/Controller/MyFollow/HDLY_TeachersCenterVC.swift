@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDLY_TeachersCenterVC: HDItemBaseVC {
     
     private var classList =  [TeacherClassList]()

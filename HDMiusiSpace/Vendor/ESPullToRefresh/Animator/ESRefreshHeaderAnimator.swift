@@ -291,13 +291,13 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     }
     
     func closeAction() {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.jumpImageView1.alpha = 0
         }) { (ani) in
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.jumpImageView2.alpha = 0
             }) { (ani) in
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     self.jumpImageView3.alpha = 0
                 }) { (ani) in
                     self.jumpImageView1.layer.removeAllAnimations()

@@ -317,14 +317,14 @@ open class ESRefreshHeaderView: ESRefreshComponent {
         
         // ignore observer
         self.ignoreObserver(true)
-        
         self.animator.refreshAnimationEnd(view: self)
         
-        // Back state
-        scrollView.contentInset.top = self.scrollViewInsets.top
-        scrollView.contentOffset.y =  self.scrollViewInsets.top + self.previousOffset
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            scrollView.contentOffset.y = -self.scrollViewInsets.top
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+            // Back state
+            scrollView.contentInset.top = self.scrollViewInsets.top
+            scrollView.contentOffset.y =  self.scrollViewInsets.top + self.previousOffset
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+                scrollView.contentOffset.y = -self.scrollViewInsets.top
             }, completion: { (finished) in
                 self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
                 super.stop()
@@ -332,7 +332,10 @@ open class ESRefreshHeaderView: ESRefreshComponent {
                 self.previousOffset = scrollView.contentOffset.y
                 // un-ignore observer
                 self.ignoreObserver(false)
-        })
+            })
+            
+        }
+        
     }
     
 }
@@ -454,31 +457,36 @@ open class ESRefreshFooterView: ESRefreshComponent {
             return
         }
         
+//        self.animator.refreshAnimationEnd(view: self)
+        
         self.animator.refreshAnimationEnd(view: self)
         
-        // Back state
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
-        }, completion: { (finished) in
-            if self.noMoreData == false {
-                self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
-            }
-            super.stop()
-        })
-
-        // Stop deceleration of UIScrollView. When the button tap event is caught, you read what the [scrollView contentOffset].x is, and set the offset to this value with animation OFF.
-        // http://stackoverflow.com/questions/2037892/stop-deceleration-of-uiscrollview
-        if scrollView.isDecelerating {
-            var contentOffset = scrollView.contentOffset
-            contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
-            if contentOffset.y < 0.0 {
-                contentOffset.y = 0.0
-                UIView.animate(withDuration: 0.1, animations: { 
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+            // Back state
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: {
+            }, completion: { (finished) in
+                if self.noMoreData == false {
+                    self.animator.refresh(view: self, stateDidChange: .pullToRefresh)
+                }
+                super.stop()
+            })
+            
+            // Stop deceleration of UIScrollView. When the button tap event is caught, you read what the [scrollView contentOffset].x is, and set the offset to this value with animation OFF.
+            // http://stackoverflow.com/questions/2037892/stop-deceleration-of-uiscrollview
+            if scrollView.isDecelerating {
+                var contentOffset = scrollView.contentOffset
+                contentOffset.y = min(contentOffset.y, scrollView.contentSize.height - scrollView.frame.size.height)
+                if contentOffset.y < 0.0 {
+                    contentOffset.y = 0.0
+                    UIView.animate(withDuration: 0.1, animations: {
+                        scrollView.setContentOffset(contentOffset, animated: false)
+                    })
+                } else {
                     scrollView.setContentOffset(contentOffset, animated: false)
-                })
-            } else {
-                scrollView.setContentOffset(contentOffset, animated: false)
+                }
             }
         }
+        
         
     }
     

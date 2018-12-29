@@ -2,7 +2,6 @@ PODS:
   - Alamofire (4.8.0)
   - BaiduMobStatCodeless (4.9.5)
   - Bugly (2.5.0)
-  - ESPullToRefresh (2.7)
   - JCore (1.2.5)
   - JoyTool (0.0.17):
     - Masonry
@@ -34,7 +33,6 @@ PODS:
 DEPENDENCIES:
   - BaiduMobStatCodeless
   - Bugly (~> 2.5.0)
-  - ESPullToRefresh
   - JoyTool
   - JPush
   - Kingfisher
@@ -53,7 +51,6 @@ SPEC REPOS:
     - Alamofire
     - BaiduMobStatCodeless
     - Bugly
-    - ESPullToRefresh
     - JCore
     - JoyTool
     - JPush
@@ -70,7 +67,6 @@ SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   BaiduMobStatCodeless: 8fa2c6bf1cc9f5ec3ec77c69fbf4d5ed195c959a
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
-  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
   JCore: 14706de2640b25fb77dbd02332696491407f37c9
   JoyTool: aead76a56efdbbc496a54c15217fc286382b3e1d
   JPush: 25dd9013fbe106082c14f9f30a82364ee98852fb
@@ -83,6 +79,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
 
-PODFILE CHECKSUM: 4b8fb7ea1cebd1960c4c8f1d612c9892b303e3e1
+PODFILE CHECKSUM: 8637be78079c63c7faf0c8a9b4cbfcac91455ae9
 
 COCOAPODS: 1.5.3

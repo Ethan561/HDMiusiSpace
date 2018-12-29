@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDSSL_TransactionRecordVC: HDItemBaseVC {
     @IBOutlet weak var dTableView: UITableView!
     private var take = 10

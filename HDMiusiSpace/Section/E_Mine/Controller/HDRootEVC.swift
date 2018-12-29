@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDRootEVC: HDItemBaseVC {
     @IBOutlet weak var msgBtn: UIButton!
     @IBOutlet weak var navBar: UIView!

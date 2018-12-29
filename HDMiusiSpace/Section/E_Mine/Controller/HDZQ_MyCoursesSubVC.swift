@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDZQ_MyCoursesSubVC: HDItemBaseVC {
     
     private var courses =  [MyCollectCourseModel]()

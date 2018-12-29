@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDRefreshFooterAnimator: UIView , ESRefreshProtocol, ESRefreshAnimatorProtocol {
     public let loadingMoreDescription: String = "加载更多"
     public let noMoreDataDescription: String  = "到底了~"

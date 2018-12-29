@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+////import ESPullToRefresh
 let SearchHistory : String = "SearchHistory"
 
 class HDSSL_SearchVC: HDItemBaseVC {

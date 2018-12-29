@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 
 class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     var dataArr =  [MuseumListData]()

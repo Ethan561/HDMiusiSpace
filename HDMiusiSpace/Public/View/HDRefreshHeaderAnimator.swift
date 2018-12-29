@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import ESPullToRefresh
-
+//import ESPullToRefresh
 class HDRefreshHeaderAnimator: UIView , ESRefreshProtocol, ESRefreshAnimatorProtocol {
     public let loadingMoreDescription: String = "加载更多"
     public let loadingDescription: String     = "加载中..."

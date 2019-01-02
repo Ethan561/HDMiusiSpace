@@ -127,7 +127,7 @@ class HDSSL_commentVC: HDItemBaseVC {
             //正式发布
             self.viewModel.request_PublishCommentWith(exhibitId: self.exhibition_id!, star: self.starNumber!, content: self.commentContent
                 ?? "", uploadImags: self.ImagePathArray, self)
-        }else {
+        } else {
             //有图评论，先上传评论
             uploadImage()
         }

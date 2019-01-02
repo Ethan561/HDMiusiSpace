@@ -118,7 +118,7 @@ class HD_LY_NetHelper {
                 }
                 
             case .failure(_):
-                failureHandle(failure: failure, stateCode: nil, message: "网络异常")
+                failureHandle(failure: failure, stateCode: nil, message: "网络连接不可用")
             }
         }
         

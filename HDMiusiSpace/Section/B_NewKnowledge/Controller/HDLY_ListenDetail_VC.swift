@@ -485,6 +485,9 @@ extension HDLY_ListenDetail_VC {
                     playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
                 } else {
                     playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+                    if player.state != .paused {
+                        cell?.timeL.text = infoModel?.timelong?.string
+                    }
                 }
                 return cell!
             }

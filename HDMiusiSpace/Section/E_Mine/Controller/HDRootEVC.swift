@@ -57,7 +57,6 @@ class HDRootEVC: HDItemBaseVC {
             self.htmls.removeAll()
             self.myTableView.reloadData()
         }
-        
     }
     
     func setupViews() {

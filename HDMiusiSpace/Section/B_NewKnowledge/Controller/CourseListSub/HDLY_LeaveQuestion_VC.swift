@@ -39,8 +39,21 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
         guard let idnum = self.courseId else {
             return
         }
-        if textView.text.isEmpty == true {return}
-        if titleTextView.text.isEmpty == true {return}
+        if titleTextView.text.isEmpty == true {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "标题不能为空")
+            return
+        } else if titleTextView.text.count < 10 {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "标题内容太少")
+            return
+        }
+        if textView.text.isEmpty == true {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "描述不能为空")
+            return
+        } else if textView.text.count < 8 {
+//            HDAlert.showAlertTipWith(type: .onlyText, text: "留言内容太少")
+//            return
+        }
+        
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
             return

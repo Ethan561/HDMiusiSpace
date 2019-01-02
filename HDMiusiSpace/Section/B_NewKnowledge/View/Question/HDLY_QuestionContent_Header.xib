@@ -48,10 +48,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yA-aN-2M4">
-                    <rect key="frame" x="60" y="123.5" width="86" height="18"/>
+                    <rect key="frame" x="60" y="123.5" width="242" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="MUS-3n-DOc"/>
-                        <constraint firstAttribute="width" constant="86" id="Mkq-SJ-Gl2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -89,6 +88,7 @@
                 <constraint firstItem="9yA-aN-2M4" firstAttribute="leading" secondItem="BYA-Dn-I94" secondAttribute="leading" id="Q5H-m2-96H"/>
                 <constraint firstItem="iG9-dI-uAm" firstAttribute="trailing" secondItem="BYA-Dn-I94" secondAttribute="trailing" id="QgV-Js-tCL"/>
                 <constraint firstItem="v6V-30-rQ6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gKi-KP-lR1"/>
+                <constraint firstItem="iG9-dI-uAm" firstAttribute="leading" secondItem="9yA-aN-2M4" secondAttribute="trailing" constant="8" id="mTR-mM-afH"/>
                 <constraint firstItem="qcS-cy-jNB" firstAttribute="top" secondItem="BPu-zg-9eb" secondAttribute="bottom" constant="5" id="oo6-4c-wqM"/>
                 <constraint firstItem="qcS-cy-jNB" firstAttribute="leading" secondItem="Dxj-ZI-Twf" secondAttribute="leading" id="pLP-jW-ZaF"/>
                 <constraint firstItem="BYA-Dn-I94" firstAttribute="top" secondItem="qcS-cy-jNB" secondAttribute="bottom" constant="8" id="pyv-A1-Vyh"/>

@@ -161,7 +161,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     
     open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // Do nothing
-        print("progress:\(progress)")
+        //print("progress:\(progress)")
         self.imageView.isHidden = true
         self.titleLabel.isHidden = true
         
@@ -171,8 +171,8 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
                                                    y: self.bounds.size.height - trigger * p,
                                                    width: 39.0,
                                                    height: trigger * p)
-        }else {
-
+        } else {
+            
         }
     }
     

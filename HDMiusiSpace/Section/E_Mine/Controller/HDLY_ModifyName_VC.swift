@@ -63,6 +63,8 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
                 } else {
                     modifyNicknameRequest()
                 }
+            } else {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
             }
         }else {
             if signatureTextView.text.isEmpty == false {
@@ -72,6 +74,8 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
                     modifyProfileRequest()
                 }
                 
+            } else {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
             }
         }
     }
@@ -104,7 +108,7 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             let sign: String = dic!["data"] as! String
             self.declare.sign = sign
             self.declare.profile = sign
-            HDAlert.showAlertTipWith(type: .onlyText, text: "个人简介更新成功")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.back()
             })

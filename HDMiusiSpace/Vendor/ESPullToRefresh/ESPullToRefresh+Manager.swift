@@ -31,15 +31,22 @@ open class ESRefreshDataManager {
     
     static let lastRefreshKey: String = "com.espulltorefresh.lastRefreshKey"
     static let expiredTimeIntervalKey: String = "com.espulltorefresh.expiredTimeIntervalKey"
+    static let refreshingInfoKey: String = "com.espulltorefresh.refreshingInfoKey"
+
     open var lastRefreshInfo = [String: Date]()
     open var expiredTimeIntervalInfo = [String: TimeInterval]()
-    
+    open var refreshingInfo = [String: Date]()
+
     public required init() {
         if let lastRefreshInfo = UserDefaults.standard.dictionary(forKey: ESRefreshDataManager.lastRefreshKey) as? [String: Date] {
             self.lastRefreshInfo = lastRefreshInfo
         }
         if let expiredTimeIntervalInfo = UserDefaults.standard.dictionary(forKey: ESRefreshDataManager.expiredTimeIntervalKey) as? [String: TimeInterval] {
             self.expiredTimeIntervalInfo = expiredTimeIntervalInfo
+        }
+        
+        if let refreshingInfo = UserDefaults.standard.dictionary(forKey: ESRefreshDataManager.refreshingInfoKey) as? [String: Date] {
+            self.lastRefreshInfo = refreshingInfo
         }
     }
     
@@ -51,6 +58,17 @@ open class ESRefreshDataManager {
     open func setDate(_ date: Date?, forKey key: String) {
         lastRefreshInfo[key] = date
         UserDefaults.standard.set(lastRefreshInfo, forKey: ESRefreshDataManager.lastRefreshKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    open func refreshingDate(forKey key: String) -> Date? {
+        let date = refreshingInfo[key]
+        return date
+    }
+    
+    open func setRefreshingDate(_ date: Date?, forKey key: String) {
+        refreshingInfo[key] = date
+        UserDefaults.standard.set(refreshingInfo, forKey: ESRefreshDataManager.refreshingInfoKey)
         UserDefaults.standard.synchronize()
     }
     
@@ -76,6 +94,13 @@ open class ESRefreshDataManager {
             return true // Expired
         }
         return false
+    }
+    
+    func getRefreshTimeInterval(forKey key: String)  -> TimeInterval {
+        guard let date = date(forKey: key) else {
+            return 0
+        }
+        return date.timeIntervalSinceNow
     }
     
     open func isExpired(forKey key: String, block: ((Bool) -> ())?) {

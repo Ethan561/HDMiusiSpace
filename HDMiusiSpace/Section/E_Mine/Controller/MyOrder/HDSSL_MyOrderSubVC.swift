@@ -55,11 +55,10 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
             print(isdelete)
             if isdelete == 1 {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "删除订单成功")
-                
                 self.skip = 0
                 self.requestData()
                 
-            }else {
+            } else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "删除订单失败")
             }
             

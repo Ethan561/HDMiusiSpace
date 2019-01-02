@@ -20,12 +20,12 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
     var currentShareOrder:MyOrder?
     
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
-        
         return tableView
     }()
     
@@ -33,8 +33,9 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         super.viewDidLoad()
 
         self.isShowNavShadowLayer = false
-        tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
+        tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
+        
         addRefresh() //刷新
         bindViewModel()
         requestData()
@@ -93,6 +94,8 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         if self.orderArray.count == 0 {
             self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
             self.tableView.ly_showEmptyView()
+            self.tableView.es.stopPullToRefresh()
+            self.tableView.es.stopLoadingMore()
         }
         
     }

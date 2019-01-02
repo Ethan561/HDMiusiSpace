@@ -67,6 +67,8 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
                 self?.tableView.reloadData()
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
+                self?.tableView.es.stopPullToRefresh()
+
             }
             self?.tableView.es.stopPullToRefresh()
             self?.tableView.es.stopLoadingMore()
@@ -86,6 +88,8 @@ class HDZQ_MyCollectSubVC: HDItemBaseVC {
                 self?.tableView.reloadData()
                 self?.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
                 self?.tableView.ly_showEmptyView()
+                self?.tableView.es.stopPullToRefresh()
+
             }
             self?.tableView.es.stopPullToRefresh()
             self?.tableView.es.stopLoadingMore()

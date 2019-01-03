@@ -35,6 +35,7 @@ class HDLY_MuseumInfoType2Cell: UITableViewCell {
         // Initialization code
         likeBtn.setImage(UIImage.init(named: "zl_icon_star_gray"), for: .normal)
         likeBtn.setImage(UIImage.init(named: "zl_icon_star_red"), for: .selected)
+        likeBtn.isHidden = true
         self.imgV.layer.cornerRadius = 8.0
         self.imgV.layer.masksToBounds = true
     }

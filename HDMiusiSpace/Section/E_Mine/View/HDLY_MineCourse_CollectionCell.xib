@@ -13,27 +13,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HDLY_MineCourse_CollectionCell" customModule="HDMiusiSpace" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
+            <rect key="frame" x="0.0" y="0.0" width="281" height="201"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
+                <rect key="frame" x="0.0" y="0.0" width="281" height="201"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXK-Is-VEH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
+                        <rect key="frame" x="0.0" y="0.0" width="281" height="200.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img3" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-sU-pYe">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
+                                <rect key="frame" x="0.0" y="0.0" width="281" height="200.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_zz1" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-f8-2OW">
+                                <rect key="frame" x="0.0" y="0.0" width="281" height="200.5"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="g7k-qa-o3x">
-                                <rect key="frame" x="0.0" y="264" width="375" height="4"/>
+                                <rect key="frame" x="0.0" y="196.5" width="281" height="4"/>
                                 <color key="tintColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="b45-dO-JcV"/>
                                 </constraints>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已学80%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvl-5l-i2Q">
-                                <rect key="frame" x="158.5" y="241" width="58.5" height="17"/>
+                                <rect key="frame" x="111.5" y="173.5" width="58.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -42,10 +45,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="pw3-sU-pYe" secondAttribute="bottom" id="7CG-Nh-iNP"/>
+                            <constraint firstAttribute="bottom" secondItem="j5e-f8-2OW" secondAttribute="bottom" id="AEQ-1R-n3F"/>
+                            <constraint firstItem="j5e-f8-2OW" firstAttribute="leading" secondItem="kXK-Is-VEH" secondAttribute="leading" id="Cm2-AG-yED"/>
+                            <constraint firstItem="j5e-f8-2OW" firstAttribute="top" secondItem="kXK-Is-VEH" secondAttribute="top" id="DbB-3d-fC7"/>
                             <constraint firstAttribute="width" secondItem="kXK-Is-VEH" secondAttribute="height" multiplier="7:5" id="EQX-hx-5bE"/>
                             <constraint firstAttribute="trailing" secondItem="g7k-qa-o3x" secondAttribute="trailing" id="EYo-BM-4f9"/>
+                            <constraint firstItem="j5e-f8-2OW" firstAttribute="leading" secondItem="kXK-Is-VEH" secondAttribute="leading" id="FQj-7j-wyS"/>
+                            <constraint firstAttribute="trailing" secondItem="j5e-f8-2OW" secondAttribute="trailing" id="ROr-3N-vXm"/>
+                            <constraint firstAttribute="trailing" secondItem="j5e-f8-2OW" secondAttribute="trailing" id="VTX-gP-K17"/>
                             <constraint firstItem="Qvl-5l-i2Q" firstAttribute="centerX" secondItem="kXK-Is-VEH" secondAttribute="centerX" id="Yk7-Q6-rMV"/>
                             <constraint firstAttribute="trailing" secondItem="pw3-sU-pYe" secondAttribute="trailing" id="aQM-My-vOi"/>
+                            <constraint firstAttribute="bottom" secondItem="j5e-f8-2OW" secondAttribute="bottom" id="eRi-4F-2a4"/>
                             <constraint firstItem="g7k-qa-o3x" firstAttribute="top" secondItem="Qvl-5l-i2Q" secondAttribute="bottom" constant="6" id="jx6-tH-Jtw"/>
                             <constraint firstAttribute="bottom" secondItem="g7k-qa-o3x" secondAttribute="bottom" id="kLa-KN-MpC"/>
                             <constraint firstItem="pw3-sU-pYe" firstAttribute="top" secondItem="kXK-Is-VEH" secondAttribute="top" id="pM6-FY-f6W"/>
@@ -54,7 +64,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="面“精选-精选推荐”" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fba-N6-iqS">
-                        <rect key="frame" x="0.0" y="284" width="375" height="20"/>
+                        <rect key="frame" x="0.0" y="173" width="281" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="vGq-xl-TGK"/>
                         </constraints>
@@ -73,7 +83,7 @@
                 <constraint firstItem="kXK-Is-VEH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tRr-ov-3ua"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="375" height="312"/>
+            <size key="customSize" width="281" height="201"/>
             <connections>
                 <outlet property="bgView" destination="kXK-Is-VEH" id="6nR-dK-jaL"/>
                 <outlet property="imgV" destination="pw3-sU-pYe" id="XoI-Pt-YHV"/>
@@ -81,10 +91,11 @@
                 <outlet property="nameL" destination="fba-N6-iqS" id="C4P-0H-u6P"/>
                 <outlet property="progressView" destination="g7k-qa-o3x" id="f8U-AW-tbr"/>
             </connections>
-            <point key="canvasLocation" x="250.40000000000001" y="157.42128935532236"/>
+            <point key="canvasLocation" x="192.80000000000001" y="115.59220389805098"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="dl_zz1" width="112" height="84"/>
         <image name="jxtj_img3" width="140" height="100"/>
     </resources>
 </document>

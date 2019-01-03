@@ -28,6 +28,9 @@
                                     <constraint firstAttribute="width" secondItem="8cL-jz-Iba" secondAttribute="height" multiplier="14:10" id="cxJ-7B-CvT"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_zz1" translatesAutoresizingMaskIntoConstraints="NO" id="fHj-Ig-UnC">
+                                <rect key="frame" x="0.0" y="19.5" width="145" height="84"/>
+                            </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已学80%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWy-hy-BoN">
                                 <rect key="frame" x="43" y="77.5" width="59" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
@@ -56,6 +59,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8cL-jz-Iba" firstAttribute="top" secondItem="Kdm-0U-y4J" secondAttribute="top" id="3BT-pT-JPC"/>
+                            <constraint firstAttribute="bottom" secondItem="fHj-Ig-UnC" secondAttribute="bottom" id="4eV-Uz-AOl"/>
                             <constraint firstAttribute="trailing" secondItem="8cL-jz-Iba" secondAttribute="trailing" id="7Yt-ia-yl4"/>
                             <constraint firstItem="MWy-hy-BoN" firstAttribute="centerX" secondItem="Kdm-0U-y4J" secondAttribute="centerX" id="Bg0-T2-dPA"/>
                             <constraint firstAttribute="bottom" secondItem="pk1-sW-BVH" secondAttribute="bottom" id="G6w-je-V5G"/>
@@ -64,8 +68,10 @@
                             <constraint firstAttribute="width" secondItem="Kdm-0U-y4J" secondAttribute="height" multiplier="7:5" id="QtQ-m3-vjc"/>
                             <constraint firstItem="pk1-sW-BVH" firstAttribute="top" secondItem="MWy-hy-BoN" secondAttribute="bottom" constant="5" id="STe-iI-KUW"/>
                             <constraint firstAttribute="trailing" secondItem="pk1-sW-BVH" secondAttribute="trailing" id="Sbf-V8-GcY"/>
+                            <constraint firstItem="fHj-Ig-UnC" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="TAI-87-OdQ"/>
                             <constraint firstItem="8cL-jz-Iba" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="YO4-d0-Nyx"/>
                             <constraint firstItem="MtY-Hf-PpI" firstAttribute="leading" secondItem="Kdm-0U-y4J" secondAttribute="leading" id="c2m-at-oeN"/>
+                            <constraint firstAttribute="trailing" secondItem="fHj-Ig-UnC" secondAttribute="trailing" id="mzi-Gh-K0f"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="丝绸之路谈中国历史文化" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwZ-2g-Hce">
@@ -162,6 +168,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="dl_zz1" width="112" height="84"/>
         <image name="jxtj_img1" width="140" height="100"/>
         <image name="xinzhi_icon_video_black_default" width="12" height="10"/>
     </resources>

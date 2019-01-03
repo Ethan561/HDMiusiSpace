@@ -261,19 +261,26 @@
                                 <constraint firstItem="jeM-co-SPc" firstAttribute="leading" secondItem="QBb-ti-Q7z" secondAttribute="leading" id="zwn-9W-agq"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttJ-A8-x0S">
+                            <rect key="frame" x="30" y="20" width="358" height="60"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="3wt-v1-9gB"/>
+                        <constraint firstItem="ttJ-A8-x0S" firstAttribute="centerY" secondItem="Emc-jM-GYO" secondAttribute="centerY" id="Lpo-Dq-bqp"/>
                         <constraint firstItem="b5i-Io-cQa" firstAttribute="leading" secondItem="Emc-jM-GYO" secondAttribute="leading" constant="45" id="PSs-3S-a4e"/>
                         <constraint firstItem="QBb-ti-Q7z" firstAttribute="leading" secondItem="BeJ-zo-azO" secondAttribute="leading" id="S6K-gu-Msc"/>
+                        <constraint firstItem="ttJ-A8-x0S" firstAttribute="top" secondItem="Emc-jM-GYO" secondAttribute="top" constant="20" id="VeS-ee-CaI"/>
                         <constraint firstItem="BeJ-zo-azO" firstAttribute="leading" secondItem="b5i-Io-cQa" secondAttribute="trailing" constant="15" id="Za5-rp-8YG"/>
                         <constraint firstItem="QBb-ti-Q7z" firstAttribute="trailing" secondItem="BeJ-zo-azO" secondAttribute="trailing" id="dIW-2X-tOJ"/>
                         <constraint firstItem="QBb-ti-Q7z" firstAttribute="bottom" secondItem="BeJ-zo-azO" secondAttribute="bottom" id="i0j-ng-49v"/>
+                        <constraint firstItem="ttJ-A8-x0S" firstAttribute="leading" secondItem="Emc-jM-GYO" secondAttribute="leading" constant="30" id="i75-RT-MJk"/>
                         <constraint firstAttribute="trailing" secondItem="BeJ-zo-azO" secondAttribute="trailing" constant="15" id="luT-nS-B35"/>
                         <constraint firstItem="b5i-Io-cQa" firstAttribute="top" secondItem="Emc-jM-GYO" secondAttribute="top" constant="20" id="uV2-Zp-zKQ"/>
                         <constraint firstItem="BeJ-zo-azO" firstAttribute="top" secondItem="Emc-jM-GYO" secondAttribute="top" constant="20" id="uZr-56-85D"/>
                         <constraint firstItem="QBb-ti-Q7z" firstAttribute="top" secondItem="BeJ-zo-azO" secondAttribute="top" id="vsu-UV-Ssa"/>
+                        <constraint firstItem="ttJ-A8-x0S" firstAttribute="centerX" secondItem="Emc-jM-GYO" secondAttribute="centerX" id="z6e-ki-2ht"/>
                     </constraints>
                 </view>
             </subviews>
@@ -294,6 +301,7 @@
                 <outlet property="collectNumberLabel" destination="ruF-6b-bBr" id="1FS-pH-adV"/>
                 <outlet property="followNumberLabel" destination="vn2-Q5-W9U" id="Mes-Ly-Fsa"/>
                 <outlet property="foorprintNumberLabel" destination="6EB-W6-Q8W" id="46b-V8-uwN"/>
+                <outlet property="headerBtn" destination="ttJ-A8-x0S" id="N13-qA-K86"/>
                 <outlet property="loginBtn" destination="jeM-co-SPc" id="AAI-4L-nJ0"/>
                 <outlet property="loginView" destination="QBb-ti-Q7z" id="9s4-fF-Ial"/>
                 <outlet property="nameL" destination="AIH-BU-abc" id="fje-6M-vO7"/>

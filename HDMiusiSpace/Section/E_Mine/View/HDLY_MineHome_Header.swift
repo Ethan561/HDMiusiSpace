@@ -27,8 +27,9 @@ class HDLY_MineHome_Header: UIView {
     
     @IBOutlet weak var cardNumberLabel: UILabel!
     @IBOutlet weak var foorprintNumberLabel: UILabel!
+    @IBOutlet weak var headerBtn: UIButton!
     
-     weak var delegate: HDLY_MineHome_Header_Delegate?
+    weak var delegate: HDLY_MineHome_Header_Delegate?
     
     override func awakeFromNib() {
         avatarImgV.layer.cornerRadius = 30

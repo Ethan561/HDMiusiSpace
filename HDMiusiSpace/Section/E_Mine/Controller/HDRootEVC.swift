@@ -72,8 +72,9 @@ class HDRootEVC: HDItemBaseVC {
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 180))
         v.addSubview(tabHeader)
         myTableView.tableHeaderView = v
-        tabHeader.loginBtn.addTarget(self, action: #selector(loginBtnAction), for: UIControlEvents.touchUpInside)
-        tabHeader.userInfoBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
+//        tabHeader.loginBtn.addTarget(self, action: #selector(loginBtnAction), for: UIControlEvents.touchUpInside)
+        
+        tabHeader.headerBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
         
         myTableView.separatorStyle = .none
         myTableView.backgroundColor = UIColor.white
@@ -126,14 +127,12 @@ class HDRootEVC: HDItemBaseVC {
         }
     }
     
-    @objc func loginBtnAction(_ sender: UIButton) {
-        self.pushToLoginVC(vc: self)
-    }
-    
-    
     @objc func showUserInfoAction(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "PushTo_HDLY_UserInfo_VC_Line", sender: nil)
-
+        if declare.loginStatus == .kLogin_Status_Login {
+            self.performSegue(withIdentifier: "PushTo_HDLY_UserInfo_VC_Line", sender: nil)
+        } else {
+            self.pushToLoginVC(vc: self)
+        }
     }
     
     @IBAction func pushToSettingVC(_ sender: UIButton) {

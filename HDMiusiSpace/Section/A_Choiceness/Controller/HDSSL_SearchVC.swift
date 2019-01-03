@@ -575,7 +575,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                     cell?.cell_priceLab.text = "免费"
                     cell?.cell_priceLab.textColor = UIColor.black
                 }else {
-                    cell?.cell_priceLab.text = String.init(format: "¥%.1f", course.price!)
+                    cell?.cell_priceLab.text = String.init(format: "¥%@", course.price!)
                 }
                 
                 return cell!

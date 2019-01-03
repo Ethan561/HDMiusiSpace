@@ -71,9 +71,7 @@ class HDRootEVC: HDItemBaseVC {
         tabHeader.delegate = self
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 180))
         v.addSubview(tabHeader)
-        myTableView.tableHeaderView = v
-//        tabHeader.loginBtn.addTarget(self, action: #selector(loginBtnAction), for: UIControlEvents.touchUpInside)
-        
+        myTableView.tableHeaderView = v        
         tabHeader.headerBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
         
         myTableView.separatorStyle = .none

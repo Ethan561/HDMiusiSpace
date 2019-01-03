@@ -961,9 +961,10 @@ extension HDSSL_dExhibitionDetailVC {
 //        webVC.titleName = raider.title
 //        self.navigationController?.pushViewController(webVC, animated: true)
         //
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-        vc.topic_id = String(raider.strategyID ?? 0)
-        vc.fromRootAChoiceness = true
+        
+        let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+        vc.strategyid = raider.strategyID
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

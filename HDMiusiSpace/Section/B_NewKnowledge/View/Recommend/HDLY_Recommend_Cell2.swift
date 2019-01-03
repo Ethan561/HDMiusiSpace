@@ -17,11 +17,12 @@ class HDLY_Recommend_Cell2: UITableViewCell {
     @IBOutlet weak var courseL: UILabel!
     @IBOutlet weak var typeImgV: UIImageView!
 
+    @IBOutlet weak var bgView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imgV.layer.cornerRadius = 8
-        imgV.layer.masksToBounds = true
+        bgView.layer.cornerRadius = 8
+        bgView.layer.masksToBounds = true
         
     }
 

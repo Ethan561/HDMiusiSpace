@@ -152,7 +152,9 @@ open class ESRefreshComponent: UIView {
     
     //  ScrollView offset change action
     public func offsetChangeAction(object: AnyObject?, change: [NSKeyValueChangeKey : Any]?) {
-        
+        if (scrollView?.contentOffset.y ?? 0 < -80) {
+            scrollView?.contentOffset = CGPoint.init(x: 0, y: -80)
+        }
     }
     
 }

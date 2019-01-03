@@ -90,18 +90,18 @@ extension HDLY_StrategyListVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //攻略详情
         tableView.deselectRow(at: indexPath, animated: true)
         let model = dataArr[indexPath.row]
 
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-//        vc.topic_id = "\(model.strategyID!)"
-//        vc.fromRootAChoiceness = true
-//        self.navigationController?.pushViewController(vc, animated: true)
-        let webVC = HDItemBaseWebVC()
-        webVC.urlPath = model.strategyUrl
-        webVC.titleName = model.title
-        self.navigationController?.pushViewController(webVC, animated: true)
+        let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+        vc.strategyid = model.strategyID
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+//        let webVC = HDItemBaseWebVC()
+//        webVC.urlPath = model.strategyUrl
+//        webVC.titleName = model.title
+//        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
 }

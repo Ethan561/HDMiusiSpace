@@ -60,6 +60,8 @@ enum HD_SSL_API {
     case getInformationOfPaperWith(api_token: String,commentId: Int)
     //获取订单分享数据
     case getMyOrderShareData(api_token: String,orderId: Int)
+    //获取攻略详情数据
+    case getStrategyData(api_token: String,strategyId: Int)
 }
 
 extension HD_SSL_API: TargetType {
@@ -131,7 +133,8 @@ extension HD_SSL_API: TargetType {
             return "/api/exhibition/get_share_data"
         case .getMyOrderShareData(api_token: _, orderId: _):
             return "/api/order/get_share_data"
-            
+        case .getStrategyData(api_token: _, strategyId: _):
+            return "/api/exhibition/strategy_info"
         //...
             
             
@@ -311,6 +314,14 @@ extension HD_SSL_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getStrategyData(api_token: let api_token, strategyId: let strategyId):
+            params = params.merging(["strategy_id":strategyId,"api_token":api_token], uniquingKeysWith: {$1})
+            
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            
+            
             //...
             
             

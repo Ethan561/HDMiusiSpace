@@ -417,6 +417,7 @@ extension HDSSL_dMuseumDetailVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {
+            self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             if indexPath.row == 0 {
                 let cell = HDLY_MuseumInfoTitleCell.getMyTableCell(tableV: tableView) as HDLY_MuseumInfoTitleCell
             cell.titleL.text = self.infoModel?.title
@@ -464,6 +465,7 @@ extension HDSSL_dMuseumDetailVC {
             }
         }
         else if indexPath.section == 1 {
+            self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
             guard let url = self.infoModel?.areaHTML else {
                 return cell!
@@ -476,6 +478,7 @@ extension HDSSL_dMuseumDetailVC {
             return cell!
         }
         else {
+            self.myTableView.separatorColor = UIColor.white
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![indexPath.section - 2]
                 if model.type == 1 {//同馆展览

@@ -517,7 +517,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         weak var weakSelf = self
 
         if indexPath.section == 0 {
-            
+            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
@@ -560,6 +560,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
         }
         else if indexPath.section == 1 {
+            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             //加载两个webView
             //展览介绍🈴️展品介绍
             if indexPath.row == 0 {
@@ -592,6 +593,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
         }
         else if indexPath.section == 2 {
+            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             weak var weakSelf = self
             let model = self.commentArr![indexPath.row]
             
@@ -624,6 +626,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return cell
         }
         else  {
+            self.dTableView.separatorColor = UIColor.white
+            
             let arr = self.exdataModel?.data?.dataList!
             let model = arr![indexPath.section-3]
             if model.type == 1{

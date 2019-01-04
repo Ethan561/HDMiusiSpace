@@ -254,7 +254,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.controlView.coverImageHidden = false
                 
             }
-        }else {
+        } else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
@@ -373,7 +373,7 @@ extension HDLY_CourseList_VC {
         }
         if showLeaveMsg == true {
             self.pageMenu(self.pageMenu, itemSelectedFrom: 0, to: 3)
-            self.pageMenu.selectedItemIndex = 2
+            self.pageMenu.selectedItemIndex = 3
         }
     }
     

@@ -364,6 +364,11 @@ extension HDSSL_SearchVC{
     }
     
     private func loadMore() {
+        if self.currentType == 0 {//0时不需要分页
+            self.resultTableView.es.noticeNoMoreData()
+            return
+        }
+        
         skip += 1
         requestData()
     }

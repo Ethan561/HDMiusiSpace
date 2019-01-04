@@ -266,7 +266,7 @@ extension HDRootAVC {
             cell?.moreBtn.tag = 100 + indexPath.row
             cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
             return cell!
-        }else if model.type.int == 1 {
+        } else if model.type.int == 1 {
             let cell = HDLY_TopicRecmd_Cell.getMyTableCell(tableV: tableView)
             if model.itemList != nil {
                 let model = model.itemList!

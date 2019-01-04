@@ -24,7 +24,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     weak var delegate:ChapterListPlayDelegate?
 
     var isNeedBuy = false
-
+    
     var infoModel: CourseChapter?
     var courseId: String?
     //MVVM

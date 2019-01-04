@@ -56,7 +56,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         dataRequest()
 //        audioPlayer.delegate = self
         bindViewModel()
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

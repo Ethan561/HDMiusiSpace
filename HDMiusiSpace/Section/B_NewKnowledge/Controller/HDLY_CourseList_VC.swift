@@ -128,12 +128,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     }
     
     override var prefersStatusBarHidden: Bool {
-        
         return self.isStatusBarHidden
     }
     
     //MVVM
-    
     func bindViewModel() {
         weak var weakSelf = self
         //收藏
@@ -144,7 +142,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
             }
         }
-        
     }
     
     private func setupPlayer() {
@@ -175,7 +172,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         
         self.player.playerPlayTimeChanged = { (asset,currentTime,duration) -> () in
-            LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
+            //LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
         }
     }
@@ -225,7 +222,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             return
         }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
-
+        
         if isMp3Course {
             if course.video.isEmpty == false && course.video.contains(".mp3") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
@@ -239,6 +236,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
+        self.controlView.showWith(animated: false)
+
     }
     
     func autoPlayAction() {
@@ -246,7 +245,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             return
         }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
-        
+        self.controlView.showWith(animated: true)
+
         if isMp3Course {
             if course.video.isEmpty == false && course.video.contains(".mp3") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
@@ -309,7 +309,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
                 self.isMp3Course = false
             }
-//            self.autoPlayAction()
+            if ZFReachabilityManager.shared().isReachableViaWiFi == true {
+                self.autoPlayAction()
+            }
             
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
             }else {

@@ -291,7 +291,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.isMp3Course = false
                 self.tryListenL.text = "试学"
             }
-            self.autoPlayAction()
+            //self.autoPlayAction()
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {

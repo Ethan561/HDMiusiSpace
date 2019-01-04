@@ -113,16 +113,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setRootVC() {
         
-//        let JSONString = UserDefaults.standard.object(forKey: "saveTags") as? String
+        let JSONString = UserDefaults.standard.object(forKey: "saveTags") as? String
         
-//        if "1" == JSONString {
-//
-//            //2、跳转vc
-//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTabBarVC") as! HDTabBarVC
-//
-//            self.window?.rootViewController = vc;
-//
-//        }
+        if "1" == JSONString {
+
+            //2、跳转vc
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTabBarVC") as! HDTabBarVC
+
+            self.window?.rootViewController = vc;
+
+        }
     }
     
     func configUSharePlatforms()  {

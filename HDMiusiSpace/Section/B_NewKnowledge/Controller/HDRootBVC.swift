@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 //import ESPullToRefresh
 let PageMenuH = 45.0
-let HeaderViewH:CGFloat = (ScreenWidth - 40) * 190 / 335 + 100
+var HeaderViewH:CGFloat = (ScreenWidth - 40) * 190 / 335 + 100
 
 class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate {
     
@@ -58,6 +58,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if ScreenWidth == 414 {
+            HeaderViewH = (ScreenWidth - 40) * 200 / 335 + 100
+        }
         tabVBottomCons.constant = CGFloat(kTabBarHeight)
         navbarCons.constant = CGFloat(kTopHeight)
         if kTopHeight == 64 {

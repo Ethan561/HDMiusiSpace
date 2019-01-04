@@ -14,12 +14,20 @@ enum TagViewType: Int {
     case TagViewTypeNormal = 2                     //普通标签，没有选中状态，可频繁点击
 }
 
+enum UserTagType: Int {
+    case UserTagTypeDefault = 0          //默认
+    case UserTagTypeCareer  = 1          //职业
+    case UserTagTypeState   = 2          //状态
+    case UserTagTypeFunny   = 3          //爱好
+}
+
 typealias TapTagBlock = (_ itemArray: Array<Any>) -> Void //返回事件
 
 class HD_SSL_TagView: UIView {
 
     public var titleArray       : [String] = Array.init() //标签标题数组
     public var selctedArray     : [String] = Array.init() //已选数组
+    public var restArray     : [String] = Array.init()    //已选需要重置数组
     public var titleColorNormal : UIColor = .lightGray    //标题颜色，默认灰色
     public var titleColorSelect : UIColor = .white        //选中标题颜色，默认灰色
     public var borderColor      : UIColor = .black        //边框颜色，默认黑色
@@ -29,6 +37,7 @@ class HD_SSL_TagView: UIView {
     var recordBtn     : UIButton? = UIButton.init(type: .custom) //暂存上一个标签
     
     var tagViewType : TagViewType? //标签类型
+    var userTagType : UserTagType? //用户标签类别
     var blockTapTag : TapTagBlock? //点击事件
     
     override init(frame: CGRect) {
@@ -56,10 +65,11 @@ class HD_SSL_TagView: UIView {
             sender.backgroundColor = UIColor.white
         }
         
-        self.reloadSelectedArray(String(sender.tag))
+        self.reloadSelectedArray(String(sender.tag-10))
         
-        
-        if tagViewType!.rawValue == 0 {
+        //单选并且是选中状态
+        if tagViewType! == TagViewType.TagViewTypeSingleSelection && sender.isSelected == true{
+            dealResetTags()
             getBackSelectedTags()
         }
         
@@ -105,6 +115,30 @@ class HD_SSL_TagView: UIView {
         }
         
         selctedArray = array
+        
+    }
+    //MARK: -- 刷新页面，删除选中标签
+    func reloadMySelectedTags(_ tags:[String]) -> Void {
+        //
+        print(tags)
+        restArray = tags
+        
+    }
+    func dealResetTags(){
+        
+        if restArray.count == 0 {
+            return
+        }
+        let str1 = restArray[0]
+        let str2 = selctedArray[0]
+        if str1 != str2 {
+            let view = self.viewWithTag(Int(str1)!+10)
+            if (view?.isKind(of: UIButton.self))! {
+                let btn = view as! UIButton
+                btn.isSelected = false
+                btn.backgroundColor = UIColor.white
+            }
+        }
         
     }
     
@@ -169,7 +203,7 @@ class HD_SSL_TagView: UIView {
                 lastTagOrigin = CGPoint.init(x: (recordBtn?.frame.origin.x)!, y: (recordBtn?.frame.origin.y)!)
                 lastTagSize = CGSize.init(width: (recordBtn?.frame.size.width)!, height: (recordBtn?.frame.size.height)!)
                 
-                btn.tag = i
+                btn.tag = i+10
                 
                 btn.addTarget(self, action: #selector(action_tapTagBy(_:)), for: .touchUpInside)
                 

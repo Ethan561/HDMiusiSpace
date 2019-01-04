@@ -14,13 +14,12 @@ class HDTagChooseVC: UIViewController {
     @IBOutlet weak var labTitle : UILabel!
     @IBOutlet weak var labDes   : UILabel!
     @IBOutlet weak var tagBgView: UIView!
-    
-    var tagView : HD_SSL_TagView?
-    
+        
     public var tagArray : [String] = Array.init()
     
     var tagStrArray : [String] = Array.init()        //标签字符串数组
     var selectedtagArray = [HDSSL_Tag]()             //已选标签字符串数组
+    var careerArray = [HDSSL_Tag]()                  //已选职业标签字符串数组
     var dataArr = [HDSSL_TagData]()                  //标签类别数组
     var tagList = [HDSSL_Tag]()                      //标签数组
     
@@ -52,11 +51,11 @@ class HDTagChooseVC: UIViewController {
             tagStrArray.append(tagmodel.title!)
         }
     }
-    func loadTagView() {
-        tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
-        tagView?.tagViewType = TagViewType.TagViewTypeMultipleSelection
-        
-        tagView?.BlockFunc { (array) in
+    lazy var tagView : HD_SSL_TagView = {
+        let tagview = HD_SSL_TagView.init(frame: tagBgView.bounds)
+        tagview.tagViewType = TagViewType.TagViewTypeMultipleSelection
+        tagview.userTagType = UserTagType.UserTagTypeFunny
+        tagview.BlockFunc { (array) in
             
             //保存选择标签
             for i: Int in 0..<array.count {
@@ -65,10 +64,12 @@ class HDTagChooseVC: UIViewController {
                 
                 self.selectedtagArray.append(self.tagList[index]) //保存选择标签
             }
+            HDDeclare.shared.funnyTagArray = self.selectedtagArray //本地保存已选标签
             
-            HDDeclare.shared.selectedTagArray = self.selectedtagArray //本地保存已选标签
+            HDDeclare.shared.selectedTagArray = HDDeclare.shared.careerTagArray! + HDDeclare.shared.stateTagArray! + self.selectedtagArray
+            
             //保存
-            if self.selectedtagArray.count > 0 {
+            if HDDeclare.shared.selectedTagArray!.count > 0 {
                 //正式开始
                 let userDefaults = UserDefaults.standard
                 userDefaults.set("1", forKey: "saveTags")
@@ -77,21 +78,25 @@ class HDTagChooseVC: UIViewController {
             
             self.uploadMyTags() //调接口保存选择的标签
         }
-        tagView?.titleArray = tagStrArray
+        return tagview
+    }()
+    func loadTagView() {
+
+        tagView.titleArray = tagStrArray
         
-        tagBgView.addSubview(tagView!)
-        tagView?.loadTagsView()
+        tagBgView.addSubview(tagView)
+        tagView.loadTagsView()
     }
     //MARK: - 上传已选标签
     func uploadMyTags() {
         //
-        if self.selectedtagArray.count > 0 {
+        if HDDeclare.shared.selectedTagArray!.count > 0 {
             
             var tagIds: String? = ""
             
-            for i in 0..<self.selectedtagArray.count {
+            for i in 0..<HDDeclare.shared.selectedTagArray!.count {
                 
-                let model: HDSSL_Tag = self.selectedtagArray[i] as HDSSL_Tag
+                let model: HDSSL_Tag = HDDeclare.shared.selectedTagArray![i] as HDSSL_Tag
                 
                 tagIds = tagIds! + String(model.label_id!) + "#"
                 
@@ -104,12 +109,14 @@ class HDTagChooseVC: UIViewController {
     }
     
     @IBAction func action_back(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetSelectedStateTags"), object: nil)
+        
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func SureAction(_ sender: Any) {
         //1、保存选择的标签
-        tagView?.getBackSelectedTags()
+        tagView.getBackSelectedTags()
         //2、跳转vc
         self.performSegue(withIdentifier: "HD_PushToTabBarVCLine", sender: nil)
 

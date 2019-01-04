@@ -239,6 +239,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         let arr: [Any]? =  manager.array(forKey: SearchHistory)
         
         guard arr != nil else {
+            self.dTableView.isHidden = true
             return
         }
         
@@ -650,7 +651,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             }
             let size = UIImage.getImageSize(arr[i])
 
-            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width: size.width/2, height: size.height/2))
+            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width:18 * (size.width/2)/(size.height/2), height: 18))
             imgView.kf.setImage(with: URL.init(string: arr[i]))
             imgView.centerY = bgView.centerY
             bgView.addSubview(imgView)

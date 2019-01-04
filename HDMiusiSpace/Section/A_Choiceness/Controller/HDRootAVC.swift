@@ -82,7 +82,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     }
     
     private func refresh() {
-        
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
         self.viewModel.dataRequest(deviceno: deviceno, myTableView: self.myTableView , self)
         self.viewModel.dataRequestForBanner()
@@ -237,7 +236,7 @@ extension HDRootAVC {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
+        
         let model = infoModel?.data![indexPath.row]
         if model?.type.int == 0 {//标签
             return 45

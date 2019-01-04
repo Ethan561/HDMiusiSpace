@@ -42,7 +42,7 @@
                         <rect key="frame" x="20" y="59.5" width="159" height="25"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修复|文博在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsI-Sp-7WK">
-                                <rect key="frame" x="0.0" y="3.5" width="84" height="18"/>
+                                <rect key="frame" x="0.0" y="3.5" width="81" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="3h1-ye-Z7L"/>
                                 </constraints>
@@ -51,22 +51,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJV-Xd-eLa">
-                                <rect key="frame" x="124" y="2" width="35" height="21"/>
+                                <rect key="frame" x="121" y="2" width="38" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="7b6-IP-2Em"/>
-                                    <constraint firstAttribute="width" constant="35" id="fdP-ne-hVT"/>
+                                    <constraint firstAttribute="width" constant="38" id="fdP-ne-hVT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="12" image="jx_icon_zan">
+                                <state key="normal" title="123" image="jx_icon_zan">
                                     <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dov-79-n0a">
-                                <rect key="frame" x="84" y="2" width="35" height="21"/>
+                                <rect key="frame" x="81" y="2" width="38" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="12" image="jx_iocn_pl">
+                                <state key="normal" title="123" image="jx_iocn_pl">
                                     <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -78,7 +78,7 @@
                             <constraint firstItem="Dov-79-n0a" firstAttribute="centerY" secondItem="tJV-Xd-eLa" secondAttribute="centerY" id="49e-Ob-5KM"/>
                             <constraint firstItem="FsI-Sp-7WK" firstAttribute="leading" secondItem="yJl-rU-7UU" secondAttribute="leading" id="8ue-vB-kb3"/>
                             <constraint firstItem="Dov-79-n0a" firstAttribute="leading" secondItem="FsI-Sp-7WK" secondAttribute="trailing" id="Mhw-S1-ROF"/>
-                            <constraint firstItem="tJV-Xd-eLa" firstAttribute="leading" secondItem="Dov-79-n0a" secondAttribute="trailing" constant="5" id="bhJ-ku-qfz"/>
+                            <constraint firstItem="tJV-Xd-eLa" firstAttribute="leading" secondItem="Dov-79-n0a" secondAttribute="trailing" constant="2" id="bhJ-ku-qfz"/>
                             <constraint firstItem="Dov-79-n0a" firstAttribute="height" secondItem="tJV-Xd-eLa" secondAttribute="height" id="epO-60-IYf"/>
                             <constraint firstItem="tJV-Xd-eLa" firstAttribute="centerY" secondItem="yJl-rU-7UU" secondAttribute="centerY" id="hrZ-N3-JnL"/>
                             <constraint firstItem="Dov-79-n0a" firstAttribute="width" secondItem="tJV-Xd-eLa" secondAttribute="width" id="jgK-4a-GvR"/>

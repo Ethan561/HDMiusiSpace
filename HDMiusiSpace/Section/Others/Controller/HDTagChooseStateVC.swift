@@ -28,8 +28,10 @@ class HDTagChooseStateVC: UIViewController {
         
         //加载标签
         loadTagView()
-        
+        //noti,返回重选
+        NotificationCenter.default.addObserver(self, selector: #selector(NowResetTags), name: NSNotification.Name(rawValue: "resetSelectedStateTags"), object: nil)
     }
+    
     //初始化标签数据
     func loadMyDatas() {
         //
@@ -51,14 +53,17 @@ class HDTagChooseStateVC: UIViewController {
             tagStrArray.append(tagmodel.title!)
         }
     }
-    
-    func loadTagView() {
-        let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
-        tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
+    lazy var tagView : HD_SSL_TagView = {
+        let tagview = HD_SSL_TagView.init(frame: tagBgView.bounds)
+        tagview.tagViewType = TagViewType.TagViewTypeSingleSelection
+        tagview.userTagType = UserTagType.UserTagTypeState
         
-        tagView.BlockFunc { (array) in
+        tagview.BlockFunc { (array) in
             //1、保存选择的标签
             print(array)
+            
+            self.selectedtagArray.removeAll() //移除所有
+            
             for i: Int in 0..<array.count {
                 
                 let index : Int = Int(array[i] as! String)!       //标签下标
@@ -66,15 +71,45 @@ class HDTagChooseStateVC: UIViewController {
                 self.selectedtagArray.append(self.tagList[index]) //保存选择标签
             }
             
+            HDDeclare.shared.stateTagArray = self.selectedtagArray //本地保存已选标签
+            
             //2、跳转vc
             self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
         }
+        return tagview
+    }()
+    func loadTagView() {
         tagView.titleArray = tagStrArray
         
         tagBgView.addSubview(tagView)
         tagView.loadTagsView()
     }
-    
+    //MARK:--单选标签可以重置，多选标签不可重置
+    @objc func NowResetTags(){
+        print(selectedtagArray)
+        
+        let dataArr = HDDeclare.shared.stateTagArray!//已选职业标签
+        
+        var arr:[String] = Array.init()
+        
+        for i in 0..<dataArr.count {
+            
+            let sele = dataArr[i] //已选标签
+            
+            for i in 0..<tagList.count {
+                
+                let item = tagList[i]
+                
+                if item.label_id == sele.label_id { //找到已选标签位置
+                    print(i)
+                    arr.append(String(i))
+                }
+            }
+        }
+        
+        tagView.reloadMySelectedTags(arr) //重置
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -82,19 +117,10 @@ class HDTagChooseStateVC: UIViewController {
     }
     //
     @IBAction func action_back(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetSelectedCareerTags"), object: selectedtagArray)
+        
         self.dismiss(animated: true) {
             //
-        }
-    }
-    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "HD_PushToChooseVCLine" {
-            
-            let vc:HDTagChooseVC = segue.destination as! HDTagChooseVC
-            vc.selectedtagArray = selectedtagArray
         }
     }
 

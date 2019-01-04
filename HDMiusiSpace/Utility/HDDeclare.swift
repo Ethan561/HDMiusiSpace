@@ -89,6 +89,9 @@ final class HDDeclare: NSObject {
     //标签
     var allTagsArray : [HDSSL_TagData]? //所有标签数据
     var selectedTagArray : [HDSSL_Tag]? //已选标签数组
+    var careerTagArray : [HDSSL_Tag]? //已选职业标签数组
+    var stateTagArray  : [HDSSL_Tag]? //已选状态标签数组
+    var funnyTagArray  : [HDSSL_Tag]? //已选喜好标签数组
     
     //选择当前的定位 Model
     var locModel = HDLY_LocModel()

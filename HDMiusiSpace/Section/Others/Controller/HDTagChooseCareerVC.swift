@@ -44,6 +44,31 @@ class HDTagChooseCareerVC: UIViewController {
     var dataArr = [HDSSL_TagData]()                  //标签类别数组
     var tagList = [HDSSL_Tag]()                      //标签数组
     
+    //标签页
+    lazy var tagView : HD_SSL_TagView = {
+        let tagview = HD_SSL_TagView.init(frame: TagBgView.bounds)
+        tagview.tagViewType = TagViewType.TagViewTypeSingleSelection
+        tagview.userTagType = UserTagType.UserTagTypeCareer
+        
+        tagview.BlockFunc { (array) in
+            //1、保存选择标签
+            print(array)
+            
+            self.selectedtagArray.removeAll() //移除所有
+            
+            for i: Int in 0..<array.count {
+                let index : Int = Int(array[i] as! String)! //标签下标
+                
+                self.selectedtagArray.append(self.tagList[index]) //保存选择标签
+            }
+            //职业
+            HDDeclare.shared.careerTagArray = self.selectedtagArray //本地保存已选标签
+            
+            //2、跳转vc
+            self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
+        }
+        return tagview
+    }()
     //MVVM
     let viewModel: HDSSL_TagViewModel = HDSSL_TagViewModel()
     
@@ -99,6 +124,35 @@ class HDTagChooseCareerVC: UIViewController {
             
         }
         
+        //返回重选
+        NotificationCenter.default.addObserver(self, selector: #selector(NowResetTags), name: NSNotification.Name(rawValue: "resetSelectedCareerTags"), object: nil)
+        
+    }
+    //MARK:--单选标签可以重置，多选标签不可重置
+    @objc func NowResetTags(){
+        print(selectedtagArray)
+        
+        let dataArr = HDDeclare.shared.careerTagArray!//已选职业标签
+        
+        var arr:[String] = Array.init()
+        
+        for i in 0..<dataArr.count {
+            
+            let sele = dataArr[i] //已选标签
+            
+            for i in 0..<tagList.count {
+                
+                let item = tagList[i]
+                
+                if item.label_id == sele.label_id { //找到已选标签位置
+                    print(i)
+                    arr.append(String(i))
+                }
+            }
+        }
+        
+        tagView.reloadMySelectedTags(arr) //重置
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -134,24 +188,10 @@ class HDTagChooseCareerVC: UIViewController {
             weakSelf?.loadTagView() //加载tag view
         }
     }
+    
+    
     func loadTagView() {
-        let tagView = HD_SSL_TagView.init(frame: TagBgView.bounds)
-        tagView.tagViewType = TagViewType.TagViewTypeSingleSelection
-        
-        tagView.BlockFunc { (array) in
-            //1、保存选择标签
-            print(array)
-            for i: Int in 0..<array.count {
-                let index : Int = Int(array[i] as! String)! //标签下标
-//                let str : String = self.tagStrArray[index] //
-                
-                self.selectedtagArray.append(self.tagList[index]) //保存选择标签
-            }
-            
-            
-            //2、跳转vc
-            self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
-        }
+
         tagView.titleArray = tagStrArray  //
         
         TagBgView.addSubview(tagView)
@@ -163,18 +203,12 @@ class HDTagChooseCareerVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //
         if segue.identifier == "HD_PushToChooseSateVCLine" {
-            let vc:HDTagChooseStateVC = segue.destination as! HDTagChooseStateVC
-            vc.selectedtagArray = selectedtagArray
+//            let vc:HDTagChooseStateVC = segue.destination as! HDTagChooseStateVC
+//            vc.selectedtagArray = selectedtagArray
         }
     }
 }

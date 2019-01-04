@@ -57,8 +57,10 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
         }
         
         let cityName: String = HDDeclare.shared.locModel.cityName
+        let latitude = HDDeclare.shared.locModel.latitude
+        let longitude = HDDeclare.shared.locModel.longitude
         tableView.ly_startLoading()
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: longitude, latitude: latitude, keywords: "", api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
@@ -84,7 +86,9 @@ class HDLY_MuseumSubVC: HDItemBaseVC {
             token = HDDeclare.shared.api_token!
         }
         let cityName: String = HDDeclare.shared.locModel.cityName
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: "", latitude: "", keywords: "", api_token: token), showHud: false, loadingVC: self, success: { (result) in
+        let latitude = HDDeclare.shared.locModel.latitude
+        let longitude = HDDeclare.shared.locModel.longitude
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionMuseumList(type: type, skip: page, take: 10, city_name: cityName , longitude: longitude, latitude: latitude, keywords: "", api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

@@ -146,7 +146,7 @@ extension HDLY_LocationTool {
                     self.city = placeMark?.locality
                     
                     let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
-                    if cityName == nil {
+                    if cityName != nil {
                         HDDeclare.shared.locModel.cityName = self.city ?? ""
                         HDDeclare.shared.locModel.latitude = "\(newLocation!.coordinate.latitude)"
                         HDDeclare.shared.locModel.longitude = "\(newLocation!.coordinate.longitude)"

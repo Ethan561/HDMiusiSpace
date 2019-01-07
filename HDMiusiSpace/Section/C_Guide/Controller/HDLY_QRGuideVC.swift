@@ -18,8 +18,7 @@ class HDLY_QRGuideVC: HDItemBaseVC {
         curr.setupQRCode(self)
         weak var weakSelf = self
         curr.tellMeString(backBlock: { (str) in
-            let currID:Int = Int(str)!
-           weakSelf?.showWebVC(url: "")
+           weakSelf?.showWebVC(url: str)
         })
         return curr
     }()
@@ -33,11 +32,20 @@ class HDLY_QRGuideVC: HDItemBaseVC {
         self.title = self.titleName
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.codeView.rerunning()
+    }
+    
     func showWebVC(url: String) {
-        let webVC =  HDLY_WKWebVC()
-        webVC.urlPath = url
-        webVC.titleName = self.titleName
-        self.navigationController?.pushViewController(webVC, animated: true)
+        if url.contains("http") {
+            let webVC =  HDItemBaseWebVC()
+            webVC.urlPath = url
+            webVC.titleName = self.titleName
+            self.navigationController?.pushViewController(webVC, animated: true)
+        }else {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "二维码无效，请重新扫描")
+        }
     }
     
 

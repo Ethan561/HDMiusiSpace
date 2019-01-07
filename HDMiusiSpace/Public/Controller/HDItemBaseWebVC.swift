@@ -56,6 +56,8 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     @objc func refreshAction() {
         if urlPath != nil {
             loadingURL(urltring: urlPath!)
+            //监听进度
+            self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
         }
     }
     
@@ -64,8 +66,7 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
         self.webView.navigationDelegate = self
         self.webView.uiDelegate = self
         self.webView.allowsBackForwardNavigationGestures = true
-        //监听进度
-        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
+  
         
         weak var weakSelf = self
         //空数据界面
@@ -114,6 +115,8 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
                 self.progressView.setProgress(0.99999, animated: true)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.5) {
                     self.progressView.isHidden = true
+                    self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
+
                 }
             }
         }else {
@@ -170,7 +173,6 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     }
     
     deinit {
-        webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
 
 }

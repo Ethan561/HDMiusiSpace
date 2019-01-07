@@ -344,6 +344,9 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
     
     @objc  func playOrPauseAction(_ sender: UIButton) {
         if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains(".mp3"))! {
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
             //
             if player.state == .playing {
                 player.pause()

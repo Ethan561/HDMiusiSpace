@@ -162,6 +162,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         
         self.player.playerPlayStateChanged = { (asset,state) -> () in
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
             _self?.playState = state
             if state == ZFPlayerPlaybackState.playStatePaused {
                 _self?.uploadRecordActions()
@@ -175,6 +178,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             //LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
         }
+        
     }
     
     

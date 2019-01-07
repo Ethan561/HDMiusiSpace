@@ -105,6 +105,8 @@
 		<string>weixin</string>
 		<string>baidumap</string>
 		<string>iosamap</string>
+		<string>qqmap</string>
+		<string></string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

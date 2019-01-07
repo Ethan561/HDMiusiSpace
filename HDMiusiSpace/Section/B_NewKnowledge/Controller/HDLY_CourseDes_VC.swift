@@ -119,13 +119,21 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.videoPlayer.playerDidToEnd = { (asset) -> () in
             
         }
+        self.videoPlayer.playerPlayStateChanged = { (asset,state) -> () in
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
+        }
+        
     }
     
     @IBAction func playClick(_ sender: UIButton) {
         guard let course = infoModel?.data else {
             return
         }
-        
+        if ZFReachabilityManager.shared().isReachable == false {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+        }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
@@ -141,7 +149,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let course = infoModel?.data else {
             return
         }
-        
+
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()

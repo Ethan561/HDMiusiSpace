@@ -93,6 +93,60 @@ final class HDLY_LocationTool: NSObject,CLLocationManagerDelegate {
         
     }
     
+    
+    //高德地图导航
+    class func onNavForGaoDeMap(fromLoc:CLLocationCoordinate2D, endLoc: CLLocationCoordinate2D, endLocName: String) {
+        
+        var openUrlStr: String?
+        
+        if UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!) {
+            
+            //openUrlStr = "baidumap://map/direction?origin=latlng:\(fromLoc.latitude),\(fromLoc.longitude)|name:我的位置&destination=latlng:\(endLoc.latitude),\(endLoc.longitude)|name:\(endLocName)&mode=driving"
+            openUrlStr = "iosamap://navi?sourceApplication=随便写&backScheme=随便写&lat=\(endLoc.latitude)&lon=\(endLoc.longitude)&dev=0&style=2"
+
+        }
+
+        if openUrlStr != nil {
+            let openUrl = URL.init(string: openUrlStr!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            
+            //根据iOS系统版本，分别处理
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(openUrl!, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                })
+            } else {
+                UIApplication.shared.openURL(openUrl!)
+            }
+        }
+        
+    }
+    
+    //腾讯地图导航
+    class func onNavForQQMap(fromLoc:CLLocationCoordinate2D, endLoc: CLLocationCoordinate2D, endLocName: String) {
+        
+        var openUrlStr: String?
+        
+        if UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!) {
+            openUrlStr = String.init(format: "qqmap://map/routeplan?from=我的位置&type=drive&tocoord=%@,%@&to=%@&coord_type=1&policy=0", "\(endLoc.latitude)","\(endLoc.longitude)",endLocName)
+        }
+        
+        if openUrlStr != nil {
+            let openUrl = URL.init(string: openUrlStr!.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+            
+            //根据iOS系统版本，分别处理
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(openUrl!, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                })
+            } else {
+                UIApplication.shared.openURL(openUrl!)
+            }
+        }
+        
+    }
+    
 }
 
 //MARK: -- CLLocationManagerDelegate ---

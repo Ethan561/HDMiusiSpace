@@ -9,7 +9,7 @@
 import UIKit
 //import ESPullToRefresh
 
-class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
+class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     var dataArr =  [MuseumListData]()
     var type = 1 //1最近2最火
     //MVVM
@@ -408,6 +408,13 @@ extension HDLY_RootCSubVC {
     
     func orderBuyAction(_ model: OrderBuyInfoData) {
         guard let goodId = Int(model.goodsID ?? "") else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
             return
         }
         publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: Int(model.cateID!)!, goods_id: goodId, pay_type: 1, self)

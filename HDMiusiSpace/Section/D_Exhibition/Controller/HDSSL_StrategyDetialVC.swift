@@ -50,7 +50,6 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     }()
     
     var webViewH:CGFloat = 0
-    
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
     

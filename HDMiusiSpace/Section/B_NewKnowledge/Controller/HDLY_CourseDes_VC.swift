@@ -688,10 +688,10 @@ extension HDLY_CourseDes_VC {
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
             feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
-            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 45, width: 120, height: 100)
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 90, width: 120, height: 100)
             feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
             feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
-            self.topView.addSubview(feedbackChooseTip!)
+            self.view.addSubview(feedbackChooseTip!)
             showFeedbackChooseTip = true
             weak var weakS = self
             feedbackChooseTip?.tapBlock = { (index) in

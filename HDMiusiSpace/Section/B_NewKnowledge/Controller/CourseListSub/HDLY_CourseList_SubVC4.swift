@@ -24,8 +24,14 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         bgView.layer.cornerRadius = 19
         bottomView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_nothing", titleStr: "还没有内容呢～", detailStr: "", btnTitleStr: "") {
+            
+        }
+        emptyView.contentViewY = 0
+        emptyView.titleLabTextColor = UIColor.lightGray
+        emptyView.backgroundColor = UIColor.white
+        emptyView.contentView.backgroundColor = UIColor.clear
+        self.tableView.ly_emptyView = emptyView
 
         dataRequest()
     }
@@ -67,6 +73,10 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     }
     
     @IBAction func leaveMsgBtnAction(_ sender: Any) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         let vc:HDLY_LeaveMsg_VC = HDLY_LeaveMsg_VC.init()
         vc.courseId = self.courseId
         self.navigationController?.pushViewController(vc, animated: true)

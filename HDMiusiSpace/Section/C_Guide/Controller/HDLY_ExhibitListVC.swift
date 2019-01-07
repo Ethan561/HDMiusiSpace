@@ -34,6 +34,7 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         dataRequest()
         addRefresh()
         player.delegate = self
+        player.showFloatingBtn = true
         
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV

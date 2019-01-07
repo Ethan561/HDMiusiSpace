@@ -52,6 +52,16 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.tableView.ly_emptyView = empV
     }
     
+    var isNeedRefresh = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNeedRefresh == true {
+            refreshAction()
+            isNeedRefresh = false
+        }
+    }
+    
+    
     func addRefresh() {
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
@@ -281,6 +291,7 @@ extension HDLY_RootCSubVC {
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
                     self.navigationController?.pushViewController(logVC, animated: true)
+                    isNeedRefresh = true
                     return
                 }
                 //获取订单信息
@@ -318,6 +329,7 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
                 self.navigationController?.pushViewController(logVC, animated: true)
+                isNeedRefresh = true
                 return
             }
 

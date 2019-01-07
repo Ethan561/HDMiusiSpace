@@ -44,6 +44,11 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataRequest()
+    }
+    
     func dataRequest()  {
         guard let idnum = self.courseId else {
             return

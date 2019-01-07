@@ -70,7 +70,6 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
         setupvideoPlayer()
-        dataRequest()
         self.bottomHCons.constant = 0
         self.listenBgView.isHidden = true
         bindViewModel()
@@ -84,7 +83,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         super.viewWillAppear(animated)
         self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
-        
+        dataRequest()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -315,6 +315,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                     self.listenBgView.isHidden = false
 
                 }else {
+                    self.buyBtn.setAttributedTitle(nil, for: .normal)
                     self.buyBtn.setTitle("立即学习", for: .normal)
                     self.listenBgView.isHidden = true
                 }

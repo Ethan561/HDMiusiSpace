@@ -106,7 +106,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         bindViewModel()
         
         wwanTipView.isHidden = true
-        ZFReachabilityManager.shared().startMonitoring()
         
     }
     

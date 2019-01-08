@@ -32,7 +32,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-Ln-JQv">
-                        <rect key="frame" x="251" y="7" width="22" height="22"/>
+                        <rect key="frame" x="251" y="3" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="bHb-Yu-Cgw"/>
+                            <constraint firstAttribute="width" secondItem="1dP-Ln-JQv" secondAttribute="height" multiplier="1:1" id="n4N-wY-Pt9"/>
+                        </constraints>
                         <state key="normal" image="xz_icon_share_black_default"/>
                         <connections>
                             <action selector="shareAction:" destination="nVa-Fx-Wxp" eventType="touchUpInside" id="mzx-Wa-3Rr"/>
@@ -47,6 +51,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="pGz-3v-D21" firstAttribute="top" secondItem="aSq-aL-1dw" secondAttribute="top" constant="5" id="423-dx-btc"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pGz-3v-D21" secondAttribute="trailing" constant="80" id="GQ4-nS-j8p"/>
                     <constraint firstAttribute="bottom" secondItem="bm8-eU-k9q" secondAttribute="bottom" id="H3o-QY-4Ok"/>
                     <constraint firstItem="bm8-eU-k9q" firstAttribute="top" secondItem="aSq-aL-1dw" secondAttribute="top" id="Qfw-xe-YSg"/>
                     <constraint firstItem="1dP-Ln-JQv" firstAttribute="centerY" secondItem="pGz-3v-D21" secondAttribute="centerY" id="Rzg-YB-N1c"/>
@@ -54,7 +59,6 @@
                     <constraint firstItem="hAV-xn-H8X" firstAttribute="top" secondItem="pGz-3v-D21" secondAttribute="bottom" constant="13" id="ZWe-bi-uKY"/>
                     <constraint firstItem="1dP-Ln-JQv" firstAttribute="leading" secondItem="pGz-3v-D21" secondAttribute="trailing" constant="30" id="e6o-li-vaW"/>
                     <constraint firstItem="hAV-xn-H8X" firstAttribute="leading" secondItem="pGz-3v-D21" secondAttribute="leading" id="fX5-t1-CjI"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1dP-Ln-JQv" secondAttribute="trailing" id="nKd-xx-7H7"/>
                     <constraint firstAttribute="trailing" secondItem="hAV-xn-H8X" secondAttribute="trailing" constant="10" id="oLe-qj-r7C"/>
                     <constraint firstItem="pGz-3v-D21" firstAttribute="leading" secondItem="bm8-eU-k9q" secondAttribute="trailing" constant="25" id="zzO-Lh-6vw"/>
                 </constraints>

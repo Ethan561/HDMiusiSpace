@@ -44,7 +44,12 @@ class HDLY_QRGuideVC: HDItemBaseVC {
             webVC.titleName = self.titleName
             self.navigationController?.pushViewController(webVC, animated: true)
         }else {
-            HDAlert.showAlertTipWith(type: .onlyText, text: "二维码无效，请重新扫描")
+            let alert:UIAlertController = UIAlertController.init(title: "", message: "二维码无效，请重新扫描", preferredStyle: UIAlertControllerStyle.alert)
+            let cancle = UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel) { (action) in
+                self.codeView.rerunning()
+            }
+            alert.addAction(cancle)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

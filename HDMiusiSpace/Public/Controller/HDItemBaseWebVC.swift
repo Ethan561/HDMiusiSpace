@@ -31,19 +31,12 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
         self.webView.addSubview(self.progressView)
         self.view.addSubview(webView)
         
-        setupWkWebView()
         setupProgressView()
+        setupWkWebView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if urlPath != nil {
-            loadingURL(urltring: urlPath!)
-            webView.scrollView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action: #selector(refreshAction))
-        }else {
-            webView.scrollView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
-            webView.scrollView.ly_showEmptyView()
-        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,8 +49,6 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     @objc func refreshAction() {
         if urlPath != nil {
             loadingURL(urltring: urlPath!)
-            //监听进度
-            self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
         }
     }
     
@@ -88,6 +79,15 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
         }else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        //监听进度
+        self.webView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.new, context: nil)
+        if urlPath != nil {
+            loadingURL(urltring: urlPath!)
+            webView.scrollView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action: #selector(refreshAction))
+        }else {
+            webView.scrollView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            webView.scrollView.ly_showEmptyView()
+        }
     }
     
     //MARK: ---------- 初始化progressView ----------
@@ -115,8 +115,6 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
                 self.progressView.setProgress(0.99999, animated: true)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.5) {
                     self.progressView.isHidden = true
-                    self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
-
                 }
             }
         }else {
@@ -136,6 +134,10 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     //完成加载
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         LOG("_____完成加载_____")
+        self.progressView.setProgress(0.99999, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.5) {
+            self.progressView.isHidden = true
+        }
         self.webView.scrollView.ly_hideEmptyView()
     }
     
@@ -173,8 +175,9 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     }
     
     deinit {
+        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
-
+    
 }
 
 

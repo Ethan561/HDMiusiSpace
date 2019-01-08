@@ -89,7 +89,7 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
             
             let nickname: String = dic!["data"] as! String
             self.declare.nickname = nickname
-            HDAlert.showAlertTipWith(type: .onlyText, text: "昵称更新成功")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.back()
             })

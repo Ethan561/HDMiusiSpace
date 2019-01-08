@@ -28,6 +28,7 @@ class HDZQ_PersonOthersHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         followBtn.layer.cornerRadius = 15
+        followBtn.layer.masksToBounds = true
         avatar.layer.cornerRadius = 30
         avatar.clipsToBounds = true
     }

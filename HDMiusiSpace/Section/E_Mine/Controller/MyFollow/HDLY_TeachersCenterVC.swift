@@ -139,8 +139,12 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         
         if model.isFocus == 1 {
             tabHeader.followBtn.setTitle("已关注", for: .normal)
+            self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
         } else {
             tabHeader.followBtn.setTitle("+关注", for: .normal)
+            self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
         }
         
         tabHeader.followBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
@@ -163,8 +167,12 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         
         if model.isFocus == 1 {
             tabHeader.followBtn.setTitle("已关注", for: .normal)
+            self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
         } else {
             tabHeader.followBtn.setTitle("+关注", for: .normal)
+            self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
         }
         
         tabHeader.followBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
@@ -182,8 +190,12 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
             if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
                 if is_focus == 1 {
                     self.tabHeader.followBtn.setTitle("已关注", for: .normal)
+                    self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
                 }else {
                     self.tabHeader.followBtn.setTitle("+关注", for: .normal)
+                self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.tabHeader.followBtn.size), for: .normal)
+
                 }
             }
             if let msg:String = dic!["msg"] as? String{

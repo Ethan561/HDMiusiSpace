@@ -51,7 +51,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         initCollectionView()
         self.title = "报错"
         
-        textView.placeholder = "请输入你想发布的内容..."
+        textView.placeholder = "可以再描述一下～"
         textView.returnKeyType = UIReturnKeyType.done
         textView.delegate = self
         
@@ -168,7 +168,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         
     }
     func showViewData() {
-        titleL.text = errorModel?.data?.title
+        titleL.text = errorModel?.data?.articleTitle
         imgV.kf.setImage(with: URL.init(string: (errorModel?.data?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
     }
     

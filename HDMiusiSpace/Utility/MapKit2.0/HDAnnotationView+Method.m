@@ -299,9 +299,13 @@
         
         UIImage *myImage = [UIImage imageNamed:Placeholder_PIN];
         NSString *imgStr = imgPath;
-        NSURL *poiImgURL = [NSURL URLWithString:imgStr];
-        self.annotation.poiImgPath = imgPath;
-        [self sd_setImageWithURL:poiImgURL forState:UIControlStateNormal placeholderImage:myImage];
+        if ([imgStr containsString:@"http"]) {
+            NSURL *poiImgURL = [NSURL URLWithString:imgStr];
+            self.annotation.poiImgPath = imgPath;
+            [self sd_setImageWithURL:poiImgURL forState:UIControlStateNormal placeholderImage:myImage];
+        }else {
+            [self setImage:[UIImage imageNamed:imgStr] forState:UIControlStateNormal];
+        }
         [self.bigAnn removeFromSuperview];
         [[NSNotificationCenter defaultCenter] removeObserver:self.bigAnn];
         self.bigAnn = nil;

@@ -73,6 +73,10 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         let ann:HDAnnotation = noti.object as! HDAnnotation
         let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
         vc.exhibition_id = Int(ann.identify) ?? 0
+        let userDefaults = UserDefaults.standard
+        let key = String.init(format: "isReadPin_%@", ann.identify)
+        userDefaults.set("1", forKey: key)
+//        self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -190,14 +194,14 @@ extension HDLY_MapGuideVC {
                 ann.audio = model.audio
                 ann.title = model.title
                 ann.annType = kAnnotationType_One
-                let key = "annIsRead_\(model.exhibitionID)"
-                let isRead: Bool = userDef.bool(forKey: key)
-                if isRead == true {
-                    ann.annType = kAnnotationType_ReadOne
-                }
                 ann.star = model.star.string
                 ann.type = model.type
                 ann.identify = model.exhibitionID.string
+                let key = "isReadPin_\(ann.identify!)"
+                let isRead: String? = userDef.object(forKey: key) as? String
+                if isRead == "1" {
+                    ann.annType = kAnnotationType_ReadOne
+                }
                 ann.size = CGSize.init(width: 35, height: 35)
                 mapTemp.add(ann, animated: true)
             })
@@ -251,8 +255,9 @@ extension HDLY_MapGuideVC {
                 player.play(file: Music.init(name: "", url:URL.init(string: ann.audio)!))
                 player.fileno = ann.identify
                 ann.annType = kAnnotationType_ReadOne
-                let key = "annIsRead_" + ann.identify
-                UserDefaults.standard.set(true, forKey: key)
+                let key = String.init(format: "isReadPin_%@", ann.identify)
+                UserDefaults.standard.set("1", forKey: key)
+//                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
             }
             playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
         }

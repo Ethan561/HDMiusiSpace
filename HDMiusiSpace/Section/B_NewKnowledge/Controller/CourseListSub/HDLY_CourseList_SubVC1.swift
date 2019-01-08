@@ -31,6 +31,14 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
     
+    var playState: ZFPlayerPlaybackState =  ZFPlayerPlaybackState.playStateUnknown {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var selectRow = -1
+    var selectSection = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.、
@@ -40,7 +48,6 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
         self.bottomHCons.constant = 0
         dataRequest()
         bindViewModel()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -182,7 +189,7 @@ extension HDLY_CourseList_SubVC1 {
             var listModel = sectionModel.chapterList[indexPath.row]
             listModel.isNeedBuy = self.isNeedBuy
             cell?.model = listModel
-            
+            cell?.setSelected(true, animated: false)
         }
         return cell!
     }
@@ -203,7 +210,7 @@ extension HDLY_CourseList_SubVC1 {
             else if listModel.freeType == 2 {
                 delegate?.playWithCurrentPlayUrl(listModel)
             }
-        }else {
+        } else {
             delegate?.playWithCurrentPlayUrl(listModel)
         }
     }

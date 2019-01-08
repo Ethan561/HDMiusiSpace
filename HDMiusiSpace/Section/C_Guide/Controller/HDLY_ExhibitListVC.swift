@@ -40,6 +40,12 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         self.tableView.ly_emptyView = empV
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+        
+    }
+    
     func dataRequest()  {
         let token:String =  HDDeclare.shared.api_token ?? ""
         self.tableView.ly_startLoading()

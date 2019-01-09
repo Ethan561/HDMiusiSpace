@@ -315,6 +315,13 @@ extension HDSSL_dMuseumDetailVC {
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section > 0 {
+            if section > 2 {
+                let model = self.infoModel!.dataList![section-2]
+                if model.type == 5{
+                    return 60
+                }
+            }
+            
             return 45
         }
         return 0.01
@@ -352,6 +359,11 @@ extension HDSSL_dMuseumDetailVC {
                 }else if model.type == 5 {
                     header.titleL.text = model.listen?.categoryTitle
                     header.moreBtn.setTitle("查看全部", for: .normal)
+                    let subTitle = UILabel.init(frame: CGRect.init(x: 25, y: 40, width: 150, height: 20))
+                    subTitle.text = "镇馆之宝先了解"
+                    subTitle.font = UIFont.systemFont(ofSize: 12)
+                    subTitle.textColor = UIColor.HexColor(0x999999)
+                    header.addSubview(subTitle)
                 }
             }
             return header

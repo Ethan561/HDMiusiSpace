@@ -49,6 +49,18 @@
                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHQ-yh-48m">
+                        <rect key="frame" x="268" y="257" width="32" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="POI-pW-a80"/>
+                            <constraint firstAttribute="height" constant="21" id="lRf-cw-uhp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="12" image="jx_iocn_pl">
+                            <color key="titleColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="HHy-cE-bDd" secondAttribute="trailing" constant="20" id="37a-GX-KNg"/>
@@ -58,13 +70,16 @@
                     <constraint firstItem="L3L-fR-lXt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="QvO-oN-CIw"/>
                     <constraint firstItem="XaC-bb-ScR" firstAttribute="top" secondItem="HHy-cE-bDd" secondAttribute="bottom" constant="16" id="W6G-Jd-Ds6"/>
                     <constraint firstItem="XaC-bb-ScR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZFa-Q5-o0Q"/>
+                    <constraint firstItem="gHQ-yh-48m" firstAttribute="centerY" secondItem="L3L-fR-lXt" secondAttribute="centerY" id="bdu-RU-T12"/>
                     <constraint firstAttribute="trailing" secondItem="u97-T3-trJ" secondAttribute="trailing" constant="20" id="jUY-G7-DdL"/>
                     <constraint firstItem="HHy-cE-bDd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="rWb-lW-NvY"/>
+                    <constraint firstAttribute="trailing" secondItem="gHQ-yh-48m" secondAttribute="trailing" constant="20" id="wL9-pZ-fgL"/>
                     <constraint firstItem="u97-T3-trJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="zNL-48-kOg"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="commentBtn" destination="gHQ-yh-48m" id="wTP-HL-Q3U"/>
                 <outlet property="imgV" destination="HHy-cE-bDd" id="EUd-hG-xnw"/>
                 <outlet property="likeBtn" destination="u97-T3-trJ" id="Y4n-9p-qfh"/>
                 <outlet property="tagL" destination="L3L-fR-lXt" id="Y5W-E8-oNF"/>
@@ -74,6 +89,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="jx_iocn_pl" width="12" height="12"/>
         <image name="jxtj_img3" width="140" height="100"/>
         <image name="zl_icon_star_gray" width="14" height="14"/>
     </resources>

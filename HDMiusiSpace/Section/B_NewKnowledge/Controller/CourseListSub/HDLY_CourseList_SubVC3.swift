@@ -59,6 +59,11 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataRequest()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         audioPlayer.stop()
@@ -463,13 +468,20 @@ extension  HDLY_CourseList_SubVC3 {
         }
         weak var _self = self
         tipView.sureBlock = {
-            _self?.orderBuyAction()
+            _self?.orderBuyAction(model)
         }
         
     }
     
-    func orderBuyAction() {
+    func orderBuyAction( _ model: OrderBuyInfoData) {
         guard let idnum = self.courseId else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
             return
         }
         publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: Int(idnum) ?? 0, pay_type: 1, self)

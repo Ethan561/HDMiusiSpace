@@ -9,7 +9,7 @@
 import UIKit
 //import ESPullToRefresh
 
-class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
+class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate{
     var dataArr =  [MuseumListData]()
     var type = 1 //1最近2最火
     //MVVM
@@ -46,11 +46,21 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.dataRequest()
         addRefresh()
         bindViewModel()
-        NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
         
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
     }
+    
+    var isNeedRefresh = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNeedRefresh == true {
+            refreshAction()
+            isNeedRefresh = false
+        }
+    }
+    
     
     func addRefresh() {
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
@@ -86,7 +96,7 @@ class HDLY_RootCSubVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         let token = HDDeclare.shared.api_token ?? ""
         let latitude = HDDeclare.shared.locModel.latitude
         let longitude = HDDeclare.shared.locModel.longitude
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: longitude, latitude: latitude, type: type, skip: page, take: 10, api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideMuseumList(city_name: HDDeclare.shared.locModel.cityName, longitude: longitude, latitude: latitude, type: type, skip: page, take: 10, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.ly_endLoading()
@@ -281,6 +291,7 @@ extension HDLY_RootCSubVC {
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
                     self.navigationController?.pushViewController(logVC, animated: true)
+                    isNeedRefresh = true
                     return
                 }
                 //获取订单信息
@@ -318,6 +329,7 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
                 self.navigationController?.pushViewController(logVC, animated: true)
+                isNeedRefresh = true
                 return
             }
 
@@ -396,6 +408,13 @@ extension HDLY_RootCSubVC {
     
     func orderBuyAction(_ model: OrderBuyInfoData) {
         guard let goodId = Int(model.goodsID ?? "") else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
             return
         }
         publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: Int(model.cateID!)!, goods_id: goodId, pay_type: 1, self)

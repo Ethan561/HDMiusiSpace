@@ -119,6 +119,13 @@ class HDItemBaseVC: UIViewController {
 //        vc.navigationController?.pushViewController(webVC, animated: true)
     }
     
+    func pushToMyWalletVC() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDSSL_MyWalletVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_MyWalletVC") as! HDSSL_MyWalletVC
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func didSelectItemAtPagerViewCell(model: BbannerModel , vc: UIViewController) {
         //cate_id: 轮播图类型1课程，2轻听随看，3资讯，4展览，5活动
         if model.cate_id?.int == 1 {

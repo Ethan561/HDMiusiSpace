@@ -34,6 +34,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     var sharePath: String?
     var orderID  :Int?
     var shareView:HDLY_ShareView?
+    var shareImage: UIImage? //分享图片
     //mvvm
     var viewModel: HDZQ_MyViewModel = HDZQ_MyViewModel()
     var shareModel: HDSSL_shareOrderModel!
@@ -85,6 +86,15 @@ class HDSSL_orderShareVC: HDItemBaseVC {
         
     }
     @IBAction func action_share(_ sender: UIButton) {
+        //1、截图保存图片
+        shareImage = screenshotPicture()
+        //2、上传图片
+        if shareImage != nil {
+            showSahreView()
+        }
+    }
+    func showSahreView() {
+        //3、分享
         let tipView: HDLY_ShareView = HDLY_ShareView.createViewFromNib() as! HDLY_ShareView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         tipView.delegate = self
@@ -94,6 +104,26 @@ class HDSSL_orderShareVC: HDItemBaseVC {
         shareView = tipView
     }
     
+    //MARK:-截屏保存图片
+    func screenshotPicture() -> UIImage? {
+        
+        
+        let scale: CGFloat = UIScreen.main.scale
+        
+        UIGraphicsBeginImageContextWithOptions(CGSize.init(width: self.view.frame.size.width, height: self.view.frame.size.height-80), false, scale)
+        
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        if img != nil {
+            UIImageWriteToSavedPhotosAlbum(img!, nil, nil, nil)
+        }
+        
+        return img
+    }
     /*
     // MARK: - Navigation
 
@@ -109,19 +139,13 @@ class HDSSL_orderShareVC: HDItemBaseVC {
 extension HDSSL_orderShareVC: UMShareDelegate {
     func shareDelegate(platformType: UMSocialPlatformType) {
         
-        guard let url  = self.sharePath else {
-            return
-        }
-        
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
-        //创建网页内容对象
-        let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: "缪斯空间", descr: "归属感，缪斯空间", thumImage: thumbURL)
+        //创建图片内容对象
+        let shareObject = UMShareImageObject.init()
         
-        //设置网页地址
-        shareObject?.webpageUrl = url
-        //分享消息对象设置分享内容对象
+        shareObject.shareImage = shareImage
+        
         messageObject.shareObject = shareObject
         
         weak var weakS = self

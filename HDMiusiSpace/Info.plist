@@ -54,7 +54,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>14</string>
+	<string>15</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqqapi</string>
@@ -105,6 +105,8 @@
 		<string>weixin</string>
 		<string>baidumap</string>
 		<string>iosamap</string>
+		<string>qqmap</string>
+		<string></string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -127,6 +129,11 @@
 	<string>需要保存图片到相册</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要使用相册</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

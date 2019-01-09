@@ -85,7 +85,7 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         skip = 0
         if isNewest == true {
             dataRequest(type: "2", cate_id: cateID)
-        }else {
+        } else {
             dataRequest(type: "3", cate_id: cateID)
         }
     }

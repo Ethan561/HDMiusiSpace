@@ -51,7 +51,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         let cityName: String = HDDeclare.shared.locModel.cityName
     let latitude = HDDeclare.shared.locModel.latitude
     let longitude = HDDeclare.shared.locModel.longitude
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: longitude, latitude: latitude, keywords: "") , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: longitude, latitude: latitude, keywords: "") , showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()

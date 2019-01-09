@@ -56,7 +56,7 @@ struct MuseumMapModel: Codable {
     let museumID, count: Int
     let distance, title: String
     let id: Int
-    let img: String
+    let img: String?
     let priceType: Int
     var price, vipPrice: String
     let version: String

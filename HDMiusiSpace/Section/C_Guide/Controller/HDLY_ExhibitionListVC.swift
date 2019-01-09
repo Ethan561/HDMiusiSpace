@@ -16,7 +16,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
     var titleName = ""
     var vipTipView:HDLY_OpenVipTipView?
     var page = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
@@ -33,6 +33,16 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
     }
+    
+    var isNeedRefresh = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNeedRefresh == true {
+            dataRequest()
+            isNeedRefresh = false
+        }
+    }
+    
     
     func dataRequest()  {
         let token:String =  HDDeclare.shared.api_token ?? ""
@@ -116,9 +126,6 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

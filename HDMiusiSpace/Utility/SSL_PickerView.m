@@ -134,8 +134,8 @@
         cell.deleteBtn.hidden = NO;
     }
     
-    cell.gifLable.hidden = YES;
-    
+    cell.gifLable.hidden = YES;//隐藏label
+    cell.deleteBtn.hidden = YES;//隐藏删除按钮
     cell.deleteBtn.tag = indexPath.item;
     [cell.deleteBtn addTarget:self action:@selector(deleteBtnClik:) forControlEvents:UIControlEventTouchUpInside];
     return cell;

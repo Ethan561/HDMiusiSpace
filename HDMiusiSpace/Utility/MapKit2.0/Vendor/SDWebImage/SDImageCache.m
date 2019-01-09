@@ -118,7 +118,7 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
 
         // memory cache enabled
         _shouldCacheImagesInMemory = YES;
-
+        
         // Disable iCloud
         _shouldDisableiCloud = YES;
 

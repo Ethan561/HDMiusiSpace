@@ -74,6 +74,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaiduMobStat.default()?.logEvent("0001", eventLabel: "单击一下按钮")
         
         setupIAP()
+        do {
+            let session:AVAudioSession = AVAudioSession.sharedInstance()
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setActive(true)
+        }
+        catch let error {
+            print("\(error)")
+        }
+        ZFReachabilityManager.shared().startMonitoring()
 
         return true
     }

@@ -290,6 +290,10 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     }
     
     @IBAction func commentBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         keyboardTextField.placeholderLabel.text = "写下你的评论吧"
         keyboardTextField.type = 0
         showKeyBoardView()
@@ -340,6 +344,9 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
     
     @objc  func playOrPauseAction(_ sender: UIButton) {
         if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains(".mp3"))! {
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
             //
             if player.state == .playing {
                 player.pause()

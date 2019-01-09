@@ -70,7 +70,6 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
         setupvideoPlayer()
-        dataRequest()
         self.bottomHCons.constant = 0
         self.listenBgView.isHidden = true
         bindViewModel()
@@ -84,7 +83,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         super.viewWillAppear(animated)
         self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
-        
+        dataRequest()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,13 +119,21 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.videoPlayer.playerDidToEnd = { (asset) -> () in
             
         }
+        self.videoPlayer.playerPlayStateChanged = { (asset,state) -> () in
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
+        }
+        
     }
     
     @IBAction func playClick(_ sender: UIButton) {
         guard let course = infoModel?.data else {
             return
         }
-        
+        if ZFReachabilityManager.shared().isReachable == false {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+        }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
@@ -141,7 +149,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         guard let course = infoModel?.data else {
             return
         }
-        
+
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
@@ -198,13 +206,20 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }
         weak var _self = self
         tipView.sureBlock = {
-            _self?.orderBuyAction()
+            _self?.orderBuyAction(model)
         }
         
     }
     
-    func orderBuyAction() {
+    func orderBuyAction( _ model: OrderBuyInfoData) {
         guard let goodId = self.infoModel?.data.articleID.int else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
             return
         }
         publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)
@@ -315,6 +330,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                     self.listenBgView.isHidden = false
 
                 }else {
+                    self.buyBtn.setAttributedTitle(nil, for: .normal)
                     self.buyBtn.setTitle("立即学习", for: .normal)
                     self.listenBgView.isHidden = true
                 }
@@ -688,10 +704,10 @@ extension HDLY_CourseDes_VC {
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
             feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
-            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 45, width: 120, height: 100)
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 90, width: 120, height: 100)
             feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
             feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
-            self.topView.addSubview(feedbackChooseTip!)
+            self.view.addSubview(feedbackChooseTip!)
             showFeedbackChooseTip = true
             weak var weakS = self
             feedbackChooseTip?.tapBlock = { (index) in

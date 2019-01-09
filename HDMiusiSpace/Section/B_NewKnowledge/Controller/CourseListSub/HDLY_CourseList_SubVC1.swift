@@ -31,6 +31,14 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
     
+    var playState: ZFPlayerPlaybackState =  ZFPlayerPlaybackState.playStateUnknown {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    var selectRow = -1
+    var selectSection = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.、
@@ -40,7 +48,11 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
         self.bottomHCons.constant = 0
         dataRequest()
         bindViewModel()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataRequest()
     }
     
     func dataRequest()  {
@@ -177,7 +189,7 @@ extension HDLY_CourseList_SubVC1 {
             var listModel = sectionModel.chapterList[indexPath.row]
             listModel.isNeedBuy = self.isNeedBuy
             cell?.model = listModel
-            
+            cell?.setSelected(true, animated: false)
         }
         return cell!
     }
@@ -198,7 +210,7 @@ extension HDLY_CourseList_SubVC1 {
             else if listModel.freeType == 2 {
                 delegate?.playWithCurrentPlayUrl(listModel)
             }
-        }else {
+        } else {
             delegate?.playWithCurrentPlayUrl(listModel)
         }
     }
@@ -244,13 +256,20 @@ extension  HDLY_CourseList_SubVC1{
         }
         weak var _self = self
         tipView.sureBlock = {
-            _self?.orderBuyAction()
+            _self?.orderBuyAction(model)
         }
         
     }
     
-    func orderBuyAction() {
+    func orderBuyAction( _ model: OrderBuyInfoData) {
         guard let goodId = self.infoModel?.data.articleID.int else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
             return
         }
         publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)

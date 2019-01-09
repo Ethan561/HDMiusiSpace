@@ -50,6 +50,12 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         self.tableView.ly_emptyView = empV
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.dataRequest()
+
+    }
+    
     func addRefresh() {
         let footer: ESRefreshProtocol & ESRefreshAnimatorProtocol = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in

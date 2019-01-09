@@ -50,7 +50,6 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     }()
     
     var webViewH:CGFloat = 0
-    
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
     
@@ -224,6 +223,10 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     }
     //评论
     @IBAction func commentBtnAction(_ sender: UIButton) {
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            self.pushToLoginVC(vc: self)
+            return
+        }
         keyboardTextField.placeholderLabel.text = "写下你的评论吧"
         keyboardTextField.type = 0
         showKeyBoardView()

@@ -15,9 +15,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var playBtn: UIButton!
-    
     @IBOutlet weak var wwanTipView: UIView!
-    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
@@ -29,7 +27,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var infoModel: CourseDetail?
     var isMp3Course = false
     var showLeaveMsg = false
-
+    var chapterListVC: HDLY_CourseList_SubVC1?
+    
     var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     
     var courseId:String?
@@ -87,7 +86,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var currentPlayTime: TimeInterval = 0
     var isStatusBarHidden = false//是否隐藏状态栏
     var shareView: HDLY_ShareView?
-    var playState: ZFPlayerPlaybackState =  ZFPlayerPlaybackState.playStateUnknown
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +104,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         bindViewModel()
         
         wwanTipView.isHidden = true
-        ZFReachabilityManager.shared().startMonitoring()
         
     }
     
@@ -162,7 +159,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         
         self.player.playerPlayStateChanged = { (asset,state) -> () in
-            _self?.playState = state
+            if ZFReachabilityManager.shared().isReachable == false {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
+//            _self?.playState = state
+            _self?.chapterListVC?.playState = state
+
             if state == ZFPlayerPlaybackState.playStatePaused {
                 _self?.uploadRecordActions()
             }
@@ -175,6 +177,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             //LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
         }
+        
     }
     
     
@@ -354,6 +357,7 @@ extension HDLY_CourseList_VC {
                 let baseVC:HDLY_CourseList_SubVC1 = HDLY_CourseList_SubVC1.init()
                 baseVC.courseId = self.courseId
                 self.addChildViewController(baseVC)
+                self.chapterListVC = baseVC
                 baseVC.delegate = self
                 baseVC.view.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
                 self.contentScrollView.addSubview(self.childViewControllers[0].view)

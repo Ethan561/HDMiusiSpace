@@ -25,7 +25,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
-
+    
     var webViewH: CGFloat = 0
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
@@ -602,7 +602,6 @@ extension HDSSL_dMuseumDetailVC {
     
     
     //HDLY_MuseumInfoType4Cell_Delegate
-    
     func didSelectItemAt(_ model:DMuseumFeaturedList, _ cell: HDLY_MuseumInfoType4Cell) {
         showRecomendDetailVC(classID: model.classID ?? 0)
     }

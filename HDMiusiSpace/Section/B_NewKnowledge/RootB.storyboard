@@ -963,7 +963,7 @@
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRH-ro-U9u">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRH-ro-U9u">
                                                         <rect key="frame" x="26" y="59" width="126" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="126" id="qT4-0e-Abb"/>
@@ -979,7 +979,7 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="sa8-dd-rxs"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
+                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
                                                         <rect key="frame" x="26" y="93" width="126" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -991,7 +991,7 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="fKB-Cd-X9f"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
+                                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
                                                         <rect key="frame" x="26" y="127" width="126" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1003,7 +1003,7 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="4S3-rI-aYb"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
+                                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
                                                         <rect key="frame" x="225" y="59" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1015,7 +1015,7 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="SA3-kY-Gg1"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
+                                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
                                                         <rect key="frame" x="225" y="93" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1027,7 +1027,7 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="4jz-1x-fHL"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-rv-F1u">
+                                                    <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-rv-F1u">
                                                         <rect key="frame" x="225" y="127" width="150" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1220,7 +1220,7 @@
         <image name="Star_white" width="22" height="22"/>
         <image name="ZFPlayer_top_shadow" width="180" height="76"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
-        <image name="icon_delete" width="15" height="19"/>
+        <image name="icon_delete" width="14" height="18"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="kt_icon_play_xiao" width="12" height="14"/>
         <image name="nav_back_white" width="12" height="20"/>

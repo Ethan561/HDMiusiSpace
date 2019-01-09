@@ -14,6 +14,7 @@ class HDLY_MuseumInfoType2Cell: UITableViewCell {
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var tagL: UILabel!
     @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!
     
     var model: DMuseumRaiders? {
         didSet {
@@ -27,6 +28,8 @@ class HDLY_MuseumInfoType2Cell: UITableViewCell {
             }
             titleL.text = model?.title
             tagL.text = model?.author
+            
+            commentBtn.setTitle(String(model?.commentNum ?? 0), for: .normal)
         }
     }
     

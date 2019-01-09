@@ -381,7 +381,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if model.type == 1{//同馆展览
                 return 250
             }else if model.type == 2{//展览攻略
-                return 330
+                return ScreenWidth*290/330
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
@@ -400,6 +400,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return 90
         }
         if section > 2{
+            let arr = self.exdataModel?.data?.dataList!
+            let model = arr![section-3]
+            if model.type == 5{
+                return 60
+            }
             return 44
         }
         return 0.01
@@ -454,6 +459,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 titleStr = "精选推荐"
             }else if model.type == 5{
                 titleStr = "免费听"
+                normalHeader.headerMore.setTitle("查看全部", for: .normal)
+                
+                let subTitle = UILabel.init(frame: CGRect.init(x: 15, y: 40, width: 150, height: 20))
+                subTitle.text = "镇馆之宝先了解"
+                subTitle.font = UIFont.systemFont(ofSize: 12)
+                subTitle.textColor = UIColor.HexColor(0x999999)
+                normalHeader.addSubview(subTitle)
             }
             normalHeader.headerTitle.text = titleStr
             normalHeader.tag = section
@@ -967,7 +979,7 @@ extension HDSSL_dExhibitionDetailVC {
             titleStr = "免费听"
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
             vc.museum_id = self.exdataModel!.data!.museum_id ?? 0
-            vc.titleName = self.exdataModel?.data?.title ?? ""
+            vc.titleName = self.exdataModel?.data?.museumTitle ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

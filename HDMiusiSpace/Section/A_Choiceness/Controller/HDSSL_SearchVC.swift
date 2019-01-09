@@ -37,6 +37,12 @@ class HDSSL_SearchVC: HDItemBaseVC {
     
     var placeholderStr: String? //默认搜素提示信息
     
+    lazy var voiceView: HDZQ_VoiceSearchView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_VoiceSearchView", owner: nil, options: nil)?.last as? HDZQ_VoiceSearchView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        return tmp!
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
@@ -63,6 +69,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         self.resultTableView.isHidden = true //先隐藏搜索结果列表
         self.resultTableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        self.voiceView.isHidden = true
+        self.voiceView.delegate = self
+        kWindow?.addSubview(self.voiceView)
     }
     
     //MVVM
@@ -114,7 +123,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
             self.resultTableView.reloadData()
         }else{
+            self.resultArray.removeAll()
             self.resultTableView.es.noticeNoMoreData()
+            self.resultTableView.reloadData()
         }
         if self.resultArray.count == 0 {
             self.resultTableView.ly_emptyView = EmptyConfigView.NoSearchDataEmptyView()
@@ -297,8 +308,16 @@ class HDSSL_SearchVC: HDItemBaseVC {
     }
     //语音输入
     @objc func action_voice(_ sender: UIButton) {
-        self.textFeild.becomeFirstResponder()
+        self.textFeild.resignFirstResponder()
+        self.hideSearchResultView()
+        self.voiceView.voiceLabel.text = "想搜什么？说说试试"
+        self.voiceView.voiceResult = ""
+        self.voiceView.isHidden = false
+        self.voiceView.gifView?.isHidden = false
+        self.voiceView.voiceBtn.isHidden = true
+        self.voiceView.startCollectVoice()
     }
+    
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
         //清空搜索历史记录
         weak var weakself = self
@@ -320,26 +339,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         textFeild.resignFirstResponder()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 extension HDSSL_SearchVC{
     
@@ -720,4 +721,14 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     
+}
+
+extension HDSSL_SearchVC : HDZQ_VoiceResultDelegate {
+    func voiceResult(result: String) {
+        self.voiceView.isHidden = true
+        self.textFeild.text = result
+        self.func_saveHistory(result)
+        self.currentType = 0
+        self.viewModel.request_search(str: result, skip: 0, take: 10, type: 0, vc: self)
+    }
 }

@@ -41,6 +41,8 @@ class HDSSL_commentVC: HDItemBaseVC {
         bindViewModel()
         //Data
         loadMyDatas()
+        
+        self.starNumber = 9
     }
     override func viewDidLayoutSubviews() {
         

@@ -52,6 +52,8 @@ class HDSSL_TicketCell: UITableViewCell {
             payStateStr = "交易关闭"
         }
         cell_state.text = payStateStr
+        
+        
     }
     func reloadButtonType(){
         if order?.status == 1 {

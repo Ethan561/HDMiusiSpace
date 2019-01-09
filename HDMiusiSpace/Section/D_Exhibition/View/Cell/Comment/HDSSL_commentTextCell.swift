@@ -48,6 +48,8 @@ class HDSSL_commentTextCell: UITableViewCell {
         })
         cell_starBg.addSubview(starSlider)
         
+        starSlider.setCurrentScore(4.5) //设置默认值9.0
+        
         //
         cell_inputText.delegate = self
         if cell_inputText.text == "亲，展品丰富吗，环境如何，性价比怎么样？" {

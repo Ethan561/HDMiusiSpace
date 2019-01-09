@@ -74,7 +74,11 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         }
         
     }
-    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        bannerBg.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: kBannerHeight)
+    }
     //MARK: 加载数据
     func loadMyDatas() {
         //请求数据

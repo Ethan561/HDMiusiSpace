@@ -12,6 +12,8 @@ let SearchHistory : String = "SearchHistory"
 
 class HDSSL_SearchVC: HDItemBaseVC {
 
+    public var searchContent: String?
+    
     private var take = 10
     private var skip = 0
     var currentType: Int = 0  //当前搜索类型
@@ -51,6 +53,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,6 +75,12 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.voiceView.isHidden = true
         self.voiceView.delegate = self
         kWindow?.addSubview(self.voiceView)
+        if searchContent != nil {
+            self.textFeild.text = searchContent
+            self.func_saveHistory(searchContent!)
+            self.currentType = 0
+            self.viewModel.request_search(str: searchContent!, skip: 0, take: 10, type: 0, vc: self)
+        }
     }
     
     //MVVM

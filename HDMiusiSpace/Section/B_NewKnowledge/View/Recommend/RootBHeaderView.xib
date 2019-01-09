@@ -26,15 +26,15 @@
                                 <constraint firstAttribute="width" secondItem="U4H-FL-m7e" secondAttribute="height" multiplier="1:1" id="iu6-ZA-NxU"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_icon_Voice_default" translatesAutoresizingMaskIntoConstraints="NO" id="Gl4-dC-KNz">
-                            <rect key="frame" x="315" y="8.5" width="12" height="19"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyQ-DV-crM">
+                            <rect key="frame" x="297" y="7" width="30" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="12" id="BGd-PF-HHq"/>
-                                <constraint firstAttribute="width" secondItem="Gl4-dC-KNz" secondAttribute="height" multiplier="12:19" id="hFx-Dm-Wbz"/>
+                                <constraint firstAttribute="width" constant="30" id="Vsi-vl-ctB"/>
                             </constraints>
-                        </imageView>
+                            <state key="normal" image="search_icon_Voice_default"/>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨家成霸道口语课" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-wu-oYJ">
-                            <rect key="frame" x="32" y="8" width="275" height="20"/>
+                            <rect key="frame" x="32" y="8" width="136" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="k0e-4m-DjQ"/>
                             </constraints>
@@ -43,7 +43,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bma-26-vyt">
-                            <rect key="frame" x="0.0" y="0.0" width="335" height="36"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="36"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.40485873290000002" colorSpace="calibratedRGB"/>
@@ -52,12 +52,11 @@
                         <constraint firstAttribute="height" constant="36" id="678-5v-yjF"/>
                         <constraint firstItem="bma-26-vyt" firstAttribute="leading" secondItem="oHf-gX-T0b" secondAttribute="leading" id="76g-RO-2ss"/>
                         <constraint firstItem="CHH-wu-oYJ" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="8IR-le-fcs"/>
-                        <constraint firstAttribute="trailing" secondItem="bma-26-vyt" secondAttribute="trailing" id="CMJ-he-MXD"/>
                         <constraint firstItem="U4H-FL-m7e" firstAttribute="leading" secondItem="oHf-gX-T0b" secondAttribute="leading" constant="10" id="FmO-6o-pFB"/>
+                        <constraint firstItem="cyQ-DV-crM" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="GSx-ie-3Bn"/>
                         <constraint firstItem="CHH-wu-oYJ" firstAttribute="leading" secondItem="U4H-FL-m7e" secondAttribute="trailing" constant="8" id="Ou5-dZ-vS4"/>
-                        <constraint firstItem="Gl4-dC-KNz" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="Td0-TP-iHT"/>
-                        <constraint firstAttribute="trailing" secondItem="Gl4-dC-KNz" secondAttribute="trailing" constant="8" id="msP-12-VGZ"/>
-                        <constraint firstItem="Gl4-dC-KNz" firstAttribute="leading" secondItem="CHH-wu-oYJ" secondAttribute="trailing" constant="8" id="nJ3-4s-ein"/>
+                        <constraint firstAttribute="trailing" secondItem="cyQ-DV-crM" secondAttribute="trailing" constant="8" id="Rkd-OZ-zZd"/>
+                        <constraint firstItem="cyQ-DV-crM" firstAttribute="leading" secondItem="bma-26-vyt" secondAttribute="trailing" id="e8v-qS-ipj"/>
                         <constraint firstItem="bma-26-vyt" firstAttribute="top" secondItem="oHf-gX-T0b" secondAttribute="top" id="vb2-jk-97M"/>
                         <constraint firstAttribute="bottom" secondItem="bma-26-vyt" secondAttribute="bottom" id="wPk-v6-CYK"/>
                     </constraints>
@@ -94,8 +93,9 @@
                 <outlet property="placeholderLab" destination="CHH-wu-oYJ" id="CHK-hv-Y3k"/>
                 <outlet property="searchBgView" destination="oHf-gX-T0b" id="3Vr-Uy-2rf"/>
                 <outlet property="searchBtn" destination="bma-26-vyt" id="55A-e5-lKp"/>
+                <outlet property="voiceSeachBtn" destination="cyQ-DV-crM" id="Wbn-lV-gcj"/>
             </connections>
-            <point key="canvasLocation" x="351.19999999999999" y="-139.43028485757122"/>
+            <point key="canvasLocation" x="351.19999999999999" y="-139.880059970015"/>
         </view>
     </objects>
     <resources>

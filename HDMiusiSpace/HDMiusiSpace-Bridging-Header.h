@@ -43,6 +43,11 @@
 //极光推送
 #import "JPUSHService.h"
 
+//科大讯飞
+#import "IFlyMSC/IFlyMSC.h"
+#import "IFlyMSC/IFlyDataUploader.h"
+#import "IFlyMSC/IFlySpeechRecognizer.h"
+#import "IFlyMSC/IFlyPcmRecorder.h"
 //百度统计
 #import "BaiduMobStat.h"
 

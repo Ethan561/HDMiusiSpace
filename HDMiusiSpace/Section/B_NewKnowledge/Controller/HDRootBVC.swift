@@ -24,6 +24,12 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     var tabHeader: RootBHeaderView!
     var bannerArr =  [BbannerModel]()
     
+    lazy var voiceView: HDZQ_VoiceSearchView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_VoiceSearchView", owner: nil, options: nil)?.last as? HDZQ_VoiceSearchView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        return tmp!
+    }()
+    
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -67,6 +73,11 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             navbarCons.constant = 72
         }
         self.hd_navigationBarHidden = true
+        
+        self.voiceView.isHidden = true
+        self.voiceView.delegate = self
+        kWindow?.addSubview(self.voiceView)
+        
         setupViews()
         //
         dataRequestForBanner()
@@ -102,6 +113,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
         tabHeader.searchBtn.addTarget(self, action: #selector(searchAction(_:)), for: .touchUpInside)
+        tabHeader.voiceSeachBtn.addTarget(self, action: #selector(showVoiceSearchView), for: .touchUpInside)
         let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
         self.tabHeader.placeholderLab.text = placeholder
         
@@ -175,6 +187,15 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         let vc: HDSSL_SearchVC = storyborad.instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
         
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func showVoiceSearchView() {
+        self.voiceView.voiceLabel.text = "想搜什么？说说试试"
+        self.voiceView.voiceResult = ""
+        self.voiceView.isHidden = false
+        self.voiceView.gifView?.isHidden = false
+        self.voiceView.voiceBtn.isHidden = true
+        self.voiceView.startCollectVoice()
     }
     
     override func didReceiveMemoryWarning() {
@@ -388,5 +409,12 @@ extension HDRootBVC {
     }
 }
 
-
+extension HDRootBVC : HDZQ_VoiceResultDelegate {
+    func voiceResult(result: String) {
+        self.voiceView.isHidden = true
+        let vc: HDSSL_SearchVC = UIStoryboard.init(name: "RootA", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_SearchVC") as! HDSSL_SearchVC
+        vc.searchContent = result
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
 

@@ -10,6 +10,7 @@ import UIKit
 
 class RootBHeaderView: UIView {
     
+    @IBOutlet weak var voiceSeachBtn: UIButton!
     @IBOutlet weak var placeholderLab: UILabel!
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var searchBgView: UIView!

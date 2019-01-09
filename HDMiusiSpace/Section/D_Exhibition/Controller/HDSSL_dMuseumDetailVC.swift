@@ -102,7 +102,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @objc func action_rader(){
         let webVC = HDItemBaseWebVC()
         webVC.urlPath = self.infoModel?.tourGuide
-        webVC.titleName = self.infoModel?.title
+        webVC.titleName = "参观指南"//self.infoModel?.title
         self.navigationController?.pushViewController(webVC, animated: true)
     }
     @objc func action_guide(){

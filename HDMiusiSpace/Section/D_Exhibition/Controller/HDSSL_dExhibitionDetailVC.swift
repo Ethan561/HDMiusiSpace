@@ -451,6 +451,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
             if model.type == 1{
                 titleStr = String.init(format: "同馆展览(%d)", model.exhibition?.exhibitionNum ?? 0)
+                //数量少不显示查看更多
+                if (model.exhibition?.exhibitionNum ?? 0) <= 2 {
+                    normalHeader.headerMore.isHidden = true
+                }
             }else if model.type == 2{
                 titleStr = "展览攻略"
             }else if model.type == 3{

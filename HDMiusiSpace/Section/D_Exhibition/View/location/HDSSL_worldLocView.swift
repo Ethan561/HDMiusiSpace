@@ -368,6 +368,9 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                 title.textColor = UIColor.lightGray
                 title.font = UIFont.systemFont(ofSize: 16)
             }
+            if section == 2 && hotArray.count == 0 {
+                title.text = ""
+            }
             
             return view
             

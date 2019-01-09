@@ -189,7 +189,6 @@ extension HDLY_CourseList_SubVC1 {
             var listModel = sectionModel.chapterList[indexPath.row]
             listModel.isNeedBuy = self.isNeedBuy
             cell?.model = listModel
-            cell?.setSelected(true, animated: false)
         }
         return cell!
     }

@@ -150,12 +150,17 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
         
         if annView.annotation.annType == kAnnotationType_More {
             //self.showMapList(ann: annView.annotation)
+            playerView.isHidden = true
         }
         else if annView.annotation.annType == kAnnotationType_One || annView.annotation.annType == kAnnotationType_ReadOne {
             playerView.isHidden = false
             annView.bigPicture()
             self.chooseAnn = annView.annotation
             self.playerTitleL.text = annView.annotation.title
+            self.autoPlayAction()
+            if annView.annotation.type == 2 {
+                playerView.isHidden = true
+            }
         }
     }
     
@@ -194,6 +199,9 @@ extension HDLY_MapGuideVC {
                 ann.audio = model.audio
                 ann.title = model.title
                 ann.annType = kAnnotationType_One
+                if model.type == 2 {
+                    ann.annType = kAnnotationType_More
+                }
                 ann.star = model.star.string
                 ann.type = model.type
                 ann.identify = model.exhibitionID.string
@@ -263,6 +271,27 @@ extension HDLY_MapGuideVC {
         }
     }
     
+    func autoPlayAction() {
+        guard let ann = self.chooseAnn else {
+            return
+        }
+        if player.state == .playing {
+            player.pause()
+            playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+        } else {
+            if player.state == .paused {
+                player.play()
+            }else if ann.audio.contains(".mp3") {
+                player.play(file: Music.init(name: "", url:URL.init(string: ann.audio)!))
+                player.fileno = ann.identify
+                ann.annType = kAnnotationType_ReadOne
+                let key = String.init(format: "isReadPin_%@", ann.identify)
+                UserDefaults.standard.set("1", forKey: key)
+                //                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
+            }
+            playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+        }
+    }
     
     @IBAction func locBtnAction(_ sender: Any) {
         if (self.chooseAnn != nil) {

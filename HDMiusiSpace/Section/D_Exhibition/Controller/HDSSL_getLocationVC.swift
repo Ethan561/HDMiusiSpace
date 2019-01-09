@@ -526,6 +526,11 @@ extension HDSSL_getLocationVC {
         }
         if contain == false {
             self.recentArray.insert(city, at: 0)
+            for (i,_) in self.recentArray.enumerated() {
+                if i > 2 {
+                    self.recentArray.remove(at: i)
+                }
+            }
         }
         do {
             let data = try JSONEncoder().encode(self.recentArray)

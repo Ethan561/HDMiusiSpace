@@ -32,6 +32,10 @@
     }
     
     if (annotation.annType == kAnnotationType_More) {
+        UIImage *myImage = [UIImage imageNamed:Placeholder_PIN];
+        [self setImage:myImage forState:UIControlStateNormal];
+        /*
+        return
         [self setImage:[UIImage imageNamed:@"dl_icon_map_dw"] forState:UIControlStateNormal];
         UILabel *numL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         numL.textAlignment = NSTextAlignmentCenter;
@@ -57,7 +61,7 @@
         nameL.text = annotation.title;
         nameL.backgroundColor = [UIColor clearColor];
         [self addSubview:nameL];
-        
+        */
 //        self.imageView.layer.shadowOpacity = 0.8;
 //        self.imageView.layer.shadowColor = UIColor.blackColor.CGColor;
 //        self.imageView.layer.shadowOffset = CGSizeMake(1, 1);

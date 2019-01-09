@@ -23,7 +23,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     
     weak var delegate:ChapterListPlayDelegate?
 
-    var isNeedBuy = false
+    var isBuy = false//已购买或者是免费课程
     
     var infoModel: CourseChapter?
     var courseId: String?
@@ -31,11 +31,12 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
     
-    var playState: ZFPlayerPlaybackState =  ZFPlayerPlaybackState.playStateUnknown {
+    var isPlaying =  false {
         didSet {
             self.tableView.reloadData()
         }
     }
+    
     var selectRow = -1
     var selectSection = -1
     
@@ -92,16 +93,16 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
                         self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
                     }
                     self.bottomHCons.constant = 74
-                    self.isNeedBuy = true
+                    self.isBuy = false
                 }else {
                     self.bottomHCons.constant = 0
                     self.bottomView.isHidden = true
-                    self.isNeedBuy = false
+                    self.isBuy = true
                 }
             } else {
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
-                self.isNeedBuy = false
+                self.isBuy = true
 
             }
             self.tableView.reloadData()
@@ -186,9 +187,64 @@ extension HDLY_CourseList_SubVC1 {
             guard let sectionModel = infoModel?.data.sectionList[indexPath.section] else {
                 return cell!
             }
-            var listModel = sectionModel.chapterList[indexPath.row]
-            listModel.isNeedBuy = self.isNeedBuy
-            cell?.model = listModel
+            let listModel = sectionModel.chapterList[indexPath.row]
+            cell!.nameL.text = listModel.title
+            cell!.timeL.text = listModel.timeLong
+            cell!.nameL.textColor = UIColor.HexColor(0x4A4A4A)
+            cell!.timeL.textColor = UIColor.HexColor(0x9B9B9B)
+            cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
+
+            let width = listModel.title.getContentWidth(font: UIFont.systemFont(ofSize: 14), height: 21)
+            if width > ScreenWidth - 190 {
+                cell!.nameWidthCons.constant = ScreenWidth - 190
+            }
+            if self.isBuy == false {
+                //0收费 1免费 2vip免费
+                if listModel.freeType == 0 {
+                    cell!.tagL.isHidden = true
+                    cell!.tipImgV.image = UIImage.init(named: "xz_icon_suo")
+                }
+                else if listModel.freeType == 1 {
+                    cell!.tagL.isHidden = false
+                    cell!.tagL.text = "试听"
+                    cell!.tagL.textColor = UIColor.HexColor(0xC1B6AE)
+                    
+                    cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
+                    cell!.nameL.textColor = UIColor.HexColor(0x4A4A4A)
+                    cell!.timeL.textColor = UIColor.HexColor(0x9B9B9B)
+                    //有播放或者暂停状态的
+                    if indexPath.row == selectRow && indexPath.section == selectSection {
+                        cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                        cell?.timeL.textColor = UIColor.HexColor(0xE8593E)
+                        if isPlaying == true {//播放
+                            cell?.tipImgV.image = UIImage.init(named: "icon_pause_white")
+                        }else {//暂停
+                            cell?.tipImgV.image = UIImage.init(named: "icon_paly_white")
+                        }
+                    }
+                }
+                else if listModel.freeType == 2 {
+                    cell!.tagL.isHidden = false
+                    cell!.tagL.textColor = UIColor.HexColor(0xD8B98D)
+                    cell!.tagL.text = "SVIP"
+                    cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
+                }
+                
+            }else {//已购买
+                cell?.tagL.isHidden = true
+                cell?.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
+                //有播放或者暂停状态的
+                if indexPath.row == selectRow && indexPath.section == selectSection {
+                    cell?.nameL.textColor = UIColor.HexColor(0xE8593E)//红色展示
+                    cell?.timeL.textColor = UIColor.HexColor(0xE8593E)
+                    if isPlaying == true {//播放
+                        cell?.tipImgV.image = UIImage.init(named: "icon_pause_white")
+                    }else {//暂停
+                        cell?.tipImgV.image = UIImage.init(named: "icon_paly_white")
+                    }
+                }
+            }
+            
         }
         return cell!
     }
@@ -198,7 +254,11 @@ extension HDLY_CourseList_SubVC1 {
             return
         }
         let listModel = sectionModel.chapterList[indexPath.row]
-        if self.isNeedBuy == true {
+        selectRow = indexPath.row
+        selectSection = indexPath.section
+        let cell:HDLY_CourseList_Cell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: selectSection)) as? HDLY_CourseList_Cell
+        
+        if self.isBuy == false {
             //0收费 1免费 2vip免费
             if listModel.freeType == 0 {
                 
@@ -207,10 +267,13 @@ extension HDLY_CourseList_SubVC1 {
                 delegate?.playWithCurrentPlayUrl(listModel)
             }
             else if listModel.freeType == 2 {
-                delegate?.playWithCurrentPlayUrl(listModel)
+                //delegate?.playWithCurrentPlayUrl(listModel)
             }
         } else {
             delegate?.playWithCurrentPlayUrl(listModel)
+            cell?.tipImgV.image = UIImage.init(named: "icon_pause_white")
+            cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+            cell?.timeL.textColor = UIColor.HexColor(0xE8593E)
         }
     }
     

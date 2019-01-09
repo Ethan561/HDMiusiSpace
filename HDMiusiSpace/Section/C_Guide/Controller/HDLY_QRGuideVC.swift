@@ -24,7 +24,7 @@ class HDLY_QRGuideVC: HDItemBaseVC {
     }()
     
     public var titleName: String?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class HDLY_QRGuideVC: HDItemBaseVC {
             webVC.urlPath = url
             webVC.titleName = self.titleName
             self.navigationController?.pushViewController(webVC, animated: true)
-        }else {
+        } else {
             let alert:UIAlertController = UIAlertController.init(title: "", message: "二维码无效，请重新扫描", preferredStyle: UIAlertControllerStyle.alert)
             let cancle = UIAlertAction.init(title: "确定", style: UIAlertActionStyle.cancel) { (action) in
                 self.codeView.rerunning()

@@ -30,7 +30,7 @@ class HDLY_RootCVM: NSObject {
     //学习记录上传
     func uploadCourseRecordsRequest(api_token: String, chapter_id: Int, study_time: String, _ vc: UIViewController)  {
         
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .uploadCourseRecords(chapter_id: chapter_id, api_token: api_token, study_time: study_time), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .uploadCourseRecords(chapter_id: chapter_id, api_token: api_token, study_time: study_time), showHud: false, loadingVC: vc, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("学习记录上传:\(String(describing: dic))")

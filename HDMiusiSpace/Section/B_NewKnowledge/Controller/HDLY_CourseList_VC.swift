@@ -87,6 +87,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var isStatusBarHidden = false//是否隐藏状态栏
     var shareView: HDLY_ShareView?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -112,12 +113,13 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.player.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
         
+        NotificationCenter.default.addObserver(self, selector: #selector(playOrPauseNoti(_:)), name: NSNotification.Name.init("HDLY_CourseList_VC_PlayOrPause_Noti"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.player.isViewControllerDisappear = true
-        
+        NotificationCenter.default.removeObserver(self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -162,9 +164,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             if ZFReachabilityManager.shared().isReachable == false {
                 HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
             }
-//            _self?.playState = state
-            _self?.chapterListVC?.playState = state
-
             if state == ZFPlayerPlaybackState.playStatePaused {
                 _self?.uploadRecordActions()
             }
@@ -176,6 +175,15 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.player.playerPlayTimeChanged = { (asset,currentTime,duration) -> () in
             //LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
+        }
+    }
+    
+    @objc func playOrPauseNoti(_ noti:Notification) {
+        let isPlay:String? = noti.object as? String
+        if isPlay == "1" {
+            self.chapterListVC?.isPlaying = true
+        }else {
+            self.chapterListVC?.isPlaying = false
         }
         
     }
@@ -271,23 +279,32 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         self.controlView.showWith(animated: true)
         
-        listPlayModel = model
-        let video = model.video
-        if video.isEmpty == false && video.contains(".mp3") {
-//            if self.player.currentPlayerManager.playState == .playStatePlaying {
-//                self.player.currentPlayerManager.pause!()
-//            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
-//                self.player.currentPlayerManager.play!()
-//            }else {
-//            }
-            self.player.assetURL = NSURL.init(string: video)! as URL
-            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-            self.controlView.coverImageHidden = false
+        if model.video == self.listPlayModel?.video {
+            if self.player.currentPlayerManager.playState == .playStatePlaying {
+                self.player.currentPlayerManager.pause!()
+                self.chapterListVC?.isPlaying = false
+
+            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
+                self.player.currentPlayerManager.play!()
+                self.chapterListVC?.isPlaying = true
+            }
+        }else {
+            listPlayModel = model
+            let video = model.video
+            if video.isEmpty == false && video.contains(".mp3") {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.coverImageHidden = false
+                self.chapterListVC?.isPlaying = true
+            }
+            else if video.isEmpty == false && video.contains(".mp4") {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.chapterListVC?.isPlaying = true
+            }
+            
         }
-        else if video.isEmpty == false && video.contains(".mp4") {
-            self.player.assetURL = NSURL.init(string: video)! as URL
-            self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-        }
+        
     }
     func dataRequest()  {
         guard let idnum = self.courseId else {

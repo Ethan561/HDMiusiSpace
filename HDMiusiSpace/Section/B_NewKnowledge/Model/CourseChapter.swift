@@ -50,8 +50,8 @@ struct ChapterSection: Codable {
 
 struct ChapterList: Codable {
     let title, timeLong, video: String
-    let freeType, isPlay: Int
-    var isNeedBuy = false
+    let freeType: Int //1免费2vip免费0收费
+    let isPlay: Int  //isPlay:是否能播放1能0不能
     var chapter_id: Int = 0
     
     enum CodingKeys: String, CodingKey {

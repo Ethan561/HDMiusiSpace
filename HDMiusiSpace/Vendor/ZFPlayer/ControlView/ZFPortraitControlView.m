@@ -145,6 +145,10 @@
 - (void)playOrPause {
     self.playOrPauseBtn.selected = !self.playOrPauseBtn.isSelected;
     self.playOrPauseBtn.isSelected? [self.player.currentPlayerManager play]: [self.player.currentPlayerManager pause];
+    
+    NSString *isPlay = self.playOrPauseBtn.isSelected? @"1": @"0";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HDLY_CourseList_VC_PlayOrPause_Noti" object:isPlay];
+    
 }
 
 - (void)playBtnSelectedState:(BOOL)selected {

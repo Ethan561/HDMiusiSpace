@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyStoreKit
 
+
 //极光推送是否是发布模式
 let isProduction = false
 let HDJPushAliasKey = "HDJPushAliasKey"
@@ -43,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Bugly.start(withAppId: "c72887a81c")
         myJPushAlias = HDLY_UserModel.shared.getDeviceNum()
+        
+        let IFLYAPPID = "appid=5c33efb2"
+        IFlySpeechUtility.createUtility(IFLYAPPID)
         
         localDataInit()
         configUSharePlatforms()

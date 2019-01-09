@@ -30,6 +30,20 @@
 		1B30BC9621AE6E450099557F /* HDZQ_SignLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30BC9521AE6E450099557F /* HDZQ_SignLabelVC.swift */; };
 		1B3126B521B7C8AB003785C0 /* HDLY_ChangeCityAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B3126B321B7C8A4003785C0 /* HDLY_ChangeCityAlert.xib */; };
 		1B3126B621B7C8AB003785C0 /* HDLY_ChangeCityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3126B421B7C8AA003785C0 /* HDLY_ChangeCityAlert.swift */; };
+		1B38C15521E42A18006F804C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15421E42A18006F804C /* libz.tbd */; };
+		1B38C15721E42A27006F804C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15621E42A27006F804C /* AVFoundation.framework */; };
+		1B38C15921E42A34006F804C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15821E42A34006F804C /* SystemConfiguration.framework */; };
+		1B38C15B21E42A4E006F804C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15A21E42A4E006F804C /* Foundation.framework */; };
+		1B38C15D21E42A6D006F804C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15C21E42A6C006F804C /* CoreTelephony.framework */; };
+		1B38C15F21E42A79006F804C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C15E21E42A79006F804C /* AudioToolbox.framework */; };
+		1B38C16121E42A92006F804C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C16021E42A92006F804C /* QuartzCore.framework */; };
+		1B38C16321E42A9D006F804C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C16221E42A9D006F804C /* CoreGraphics.framework */; };
+		1B38C16521E42AB2006F804C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C16421E42AB2006F804C /* libc++.tbd */; };
+		1B38C16D21E42D99006F804C /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B38C16C21E42D99006F804C /* iflyMSC.framework */; };
+		1B38C16F21E472E8006F804C /* HDZQ_VoiceSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B38C16E21E472E8006F804C /* HDZQ_VoiceSearchView.xib */; };
+		1B38C17121E472FA006F804C /* HDZQ_VoiceSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38C17021E472FA006F804C /* HDZQ_VoiceSearchView.swift */; };
+		1B38C17521E49DC7006F804C /* voiceSearch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1B38C17421E49DC7006F804C /* voiceSearch.gif */; };
+		1B38C17721E4A65A006F804C /* HDGIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38C17621E4A65A006F804C /* HDGIFImageView.swift */; };
 		1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */; };
 		1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */; };
 		1B48151A21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */; };
@@ -645,6 +659,20 @@
 		1B30BC9521AE6E450099557F /* HDZQ_SignLabelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_SignLabelVC.swift; sourceTree = "<group>"; };
 		1B3126B321B7C8A4003785C0 /* HDLY_ChangeCityAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDLY_ChangeCityAlert.xib; sourceTree = "<group>"; };
 		1B3126B421B7C8AA003785C0 /* HDLY_ChangeCityAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDLY_ChangeCityAlert.swift; sourceTree = "<group>"; };
+		1B38C15421E42A18006F804C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		1B38C15621E42A27006F804C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1B38C15821E42A34006F804C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1B38C15A21E42A4E006F804C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1B38C15C21E42A6C006F804C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1B38C15E21E42A79006F804C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		1B38C16021E42A92006F804C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		1B38C16221E42A9D006F804C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1B38C16421E42AB2006F804C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		1B38C16C21E42D99006F804C /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = HDMiusiSpace/iflyMSC.framework; sourceTree = "<group>"; };
+		1B38C16E21E472E8006F804C /* HDZQ_VoiceSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_VoiceSearchView.xib; sourceTree = "<group>"; };
+		1B38C17021E472FA006F804C /* HDZQ_VoiceSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_VoiceSearchView.swift; sourceTree = "<group>"; };
+		1B38C17421E49DC7006F804C /* voiceSearch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = voiceSearch.gif; sourceTree = "<group>"; };
+		1B38C17621E4A65A006F804C /* HDGIFImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDGIFImageView.swift; sourceTree = "<group>"; };
 		1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_RelatedClassCell.swift; sourceTree = "<group>"; };
 		1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RelatedClassCell.xib; sourceTree = "<group>"; };
 		1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MoreCommentsCell.swift; sourceTree = "<group>"; };
@@ -1334,6 +1362,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B38C16D21E42D99006F804C /* iflyMSC.framework in Frameworks */,
+				1B38C16521E42AB2006F804C /* libc++.tbd in Frameworks */,
+				1B38C16321E42A9D006F804C /* CoreGraphics.framework in Frameworks */,
+				1B38C16121E42A92006F804C /* QuartzCore.framework in Frameworks */,
+				1B38C15F21E42A79006F804C /* AudioToolbox.framework in Frameworks */,
+				1B38C15D21E42A6D006F804C /* CoreTelephony.framework in Frameworks */,
+				1B38C15B21E42A4E006F804C /* Foundation.framework in Frameworks */,
+				1B38C15921E42A34006F804C /* SystemConfiguration.framework in Frameworks */,
+				1B38C15721E42A27006F804C /* AVFoundation.framework in Frameworks */,
+				1B38C15521E42A18006F804C /* libz.tbd in Frameworks */,
 				D62FB0E221AFE980000D84BF /* Security.framework in Frameworks */,
 				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A73E44B221B4F839008B780E /* StoreKit.framework in Frameworks */,
@@ -1364,6 +1402,16 @@
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B38C16C21E42D99006F804C /* iflyMSC.framework */,
+				1B38C16421E42AB2006F804C /* libc++.tbd */,
+				1B38C16221E42A9D006F804C /* CoreGraphics.framework */,
+				1B38C16021E42A92006F804C /* QuartzCore.framework */,
+				1B38C15E21E42A79006F804C /* AudioToolbox.framework */,
+				1B38C15C21E42A6C006F804C /* CoreTelephony.framework */,
+				1B38C15A21E42A4E006F804C /* Foundation.framework */,
+				1B38C15821E42A34006F804C /* SystemConfiguration.framework */,
+				1B38C15621E42A27006F804C /* AVFoundation.framework */,
+				1B38C15421E42A18006F804C /* libz.tbd */,
 				A73E44B121B4F839008B780E /* StoreKit.framework */,
 				D62FB0E121AFE980000D84BF /* Security.framework */,
 				D619533E21A545880039D151 /* MapKit.framework */,
@@ -2416,6 +2464,7 @@
 		D6C9FC4421181F05007C8E56 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1B38C17421E49DC7006F804C /* voiceSearch.gif */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -2955,6 +3004,9 @@
 				1B7A669021C4A00900DDFE5E /* HDZQ_CommentActionView.xib */,
 				1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */,
 				1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */,
+				1B38C17021E472FA006F804C /* HDZQ_VoiceSearchView.swift */,
+				1B38C16E21E472E8006F804C /* HDZQ_VoiceSearchView.xib */,
+				1B38C17621E4A65A006F804C /* HDGIFImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3201,6 +3253,7 @@
 				A7B8447A21A5269600FC8465 /* HDSSL_commentReplyCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
 				D628268421B9324200693DEC /* HDLY_CreateOrderTipView.xib in Resources */,
+				1B38C17521E49DC7006F804C /* voiceSearch.gif in Resources */,
 				A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */,
 				D620E1B721A246810034E258 /* HDLY_MuseumRecmdItem.xib in Resources */,
 				1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */,
@@ -3220,6 +3273,7 @@
 				D620E1BB21A246B90034E258 /* HDLY_FreeListenItem.xib in Resources */,
 				D66991C62130EA84002568B2 /* HDLY_QuestionContent_Header.xib in Resources */,
 				A72DE94021A142F900F0536F /* HDSSL_commentImgCell.xib in Resources */,
+				1B38C16F21E472E8006F804C /* HDZQ_VoiceSearchView.xib in Resources */,
 				D66A2ABB2140D09100427425 /* HDLY_LogoutTip_View.xib in Resources */,
 				D66C35D3213FABC200363D7C /* HDLY_MineCourse_CollectionCell.xib in Resources */,
 				D637568C219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib in Resources */,
@@ -3383,6 +3437,7 @@
 				D6115AEF218FD490004A05DA /* UIViewController+ZFPlayerRotation.m in Sources */,
 				D6865A39212D51B90037B371 /* ListenDetailViewModel.swift in Sources */,
 				D62277D821368069008F1416 /* MTImagePickerPhotosModel.swift in Sources */,
+				1B38C17721E4A65A006F804C /* HDGIFImageView.swift in Sources */,
 				D62277B021367F12008F1416 /* HDLY_PhotoSelectorView.swift in Sources */,
 				D6C9FCBF211825DC007C8E56 /* HDTabBar.swift in Sources */,
 				D6724625211D1FE300239109 /* HDPagerViewCell.swift in Sources */,
@@ -3709,6 +3764,7 @@
 				A738B1F72194073800B78D21 /* RecentCitiesableViewCell.swift in Sources */,
 				D6C9FC122117FA3A007C8E56 /* AppDelegate.swift in Sources */,
 				A74E700E219AA08D007CD3E7 /* HDSSL_dMuseumDetailVC.swift in Sources */,
+				1B38C17121E472FA006F804C /* HDZQ_VoiceSearchView.swift in Sources */,
 				D6866A532126A1360044EEAA /* HDLY_CourseList_SubVC3.swift in Sources */,
 				D614CFC521D727D800CA13AC /* ESRefreshFooterAnimator.swift in Sources */,
 				D6EEDDB42190271100F730BA /* HDLY_GuideMapCell.swift in Sources */,
@@ -3992,6 +4048,10 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HDMiusiSpace",
+				);
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4020,6 +4080,10 @@
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HDMiusiSpace",
+				);
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

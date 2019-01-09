@@ -25,7 +25,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
-
+    
     var webViewH: CGFloat = 0
     var areaWebViewH: CGFloat = 0
     var museumId: Int = 0
@@ -555,31 +555,30 @@ extension HDSSL_dMuseumDetailVC {
             if self.infoModel?.latitude != nil && self.infoModel?.longitude != nil {
                 let endLoc: CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(Float(self.infoModel!.latitude!) ?? 0), longitude: CLLocationDegrees.init(Float(self.infoModel!.longitude!) ?? 0))
                 let name = self.infoModel?.title
-                
+                guard let startLoc = HDLY_LocationTool.shared.coordinate else {
+                    return
+                }
                 let alertController = UIAlertController(title: nil,
                                                         message: nil, preferredStyle: .actionSheet)
                 let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
                 
                 let okAction1 = UIAlertAction(title: "使用苹果自带地图导航", style: .default, handler: {
                     action in
-                    HDLY_LocationTool.onNavForIOSMap(fromLoc: HDLY_LocationTool.shared.coordinate!, endLoc: endLoc, endLocName: name!)
+                    HDLY_LocationTool.onNavForIOSMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
 
                 })
                 let okAction2 = UIAlertAction(title: "使用百度地图导航", style: .default, handler: {
                     action in
-                    let startLoc = HDLY_LocationTool.shared.coordinate!
                     HDLY_LocationTool.onNavForBaiduMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
                     
                 })
                 let okAction3 = UIAlertAction(title: "使用高德地图导航", style: .default, handler: {
                     action in
-                    let startLoc = HDLY_LocationTool.shared.coordinate!
                     HDLY_LocationTool.onNavForGaoDeMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
                 })
                 
                 let okAction4 = UIAlertAction(title: "使用腾讯地图导航", style: .default, handler: {
                     action in
-                    let startLoc = HDLY_LocationTool.shared.coordinate!
                     HDLY_LocationTool.onNavForQQMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
                 })
                 
@@ -603,7 +602,6 @@ extension HDSSL_dMuseumDetailVC {
     
     
     //HDLY_MuseumInfoType4Cell_Delegate
-    
     func didSelectItemAt(_ model:DMuseumFeaturedList, _ cell: HDLY_MuseumInfoType4Cell) {
         showRecomendDetailVC(classID: model.classID ?? 0)
     }

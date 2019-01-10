@@ -90,7 +90,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
             
             let jsonDecoder = JSONDecoder()
             let dataA:Array<Dictionary<String,Any>> = dic?["data"] as! Array<Dictionary>
-            
+             self.dataArr.removeAll()
             if dataA.count > 0  {
                 for  tempDic in dataA {
                     let dataDic = tempDic as Dictionary<String, Any>

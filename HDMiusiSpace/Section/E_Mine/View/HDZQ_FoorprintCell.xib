@@ -25,14 +25,14 @@
                             <constraint firstAttribute="width" constant="1" id="h9s-wG-Ep9"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国现代雕塑艺术展" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGz-3v-D21">
-                        <rect key="frame" x="58.5" y="5" width="162.5" height="25.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国现代雕塑艺术展中国现代雕塑艺术展塑艺术展" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pGz-3v-D21">
+                        <rect key="frame" x="58.5" y="5" width="256.5" height="25.5"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="18"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dP-Ln-JQv">
-                        <rect key="frame" x="251" y="3" width="30" height="30"/>
+                        <rect key="frame" x="345" y="3" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="bHb-Yu-Cgw"/>
                             <constraint firstAttribute="width" secondItem="1dP-Ln-JQv" secondAttribute="height" multiplier="1:1" id="n4N-wY-Pt9"/>
@@ -51,7 +51,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="pGz-3v-D21" firstAttribute="top" secondItem="aSq-aL-1dw" secondAttribute="top" constant="5" id="423-dx-btc"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pGz-3v-D21" secondAttribute="trailing" constant="80" id="GQ4-nS-j8p"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pGz-3v-D21" secondAttribute="trailing" constant="60" id="EWt-nC-lxT"/>
                     <constraint firstAttribute="bottom" secondItem="bm8-eU-k9q" secondAttribute="bottom" id="H3o-QY-4Ok"/>
                     <constraint firstItem="bm8-eU-k9q" firstAttribute="top" secondItem="aSq-aL-1dw" secondAttribute="top" id="Qfw-xe-YSg"/>
                     <constraint firstItem="1dP-Ln-JQv" firstAttribute="centerY" secondItem="pGz-3v-D21" secondAttribute="centerY" id="Rzg-YB-N1c"/>

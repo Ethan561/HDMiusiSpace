@@ -27,15 +27,16 @@ class HDRootEVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginSuccess(noti:)), name: NSNotification.Name.init(rawValue: "LoginSuccess"), object: nil)
         navbarCons.constant = kTopHeight
         setupViews()
         getMyDynamicList()
+        addRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if declare.loginStatus == .kLogin_Status_Login {
-            addRefresh()
             getUserInfo()
             getMyStudyCourses()
         } else {
@@ -57,6 +58,10 @@ class HDRootEVC: HDItemBaseVC {
             self.htmls.removeAll()
             self.myTableView.reloadData()
         }
+    }
+    
+    @objc func LoginSuccess(noti:Notification) {
+        addRefresh()
     }
     
     func setupViews() {

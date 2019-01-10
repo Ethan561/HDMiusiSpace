@@ -538,7 +538,12 @@ extension HDLY_CourseDes_VC {
                 guard let url = self.infoModel?.data.url else {
                     return cell!
                 }
-                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+                cell?.loadWebView(url)
+                weak var weakS = self
+                cell?.tapBloclkFunc(block: { (type, articleId) in
+                    weakS?.didTapWebCard(type, articleId)
+                })
+                
                 return cell!
             }
             else if index == 2 {

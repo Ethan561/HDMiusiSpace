@@ -7,18 +7,64 @@
 //
 
 import UIKit
+import WebKit
+
+typealias CourseWebTapBloclk = (_ type: Int, _ articleId: Int) -> Void //
 
 class HDLY_CourseWeb_Cell: UITableViewCell {
     
-    @IBOutlet weak var webView: UIWebView!
+    var tapBloclk: CourseWebTapBloclk?
+    
+    // MARK: - 懒加载
+    lazy var webview: WKWebView = {
+        let webConfiguration = WKWebViewConfiguration()
+        //初始化偏好设置属性：preferences
+        webConfiguration.preferences = WKPreferences()
+        //是否支持JavaScript
+        webConfiguration.preferences.javaScriptEnabled = true
+        //不通过用户交互，是否可以打开窗口
+        webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = false
+        
+        let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
+        let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
+        webView.backgroundColor = UIColor.blue
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.bounces = false
+        webView.scrollView.showsVerticalScrollIndicator = false
+        webView.scrollView.showsHorizontalScrollIndicator = false
+        
+        return webView
+    }()
+    
+    //block
+    func tapBloclkFunc(block: @escaping CourseWebTapBloclk) {
+        tapBloclk = block
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        webView.scrollView.isScrollEnabled = false
-        webView.isUserInteractionEnabled = false
+        self.contentView.addSubview(self.webview)
     }
 
+    func loadWebView(_ path: String?) {
+        //
+        if path == "" || path?.count == 0 {
+            return
+        }
+        
+        if let webUrlString = path {
+            if let encodedStr = webUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                if let myUrl = URL(string: encodedStr) {
+                    let myRequest = URLRequest(url: myUrl)
+                    self.webview.load(myRequest)
+                }
+            }
+        }
+        
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -37,3 +83,43 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
     }
     
 }
+
+extension HDLY_CourseWeb_Cell: WKNavigationDelegate ,WKUIDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        
+        // 获取内容实际高度
+        self.webview.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                //print("webheight: \(webheight)")
+            }
+            
+            DispatchQueue.main.async { [unowned self] in
+                var tempFrame: CGRect = self.webview.frame
+                tempFrame.size.height = CGFloat(webheight)
+                self.webview.frame = tempFrame
+                //返回高度，刷新cell
+            }
+        }
+    }
+    
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        
+        let arr = message.components(separatedBy: "#")
+        print(message,arr)//
+        if arr.count == 2 {
+            if tapBloclk != nil {
+                let type = arr.first
+                let articleId = arr.last
+                self.tapBloclk?(Int(type!) ?? 0,Int(articleId!) ?? 0)
+            }
+        }
+        completionHandler()
+    }
+    
+}
+
+

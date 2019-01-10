@@ -134,15 +134,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             }
             weakSelf?.commentModels = comments
             weakSelf?.myTableView.reloadData()
-            
-//            guard let row = weakSelf?.currentRow else {
-//                weakSelf?.myTableView.reloadData()
-//                return
-//            }
-//            let indexPath = NSIndexPath.init(row: row, section: 2)
-//            weakSelf?.myTableView.reloadRows(at: [indexPath as IndexPath], with: .none)
-            
-            
         }
         
         viewModel.showEmptyView.bind() { (show) in
@@ -266,6 +257,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBAction func backAction(_ sender: Any) {
         self.back()
     }
+    
 }
 
 extension HDLY_TopicDetail_VC {
@@ -444,7 +436,12 @@ extension HDLY_TopicDetail_VC {
             guard let url = model?.url else {
                 return cell!
             }
-            cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+            cell?.loadWebView(url)
+            weak var weakS = self
+            cell?.tapBloclkFunc(block: { (type, articleId) in
+                weakS?.didTapWebCard(type, articleId)
+            })
+            
             return cell!
         }
         else if indexPath.section ==  1 {

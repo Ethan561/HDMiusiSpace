@@ -181,8 +181,7 @@ extension HDLY_CourseList_SubVC2 {
             guard let url = self.infoModel?.data.url else {
                 return cell!
             }
-            cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-            
+            cell?.loadWebView(url)
             return cell!
         }
         else if index == 2 {

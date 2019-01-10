@@ -126,6 +126,28 @@ class HDItemBaseVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func didTapWebCard(_ type: Int, _ articleId: Int) {// 1 课程 2 展览 3 博物馆
+        if type == 1 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+            desVC.courseId = "\(articleId)"
+            self.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if type == 2 {
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            vc.exhibition_id = articleId
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if type == 3 {
+            //博物馆详情
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
+            vc.museumId = articleId
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func didSelectItemAtPagerViewCell(model: BbannerModel , vc: UIViewController) {
         //cate_id: 轮播图类型1课程，2轻听随看，3资讯，4展览，5活动
         if model.cate_id?.int == 1 {

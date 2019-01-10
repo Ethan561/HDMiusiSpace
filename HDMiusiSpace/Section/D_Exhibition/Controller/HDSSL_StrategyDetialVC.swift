@@ -367,7 +367,12 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
                 guard let url = model?.url else {
                     return cell!
                 }
-                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+                cell?.loadWebView(url)
+                weak var weakS = self
+                cell?.tapBloclkFunc(block: { (type, articleId) in
+                    weakS?.didTapWebCard(type, articleId)
+                })
+                
                 return cell!
             }
             

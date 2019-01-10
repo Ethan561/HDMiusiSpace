@@ -452,7 +452,12 @@ extension HDSSL_dMuseumDetailVC {
                 guard let url = self.infoModel?.museumHTML else {
                     return cell!
                 }
-                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+                cell?.loadWebView(url)
+                weak var weakS = self
+                cell?.tapBloclkFunc(block: { (type, articleId) in
+                    weakS?.didTapWebCard(type, articleId)
+                })
+                
                 return cell!
             }
             else  {
@@ -752,7 +757,7 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
             for view in self.myTableView.visibleCells {
                 if view.isKind(of: HDLY_CourseWeb_Cell.self) {
                     let cell = view as! HDLY_CourseWeb_Cell
-                    cell.webView.setNeedsLayout()
+                    cell.webview.setNeedsLayout()
                 }
             }
             

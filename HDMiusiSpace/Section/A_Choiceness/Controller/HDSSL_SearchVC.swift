@@ -232,6 +232,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         //输入
         let placeholder: String? = (UserDefaults.standard.object(forKey: "SeachPlaceHolder") as? String)
+        placeholderStr = placeholder
         
         textFeild = UITextField.init(frame: CGRect.init(x: 20, y: 3, width: view.frame.size.width-20-30, height: 30))
         view.addSubview(textFeild)
@@ -312,6 +313,16 @@ class HDSSL_SearchVC: HDItemBaseVC {
             self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: 0, vc: self)
             //保存搜索历史
             self.func_saveHistory(self.textFeild.text!)
+        }else if (placeholderStr?.count)! > 0 {
+//            if (placeholderStr?.count)! > 20 {
+//                let substr = String((placeholderStr?.prefix(20))!)
+//
+//                placeholderStr = substr
+//            }
+            self.textFeild.text = placeholderStr
+            self.viewModel.request_search(str: placeholderStr!, skip: 0, take: 10, type: 0, vc: self)
+            //保存搜索历史
+            self.func_saveHistory(placeholderStr!)
         }
         
     }

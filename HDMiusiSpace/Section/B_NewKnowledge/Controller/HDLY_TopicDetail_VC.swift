@@ -624,7 +624,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 self.pushToLoginVC(vc: self)
                 return
             }
-            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
         }
     }
  

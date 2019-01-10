@@ -335,11 +335,32 @@ extension HDRootAVC {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = infoModel!.data![indexPath.row]
-        if model.type.int == 1 {
+        if model.type.int == 1 {//资讯
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             vc.topic_id = model.itemList?.articleID.string
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if model.type.int == 2 {//日卡
+            if model.itemCard?.cardID ==  1 {//日卡类型id,1课程2展览3活动
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                vc.courseId = String.init(format: "%ld", model.itemCard?.articleID ?? 0)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.itemCard?.cardID ==  2 {
+                //展览详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+                vc.exhibition_id = model.itemCard?.articleID
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.itemCard?.cardID ==  3 {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+                vc.topic_id = String.init(format: "%ld", model.itemCard?.articleID ?? 0)
+                vc.fromRootAChoiceness = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

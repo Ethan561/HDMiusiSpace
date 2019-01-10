@@ -103,7 +103,7 @@ enum HD_LY_API {
     case sendError(api_token: String, option_id_str: String, parent_id: String , cate_id: String, content:String, uoload_img: Array<String>)
 
     //意见反馈
-    case sendFeedback(api_token: String, cate_id: String, content:String)
+    case sendFeedback(api_token: String, cate_id: String, parent_id:String, content:String)
     
     //轻听随看收听+1
     case courseListenedNumAdd(listen_id: String)
@@ -349,7 +349,7 @@ extension HD_LY_API: TargetType {
             return "/api/deviceno/send_error"
             
         //意见反馈
-        case .sendFeedback(api_token: _, cate_id: _ , content:_ ):
+        case .sendFeedback(api_token: _, cate_id: _ ,parent_id: _, content:_ ):
             return "/api/deviceno/feedback"
             
         //轻听随看收听+1
@@ -492,7 +492,7 @@ extension HD_LY_API: TargetType {
              .uploadImg(api_token: _, uoload_img: _),
              .commentReportOption(_,_,_),
              .sendError(api_token: _, option_id_str: _, parent_id: _ , cate_id: _, content:_, uoload_img: _),
-             .sendFeedback(api_token: _, cate_id: _ , content:_ ),
+             .sendFeedback(api_token: _, cate_id: _ , parent_id:_, content:_ ),
              .usersProfile(api_token: _, profile: _),
              .usersVerify(username: _, smscode: _),
              .usersPassword(api_token: _, password: _),
@@ -790,8 +790,8 @@ extension HD_LY_API: TargetType {
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         //意见反馈
-        case .sendFeedback(api_token: let api_token , cate_id: let cate_id , content: let content):
-            params = params.merging(["api_token": api_token,"cate_id":cate_id, "content": content], uniquingKeysWith: {$1})
+        case .sendFeedback(api_token: let api_token , cate_id: let cate_id ,parent_id: let parent_id, content: let content):
+            params = params.merging(["api_token": api_token,"cate_id":cate_id,"parent_id":parent_id, "content": content], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

@@ -186,18 +186,27 @@ class CoursePublicViewModel: NSObject {
     }
     
     //对评论内容进行举报
-    func reportCommentContent(api_token: String, option_id_str: String, comment_id: Int)  {
+    func reportCommentContent(api_token: String, option_id_str: String, comment_id: Int,content:String)  {
         
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .commentReportOption(api_token: api_token, comment_id: comment_id, option_id_str: option_id_str), success: { (result) in
-            
+//        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .commentReportOption(api_token: api_token, comment_id: comment_id, option_id_str: option_id_str), success: { (result) in
+//            
+//            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+//            LOG("\(String(describing: dic))")
+//           
+//            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "举报成功")
+//            
+//        }) { (errorCode, msg) in
+//            
+//        }
+//        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendError(api_token: api_token, option_id_str: option_id_str, parent_id: String(comment_id), cate_id: "8", content: content, uoload_img: [""]), success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-           
-            HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "举报成功")
-            
+            HDAlert.showAlertTipWith(type: .onlyText, text: "举报成功")
         }) { (errorCode, msg) in
             
         }
+        
     }
     //评论展览评星删除
     let deleteCommentSuccess: Bindable = Bindable(false)

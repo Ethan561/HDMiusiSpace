@@ -335,7 +335,7 @@ extension HDSSL_commentListVC: HDZQ_CommentActionDelegate {
             }
             self.commentView.removeFromSuperview()
             //调用举报接口
-            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID)
+            publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
         }
     }
     

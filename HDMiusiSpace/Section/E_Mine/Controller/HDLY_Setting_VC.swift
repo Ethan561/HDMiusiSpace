@@ -183,6 +183,7 @@ extension HDLY_Setting_VC: UITableViewDelegate, UITableViewDataSource {
                     //反馈
                     let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
                     vc.typeID = "0"
+                    vc.parent_id = "0"
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else {
                     self.pushToLoginVC(vc: self)

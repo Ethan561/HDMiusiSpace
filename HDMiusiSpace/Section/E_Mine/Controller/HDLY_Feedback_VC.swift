@@ -17,6 +17,7 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
     
     var textNum: Int = 0
     var typeID: String? //操作类型0用户设置中心 1课程,2轻听随看,3看展,4资讯
+    var parent_id: String?  //资讯/课程/轻听随看/展览等的id,用户设置中心的反馈传0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +45,15 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
         guard let idnum = self.typeID else {
             return
         }
+        guard let parentId =  self.parent_id else {
+            return
+        }
         if textView.text.isEmpty == true {return}
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
             return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendFeedback(api_token: HDDeclare.shared.api_token!, cate_id: idnum, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendFeedback(api_token: HDDeclare.shared.api_token!, cate_id: idnum, parent_id: parentId, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")

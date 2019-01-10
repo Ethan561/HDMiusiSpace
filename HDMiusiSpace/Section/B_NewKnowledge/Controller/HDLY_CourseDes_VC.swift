@@ -729,6 +729,7 @@ extension HDLY_CourseDes_VC {
             //反馈
             let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
             vc.typeID = "1"
+            vc.parent_id = self.infoModel?.data.articleID.string
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }else {

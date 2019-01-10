@@ -48,14 +48,6 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     var collectionRow = -1
     var isCollection: Bool?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -99,6 +91,14 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         self.view.addSubview(guideBtn)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+        player.showFloatingBtn = false
+        
+    }
+    
     @objc func action_rader(){
         let webVC = HDItemBaseWebVC()
         webVC.urlPath = self.infoModel?.tourGuide
@@ -215,8 +215,8 @@ extension HDSSL_dMuseumDetailVC: UMShareDelegate {
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
-        let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.title, thumImage: thumbURL)
+        let thumbURL = self.infoModel?.img
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.share_des, thumImage: thumbURL)
         
         //设置网页地址
         shareObject?.webpageUrl = url

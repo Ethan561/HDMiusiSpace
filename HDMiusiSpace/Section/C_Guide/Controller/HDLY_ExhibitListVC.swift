@@ -34,15 +34,25 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         dataRequest()
         addRefresh()
         player.delegate = self
-        player.showFloatingBtn = true
+        player.stop()
         
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         HDFloatingButtonManager.manager.floatingBtnView.show = false
+        player.showFloatingBtn = false
+        
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.showFloatingBtn = false
+        if player.state == .playing {
+            //player.showFloatingBtn = true
+        }
         
     }
     

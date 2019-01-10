@@ -160,6 +160,7 @@ struct FPExhibit:Codable {
 struct FPContent:Codable {
     var class_list = [FPRelatedModel]()
     var exhibition_share_html: String?
+    var share_des: String?
     var exhibition_title: String?
     var museum_title: String?
     var exhibit_list = [FPExhibit]()

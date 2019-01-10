@@ -118,6 +118,9 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }
         viewModel.bannerArr.bind { (banner) in
             weakSelf?.bannerArr = banner
+            if banner.count <= 1 {
+                weakSelf?.tabHeader.pagerView.automaticSlidingInterval = 0
+            }
             weakSelf?.tabHeader.pageControl.numberOfPages = banner.count
             weakSelf?.tabHeader.pagerView.reloadData()
         }

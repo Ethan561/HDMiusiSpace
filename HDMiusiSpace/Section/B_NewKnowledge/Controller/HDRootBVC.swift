@@ -146,6 +146,9 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
                     self.bannerArr.append(model)
                 }
                 self.tabHeader.pageControl.numberOfPages = self.bannerArr.count
+                if self.bannerArr.count <= 1 {
+                    self.tabHeader.pagerView.automaticSlidingInterval = 0
+                }
                 self.tabHeader.pagerView.reloadData()
             }
             

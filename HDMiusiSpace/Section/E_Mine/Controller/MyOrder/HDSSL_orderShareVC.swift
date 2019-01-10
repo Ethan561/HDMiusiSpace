@@ -107,6 +107,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
     //MARK:-截屏保存图片
     func screenshotPicture() -> UIImage? {
         
+        shareBtn.isHidden = true
         
         let scale: CGFloat = UIScreen.main.scale
         
@@ -122,6 +123,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
             UIImageWriteToSavedPhotosAlbum(img!, nil, nil, nil)
         }
         
+        shareBtn.isHidden = false
         return img
     }
     /*

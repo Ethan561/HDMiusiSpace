@@ -30,6 +30,7 @@ struct ExhibitionMuseumData: Codable {
     var dataList: [ExhibitionMuseumDataList]?
     var museum_id: Int?
     var share_url: String?
+    var share_des: String?
     var longitude: String?
     var latitude: String?
     var tourGuideHtml: String?
@@ -47,6 +48,7 @@ struct ExhibitionMuseumData: Codable {
         case dataList = "data_list"
         case museum_id
         case share_url
+        case share_des
         case longitude
         case latitude
         case tourGuideHtml = "tour_guide_html"

@@ -254,26 +254,25 @@ extension HDLY_CourseList_SubVC1 {
             return
         }
         let listModel = sectionModel.chapterList[indexPath.row]
-        selectRow = indexPath.row
-        selectSection = indexPath.section
-        let cell:HDLY_CourseList_Cell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: selectSection)) as? HDLY_CourseList_Cell
-        
+    
         if self.isBuy == false {
             //0收费 1免费 2vip免费
             if listModel.freeType == 0 {
                 
             }
             else if listModel.freeType == 1 {
+                selectRow = indexPath.row
+                selectSection = indexPath.section
                 delegate?.playWithCurrentPlayUrl(listModel)
+                
             }
             else if listModel.freeType == 2 {
-                //delegate?.playWithCurrentPlayUrl(listModel)
+
             }
         } else {
+            selectRow = indexPath.row
+            selectSection = indexPath.section
             delegate?.playWithCurrentPlayUrl(listModel)
-            cell?.tipImgV.image = UIImage.init(named: "icon_pause_white")
-            cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
-            cell?.timeL.textColor = UIColor.HexColor(0xE8593E)
         }
     }
     

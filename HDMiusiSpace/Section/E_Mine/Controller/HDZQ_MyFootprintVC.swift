@@ -26,9 +26,10 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         HDFloatingButtonManager.manager.floatingBtnView.show = false
+        let player = HDLY_AudioPlayer.shared
+        player.showFloatingBtn = false
         
     }
-    
     deinit {
          let player = HDLY_AudioPlayer.shared
         player.stop()
@@ -123,7 +124,8 @@ extension HDZQ_MyFootprintVC: UMShareDelegate {
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
         let thumbURL = shareModel?.exhibition_share_html
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: shareModel?.exhibition_title, descr: shareModel?.museum_title, thumImage: nil)
+        
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: shareModel?.exhibition_title, descr: shareModel?.share_des, thumImage: UIImage.init(named: "icon_shareImg"))
         shareObject?.webpageUrl = thumbURL
         messageObject.shareObject = shareObject
         

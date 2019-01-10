@@ -34,7 +34,7 @@
                             <state key="normal" image="search_icon_Voice_default"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨家成霸道口语课" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-wu-oYJ">
-                            <rect key="frame" x="32" y="8" width="136" height="20"/>
+                            <rect key="frame" x="32" y="8" width="257" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="k0e-4m-DjQ"/>
                             </constraints>
@@ -57,6 +57,7 @@
                         <constraint firstItem="CHH-wu-oYJ" firstAttribute="leading" secondItem="U4H-FL-m7e" secondAttribute="trailing" constant="8" id="Ou5-dZ-vS4"/>
                         <constraint firstAttribute="trailing" secondItem="cyQ-DV-crM" secondAttribute="trailing" constant="8" id="Rkd-OZ-zZd"/>
                         <constraint firstItem="cyQ-DV-crM" firstAttribute="leading" secondItem="bma-26-vyt" secondAttribute="trailing" id="e8v-qS-ipj"/>
+                        <constraint firstItem="cyQ-DV-crM" firstAttribute="leading" secondItem="CHH-wu-oYJ" secondAttribute="trailing" constant="8" id="g9J-fb-RS8"/>
                         <constraint firstItem="bma-26-vyt" firstAttribute="top" secondItem="oHf-gX-T0b" secondAttribute="top" id="vb2-jk-97M"/>
                         <constraint firstAttribute="bottom" secondItem="bma-26-vyt" secondAttribute="bottom" id="wPk-v6-CYK"/>
                     </constraints>

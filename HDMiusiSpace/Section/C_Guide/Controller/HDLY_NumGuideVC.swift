@@ -69,6 +69,13 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+        player.showFloatingBtn = false
+        
+    }
+    
     func setupNavBarItem() {
         let rightBtn = UIButton.init(type: UIButton.ButtonType.custom)
         rightBtn.addTarget(self, action: #selector(helpAlertShow), for: UIControl.Event.touchUpInside)

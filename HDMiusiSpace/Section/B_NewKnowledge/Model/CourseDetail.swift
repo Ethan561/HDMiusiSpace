@@ -25,6 +25,8 @@ struct CourseDetailModel: Codable {
     var fileType: Int
     var timg, teacherName, teacherTitle: String
     var isFavorite, isFocus, isBuy: Int
+    var share_url: String?
+    var share_des: String?
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
@@ -40,6 +42,8 @@ struct CourseDetailModel: Codable {
         case isFavorite = "is_favorite"
         case isFocus = "is_focus"
         case isBuy = "is_buy"
+        case share_url
+        case share_des
     }
 }
 

@@ -207,13 +207,13 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectRow = indexPath.row
         let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
 
         let listModel = dataArr[indexPath.row]
         guard let video = listModel.audio else {
             return
         }
+        selectRow = indexPath.row
         if listModel.title == currentModel.title {
             cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
             if player.state == .playing {

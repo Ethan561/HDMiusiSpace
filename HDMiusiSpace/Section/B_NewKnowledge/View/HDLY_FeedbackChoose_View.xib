@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,6 +28,9 @@
                         </view>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p76-hN-sY1">
                             <rect key="frame" x="0.0" y="0.0" width="120" height="49.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49.5" id="gcG-f0-rbX"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                             <state key="normal" title="分享">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -38,6 +41,9 @@
                         </button>
                         <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9G6-hr-Grs">
                             <rect key="frame" x="0.0" y="50.5" width="120" height="49.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49.5" id="I31-zE-uBG"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                             <state key="normal" title="报错">
                                 <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,11 +60,9 @@
                         <constraint firstItem="dhF-dd-7f5" firstAttribute="top" secondItem="p76-hN-sY1" secondAttribute="bottom" id="Cha-qF-P38"/>
                         <constraint firstItem="p76-hN-sY1" firstAttribute="top" secondItem="Zdm-L1-dwX" secondAttribute="top" id="CxS-5C-0a0"/>
                         <constraint firstItem="9G6-hr-Grs" firstAttribute="top" secondItem="dhF-dd-7f5" secondAttribute="bottom" id="FC2-9Z-bes"/>
-                        <constraint firstAttribute="bottom" secondItem="9G6-hr-Grs" secondAttribute="bottom" id="IM4-iT-Bo2"/>
                         <constraint firstItem="9G6-hr-Grs" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="JRf-zA-ntN"/>
                         <constraint firstAttribute="trailing" secondItem="p76-hN-sY1" secondAttribute="trailing" id="ZLa-0N-eNR"/>
                         <constraint firstAttribute="trailing" secondItem="dhF-dd-7f5" secondAttribute="trailing" id="ebk-jO-jWI"/>
-                        <constraint firstItem="dhF-dd-7f5" firstAttribute="centerY" secondItem="Zdm-L1-dwX" secondAttribute="centerY" id="gMT-D0-UDM"/>
                         <constraint firstItem="dhF-dd-7f5" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="kY5-r0-8L8"/>
                         <constraint firstItem="p76-hN-sY1" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="tBB-Sf-Ubu"/>
                     </constraints>

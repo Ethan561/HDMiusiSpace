@@ -11,16 +11,27 @@ import UIKit
 class HDZQ_OthersCenterVC: HDItemBaseVC {
     public var toid = 0
     public var model = OtherDynamic()
+    private var dynamics = [MyDynamic]()
     private var htmls =  [NSAttributedString]()
+    private var take = 10
+    private var skip = 0
     @IBOutlet weak var tableView: UITableView!
     let tabHeader = HDZQ_PersonOthersHeaderView.createViewFromNib() as! HDZQ_PersonOthersHeaderView
     
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     
+    lazy var commentView: HDZQ_CommentActionView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tmp?.reportDelegate = self
+        return tmp!
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         requestDynamicData(toid: toid)
+        addRefresh()
         self.title = "个人中心"
         
         let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 34))
@@ -33,6 +44,64 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190))
         v.addSubview(tabHeader)
         tableView.tableHeaderView = v
+    }
+    
+    func refreshTableView(models:[MyDynamic]) {
+        
+        if self.skip > 0 {
+            self.dynamics.append(contentsOf: models)
+        } else {
+            self.dynamics = models
+        }
+        
+        for i in 0..<self.dynamics.count {
+            let m = self.dynamics[i]
+            var attrStr: NSAttributedString? = nil
+            if let anEncoding = m.comment!.data(using: .unicode) {
+                attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                self.htmls.append(attrStr!)
+            }
+        }
+        
+        if self.dynamics.count > 0 {
+            self.tableView.reloadData()
+        } else {
+            self.tableView.reloadData()
+            self.tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+            self.tableView.ly_showEmptyView()
+        }
+        
+        self.tableView.es.stopPullToRefresh()
+        self.tableView.es.stopLoadingMore()
+        if models.count == 0 {
+            self.tableView.es.noticeNoMoreData()
+        }
+    }
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        
+        self.tableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.tableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.tableView.refreshIdentifier = String.init(describing: self)
+        self.tableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        skip = 0
+        requestOthersDynamicData(toid: toid)
+    }
+    
+    private func loadMore() {
+        skip = skip + take
+        requestOthersDynamicData(toid: toid)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,8 +142,6 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         } else {
             tabHeader.vipImg.isHidden = true
         }
-        tableView.reloadData()
-        
     }
     
     func followAction(id:String, cate_id:String, api_token:String) {
@@ -108,15 +175,22 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
             do {
                 let model:OtherDynamicData = try jsonDecoder.decode(OtherDynamicData.self, from: result)
                 self.model = model.data ?? OtherDynamic()
-                for i in 0..<self.model.dynamic_list.count {
-                    let m = self.model.dynamic_list[i]
-                    var attrStr: NSAttributedString? = nil
-                    if let anEncoding = m.comment!.data(using: .unicode) {
-                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                        self.htmls.append(attrStr!)
-                    }
-                }
+                self.requestOthersDynamicData(toid: toid)
                 self.refreshUI()
+            } catch let error {
+                LOG("解析错误：\(error)")
+            }
+        }) { (error, msg) in
+            
+        }
+    }
+    
+    func requestOthersDynamicData(toid:Int) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getOthersDynamicList(uid: toid, skip: skip,take:take), success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            do {
+                let model:OtherDynamicList = try jsonDecoder.decode(OtherDynamicList.self, from: result)
+                self.refreshTableView(models:  model.data!)
             } catch let error {
                 LOG("解析错误：\(error)")
             }
@@ -132,11 +206,11 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
 
 extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.model.dynamic_list.count
+        return self.dynamics.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dynamic = self.model.dynamic_list[indexPath.row]
+        let dynamic = self.dynamics[indexPath.row]
         let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
         cell?.avaImgV.kf.setImage(with: URL.init(string: dynamic.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         cell?.contentL.attributedText = self.htmls[indexPath.row]
@@ -203,7 +277,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
                         cell?.imgV.kf.setImage(with: URL.init(string: newsInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
                     }
                     cell?.titleL.text = newsInfo.title
-                    cell?.locL.text = String.init(format: "%@|%@", newsInfo.keywords!,newsInfo.platTitle!)
+                    cell?.locL.text = String.init(format: "%@|%@", newsInfo.keywords ?? "",newsInfo.platTitle ?? "")
                 }
             }
             else if  dynamic.cateID == 2 {
@@ -230,7 +304,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
                         cell?.imgV.kf.setImage(with: URL.init(string: strategyInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
                     }
                     cell?.titleL.text = strategyInfo.title
-                    cell?.locL.text = String.init(format: "%@|%@", strategyInfo.keywords!,strategyInfo.platTitle!)
+                    cell?.locL.text = ""
                 }
                 
             }
@@ -244,7 +318,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let model = self.model.dynamic_list[indexPath.row]
+        let model = self.dynamics[indexPath.row]
         if model.cateID == 1 {
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             vc.topic_id = String.init(format: "%ld", model.newsInfo?.articleID ?? 0)
@@ -262,7 +336,9 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if model.cateID == 5 {
-            
+            let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+            vc.strategyid = model.strategyInfo?.articleID ?? 0
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if model.cateID == 10 {
             let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
@@ -280,14 +356,14 @@ extension HDZQ_OthersCenterVC {
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
             feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
-            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 45, width: 120, height: 100)
-            feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
-            feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
-            self.navigationController?.view.addSubview(feedbackChooseTip!)
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 10, width: 120, height: 50)
+            feedbackChooseTip?.tapBtn1.setTitle("举报", for: .normal)
+            feedbackChooseTip?.tapBtn2.isHidden = true
+            self.view.addSubview(feedbackChooseTip!)
             showFeedbackChooseTip = true
             weak var weakS = self
             feedbackChooseTip?.tapBlock = { (index) in
-                weakS?.feedbackChooseAction(index: index)
+                weakS?.feedbackChooseAction(index: 2)
             }
         } else {
             closeFeedbackChooseTip()
@@ -301,24 +377,66 @@ extension HDZQ_OthersCenterVC {
     }
     
     func feedbackChooseAction(index: Int) {
-        if index == 1 {
-            //反馈
-            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
-            vc.typeID = "0"
-            self.navigationController?.pushViewController(vc, animated: true)
-            closeFeedbackChooseTip()
-        }else {
-            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                self.pushToLoginVC(vc: self)
-                return
-            }
-            //报错
-            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+        
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(toid), cate_id: "8"), success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let jsonDecoder = JSONDecoder()
+            //JSON转Model：
+            let model:ReportErrorModel = try! jsonDecoder.decode(ReportErrorModel.self, from: result)
+            var strs = [String]()
+            var reportType = [Int]()
+            model.data?.optionList.forEach({ (m) in
+                strs.append(m.optionTitle)
+                reportType.append(m.optionID)
+            })
             
-            vc.articleID = String(toid)
-            vc.typeID = "8"
-            self.navigationController?.pushViewController(vc, animated: true)
-            closeFeedbackChooseTip()
+            self.commentView.dataArr = strs
+            self.commentView.reportType = reportType
+            self.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+            self.commentView.type = 1
+            self.commentView.tableHeightConstraint.constant = CGFloat((self.commentView.dataArr.count)*50)
+            self.commentView.tableView.reloadData()
+            kWindow?.addSubview(self.commentView)
+            self.commentView.tableView.reloadData()
+        }) { (errorCode, msg) in
+            
+        }
+        
+        
+//        if index == 1 {
+//            //反馈
+//            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
+//            vc.typeID = "0"
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            closeFeedbackChooseTip()
+//        }else {
+//            if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+//                self.pushToLoginVC(vc: self)
+//                return
+//            }
+//            //报错
+//            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
+//
+//            vc.articleID = String(toid)
+//            vc.typeID = "8"
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            closeFeedbackChooseTip()
+//        }
+    }
+    
+}
+
+extension HDZQ_OthersCenterVC: MyReportProtocol {
+    func reportActionSelected(type: Int, index: Int, comment: String, reportType: Int?) {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendError(api_token: HDDeclare.shared.api_token ?? "", option_id_str: String(reportType!), parent_id: String(toid), cate_id: "8", content: self.commentView.dataArr[index], uoload_img: [""]), showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
+            self.commentView.removeFromSuperview()
+        }) { (errorCode, msg) in
+            
         }
     }
     

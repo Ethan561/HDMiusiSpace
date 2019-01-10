@@ -438,7 +438,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                             cell?.imgV.kf.setImage(with: URL.init(string: strategyInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
                         }
                         cell?.titleL.text = strategyInfo.title
-                        cell?.locL.text = String.init(format: "%@|%@", strategyInfo.keywords!,strategyInfo.platTitle!)
+//                        cell?.locL.text = String.init(format: "%@|%@", strategyInfo.keywords!,strategyInfo.platTitle!)
                     }
 
                 }

@@ -12,6 +12,10 @@ protocol HDZQ_CommentActionDelegate : NSObjectProtocol {
     func commentActionSelected(type:Int,index:Int,model:TopicCommentList,comment:String,reportType:Int?)
 }
 
+protocol MyReportProtocol: NSObjectProtocol {
+    func reportActionSelected(type:Int,index:Int,comment:String,reportType:Int?)
+}
+
 
 class HDZQ_CommentActionView: UIView {    
     @IBOutlet weak var tableView: UITableView!
@@ -20,6 +24,7 @@ class HDZQ_CommentActionView: UIView {
     public var dataArr = [String]()
     public var reportType = [Int]()
     public weak var delegate:HDZQ_CommentActionDelegate?
+    public weak var reportDelegate:MyReportProtocol?
     public var model : TopicCommentList?
     public var commentContent : String?
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
@@ -63,6 +68,9 @@ extension HDZQ_CommentActionView:UITableViewDelegate {
                 delegate?.commentActionSelected(type: type, index: indexPath.row,model: model!, comment: commentContent ?? "",reportType:nil)
             }
             
+        }
+        if reportDelegate != nil {
+            reportDelegate?.reportActionSelected(type: type, index: indexPath.row, comment: commentContent ?? "", reportType: reportType[indexPath.row])
         }
     }
 }

@@ -368,6 +368,12 @@ struct OtherDynamic:Codable {
     var profile: String?
 }
 
+struct OtherDynamicList:Codable {
+    var status: Int = 0
+    var data: [MyDynamic]?
+    var msg: String?
+}
+
 //
 struct TeacherDynamic: Codable {
     var status: Int?

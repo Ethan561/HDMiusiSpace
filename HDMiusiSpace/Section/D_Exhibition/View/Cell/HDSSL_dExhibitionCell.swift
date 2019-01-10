@@ -44,8 +44,9 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             }
             cellTitle.text = model?.title
             cell_locaAndPrice.text = model?.address
-            cell_number.text = model!.star?.string
             let star: Float! = Float(model!.star?.string ?? "0")
+            cell_number.text = String.init(format: "%.1f", star)
+            
             var imgStr = ""
             
             cell_noStarLab.isHidden = true

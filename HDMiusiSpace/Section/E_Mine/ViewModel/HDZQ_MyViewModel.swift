@@ -56,6 +56,17 @@ class HDZQ_MyViewModel: NSObject {
         }
     }
     
+    var collectMyStrategy: Bindable = Bindable([StrategyModel]())
+    func requestMyCollectStrategys(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFavoriteStrategy(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:MyCollectStrategyData = try! jsonDecoder.decode(MyCollectStrategyData.self, from: result)
+            self.collectMyStrategy.value = model.data
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     var collectListens: Bindable = Bindable([MyCollectListenModel]())
     func requestMyListens(apiToken:String,skip:Int,take:Int,type:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyFavoriteListens(api_token:apiToken , skip:skip, take:take,type:type), showHud: true, loadingVC: vc, success: { (result) in

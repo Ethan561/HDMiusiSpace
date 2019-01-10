@@ -27,6 +27,8 @@ enum HD_ZQ_Person_API {
     case getMyFavoriteCourses(api_token: String, skip:Int, take:Int,type:Int)
     //我的收藏展览
     case getMyFavoriteExhibition(api_token: String, skip:Int, take:Int,type:Int)
+    //我的收藏攻略
+    case getMyFavoriteStrategy(api_token: String, skip:Int, take:Int,type:Int)
     //我的日卡
     case getMyDayCards(api_token: String, skip:Int, take:Int)
     //我的已购买课程
@@ -78,6 +80,8 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/myclass/favorites_list"
         case .getMyFavoriteExhibition(api_token: _,  skip: _, take: _, type: _):
             return "/api/favorites/my_exhibition"
+        case .getMyFavoriteStrategy(api_token: _,  skip: _, take: _, type: _):
+            return "/api/favorites/my_strategy"
         case .getMyDayCards(api_token: _,  skip: _, take: _):
             return "/api/favorites/my_daycard"
         case .getMyBuyCourses(api_token: _,  skip: _, take: _):
@@ -187,6 +191,13 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
         case .getMyFavoriteExhibition(let apiToken,let page,let size, _):
+            params = params.merging(["api_token": apiToken,
+                                     "skip":page,
+                                     "take":size], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyFavoriteStrategy(let apiToken,let page,let size, _):
             params = params.merging(["api_token": apiToken,
                                      "skip":page,
                                      "take":size], uniquingKeysWith: {$1})

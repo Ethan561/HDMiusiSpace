@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +33,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="艺术中国古画修复大师是怎样练成的艺术中国古画修复大师是" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85b-nI-tlD">
-                        <rect key="frame" x="124" y="10" width="176" height="33.5"/>
+                        <rect key="frame" x="124" y="11" width="176" height="33.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -71,10 +71,10 @@
                     <constraint firstItem="85b-nI-tlD" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="08d-Fy-sz5"/>
                     <constraint firstAttribute="bottom" secondItem="2gQ-MV-KdL" secondAttribute="bottom" constant="10" id="57c-tB-Ig4"/>
                     <constraint firstAttribute="bottom" secondItem="ysG-62-fua" secondAttribute="bottom" id="KYR-qU-P72"/>
+                    <constraint firstItem="85b-nI-tlD" firstAttribute="top" secondItem="gpj-R3-Kcc" secondAttribute="top" id="NqA-al-D9Z"/>
                     <constraint firstAttribute="bottom" secondItem="Udl-LN-YX2" secondAttribute="bottom" constant="10" id="bXy-Wc-2Vn"/>
                     <constraint firstItem="gpj-R3-Kcc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="crI-GX-uUX"/>
                     <constraint firstItem="ysG-62-fua" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="gVs-QX-dYn"/>
-                    <constraint firstItem="85b-nI-tlD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="h89-5j-8YS"/>
                     <constraint firstItem="2gQ-MV-KdL" firstAttribute="leading" secondItem="Udl-LN-YX2" secondAttribute="trailing" constant="2" id="hkI-J6-dQy"/>
                     <constraint firstItem="gpj-R3-Kcc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ntr-eY-sBi"/>
                     <constraint firstAttribute="trailing" secondItem="85b-nI-tlD" secondAttribute="trailing" constant="20" id="oNq-xb-PnL"/>

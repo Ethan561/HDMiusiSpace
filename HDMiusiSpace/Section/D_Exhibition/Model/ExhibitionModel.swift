@@ -85,4 +85,18 @@ struct HDLY_dMuseumListD: Codable {
     }
 }
 
+struct MyCollectStrategyData: Codable {
+    let status: Int
+    let msg: String
+    let data: [StrategyModel]
+}
+
+struct StrategyModel: Codable {
+    var author :String
+    var comment_num  :Int
+    var likes_num    :Int
+    var strategy_id   :Int
+    var img    :String
+    var title:String
+}
 

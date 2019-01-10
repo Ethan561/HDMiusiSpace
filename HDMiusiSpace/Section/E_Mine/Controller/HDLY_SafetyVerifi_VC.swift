@@ -31,7 +31,7 @@ class HDLY_SafetyVerifi_VC: HDItemBaseVC {
         phoneL.text = HDDeclare.shared.phone
         guard let foot =  phone?.suffix(4) else { return }
         guard let head =  phone?.prefix(3) else { return }
-        phoneL.text = String(head) + "····" + String(foot)
+        phoneL.text = "+86" + String(head) + "····" + String(foot)
         
     }
 

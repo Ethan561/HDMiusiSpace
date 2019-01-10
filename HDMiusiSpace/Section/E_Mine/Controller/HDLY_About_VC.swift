@@ -9,7 +9,7 @@
 import UIKit
 
 class HDLY_About_VC: HDItemBaseVC {
-
+    
     @IBOutlet weak var myTableView: UITableView!
     
     private var phone = "010-85619596"
@@ -134,17 +134,21 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
                 return cell!
             }else if index == 1 {//喜欢我们
                 cell?.nameL.text = "喜欢我们"
-                 cell?.subNameL.text = ""
+                cell?.subNameL.text = ""
+                cell?.bottomLine.isHidden = false
                 return cell!
             }else if index == 2 {//检查版本
                 cell?.nameL.text = "检查版本"
-                cell?.subNameLTrainingCons.constant = 45
                 if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String  {
                     if version == self.version || self.version == "" {
+                        cell?.subNameLTrainingCons.constant = 10
                         cell?.subNameL.text = "已经是最新版本"
                         cell?.isUserInteractionEnabled = false
+                        cell?.moreImgV.isHidden = true
                     } else {
-                       cell?.subNameL.text = "可更新到V\(self.version)"
+                        cell?.subNameLTrainingCons.constant = 45
+                        cell?.subNameL.text = "可更新到V\(self.version)"
+                        cell?.moreImgV.isHidden = false
                     }
                 }
                 cell?.bottomLine.isHidden = true
@@ -161,7 +165,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
             open(scheme: "tel:\(self.phone)")
         }
         if section == 0 && index == 1 {
-           open(scheme: "mailto://\(self.email)")
+            open(scheme: "mailto://\(self.email)")
         }
         if section == 1 && index == 0 {
             let vc = HDLY_WKWebVC()
@@ -171,7 +175,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         }
         if section == 1 && index == 1 {
             // 弹窗评分
-//            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
+            //            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
             open(scheme: "https://fir.im/musespace")
         }
         if section == 1 && index == 2 {

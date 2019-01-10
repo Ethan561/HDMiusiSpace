@@ -114,6 +114,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
     //MARK:-截屏保存图片
     func screenshotPicture() -> UIImage? {
         
+        btn_share.isHidden = true
         
         let scale: CGFloat = UIScreen.main.scale
         
@@ -128,6 +129,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
         if img != nil {
             UIImageWriteToSavedPhotosAlbum(img!, nil, nil, nil)
         }
+        btn_share.isHidden = false
         
         return img
     }

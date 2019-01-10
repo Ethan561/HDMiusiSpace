@@ -54,8 +54,10 @@ class HDLY_MapGuideVC: HDItemBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(showExhibitListNoti(noti:)), name: NSNotification.Name(rawValue: "kMapView_didTapHDCallOutView_Noti"), object: nil)
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+        player.showFloatingBtn = false
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         NotificationCenter.default.removeObserver(self)

@@ -60,7 +60,17 @@ class HDLY_Listen_SubVC:                                                        
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         dataRequest(cate_id: "-1")
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         player.showFloatingBtn = true
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.showFloatingBtn = false
 
     }
     

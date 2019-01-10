@@ -26,9 +26,10 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         HDFloatingButtonManager.manager.floatingBtnView.show = false
+        let player = HDLY_AudioPlayer.shared
+        player.showFloatingBtn = false
         
     }
-    
     deinit {
          let player = HDLY_AudioPlayer.shared
         player.stop()

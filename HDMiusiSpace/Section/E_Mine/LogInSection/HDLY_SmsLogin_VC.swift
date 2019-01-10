@@ -103,6 +103,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
                 defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
                 HDLY_UserModel.shared.requestUserInfo()
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                     self.back()
                 })
@@ -236,6 +237,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
             HDLY_UserModel.shared.requestUserInfo()
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.back()
             })

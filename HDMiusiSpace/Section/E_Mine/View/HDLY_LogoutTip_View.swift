@@ -13,6 +13,7 @@ class HDLY_LogoutTip_View: UIView {
     var sureBlock:(() -> ())?
     
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var tipTextLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

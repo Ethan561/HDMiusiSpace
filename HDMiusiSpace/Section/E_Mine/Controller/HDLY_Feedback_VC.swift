@@ -24,7 +24,7 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
         textView.delegate = self
         textView.returnKeyType = .done
         setupBarBtn()
-        textView.placeholder = "请填写意见和建议"
+        textView.placeholder = "请填写意见和建议，我们将为您不断改进"
     }
     
     func setupBarBtn() {

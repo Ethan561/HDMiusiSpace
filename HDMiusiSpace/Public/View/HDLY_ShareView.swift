@@ -86,7 +86,7 @@ class HDLY_ShareView: UIView {
         case 2005:
             result = "分享内容为空"
         case 2008:
-            result = "应用为安装"
+            result = "应用未安装"
         case 2009:
             result = "分享取消"
         case 2010:

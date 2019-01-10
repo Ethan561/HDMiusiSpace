@@ -26,6 +26,7 @@ struct TopicModelData: Codable {
     var platform_icon: String?
     var created_at: String?
     var share_url: String?
+    var share_des: String?
     var is_focus: Int?
     var platform_id: Int?
 
@@ -43,6 +44,7 @@ struct TopicModelData: Codable {
         case platform_icon
         case created_at
         case share_url
+        case share_des
         case is_focus
         case platform_id
         

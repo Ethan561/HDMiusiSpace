@@ -32,6 +32,7 @@ struct DetailDataModel: Codable {
     var dataList: [DataList]?
     var exhibition_id: Int?
     var share_url: String?
+    var share_des: String?
     var museum_id: Int?
     var longitude: String?
     var latitude: String?
@@ -54,6 +55,7 @@ struct DetailDataModel: Codable {
         case dataList = "data_list"
         case exhibition_id
         case share_url
+        case share_des
         case museum_id
         case longitude
         case latitude

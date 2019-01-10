@@ -35,15 +35,18 @@ class HDLY_SafetyVerifiSms_VC: HDItemBaseVC, UITextFieldDelegate {
         smsTF.delegate = self
         guard let foot =  phone?.suffix(4) else { return }
         guard let head =  phone?.prefix(3) else { return }
-        if phone != nil {
-            self.title = "找回密码"
-            HDLY_UserModel.shared.sendSmsForCheck(username: phone!, vc: self)
-            beginCount()
-            tipL.text = "短信验证码已发送至" + String(head) + "····" + String(foot)
-        } else if declare.phone != nil {
+        
+        if declare.phone != nil {
             HDLY_UserModel.shared.sendSmsForCheck(username: declare.phone!, vc: self)
             beginCount()
-            tipL.text = "短信验证码已发送至" + String(head) + "····" + String(foot)
+            tipL.text = "短信验证码已发送至" + "+86" + String(head) + "····" + String(foot)
+        } else {
+            self.title = "找回密码"
+            if phone != nil {
+                HDLY_UserModel.shared.sendSmsForCheck(username: phone!, vc: self)
+                beginCount()
+                tipL.text = "短信验证码已发送至" + "+86" + String(head) + "····" + String(foot)
+            }
         }
         if smsTF.canBecomeFirstResponder == true {
             smsTF.becomeFirstResponder()

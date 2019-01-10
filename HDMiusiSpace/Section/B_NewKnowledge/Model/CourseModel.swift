@@ -27,7 +27,9 @@ struct CourseInfoModel: Codable {
     var isFavorite, isFocus, isBuy: Int
     var recommendsMessage: [ListenCommentList]?
     var recommendsList: [CourseInfoRecommends]?
-    
+    var share_url: String?
+    var share_des: String?
+
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
         case img, title, buynotice
@@ -45,6 +47,9 @@ struct CourseInfoModel: Codable {
         case isBuy = "is_buy"
         case recommendsMessage = "recommends_message"
         case recommendsList = "recommends_list"
+        case share_url
+        case share_des
+
     }
 }
 

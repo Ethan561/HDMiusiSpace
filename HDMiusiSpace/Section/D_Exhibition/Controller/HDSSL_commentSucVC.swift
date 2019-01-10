@@ -213,7 +213,7 @@ extension HDSSL_commentSucVC: UMShareDelegate {
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
-        let thumbURL = url
+        let thumbURL = UIImage.init(named: "icon_shareImg")
         let shareObject = UMShareWebpageObject.shareObject(withTitle: "缪斯空间", descr: "归属感，缪斯空间", thumImage: thumbURL)
         
         //设置网页地址

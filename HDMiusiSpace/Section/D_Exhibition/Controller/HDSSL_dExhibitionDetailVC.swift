@@ -225,8 +225,8 @@ extension HDSSL_dExhibitionDetailVC: UMShareDelegate {
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
-        let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.exdataModel?.data!.title!, descr: self.exdataModel?.data?.museumTitle!, thumImage: thumbURL)
+        let thumbURL = self.exdataModel?.data?.museumImg
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.exdataModel?.data!.title!, descr: self.exdataModel?.data?.share_des, thumImage: thumbURL)
         
         //设置网页地址
         shareObject?.webpageUrl = url

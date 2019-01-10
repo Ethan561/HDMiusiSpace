@@ -748,8 +748,8 @@ extension HDLY_ListenDetail_VC: UMShareDelegate {
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
-        let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.title, thumImage: thumbURL)
+        let thumbURL = self.infoModel?.img
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.title, descr: self.infoModel?.share_des, thumImage: thumbURL)
         
         //设置网页地址
         shareObject?.webpageUrl = url

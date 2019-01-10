@@ -764,17 +764,17 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
     
     func shareDelegate(platformType: UMSocialPlatformType) {
         
-        guard let url  = self.infoModel?.data.url else {
+        guard let url  = self.infoModel?.data.share_url else {
             return
         }
         //创建分享消息对象
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
         let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.data.title, descr: self.infoModel?.data.title, thumImage: thumbURL)
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.data.title, descr: self.infoModel?.data.share_des, thumImage: thumbURL)
         
         //设置网页地址
-        shareObject?.webpageUrl = url
+        shareObject?.webpageUrl = self.infoModel?.data.img
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
         weak var weakS = self

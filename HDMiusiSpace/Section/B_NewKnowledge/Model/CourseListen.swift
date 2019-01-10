@@ -57,6 +57,7 @@ struct ListenDetail: Codable {
     var teacherName, teacherTitle: String?
     var commentList: [TopicCommentList]?
     var share_url: String?
+    var share_des: String?
     var is_voice: Int = 0
 
     enum CodingKeys: String, CodingKey {
@@ -73,6 +74,7 @@ struct ListenDetail: Codable {
         case teacherTitle = "teacher_title"
         case commentList = "comment_list"
         case share_url
+        case share_des
         case is_voice
     }
 }

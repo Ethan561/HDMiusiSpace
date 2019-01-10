@@ -25,6 +25,7 @@ struct HD_strategyModel: Codable {
     var url, shareURL: String?
     var isFavorite, isLike: Int?
     var commentList: [TopicCommentList]?
+    var share_des: String?
     
     enum CodingKeys: String, CodingKey {
         case strategyID = "strategy_id"
@@ -36,6 +37,7 @@ struct HD_strategyModel: Codable {
         case isLike = "is_like"
         case comments
         case commentList = "comment_list"
+        case share_des
     }
 }
 

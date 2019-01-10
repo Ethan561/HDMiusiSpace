@@ -225,28 +225,47 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     
     
     func cancelBindThird(b_from:String) {
-        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .cancelBindThirdAccount(api_token: HDDeclare.shared.api_token ?? "", b_from: b_from), success: { (result) in
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG(" dic ： \(String(describing: dic))")
-            guard let data : Int = dic!["data"] as? Int else {
-                return
+        var bindString = ""
+        if b_from == "wx" {
+            bindString = "微信"
+        }
+        if b_from == "wb" {
+            bindString = "微博"
+        }
+        if b_from == "qq" {
+            bindString = "QQ"
+        }
+        if kWindow != nil {
+            let logoutTip:HDLY_LogoutTip_View = HDLY_LogoutTip_View.createViewFromNib() as! HDLY_LogoutTip_View
+            logoutTip.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+            logoutTip.tipTextLabel.text = "确认解除绑定当前\(bindString)账号?"
+            logoutTip.tipTextLabel.font = UIFont.systemFont(ofSize: 15.0)
+            kWindow!.addSubview(logoutTip)
+            logoutTip.sureBlock = {
+                logoutTip.removeFromSuperview()
+                HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .cancelBindThirdAccount(api_token: HDDeclare.shared.api_token ?? "", b_from: b_from), success: { (result) in
+                    let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                    LOG(" dic ： \(String(describing: dic))")
+                    guard let data : Int = dic!["data"] as? Int else {
+                        return
+                    }
+                    if data == 1 {
+                        HDAlert.showAlertTipWith(type: .onlyText, text: "已解除绑定")
+                    }
+                    if b_from == "wx" {
+                        self.declare.isBindWechat = 0
+                    }
+                    if b_from == "wb" {
+                        self.declare.isBindWeibo = 0
+                    }
+                    if b_from == "qq" {
+                        self.declare.isBindQQ = 0
+                    }
+                    self.myTableView.reloadData()
+                }) { (error, msg) in
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "解除绑定失败")
+                }
             }
-            
-            if data == 1 {
-                HDAlert.showAlertTipWith(type: .onlyText, text: "已解除绑定")
-            }
-            if b_from == "wx" {
-                self.declare.isBindWechat = 0
-            }
-            if b_from == "wb" {
-                self.declare.isBindWeibo = 0
-            }
-            if b_from == "qq" {
-                self.declare.isBindQQ = 0
-            }
-            self.myTableView.reloadData()
-        }) { (error, msg) in
-            HDAlert.showAlertTipWith(type: .onlyText, text: "解除绑定失败")
         }
     }
     

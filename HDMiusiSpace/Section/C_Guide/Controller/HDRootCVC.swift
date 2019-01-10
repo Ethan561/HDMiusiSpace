@@ -208,7 +208,6 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         
         let vc: HDZQ_MyFootprintVC = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_MyFootprintVC") as! HDZQ_MyFootprintVC
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func showWebVC(url: String) {

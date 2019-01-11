@@ -9,6 +9,7 @@
 import UIKit
 //import ESPullToRefresh
 class HDRootEVC: HDItemBaseVC {
+    @IBOutlet weak var dynamicLabel: UILabel!
     @IBOutlet weak var msgBtn: UIButton!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!    
@@ -16,7 +17,6 @@ class HDRootEVC: HDItemBaseVC {
     private var user = UserDynamic()
     private var myDynamics = [MyDynamic]()
     private var courses =  [MyCollectCourseModel]()
-    private var htmls =  [NSAttributedString]()
     let declare:HDDeclare = HDDeclare.shared
     
     var tabHeader = HDLY_MineHome_Header()
@@ -27,8 +27,13 @@ class HDRootEVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        
+        dynamicLabel.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(LoginSuccess(noti:)), name: NSNotification.Name.init(rawValue: "LoginSuccess"), object: nil)
         navbarCons.constant = kTopHeight
+        myTableView.estimatedRowHeight = 0
+        myTableView.estimatedSectionHeaderHeight = 0
+        myTableView.estimatedSectionFooterHeight = 0
         setupViews()
         getMyDynamicList()
         addRefresh()
@@ -43,6 +48,7 @@ class HDRootEVC: HDItemBaseVC {
             //未登录
             self.myTableView.es.removeRefreshFooter()
             self.myTableView.es.removeRefreshHeader()
+            dynamicLabel.isHidden = true
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
@@ -55,13 +61,14 @@ class HDRootEVC: HDItemBaseVC {
             self.user = UserDynamic()
             self.myDynamics.removeAll()
             self.courses.removeAll()
-            self.htmls.removeAll()
             self.myTableView.reloadData()
         }
     }
     
     @objc func LoginSuccess(noti:Notification) {
+        skip = 0
         addRefresh()
+        refresh()
     }
     
     func setupViews() {
@@ -113,6 +120,9 @@ class HDRootEVC: HDItemBaseVC {
             
         } else {
 //            //未登录
+            self.myTableView.es.removeRefreshFooter()
+            self.myTableView.es.removeRefreshHeader()
+            dynamicLabel.isHidden = true
             tabHeader.userInfoView.isHidden  = true
             tabHeader.loginView.isHidden = false
             tabHeader.avatarImgV.image = UIImage.init(named: "wd_img_tx")
@@ -125,7 +135,6 @@ class HDRootEVC: HDItemBaseVC {
             self.user = UserDynamic()
             self.myDynamics.removeAll()
             self.courses.removeAll()
-            self.htmls.removeAll()
             self.myTableView.reloadData()
         }
     }
@@ -211,11 +220,6 @@ extension HDRootEVC {
                 // 将字符串转换为富文本字符串，比较耗时，提前转换
                 for i in 0..<model.data.count {
                     let m = model.data[i]
-                    var attrStr: NSAttributedString? = nil
-                    if let anEncoding = m.comment!.data(using: .unicode) {
-                        attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                        self.htmls.append(attrStr!)
-                    }
                     let height = m.comment?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 80)
                     model.data[i].height = Int(height!)
                 }
@@ -224,7 +228,7 @@ extension HDRootEVC {
                 self.myTableView.reloadSections(indexSet as IndexSet, with: .none)
                 self.myTableView.es.stopLoadingMore()
                 self.myTableView.es.stopPullToRefresh()
-                if model.data.count < 10 {
+                if model.data.count == 0 {
                      self.myTableView.es.noticeNoMoreData()
                 }
                 
@@ -353,9 +357,14 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             cell?.avaImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.timeL.text = model.createdAt
             cell?.nameL.text = model.nickname
-            cell?.contentL.attributedText = self.htmls[index]
-         
+            cell?.contentL.text = model.comment
+            cell?.commentId = model.commentID!
+            cell?.cateID = model.cateID!
+            cell?.deletaBtn.isHidden = true
+            cell?.delegate = self
+            cell?.index = indexPath.row
             if model.cateID == 10 {
+                cell?.detailId = model.topicInfo?.articleID ?? 0
                 cell?.titleLTopCons.constant = 10
                 cell?.desView.isHidden = false
                 guard let infoM = model.exhibitionInfo else { return cell!}
@@ -418,6 +427,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                         cell?.titleL.text = newsInfo.title
                         cell?.locL.text = String.init(format: "%@|%@", newsInfo.keywords!,newsInfo.platTitle!)
                     }
+                    cell?.detailId = model.newsInfo?.articleID ?? 0
                 }
                 else if  model.cateID == 2 {
                     if let listenInfo = model.listenInfo {
@@ -426,6 +436,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                         }
                         cell?.titleL.text = listenInfo.title
                         cell?.locL.text = String.init(format: "%d人听过", listenInfo.listening!)
+                        cell?.detailId = model.listenInfo?.articleID ?? 0
                     }
                 }
                 else if  model.cateID == 4 {
@@ -435,6 +446,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                         }
                         cell?.titleL.text = topicInfo.title
                         cell?.locL.text = "精选专题"
+                        cell?.detailId = model.topicInfo?.articleID ?? 0
                     }
                 }
                 else if  model.cateID == 5 {
@@ -443,7 +455,8 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                             cell?.imgV.kf.setImage(with: URL.init(string: strategyInfo.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV))
                         }
                         cell?.titleL.text = strategyInfo.title
-//                        cell?.locL.text = String.init(format: "%@|%@", strategyInfo.keywords!,strategyInfo.platTitle!)
+                        cell?.locL.text = ""
+                       cell?.detailId = model.strategyInfo?.articleID ?? 0
                     }
 
                 }
@@ -470,33 +483,30 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
             }
         }
-        if indexPath.section == 1 {
-            //1资讯，2轻听随看,4精选专题,5攻略,  10展览
-            let model = myDynamics[indexPath.row]
-            if model.cateID == 1 {
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-                vc.topic_id = String.init(format: "%ld", model.newsInfo?.articleID ?? 0)
-                vc.fromRootAChoiceness = true
-                self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // 开始滑动，将当前显示cell的deleteBtn隐藏
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollView == myTableView {
+            let cells = myTableView.visibleCells
+            cells.forEach { (cell) in
+                if cell.isKind(of: HDLY_MyDynamicCell.self) {
+                    let c = cell as! HDLY_MyDynamicCell
+                    if !c.deletaBtn.isHidden {
+                        c.deletaBtn.isHidden = true
+                        return
+                    }
+                }
             }
-            else if model.cateID == 2 {
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
-                vc.listen_id = String.init(format: "%ld", model.listenInfo?.articleID ?? 0)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if model.cateID == 4 {
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-                vc.topic_id = String.init(format: "%ld", model.topicInfo?.articleID ?? 0)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if model.cateID == 5 {
-                
-            }
-            else if model.cateID == 10 {
-                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
-                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-                vc.exhibition_id = model.topicInfo?.articleID ?? 0
-                self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == myTableView {
+            if scrollView.contentOffset.y > 655 {
+                dynamicLabel.isHidden = false
+            } else {
+                dynamicLabel.isHidden = true
             }
         }
     }
@@ -532,3 +542,55 @@ extension HDRootEVC: HDLY_MineHome_Header_Delegate {
     }
 }
 
+extension HDRootEVC: HDLY_MyDynamicCellDelegate {
+    func pushToDetailArticle(cateId: Int, detailId: Int) {
+        if cateId == 1 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld",detailId)
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cateId == 2 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            vc.listen_id = String.init(detailId)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cateId == 4 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(detailId)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cateId == 5 {
+            let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+            vc.strategyid = detailId
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if cateId == 10 {
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            vc.exhibition_id = detailId
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func deleteCommentId(commentId: Int, index:Int) {
+        
+        let deleteView:HDZQ_DynamicDeleteView = HDZQ_DynamicDeleteView.createViewFromNib() as! HDZQ_DynamicDeleteView
+        deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        deleteView.sureBlock = {
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "",comment_id:commentId), cache: false, showHud: false , success: { (result) in
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                let indexPath = NSIndexPath.init(row: index, section: 1)
+                self.myTableView.beginUpdates()
+                self.myDynamics.remove(at: index)
+                self.myTableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+                self.myTableView.endUpdates()
+            }) { (errorCode, msg) in
+                
+            }
+        }
+        kWindow?.addSubview(deleteView)
+    }
+    
+    
+}

@@ -79,7 +79,14 @@ class HDSSL_dExhibitionCell: UITableViewCell {
                 imgV.contentMode = .scaleAspectFit
                 imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
                     
-                    let imgSize = img!.size
+                    var imgSize:CGSize!
+                    
+                    if img != nil{
+                        imgSize = img!.size
+                    }else{
+                        imgSize = CGSize.init(width: 15, height: 15)
+                    }
+//                    let imgSize = img!.size
                     let imgH: CGFloat = 15
                     let imgW: CGFloat = 15*imgSize.width/imgSize.height
                     imgWArr.append(imgW)

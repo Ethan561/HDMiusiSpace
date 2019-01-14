@@ -48,14 +48,14 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
         //
-        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
-        rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-        rightBarBtn.setTitle("注册", for: .normal)
-        rightBarBtn.setTitleColor(UIColor.HexColor(0x4A4A4A), for: .normal)
-        
-        rightBarBtn.addTarget(self, action: #selector(pushToRegisterVC), for: UIControlEvents.touchUpInside)
-        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
-        self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
+//        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
+//        rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
+//        rightBarBtn.setTitle("注册", for: .normal)
+//        rightBarBtn.setTitleColor(UIColor.HexColor(0x4A4A4A), for: .normal)
+//        
+//        rightBarBtn.addTarget(self, action: #selector(pushToRegisterVC), for: UIControlEvents.touchUpInside)
+//        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
+//        self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         
     }
     
@@ -104,7 +104,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
                 HDLY_UserModel.shared.requestUserInfo()
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
                     self.back()
                 })
                 
@@ -238,7 +238,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             HDLY_UserModel.shared.requestUserInfo()
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
                 self.back()
             })
             

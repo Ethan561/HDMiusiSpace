@@ -156,14 +156,14 @@ class HDRootEVC: HDItemBaseVC {
     }
     
     func addRefresh() {
-        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+//        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
-        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+//        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         
-        self.myTableView.es.addPullToRefresh(animator: header) { [weak self] in
-            self?.refresh()
-        }
+//        self.myTableView.es.addPullToRefresh(animator: header) { [weak self] in
+//            self?.refresh()
+//        }
         self.myTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }

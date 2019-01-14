@@ -590,6 +590,12 @@ extension HDLY_TopicDetail_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            self.pushToPlatCenter()
+        }
+        if indexPath.section == 0 && fromRootAChoiceness == true && indexPath.row == 2  {
+            self.pushToPlatCenter()
+        }
         if indexPath.section == 1 {
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             let model = infoModel!.recommendsList[indexPath.row]
@@ -602,6 +608,15 @@ extension HDLY_TopicDetail_VC {
 }
 
 extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
+    //
+    func pushToPlatCenter() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+        vc.type = 2
+        vc.detailId = infoModel?.platform_id ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func commentActionSelected(type: Int, index: Int, model: TopicCommentList, comment: String, reportType: Int?) {
         if type == 0 {
             if index == 0 {

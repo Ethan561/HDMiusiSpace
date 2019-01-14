@@ -656,6 +656,12 @@ extension HDLY_ListenDetail_VC {
         
         return UITableViewCell.init()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            self.pushToPlatCenter()
+        }
+    }
 }
 
 extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
@@ -699,6 +705,14 @@ extension HDLY_ListenDetail_VC {
         self.myTableView.reloadData()
         self.requestComments(skip: 0, take: 100)
 
+    }
+    
+    func pushToPlatCenter() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+        vc.type = 1
+        vc.detailId = infoModel?.teacherID?.int ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -197,7 +197,17 @@ extension HDLY_CourseList_SubVC2 {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            pushToPlatCenter()
+        }
+    }
+    
+    func pushToPlatCenter() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+        vc.type = 1
+        vc.detailId = infoModel?.data.teacherID.int ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

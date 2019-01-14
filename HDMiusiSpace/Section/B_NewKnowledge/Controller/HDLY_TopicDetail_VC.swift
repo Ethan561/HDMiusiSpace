@@ -112,7 +112,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         viewModel.commentModels.bind { (models) in
             var comments = models
-            weakSelf!.htmls.removeAll()
+            weakSelf?.htmls.removeAll()
             for i in 0..<comments.count {
                 var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {

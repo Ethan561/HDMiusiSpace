@@ -197,7 +197,7 @@ class ReplicatorAnimation: NSObject {
         layer.cornerRadius = 4
         layer.masksToBounds = true
         layer.transform = CATransform3DMakeScale(0.01, 0.01, 0.01)
-        layer.backgroundColor = UIColor.lightGray.cgColor
+        layer.backgroundColor = UIColor.white.cgColor
         
         let scaleAnimation = HDAnimate.basicAnimationWithKeyPath("transform.scale", fromValue: 1, toValue: 0.01, duration: 1, repeatCount: Float.infinity, timingFunction: nil)
         layer.add(scaleAnimation, forKey: "scaleAni")
@@ -205,7 +205,7 @@ class ReplicatorAnimation: NSObject {
         
         let instanceCount = 9
         let replicatorLayer = CAReplicatorLayer.init()
-        replicatorLayer.frame = CGRect.init(x: 0, y: 0, width: 50, height: 50)
+        replicatorLayer.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
         replicatorLayer.preservesDepth = true
         replicatorLayer.instanceColor = UIColor.white.cgColor
         replicatorLayer.instanceRedOffset = 0.1

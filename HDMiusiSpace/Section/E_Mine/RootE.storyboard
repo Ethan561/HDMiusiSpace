@@ -229,12 +229,20 @@
                                                     <segue destination="wAn-EL-x5U" kind="show" id="3iX-h2-sJh"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YX-c0-5Zj">
+                                                <rect key="frame" x="20" y="12.5" width="65.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="3ny-dR-mca" firstAttribute="centerY" secondItem="9YX-c0-5Zj" secondAttribute="centerY" id="3cs-Sn-mqx"/>
                                             <constraint firstAttribute="height" constant="44" id="CMw-fr-t5a"/>
                                             <constraint firstItem="rOg-S5-ZXM" firstAttribute="top" secondItem="06h-JS-Y9g" secondAttribute="top" id="LAY-uZ-0MK"/>
                                             <constraint firstItem="rOg-S5-ZXM" firstAttribute="leading" secondItem="3ny-dR-mca" secondAttribute="trailing" constant="8" id="ckU-Xv-iW3"/>
+                                            <constraint firstItem="9YX-c0-5Zj" firstAttribute="leading" secondItem="06h-JS-Y9g" secondAttribute="leading" constant="20" id="gzz-zT-wLZ"/>
                                             <constraint firstAttribute="bottom" secondItem="rOg-S5-ZXM" secondAttribute="bottom" id="ihI-cQ-JDj"/>
                                             <constraint firstAttribute="trailing" secondItem="rOg-S5-ZXM" secondAttribute="trailing" constant="10" id="sYd-pr-Ji0"/>
                                             <constraint firstItem="rOg-S5-ZXM" firstAttribute="centerY" secondItem="3ny-dR-mca" secondAttribute="centerY" id="xgu-n6-SWE"/>
@@ -272,6 +280,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wnE-5Y-cu3"/>
                     <connections>
+                        <outlet property="dynamicLabel" destination="9YX-c0-5Zj" id="E1p-2s-Deh"/>
                         <outlet property="msgBtn" destination="3ny-dR-mca" id="nXn-Ka-dlC"/>
                         <outlet property="myTableView" destination="7bz-jv-0pK" id="q2K-0D-TBm"/>
                         <outlet property="navBar" destination="Klk-Ko-J0P" id="2JX-HK-fOf"/>

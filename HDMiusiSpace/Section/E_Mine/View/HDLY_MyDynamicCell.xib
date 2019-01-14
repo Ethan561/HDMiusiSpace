@@ -26,8 +26,8 @@
                             <constraint firstAttribute="width" constant="30" id="8Sx-fE-qLa"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="da大叶 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-L1-acu">
-                        <rect key="frame" x="60" y="18" width="250" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="da大叶 da大叶 da大叶       " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-L1-acu">
+                        <rect key="frame" x="60" y="18" width="130" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="G1e-By-gTD"/>
                         </constraints>
@@ -42,12 +42,6 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考古学家根据人类使用的工具，把我们这社会发展划分为石器时代、铜器时代、铁器时代。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWe-Mv-NSQ">
-                        <rect key="frame" x="60" y="67" width="240" height="55.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzE-LW-vc8">
@@ -131,9 +125,48 @@
                             <constraint firstAttribute="height" constant="80" id="wuT-Bj-gX2"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发表了评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7a-Af-6pe">
+                        <rect key="frame" x="195" y="19.5" width="61.5" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CF4-Zo-JFq">
+                        <rect key="frame" x="260" y="16" width="40" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="QcX-tL-HdL"/>
+                        </constraints>
+                        <state key="normal" image="wd_icon_more"/>
+                        <connections>
+                            <action selector="showDeleteView:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4ny-Km-3Kh"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33S-Wj-MVE">
+                        <rect key="frame" x="180" y="43" width="120" height="48"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="BN1-qU-Dpd"/>
+                            <constraint firstAttribute="width" constant="120" id="ogT-cA-heP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="删除">
+                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="deleteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PhI-Ll-EVM"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考古学家根据人类使用的工具，把我们这社会发展划分为石器时代、铜器时代、铁器时代。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWe-Mv-NSQ">
+                        <rect key="frame" x="60" y="67" width="240" height="55.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="CF4-Zo-JFq" secondAttribute="trailing" constant="20" id="3lR-qM-bJR"/>
                     <constraint firstAttribute="trailing" secondItem="NWe-Mv-NSQ" secondAttribute="trailing" constant="20" id="83S-fi-smb"/>
+                    <constraint firstItem="o7a-Af-6pe" firstAttribute="leading" secondItem="Zzb-L1-acu" secondAttribute="trailing" constant="5" id="9BM-4n-uo7"/>
                     <constraint firstItem="Zzb-L1-acu" firstAttribute="leading" secondItem="OJX-Rw-agy" secondAttribute="trailing" constant="10" id="B7c-hQ-RnU"/>
                     <constraint firstItem="RM5-1f-wHp" firstAttribute="leading" secondItem="NWe-Mv-NSQ" secondAttribute="leading" id="CNg-fr-FWQ"/>
                     <constraint firstItem="NWe-Mv-NSQ" firstAttribute="top" secondItem="tSn-96-qBZ" secondAttribute="bottom" constant="8" id="GN9-OI-UNh"/>
@@ -141,15 +174,19 @@
                     <constraint firstAttribute="bottom" secondItem="BzE-LW-vc8" secondAttribute="bottom" id="Kek-LJ-6c8"/>
                     <constraint firstItem="BzE-LW-vc8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="M83-zZ-vUE"/>
                     <constraint firstAttribute="trailing" secondItem="BzE-LW-vc8" secondAttribute="trailing" constant="20" id="Myo-oC-eQA"/>
+                    <constraint firstItem="CF4-Zo-JFq" firstAttribute="centerY" secondItem="o7a-Af-6pe" secondAttribute="centerY" id="Upj-Vt-3Gc"/>
+                    <constraint firstItem="33S-Wj-MVE" firstAttribute="top" secondItem="CF4-Zo-JFq" secondAttribute="bottom" constant="5" id="WvZ-AT-uww"/>
                     <constraint firstItem="tSn-96-qBZ" firstAttribute="leading" secondItem="OJX-Rw-agy" secondAttribute="trailing" constant="10" id="a9p-dD-dRp"/>
                     <constraint firstItem="tSn-96-qBZ" firstAttribute="top" secondItem="Zzb-L1-acu" secondAttribute="bottom" constant="5" id="bdi-d7-gD3"/>
+                    <constraint firstItem="o7a-Af-6pe" firstAttribute="centerY" secondItem="Zzb-L1-acu" secondAttribute="centerY" id="cSO-E9-XWf"/>
                     <constraint firstItem="OJX-Rw-agy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="gSL-qV-esb"/>
                     <constraint firstItem="OJX-Rw-agy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="hSU-ZB-DwN"/>
-                    <constraint firstAttribute="trailing" secondItem="Zzb-L1-acu" secondAttribute="trailing" constant="10" id="nWA-xt-Udh"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zzb-L1-acu" secondAttribute="trailing" constant="130" id="nWA-xt-Udh"/>
                     <constraint firstItem="RM5-1f-wHp" firstAttribute="top" secondItem="NWe-Mv-NSQ" secondAttribute="bottom" constant="8" id="pG4-We-jKR"/>
                     <constraint firstAttribute="trailing" secondItem="tSn-96-qBZ" secondAttribute="trailing" constant="10" id="pTb-fO-jLC"/>
                     <constraint firstItem="NWe-Mv-NSQ" firstAttribute="leading" secondItem="Zzb-L1-acu" secondAttribute="leading" id="rVY-dX-UNX"/>
                     <constraint firstAttribute="bottom" secondItem="RM5-1f-wHp" secondAttribute="bottom" constant="15" id="y20-03-JIz"/>
+                    <constraint firstItem="CF4-Zo-JFq" firstAttribute="trailing" secondItem="33S-Wj-MVE" secondAttribute="trailing" id="ypr-ea-LB0"/>
                     <constraint firstAttribute="trailing" secondItem="RM5-1f-wHp" secondAttribute="trailing" constant="20" id="zTE-xI-vJH"/>
                 </constraints>
             </tableViewCellContentView>
@@ -157,6 +194,7 @@
             <connections>
                 <outlet property="avaImgV" destination="OJX-Rw-agy" id="WPG-FL-aht"/>
                 <outlet property="contentL" destination="NWe-Mv-NSQ" id="Sif-EE-mZD"/>
+                <outlet property="deletaBtn" destination="33S-Wj-MVE" id="QPT-yQ-ZbW"/>
                 <outlet property="des1L" destination="wLu-3N-KWd" id="B7w-Xi-TAs"/>
                 <outlet property="des2L" destination="eZY-mA-v9g" id="Mxb-eO-EZa"/>
                 <outlet property="desView" destination="yuc-fu-Sdw" id="MsZ-Cf-pHN"/>
@@ -173,5 +211,6 @@
     </objects>
     <resources>
         <image name="user_img1" width="30" height="30"/>
+        <image name="wd_icon_more" width="20" height="4"/>
     </resources>
 </document>

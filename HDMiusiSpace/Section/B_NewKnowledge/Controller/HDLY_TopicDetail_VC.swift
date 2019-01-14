@@ -59,6 +59,9 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableView.separatorStyle = .none
+        myTableView.estimatedRowHeight = 0
+        myTableView.estimatedSectionHeaderHeight = 0
+        myTableView.estimatedSectionFooterHeight = 0
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         setupBarBtn()
@@ -66,7 +69,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         //MVVM
         bindViewModel()
         refreshAction()
-        requestComments(skip: 0, take: 10)
+//        requestComments(skip: 0, take: 10)
         weak var weakS = self
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
             weakS?.refreshAction()
@@ -685,6 +688,7 @@ extension HDLY_TopicDetail_VC: UIWebViewDelegate {
             LOG("\(webViewH)")
         }
         self.myTableView.reloadData()
+        requestComments(skip: 0, take: 10)
     }
     
 }

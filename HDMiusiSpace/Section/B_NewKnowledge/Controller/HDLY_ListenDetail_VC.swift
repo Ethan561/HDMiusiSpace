@@ -68,13 +68,16 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
 //        statusBarHCons.constant = kStatusBarHeight+24
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
+        myTableView.estimatedRowHeight = 0
+        myTableView.estimatedSectionHeaderHeight = 0
+        myTableView.estimatedSectionFooterHeight = 0
         player.delegate = self
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         
         //MVVM
         bindViewModel()
-        requestComments(skip: 0, take: 10)
+        
         if listen_id != nil {
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)
         }
@@ -651,6 +654,7 @@ extension HDLY_ListenDetail_VC {
             if self.webViewH > 10 {
                 self.reloadFlag = false
             }
+            self.requestComments(skip: 0, take: 10)
         }
     }
     

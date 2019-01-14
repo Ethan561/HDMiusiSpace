@@ -9,13 +9,12 @@
 import UIKit
 import WebKit
 
-class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate{
+class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate{
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var imgV: UIImageView!
     @IBOutlet weak var statusBarHCons: NSLayoutConstraint!
     @IBOutlet weak var myTableView: UITableView!
-    var reloadFlag = true
     @IBOutlet weak var commentBgView: UIView!
     @IBOutlet weak var textBgView: UIView!
     @IBOutlet weak var likeBtn: UIButton!
@@ -23,7 +22,6 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var likeNumL: UILabel!
     //
     var player = HDLY_AudioPlayer.shared
-    var webView = WKWebView()
     var webViewH:CGFloat = 0
     var infoModel: ListenDetail?
     var commentModels = [TopicCommentList]()
@@ -42,9 +40,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     
-    lazy var testWebV: WKWebView = {
-        let webV = WKWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.navigationDelegate = self
+    lazy var testWebV: UIWebView = {
+        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
+        webV.isOpaque = false
         return webV
     }()
     
@@ -158,7 +156,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
-            weakSelf?.requestComments(skip: 0, take: 10)
+            weakSelf?.requestComments(skip: 0, take: 100)
         }
         //
         publicViewModel.likeModel.bind { (model) in
@@ -195,6 +193,13 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             self?.commentView.tableView.reloadData()
         }
         
+        //删除评论
+        publicViewModel.deleteCommentReplySuccess.bind { (ret) in
+            //
+            if ret == true {
+                weakSelf?.requestComments(skip: 0, take: 100)
+            }
+        }
     }
     
     func showViewData() {
@@ -238,9 +243,15 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if isFocus {
             infoModel?.isFocus = 1
             focusBtn.setTitle("已关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }else {
             infoModel?.isFocus = 0
             focusBtn.setTitle("+关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }
     }
     
@@ -248,8 +259,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         guard let url = self.infoModel?.url else {
             return
         }
-        self.testWebV.load(URLRequest.init(url: URL.init(string: url)!))
-        self.myTableView.reloadData()
+        self.testWebV.delegate = self
+        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
     }
     
 
@@ -477,8 +488,12 @@ extension HDLY_ListenDetail_VC {
                 focusBtn = cell?.focusBtn
                 if model?.isFocus == 1 {
                     focusBtn.setTitle("已关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
                 }else {
                     focusBtn.setTitle("+关注", for: .normal)
+                    self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+                    
+
                 }
                 return cell!
             }
@@ -503,15 +518,14 @@ extension HDLY_ListenDetail_VC {
             }
             else if index == 2 {
                 let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
-                self.webView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height:CGFloat(webViewH))
-                cell?.addSubview(webView)
                 guard let url = self.infoModel?.url else {
                     return cell!
                 }
-                if reloadFlag == true {
-                    self.webView.load(URLRequest.init(url: URL.init(string: url)!))
-                }
-                
+                cell?.loadWebView(url)
+                weak var weakS = self
+                cell?.tapBloclkFunc(block: { (type, articleId) in
+                    //weakS?.didTapWebCard(type, articleId)
+                })
                 return cell!
             }
         } else {
@@ -525,6 +539,8 @@ extension HDLY_ListenDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.htmls = self.htmls[indexPath.row]
+                cell?.uid = commentModel.uid
+                cell?.commentId = commentModel.commentID
                 cell?.commentContent = commentModel.comment
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.list.count > 0 {
@@ -582,15 +598,49 @@ extension HDLY_ListenDetail_VC {
                     
                 }
                 
-                cell?.longPress  = { [weak self] (commentId, comment) in
-                    self?.commentView.type = 0
-                    self?.commentView.model = commentModel
-                    self?.commentView.commentContent = comment
-                    self?.commentView.dataArr = ["复制","举报"]
-                    self?.commentView.tableHeightConstraint.constant = CGFloat(100)
+                cell?.longPress  = { [weak self] (commentId,comment) in
+                    
+                    if commentModel.commentID == commentId{
+                        //长按评论
+                        self?.commentView.type = 0
+                        self?.commentView.model = commentModel
+                        self?.commentView.commentContent = comment
+                        if commentModel.uid == HDDeclare.shared.uid {
+                            self?.commentView.dataArr = ["复制","举报","删除"]
+                        }else{
+                            self?.commentView.dataArr = ["复制","举报"]
+                        }
+                    }else{
+                        //长按回复
+                        self?.commentView.type = 0
+                        self?.commentView.model = commentModel
+                        self?.commentView.commentContent = comment
+                        self?.commentView.dataArr = ["复制","举报"]
+                        
+                        let returnArr = commentModel.list
+                        if returnArr.count > 0{
+                            for returnModel in returnArr {
+                                if returnModel.uid == HDDeclare.shared.uid {
+                                    //自己的回复，模型转换
+                                    let model1 = TopicCommentList.init(uid: returnModel.uid, comment: returnModel.comment, likeNum: commentModel.likeNum, createdAt: "", commentID: returnModel.commentID, avatar: "", nickname: returnModel.uNickname, isLike: 0, list: [], showAll: true, height: 44, topHeight: 64)
+                                    self?.commentView.model = model1
+                                    self?.commentView.commentContent = returnModel.comment
+                                    self?.commentView.dataArr = ["复制","举报","删除"]
+                                    break
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
                     self?.commentView.tableView.reloadData()
-                    kWindow!.addSubview((self?.commentView)!)
+                    kWindow?.addSubview((self?.commentView)!)
                 }
+                
+                
                 cell?.answer  = { [weak self] (commentId,nickname) in
                     self?.keyboardTextField.textView.text = " "
                     self?.keyboardTextField.textView.deleteBackward()
@@ -606,6 +656,12 @@ extension HDLY_ListenDetail_VC {
         
         return UITableViewCell.init()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            self.pushToPlatCenter()
+        }
+    }
 }
 
 extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
@@ -616,9 +672,15 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
                 paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
-            } else  {
+             } else if index == 1 {
                 print("举报")
                 publicViewModel.getErrorContent(commentId: model.commentID)
+                
+            }else if index == 2 {
+                print("删除")
+                self.commentView.removeFromSuperview()
+                //删除评论
+                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
                 
             }
         } else {
@@ -632,37 +694,43 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
     }
 }
 
-//MARK: ---- WKNavigationDelegate ----
-
 extension HDLY_ListenDetail_VC {
-    //开始加载
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("_____开始加载_____")
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        if (webView == self.testWebV) {
+            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
+            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
+            LOG("\(webViewH)")
+        }
+        self.myTableView.reloadData()
+        self.requestComments(skip: 0, take: 100)
+
     }
     
-    //完成加载
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("_____完成加载_____")
-        //禁止长按手势操作
-        webView.evaluateJavaScript("document.documentElement.style.webkitUserSelect='none';", completionHandler: nil)
-        webView.evaluateJavaScript("document.documentElement.style.webkitTouchCallout='none';", completionHandler: nil)
-        //js方法获取高度
-        webView.evaluateJavaScript("Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)") { (result, error) in
-            let height = result
-            self.webViewH = CGFloat(height as! Float)
-            self.myTableView.reloadData()
-            if self.webViewH > 10 {
-                self.reloadFlag = false
+    func pushToPlatCenter() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+        vc.type = 1
+        vc.detailId = infoModel?.teacherID?.int ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+extension HDLY_ListenDetail_VC: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+        if self.myTableView == scrollView {
+            //滚动时刷新webview
+            for view in self.myTableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
             }
-            self.requestComments(skip: 0, take: 10)
         }
     }
-    
-    //加载失败
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        print("_____加载失败_____")
-    }
-    
 }
 
 //MARK: ---- 评论 ----

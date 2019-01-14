@@ -170,8 +170,10 @@ extension HDLY_CourseList_SubVC2 {
             focusBtn = cell?.focusBtn
             if model?.isFocus == 1 {
                 focusBtn.setTitle("已关注", for: .normal)
+                 self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
             }else {
                 focusBtn.setTitle("+关注", for: .normal)
+                 self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
             }
             
             return cell!
@@ -195,7 +197,17 @@ extension HDLY_CourseList_SubVC2 {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if indexPath.section == 0 && indexPath.row == 0 {
+            pushToPlatCenter()
+        }
+    }
+    
+    func pushToPlatCenter() {
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+        vc.type = 1
+        vc.detailId = infoModel?.data.teacherID.int ?? 0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -242,9 +254,11 @@ extension HDLY_CourseList_SubVC2: UIWebViewDelegate {
                 if is_focus == 1 {
                     self.infoModel!.data.isFocus = 1
                     self.focusBtn.setTitle("已关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
                 }else {
                     self.infoModel!.data.isFocus  = 0
                     self.focusBtn.setTitle("+关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
                 }
             }
             if let msg:String = dic!["msg"] as? String{

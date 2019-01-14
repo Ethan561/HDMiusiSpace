@@ -24,18 +24,22 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.isShowNavShadowLayer = false
         tableView.frame = CGRect.init(x: 0, y: 44, width: ScreenWidth, height: ScreenHeight - kTopHeight-44)
         view.addSubview(self.tableView)
         if type != 1 {
             tableView.separatorStyle = .none
+        }
+        if type == 1 {
+            self.title = "讲师主页"
+        } else {
+            self.title = "机构主页"
         }
         addRefresh()
         bindViewModel()
         tabHeader.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190)
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190))
         v.addSubview(tabHeader)
-        tableView.tableHeaderView = v
+        self.view.addSubview(v)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,6 +229,26 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
         } else {
             return 175
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 48))
+        header.backgroundColor = UIColor.white
+        let top = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 8))
+        top.backgroundColor = UIColor.HexColor(0xF0F0F0)
+        header.addSubview(top)
+        let label = UILabel.init(frame: CGRect.init(x: 20, y: 18, width: 200, height: 20))
+        if type == 1 {
+            label.text = "讲师课程"
+        } else {
+            label.text = "机构课程"
+        }
+        header.addSubview(label)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -56,13 +56,23 @@
                             <constraint firstAttribute="height" constant="12" id="YKa-rI-4LN"/>
                         </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hEn-k8-0L1">
+                        <rect key="frame" x="20" y="88.5" width="375" height="1"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="fF8-wd-CNa"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vKk-Fm-qw6" firstAttribute="leading" secondItem="cYp-n4-C6c" secondAttribute="trailing" constant="10" id="04s-cz-gId"/>
                     <constraint firstItem="8I2-Xh-ylI" firstAttribute="trailing" secondItem="Uz4-xi-xuq" secondAttribute="trailing" id="2fZ-Fh-f2o"/>
+                    <constraint firstAttribute="trailing" secondItem="hEn-k8-0L1" secondAttribute="trailing" constant="20" id="79P-Qu-7Lb"/>
                     <constraint firstAttribute="trailing" secondItem="vKk-Fm-qw6" secondAttribute="trailing" constant="20" id="ADQ-V2-bvP"/>
                     <constraint firstItem="8I2-Xh-ylI" firstAttribute="bottom" secondItem="Uz4-xi-xuq" secondAttribute="bottom" id="Crl-dt-3Pe"/>
+                    <constraint firstAttribute="bottom" secondItem="hEn-k8-0L1" secondAttribute="bottom" constant="1" id="FR0-Rf-9Pc"/>
                     <constraint firstItem="Uz4-xi-xuq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HpW-oq-RVn"/>
+                    <constraint firstItem="hEn-k8-0L1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="J1c-U2-jfB"/>
                     <constraint firstItem="wBu-pC-332" firstAttribute="top" secondItem="Uz4-xi-xuq" secondAttribute="top" id="MPx-Hd-qEW"/>
                     <constraint firstItem="Uz4-xi-xuq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="MsG-pK-2bO"/>
                     <constraint firstItem="wBu-pC-332" firstAttribute="leading" secondItem="Uz4-xi-xuq" secondAttribute="trailing" constant="20" id="mbo-ft-1JG"/>

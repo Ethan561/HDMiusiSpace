@@ -38,6 +38,14 @@ class HDZQ_MyFollowCell: UITableViewCell {
         }
         nameLabel.text = model.title
         desLabel.text = model.sub_title
-        isVipView.isHidden = model.is_focus == 0 ? true : false
+        isVipView.isHidden = true
+        followBtn.isUserInteractionEnabled = false
+        if model.is_focus == 1 {
+            followBtn.setTitle("已关注", for: .normal)
+//            followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: followBtn.size), for: .normal)
+        } else {
+            followBtn.setTitle("未关注", for: .normal)
+//            followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: followBtn.size), for: .normal)
+        }
     }
 }

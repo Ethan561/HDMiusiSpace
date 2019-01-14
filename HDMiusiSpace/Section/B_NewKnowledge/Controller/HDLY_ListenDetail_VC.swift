@@ -193,6 +193,13 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             self?.commentView.tableView.reloadData()
         }
         
+        //删除评论
+        publicViewModel.deleteCommentReplySuccess.bind { (ret) in
+            //
+            if ret == true {
+                weakSelf?.requestComments(skip: 0, take: 100)
+            }
+        }
     }
     
     func showViewData() {
@@ -236,9 +243,15 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if isFocus {
             infoModel?.isFocus = 1
             focusBtn.setTitle("已关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }else {
             infoModel?.isFocus = 0
             focusBtn.setTitle("+关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }
     }
     
@@ -475,8 +488,12 @@ extension HDLY_ListenDetail_VC {
                 focusBtn = cell?.focusBtn
                 if model?.isFocus == 1 {
                     focusBtn.setTitle("已关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
                 }else {
                     focusBtn.setTitle("+关注", for: .normal)
+                    self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+                    
+
                 }
                 return cell!
             }
@@ -522,6 +539,8 @@ extension HDLY_ListenDetail_VC {
                 cell?.timeL.text = commentModel.createdAt
                 cell?.nameL.text = commentModel.nickname
                 cell?.htmls = self.htmls[indexPath.row]
+                cell?.uid = commentModel.uid
+                cell?.commentId = commentModel.commentID
                 cell?.commentContent = commentModel.comment
                 cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
                 if commentModel.list.count > 0 {
@@ -579,15 +598,49 @@ extension HDLY_ListenDetail_VC {
                     
                 }
                 
-                cell?.longPress  = { [weak self] (commentId, comment) in
-                    self?.commentView.type = 0
-                    self?.commentView.model = commentModel
-                    self?.commentView.commentContent = comment
-                    self?.commentView.dataArr = ["复制","举报"]
-                    self?.commentView.tableHeightConstraint.constant = CGFloat(100)
+                cell?.longPress  = { [weak self] (commentId,comment) in
+                    
+                    if commentModel.commentID == commentId{
+                        //长按评论
+                        self?.commentView.type = 0
+                        self?.commentView.model = commentModel
+                        self?.commentView.commentContent = comment
+                        if commentModel.uid == HDDeclare.shared.uid {
+                            self?.commentView.dataArr = ["复制","举报","删除"]
+                        }else{
+                            self?.commentView.dataArr = ["复制","举报"]
+                        }
+                    }else{
+                        //长按回复
+                        self?.commentView.type = 0
+                        self?.commentView.model = commentModel
+                        self?.commentView.commentContent = comment
+                        self?.commentView.dataArr = ["复制","举报"]
+                        
+                        let returnArr = commentModel.list
+                        if returnArr.count > 0{
+                            for returnModel in returnArr {
+                                if returnModel.uid == HDDeclare.shared.uid {
+                                    //自己的回复，模型转换
+                                    let model1 = TopicCommentList.init(uid: returnModel.uid, comment: returnModel.comment, likeNum: commentModel.likeNum, createdAt: "", commentID: returnModel.commentID, avatar: "", nickname: returnModel.uNickname, isLike: 0, list: [], showAll: true, height: 44, topHeight: 64)
+                                    self?.commentView.model = model1
+                                    self?.commentView.commentContent = returnModel.comment
+                                    self?.commentView.dataArr = ["复制","举报","删除"]
+                                    break
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
                     self?.commentView.tableView.reloadData()
-                    kWindow!.addSubview((self?.commentView)!)
+                    kWindow?.addSubview((self?.commentView)!)
                 }
+                
+                
                 cell?.answer  = { [weak self] (commentId,nickname) in
                     self?.keyboardTextField.textView.text = " "
                     self?.keyboardTextField.textView.deleteBackward()
@@ -613,9 +666,15 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
                 paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
-            } else  {
+             } else if index == 1 {
                 print("举报")
                 publicViewModel.getErrorContent(commentId: model.commentID)
+                
+            }else if index == 2 {
+                print("删除")
+                self.commentView.removeFromSuperview()
+                //删除评论
+                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
                 
             }
         } else {

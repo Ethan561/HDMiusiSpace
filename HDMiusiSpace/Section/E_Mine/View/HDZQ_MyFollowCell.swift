@@ -25,7 +25,7 @@ class HDZQ_MyFollowCell: UITableViewCell {
     
     func setCellWithModel(model:MyFollowModel) {
         if let img = URL.init(string: model.img) {
-           headerView.kf.setImage(with: img, placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+           headerView.kf.setImage(with: img, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         nameLabel.text = model.title
         desLabel.text = model.subTitle
@@ -34,7 +34,7 @@ class HDZQ_MyFollowCell: UITableViewCell {
     
     func setCellWithModel(model:FollowPerModel) {
         if let img = URL.init(string: model.img) {
-            headerView.kf.setImage(with: img, placeholder: UIImage.init(named: ""), options: nil, progressBlock: nil, completionHandler: nil)
+            headerView.kf.setImage(with: img, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         nameLabel.text = model.title
         desLabel.text = model.sub_title

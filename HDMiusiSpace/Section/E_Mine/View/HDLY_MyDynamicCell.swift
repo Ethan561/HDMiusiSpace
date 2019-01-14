@@ -15,6 +15,7 @@ protocol HDLY_MyDynamicCellDelegate:NSObjectProtocol {
 
 class HDLY_MyDynamicCell: UITableViewCell {
 
+    @IBOutlet weak var publishLabel: UILabel!
     @IBOutlet weak var avaImgV: UIImageView!
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var contentL: UILabel!

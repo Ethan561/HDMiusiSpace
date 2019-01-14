@@ -10,6 +10,7 @@ import UIKit
 //import ESPullToRefresh
 class HDLY_TeachersCenterVC: HDItemBaseVC {
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     private var classList =  [TeacherClassList]()
     private var news =  [PlatNewsList]()
     public var type = 1 // 1教师, 2机构
@@ -36,8 +37,8 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         }
         addRefresh()
         bindViewModel()
-        tabHeader.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190)
-        let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190))
+        tabHeader.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 215)
+        let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 215))
         v.addSubview(tabHeader)
         self.view.addSubview(v)
     }
@@ -135,6 +136,12 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.desLabel.text = model.subTitle
         tabHeader.teacherDesL.isHidden = false
 
+        let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)
+        
+        tabHeader.frame.size.height = 215 + desHeight! - 75
+        
+        topConstraint.constant = 215 + desHeight! - 75
+        
         tabHeader.teacherDesL.text = model.des
         tabHeader.leftView.isHidden = true
         tabHeader.rightView.isHidden = true
@@ -165,6 +172,13 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.teacherDesL.isHidden = false
 
         tabHeader.teacherDesL.text = model.des
+        
+        let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)
+        
+        tabHeader.frame.size.height = 190 + desHeight! - 75
+        
+        topConstraint.constant = 190 + desHeight! - 75
+        
         tabHeader.leftView.isHidden = true
         tabHeader.rightView.isHidden = true
         tabHeader.lineView.isHidden = true
@@ -241,7 +255,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
         if type == 1 {
             label.text = "讲师课程"
         } else {
-            label.text = "机构课程"
+            label.text = "他的动态"
         }
         header.addSubview(label)
         return header
@@ -288,6 +302,8 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
                 let model = news[indexPath.row]
                 cell?.titleLTopCons.constant = 16
                 cell?.desView.isHidden = true
+                cell?.moreBtn.isHidden = true
+                cell?.publishLabel.text = "发布了文章"
                 //
                 cell?.avaImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.contentL.isHidden = true

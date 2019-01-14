@@ -228,7 +228,7 @@ extension HDSSL_MyOrderSubVC{
         
         let tipView: HDSSL_defaultAlertView = HDSSL_defaultAlertView.createViewFromNib() as! HDSSL_defaultAlertView
         tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
-        tipView.topTitleLabel.text = "温馨提示"
+        tipView.topTitleLabel.text = ""
         tipView.titleLab.text = "删除当前订单？"
         tipView.blockSelected { (type) in
             if type == 1 {

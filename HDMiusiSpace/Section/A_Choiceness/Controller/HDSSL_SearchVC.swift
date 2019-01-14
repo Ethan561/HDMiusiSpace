@@ -63,7 +63,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         loadSearchBar()
         
         loadSearchHistory()
-        
+        self.isShowNavShadowLayer = false
         addRefresh() //刷新
         
         self.viewModel.request_getTags(vc: self) //获取搜索类别

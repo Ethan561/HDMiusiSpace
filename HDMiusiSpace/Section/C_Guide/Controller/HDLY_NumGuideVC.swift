@@ -19,7 +19,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     @IBOutlet weak var numViewHCons: NSLayoutConstraint!
     var numStr = ""
-    var exhibit_num = 0
+    var exhibit_num = ""
     var exhibition_id: Int?
     var titleName = ""
 
@@ -52,7 +52,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         setupNavBarItem()
         self.collectionView.reloadData()
 
-        if exhibit_num != 0 {
+        if exhibit_num.count > 0 {
             dataRequest(exhibit_num: exhibit_num)
             numL.text = "\(exhibit_num)"
         }
@@ -130,7 +130,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         super.viewDidLayoutSubviews()
     }
     
-    func dataRequest(exhibit_num: Int) {
+    func dataRequest(exhibit_num: String) {
         player.stop()
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
@@ -139,7 +139,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         guard let exhibitionID = exhibition_id else {
             return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitInfo(exhibition_id: exhibitionID, exhibit_num: "\(exhibit_num)", api_token: token), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitInfo(exhibition_id: exhibitionID, exhibit_num: exhibit_num, api_token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             let dataDic:Dictionary<String,Any> = dic!["data"] as! Dictionary<String,Any>
@@ -280,7 +280,7 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
                     return
                 }
                 if player.fileno != numStr && numStr.count > 0 {
-                    dataRequest(exhibit_num: Int(numStr) ?? 0)
+                    dataRequest(exhibit_num: numStr)
                 }else {
                     playAction()
                 }

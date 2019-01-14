@@ -58,8 +58,8 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
     @objc func modifyUserInfoRequest() {
         if showNicknameVIew == true {
             if nameTF.text?.isEmpty == false {
-                if (nameTF.text?.count)! > 8 || (nameTF.text?.count)! < 4 {
-                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入4-8个字符")
+                if (nameTF.text?.count)! > 8 || (nameTF.text?.count)! < 2 {
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入2-8个字符，支持中英文、数字")
                 } else {
                     modifyNicknameRequest()
                 }

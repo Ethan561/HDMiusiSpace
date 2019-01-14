@@ -78,6 +78,9 @@ class HDZQ_DayCardTableViewCell: UITableViewCell {
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: ScreenWidth - 60, height: (ScreenWidth)*1.25)
         collectionView.collectionViewLayout = layout
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        
     }
 }
 

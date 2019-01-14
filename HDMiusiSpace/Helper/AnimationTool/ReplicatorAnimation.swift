@@ -193,8 +193,8 @@ class ReplicatorAnimation: NSObject {
     class func replicatorLayer_Round() -> CALayer {
         
         let layer = CALayer.init()
-        layer.frame = CGRect.init(x: 0, y: 0, width: 12, height: 12)
-        layer.cornerRadius = 6
+        layer.frame = CGRect.init(x: 0, y: 0, width: 8, height: 8)
+        layer.cornerRadius = 4
         layer.masksToBounds = true
         layer.transform = CATransform3DMakeScale(0.01, 0.01, 0.01)
         layer.backgroundColor = UIColor.lightGray.cgColor

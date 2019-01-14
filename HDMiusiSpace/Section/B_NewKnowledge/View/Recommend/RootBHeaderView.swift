@@ -19,7 +19,7 @@ class RootBHeaderView: UIView {
 //            self.pagerView.register(HDPagerViewCell.self, forCellWithReuseIdentifier: "cell")
             self.pagerView.register(UINib.init(nibName: "HDPagerViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
             self.pagerView.itemSize = .zero
-            self.pagerView.automaticSlidingInterval = 2
+            self.pagerView.automaticSlidingInterval = 5
             self.pagerView.transformer = FSPagerViewTransformer(type:.linear)
 //            let transform = CGAffineTransform(scaleX: 0.85, y: 0.8)
 //            let size = self.pagerView.frame.size.applying(transform)

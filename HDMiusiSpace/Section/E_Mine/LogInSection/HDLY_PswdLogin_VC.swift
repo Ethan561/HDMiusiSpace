@@ -22,7 +22,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         super.viewDidLoad()
         self.title = "账号密码登录"
         loginBtn.layer.cornerRadius = 23
-        setupBarBtn()
+//        setupBarBtn()
         phoneTF.keyboardType = .numberPad
         phoneTF.returnKeyType = .done
         phoneTF.delegate = self
@@ -86,7 +86,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 HDLY_UserModel.shared.requestUserInfo()
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
 //                    self.backToRootEVC()
 //                    self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.popViewController(animated: true)
@@ -205,7 +205,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
             HDLY_UserModel.shared.requestUserInfo()
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
 //                self.back()
                 self.navigationController?.popViewController(animated: true)
                 self.navigationController?.popViewController(animated: true)

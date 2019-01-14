@@ -337,6 +337,10 @@ extension  HDLY_CourseList_SubVC2{
         if result == 2 {
             orderTipView?.successView.isHidden = false
             self.dataRequest()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.orderTipView?.sureBlock = nil
+                self.orderTipView?.removeFromSuperview()
+            }
         }
         
     }

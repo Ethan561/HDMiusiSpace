@@ -11,10 +11,15 @@ import UIKit
 class HDZQ_SignLabelVC: UIViewController {
 
     
+    @IBOutlet weak var bottomLabel: UILabel!
+    @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var labTitle : UILabel!
     @IBOutlet weak var labDes   : UILabel!
     @IBOutlet weak var tagBgView: UIView!
-     var tagView : HD_SSL_TagView?
+    
+    public var type = 0
+    
+    var tagView : HD_SSL_TagView?
     var signLabels = [String]()
     var mySignLabels = [HDSSL_Tag]()
     let viewModel: HDSSL_TagViewModel = HDSSL_TagViewModel()
@@ -24,6 +29,17 @@ class HDZQ_SignLabelVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        if type == 0 {
+            labTitle.text = "您现在属于"
+            labDes.text = "根据选择，为您推荐更可能感兴趣的内容"
+            submitBtn.isHidden  = true
+        }
+        if type == 1 {
+            labTitle.text = "您现在状态是"
+            labDes.text = "根据选择，为您推荐更可能感兴趣的内容"
+            submitBtn.isHidden  = true
+        }
+        
         self.viewModel.request_getLaunchTagList(self,UIScrollView())
     }
     
@@ -31,7 +47,7 @@ class HDZQ_SignLabelVC: UIViewController {
         viewModel.tagModel.bind { [weak self] (tagDataArray) in
             self?.dataArr = tagDataArray  //返回标签数据，需要保存到本地
             HDDeclare.shared.allTagsArray = tagDataArray //保存标签
-            let tagdatamodel = self?.dataArr[2]  //第三页单选
+            let tagdatamodel = self?.dataArr[(self?.type)!]  //第三页单选
             self?.tagList = (tagdatamodel?.list)!
             self?.tagList.forEach({ (model) in
                 guard let title = model.title else { return }
@@ -40,21 +56,30 @@ class HDZQ_SignLabelVC: UIViewController {
             self?.loadTagView() //加载tag view
         }
     }
+    
     func loadTagView() {
         tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
-        tagView?.tagViewType = TagViewType.TagViewTypeMultipleSelection
-        
+        if type == 2 {
+            tagView?.tagViewType = TagViewType.TagViewTypeMultipleSelection
+        } else {
+            tagView?.tagViewType = TagViewType.TagViewTypeSingleSelection
+        }
+    
         tagView?.BlockFunc { [weak self] (array) in
             //1、保存选择标签
             print(array)
+           
+            if self?.type == 0 {
+                HDDeclare.shared.selectedTagArray = [HDSSL_Tag]()
+            }
             for i: Int in 0..<array.count {
                 let index : Int = Int(array[i] as! String)!       //标签下标
                 let m = self?.tagList[index]
                 self?.mySignLabels.append(m!) //保存选择标签
-                
+                HDDeclare.shared.selectedTagArray?.append(m!)
             }
             self?.uploadMyTags()
-            HDDeclare.shared.selectedTagArray = self?.mySignLabels
+           
             
         }
         tagView?.titleArray = signLabels
@@ -66,20 +91,26 @@ class HDZQ_SignLabelVC: UIViewController {
         //
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
         
-        if self.mySignLabels.count > 0 {
+        if HDDeclare.shared.selectedTagArray != nil {
             
             var tagIds: String? = ""
             
-            for i in 0..<self.mySignLabels.count {
-                
-                let model: HDSSL_Tag = self.mySignLabels[i] as HDSSL_Tag
-                
+            for i in 0..<HDDeclare.shared.selectedTagArray!.count {
+                let model: HDSSL_Tag = HDDeclare.shared.selectedTagArray![i] as HDSSL_Tag
                 tagIds = tagIds! + String(model.label_id!) + "#"
-                
             }
-            //调用接口
-           self.request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
             
+            if self.type == 2 {
+                self.request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
+            } else {
+                let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_SignLabelVC") as! HDZQ_SignLabelVC
+                if  self.type == 0 {
+                    vc.type = 1
+                } else {
+                    vc.type = 2
+                }
+                self.present(vc, animated: true, completion: nil)
+            }
         }
     }
     @IBAction func confirmAction(_ sender: Any) {
@@ -105,19 +136,17 @@ class HDZQ_SignLabelVC: UIViewController {
                 JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
             }
             HDDeclare.shared.labStr?.removeAll()
-            self.mySignLabels.forEach({ (m) in
+            HDDeclare.shared.selectedTagArray!.forEach({ (m) in
                 HDDeclare.shared.labStr?.append(m.title!)
             })
-            
-            
+            HDDeclare.shared.selectedTagArray?.removeAll()
             HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
             let delay = DispatchTime.now() + DispatchTimeInterval.seconds(1)
-           
-
             DispatchQueue.main.asyncAfter(deadline: delay, execute: {
-                self.dismiss(animated: true, completion: nil)
+                var vc = self.presentingViewController?.presentingViewController?.presentingViewController;
+                vc?.dismiss(animated: true, completion: nil)
+
             })
-            
             
         }) { (errorCode, msg) in
             //

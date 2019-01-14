@@ -135,7 +135,13 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.nickNameL.text = model.title
         tabHeader.desLabel.text = model.subTitle
         tabHeader.teacherDesL.isHidden = false
-
+        if model.sex == 0 {
+            tabHeader.genderImg.image = nil
+        }else if model.sex == 1 {
+            tabHeader.genderImg.image = UIImage.init(named: "icon_men")
+        } else {
+            tabHeader.genderImg.image = UIImage.init(named: "icon_women")
+        }
         let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)
         
         tabHeader.frame.size.height = 215 + desHeight! - 75
@@ -146,7 +152,6 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.leftView.isHidden = true
         tabHeader.rightView.isHidden = true
         tabHeader.lineView.isHidden = true
-        tabHeader.genderImg.isHidden = true
         
         if model.isFocus == 1 {
             tabHeader.followBtn.setTitle("已关注", for: .normal)

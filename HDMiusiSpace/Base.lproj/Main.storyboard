@@ -268,7 +268,7 @@
         <!--Tag Choose StateVC-->
         <scene sceneID="vaB-fr-nzX">
             <objects>
-                <viewController id="KBz-Ia-hHd" customClass="HDTagChooseStateVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDTagChooseStateVC" id="KBz-Ia-hHd" customClass="HDTagChooseStateVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Czi-EM-OhN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,6 +493,6 @@
         <image name="nav_back" width="12" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="63a-hJ-TPQ"/>
+        <segue reference="2NE-NP-hZq"/>
     </inferredMetricsTieBreakers>
 </document>

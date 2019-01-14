@@ -386,13 +386,14 @@ struct TeacherDynamicData: Codable {
     var title, subTitle, des: String?
     var avatar: String?
     var isFocus: Int?
+    var sex: Int?
     var classList: [TeacherClassList]?
     
     enum CodingKeys: String, CodingKey {
         case teacherID = "teacher_id"
         case title
         case subTitle = "sub_title"
-        case des, avatar
+        case des, avatar,sex
         case isFocus = "is_focus"
         case classList = "class_list"
     }

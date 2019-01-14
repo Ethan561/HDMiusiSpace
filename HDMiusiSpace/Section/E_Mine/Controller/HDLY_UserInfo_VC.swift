@@ -194,7 +194,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     
     @IBAction func changeSignLabeAction(_ sender: Any) {
         
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseVC") as! HDTagChooseVC
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseStateVC") as! HDTagChooseStateVC
 //        self.navigationController?.pushViewController(vc, animated: true)
 //        self.present(vc, animated: true, completion: nil)
     }

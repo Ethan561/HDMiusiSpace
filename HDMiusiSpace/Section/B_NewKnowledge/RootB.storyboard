@@ -819,7 +819,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Jhb-e8-Kz7">
                                 <rect key="frame" x="0.0" y="20" width="375" height="591"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="uIz-og-7nv" id="8gZ-2a-rVb"/>
                                     <outlet property="delegate" destination="uIz-og-7nv" id="9NF-pR-yXT"/>
@@ -1220,7 +1220,7 @@
         <image name="Star_white" width="22" height="22"/>
         <image name="ZFPlayer_top_shadow" width="180" height="76"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
-        <image name="icon_delete" width="14" height="18"/>
+        <image name="icon_delete" width="15" height="19"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="kt_icon_play_xiao" width="12" height="14"/>
         <image name="nav_back_white" width="12" height="20"/>

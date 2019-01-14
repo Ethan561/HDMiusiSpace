@@ -20,6 +20,8 @@ class HDLY_FeedbackChoose_View: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 2
+        self.backgroundColor = UIColor.white
+        self.configShadow(cornerRadius: 2, shadowColor: UIColor.HexColor(0x000000), shadowOpacity: 0.15, shadowRadius: 5, shadowOffset: CGSize.zero)
     }
     
     @IBAction func chooseAction(_ sender: UIButton) {

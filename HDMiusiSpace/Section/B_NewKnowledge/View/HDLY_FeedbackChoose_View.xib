@@ -53,7 +53,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.05078125" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="9G6-hr-Grs" secondAttribute="trailing" id="2wc-Rt-hEx"/>
                         <constraint firstItem="dhF-dd-7f5" firstAttribute="centerX" secondItem="Zdm-L1-dwX" secondAttribute="centerX" id="92F-VF-I6m"/>
@@ -68,7 +68,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Zdm-L1-dwX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KDM-VE-EY6"/>
                 <constraint firstItem="Zdm-L1-dwX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="S5f-9d-68e"/>

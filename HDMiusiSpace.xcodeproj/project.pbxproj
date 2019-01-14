@@ -183,6 +183,8 @@
 		A7B982ED2196766A00AF0266 /* CountyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B982EC2196766A00AF0266 /* CountyDataModel.swift */; };
 		A7BF411021DC9F7E00FE9FED /* HDSSL_StrategyDetialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BF410F21DC9F7E00FE9FED /* HDSSL_StrategyDetialVC.swift */; };
 		A7BF411221DCB74E00FE9FED /* HDSSL_strategyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BF411121DCB74E00FE9FED /* HDSSL_strategyModel.swift */; };
+		A7C5611121EC786B006BD4F8 /* HDSSL_noCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C5610F21EC786B006BD4F8 /* HDSSL_noCommentCell.swift */; };
+		A7C5611221EC786B006BD4F8 /* HDSSL_noCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7C5611021EC786B006BD4F8 /* HDSSL_noCommentCell.xib */; };
 		A7C59E39219BED5E00F67F0C /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E37219BED5E00F67F0C /* BannerCell.swift */; };
 		A7C59E3A219BED5E00F67F0C /* ScrollBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E38219BED5E00F67F0C /* ScrollBannerView.swift */; };
 		A7C59E40219BF04700F67F0C /* UIImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C59E3D219BF04600F67F0C /* UIImageCollectionViewCell.m */; };
@@ -834,6 +836,8 @@
 		A7B982EC2196766A00AF0266 /* CountyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountyDataModel.swift; sourceTree = "<group>"; };
 		A7BF410F21DC9F7E00FE9FED /* HDSSL_StrategyDetialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_StrategyDetialVC.swift; sourceTree = "<group>"; };
 		A7BF411121DCB74E00FE9FED /* HDSSL_strategyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_strategyModel.swift; sourceTree = "<group>"; };
+		A7C5610F21EC786B006BD4F8 /* HDSSL_noCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_noCommentCell.swift; sourceTree = "<group>"; };
+		A7C5611021EC786B006BD4F8 /* HDSSL_noCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDSSL_noCommentCell.xib; sourceTree = "<group>"; };
 		A7C59E37219BED5E00F67F0C /* BannerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		A7C59E38219BED5E00F67F0C /* ScrollBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollBannerView.swift; sourceTree = "<group>"; };
 		A7C59E3C219BF04600F67F0C /* HD_SSL_BigImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HD_SSL_BigImageVC.h; sourceTree = "<group>"; };
@@ -1475,6 +1479,8 @@
 				A7A90A5C21A3ABAA005BD37F /* HDSSL_neverCommentCell.xib */,
 				A7B8447721A5269600FC8465 /* HDSSL_commentReplyCell.swift */,
 				A7B8447821A5269600FC8465 /* HDSSL_commentReplyCell.xib */,
+				A7C5610F21EC786B006BD4F8 /* HDSSL_noCommentCell.swift */,
+				A7C5611021EC786B006BD4F8 /* HDSSL_noCommentCell.xib */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -3172,6 +3178,7 @@
 				D62277E321368069008F1416 /* Localizable.strings in Resources */,
 				A799C03D219FF1E900BA526C /* HDSSL_sameMuseumItem.xib in Resources */,
 				D619C0CD21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib in Resources */,
+				A7C5611221EC786B006BD4F8 /* HDSSL_noCommentCell.xib in Resources */,
 				D672462E211D5F4400239109 /* HDLY_Recommend_Cell2.xib in Resources */,
 				D694518A2196757900E7DA44 /* HDLY_OpenVipTipView.xib in Resources */,
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
@@ -3824,6 +3831,7 @@
 				D6C9FC6D21181F54007C8E56 /* JudgeNumbers.swift in Sources */,
 				D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */,
 				D6C9FC8B21181FD1007C8E56 /* HD_LY_NetHelper.swift in Sources */,
+				A7C5611121EC786B006BD4F8 /* HDSSL_noCommentCell.swift in Sources */,
 				1B21CBAB21B0EB96006246DF /* HDZQ_OthersCenterVC.swift in Sources */,
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
 				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,

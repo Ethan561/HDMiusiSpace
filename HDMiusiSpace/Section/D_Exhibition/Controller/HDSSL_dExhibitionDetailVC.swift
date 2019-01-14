@@ -346,7 +346,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }else if section == 1 {
             return 2
         }else if section == 2 {
-            
+            if self.commentArr?.count == 0 {
+                return 1
+            }
             return self.commentArr!.count
         }
         
@@ -373,7 +375,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             
         }else if indexPath.section == 2 {
-            //评论
+            //1暂无评论
+            if self.commentArr?.count == 0 {
+                return 150
+            }
+            //2有评论
             let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_dCommentCell")
             let model = self.commentArr![indexPath.row]
             
@@ -623,6 +629,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         else if indexPath.section == 2 {
             self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             weak var weakSelf = self
+            
+            if self.commentArr?.count == 0 {
+                let cell = HDSSL_noCommentCell.getMyTableCell(tableV: tableView) as HDSSL_noCommentCell
+                
+                return cell
+            }
+            
             let model = self.commentArr![indexPath.row]
             
             let cell = HDSSL_dCommentCell.getMyTableCell(tableV: tableView) as HDSSL_dCommentCell

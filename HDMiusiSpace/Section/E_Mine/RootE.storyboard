@@ -768,7 +768,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请放心选择，以后还可以更改" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqL-4m-hFp">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请放心选择，以后还可以更改" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqL-4m-hFp">
                                         <rect key="frame" x="20" y="571" width="335" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="15D-Zs-Ry3"/>
@@ -829,8 +829,10 @@
                         <viewLayoutGuide key="safeArea" id="tJn-p4-2Zd"/>
                     </view>
                     <connections>
+                        <outlet property="bottomLabel" destination="KqL-4m-hFp" id="2Xg-uy-D19"/>
                         <outlet property="labDes" destination="5Bb-Gf-I11" id="PqX-kF-RD0"/>
                         <outlet property="labTitle" destination="MU7-Qr-Ad1" id="ab4-du-b3w"/>
+                        <outlet property="submitBtn" destination="Lue-6y-rhd" id="lOj-yu-IeL"/>
                         <outlet property="tagBgView" destination="lih-J3-2WZ" id="t8X-pY-kmQ"/>
                     </connections>
                 </viewController>

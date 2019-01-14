@@ -68,8 +68,9 @@ class HDZQ_SignLabelVC: UIViewController {
         tagView?.BlockFunc { [weak self] (array) in
             //1、保存选择标签
             print(array)
-            if HDDeclare.shared.selectedTagArray == nil {
-               HDDeclare.shared.selectedTagArray = [HDSSL_Tag]()
+           
+            if self?.type == 0 {
+                HDDeclare.shared.selectedTagArray = [HDSSL_Tag]()
             }
             for i: Int in 0..<array.count {
                 let index : Int = Int(array[i] as! String)!       //标签下标
@@ -142,11 +143,9 @@ class HDZQ_SignLabelVC: UIViewController {
             HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
             let delay = DispatchTime.now() + DispatchTimeInterval.seconds(1)
             DispatchQueue.main.asyncAfter(deadline: delay, execute: {
-                var vc = self.presentingViewController;
-                while ((vc?.presentingViewController) != nil) {
-                    vc = vc?.presentingViewController
-                }
+                var vc = self.presentingViewController?.presentingViewController?.presentingViewController;
                 vc?.dismiss(animated: true, completion: nil)
+
             })
             
         }) { (errorCode, msg) in

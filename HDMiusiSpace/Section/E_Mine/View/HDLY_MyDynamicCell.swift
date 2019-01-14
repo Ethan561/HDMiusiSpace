@@ -30,6 +30,7 @@ class HDLY_MyDynamicCell: UITableViewCell {
     @IBOutlet weak var des2L: UILabel!
     
     @IBOutlet weak var titleLTopCons: NSLayoutConstraint!
+    @IBOutlet weak var moreBtn: UIButton!
     
     private var isShowing = false
     

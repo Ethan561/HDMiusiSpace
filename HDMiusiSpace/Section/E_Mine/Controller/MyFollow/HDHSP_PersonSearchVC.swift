@@ -55,7 +55,7 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
     func loadSearchBar()  {
         let shareBtn = UIButton.init(type: UIButton.ButtonType.custom)
         //let width = HDDeclare.getTranslate(str: "common_cancle") .getContentWidth(font: UIFont.systemFont(ofSize: 18.0))
-        shareBtn.frame = CGRect.init(x: 0, y: 0, width: 50, height: 45)
+        shareBtn.frame = CGRect.init(x: 0, y: 0, width: 30, height: 45)
         
         
         //shareBtn.setTitleColor(UIColor.white, for: .normal)
@@ -70,7 +70,7 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
         searchBar.layer.cornerRadius = 10.0
         searchBar.backgroundColor = UIColor.HexColor(0xefefef)
         searchBar.font = UIFont.systemFont(ofSize: 15)
-        searchBar.attributedPlaceholder = NSAttributedString.init(string: "请输入昵称或者ID", attributes: [
+        searchBar.attributedPlaceholder = NSAttributedString.init(string: " 请输入昵称或者ID", attributes: [
             NSAttributedString.Key.foregroundColor:UIColor.darkGray])//HDDeclare.getTranslate(str: "search_hint")
         searchBar.delegate = self
         searchBar.returnKeyType = .search
@@ -79,9 +79,7 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
         clearButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         clearButton.setImage(UIImage.init(named: "search_back"), for: .normal)
         clearButton.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
-        let searchImage:UIImageView = UIImageView.init(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        //searchImage.inset
-        searchImage.image = UIImage.init(named: "search_icon_search_small_default")
+        let searchImage:UIImageView = UIImageView.init(image: UIImage.init(named: "search_icon_search_small_default"))
         searchBar.leftView = searchImage
         searchBar.leftViewMode = .always
         searchBar.rightView = clearButton

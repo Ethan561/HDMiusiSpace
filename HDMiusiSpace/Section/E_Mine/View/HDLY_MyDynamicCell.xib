@@ -201,6 +201,7 @@
                 <outlet property="exhibitionView" destination="RM5-1f-wHp" id="HyZ-lu-ly9"/>
                 <outlet property="imgV" destination="OqO-6g-5qj" id="WJn-SO-h7u"/>
                 <outlet property="locL" destination="hPT-yg-7vl" id="soO-2H-zCN"/>
+                <outlet property="moreBtn" destination="CF4-Zo-JFq" id="5Cn-PW-Icn"/>
                 <outlet property="nameL" destination="Zzb-L1-acu" id="cVI-e2-XUw"/>
                 <outlet property="timeL" destination="tSn-96-qBZ" id="r76-bz-hZq"/>
                 <outlet property="titleL" destination="bdi-Se-fyV" id="pS0-kO-3nS"/>

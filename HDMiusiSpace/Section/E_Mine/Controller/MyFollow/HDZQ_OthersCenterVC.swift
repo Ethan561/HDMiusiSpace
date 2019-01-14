@@ -32,7 +32,7 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         super.viewDidLoad()
         requestDynamicData(toid: toid)
         addRefresh()
-        self.title = "个人中心"
+        self.title = "个人主页"
         
         let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 34))
         publishBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
@@ -43,7 +43,8 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         tabHeader.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190)
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 190))
         v.addSubview(tabHeader)
-        tableView.tableHeaderView = v
+//        tableView.tableHeaderView = v
+        self.view.addSubview(v)
     }
     
     func refreshTableView(models:[MyDynamic]) {
@@ -216,6 +217,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         cell?.contentL.attributedText = self.htmls[indexPath.row]
         cell?.timeL.text = dynamic.createdAt
         cell?.nameL.text = dynamic.nickname
+        cell?.moreBtn.isHidden = true
         if dynamic.cateID == 10 {
             cell?.titleLTopCons.constant = 10
             cell?.desView.isHidden = false
@@ -312,8 +314,26 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 48))
+        header.backgroundColor = UIColor.white
+        let top = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 8))
+        top.backgroundColor = UIColor.HexColor(0xF0F0F0)
+        header.addSubview(top)
+        let label = UILabel.init(frame: CGRect.init(x: 20, y: 18, width: 200, height: 20))
+        if model.sex == 0 {
+           label.text = "ta的动态"
+        } else if model.sex == 1 {
+            label.text = "他的动态"
+        } else {
+            label.text = "她的动态"
+        }
+        header.addSubview(label)
+        return header
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 48
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

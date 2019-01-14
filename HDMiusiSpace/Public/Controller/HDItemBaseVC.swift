@@ -37,9 +37,9 @@ class HDItemBaseVC: UIViewController {
     
     func addLeftBarButtonItem() {
         let leftBarBtn = UIButton.init(type: UIButtonType.custom)
-        leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
+        leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         leftBarBtn.setImage(UIImage.init(named: "nav_back"), for: UIControlState.normal)
-//        leftBarBtn.setTitle("back", for: .normal)
+        leftBarBtn.setTitle("  ", for: .normal)
         leftBarBtn.addTarget(self, action: #selector(back), for: UIControlEvents.touchUpInside)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)

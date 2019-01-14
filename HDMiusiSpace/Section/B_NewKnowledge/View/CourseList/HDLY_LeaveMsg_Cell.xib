@@ -42,9 +42,8 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:22 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icf-Ku-I6T">
-                        <rect key="frame" x="60" y="108" width="86" height="18"/>
+                        <rect key="frame" x="60" y="108" width="187" height="18"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="86" id="2oU-fk-nGV"/>
                             <constraint firstAttribute="height" constant="18" id="OZC-F0-FSu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -118,6 +117,7 @@
                     <constraint firstItem="xw0-HV-DZt" firstAttribute="leading" secondItem="icf-Ku-I6T" secondAttribute="leading" id="IWl-RN-UQm"/>
                     <constraint firstAttribute="trailing" secondItem="0xd-M6-8oj" secondAttribute="trailing" constant="20" id="Il3-KQ-zEE"/>
                     <constraint firstItem="r1s-DG-GNG" firstAttribute="leading" secondItem="kw7-g0-bMh" secondAttribute="leading" id="IoA-K4-3cZ"/>
+                    <constraint firstItem="0xd-M6-8oj" firstAttribute="leading" secondItem="icf-Ku-I6T" secondAttribute="trailing" constant="8" id="Isu-6p-vHW"/>
                     <constraint firstItem="12r-tj-SCp" firstAttribute="leading" secondItem="kw7-g0-bMh" secondAttribute="leading" id="Lqa-nh-GVe"/>
                     <constraint firstItem="icf-Ku-I6T" firstAttribute="leading" secondItem="kw7-g0-bMh" secondAttribute="leading" id="MjR-Ob-Ppc"/>
                     <constraint firstItem="12r-tj-SCp" firstAttribute="top" secondItem="kw7-g0-bMh" secondAttribute="bottom" constant="8" id="NAR-94-I9F"/>

@@ -79,7 +79,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     }
     
     deinit {
-        print("released###############")
+        print("released###############：\(self.className)")
     }
     
     @objc func refreshAction() {
@@ -530,8 +530,6 @@ extension HDLY_TopicDetail_VC {
             // 长按复制与举报
             cell?.longPress  = { [weak self] (commentId,comment) in
                 
-//                self?.commentView.dataArr = ["复制","举报"]
-//                self?.commentView.tableHeightConstraint.constant = CGFloat(100)
                 if commentModel.commentID == commentId{
                     //长按评论
                     self?.commentView.type = 0

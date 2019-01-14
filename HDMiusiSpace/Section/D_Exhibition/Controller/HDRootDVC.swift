@@ -49,7 +49,6 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         guard str != nil else {

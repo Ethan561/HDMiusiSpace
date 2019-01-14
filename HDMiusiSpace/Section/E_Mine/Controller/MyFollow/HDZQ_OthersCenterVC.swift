@@ -116,7 +116,7 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         tabHeader.desLabel.text = model.profile
         tabHeader.followNumberL.text = "\(model.focus_num)"
         tabHeader.collectNumberL.text = "\(model.favorite_num)"
-        if model.sex == 0 {
+        if model.sex == nil {
             tabHeader.genderImg.image = nil
         }else if model.sex == 1 {
             tabHeader.genderImg.image = UIImage.init(named: "icon_men")

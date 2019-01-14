@@ -323,10 +323,10 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         let label = UILabel.init(frame: CGRect.init(x: 20, y: 18, width: 200, height: 20))
         if model.sex == 0 {
            label.text = "ta的动态"
-        } else if model.sex == 1{
-            label.text = "她的动态"
-        } else {
+        } else if model.sex == 1 {
             label.text = "他的动态"
+        } else {
+            label.text = "她的动态"
         }
         header.addSubview(label)
         return header

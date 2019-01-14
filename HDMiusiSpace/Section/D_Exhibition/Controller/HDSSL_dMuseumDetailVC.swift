@@ -26,8 +26,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
     
-    var webViewH: CGFloat = 0
-    var areaWebViewH: CGFloat = 0
+    var webViewH: CGFloat = 0       //博物馆简介
+    var areaWebViewH: CGFloat = 0   //平面展示图
     var museumId: Int = 0
     var infoModel: ExhibitionMuseumData?
     let player = HDLY_AudioPlayer.shared
@@ -321,6 +321,9 @@ extension HDSSL_dMuseumDetailVC {
                     return 60
                 }
             }
+            if section == 1 && self.infoModel?.isArea == 0 {
+                return 0.01 //没有平面展示图不显示标题栏
+            }
             
             return 45
         }
@@ -340,6 +343,9 @@ extension HDSSL_dMuseumDetailVC {
             header.moreBtn.tag = 100 + section
             header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
             if section == 1 {
+                if self.infoModel?.isArea == 0 {
+                    return nil //没有平面展示图不显示标题栏
+                }
                 header.titleL.text = "平面展示图"
                 header.moreBtn.isHidden = true
                 return header
@@ -448,16 +454,28 @@ extension HDSSL_dMuseumDetailVC {
                 return cell!
             }
             else if indexPath.row == 5 {
-                let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+                //展开收起
+//                let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+//                guard let url = self.infoModel?.museumHTML else {
+//                    return cell!
+//                }
+//                cell?.loadWebView(url)
+//                weak var weakS = self
+//                cell?.tapBloclkFunc(block: { (type, articleId) in
+//                    weakS?.didTapWebCard(type, articleId)
+//                })
+//
+//                return cell!
+                //直接加载完整网页
+                self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+                let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
                 guard let url = self.infoModel?.museumHTML else {
                     return cell!
                 }
-                cell?.loadWebView(url)
-                weak var weakS = self
-                cell?.tapBloclkFunc(block: { (type, articleId) in
-                    weakS?.didTapWebCard(type, articleId)
-                })
-                
+                if url.contains("html") {
+                    cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+                }
+                cell?.webView.delegate = self
                 return cell!
             }
             else  {
@@ -666,7 +684,7 @@ extension HDSSL_dMuseumDetailVC {
             if self.webViewH != CGFloat(webViewHStr.floatValue + 10) {
                 self.webViewH = CGFloat(webViewHStr.floatValue + 10)
                 LOG("webViewH: \(webViewH)")
-                self.myTableView.reloadData()
+                self.myTableView.reloadRows(at: [IndexPath.init(row: 5, section: 0)], with: .none)
             }
         }
         
@@ -674,7 +692,7 @@ extension HDSSL_dMuseumDetailVC {
             let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
             if self.areaWebViewH != CGFloat(webViewHStr.floatValue + 10) {
                 self.areaWebViewH = CGFloat(webViewHStr.floatValue + 10)
-                self.myTableView.reloadData()
+                self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
             }
             
         }
@@ -758,6 +776,10 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
                 if view.isKind(of: HDLY_CourseWeb_Cell.self) {
                     let cell = view as! HDLY_CourseWeb_Cell
                     cell.webview.setNeedsLayout()
+                }
+                if view.isKind(of: HDLY_MuseumInfoImgCell.self) {
+                    let cell = view as! HDLY_MuseumInfoImgCell
+                    cell.webView.setNeedsLayout()
                 }
             }
             

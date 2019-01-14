@@ -243,9 +243,15 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if isFocus {
             infoModel?.isFocus = 1
             focusBtn.setTitle("已关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }else {
             infoModel?.isFocus = 0
             focusBtn.setTitle("+关注", for: .normal)
+            self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+            
+
         }
     }
     
@@ -482,8 +488,12 @@ extension HDLY_ListenDetail_VC {
                 focusBtn = cell?.focusBtn
                 if model?.isFocus == 1 {
                     focusBtn.setTitle("已关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
                 }else {
                     focusBtn.setTitle("+关注", for: .normal)
+                    self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+                    
+
                 }
                 return cell!
             }

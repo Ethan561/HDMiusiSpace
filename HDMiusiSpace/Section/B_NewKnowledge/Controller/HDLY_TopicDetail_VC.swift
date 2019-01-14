@@ -427,8 +427,12 @@ extension HDLY_TopicDetail_VC {
                     focusBtn = cell?.focusBtn
                     if model?.is_focus == 1 {
                         focusBtn.setTitle("已关注", for: .normal)
+                        self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
+                        
+
                     }else {
                         focusBtn.setTitle("+关注", for: .normal)
+                         self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
                     }
                     
                 }
@@ -649,9 +653,13 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 if is_focus == 1 {
                     self.infoModel!.is_focus = 1
                     self.focusBtn.setTitle("已关注", for: .normal)
+                    self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
+                    
+
                 }else {
                     self.infoModel!.is_focus  = 0
                     self.focusBtn.setTitle("+关注", for: .normal)
+                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
                 }
             }
             if let msg:String = dic!["msg"] as? String{

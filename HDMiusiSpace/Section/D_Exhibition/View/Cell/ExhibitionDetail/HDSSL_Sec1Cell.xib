@@ -18,8 +18,25 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19M-qH-YRz">
+                        <rect key="frame" x="20" y="78.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Mi8-OU-iEF"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="19M-qH-YRz" secondAttribute="bottom" id="BOG-Nv-b0y"/>
+                    <constraint firstItem="19M-qH-YRz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Sj4-Hm-ayM"/>
+                    <constraint firstAttribute="trailing" secondItem="19M-qH-YRz" secondAttribute="trailing" constant="20" id="mPf-L7-V5G"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="line" destination="19M-qH-YRz" id="1wD-Tv-rkL"/>
+            </connections>
             <point key="canvasLocation" x="-52.799999999999997" y="20.689655172413794"/>
         </tableViewCell>
     </objects>

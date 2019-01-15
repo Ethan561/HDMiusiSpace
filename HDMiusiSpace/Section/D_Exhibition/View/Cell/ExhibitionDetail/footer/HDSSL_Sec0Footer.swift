@@ -8,6 +8,7 @@
 
 import UIKit
 
+typealias BlockTapShowMuseumDetail = () -> Void //点赞
 class HDSSL_Sec0Footer: UIView {
 
     @IBOutlet var contentView: UIView!
@@ -15,6 +16,11 @@ class HDSSL_Sec0Footer: UIView {
     @IBOutlet weak var cell_title: UILabel!
     @IBOutlet weak var cell_address: UILabel!
     @IBOutlet weak var cell_bg: UIView!
+    var tapShowMuseum :BlockTapShowMuseumDetail!
+    
+    func TapShowMuseumFunc(block :@escaping BlockTapShowMuseumDetail) {
+        tapShowMuseum = block
+    }
     
     //使用代码构造此自定义视图时调用
     override init(frame: CGRect) {       //每一步都必须
@@ -42,4 +48,12 @@ class HDSSL_Sec0Footer: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         return view
     }
+    @IBAction func tap_showmuseumDetail(_ sender: UITapGestureRecognizer) {
+        weak var weakself = self
+        if weakself?.tapShowMuseum != nil {
+            weakself?.tapShowMuseum!()
+        }
+    }
+    
+    
 }

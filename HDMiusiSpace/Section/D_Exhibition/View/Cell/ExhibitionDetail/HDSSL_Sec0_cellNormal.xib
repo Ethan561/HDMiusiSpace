@@ -29,30 +29,53 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-wJ-XJ5">
-                        <rect key="frame" x="58" y="11.5" width="222" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-wJ-XJ5">
+                        <rect key="frame" x="58" y="2" width="229" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="keM-ww-96x"/>
+                            <constraint firstAttribute="height" constant="40" id="keM-ww-96x"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPx-tp-lrv">
+                        <rect key="frame" x="20" y="42.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Uvl-y6-VbX"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="fpO-FY-BZk">
+                        <rect key="frame" x="292" y="16" width="8" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="MVY-Rs-Tgv"/>
+                            <constraint firstAttribute="height" constant="12" id="Uzo-u8-H6K"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RFA-lw-5ec" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="3WY-uk-EEb"/>
                     <constraint firstItem="OBM-wJ-XJ5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FxN-DC-EWf"/>
-                    <constraint firstAttribute="trailing" secondItem="OBM-wJ-XJ5" secondAttribute="trailing" constant="40" id="Kwy-wP-jLG"/>
+                    <constraint firstAttribute="bottom" secondItem="cPx-tp-lrv" secondAttribute="bottom" id="I6E-4c-Ttm"/>
+                    <constraint firstAttribute="trailing" secondItem="cPx-tp-lrv" secondAttribute="trailing" constant="20" id="YoI-hi-ZrD"/>
                     <constraint firstItem="OBM-wJ-XJ5" firstAttribute="leading" secondItem="RFA-lw-5ec" secondAttribute="trailing" id="axN-R4-10r"/>
+                    <constraint firstItem="cPx-tp-lrv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bcP-0W-ous"/>
+                    <constraint firstItem="fpO-FY-BZk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ngv-1H-EZB"/>
+                    <constraint firstAttribute="trailing" secondItem="fpO-FY-BZk" secondAttribute="trailing" constant="20" id="t6Z-zb-Oii"/>
                     <constraint firstItem="RFA-lw-5ec" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xFn-gO-VsQ"/>
+                    <constraint firstItem="fpO-FY-BZk" firstAttribute="leading" secondItem="OBM-wJ-XJ5" secondAttribute="trailing" constant="5" id="xMh-gX-VfX"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cell_indicator" destination="fpO-FY-BZk" id="mPP-jS-lJs"/>
                 <outlet property="cell_nameL" destination="RFA-lw-5ec" id="Gsb-z0-JiT"/>
                 <outlet property="cell_titleL" destination="OBM-wJ-XJ5" id="fZN-vx-Grc"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_arrow_right" width="8" height="12"/>
+    </resources>
 </document>

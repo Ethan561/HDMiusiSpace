@@ -312,6 +312,14 @@ extension HDRootAVC {
             cell?.collectionBtn.addTarget(self, action: #selector(cardCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
             if isCollection != nil {
                 cell?.collectionBtn.isSelected = isCollection!
+                cell?.collectionBtn.transform = CGAffineTransform.init(a: 1, b: 0, c: 0, d: 1.5, tx: 0, ty: 15)
+                cell?.collectionBtn.alpha = 0.01
+                UIView.animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
+                    cell?.collectionBtn.transform = CGAffineTransform.init(a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0)
+                    cell?.collectionBtn.alpha = 1
+                }) { (finish) in
+                    cell?.collectionBtn.transform = CGAffineTransform.init(a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0)
+                }
             }else {
                 if model.itemCard?.isFavorite == 1 {
                     self.isCollection = true

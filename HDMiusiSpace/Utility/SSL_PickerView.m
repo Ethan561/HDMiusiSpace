@@ -234,9 +234,21 @@
 }
 - (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath{
     NSLog(@"按钮上");
+    if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {
+        [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
+        [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+        [self.collectionView reloadData];
+        //代理回调
+        [self getBackPhotosWith];
+        
+        return;
+    }
+    
     [_selectedPhotos removeObjectAtIndex:sourceIndexPath.item];
     [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
+    
     [_collectionView performBatchUpdates:^{
+        
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sourceIndexPath.item inSection:0];
         [self->_collectionView deleteItemsAtIndexPaths:@[indexPath]];
     } completion:^(BOOL finished) {

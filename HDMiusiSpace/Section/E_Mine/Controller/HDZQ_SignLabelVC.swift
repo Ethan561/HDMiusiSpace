@@ -136,14 +136,17 @@ class HDZQ_SignLabelVC: UIViewController {
                 JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
             }
             HDDeclare.shared.labStr?.removeAll()
-            HDDeclare.shared.selectedTagArray!.forEach({ (m) in
+//            HDDeclare.shared.selectedTagArray!.forEach({ (m) in
+//                HDDeclare.shared.labStr?.append(m.title!)
+//            })
+            self.mySignLabels.forEach({ (m) in
                 HDDeclare.shared.labStr?.append(m.title!)
             })
             HDDeclare.shared.selectedTagArray?.removeAll()
             HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
             let delay = DispatchTime.now() + DispatchTimeInterval.seconds(1)
             DispatchQueue.main.asyncAfter(deadline: delay, execute: {
-                var vc = self.presentingViewController?.presentingViewController?.presentingViewController;
+                let vc = self.presentingViewController?.presentingViewController?.presentingViewController;
                 vc?.dismiss(animated: true, completion: nil)
 
             })

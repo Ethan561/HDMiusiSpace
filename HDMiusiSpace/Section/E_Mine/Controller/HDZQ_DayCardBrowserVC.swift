@@ -36,8 +36,18 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
         super.viewWillAppear(animated)
         setLeftBar()
         setNavBar()
-       
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.shareBtn.isHidden {
+            self.navigationController?.navigationBar.isHidden = false
+            self.shareBtn.isHidden = false
+            self.navigationController?.navigationBar.alpha = 1.0
+            self.shareBtn.alpha = 1.0
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath.init(row: index, section: 0)

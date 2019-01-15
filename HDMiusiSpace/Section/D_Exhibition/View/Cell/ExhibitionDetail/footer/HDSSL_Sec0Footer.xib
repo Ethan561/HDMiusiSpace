@@ -53,6 +53,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="93g-xz-faH" firstAttribute="leading" secondItem="Qvo-8I-HSh" secondAttribute="leading" id="0Rg-ux-h0X"/>
                         <constraint firstItem="26o-lS-sOG" firstAttribute="leading" secondItem="93g-xz-faH" secondAttribute="trailing" constant="20" id="153-s0-fUi"/>
@@ -64,6 +65,9 @@
                         <constraint firstAttribute="trailing" secondItem="rts-FJ-Iae" secondAttribute="trailing" id="xfw-Tw-hAw"/>
                         <constraint firstAttribute="trailing" secondItem="26o-lS-sOG" secondAttribute="trailing" constant="8" id="zSc-EG-RLb"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="AmF-ci-n0Q" appends="YES" id="e5q-Kp-iJV"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,5 +81,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-74.400000000000006" y="65.667166416791616"/>
         </view>
+        <tapGestureRecognizer id="AmF-ci-n0Q">
+            <connections>
+                <action selector="tap_showmuseumDetail:" destination="-1" id="Bq0-Es-Ivl"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

@@ -36,11 +36,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdG-d8-4XH">
+                        <rect key="frame" x="20" y="148.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="QC1-nt-UvI"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bSF-ZO-etH" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="GQu-OP-4B1"/>
+                    <constraint firstItem="AdG-d8-4XH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="MZ9-fs-gCf"/>
                     <constraint firstItem="O9R-ef-vfH" firstAttribute="top" secondItem="bSF-ZO-etH" secondAttribute="bottom" id="X3g-Hb-Ok8"/>
+                    <constraint firstAttribute="trailing" secondItem="AdG-d8-4XH" secondAttribute="trailing" constant="20" id="d3E-Kh-PKO"/>
                     <constraint firstItem="bSF-ZO-etH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dRx-ra-R69"/>
+                    <constraint firstAttribute="bottom" secondItem="AdG-d8-4XH" secondAttribute="bottom" id="e1p-sJ-mcK"/>
                     <constraint firstItem="O9R-ef-vfH" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fG7-qF-W8g"/>
                 </constraints>
             </tableViewCellContentView>

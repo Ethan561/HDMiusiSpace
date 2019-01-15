@@ -515,6 +515,8 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
             //
+            weak var weakSelf = self
+            
             if self.exdataModel == nil {
                 return nil
             }
@@ -522,7 +524,14 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             firstSecFooter.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.museumImg!)!)), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
             firstSecFooter.cell_title.text = String.init(format: "%@", (self.exdataModel?.data?.museumTitle)!)
             firstSecFooter.cell_address.text = String.init(format: "%@", (self.exdataModel?.data?.museumAddress)!)
-            
+            firstSecFooter.TapShowMuseumFunc {
+                print("博物馆详情")
+                //博物馆详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
+                vc.museumId = (self.exdataModel?.data?.museum_id)!
+                weakSelf?.navigationController?.pushViewController(vc, animated: true)
+            }
             
             return firstSecFooter
         }
@@ -536,6 +545,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
                 btn.setTitleColor(UIColor.HexColor(0x999999), for: .normal)
                 btn.addTarget(self, action: #selector(action_showMoreComment), for: .touchUpInside)
+                
+                let line = UIView.init(frame: CGRect.init(x: 20, y: 0, width: ScreenWidth-40, height: 1))
+                line.backgroundColor = UIColor.HexColor(0xEEEEEE)
+                btn.addSubview(line)
                 
                 return btn
             }
@@ -551,7 +564,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         weak var weakSelf = self
 
         if indexPath.section == 0 {
-            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+            
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
@@ -578,13 +591,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 if indexPath.row == 2 {
                     name = "展厅："
                     title = String.init(format: "%@", self.exdataModel?.data?.exhibitionName ?? "")
+                    cell.cell_indicator.isHidden = true
                 }else if indexPath.row == 3 {
                     name = "费用："
                     title = String.init(format: "%@", self.exdataModel?.data?.price ?? "")
+                    cell.cell_indicator.isHidden = true
                 }else if indexPath.row == 4 {
                     name = "地址："
                     title = String.init(format: "%@", self.exdataModel?.data?.address ?? "")
-                    cell.accessoryType = .disclosureIndicator
+                    cell.cell_indicator.isHidden = false
                 }
                 
                 cell.cell_nameL.text = name
@@ -594,7 +609,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
         }
         else if indexPath.section == 1 {
-            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+            
             //加载两个webView
             //展览介绍🈴️展品介绍
             if indexPath.row == 0 {
@@ -627,7 +642,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
         }
         else if indexPath.section == 2 {
-            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+//            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             weak var weakSelf = self
             
             if self.commentArr?.count == 0 {
@@ -667,7 +682,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return cell
         }
         else  {
-            self.dTableView.separatorColor = UIColor.white
             
             let arr = self.exdataModel?.data?.dataList!
             let model = arr![indexPath.section-3]
@@ -832,6 +846,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         dTableView.delegate = self
         dTableView.dataSource = self
         dTableView.tableFooterView = getTableFooterView()
+        dTableView.separatorStyle = .none
         
         //导览按钮
         let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))

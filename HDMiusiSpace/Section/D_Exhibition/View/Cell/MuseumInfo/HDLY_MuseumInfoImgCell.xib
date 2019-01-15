@@ -23,12 +23,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="294" height="204.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </webView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWt-Jp-YYP">
+                        <rect key="frame" x="20" y="203.5" width="254" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="fv4-Ye-OJU"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="x8i-aA-gl0" secondAttribute="bottom" id="6Xk-kY-6qj"/>
                     <constraint firstItem="x8i-aA-gl0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="OtX-XL-dye"/>
                     <constraint firstAttribute="trailing" secondItem="x8i-aA-gl0" secondAttribute="trailing" id="bgv-xf-Q9S"/>
+                    <constraint firstAttribute="bottom" secondItem="aWt-Jp-YYP" secondAttribute="bottom" id="mB1-KJ-4Wp"/>
+                    <constraint firstAttribute="trailing" secondItem="aWt-Jp-YYP" secondAttribute="trailing" constant="20" id="oF0-Ei-WKU"/>
                     <constraint firstItem="x8i-aA-gl0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="plx-DX-DJN"/>
+                    <constraint firstItem="aWt-Jp-YYP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sWQ-47-621"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

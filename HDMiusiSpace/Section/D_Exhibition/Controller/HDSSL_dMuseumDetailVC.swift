@@ -69,6 +69,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     }
     func loadMyViews(){
         myTableView.tableFooterView = getTableFooterView()
+        myTableView.separatorStyle = .none
         //参观指南、导览
         let radierBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
         radierBtn.setTitle("参观指南", for: .normal)
@@ -435,7 +436,7 @@ extension HDSSL_dMuseumDetailVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {
-            self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+            
             if indexPath.row == 0 {
                 let cell = HDLY_MuseumInfoTitleCell.getMyTableCell(tableV: tableView) as HDLY_MuseumInfoTitleCell
             cell.titleL.text = self.infoModel?.title
@@ -467,7 +468,6 @@ extension HDSSL_dMuseumDetailVC {
 //
 //                return cell!
                 //直接加载完整网页
-                self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
                 let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
                 guard let url = self.infoModel?.museumHTML else {
                     return cell!
@@ -489,10 +489,11 @@ extension HDSSL_dMuseumDetailVC {
                         title = "\(self.infoModel!.price!)"
                     }
                     cell.accessoryType = .none
+                    cell.cell_indicator.isHidden = true
                 }else if indexPath.row == 3 {
                     name = "地址："
                     title = self.infoModel?.address
-                    cell.accessoryType = .disclosureIndicator
+                    cell.cell_indicator.isHidden = false
                 }
                 cell.cell_nameL.text = name
                 cell.cell_titleL.text = title
@@ -500,7 +501,6 @@ extension HDSSL_dMuseumDetailVC {
             }
         }
         else if indexPath.section == 1 {
-            self.myTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
             let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
             guard let url = self.infoModel?.areaHTML else {
                 return cell!
@@ -513,7 +513,6 @@ extension HDSSL_dMuseumDetailVC {
             return cell!
         }
         else {
-            self.myTableView.separatorColor = UIColor.white
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![indexPath.section - 2]
                 if model.type == 1 {//同馆展览

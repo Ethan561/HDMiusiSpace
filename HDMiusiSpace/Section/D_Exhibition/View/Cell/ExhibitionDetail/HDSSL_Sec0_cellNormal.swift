@@ -11,6 +11,7 @@ import UIKit
 class HDSSL_Sec0_cellNormal: UITableViewCell {
     @IBOutlet weak var cell_nameL: UILabel!
     @IBOutlet weak var cell_titleL: UILabel!
+    @IBOutlet weak var cell_indicator: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

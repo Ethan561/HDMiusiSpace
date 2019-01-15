@@ -127,6 +127,17 @@ extension HDSSL_commentTextCell:UITextViewDelegate {
             return false
         }
         
+        weak var weakself = self
+        let str = textView.text == "" ? text : (textView.text + text)
+        
+        print(str)
+        
+        if weakself?.blockBackCommentText != nil {
+            weakself?.blockBackCommentText!(str)
+        }
+        
+        
+        
         return true
     }
 }

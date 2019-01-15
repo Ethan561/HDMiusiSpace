@@ -92,7 +92,11 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             
         }
         
-        labSignsViewBottomConstraint.constant = recordLab!.frame.origin.y + 40
+        if recordLab != nil  {
+            labSignsViewBottomConstraint.constant = recordLab!.frame.origin.y + 40
+        }
+        
+        
         genderL.text = declare.gender
         if declare.avatar != nil {
             avatarBtn.kf.setBackgroundImage(with: URL.init(string: declare.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)

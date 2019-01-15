@@ -123,7 +123,7 @@ class HDSSL_commentVC: HDItemBaseVC {
             return
         }
         
-        if self.commentContent?.count == 0 {
+        if self.commentContent?.count == 0 || self.commentContent == nil {
             HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入评论内容")
             return
         }

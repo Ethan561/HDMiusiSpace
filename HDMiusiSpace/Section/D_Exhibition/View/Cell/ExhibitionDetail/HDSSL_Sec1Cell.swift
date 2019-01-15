@@ -17,7 +17,8 @@ protocol HDSSL_Sec1CellDelegate: NSObjectProtocol {
 }
 
 class HDSSL_Sec1Cell: UITableViewCell {
-
+    @IBOutlet weak var line: UIView!
+    
     var blockHeight: BloclkCellHeight?
     var delegate: HDSSL_Sec1CellDelegate?
     var blockRefreshHeight: (( _ model: FoldModel) -> ( Void))?
@@ -54,7 +55,8 @@ class HDSSL_Sec1Cell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.contentView.addSubview(webview)
+//        self.contentView.addSubview(webview)
+        self.contentView.insertSubview(webview, at: 0)
     }
 
     func loadWebView(_ path: String?) {

@@ -35,14 +35,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dED-f7-QCf">
+                        <rect key="frame" x="20" y="68.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="sAa-Uw-kG1"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="dED-f7-QCf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="4Mu-91-cJr"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IZi-59-iyy"/>
                     <constraint firstItem="DRq-gb-TOI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Uam-DA-UrA"/>
                     <constraint firstAttribute="bottom" secondItem="DRq-gb-TOI" secondAttribute="bottom" constant="5" id="a94-wQ-PQn"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="bZc-oL-c5D"/>
+                    <constraint firstAttribute="trailing" secondItem="dED-f7-QCf" secondAttribute="trailing" constant="20" id="dfY-uP-Wk3"/>
                     <constraint firstAttribute="trailing" secondItem="DRq-gb-TOI" secondAttribute="trailing" constant="16" id="m2v-0Z-0fY"/>
                     <constraint firstItem="DRq-gb-TOI" firstAttribute="leading" secondItem="zFv-IL-byj" secondAttribute="trailing" id="vVL-VN-LY8"/>
+                    <constraint firstAttribute="bottom" secondItem="dED-f7-QCf" secondAttribute="bottom" id="xDd-Us-Cpk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

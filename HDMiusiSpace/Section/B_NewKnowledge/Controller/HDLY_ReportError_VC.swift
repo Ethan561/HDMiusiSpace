@@ -12,6 +12,9 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
 
     var photoSelectorView: HDLY_PhotoSelectorView!
 
+    @IBOutlet weak var scrollviewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var reportScrollView: UIScrollView!
     @IBOutlet weak var errorBtn1: UIButton!
     @IBOutlet weak var errorBtn2: UIButton!
     @IBOutlet weak var errorBtn3: UIButton!
@@ -27,7 +30,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     @IBOutlet weak var textBgView: UIView!
     @IBOutlet weak var textView: HDPlaceholderTextView!
     @IBOutlet weak var countL: UILabel!
-    @IBOutlet weak var commitBtn: UIButton!
+    @IBOutlet weak var commitBtn: UIButton!  //删除按钮
     @IBOutlet weak var imgBgView: UIView!
     @IBOutlet weak var scrollContentView: UIView!
     
@@ -55,6 +58,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         textView.returnKeyType = UIReturnKeyType.done
         textView.delegate = self
         
+        commitBtn.isHidden = true
         //MVVM
         bindViewModel()
         if articleID != nil && typeID != nil {
@@ -397,6 +401,32 @@ extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
     func getBackSelectedPhotos(_ images: [Any]!) {
         print(images)
         self.commentPhotos = images as! [UIImage]
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
+            if self.commentPhotos.count == 0{
+                self.commitBtn.isHidden = true
+                var frame = self.reportScrollView.frame
+                frame.size.height = ScreenHeight
+                self.reportScrollView.frame = frame
+            }else{
+                self.commitBtn.isHidden = false
+                var frame = self.reportScrollView.frame
+                frame.size.height = ScreenHeight-60-kTopHeight
+                self.reportScrollView.frame = frame
+                
+                //根据图片数量修改contentView高度
+                if self.commentPhotos.count > 0 && self.commentPhotos.count < 3 {
+                    self.scrollviewHeight.constant = 850
+                }
+                if self.commentPhotos.count > 2 && self.commentPhotos.count < 6 {
+                    self.scrollviewHeight.constant = 950
+                }else if self.commentPhotos.count > 5 {
+                    self.scrollviewHeight.constant = 1050
+                }
+                
+            }
+        }, completion: nil)
+        
         
     }
     

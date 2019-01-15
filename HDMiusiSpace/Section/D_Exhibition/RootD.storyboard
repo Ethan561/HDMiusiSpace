@@ -673,6 +673,7 @@
                     </view>
                     <connections>
                         <outlet property="dTableView" destination="CBr-5m-gl7" id="vSS-4c-cnr"/>
+                        <outlet property="deleteImgBtn" destination="lhU-Iu-Lft" id="xZr-ii-C3V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGa-LY-Ge7" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -969,7 +969,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph6-bQ-2aM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wLl-Dq-zSW">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
@@ -1184,7 +1184,7 @@
                                 <constraints>
                                     <constraint firstItem="wLl-Dq-zSW" firstAttribute="width" secondItem="ph6-bQ-2aM" secondAttribute="width" id="253-i3-ttf"/>
                                     <constraint firstAttribute="trailing" secondItem="wLl-Dq-zSW" secondAttribute="trailing" id="2U6-1Y-K8g"/>
-                                    <constraint firstAttribute="bottom" secondItem="wLl-Dq-zSW" secondAttribute="bottom" id="69C-la-AKN"/>
+                                    <constraint firstAttribute="bottom" secondItem="wLl-Dq-zSW" secondAttribute="bottom" constant="-233" id="69C-la-AKN"/>
                                     <constraint firstItem="wLl-Dq-zSW" firstAttribute="leading" secondItem="ph6-bQ-2aM" secondAttribute="leading" id="KMU-lQ-WYP"/>
                                     <constraint firstItem="wLl-Dq-zSW" firstAttribute="top" secondItem="ph6-bQ-2aM" secondAttribute="top" id="rie-Yt-kev"/>
                                 </constraints>
@@ -1211,7 +1211,7 @@
                             <constraint firstItem="Idy-wg-MG4" firstAttribute="leading" secondItem="mtL-Uv-lTr" secondAttribute="leading" id="PPy-P4-svP"/>
                             <constraint firstItem="mtL-Uv-lTr" firstAttribute="bottom" secondItem="Idy-wg-MG4" secondAttribute="bottom" id="Yz5-WW-ts4"/>
                             <constraint firstItem="mtL-Uv-lTr" firstAttribute="trailing" secondItem="Idy-wg-MG4" secondAttribute="trailing" id="hhb-Gu-Pe6"/>
-                            <constraint firstItem="Idy-wg-MG4" firstAttribute="top" secondItem="ph6-bQ-2aM" secondAttribute="bottom" id="o31-mC-YMr"/>
+                            <constraint firstItem="ph6-bQ-2aM" firstAttribute="bottom" secondItem="mtL-Uv-lTr" secondAttribute="bottom" id="iIo-1u-aIi"/>
                             <constraint firstItem="ph6-bQ-2aM" firstAttribute="leading" secondItem="mtL-Uv-lTr" secondAttribute="leading" id="rIZ-Ma-LBN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mtL-Uv-lTr"/>
@@ -1228,7 +1228,9 @@
                         <outlet property="errorBtnView" destination="nMz-Km-Jxs" id="Arj-6R-5yM"/>
                         <outlet property="imgBgView" destination="I6i-pB-TNV" id="ytl-ih-tPp"/>
                         <outlet property="imgV" destination="iKY-cg-yfq" id="vzf-Am-LJ2"/>
+                        <outlet property="reportScrollView" destination="ph6-bQ-2aM" id="Udd-fq-l3G"/>
                         <outlet property="scrollContentView" destination="wLl-Dq-zSW" id="2em-G7-JfP"/>
+                        <outlet property="scrollviewHeight" destination="jii-T1-lY9" id="cqc-F0-oVW"/>
                         <outlet property="textBgView" destination="Wge-Uj-cf7" id="AVi-6W-hMe"/>
                         <outlet property="textView" destination="fjZ-hx-pqr" id="JC2-g4-1QY"/>
                         <outlet property="titleL" destination="hLu-Jf-SnZ" id="Rqk-KH-54G"/>

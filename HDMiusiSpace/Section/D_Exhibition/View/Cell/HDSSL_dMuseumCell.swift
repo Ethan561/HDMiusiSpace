@@ -40,6 +40,10 @@ class HDSSL_dMuseumCell: UITableViewCell {
         }
     }
     func showCellData() {
+        for imgV in cell_tagBg.subviews {
+            imgV.removeFromSuperview()
+        }
+        
         if self.model != nil {
             if  model?.img != nil  {
                 cell_img.kf.setImage(with: URL.init(string: (model!.img!)), placeholder: UIImage.grayImage(sourceImageV: cell_img), options: nil, progressBlock: nil, completionHandler: nil)
@@ -86,8 +90,14 @@ class HDSSL_dMuseumCell: UITableViewCell {
                 let imgV = UIImageView()
                 imgV.contentMode = .scaleAspectFit
                 imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+                    var imgSize:CGSize!
+//                    let imgSize = img!.size
+                    if img != nil{
+                        imgSize = img!.size
+                    }else{
+                        imgSize = CGSize.init(width: 15, height: 15)
+                    }
                     
-                    let imgSize = img!.size
                     let imgH: CGFloat = 15
                     let imgW: CGFloat = 15*imgSize.width/imgSize.height
                     imgWArr.append(imgW)

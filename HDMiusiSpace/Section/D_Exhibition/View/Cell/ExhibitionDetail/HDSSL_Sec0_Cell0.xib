@@ -72,12 +72,22 @@
                         <color key="textColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14f-Y2-cMx">
+                        <rect key="frame" x="20" y="68.5" width="280" height="1"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="43L-k6-F3p"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="14f-Y2-cMx" secondAttribute="trailing" constant="20" id="1g6-Tq-dtJ"/>
                     <constraint firstItem="DHw-qe-fLW" firstAttribute="centerY" secondItem="RAd-vG-F5K" secondAttribute="centerY" id="4jk-8k-45h"/>
                     <constraint firstItem="wXn-cL-z5R" firstAttribute="leading" secondItem="DHw-qe-fLW" secondAttribute="trailing" constant="5" id="6Td-fb-1yI"/>
                     <constraint firstItem="caS-pD-uYv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Gaa-uG-Whd"/>
+                    <constraint firstItem="14f-Y2-cMx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="KdG-bc-hvi"/>
                     <constraint firstItem="wXn-cL-z5R" firstAttribute="centerY" secondItem="DHw-qe-fLW" secondAttribute="centerY" id="Po4-dS-vT0"/>
+                    <constraint firstAttribute="bottom" secondItem="14f-Y2-cMx" secondAttribute="bottom" id="QmB-SC-N7r"/>
                     <constraint firstAttribute="bottom" secondItem="RAd-vG-F5K" secondAttribute="bottom" constant="5" id="fxU-je-vnJ"/>
                     <constraint firstItem="RAd-vG-F5K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="lN5-mZ-WXA"/>
                     <constraint firstItem="caS-pD-uYv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="m96-n0-VIA"/>

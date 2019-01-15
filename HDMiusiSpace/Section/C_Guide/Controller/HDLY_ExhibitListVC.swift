@@ -207,18 +207,24 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if selectRow == -1 {
+            selectRow = indexPath.row
+        }
+        
         let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
-
+        let cellNow:HDLY_ExhibitCell? = self.tableView.cellForRow(at: indexPath) as? HDLY_ExhibitCell
+        
         let listModel = dataArr[indexPath.row]
         guard let video = listModel.audio else {
             return
         }
-        selectRow = indexPath.row
         if listModel.title == currentModel.title {
             cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
             if player.state == .playing {
                 player.pause()
-                cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
+                cell?.nameL.textColor = UIColor.black
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_default")
             }else {
                 player.play()
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
@@ -228,11 +234,14 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 player.play(file: Music.init(name: "", url:URL.init(string: video)!))
                 player.url = video
                 currentModel = listModel
-                cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_default")
+                cell?.nameL.textColor = UIColor.black
+                cellNow?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
+                cellNow?.nameL.textColor = UIColor.HexColor(0xE8593E)
                 isUpload = false
             }
         }
+        selectRow = indexPath.row
     }
     
 }

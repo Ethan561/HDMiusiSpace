@@ -12,7 +12,9 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
     public var toid = 0
     public var model = OtherDynamic()
     private var dynamics = [MyDynamic]()
-    private var htmls =  [NSAttributedString]()
+    private var iconTitleStrings =  [NSAttributedString]()
+    private var starTitleStrings =  [NSAttributedString]()
+    
     private var take = 10
     private var skip = 0
     @IBOutlet weak var tableView: UITableView!
@@ -57,11 +59,47 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
         
         for i in 0..<self.dynamics.count {
             let m = self.dynamics[i]
-            var attrStr: NSAttributedString? = nil
-            if let anEncoding = m.comment!.data(using: .unicode) {
-                attrStr = try? NSAttributedString(data: anEncoding, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
-                self.htmls.append(attrStr!)
+            let infoModel = m.exhibitionInfo
+            let iconTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+            infoModel?.iconList?.forEach({ (icon) in
+                let urlStr = NSURL(string: icon)
+                let data = NSData(contentsOf: urlStr! as URL)
+                let image = UIImage(data: data! as Data)
+                let attach = NSTextAttachment()
+                let width = image!.size.width * 16 / image!.size.height
+                attach.bounds = CGRect.init(x: 2, y: 0, width: width, height: 16)
+                attach.image = image
+                let imgStr = NSAttributedString.init(attachment: attach)
+                iconTitleString.append(imgStr)
+                iconTitleString.append(NSAttributedString.init(string: " "))
+            })
+            self.iconTitleStrings.append(iconTitleString)
+            let star: Float! = Float(infoModel?.star ?? "0")
+            var imgStr = ""
+            if star == 0 {
+                imgStr = ""
+            }else if star < 2 {
+                imgStr = "exhibitionCmt_1_5"
+            }else if star >= 2 && star < 4 {
+                imgStr = "exhibitionCmt_2_5"
+            }else if star >= 4 && star < 6 {
+                imgStr = "exhibitionCmt_3_5"
+            }else if star >= 6 && star < 8 {
+                imgStr = "exhibitionCmt_4_5"
+            }else if star >= 8 {
+                imgStr = "exhibitionCmt_5_5"
             }
+            let starTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+            let starImg = UIImage.init(named: imgStr)
+            let attach = NSTextAttachment()
+            attach.bounds = CGRect.init(x: 2, y: 0, width: 12, height: 12)
+            attach.image = starImg
+            let starimgStr = NSAttributedString.init(attachment: attach)
+            starTitleString.append(starimgStr)
+            starTitleString.append(NSAttributedString.init(string: " "))
+            starTitleString.append(NSAttributedString.init(string: infoModel?.star ?? "0"))
+            self.starTitleStrings.append(starTitleString)
+            
         }
         
         if self.dynamics.count > 0 {
@@ -214,7 +252,7 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
         let dynamic = self.dynamics[indexPath.row]
         let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
         cell?.avaImgV.kf.setImage(with: URL.init(string: dynamic.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
-        cell?.contentL.attributedText = self.htmls[indexPath.row]
+        cell?.contentL.text = dynamic.comment
         cell?.timeL.text = dynamic.createdAt
         cell?.nameL.text = dynamic.nickname
         cell?.moreBtn.isHidden = true
@@ -227,48 +265,12 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
             }
             cell?.titleL.text = infoM.title
             cell?.locL.text = infoM.address
-            if infoM.iconList?.count ?? 0 > 0 {
-                let iconTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
-                for icon in infoM.iconList! {
-                    let urlStr = NSURL(string: icon)
-                    let data = NSData(contentsOf: urlStr! as URL)
-                    let image = UIImage(data: data! as Data)
-                    let attach = NSTextAttachment()
-                    let width = image!.size.width * 16 / image!.size.height
-                    attach.bounds = CGRect.init(x: 2, y: 0, width: width, height: 16)
-                    attach.image = image
-                    let imgStr = NSAttributedString.init(attachment: attach)
-                    iconTitleString.append(imgStr)
-                    iconTitleString.append(NSAttributedString.init(string: " "))
-                }
-                cell?.des1L.attributedText = iconTitleString
-            }
+            cell?.des1L.attributedText = iconTitleStrings[indexPath.row]
             let star: Float! = Float(infoM.star ?? "0")
-            var imgStr = ""
             if star == 0 {
                 cell?.des1L.text = "暂无评分"
-            }else if star < 2 {
-                imgStr = "exhibitionCmt_1_5"
-            }else if star >= 2 && star < 4 {
-                imgStr = "exhibitionCmt_2_5"
-            }else if star >= 4 && star < 6 {
-                imgStr = "exhibitionCmt_3_5"
-            }else if star >= 6 && star < 8 {
-                imgStr = "exhibitionCmt_4_5"
-            }else if star >= 8 {
-                imgStr = "exhibitionCmt_5_5"
             }
-            //
-            let starTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
-            let starImg = UIImage.init(named: imgStr)
-            let attach = NSTextAttachment()
-            attach.bounds = CGRect.init(x: 2, y: 0, width: 12, height: 12)
-            attach.image = starImg
-            let starimgStr = NSAttributedString.init(attachment: attach)
-            starTitleString.append(starimgStr)
-            starTitleString.append(NSAttributedString.init(string: " "))
-            starTitleString.append(NSAttributedString.init(string: infoM.star ?? "0"))
-            cell?.des2L.attributedText = starTitleString
+            cell?.des2L.attributedText = starTitleStrings[indexPath.row]
         } else {
             cell?.titleLTopCons.constant = 16
             cell?.desView.isHidden = true

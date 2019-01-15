@@ -267,11 +267,20 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string != "" {
+            loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+            loginBtn.isEnabled = true
+        } else {
+            if (textField.text?.count)! == 1 {
+                loginBtn.backgroundColor = UIColor.HexColor(0xED755F)
+                loginBtn.isEnabled = false
+            }
+        }
+        
+        return true
+    }
 
 }

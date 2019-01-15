@@ -13,7 +13,7 @@
         <!--Tag Choose CareerVC-->
         <scene sceneID="J9F-L3-tcJ">
             <objects>
-                <viewController id="s5v-hL-eDO" customClass="HDTagChooseCareerVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDTagChooseCareerVC" id="s5v-hL-eDO" customClass="HDTagChooseCareerVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="47b-pY-mbE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -493,6 +493,6 @@
         <image name="nav_back" width="12" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2NE-NP-hZq"/>
+        <segue reference="9fg-It-IEC"/>
     </inferredMetricsTieBreakers>
 </document>

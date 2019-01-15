@@ -64,7 +64,13 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    @IBAction func protocolAction(_ sender: Any) {
+        let vc = HDLY_WKWebVC()
+        vc.titleName = "服务协议"
+        vc.urlPath = "http://www.muspace.net/api/users/about_html/fwxy?p=i"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func loginBtnAction(_ sender: UIButton) {
 
         let deviceno = HDLY_UserModel.shared.getDeviceNum()

@@ -204,6 +204,23 @@
                                     <constraint firstItem="e3z-lO-O3u" firstAttribute="width" secondItem="e3z-lO-O3u" secondAttribute="height" id="x0f-WF-ze5"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgi-Uw-7P0">
+                                <rect key="frame" x="212.5" y="355" width="162.5" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="《缪斯空间服务协议》">
+                                    <color key="titleColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="protocolAction:" destination="iJS-qq-LDt" eventType="touchUpInside" id="juL-gB-oPw"/>
+                                    <action selector="showProtocolDetailAction:" destination="8Pl-c5-VXd" eventType="touchUpInside" id="OnK-Ho-1Fi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录/注册代表您已阅读并同意" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmH-7m-rEe">
+                                <rect key="frame" x="49" y="361.5" width="163.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -217,13 +234,19 @@
                             <constraint firstItem="2UG-of-EaO" firstAttribute="trailing" secondItem="SFE-Td-XpA" secondAttribute="trailing" constant="20" id="JaU-J2-tgv"/>
                             <constraint firstItem="wqM-85-sdb" firstAttribute="leading" secondItem="2UG-of-EaO" secondAttribute="leading" constant="20" id="L9w-MG-DkH"/>
                             <constraint firstItem="gjr-lp-709" firstAttribute="trailing" secondItem="GaB-Oz-31y" secondAttribute="trailing" id="MKY-qO-Vaa"/>
+                            <constraint firstItem="zgi-Uw-7P0" firstAttribute="top" secondItem="YCK-uj-Ipl" secondAttribute="bottom" constant="20" id="P8Y-sU-fA3"/>
+                            <constraint firstItem="GmH-7m-rEe" firstAttribute="leading" secondItem="2UG-of-EaO" secondAttribute="leading" constant="49" id="SKb-wF-6II"/>
+                            <constraint firstItem="2UG-of-EaO" firstAttribute="trailing" secondItem="zgi-Uw-7P0" secondAttribute="trailing" id="Slr-7y-YVm"/>
                             <constraint firstItem="SFE-Td-XpA" firstAttribute="leading" secondItem="2UG-of-EaO" secondAttribute="leading" constant="20" id="UIX-Xs-a0Q"/>
                             <constraint firstItem="2UG-of-EaO" firstAttribute="trailing" secondItem="yg5-gH-qFh" secondAttribute="trailing" constant="20" id="WLT-he-l3D"/>
                             <constraint firstItem="yg5-gH-qFh" firstAttribute="top" secondItem="gjr-lp-709" secondAttribute="bottom" constant="25" id="cvH-yd-r2E"/>
                             <constraint firstItem="SFE-Td-XpA" firstAttribute="top" secondItem="2UG-of-EaO" secondAttribute="top" constant="30" id="h36-d6-QsD"/>
+                            <constraint firstItem="zgi-Uw-7P0" firstAttribute="leading" secondItem="GmH-7m-rEe" secondAttribute="trailing" id="l5a-HI-Vn4"/>
                             <constraint firstItem="gjr-lp-709" firstAttribute="top" secondItem="GaB-Oz-31y" secondAttribute="bottom" constant="15" id="qA3-7H-isY"/>
                             <constraint firstItem="yg5-gH-qFh" firstAttribute="leading" secondItem="2UG-of-EaO" secondAttribute="leading" constant="20" id="rAi-PT-mJW"/>
                             <constraint firstItem="2UG-of-EaO" firstAttribute="trailing" secondItem="wqM-85-sdb" secondAttribute="trailing" constant="20" id="rNJ-QY-p0e"/>
+                            <constraint firstItem="zgi-Uw-7P0" firstAttribute="leading" secondItem="GmH-7m-rEe" secondAttribute="trailing" id="s8S-uO-0hu"/>
+                            <constraint firstItem="zgi-Uw-7P0" firstAttribute="centerY" secondItem="GmH-7m-rEe" secondAttribute="centerY" id="zJj-sq-vbr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2UG-of-EaO"/>
                     </view>

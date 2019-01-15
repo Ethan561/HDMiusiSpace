@@ -60,10 +60,12 @@ class HDItemBaseVC: UIViewController {
             navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
             
             //2.设置阴影偏移范围
-            navigationBar.layer.shadowOffset = CGSize.init(width: 0, height: 10)
+            navigationBar.layer.shadowOffset = CGSize.zero
+            navigationBar.layer.shadowRadius = 3
             
             //3.设置阴影颜色的透明度
-            navigationBar.layer.shadowOpacity = 0.2
+            navigationBar.layer.shadowOpacity = 0.5
+
         } else {
             navigationBar.layer.shadowColor = UIColor.white.cgColor
         }

@@ -47,7 +47,7 @@ class HDTabBarVC: UITabBarController {
         let bgView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: Int(ScreenWidth), height: kTabBarHeight))
         bgView.backgroundColor = UIColor.white
         self.tabBar.insertSubview(bgView, at: 0)
-        bgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -3))
+        bgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.init(width: 0, height:0))
         
         //
         HDDeclare.shared.tabBarVC = self

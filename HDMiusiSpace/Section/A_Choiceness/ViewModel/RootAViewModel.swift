@@ -18,7 +18,7 @@ class RootAViewModel: NSObject {
     func dataRequest(deviceno : String, myTableView: UITableView , _ vc: HDItemBaseVC)  {
         myTableView.ly_startLoading()
         var token:String = ""
-        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+        if HDDeclare.shared.api_token !=  nil {
             token = HDDeclare.shared.api_token!
         }
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessHomeRequest(api_token: token, deviceno: deviceno), showHud: true, loadingVC: vc, success: { (result) in

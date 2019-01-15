@@ -73,11 +73,10 @@ class HDSSL_dMuseumCell: UITableViewCell {
                     lineView.isHidden = true
                 }
             }
-            if model!.isFree == 0 && model!.price != "¥0.00"{
-                
-                cell_ticketPrice.text = "\(model!.price!)"
+            if model!.isFree == 0 {
+                cell_ticketPrice.text = "收费"
             }else {
-                cell_ticketPrice.text = ""
+                cell_ticketPrice.text = "免费"
             }
             cell_title.text = model?.title
             cell_address.text = model?.address

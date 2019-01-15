@@ -137,14 +137,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请选择报错类型")
             return
         }
-        
-        if textView.text.isEmpty == true {
-            HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
-            return
-        }
         if commentPhotos.count ==  0 {
-//            HDAlert.showAlertTipWith(type: .onlyText, text: "请选择要上传的图片")
-//            return
             self.viewModel.sendErrorWithID(api_token: HDDeclare.shared.api_token!, option_id_str: optionIdStr, parent_id: self.articleID!, cate_id: self.typeID!, content: self.textView.text, uoload_img: self.imgPathArr, self)
         }else if commentPhotos.count > 0 {
             uploadImgsAction(optionIdStr: optionIdStr)

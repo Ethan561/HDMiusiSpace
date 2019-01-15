@@ -169,10 +169,17 @@ class HDItemBaseVC: UIViewController {
             vc.navigationController?.pushViewController(desVC, animated: true)
         }
         else if model.cate_id?.int == 4 {
-            
+            //展览详情
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            vc.exhibition_id = model.mid?.int
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if model.cate_id?.int == 5 {
-            
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = model.mid?.string
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

@@ -11,6 +11,8 @@ import UIKit
 class HDSSL_commentVC: HDItemBaseVC {
     
     @IBOutlet weak var dTableView: UITableView!
+    @IBOutlet weak var deleteImgBtn: UIButton!
+    
     //传递参数
     var exhibition_id: Int?  //展览id
     var exdataModel: ExhibitionDetailDataModel?//展览详情数据
@@ -43,6 +45,8 @@ class HDSSL_commentVC: HDItemBaseVC {
         loadMyDatas()
         
         self.starNumber = 9
+        
+        deleteImgBtn.isHidden = true
     }
     override func viewDidLayoutSubviews() {
         
@@ -323,6 +327,14 @@ extension HDSSL_commentVC:SSL_PickerViewDelegate {
     func getBackSelectedPhotos(_ images: [Any]!) {
         print(images)
         self.commentPhotos = images as! [UIImage]
+        
+        //
+        if self.commentPhotos.count == 0 {
+            deleteImgBtn.isHidden = true
+        }else{
+            deleteImgBtn.isHidden = false
+        }
+        
         //ios11系统后tableView刷新时，会自动估算cell、header、footer的高度，导致视图抖动
         self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .none) //刷新某个row
 //        self.dTableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none) //刷新某个section

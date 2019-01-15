@@ -25,9 +25,14 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var timeL: UILabel!
     var focusBtn: UIButton!
     @IBOutlet weak var tryListenL: UILabel!
+    //
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
+    @IBOutlet weak var backBtn  : UIButton!
+    @IBOutlet weak var navShadowImgV: UIImageView!
+    @IBOutlet weak var navBgView : UIView!      //导航栏背景
+
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     var infoModel: CourseModel?
@@ -77,6 +82,10 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         }
         audioPlayer.showFloatingBtn = false
+        navBgView.isHidden = true
+        navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+        likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -248,9 +257,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         //收藏
         publicViewModel.isCollection.bind { (flag) in
             if flag == false {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+                weakSelf?.likeBtn.isSelected = false
             } else {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+                weakSelf?.likeBtn.isSelected = true
             }
         }
         
@@ -347,9 +356,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.kVideoCover = self.infoModel!.data.img
                 self.getWebHeight()
                 if self.infoModel?.data.isFavorite == 1 {
-                    self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+                    self.likeBtn.isSelected = true
                 }else {
-                    self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+                    self.likeBtn.isSelected = false
                 }
             }
             
@@ -825,3 +834,43 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
 
     
 }
+
+extension HDLY_CourseDes_VC: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+//        if self.myTableView == scrollView {
+//            //滚动时刷新webview
+//            for view in self.myTableView.visibleCells {
+//                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+//                    let cell = view as! HDLY_CourseWeb_Cell
+//                    cell.webview.setNeedsLayout()
+//                }
+//            }
+//        }
+        
+        //导航栏
+        let offSetY = scrollView.contentOffset.y
+        if offSetY >= kTableHeaderViewH1 {
+            navBgView.isHidden = false
+            navShadowImgV.isHidden = true
+            backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
+            errorBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
+            shareBtn.setImage(UIImage.init(named: "xz_icon_share_black_default"), for: .normal)
+            if likeBtn.isSelected == false {
+                likeBtn.setImage(UIImage.init(named: "Star_black"), for: .normal)
+            }
+        } else {
+            navBgView.isHidden = true
+            navShadowImgV.isHidden = false
+            backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
+            errorBtn.setImage(UIImage.init(named: "xz_icon_more_white_default"), for: .normal)
+            shareBtn.setImage(UIImage.init(named: "xz_icon_share_white_default"), for: .normal)
+            if likeBtn.isSelected == false {
+                likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
+            }
+        }
+        
+    }
+}
+

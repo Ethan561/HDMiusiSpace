@@ -20,6 +20,12 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
+    
+    @IBOutlet weak var rightBarBtn  : UIButton!
+    @IBOutlet weak var backBtn  : UIButton!
+    @IBOutlet weak var navShadowImgV: UIImageView!
+    @IBOutlet weak var navBgView : UIView!      //导航栏背景
+    
     //
     var player = HDLY_AudioPlayer.shared
     var webViewH:CGFloat = 0
@@ -81,7 +87,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         }
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
         player.showFloatingBtn = true
-
+        navBgView.isHidden = true
+        navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -268,8 +275,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
             feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
-            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 40, width: 120, height: 100)
-            self.topView.addSubview(feedbackChooseTip!)
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 92, width: 120, height: 100)
+            self.view.addSubview(feedbackChooseTip!)
             showFeedbackChooseTip = true
             weak var weakS = self
             feedbackChooseTip?.tapBlock = { (index) in
@@ -730,6 +737,22 @@ extension HDLY_ListenDetail_VC: UIScrollViewDelegate {
                 }
             }
         }
+        
+        //导航栏
+        let offSetY = scrollView.contentOffset.y
+        if offSetY >= kTableHeaderViewH1 {
+            navBgView.isHidden = false
+            navShadowImgV.isHidden = true
+            backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
+            rightBarBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
+            
+        } else {
+            navBgView.isHidden = true
+            navShadowImgV.isHidden = false
+            backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
+            rightBarBtn.setImage(UIImage.init(named: "xz_icon_more_white_default"), for: .normal)
+        }
+        
     }
 }
 

@@ -17,6 +17,7 @@
 @interface SSL_PickerView : UIView
 @property (nonatomic,weak) UIViewController *superVC;
 @property (nonatomic,assign) id<SSL_PickerViewDelegate>delegate;
+@property (nonatomic, readonly) UICollectionView *collectionView;
 @end
 
 

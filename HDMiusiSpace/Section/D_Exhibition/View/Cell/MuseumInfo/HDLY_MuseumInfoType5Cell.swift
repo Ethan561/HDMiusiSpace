@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol HDLY_MuseumInfoType5Cell_Delegate:NSObjectProtocol {
     func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int)
 }
@@ -75,7 +74,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             if self.listArray!.count > 0 {
                 let model = listArray![indexPath.row]
                 if  model.img != nil  {
-                    cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.init(named: "free_listen_nodata"), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
                 cell.nameL.text = model.exhibitName

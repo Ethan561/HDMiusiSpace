@@ -249,7 +249,12 @@ extension HDRootBVC {
                 baseVC.cateID = "\(model.cateID)"
                 
                 self.addChildViewController(baseVC)
-            default: break
+            default:
+                let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
+                baseVC.cateID = "\(model.cateID)"
+                self.addChildViewController(baseVC)
+                
+                break
                 
             }
         }

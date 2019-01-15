@@ -32,7 +32,7 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         self.hd_navigationBarHidden = true
         navbarCons.constant = CGFloat(kTopHeight)
         dataRequest()
-        addRefresh()
+        //addRefresh()
         player.delegate = self
         player.stop()
         
@@ -59,7 +59,7 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     func dataRequest()  {
         let token:String =  HDDeclare.shared.api_token ?? ""
         self.tableView.ly_startLoading()
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: page, take: 20, api_token: token), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: page, take: 1000, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
@@ -223,8 +223,8 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
             cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
             if player.state == .playing {
                 player.pause()
-                cell?.nameL.textColor = UIColor.black
-                cell?.tipImgV.image = UIImage.init(named: "dl_icon_default")
+                cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
+                cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
             }else {
                 player.play()
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")

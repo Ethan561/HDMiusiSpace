@@ -74,7 +74,17 @@ class HDTagChooseStateVC: UIViewController {
             HDDeclare.shared.stateTagArray = self.selectedtagArray //本地保存已选标签
             
             //2、跳转vc
-            self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
+//            self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
+            let transition = CATransition.init()
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseVC") as! HDTagChooseVC
+            
+            self.present(vc, animated: false, completion: nil)
         }
         return tagview
     }()
@@ -119,9 +129,16 @@ class HDTagChooseStateVC: UIViewController {
     @IBAction func action_back(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetSelectedCareerTags"), object: selectedtagArray)
         
-        self.dismiss(animated: true) {
-            //
-        }
+//        self.dismiss(animated: true) {
+//            //
+//        }
+        let transition = CATransition.init()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        self.view.window?.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
 }

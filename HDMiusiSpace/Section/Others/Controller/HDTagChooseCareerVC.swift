@@ -65,7 +65,18 @@ class HDTagChooseCareerVC: UIViewController {
             HDDeclare.shared.careerTagArray = self.selectedtagArray //本地保存已选标签
             
             //2、跳转vc
-            self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
+//            self.performSegue(withIdentifier: "HD_PushToChooseSateVCLine", sender: nil)
+            let transition = CATransition.init()
+            transition.duration = 0.3
+            transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionPush
+            transition.subtype = kCATransitionFromRight
+            self.view.window?.layer.add(transition, forKey: nil)
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseStateVC") as! HDTagChooseStateVC
+            
+            self.present(vc, animated: false, completion: nil)
+            
         }
         return tagview
     }()

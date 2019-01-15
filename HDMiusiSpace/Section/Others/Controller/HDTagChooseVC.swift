@@ -111,7 +111,15 @@ class HDTagChooseVC: UIViewController {
     @IBAction func action_back(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resetSelectedStateTags"), object: nil)
         
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        let transition = CATransition.init()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        self.view.window?.layer.add(transition, forKey: nil)
+        self.dismiss(animated: false, completion: nil)
+        
     }
     
     @IBAction func SureAction(_ sender: Any) {

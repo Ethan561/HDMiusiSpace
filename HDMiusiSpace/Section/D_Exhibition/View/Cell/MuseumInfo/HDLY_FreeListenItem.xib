@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5W-q1-YaN">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-kG-R6J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="free_listen_nodata" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-kG-R6J">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="78x-Lu-hdG">
@@ -102,6 +102,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="free_listen_nodata" width="456" height="372"/>
         <image name="kz_mft_icon_play" width="72" height="72"/>
     </resources>
 </document>

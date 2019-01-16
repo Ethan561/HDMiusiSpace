@@ -24,7 +24,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     weak var delegate: HDLY_MuseumInfoType5Cell_Delegate?
     var playModel:DMuseumListenList?
     var selectRow = -1
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -133,7 +133,9 @@ extension HDLY_MuseumInfoType5Cell {
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
-        let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_FreeListenItem
+        let indexPath = IndexPath.init(row: selectRow, section: 0)
+        
+        let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: indexPath) as? HDLY_FreeListenItem
         DispatchQueue.main.async {
             cell?.progressV.progress = progress
         }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol HDLY_MuseumInfoType5Cell_Delegate:NSObjectProtocol {
     func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int)
+    func freeListenListFinishPlaying()
 }
 
 class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HDLY_AudioPlayer_Delegate{
@@ -129,7 +130,8 @@ extension HDLY_MuseumInfoType5Cell {
     func finishPlaying() {
         let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_FreeListenItem
         cell?.playBtn.isSelected = false
-        
+        delegate?.freeListenListFinishPlaying()
+
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {

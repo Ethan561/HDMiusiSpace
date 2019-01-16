@@ -846,6 +846,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    func freeListenListFinishPlaying() {
+        playModel?.isPlaying = false
+    }
+
     
     func setupdTableView()  {
         //

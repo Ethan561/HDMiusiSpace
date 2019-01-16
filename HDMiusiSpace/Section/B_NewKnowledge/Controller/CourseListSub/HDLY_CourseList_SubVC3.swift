@@ -28,12 +28,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     var playingIndex: String?
     
     //
-    lazy var testWebV: UIWebView = {
-        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.isOpaque = false
-        return webV
-    }()
-    
+    var loadingView: HDLoadingView?
     var webViewH:CGFloat = 0
     
     
@@ -52,7 +47,9 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         audioPlayer.showFloatingBtn = false
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
-        
+        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+        loadingView?.frame = self.view.bounds
+        view.addSubview(loadingView!)
         dataRequest()
 //        audioPlayer.delegate = self
         bindViewModel()
@@ -98,7 +95,6 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             do {
                 let model:CourseQuestion = try jsonDecoder.decode(CourseQuestion.self, from: result)
                 self.infoModel = model
-                self.getWebHeight()
                 self.tableView.reloadData()
                 self.tableView.ly_endLoading()
                 if self.infoModel?.data.isBuy == 1 {//0未购买，1已购买
@@ -272,12 +268,12 @@ extension HDLY_CourseList_SubVC3 {
                 guard let url = self.infoModel?.data.url else {
                     return cell!
                 }
-                cell?.loadWebView(url)
-                weak var weakS = self
-                cell?.tapBloclkFunc(block: { (type, articleId) in
-                    weakS?.didTapWebCard(type, articleId)
-                })
-                
+                if webViewH == 0{
+                  cell?.loadWebView(url)
+                }
+                cell?.webview.frame.size.height = webViewH
+                cell?.webview.navigationDelegate = self
+                cell?.webview.uiDelegate = self
                 return cell!
             }else if row == 1 {
                 let cell = HDLY_QuestionNumTitle_Cell.getMyTableCell(tableV: tableView)
@@ -341,7 +337,7 @@ extension HDLY_CourseList_SubVC3 {
 }
 
 
-extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
+extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
     
     @objc func noticeBtnAction() {
         let tipView:HDLY_QuestionNoticeTip = HDLY_QuestionNoticeTip.createViewFromNib() as! HDLY_QuestionNoticeTip
@@ -411,28 +407,6 @@ extension HDLY_CourseList_SubVC3: UIWebViewDelegate ,AnswerAudioDelegate {
         audioPlayer.pause()
         cell.stopAnimating()
     }
-    
-    //
-    func getWebHeight() {
-        guard let url = self.infoModel?.data.url else {
-            return
-        }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-    }
-    
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
-        }
-        self.tableView.reloadData()
-    }
-    
-    
-    //
 }
 
 extension  HDLY_CourseList_SubVC3 {
@@ -525,3 +499,30 @@ extension  HDLY_CourseList_SubVC3 {
     }
 }
 
+extension HDLY_CourseList_SubVC3 : WKNavigationDelegate,WKUIDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.tableView.reloadData()
+                self.loadingView?.removeFromSuperview()
+            }
+        }
+    }
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let arr = message.components(separatedBy: "#")
+        print(message,arr)//
+        if arr.count == 2 {
+            let type = arr.first
+            let articleId = arr.last
+            self.didTapWebCard(Int(type!) ?? 0,Int(articleId!) ?? 0)
+        }
+        completionHandler()
+    }
+}

@@ -22,8 +22,22 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5W-q1-YaN">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="free_listen_nodata" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-kG-R6J">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shv-cB-hW6">
                                 <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="free_listen_Group" translatesAutoresizingMaskIntoConstraints="NO" id="vkd-k1-JWZ">
+                                        <rect key="frame" x="91.5" y="54" width="42" height="48"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vkd-k1-JWZ" firstAttribute="centerX" secondItem="shv-cB-hW6" secondAttribute="centerX" id="OuQ-xg-kqA"/>
+                                    <constraint firstItem="vkd-k1-JWZ" firstAttribute="centerY" secondItem="shv-cB-hW6" secondAttribute="centerY" id="ndb-4L-Yg9"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSr-kG-R6J">
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="156"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="78x-Lu-hdG">
                                 <rect key="frame" x="0.0" y="152" width="225" height="5"/>
@@ -43,6 +57,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="shv-cB-hW6" firstAttribute="leading" secondItem="v5W-q1-YaN" secondAttribute="leading" id="9VC-No-CNJ"/>
                             <constraint firstAttribute="trailing" secondItem="wSr-kG-R6J" secondAttribute="trailing" id="DCd-DD-qEt"/>
                             <constraint firstItem="wSr-kG-R6J" firstAttribute="leading" secondItem="v5W-q1-YaN" secondAttribute="leading" id="De6-4k-ufm"/>
                             <constraint firstAttribute="trailing" secondItem="78x-Lu-hdG" secondAttribute="trailing" id="PcC-Mo-IZM"/>
@@ -50,9 +65,12 @@
                             <constraint firstAttribute="bottom" secondItem="pnI-hv-nkD" secondAttribute="bottom" id="X0O-Y0-MhH"/>
                             <constraint firstAttribute="width" secondItem="v5W-q1-YaN" secondAttribute="height" multiplier="160:111" id="c0p-hw-umg"/>
                             <constraint firstAttribute="trailing" secondItem="pnI-hv-nkD" secondAttribute="trailing" id="d9I-Hl-tVR"/>
+                            <constraint firstAttribute="trailing" secondItem="shv-cB-hW6" secondAttribute="trailing" id="deV-N8-Wsc"/>
                             <constraint firstItem="wSr-kG-R6J" firstAttribute="top" secondItem="v5W-q1-YaN" secondAttribute="top" id="eYe-4b-9KC"/>
                             <constraint firstAttribute="bottom" secondItem="78x-Lu-hdG" secondAttribute="bottom" id="i0g-xr-0al"/>
                             <constraint firstAttribute="bottom" secondItem="wSr-kG-R6J" secondAttribute="bottom" id="jTf-eS-wgy"/>
+                            <constraint firstItem="shv-cB-hW6" firstAttribute="top" secondItem="v5W-q1-YaN" secondAttribute="top" id="uks-Xg-6zG"/>
+                            <constraint firstAttribute="bottom" secondItem="shv-cB-hW6" secondAttribute="bottom" id="uw6-Mf-Ny7"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="司母戊鼎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNb-Ji-lXx">
@@ -102,7 +120,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="free_listen_nodata" width="456" height="372"/>
+        <image name="free_listen_Group" width="42" height="48"/>
         <image name="kz_mft_icon_play" width="72" height="72"/>
     </resources>
 </document>

@@ -26,6 +26,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     @IBOutlet weak var navShadowImgV: UIImageView!
     @IBOutlet weak var navBgView : UIView!      //导航栏背景
     
+    var loadingView: HDLoadingView?
+    
     //
     var player = HDLY_AudioPlayer.shared
     var webViewH:CGFloat = 0
@@ -83,6 +85,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         bindViewModel()
         
         if listen_id != nil {
+            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+            loadingView?.frame = self.view.bounds
+            view.addSubview(loadingView!)
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)
         }
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
@@ -226,7 +231,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             }
         }
 
-        self.getWebHeight()
+//        self.getWebHeight()
+        self.myTableView.reloadData()
         //点赞
         likeNumL.text = infoModel?.likes?.string
         if ((infoModel?.isLike) != nil) {
@@ -262,15 +268,6 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         }
     }
     
-    func getWebHeight() {
-        guard let url = self.infoModel?.url else {
-            return
-        }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-    }
-    
-
     @IBAction func errorBtnAction(_ sender: UIButton) {
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
@@ -530,11 +527,11 @@ extension HDLY_ListenDetail_VC {
                 guard let url = self.infoModel?.url else {
                     return cell!
                 }
-                cell?.loadWebView(url)
-                weak var weakS = self
-                cell?.tapBloclkFunc(block: { (type, articleId) in
-                    //weakS?.didTapWebCard(type, articleId)
-                })
+                if webViewH == 0 {
+                    cell?.loadWebView(url)
+                }
+                cell?.webview.frame.size.height = webViewH
+                cell?.webview.navigationDelegate = self
                 return cell!
             }
         } else {
@@ -704,18 +701,6 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
 }
 
 extension HDLY_ListenDetail_VC {
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
-        }
-        self.myTableView.reloadData()
-        self.requestComments(skip: 0, take: 100)
-
-    }
-    
     func pushToPlatCenter() {
         let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
         let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
@@ -723,7 +708,6 @@ extension HDLY_ListenDetail_VC {
         vc.detailId = infoModel?.teacherID?.int ?? 0
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 extension HDLY_ListenDetail_VC: UIScrollViewDelegate {
@@ -894,6 +878,25 @@ extension HDLY_ListenDetail_VC {
             }
         }) { (errorCode, msg) in
             failure!(errorCode,msg)
+        }
+    }
+}
+
+extension HDLY_ListenDetail_VC : WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.myTableView.reloadData()
+                self.requestComments(skip: 0, take: 10)
+                self.loadingView?.removeFromSuperview()
+            }
         }
     }
 }

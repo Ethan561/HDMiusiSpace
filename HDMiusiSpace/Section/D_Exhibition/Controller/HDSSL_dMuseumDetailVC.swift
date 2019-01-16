@@ -21,7 +21,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navHeightCons: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
-    
+    @IBOutlet weak var navShadowImgV: UIImageView!
+
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
@@ -786,6 +787,8 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
             let offSetY = scrollView.contentOffset.y
             if offSetY >= kTableHeaderViewH {
                 navBgView.isHidden = false
+                navShadowImgV.isHidden = true
+
                 backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
                 errorBtn.setImage(UIImage.init(named: "icon_baocuo_black"), for: .normal)
                 shareBtn.setImage(UIImage.init(named: "xz_icon_share_black_default"), for: .normal)
@@ -795,6 +798,8 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
                 
             } else {
                 navBgView.isHidden = true
+                navShadowImgV.isHidden = false
+
                 backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
                 errorBtn.setImage(UIImage.init(named: "icon_baocuo_white"), for: .normal)
                 shareBtn.setImage(UIImage.init(named: "xz_icon_share_white_default"), for: .normal)

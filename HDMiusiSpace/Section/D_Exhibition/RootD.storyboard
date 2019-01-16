@@ -273,6 +273,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alc-tt-ZOh">
                                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jx_zz_1" translatesAutoresizingMaskIntoConstraints="NO" id="Os7-Xw-haE">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShF-yf-xzL">
                                                 <rect key="frame" x="0.0" y="0.0" width="50.5" height="44"/>
                                                 <constraints>
@@ -323,10 +326,14 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Os7-Xw-haE" firstAttribute="leading" secondItem="alc-tt-ZOh" secondAttribute="leading" id="29l-AW-fnC"/>
                                             <constraint firstItem="ShF-yf-xzL" firstAttribute="leading" secondItem="alc-tt-ZOh" secondAttribute="leading" id="78w-NJ-Jej"/>
                                             <constraint firstAttribute="height" constant="44" id="B3K-kU-gdC"/>
                                             <constraint firstItem="ShF-yf-xzL" firstAttribute="top" secondItem="alc-tt-ZOh" secondAttribute="top" id="fM3-ss-tKF"/>
                                             <constraint firstAttribute="trailing" secondItem="W4X-mb-cL9" secondAttribute="trailing" constant="20" id="hVE-gf-Mws"/>
+                                            <constraint firstAttribute="trailing" secondItem="Os7-Xw-haE" secondAttribute="trailing" id="jgj-fe-l5K"/>
+                                            <constraint firstAttribute="bottom" secondItem="Os7-Xw-haE" secondAttribute="bottom" id="mX8-EY-QeM"/>
+                                            <constraint firstItem="Os7-Xw-haE" firstAttribute="top" secondItem="alc-tt-ZOh" secondAttribute="top" id="tD2-WA-94v"/>
                                             <constraint firstAttribute="bottom" secondItem="ShF-yf-xzL" secondAttribute="bottom" id="xbV-sM-1Zc"/>
                                             <constraint firstItem="W4X-mb-cL9" firstAttribute="centerY" secondItem="alc-tt-ZOh" secondAttribute="centerY" id="yBF-Vq-TDt"/>
                                         </constraints>
@@ -365,6 +372,7 @@
                         <outlet property="likeBtn" destination="ZYc-Vc-aCU" id="xqp-H1-Nu0"/>
                         <outlet property="navBgView" destination="iPS-yQ-jcj" id="oP3-7S-iQM"/>
                         <outlet property="navHeightCons" destination="tm3-Zf-CRT" id="AwF-nq-m5z"/>
+                        <outlet property="navShadowImgV" destination="Os7-Xw-haE" id="BIW-HZ-AZq"/>
                         <outlet property="navView" destination="pOb-Le-Tm1" id="PKd-5Q-Glv"/>
                         <outlet property="shareBtn" destination="mW7-0w-GPm" id="kDs-Ac-l4f"/>
                     </connections>
@@ -1114,6 +1122,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17S-wQ-arr">
                                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jx_zz_1" translatesAutoresizingMaskIntoConstraints="NO" id="rH1-sT-o2J">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-kk-L9B">
                                                 <rect key="frame" x="0.0" y="0.0" width="50.5" height="44"/>
                                                 <constraints>
@@ -1165,7 +1176,11 @@
                                             <constraint firstAttribute="trailing" secondItem="nOS-rX-bde" secondAttribute="trailing" constant="20" id="Ft1-R7-599"/>
                                             <constraint firstAttribute="height" constant="44" id="GAw-au-yXD"/>
                                             <constraint firstItem="nOS-rX-bde" firstAttribute="centerY" secondItem="17S-wQ-arr" secondAttribute="centerY" id="Srr-bX-pdH"/>
+                                            <constraint firstAttribute="bottom" secondItem="rH1-sT-o2J" secondAttribute="bottom" id="axg-xM-pn5"/>
+                                            <constraint firstItem="rH1-sT-o2J" firstAttribute="top" secondItem="17S-wQ-arr" secondAttribute="top" id="lg9-2U-9jD"/>
                                             <constraint firstAttribute="bottom" secondItem="KUw-kk-L9B" secondAttribute="bottom" id="qqm-X7-Aac"/>
+                                            <constraint firstAttribute="trailing" secondItem="rH1-sT-o2J" secondAttribute="trailing" id="rlk-J6-8tD"/>
+                                            <constraint firstItem="rH1-sT-o2J" firstAttribute="leading" secondItem="17S-wQ-arr" secondAttribute="leading" id="vSF-Iv-fTi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1201,6 +1216,7 @@
                         <outlet property="myTableView" destination="goG-Wc-t9c" id="I9H-Ca-abQ"/>
                         <outlet property="navBgView" destination="vPd-Zt-bI1" id="SPf-Ev-vvh"/>
                         <outlet property="navHeightCons" destination="eJ1-bk-ZEa" id="Y9D-U4-5bM"/>
+                        <outlet property="navShadowImgV" destination="rH1-sT-o2J" id="jQg-jB-4Db"/>
                         <outlet property="navView" destination="gGa-tU-ooH" id="XO5-oS-tsp"/>
                         <outlet property="shareBtn" destination="7dd-7j-n3G" id="Rsc-pe-qLi"/>
                         <outlet property="topImgView" destination="lCi-UA-3aR" id="WEz-uu-n3c"/>
@@ -1474,6 +1490,7 @@
         <image name="icon_like_default" width="24" height="24"/>
         <image name="icon_syh" width="20" height="18"/>
         <image name="icon_xyh" width="20" height="18"/>
+        <image name="jx_zz_1" width="200" height="42"/>
         <image name="kz_icon_sfz" width="36" height="16"/>
         <image name="nav_back_white" width="12" height="20"/>
         <image name="qtsk_course_img3" width="335" height="188"/>

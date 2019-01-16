@@ -20,13 +20,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
-    //
-    lazy var testWebV: UIWebView = {
-        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.isOpaque = false
-        return webV
-    }()
-    
+    var loadingView: HDLoadingView?
     var webViewH:CGFloat = 0
     
     var infoModel: CourseDetail?
@@ -38,6 +32,9 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         buyBtn.layer.cornerRadius = 27
         tableView.dataSource = self
         tableView.delegate = self
+        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+        loadingView?.frame = self.view.bounds
+        view.addSubview(loadingView!)
         dataRequest()
         self.bottomHCons.constant = 0
         bindViewModel()
@@ -93,7 +90,8 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
             }
-            self.getWebHeight()
+//            self.getWebHeight()
+            self.tableView.reloadData()
             
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
@@ -183,7 +181,11 @@ extension HDLY_CourseList_SubVC2 {
             guard let url = self.infoModel?.data.url else {
                 return cell!
             }
-            cell?.loadWebView(url)
+            if webViewH == 0 {
+              cell?.loadWebView(url)
+            }
+            cell?.webview.frame.size.height = webViewH
+            cell?.webview.navigationDelegate = self
             return cell!
         }
         else if index == 2 {
@@ -213,26 +215,7 @@ extension HDLY_CourseList_SubVC2 {
 
 //MARK: ---- WKNavigationDelegate ----
 
-extension HDLY_CourseList_SubVC2: UIWebViewDelegate {
-    
-    func getWebHeight() {
-        guard let url = self.infoModel?.data.url else {
-            return
-        }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-    }
-    
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
-        }
-        self.tableView.reloadData()
-    }
-    
+extension HDLY_CourseList_SubVC2 {
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.data.teacherID.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
@@ -272,7 +255,7 @@ extension HDLY_CourseList_SubVC2: UIWebViewDelegate {
     
 }
 
-extension  HDLY_CourseList_SubVC2{
+extension  HDLY_CourseList_SubVC2 {
     func buyGoodsAction() {
         if  self.infoModel?.data  != nil {
             if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
@@ -359,5 +342,23 @@ extension  HDLY_CourseList_SubVC2{
             weakSelf?.showPaymentResult(model)
         }
         
+    }
+}
+
+extension HDLY_CourseList_SubVC2 : WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.tableView.reloadData()
+                self.loadingView?.removeFromSuperview()
+            }
+        }
     }
 }

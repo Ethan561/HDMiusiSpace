@@ -308,9 +308,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
     //搜索
     @objc func action_search(_ sender: UIButton) {
         if (self.textFeild.text?.count)! > 0 {
-            self.currentType = 0 //设置搜索类型
+//            self.currentType = 0 //设置搜索类型
             //开始搜索
-            self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: 0, vc: self)
+            self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(self.textFeild.text!)
         }else if (placeholderStr?.count)! > 0 {
@@ -320,7 +320,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
 //                placeholderStr = substr
 //            }
             self.textFeild.text = placeholderStr
-            self.viewModel.request_search(str: placeholderStr!, skip: 0, take: 10, type: 0, vc: self)
+            self.viewModel.request_search(str: placeholderStr!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(placeholderStr!)
         }
@@ -410,9 +410,9 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
-                self.currentType = 0 //设置搜索类型
+//                self.currentType = 0 //设置搜索类型
                 //开始搜索
-                self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: 0, vc: self)
+                self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: self.currentType, vc: self)
                 //保存搜索历史
                 self.func_saveHistory(textField.text!)
             }
@@ -689,7 +689,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             let str: String = historyArray[indexPath.row]
             textFeild.text = str
             //
-            self.viewModel.request_search(str: str, skip: 0, take: 10, type: 0, vc: self)
+            self.viewModel.request_search(str: str, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(str)
         }else {
@@ -748,7 +748,7 @@ extension HDSSL_SearchVC : HDZQ_VoiceResultDelegate {
         self.voiceView.isHidden = true
         self.textFeild.text = result
         self.func_saveHistory(result)
-        self.currentType = 0
-        self.viewModel.request_search(str: result, skip: 0, take: 10, type: 0, vc: self)
+//        self.currentType = 0
+        self.viewModel.request_search(str: result, skip: 0, take: 10, type: self.currentType, vc: self)
     }
 }

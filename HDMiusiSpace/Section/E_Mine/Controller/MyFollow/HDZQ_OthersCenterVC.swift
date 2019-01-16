@@ -399,8 +399,7 @@ extension HDZQ_OthersCenterVC {
     }
     
     func feedbackChooseAction(index: Int) {
-        
-        
+        closeFeedbackChooseTip()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(toid), cate_id: "8"), success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

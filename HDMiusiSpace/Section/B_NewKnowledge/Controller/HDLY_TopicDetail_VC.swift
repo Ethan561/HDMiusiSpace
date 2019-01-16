@@ -832,6 +832,8 @@ extension HDLY_TopicDetail_VC {
         if index == 1 {
             //分享
             shareBtnAction()
+            closeFeedbackChooseTip()
+
         }else {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)

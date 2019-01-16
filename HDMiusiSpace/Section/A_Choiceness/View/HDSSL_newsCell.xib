@@ -50,7 +50,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udl-LN-YX2">
-                        <rect key="frame" x="222" y="67.5" width="40" height="12"/>
+                        <rect key="frame" x="222" y="66" width="40" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="3wD-6p-5Mw"/>
                             <constraint firstAttribute="height" constant="12" id="ibe-hi-oZi"/>
@@ -61,7 +61,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修复|文博在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysG-62-fua">
-                        <rect key="frame" x="124" y="57.5" width="93" height="32"/>
+                        <rect key="frame" x="124" y="65.5" width="93" height="13.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -69,10 +69,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="85b-nI-tlD" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="08d-Fy-sz5"/>
-                    <constraint firstAttribute="bottom" secondItem="2gQ-MV-KdL" secondAttribute="bottom" constant="10" id="57c-tB-Ig4"/>
-                    <constraint firstAttribute="bottom" secondItem="ysG-62-fua" secondAttribute="bottom" id="KYR-qU-P72"/>
+                    <constraint firstItem="ysG-62-fua" firstAttribute="bottom" secondItem="gpj-R3-Kcc" secondAttribute="bottom" id="7dw-5a-HXh"/>
                     <constraint firstItem="85b-nI-tlD" firstAttribute="top" secondItem="gpj-R3-Kcc" secondAttribute="top" id="NqA-al-D9Z"/>
-                    <constraint firstAttribute="bottom" secondItem="Udl-LN-YX2" secondAttribute="bottom" constant="10" id="bXy-Wc-2Vn"/>
+                    <constraint firstItem="2gQ-MV-KdL" firstAttribute="centerY" secondItem="Udl-LN-YX2" secondAttribute="centerY" id="W8J-rm-bKH"/>
                     <constraint firstItem="gpj-R3-Kcc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="crI-GX-uUX"/>
                     <constraint firstItem="ysG-62-fua" firstAttribute="leading" secondItem="gpj-R3-Kcc" secondAttribute="trailing" constant="10" id="gVs-QX-dYn"/>
                     <constraint firstItem="2gQ-MV-KdL" firstAttribute="leading" secondItem="Udl-LN-YX2" secondAttribute="trailing" constant="2" id="hkI-J6-dQy"/>

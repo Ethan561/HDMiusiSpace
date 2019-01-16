@@ -175,7 +175,7 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.nickNameL.text = model.title
         tabHeader.desLabel.text = "学习机构"
         tabHeader.teacherDesL.isHidden = false
-
+        tabHeader.genderImg.isHidden = true
         tabHeader.teacherDesL.text = model.des
         
         let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)

@@ -20,7 +20,7 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         let webConfiguration = WKWebViewConfiguration()
         //初始化偏好设置属性：preferences
         webConfiguration.preferences = WKPreferences()
-        //是否支持JavaScript
+        //是否支持JavaScripta
         webConfiguration.preferences.javaScriptEnabled = true
         //不通过用户交互，是否可以打开窗口
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = false
@@ -28,8 +28,8 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
         webView.backgroundColor = UIColor.blue
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
+//        webView.navigationDelegate = self
+//        webView.uiDelegate = self
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.scrollView.showsVerticalScrollIndicator = false

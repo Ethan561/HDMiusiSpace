@@ -18,7 +18,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
-
+    
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     //
@@ -29,16 +29,10 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var shareView: HDLY_ShareView?
     var currentRow : Int?
     var htmls = [Int:[NSAttributedString]]()
-    
+    var loadingView: HDLoadingView?
     //MVVM
     let viewModel: TopicDetailViewModel = TopicDetailViewModel()
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-    lazy var testWebV: UIWebView = {
-        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.isOpaque = false
-        return webV
-    }()
-    
     lazy var commentView: HDZQ_CommentActionView = {
         let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
         tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -68,14 +62,17 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         //MVVM
         bindViewModel()
+        
+        //显示网络请求加载提醒
+        
+        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+        loadingView?.frame = self.view.bounds
+        view.addSubview(loadingView!)
         refreshAction()
-//        requestComments(skip: 0, take: 10)
         weak var weakS = self
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
             weakS?.refreshAction()
         }
-
-
     }
     
     deinit {
@@ -97,7 +94,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             if fromRootAChoiceness == true {
                 viewModel.requestCommentList(cate_id: 1, id: Int(topic_id!)!, skip: skip, take: take, vc: self)
             }else {
-                 viewModel.requestCommentList(cate_id: 4, id: Int(topic_id!)!, skip: skip, take: take, vc: self)
+                viewModel.requestCommentList(cate_id: 4, id: Int(topic_id!)!, skip: skip, take: take, vc: self)
             }
         }
     }
@@ -152,7 +149,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
-//            weakSelf?.refreshAction()
+            //            weakSelf?.refreshAction()
             weakSelf?.requestComments(skip: 0, take: 10)
         }
         //
@@ -202,8 +199,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         }
         
         self.infoModel = model
-        
-        self.getWebHeight()
+        self.myTableView.reloadData()
+        //        self.getWebHeight()
         //点赞
         likeNumL.text = infoModel!.likes.string
         if ((infoModel?.isLike) != nil) {
@@ -222,7 +219,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
             }
         }
     }
-        
+    
     @IBAction func commentBtnAction(_ sender: UIButton) {
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
@@ -354,7 +351,7 @@ extension HDLY_TopicDetail_VC {
             return 0
         }
         if section == 2 {
-           return commentModels.count
+            return commentModels.count
         }
         return 0
     }
@@ -429,10 +426,10 @@ extension HDLY_TopicDetail_VC {
                         focusBtn.setTitle("已关注", for: .normal)
                         self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
                         
-
+                        
                     }else {
                         focusBtn.setTitle("+关注", for: .normal)
-                         self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+                        self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
                     }
                     
                 }
@@ -443,12 +440,12 @@ extension HDLY_TopicDetail_VC {
             guard let url = model?.url else {
                 return cell!
             }
-            cell?.loadWebView(url)
-            weak var weakS = self
-            cell?.tapBloclkFunc(block: { (type, articleId) in
-                weakS?.didTapWebCard(type, articleId)
-            })
-            
+            if webViewH == 0 {
+                cell?.loadWebView(url)
+            }
+            cell?.webview.frame.size.height = webViewH
+            cell?.webview.navigationDelegate = self
+            cell?.webview.uiDelegate = self
             return cell!
         }
         else if indexPath.section ==  1 {
@@ -465,60 +462,60 @@ extension HDLY_TopicDetail_VC {
         }
         else if indexPath.section ==  2 {
             let cell = HDLY_LeaveMsg_Cell.getMyTableCell(tableV: tableView)
-                let commentModel = self.commentModels[index]
-                cell?.uid = commentModel.uid
-                cell?.commentId = commentModel.commentID
-                cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
-                cell?.contentL.text = commentModel.comment
-                cell?.timeL.text = commentModel.createdAt
-                cell?.nameL.text = commentModel.nickname
-                cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
-                cell?.htmls = self.htmls[indexPath.row]
-                cell?.commentContent = commentModel.comment
-                if commentModel.list.count > 0 {
-                    cell?.subContainerView.isHidden = false
-                    cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
-
-                    cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-                        self?.commentModels[index].showAll = true
-                        self?.myTableView.reloadRows(at: [indexPath], with: .none)
-                    })
+            let commentModel = self.commentModels[index]
+            cell?.uid = commentModel.uid
+            cell?.commentId = commentModel.commentID
+            cell?.avatarBtn.kf.setImage(with: URL.init(string: commentModel.avatar), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell?.contentL.text = commentModel.comment
+            cell?.timeL.text = commentModel.createdAt
+            cell?.nameL.text = commentModel.nickname
+            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+            cell?.htmls = self.htmls[indexPath.row]
+            cell?.commentContent = commentModel.comment
+            if commentModel.list.count > 0 {
+                cell?.subContainerView.isHidden = false
+                cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
+                
+                cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    self?.commentModels[index].showAll = true
+                    self?.myTableView.reloadRows(at: [indexPath], with: .none)
+                })
+            } else {
+                cell?.subContainerView.isHidden = true
+            }
+            if commentModel.isLike == 0 {
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+            }else {
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+            }
+            
+            cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
                 } else {
-                    cell?.subContainerView.isHidden = true
+                    self?.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", success: { (result) in
+                        if self?.commentModels[index].isLike == 0 {
+                            self?.commentModels[index].isLike = 1
+                            self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
+                        }else {
+                            self?.commentModels[index].isLike = 0
+                            self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
+                        }
+                    }, failure: { (error, msg) in })
                 }
-                if commentModel.isLike == 0 {
-                    cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
-                }else {
-                    cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+            })
+            
+            cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                    self?.pushToLoginVC(vc: self!)
+                } else {
+                    self?.pushToOthersPersonalCenterVC(commentModel.uid)
                 }
-            
-                cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                        self?.pushToLoginVC(vc: self!)
-                    } else {
-                        self?.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", success: { (result) in
-                            if self?.commentModels[index].isLike == 0 {
-                                self?.commentModels[index].isLike = 1
-                                self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
-                                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
-                                cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
-                            }else {
-                                self?.commentModels[index].isLike = 0
-                                self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
-                                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
-                                cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
-                            }
-                        }, failure: { (error, msg) in })
-                    }
-                })
-            
-                cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
-                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                        self?.pushToLoginVC(vc: self!)
-                    } else {
-                        self?.pushToOthersPersonalCenterVC(commentModel.uid)
-                    }
-                })
+            })
             
             // 单击回复
             cell?.tapPress = { [weak self] (commentId) in
@@ -564,11 +561,7 @@ extension HDLY_TopicDetail_VC {
                             }
                         }
                     }
-                    
-                    
                 }
-                
-                
                 self?.commentView.tableHeightConstraint.constant = CGFloat((self?.commentView.dataArr.count)!*50)
                 self?.commentView.tableView.reloadData()
                 kWindow?.addSubview((self?.commentView)!)
@@ -644,8 +637,8 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
         }
     }
- 
-
+    
+    
     //平台关注
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.platform_id {
@@ -669,49 +662,19 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                     self.infoModel!.is_focus = 1
                     self.focusBtn.setTitle("已关注", for: .normal)
                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.focusBtn.size), for: .normal)
-                    
-
                 }else {
                     self.infoModel!.is_focus  = 0
                     self.focusBtn.setTitle("+关注", for: .normal)
-                     self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
+                    self.focusBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: self.focusBtn.size), for: .normal)
                 }
             }
             if let msg:String = dic!["msg"] as? String{
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: msg)
             }
-            
         }) { (errorCode, msg) in
             
         }
     }
-    
-    
-}
-
-
-//MARK: ---- WebView Delegate ----
-
-extension HDLY_TopicDetail_VC: UIWebViewDelegate {
-
-    func getWebHeight() {
-        guard let url = self.infoModel?.url else {
-            return
-        }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-    }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
-        }
-        self.myTableView.reloadData()
-        requestComments(skip: 0, take: 10)
-    }
-    
 }
 
 //MARK: ---- 评论 ----
@@ -782,7 +745,7 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
                     publicViewModel.commentCommitRequest(api_token: HDDeclare.shared.api_token!, comment: commentText, id: infoModel!.articleID.string, return_id: String(keyboardTextField.returnID!), cate_id: "4", self)
                 }
             }
-
+            
         }
     }
     
@@ -922,5 +885,34 @@ extension HDLY_TopicDetail_VC {
         }) { (errorCode, msg) in
             failure!(errorCode,msg)
         }
+    }
+}
+
+extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.myTableView.reloadData()
+                self.requestComments(skip: 0, take: 10)
+                self.loadingView?.removeFromSuperview()
+            }
+        }
+    }
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let arr = message.components(separatedBy: "#")
+        print(message,arr)//
+        if arr.count == 2 {
+            let type = arr.first
+            let articleId = arr.last
+            self.didTapWebCard(Int(type!) ?? 0,Int(articleId!) ?? 0)
+        }
+        completionHandler()
     }
 }

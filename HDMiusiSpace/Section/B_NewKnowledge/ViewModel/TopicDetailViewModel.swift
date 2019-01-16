@@ -42,7 +42,7 @@ class TopicDetailViewModel: NSObject {
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessNewsInfo(api_token: token, article_id: article_id), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .choicenessNewsInfo(api_token: token, article_id: article_id), showHud: false, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.showEmptyView.value = false
@@ -69,7 +69,7 @@ class TopicDetailViewModel: NSObject {
             token = HDDeclare.shared.api_token!
         }
         
-        HD_LY_NetHelper.loadData(API:HD_LY_API.self , target: .getCommentList(cate_id: cate_id, id: id, api_token: token, skip: skip, take: take), cache: false, showHud: true, showErrorTip: false, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API:HD_LY_API.self , target: .getCommentList(cate_id: cate_id, id: id, api_token: token, skip: skip, take: take), cache: false, showHud: false, showErrorTip: false, loadingVC: vc, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             let jsonDecoder = JSONDecoder()

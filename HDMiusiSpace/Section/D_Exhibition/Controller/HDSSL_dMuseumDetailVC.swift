@@ -267,44 +267,22 @@ extension HDSSL_dMuseumDetailVC {
             
             self.infoModel = model.data
             if self.infoModel != nil {
-//              self.kVideoCover = self.infoModel!.data.img
                 if self.infoModel?.isFavorite == 1 {
                     self.likeBtn.isSelected = true
                 }
-//                self.getWebHeight()
                 self.topImgView.kf.setImage(with: URL.init(string: self.infoModel!.img!), placeholder: UIImage.init(named: ""))
                 self.myTableView.reloadData()
-//                if self.infoModel?.data.isFavorite == 1 {
-//                    self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
-//                }else {
-//                    self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
-//                }
             }
             
         }) { (errorCode, msg) in
-//            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
-//            self.myTableView.ly_showEmptyView()
+            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.myTableView.ly_showEmptyView()
         }
     }
     
     @objc func refreshAction() {
         dataRequest()
     }
-    
-//    func getWebHeight() {
-//        guard let url = self.infoModel?.museumHTML else {
-//            return
-//        }
-//        self.testWebV.delegate = self
-//        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-//        if self.infoModel?.areaHTML != nil {
-//            if self.infoModel!.areaHTML!.contains("html") {
-//                self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: self.infoModel!.areaHTML!)!))
-//            }
-//        }
-//
-//    }
-    
     
     //MARK: ----- myTableView ----
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -332,11 +310,6 @@ extension HDSSL_dMuseumDetailVC {
         return 0.01
     }
     
-//    UIView *view = [[UIView alloc] initWithFrame:[head frame]];
-//    head.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    [view addSubview:head];
-//    return view;
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section > 0 {
             let header = HDLY_dMuseumHeader.createViewFromNib() as! HDLY_dMuseumHeader
@@ -354,6 +327,7 @@ extension HDSSL_dMuseumDetailVC {
             }
             if self.infoModel?.dataList != nil {
                 let model = self.infoModel!.dataList![section-2]
+                header.moreBtn.setTitle("更多", for: .normal)
                 if model.type == 1 {//同馆展览
                     header.titleL.text = String.init(format: "同馆展览(%d)", model.exhibition?.exhibitionNum ?? 0)//model.exhibition?.categoryTitle
                 }
@@ -469,16 +443,6 @@ extension HDSSL_dMuseumDetailVC {
                 cell?.webview.frame.size.height = webViewH
 
                 return cell!
-                //直接加载完整网页
-//                let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
-//                guard let url = self.infoModel?.museumHTML else {
-//                    return cell!
-//                }
-//                if url.contains("html") {
-//                    cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-//                }
-//                cell?.webView.delegate = self
-//                return cell!
             }
             else  {
                 let cell = HDSSL_Sec0_cellNormal.getMyTableCell(tableV: tableView) as HDSSL_Sec0_cellNormal
@@ -515,16 +479,7 @@ extension HDSSL_dMuseumDetailVC {
             cell?.webview.frame.size.height = areaWebViewH
             
             return cell!
-//            let cell = HDLY_MuseumInfoImgCell.getMyTableCell(tableV: tableView)
-//            guard let url = self.infoModel?.areaHTML else {
-//                return cell!
-//            }
-//            if url.contains("html") {
-//                cell?.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-//            }
-//            cell?.webView.delegate = self
-//
-//            return cell!
+
         }
         else {
             if self.infoModel?.dataList != nil {
@@ -577,6 +532,10 @@ extension HDSSL_dMuseumDetailVC {
                     cell.delegate = self
                     cell.playModel = playModel
                     cell.selectRow = playingSelectRow
+                    if playingSelectRow >= 0 {
+                        let indexPath = IndexPath.init(row: playingSelectRow, section: 0)
+                        cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+                    }
                     player.delegate = cell
                     
                     return cell
@@ -658,7 +617,7 @@ extension HDSSL_dMuseumDetailVC {
     func didSelectItemAt(_ model:DMuseumListenList, _ item: HDLY_FreeListenItem ,_ cell: HDLY_MuseumInfoType5Cell, _ selectRow: Int)  {
         self.playItem = item
         playingSelectRow = selectRow
-        if model.title == playModel?.title {
+        if model.listenID == playModel?.listenID {
             if player.state == .playing {
                 player.pause()
                 item.playBtn.isSelected = false
@@ -684,6 +643,11 @@ extension HDSSL_dMuseumDetailVC {
         self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.infoModel!.dataList!.count + 1)], with: .none)
         
     }
+    
+    func freeListenListFinishPlaying() {
+        playModel?.isPlaying = false
+    }
+
     
 }
 

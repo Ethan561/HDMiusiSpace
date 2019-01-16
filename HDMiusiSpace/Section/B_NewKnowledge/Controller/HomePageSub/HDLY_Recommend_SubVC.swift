@@ -176,7 +176,7 @@ extension HDLY_Recommend_SubVC {
             if model.category?.type == 5 {
                 cell?.moreL.text = ""
             } else if model.category?.type == 6 {
-                cell?.moreL.text = "换一换"
+                cell?.moreL.text = "换一批"
             }else {
                 cell?.moreL.text = "更多"
             }

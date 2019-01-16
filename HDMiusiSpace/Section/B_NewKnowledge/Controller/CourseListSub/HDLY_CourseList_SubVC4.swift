@@ -150,7 +150,7 @@ extension HDLY_CourseList_SubVC4 {
                     self?.pushToOthersPersonalCenterVC(commentModel.uid.int)
                 }
             })
-            
+            cell?.nameL.text = commentModel.nickname
             cell?.contentL.text = commentModel.content
             cell?.timeL.text = commentModel.time
             cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)

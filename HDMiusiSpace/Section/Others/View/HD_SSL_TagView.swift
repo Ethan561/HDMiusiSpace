@@ -142,7 +142,7 @@ class HD_SSL_TagView: UIView {
         
     }
     
-    //MARK: -- 创建tags
+    //MARK: -- 创建标签引导页的tags
     func loadTagsView() {
         
         if titleArray.count > 0 {
@@ -161,10 +161,10 @@ class HD_SSL_TagView: UIView {
                 btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
                 btn.titleLabel?.lineBreakMode = .byTruncatingTail
                 
-                var space = 10.0
+                var space = 15.0
                 var kkWith = self.frame.size.width
                 if Device_Is_iPhoneSE == true {
-                    space = 5.0
+                    space = 10.0
                     kkWith = 320
                 }
                     

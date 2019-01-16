@@ -55,6 +55,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         
         let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         if cityName != nil {
+            HDDeclare.shared.locModel.cityName = cityName!
             if cityName != HDLY_LocationTool.shared.city {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                     self.showChangeCityTipView()

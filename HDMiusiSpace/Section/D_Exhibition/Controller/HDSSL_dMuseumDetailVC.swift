@@ -381,7 +381,10 @@ extension HDSSL_dMuseumDetailVC {
             }else if index == 2 || index == 3 {
                 return 40
             }else if index == 4 {
-                return 88
+                if self.infoModel?.iconList?.count ?? 0 > 0 {
+                    return 88
+                }
+                return 0.01
             }else if index == 5 {
                 return webViewH
             }
@@ -425,7 +428,7 @@ extension HDSSL_dMuseumDetailVC {
             else if indexPath.row == 4 { //标签视图
                 let cell = HDLY_MuseumTagsCell.getMyTableCell(tableV: tableView)
                 if self.infoModel?.iconList != nil {
-                    cell?.imgArr = self.infoModel?.iconList as! Array<String>
+                    cell?.imgArr = self.infoModel?.iconList as? Array<String>
                 }
                 return cell!
             }
@@ -674,8 +677,9 @@ extension HDSSL_dMuseumDetailVC : WKNavigationDelegate{
             if webView.url?.absoluteString == self.infoModel?.areaHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.areaWebViewH = CGFloat(webheight + 10)
-                    self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-                    
+//                    self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+                    self.myTableView.reloadData()
+
                     self.loadingView?.removeFromSuperview()
                 }
             }

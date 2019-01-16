@@ -67,6 +67,8 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             if str!.count > 0 {
                 print("城市\(str)")
                 currentCityName = str
+                HDDeclare.shared.locModel.cityName = str!
+
                 btn_location.setTitle(str, for: .normal)
                 //定位按钮设置
                 btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
@@ -133,6 +135,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
 
         let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         if cityName != nil {
+            HDDeclare.shared.locModel.cityName = cityName!
             if cityName != HDLY_LocationTool.shared.city {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                     self.showChangeCityTipView()

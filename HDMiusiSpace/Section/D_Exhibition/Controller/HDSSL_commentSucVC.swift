@@ -94,7 +94,27 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         dTableView.tableFooterView = getTableFooter()
     }
     @objc func action_close(){
-        self.navigationController?.popViewController(animated: true)
+        var isHave: Int = 0
+        for vc in (self.navigationController?.viewControllers)! {
+            //评论列表
+            if vc.isKind(of: HDSSL_commentListVC.self) {
+                isHave = 1
+                self.navigationController?.popToViewController(vc, animated: true)
+            }
+            
+        }
+        if isHave == 0 {
+            for vc in (self.navigationController?.viewControllers)! {
+                //展览详情
+                if vc.isKind(of: HDSSL_dExhibitionDetailVC.self) {
+                    self.navigationController?.popToViewController(vc, animated: true)
+                }
+                
+            }
+        }
+        
+        
+//        self.navigationController?.popViewController(animated: true)
     }
     @objc func action_showMore(){
         //
@@ -185,11 +205,13 @@ extension HDSSL_commentSucVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        weak var weakSelf = self
         let cell = HDSSL_neverCommentCell.getMyTableCell(tableV: tableView) as HDSSL_neverCommentCell
         cell.tag = indexPath.row
         cell.BlockTapBtnFunc { (index) in
             //去评论
             print(index)
+            weakSelf?.goToComment(index)
         }
         if self.dataArray!.count > 0 {
             let model = dataArray![indexPath.row]
@@ -199,7 +221,14 @@ extension HDSSL_commentSucVC:UITableViewDelegate,UITableViewDataSource {
         return cell
         
     }
-    
+    //去评论
+    func goToComment(_ index: Int){
+        let model = dataArray![index]
+        
+        let commentvc = self.storyboard?.instantiateViewController(withIdentifier: "HDSSL_commentVC") as! HDSSL_commentVC
+        commentvc.exhibition_id = model.exhibition_id
+        self.navigationController?.pushViewController(commentvc, animated: true)
+    }
     
 }
 //MARK:--- 分享

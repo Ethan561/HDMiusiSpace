@@ -36,12 +36,7 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     var strategyid:Int?
     var strategyModel: HD_strategyModel?
     
-    lazy var testWebV: UIWebView = {
-        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.isOpaque = false
-        return webV
-    }()
-    
+    var loadingView: HDLoadingView?
     lazy var commentView: HDZQ_CommentActionView = {
         let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
         tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -68,6 +63,9 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         
         //MVVM
         bindViewModel()
+        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+        loadingView?.frame = self.view.bounds
+        view.addSubview(loadingView!)
         refreshAction()//获取详情数据
         requestComments(skip: 0, take: 10)//获取评论
         weak var weakS = self
@@ -201,8 +199,7 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
 //        }
         
         self.strategyModel = model
-        
-        self.getWebHeight()
+        self.myTableView.reloadData()
         //点赞
         likeNumL.text = strategyModel!.likes!.string
         if ((strategyModel?.isLike) != nil) {
@@ -367,12 +364,12 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
                 guard let url = model?.url else {
                     return cell!
                 }
-                cell?.loadWebView(url)
-                weak var weakS = self
-                cell?.tapBloclkFunc(block: { (type, articleId) in
-                    weakS?.didTapWebCard(type, articleId)
-                })
-                
+                if webViewH == 0 {
+                  cell?.loadWebView(url)
+                }
+                cell?.webview.uiDelegate = self
+                cell?.webview.navigationDelegate = self
+                cell?.webview.frame.size.height = webViewH
                 return cell!
             }
             
@@ -568,24 +565,32 @@ extension HDSSL_StrategyDetialVC: HDZQ_CommentActionDelegate {
 
 //MARK: ---- WebView Delegate ----
 
-extension HDSSL_StrategyDetialVC: UIWebViewDelegate {
+extension HDSSL_StrategyDetialVC: WKNavigationDelegate,WKUIDelegate {
     
-    func getWebHeight() {
-        guard let url = self.strategyModel?.url else {
-            return
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.myTableView.reloadData()
+                self.loadingView?.removeFromSuperview()
+            }
         }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
     }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let arr = message.components(separatedBy: "#")
+        print(message,arr)//
+        if arr.count == 2 {
+            let type = arr.first
+            let articleId = arr.last
+            self.didTapWebCard(Int(type!) ?? 0,Int(articleId!) ?? 0)
         }
-        self.myTableView.reloadData()
-        
+        completionHandler()
     }
     
 }

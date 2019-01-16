@@ -28,6 +28,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isShowNavShadowLayer = false
         setupThridLogin()
         loginBtn.layer.cornerRadius = 23
         setupBarBtn()
@@ -43,7 +44,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     func setupBarBtn() {
         let leftBarBtn = UIButton.init(type: UIButtonType.custom)
         leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-        leftBarBtn.setImage(UIImage.init(named: "nav_back"), for: UIControlState.normal)
+        leftBarBtn.setImage(UIImage.init(named: "float_icon_close"), for: UIControlState.normal)
         leftBarBtn.addTarget(self, action: #selector(back), for: UIControlEvents.touchUpInside)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
@@ -271,8 +272,17 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string != "" {
-            loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
-            loginBtn.isEnabled = true
+            if textField == phoneTF {
+                if smsTF.text != "" {
+                    loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+                    loginBtn.isEnabled = true
+                }
+            } else {
+                if phoneTF.text != "" {
+                    loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+                    loginBtn.isEnabled = true
+                }
+            }
         } else {
             if (textField.text?.count)! == 1 {
                 loginBtn.backgroundColor = UIColor.HexColor(0xED755F)

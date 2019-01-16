@@ -21,6 +21,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "账号密码登录"
+        self.isShowNavShadowLayer = false
         loginBtn.layer.cornerRadius = 23
 //        setupBarBtn()
         phoneTF.keyboardType = .numberPad
@@ -235,8 +236,17 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string != "" {
-            loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
-            loginBtn.isEnabled = true
+            if textField == phoneTF {
+                if pwdTF.text != "" {
+                    loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+                    loginBtn.isEnabled = true
+                }
+            } else {
+                if phoneTF.text != "" {
+                    loginBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+                    loginBtn.isEnabled = true
+                }
+            }
         } else {
             if (textField.text?.count)! == 1 {
                 loginBtn.backgroundColor = UIColor.HexColor(0xED755F)

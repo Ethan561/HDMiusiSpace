@@ -738,7 +738,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell.delegate = self
                 cell.playModel = playModel
                 cell.selectRow = playingSelectRow
-
+                if playingSelectRow >= 0 {
+                    let indexPath = IndexPath.init(row: playingSelectRow, section: 0)
+                    cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+                }
+                
                 player.delegate = cell
                 return cell
             }

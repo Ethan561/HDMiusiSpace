@@ -10,7 +10,6 @@ import UIKit
 
 protocol HDLY_MyDynamicCellDelegate:NSObjectProtocol {
     func pushToDetailArticle(cateId:Int, detailId: Int)
-    func deleteCommentId(commentId: Int,index:Int)
 }
 
 class HDLY_MyDynamicCell: UITableViewCell {
@@ -75,11 +74,6 @@ class HDLY_MyDynamicCell: UITableViewCell {
         deletaBtn.isHidden = isShowing
     }
     
-    @IBAction func deleteAction(_ sender: Any) {
-        if delegate != nil {
-            delegate?.deleteCommentId(commentId: commentId,index:index)
-        }
-    }
     @objc func pushToDetail() {
         if delegate != nil {
             delegate?.pushToDetailArticle(cateId: cateID, detailId: detailId)

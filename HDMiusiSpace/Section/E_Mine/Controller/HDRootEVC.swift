@@ -266,9 +266,12 @@ extension HDRootEVC {
                     self.starTitleStrings.append(starTitleString)
                     
                 }
-                self.myDynamics.append(contentsOf: model.data)
+                
                 let indexSet = NSIndexSet(index: 1)
-                self.myTableView.reloadSections(indexSet as IndexSet, with: .none)
+                self.myTableView.beginUpdates()
+                self.myDynamics.append(contentsOf: model.data)
+                self.myTableView.reloadSections(indexSet as IndexSet, with: .fade)
+                self.myTableView.endUpdates()
                 self.myTableView.es.stopLoadingMore()
                 self.myTableView.es.stopPullToRefresh()
                 if model.data.count == 0 {
@@ -404,6 +407,11 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             cell?.commentId = model.commentID!
             cell?.cateID = model.cateID!
             cell?.deletaBtn.isHidden = true
+            cell?.deletaBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                if let ip = self?.myTableView.indexPath(for: cell!) {
+                    self?.deleteCommentId(commentId: model.commentID!, index: ip.row)
+                }
+            })
             cell?.delegate = self
             cell?.index = indexPath.row
             if model.cateID == 10 {
@@ -586,10 +594,11 @@ extension HDRootEVC: HDLY_MyDynamicCellDelegate {
         deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         deleteView.sureBlock = {
             HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "",comment_id:commentId), cache: false, showHud: false , success: { (result) in
-                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 let indexPath = NSIndexPath.init(row: index, section: 1)
                 self.myTableView.beginUpdates()
                 self.myDynamics.remove(at: index)
+                self.starTitleStrings.remove(at: index)
+                self.iconTitleStrings.remove(at: index)
                 self.myTableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
                 self.myTableView.endUpdates()
             }) { (errorCode, msg) in

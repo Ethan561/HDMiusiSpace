@@ -268,7 +268,7 @@ extension HDLY_CourseList_SubVC3 {
                 guard let url = self.infoModel?.data.url else {
                     return cell!
                 }
-                if webViewH == 0{
+                if webViewH == 0 {
                   cell?.loadWebView(url)
                 }
                 cell?.webview.frame.size.height = webViewH
@@ -510,6 +510,9 @@ extension HDLY_CourseList_SubVC3 : WKNavigationDelegate,WKUIDelegate {
             }
             DispatchQueue.main.async { [unowned self] in
                 self.webViewH = CGFloat(webheight + 10)
+                if self.infoModel?.data.isBuy == 1 {
+                      self.webViewH =  0.01
+                }
                 self.tableView.reloadData()
                 self.loadingView?.removeFromSuperview()
             }

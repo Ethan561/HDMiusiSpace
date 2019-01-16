@@ -54,13 +54,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         let playerC = ZFPlayerController.init(playerManager: ZFAVPlayerManager(), containerView: self.containerView)
         return playerC
     }()
-    
-    lazy var testWebV: UIWebView = {
-        let webV = UIWebView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-        webV.isOpaque = false
-        return webV
-    }()
-    
+    var loadingView: HDLoadingView?
     var webViewH:CGFloat = 0
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
@@ -86,13 +80,17 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
         likeBtn.setImage(UIImage.init(named: "Star_white"), for: .normal)
         likeBtn.setImage(UIImage.init(named: "Star_red"), for: .selected)
+        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+        loadingView?.frame = self.view.bounds
+        view.addSubview(loadingView!)
+        dataRequest()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
-        dataRequest()
+        
 
     }
     
@@ -354,7 +352,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             self.bottomHCons.constant = 74
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
-                self.getWebHeight()
+//                self.getWebHeight()
+                self.myTableView.reloadData()
                 if self.infoModel?.data.isFavorite == 1 {
                     self.likeBtn.isSelected = true
                 }else {
@@ -372,17 +371,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         dataRequest()
     }
     
-    func getWebHeight() {
-        guard let url = self.infoModel?.data.url else {
-            return
-        }
-        self.testWebV.delegate = self
-        self.testWebV.loadRequest(URLRequest.init(url: URL.init(string: url)!))
-    }
-    
-    
      // MARK: - Navigation
-    
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushTo_HDLY_CourseList_VC_line" {
             guard let idnum:String = sender as? String else {
@@ -555,12 +544,12 @@ extension HDLY_CourseDes_VC {
                 guard let url = self.infoModel?.data.url else {
                     return cell!
                 }
-                cell?.loadWebView(url)
-                weak var weakS = self
-                cell?.tapBloclkFunc(block: { (type, articleId) in
-                    weakS?.didTapWebCard(type, articleId)
-                })
-                
+                if webViewH == 0 {
+                  cell?.loadWebView(url)
+                }
+                cell?.webview.frame.size.height = webViewH
+                cell?.webview.navigationDelegate = self
+                cell?.webview.uiDelegate = self
                 return cell!
             }
             else if index == 2 {
@@ -625,20 +614,6 @@ extension HDLY_CourseDes_VC {
 
     }
 }
-
-extension HDLY_CourseDes_VC {
- 
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if (webView == self.testWebV) {
-            let  webViewHStr:NSString = webView.stringByEvaluatingJavaScript(from: "document.body.offsetHeight;")! as NSString
-            self.webViewH = CGFloat(webViewHStr.floatValue + 10)
-            LOG("\(webViewH)")
-        }
-        self.myTableView.reloadData()
-    }
-    
-}
-
 
 extension HDLY_CourseDes_VC {
     
@@ -874,3 +849,30 @@ extension HDLY_CourseDes_VC: UIScrollViewDelegate {
     }
 }
 
+extension HDLY_CourseDes_VC : WKNavigationDelegate,WKUIDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.myTableView.reloadData()
+                self.loadingView?.removeFromSuperview()
+            }
+        }
+    }
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let arr = message.components(separatedBy: "#")
+        print(message,arr)//
+        if arr.count == 2 {
+            let type = arr.first
+            let articleId = arr.last
+            self.didTapWebCard(Int(type!) ?? 0,Int(articleId!) ?? 0)
+        }
+        completionHandler()
+    }
+}

@@ -283,9 +283,9 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         bannerView.pageControlAliment = .center
         bannerView.pageControlBottomDis = 15
         
-//                if bannerView.pageControl != nil {
-//                    bannerView.pageControl!.isHidden = true
-//                }
+        if bannerView.pageControl != nil {
+            bannerView.pageControl!.isHidden = true
+        }
         
         //img相对地址
         //        if self.bannerImgArr != nil {
@@ -413,6 +413,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     //MARK: ---------Header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 2 {
+            if self.commentArr?.count == 0 {
+                return 44
+            }
             return 90
         }
         if section > 2{
@@ -428,6 +431,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 2 {
+            
             //评论
             let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 90))
             let totalNum = self.exdataModel?.data?.commentList?.total
@@ -453,6 +457,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                     commentListvc.exhibition_id = self.exhibition_id!
                     self.navigationController?.pushViewController(commentListvc, animated: true)
                 }
+            }
+            if self.commentArr?.count == 0 {
+                commentHeader.btn_all.isHidden = true
+                commentHeader.btn_havePic.isHidden = true
             }
             
             return commentHeader

@@ -29,12 +29,6 @@
                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-gb-TOI">
-                        <rect key="frame" x="58" y="5" width="246" height="59.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dED-f7-QCf">
                         <rect key="frame" x="20" y="68.5" width="280" height="1"/>
                         <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,22 +36,28 @@
                             <constraint firstAttribute="height" constant="1" id="sAa-Uw-kG1"/>
                         </constraints>
                     </view>
+                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaR-fM-91K">
+                        <rect key="frame" x="58" y="5" width="246" height="58.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dED-f7-QCf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="4Mu-91-cJr"/>
+                    <constraint firstItem="iaR-fM-91K" firstAttribute="leading" secondItem="zFv-IL-byj" secondAttribute="trailing" id="Eh0-2h-6gn"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="IZi-59-iyy"/>
-                    <constraint firstItem="DRq-gb-TOI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Uam-DA-UrA"/>
-                    <constraint firstAttribute="bottom" secondItem="DRq-gb-TOI" secondAttribute="bottom" constant="5" id="a94-wQ-PQn"/>
+                    <constraint firstAttribute="trailing" secondItem="iaR-fM-91K" secondAttribute="trailing" constant="16" id="azt-SU-FFn"/>
                     <constraint firstItem="zFv-IL-byj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="bZc-oL-c5D"/>
                     <constraint firstAttribute="trailing" secondItem="dED-f7-QCf" secondAttribute="trailing" constant="20" id="dfY-uP-Wk3"/>
-                    <constraint firstAttribute="trailing" secondItem="DRq-gb-TOI" secondAttribute="trailing" constant="16" id="m2v-0Z-0fY"/>
-                    <constraint firstItem="DRq-gb-TOI" firstAttribute="leading" secondItem="zFv-IL-byj" secondAttribute="trailing" id="vVL-VN-LY8"/>
+                    <constraint firstItem="iaR-fM-91K" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="eep-di-Yfw"/>
+                    <constraint firstItem="dED-f7-QCf" firstAttribute="top" secondItem="iaR-fM-91K" secondAttribute="bottom" constant="5" id="jyL-7y-4Hk"/>
                     <constraint firstAttribute="bottom" secondItem="dED-f7-QCf" secondAttribute="bottom" id="xDd-Us-Cpk"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="cell_timeL" destination="DRq-gb-TOI" id="qpm-YW-CBk"/>
+                <outlet property="cell_timeL" destination="iaR-fM-91K" id="ayS-nL-kz8"/>
             </connections>
             <point key="canvasLocation" x="65.599999999999994" y="108.84557721139431"/>
         </tableViewCell>

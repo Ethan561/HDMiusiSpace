@@ -148,7 +148,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2Q-rD-mCs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img1" translatesAutoresizingMaskIntoConstraints="NO" id="DNZ-Re-0Jb">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DNZ-Re-0Jb">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3M-v1-jAK">
@@ -371,6 +371,7 @@
                         <outlet property="shareBtn" destination="LDp-bX-B2h" id="apR-yB-1Hg"/>
                         <outlet property="statusBarHCons" destination="hyu-Sy-I1r" id="PXu-vh-2w4"/>
                         <outlet property="timeL" destination="Nnm-4p-zRI" id="H65-2V-hsn"/>
+                        <outlet property="topImgV" destination="DNZ-Re-0Jb" id="0RX-0j-L0q"/>
                         <outlet property="topView" destination="UAh-GF-4Aa" id="Goo-jo-ryD"/>
                         <outlet property="tryListenL" destination="eOT-qR-lWM" id="rgP-vH-HHz"/>
                         <segue destination="NPJ-qO-nK6" kind="show" identifier="PushTo_HDLY_CourseList_VC_line" id="Yve-By-v2P"/>
@@ -416,7 +417,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uex-bo-XY8">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img1" translatesAutoresizingMaskIntoConstraints="NO" id="8oL-Wv-qtz">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8oL-Wv-qtz">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udt-PD-E6M">
@@ -597,6 +598,7 @@
                         <outlet property="playBtn" destination="udt-PD-E6M" id="5et-UU-VF6"/>
                         <outlet property="shareBtn" destination="Wax-vw-LrH" id="xb5-Te-Ucg"/>
                         <outlet property="statusBarHCons" destination="ESs-9h-pgu" id="3xQ-LQ-gNo"/>
+                        <outlet property="topImgV" destination="8oL-Wv-qtz" id="NMB-xw-YKv"/>
                         <outlet property="topView" destination="LYw-Ag-CD4" id="rvP-oH-ula"/>
                         <outlet property="wwanTipBtn" destination="rRy-jp-4Fk" id="bSi-5x-7ev"/>
                         <outlet property="wwanTipView" destination="5Vs-R8-Ldf" id="REG-7x-sXX"/>
@@ -1244,7 +1246,7 @@
     <resources>
         <image name="Star_white" width="22" height="22"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
-        <image name="icon_delete" width="14" height="18"/>
+        <image name="icon_delete" width="15" height="19"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="jx_zz_1" width="200" height="42"/>
         <image name="kt_icon_play_xiao" width="12" height="14"/>

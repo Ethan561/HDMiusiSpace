@@ -21,6 +21,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var errorBtn: UIButton!
     @IBOutlet weak var wwanTipBtn: UIButton!
+    @IBOutlet weak var topImgV: UIImageView!
     
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
@@ -29,7 +30,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var showLeaveMsg = false
     var chapterListVC: HDLY_CourseList_SubVC1?
     
-    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+    var kVideoCover = ""
     
     var courseId:String?
     
@@ -329,20 +330,23 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
                 self.isMp3Course = false
             }
-            if ZFReachabilityManager.shared().isReachableViaWiFi == true {
-                self.autoPlayAction()
-            }
-            
+
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
             }else {
             }
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
+
                 if self.infoModel?.data.isFavorite == 1 {
                     self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
                 }else {
                     self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
                 }
+                if ZFReachabilityManager.shared().isReachableViaWiFi == true {
+                    self.autoPlayAction()
+                }
+                
             }
             
         }) { (errorCode, msg) in

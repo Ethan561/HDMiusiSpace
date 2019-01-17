@@ -32,7 +32,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var backBtn  : UIButton!
     @IBOutlet weak var navShadowImgV: UIImageView!
     @IBOutlet weak var navBgView : UIView!      //导航栏背景
-
+    @IBOutlet weak var topImgV: UIImageView!
+    
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     var infoModel: CourseModel?
@@ -41,8 +42,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var isStatusBarHidden = false//是否隐藏状态栏
     var isFromTeacherCenter = false
 
-    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
-    
+//    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
+    var kVideoCover = ""
+
     lazy var controlView:ZFPlayerControlView = {
         let controlV = ZFPlayerControlView.init()
         controlV.fastViewAnimated = true
@@ -352,6 +354,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             self.bottomHCons.constant = 74
             if self.infoModel != nil {
                 self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
 //                self.getWebHeight()
                 self.myTableView.reloadData()
                 if self.infoModel?.data.isFavorite == 1 {

@@ -152,9 +152,6 @@
                         <state key="normal" title="删除">
                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
-                        <connections>
-                            <action selector="deleteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PhI-Ll-EVM"/>
-                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考古学家根据人类使用的工具，把我们这社会发展划分为石器时代、铜器时代、铁器时代。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWe-Mv-NSQ">
                         <rect key="frame" x="60" y="67" width="240" height="55.5"/>

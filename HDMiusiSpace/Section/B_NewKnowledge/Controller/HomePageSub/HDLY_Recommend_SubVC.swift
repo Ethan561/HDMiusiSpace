@@ -182,7 +182,6 @@ extension HDLY_Recommend_SubVC {
                     cell?.moreL.text = "换一批"
                 }else {
                     cell?.moreL.text = ""
-                    cell?.moreBtn.isHidden = true
                 }
             }else {
                 cell?.moreL.text = "更多"
@@ -312,7 +311,9 @@ extension HDLY_Recommend_SubVC {
             
         }
         else if model.category?.type == 6 {//换一批
-            courseTopicsRequest()
+            if model.topic?.count ?? 0 > 1 {
+                courseTopicsRequest()
+            }
         }
     }
     

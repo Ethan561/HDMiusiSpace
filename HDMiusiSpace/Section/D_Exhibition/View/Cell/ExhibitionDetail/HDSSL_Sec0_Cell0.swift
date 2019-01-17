@@ -17,6 +17,7 @@ class HDSSL_Sec0_Cell0: UITableViewCell {
     @IBOutlet weak var cell_star3: UIImageView!
     @IBOutlet weak var cell_star4: UIImageView!
     @IBOutlet weak var cell_star5: UIImageView!
+    @IBOutlet weak var noStarL: UILabel!
     
     var starNum: Double = 0.0 {
         didSet{
@@ -44,6 +45,11 @@ class HDSSL_Sec0_Cell0: UITableViewCell {
         return cell!
     }
     func loadStar() {
+        if starNum == 0.0 {
+            noStarL.isHidden = false
+        }else{
+            noStarL.isHidden = true
+        }
         let starArray = [cell_star1,cell_star2,cell_star3,cell_star4,cell_star5]
         
         let maxNum:Int = Int(floor(self.starNum / 2))//向下取整

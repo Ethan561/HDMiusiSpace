@@ -86,12 +86,13 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         self.back()
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
         if parent == nil {
             player.stop()
         }
     }
+    
     
 }
 

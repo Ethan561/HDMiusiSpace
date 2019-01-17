@@ -83,7 +83,7 @@ extension HDLY_StrategyListVC: UITableViewDelegate,UITableViewDataSource {
             cell.titleL.text = model.title
             cell.desL.text = "\(model.categoryTitle!)|\(model.author!)"
             cell.commentBtn.setTitle("\(model.commentNum ?? 0)", for: .normal)
-            cell.likeBtn.setTitle("\(model.commentNum ?? 0)", for: .normal)
+            cell.likeBtn.setTitle("\(model.like_num ?? 0)", for: .normal)
             
         }
         return cell
@@ -96,12 +96,8 @@ extension HDLY_StrategyListVC: UITableViewDelegate,UITableViewDataSource {
 
         let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
         vc.strategyid = model.strategyID
-        
         self.navigationController?.pushViewController(vc, animated: true)
-//        let webVC = HDItemBaseWebVC()
-//        webVC.urlPath = model.strategyUrl
-//        webVC.titleName = model.title
-//        self.navigationController?.pushViewController(webVC, animated: true)
+
     }
     
 }

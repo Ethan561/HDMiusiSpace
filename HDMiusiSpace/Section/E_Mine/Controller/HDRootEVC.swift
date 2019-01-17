@@ -37,13 +37,14 @@ class HDRootEVC: HDItemBaseVC {
         myTableView.estimatedSectionHeaderHeight = 0
         myTableView.estimatedSectionFooterHeight = 0
         setupViews()
-        getMyDynamicList()
         addRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if declare.loginStatus == .kLogin_Status_Login {
+            skip = 0
+            getMyDynamicList()
             getUserInfo()
             getMyStudyCourses()
         } else {
@@ -219,63 +220,73 @@ extension HDRootEVC {
             let jsonDecoder = JSONDecoder()
             do {
                 var model:DynamicData = try jsonDecoder.decode(DynamicData.self, from: result)
-                // 将字符串转换为富文本字符串，比较耗时，提前转换
-                for i in 0..<model.data.count {
-                    let m = model.data[i]
-                    let height = m.comment?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 80)
-                    model.data[i].height = Int(height!)
-                    let infoModel = m.exhibitionInfo
-                    let iconTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
-                    infoModel?.iconList?.forEach({ (icon) in
-                        let urlStr = NSURL(string: icon)
-                        let data = NSData(contentsOf: urlStr! as URL)
-                        let image = UIImage(data: data! as Data)
-                        let attach = NSTextAttachment()
-                        let width = image!.size.width * 16 / image!.size.height
-                        attach.bounds = CGRect.init(x: 2, y: 0, width: width, height: 16)
-                        attach.image = image
-                        let imgStr = NSAttributedString.init(attachment: attach)
-                        iconTitleString.append(imgStr)
-                        iconTitleString.append(NSAttributedString.init(string: " "))
-                    })
-                    self.iconTitleStrings.append(iconTitleString)
-                    let star: Float! = Float(infoModel?.star ?? "0")
-                    var imgStr = ""
-                    if star == 0 {
-                        imgStr = ""
-                    }else if star < 2 {
-                        imgStr = "exhibitionCmt_1_5"
-                    }else if star >= 2 && star < 4 {
-                        imgStr = "exhibitionCmt_2_5"
-                    }else if star >= 4 && star < 6 {
-                        imgStr = "exhibitionCmt_3_5"
-                    }else if star >= 6 && star < 8 {
-                        imgStr = "exhibitionCmt_4_5"
-                    }else if star >= 8 {
-                        imgStr = "exhibitionCmt_5_5"
+                if self.skip != 0 || model.data.first?.commentID != self.myDynamics.first?.commentID {
+                    if self.skip == 0 && model.data.first?.commentID != self.myDynamics.first?.commentID {
+                        self.myDynamics =  [MyDynamic]()
+                        self.iconTitleStrings = [NSAttributedString]()
+                        self.starTitleStrings = [NSAttributedString]()
                     }
-                    let starTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
-                    let starImg = UIImage.init(named: imgStr)
-                    let attach = NSTextAttachment()
-                    attach.bounds = CGRect.init(x: 2, y: 0, width: 12, height: 12)
-                    attach.image = starImg
-                    let starimgStr = NSAttributedString.init(attachment: attach)
-                    starTitleString.append(starimgStr)
-                    starTitleString.append(NSAttributedString.init(string: " "))
-                    starTitleString.append(NSAttributedString.init(string: infoModel?.star ?? "0"))
-                    self.starTitleStrings.append(starTitleString)
-                    
-                }
-                
-                let indexSet = NSIndexSet(index: 1)
-                self.myTableView.beginUpdates()
-                self.myDynamics.append(contentsOf: model.data)
-                self.myTableView.reloadSections(indexSet as IndexSet, with: .fade)
-                self.myTableView.endUpdates()
-                self.myTableView.es.stopLoadingMore()
-                self.myTableView.es.stopPullToRefresh()
-                if model.data.count == 0 {
-                     self.myTableView.es.noticeNoMoreData()
+                    // 将字符串转换为富文本字符串，比较耗时，提前转换
+                    for i in 0..<model.data.count {
+                        let m = model.data[i]
+                        let height = m.comment?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 80)
+                        model.data[i].height = Int(height!)
+                        let infoModel = m.exhibitionInfo
+                        let iconTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+                        infoModel?.iconList?.forEach({ (icon) in
+                            let urlStr = NSURL(string: icon)
+                            let data = NSData(contentsOf: urlStr! as URL)
+                            let image = UIImage(data: data! as Data)
+                            let attach = NSTextAttachment()
+                            let width = image!.size.width * 16 / image!.size.height
+                            attach.bounds = CGRect.init(x: 2, y: 0, width: width, height: 16)
+                            attach.image = image
+                            let imgStr = NSAttributedString.init(attachment: attach)
+                            iconTitleString.append(imgStr)
+                            iconTitleString.append(NSAttributedString.init(string: " "))
+                        })
+                        self.iconTitleStrings.append(iconTitleString)
+                        let star: Float! = Float(infoModel?.star ?? "0")
+                        var imgStr = ""
+                        if star == 0 {
+                            imgStr = ""
+                        }else if star < 2 {
+                            imgStr = "exhibitionCmt_1_5"
+                        }else if star >= 2 && star < 4 {
+                            imgStr = "exhibitionCmt_2_5"
+                        }else if star >= 4 && star < 6 {
+                            imgStr = "exhibitionCmt_3_5"
+                        }else if star >= 6 && star < 8 {
+                            imgStr = "exhibitionCmt_4_5"
+                        }else if star >= 8 {
+                            imgStr = "exhibitionCmt_5_5"
+                        }
+                        let starTitleString: NSMutableAttributedString = NSMutableAttributedString.init()
+                        let starImg = UIImage.init(named: imgStr)
+                        let attach = NSTextAttachment()
+                        attach.bounds = CGRect.init(x: 2, y: 0, width: 12, height: 12)
+                        attach.image = starImg
+                        let starimgStr = NSAttributedString.init(attachment: attach)
+                        starTitleString.append(starimgStr)
+                        starTitleString.append(NSAttributedString.init(string: " "))
+                        starTitleString.append(NSAttributedString.init(string: infoModel?.star ?? "0"))
+                        self.starTitleStrings.append(starTitleString)
+                        
+                    }
+                    var indexPaths = [IndexPath]()
+                    for j in 0..<model.data.count {
+                        let indexPath = NSIndexPath.init(row: self.myDynamics.count + j, section: 1)
+                        indexPaths.append(indexPath as IndexPath)
+                    }
+                    self.myTableView.beginUpdates()
+                    self.myDynamics.append(contentsOf: model.data)
+                    self.myTableView.insertRows(at: indexPaths, with: .fade)
+                    self.myTableView.endUpdates()
+                    self.myTableView.es.stopLoadingMore()
+                    self.myTableView.es.stopPullToRefresh()
+                    if model.data.count == 0 {
+                        self.myTableView.es.noticeNoMoreData()
+                    }
                 }
                 
             }

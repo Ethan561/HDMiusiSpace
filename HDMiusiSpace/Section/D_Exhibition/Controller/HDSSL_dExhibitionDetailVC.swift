@@ -578,7 +578,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
-                cell.cell_starNumL.text = self.exdataModel?.data?.star?.string
+//                cell.cell_starNumL.text = self.exdataModel?.data?.star?.string
+                let star: Float! = Float(self.exdataModel?.data?.star?.string ?? "0")
+                cell.cell_starNumL.text = String.init(format: "%.1f", star)
+                
                 if self.exdataModel?.data?.star != nil {
                     let num: Double = Double (self.exdataModel!.data!.star!.string) ?? 0.0
                     cell.starNum = num

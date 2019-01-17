@@ -119,7 +119,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     }
     
     @IBAction func sliderValueChangeAction(_ sender: UISlider) {
-        
+        player.audioPlayerSeekToTime(sender.value)
+
     }
     
     @objc func pageTitleViewToTop() {
@@ -186,8 +187,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         timeL.text = "\(currentTime)/\(totalTime)"
     }
     
-    override func willMove(toParentViewController parent: UIViewController?) {
-        super.willMove(toParentViewController: parent)
+    override func didMove(toParentViewController parent: UIViewController?) {
+        super.didMove(toParentViewController: parent)
         if parent == nil {
             player.stop()
         }

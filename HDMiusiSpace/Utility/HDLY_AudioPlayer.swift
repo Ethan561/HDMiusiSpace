@@ -161,14 +161,10 @@ final class HDLY_AudioPlayer: NSObject {
     }
     
     //拖动进度条改变值时触发
-    func audioPlayerSeekToTime(_ time: Double) {
+    func audioPlayerSeekToTime(_ time: Float) {
         //播放器定位到对应的位置
-        audioPlayer.seek(toTime: Double(time))
+        audioPlayer.seek(toTime: Double(time) * audioPlayer.duration)
         //如果当前时暂停状态，则继续播放
-        if state == .paused
-        {
-            audioPlayer.resume()
-        }
     }
     
     func formatPlayTime(seconds: Float64)->String{

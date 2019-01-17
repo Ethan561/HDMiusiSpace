@@ -22,6 +22,28 @@ class HDLY_Listen_SubVC:                                                        
     var listArr = [ListenList]()
     var tagsArr = [ListenTags]()
     var player = HDLY_AudioPlayer.shared
+    
+    lazy var emptyView: UIView = {
+        let emptyV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260))
+        emptyV.backgroundColor = UIColor.clear
+        
+        let imgV = UIImageView.init(image: UIImage.init(named: "img_nothing"))
+        var imgViewWidth = imgV.image!.size.width
+        var imgViewHeight = imgV.image!.size.height
+        imgV.frame = CGRect.init(x: 0, y: 0, width: imgViewWidth, height: imgViewHeight)
+        imgV.center = CGPoint.init(x: emptyV.ly_centerX, y: emptyV.ly_centerY-imgViewHeight*0.5)
+        emptyV.addSubview(imgV)
+        
+        let titleL = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: emptyV.ly_width, height: 20))
+        titleL.text = "还没有内容呢～"
+        titleL.textAlignment = .center
+        titleL.font = UIFont.systemFont(ofSize: 14)
+        titleL.textColor = UIColor.lightGray
+        titleL.center = CGPoint.init(x: emptyV.ly_centerX, y: imgV.ly_maxY+15)
+        emptyV.addSubview(titleL)
+        
+        return emptyV
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +64,10 @@ class HDLY_Listen_SubVC:                                                        
         
         collectionView.register(UINib.init(nibName: HDLY_Listen_CollectionCell.className, bundle: nil), forCellWithReuseIdentifier: HDLY_Listen_CollectionCell.className)
         
-        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_nothing", titleStr: "还没有内容呢～", detailStr: "", btnTitleStr: "") {
-            
-        }
-        emptyView.contentViewY = 80
-        emptyView.titleLabTextColor = UIColor.lightGray
-        emptyView.backgroundColor = UIColor.white
-        emptyView.contentView.backgroundColor = UIColor.clear
-//        collectionView.ly_emptyView = emptyView
+        
+        self.emptyView.center = CGPoint.init(x: collectionView.ly_centerX, y: collectionView.ly_centerY-50)
+        collectionView.addSubview(self.emptyView)
+        self.emptyView.isHidden = true
         
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
@@ -57,7 +75,6 @@ class HDLY_Listen_SubVC:                                                        
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
-        // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         dataRequest(cate_id: "-1")
 
@@ -100,10 +117,9 @@ class HDLY_Listen_SubVC:                                                        
             self.tagsArr = model.data.cates
             self.listArr = model.data.list
             if self.listArr.count == 0 {
-                HDAlert.showAlertTipWith(type: .onlyText, text: "该分类暂无数据")
-//                self.collectionView.ly_showEmptyView()
+                self.emptyView.isHidden = false
             } else {
-//                self.collectionView.ly_hideEmptyView()
+                self.emptyView.isHidden = true
             }
             if cate_id == "-1" {
                 self.collectionView.reloadData()
@@ -264,9 +280,6 @@ class HDLY_Listen_SubVC:                                                        
         HDFloatingButtonManager.manager.iconUrl =  "dl_icon_map_gray"
         
     }
-    
-    
-
 }
 
 

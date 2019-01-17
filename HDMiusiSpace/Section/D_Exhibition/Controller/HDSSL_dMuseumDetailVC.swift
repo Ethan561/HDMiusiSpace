@@ -737,10 +737,14 @@ extension HDSSL_dMuseumDetailVC {
     //展览攻略详情
     func showRelatedStrategyVC(_ raider: DMuseumRaiders)  {
 
-        let webVC = HDItemBaseWebVC()
-        webVC.urlPath = raider.strategyUrl
-        webVC.titleName = raider.title
-        self.navigationController?.pushViewController(webVC, animated: true)
+//        let webVC = HDItemBaseWebVC()
+//        webVC.urlPath = raider.strategyUrl
+//        webVC.titleName = raider.title
+//        self.navigationController?.pushViewController(webVC, animated: true)
+        let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+        vc.strategyid = raider.strategyID
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //精选推荐详情

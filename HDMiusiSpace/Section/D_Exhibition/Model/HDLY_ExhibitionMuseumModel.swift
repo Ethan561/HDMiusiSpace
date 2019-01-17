@@ -174,6 +174,7 @@ struct DStrategyListData: Codable {
     var title: String?
     var isFavorite: Int?
     var strategyUrl: String?
+    var like_num: Int?
     
     enum CodingKeys: String, CodingKey {
         case author
@@ -183,6 +184,7 @@ struct DStrategyListData: Codable {
         case img, title
         case isFavorite = "is_favorite"
         case strategyUrl = "strategy_url"
+        case like_num
     }
 }
 

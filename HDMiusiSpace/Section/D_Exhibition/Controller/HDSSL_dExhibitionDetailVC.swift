@@ -283,9 +283,9 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         bannerView.pageControlAliment = .center
         bannerView.pageControlBottomDis = 15
         
-//                if bannerView.pageControl != nil {
-//                    bannerView.pageControl!.isHidden = true
-//                }
+        if bannerView.pageControl != nil {
+            bannerView.pageControl!.isHidden = true
+        }
         
         //img相对地址
         //        if self.bannerImgArr != nil {

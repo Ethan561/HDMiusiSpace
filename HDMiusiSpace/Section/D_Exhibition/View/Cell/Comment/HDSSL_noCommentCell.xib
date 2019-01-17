@@ -26,7 +26,7 @@
                             <constraint firstAttribute="width" constant="240" id="f3l-Jg-f0c"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9R-ef-vfH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还没有评论呢～" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9R-ef-vfH">
                         <rect key="frame" x="40" y="128" width="240" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="240" id="eO2-Ga-cLF"/>

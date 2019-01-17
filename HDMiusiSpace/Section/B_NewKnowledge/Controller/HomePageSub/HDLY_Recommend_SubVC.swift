@@ -173,15 +173,21 @@ extension HDLY_Recommend_SubVC {
         if model.type?.int == 0 {
             let cell = RecommendSectionCell.getMyTableCell(tableV: tableView)
             cell?.nameLabel.text = model.category?.title
+            cell?.moreBtn.tag = 100 + indexPath.row
+            cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
             if model.category?.type == 5 {
                 cell?.moreL.text = ""
             } else if model.category?.type == 6 {
-                cell?.moreL.text = "换一批"
+                if model.topic?.count ?? 0 > 1 {
+                    cell?.moreL.text = "换一批"
+                }else {
+                    cell?.moreL.text = ""
+                    cell?.moreBtn.isHidden = true
+                }
             }else {
                 cell?.moreL.text = "更多"
             }
-            cell?.moreBtn.tag = 100 + indexPath.row
-            cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
+
             return cell!
         }else if model.type?.int == 1 {
             let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)

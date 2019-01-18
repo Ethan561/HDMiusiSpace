@@ -92,7 +92,7 @@ class HDSSL_dCommentCell: UITableViewCell {
         }
         //头像
         if listModel?.avatar != nil {
-            cell_portrial.kf.setImage(with: URL.init(string: String.init(format: "%@", listModel!.avatar!)), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell_portrial.kf.setImage(with: URL.init(string: String.init(format: "%@", listModel!.avatar ?? "")), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         }
         //名字
         cell_userName.text = String.init(format: "%@", listModel!.nickname!)

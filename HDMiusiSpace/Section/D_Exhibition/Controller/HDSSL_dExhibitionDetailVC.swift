@@ -125,8 +125,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             
             var mode = weakSelf?.commentArr![(weakSelf?.likeCellIndex)!]
             
-            mode!.isLike = (m.is_like?.int)!
-            mode!.likeNum = (m.like_num?.int)!
+            mode!.isLike = m.is_like?.int ?? 0
+            mode!.likeNum = m.like_num?.int ?? 0
             
             weakSelf?.commentArr?.remove(at: (weakSelf?.likeCellIndex)!)
             weakSelf?.commentArr?.insert(mode!, at: (weakSelf?.likeCellIndex!)!)

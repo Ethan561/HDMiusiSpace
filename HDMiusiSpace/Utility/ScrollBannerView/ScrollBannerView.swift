@@ -259,7 +259,7 @@ extension ScrollBannerView {
         if imgPath.hasPrefix("http") {
 //            let imgStr:String = HDDeclare.IP_Request_Header() + imgPath
 ////            cell.backgroundColor = UIColor.red
-            cell.imgView.kf.setImage(with: URL.init(string: imgPath), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+            cell.imgView.kf.setImage(with: URL.init(string: imgPath), placeholder: UIImage.grayImage(sourceImageV: cell.imgView), options: nil, progressBlock: nil, completionHandler: nil)
         }else {
             var img = UIImage.init(named: imgPath)
             if img == nil {

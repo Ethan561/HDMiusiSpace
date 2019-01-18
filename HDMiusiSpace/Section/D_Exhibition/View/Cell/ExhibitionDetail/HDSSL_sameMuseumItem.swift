@@ -37,17 +37,17 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             item_loc.text = model!.address
             item_starNum.text = model!.star.string
             
-            let star: Int = Int(model!.star.int)
+            let star: Float = Float(model!.star.string) ?? 0.0
             var imgStr = ""
-            if star < 2 {
+            if star < 2.0 {
                 imgStr = "exhibitionCmt_1_5"
-            }else if star >= 2 && star < 4 {
+            }else if star >= 2.0 && star < 4.0 {
                 imgStr = "exhibitionCmt_2_5"
-            }else if star >= 4 && star < 6 {
+            }else if star >= 4.0 && star < 6.0 {
                 imgStr = "exhibitionCmt_3_5"
-            }else if star >= 6 && star < 8 {
+            }else if star >= 6.0 && star < 8.0 {
                 imgStr = "exhibitionCmt_4_5"
-            }else if star >= 8 {
+            }else if star >= 8.0 {
                 imgStr = "exhibitionCmt_5_5"
             }
             item_star.image = UIImage.init(named: imgStr)

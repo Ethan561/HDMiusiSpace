@@ -10,6 +10,8 @@
 
 @protocol SSL_PickerViewDelegate <NSObject>
 
+- (void)beginDragingItem; //开始拖拽
+- (void)endDragingItem;   //结束拖拽
 - (void)getBackSelectedPhotos:(NSArray *)images;//返回选择的图片数组
 - (void)didSelectedItemAt:(NSInteger)itemIndex; //返回点击的位置
 @end

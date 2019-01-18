@@ -28,11 +28,11 @@ class HDSSL_commentVC: HDItemBaseVC {
     var ImagePathArray: Array<String> = Array.init() //上传图片地址数组
     
     //mvvm
-    var exViewModel: HDSSL_ExDetailVM = HDSSL_ExDetailVM()  //获取展览详情
-    var viewModel: HDSSL_commentVM = HDSSL_commentVM()      //发布评论
-    var commentId: Int? //发布成功，返回评论id
-    var htmlShareUrl:String? //发布成功，返回分享地址
-    var isHideDropimg: Bool = false
+    var exViewModel  : HDSSL_ExDetailVM = HDSSL_ExDetailVM()  //获取展览详情
+    var viewModel    : HDSSL_commentVM = HDSSL_commentVM()      //发布评论
+    var commentId    : Int? //发布成功，返回评论id
+    var htmlShareUrl :String? //发布成功，返回分享地址
+    var isHideDropimg: Bool = false //拖拽删除提示信息
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -270,7 +270,7 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
             return cell
         }else {
             pickerImgCell = HDSSL_commentImgCell.getMyTableCell(tableV: tableView) as HDSSL_commentImgCell
-            
+            //加载图片选择器
             imagePickerView.superVC = self
             imagePickerView.delegate = self
             pickerImgCell?.cell_collectBg.addSubview(imagePickerView)
@@ -301,7 +301,7 @@ extension HDSSL_commentVC: UITableViewDataSource,UITableViewDelegate {
         
         
     }
-    //ios11以下，重置高度，防止页面刷新时发生抖动
+    //知识点：ios11以下，重置高度，防止页面刷新时发生抖动
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 410
@@ -329,13 +329,13 @@ extension HDSSL_commentVC:SSL_PickerViewDelegate {
         self.commentPhotos = images as! [UIImage]
         
         //
-        if self.commentPhotos.count == 0 {
-            deleteImgBtn.isHidden = true
-        }else{
-            deleteImgBtn.isHidden = false
-        }
+//        if self.commentPhotos.count == 0 {
+//            deleteImgBtn.isHidden = true
+//        }else{
+//            deleteImgBtn.isHidden = false
+//        }
         
-        //ios11系统后tableView刷新时，会自动估算cell、header、footer的高度，导致视图抖动
+        //知识点：-- ios11系统后tableView刷新时，会自动估算cell、header、footer的高度，导致视图抖动
         self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 0)], with: .none) //刷新某个row
 //        self.dTableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .none) //刷新某个section
     }
@@ -347,5 +347,10 @@ extension HDSSL_commentVC:SSL_PickerViewDelegate {
         vc.atIndex = itemIndex
         self.present(vc, animated: true, completion: nil)
     }
-    
+    func beginDragingItem() {
+        deleteImgBtn.isHidden = false
+    }
+    func endDragingItem() {
+        deleteImgBtn.isHidden = true
+    }
 }

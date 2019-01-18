@@ -390,6 +390,32 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
 
 }
 extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
+    func beginDragingItem() {
+        self.commitBtn.isHidden = false
+        var frame = self.reportScrollView.frame
+        frame.size.height = ScreenHeight-60-kTopHeight
+        self.reportScrollView.frame = frame
+        
+        //根据图片数量修改contentView高度
+        if self.commentPhotos.count > 0 && self.commentPhotos.count < 3 {
+            self.scrollviewHeight.constant = 850
+        }
+        if self.commentPhotos.count > 2 && self.commentPhotos.count < 6 {
+            self.scrollviewHeight.constant = 950
+        }else if self.commentPhotos.count > 5 {
+            self.scrollviewHeight.constant = 1050
+        }
+    }
+    
+    func endDragingItem() {
+        self.commitBtn.isHidden = true
+        var frame = self.reportScrollView.frame
+        frame.size.height = ScreenHeight-kTopHeight
+        self.reportScrollView.frame = frame
+        
+        
+    }
+    
     //MARK:返回图片数组
     func getBackSelectedPhotos(_ images: [Any]!) {
         print(images)
@@ -397,16 +423,16 @@ extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             if self.commentPhotos.count == 0{
-                self.commitBtn.isHidden = true
+//                self.commitBtn.isHidden = true
                 var frame = self.reportScrollView.frame
                 frame.size.height = ScreenHeight
                 self.reportScrollView.frame = frame
             }else{
-                self.commitBtn.isHidden = false
+//                self.commitBtn.isHidden = false
                 var frame = self.reportScrollView.frame
-                frame.size.height = ScreenHeight-60-kTopHeight
+                frame.size.height = ScreenHeight-kTopHeight
                 self.reportScrollView.frame = frame
-                
+//
                 //根据图片数量修改contentView高度
                 if self.commentPhotos.count > 0 && self.commentPhotos.count < 3 {
                     self.scrollviewHeight.constant = 850
@@ -416,7 +442,7 @@ extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
                 }else if self.commentPhotos.count > 5 {
                     self.scrollviewHeight.constant = 1050
                 }
-                
+//
             }
         }, completion: nil)
         

@@ -22,7 +22,7 @@
 #import "FLAnimatedImage.h"
 #import "SSLPickerFooterView.h"
 
-@interface SSL_PickerView()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate>
+@interface SSL_PickerView()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
@@ -232,6 +232,20 @@
     //代理回调
     [self getBackPhotosWith];
 }
+#pragma mark --LxGridViewDelegateFlowLayout
+- (void)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"开始拖拽");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(beginDragingItem)]) {
+        [self.delegate beginDragingItem];
+    }
+}
+- (void)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"松手");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(endDragingItem)]) {
+        [self.delegate endDragingItem];
+    }
+}
+
 - (void)moveOnDeleteButtonAt:(NSIndexPath *)sourceIndexPath{
     NSLog(@"按钮上");
     if ([self collectionView:self.collectionView numberOfItemsInSection:0] <= _selectedPhotos.count) {

@@ -73,7 +73,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
     
     @IBAction func tapAction(_ sender: UIButton) {
         
-        if dataArray != nil {
+        if dataArray?.count == 2 {
             if sender.tag == 101 {
                 let model = dataArray?.first
                 delegate?.didSelectItemAt(model!, self)

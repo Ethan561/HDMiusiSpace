@@ -62,12 +62,6 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         //MVVM
         bindViewModel()
-        
-        //显示网络请求加载提醒
-        
-        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
-        loadingView?.frame = self.view.bounds
-        view.addSubview(loadingView!)
         refreshAction()
         weak var weakS = self
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
@@ -81,6 +75,10 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     
     @objc func refreshAction() {
         if topic_id != nil {
+            //显示网络请求加载提醒
+            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+            loadingView?.frame = self.view.bounds
+            view.addSubview(loadingView!)
             if fromRootAChoiceness == true {
                 viewModel.dataRequestWithArticleID(article_id: topic_id!, self)
             }else {
@@ -138,6 +136,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         viewModel.showEmptyView.bind() { (show) in
             if show {
+                weakSelf?.loadingView?.removeFromSuperview()
                 weakSelf?.myTableView.ly_showEmptyView()
             }else {
                 weakSelf?.myTableView.ly_hideEmptyView()
@@ -907,6 +906,17 @@ extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
             }
         }
     }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+         self.myTableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+         self.myTableView.ly_showEmptyView()
+    }
+    
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let arr = message.components(separatedBy: "#")
         print(message,arr)//

@@ -63,9 +63,6 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         
         //MVVM
         bindViewModel()
-        loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
-        loadingView?.frame = self.view.bounds
-        view.addSubview(loadingView!)
         refreshAction()//获取详情数据
         requestComments(skip: 0, take: 10)//获取评论
         weak var weakS = self
@@ -82,7 +79,9 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     //MARK:-获取攻略详情数据
     @objc func refreshAction() {
         if strategyid != nil {
-            
+            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+            loadingView?.frame = self.view.bounds
+            view.addSubview(loadingView!)
             exViewModel.request_getStrategyData(strategyId: strategyid!, vc: self)
             
         }
@@ -139,6 +138,7 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         viewModel.showEmptyView.bind() { (show) in
             if show {
                 weakSelf?.myTableView.ly_showEmptyView()
+                weakSelf?.loadingView?.removeFromSuperview()
             }else {
                 weakSelf?.myTableView.ly_hideEmptyView()
             }
@@ -582,6 +582,17 @@ extension HDSSL_StrategyDetialVC: WKNavigationDelegate,WKUIDelegate {
             }
         }
     }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
+    }
+    
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let arr = message.components(separatedBy: "#")
         print(message,arr)//

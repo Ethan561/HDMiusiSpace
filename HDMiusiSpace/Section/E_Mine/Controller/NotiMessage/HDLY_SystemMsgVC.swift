@@ -150,7 +150,67 @@ extension HDLY_SystemMsgVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        let model = dataArr[indexPath.row]
+        if model.cateID == 2 {
+             //相关联的内容类别id:1课程，2轻听随看，3资讯，4展览，5活动，6 博物馆,7攻略
+            if model.parent_cate_id == 1 {
+                let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                if model.parent_id != nil {
+                    desVC.courseId = "\(model.parent_id!)"
+                }
+                self.navigationController?.pushViewController(desVC, animated: true)
+            }
+            else if model.parent_cate_id == 2 {
+                let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+                if model.parent_id != nil {
+                    desVC.listen_id = "\(model.parent_id!)"
+                }
+                self.navigationController?.pushViewController(desVC, animated: true)
+            }
+            else if model.parent_cate_id == 3 {
+                let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+                if model.parent_id != nil {
+                    desVC.topic_id = "\(model.parent_id!)"
+                }
+                desVC.fromRootAChoiceness = true
+                self.navigationController?.pushViewController(desVC, animated: true)
+            }
+            else if model.parent_cate_id == 4 {
+                //展览详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+                if model.parent_id != nil {
+                    vc.exhibition_id = model.parent_id
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.parent_cate_id == 5 {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+                if model.parent_id != nil {
+                    vc.topic_id = "\(model.parent_id!)"
+                }
+                vc.fromRootAChoiceness = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.parent_cate_id == 6 {
+                //博物馆详情
+                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+                let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
+                if model.parent_id != nil {
+                    vc.museumId = model.parent_id!
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            else if model.parent_cate_id == 7 {
+                let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
+                if model.parent_id != nil {
+                    vc.strategyid = model.parent_id!
+                }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
         
     }
     

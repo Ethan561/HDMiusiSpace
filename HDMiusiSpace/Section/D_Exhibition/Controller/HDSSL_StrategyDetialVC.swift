@@ -262,11 +262,8 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            if  strategyModel?.title != nil {
-                let height = strategyModel!.title!.getContentHeight(font: UIFont.init(name: "PingFangSC-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20), width: ScreenWidth-40)
-                return height+16
-            }
-            return 60
+
+            return 130
         }
         
         if section == 1 {
@@ -282,12 +279,15 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {
-            let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
-            titleV.titleL.numberOfLines = 0
-            titleV.titleL.text = strategyModel?.title
-            titleV.titleL.font = UIFont.init(name: "PingFangSC-Semibold", size: 20)
-            titleV.titleL.textColor = UIColor.HexColor(0x333333)
-            return titleV
+
+            let strategyHeader = HDSSL_dStrategyHeader.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 130))
+            strategyHeader.titleL.text = strategyModel?.title
+            strategyHeader.imgView.kf.setImage(with: URL.init(string: strategyModel?.img ?? ""), placeholder: UIImage.grayImage(sourceImageV: strategyHeader.imgView), options: nil, progressBlock: nil, completionHandler: nil
+            )
+            strategyHeader.authorL.text = strategyModel?.author
+            strategyHeader.timeL.text = strategyModel?.createdAt
+            
+            return strategyHeader
         }
         
         if section == 1 {
@@ -315,7 +315,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             
-            return 2
+            return 1
         }
         
         if section == 1 {
@@ -358,43 +358,20 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = strategyModel
         let index = indexPath.row
+        
         if indexPath.section == 0 {
-            if indexPath.row == 0 {
-                let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
-                guard let url = model?.url else {
-                    return cell!
-                }
-                if webViewH == 0 {
-                  cell?.loadWebView(url)
-                }
-                cell?.webview.uiDelegate = self
-                cell?.webview.navigationDelegate = self
-                cell?.webview.frame.size.height = webViewH
+            
+            let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+            guard let url = model?.url else {
                 return cell!
             }
-            
-            if indexPath.row == 1 {
-                let cell = HDLY_PlatformFoucsCell.getMyTableCell(tableV: tableView)
-                if model?.img != nil {
-                    cell?.imgV.kf.setImage(with: URL.init(string: model!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
-                    cell?.titleL.text = model?.author
-                    if model?.author != nil {
-                        cell?.fromL.text = "本文章来自" + model!.author!
-                    }
-                    //隐藏关注按钮
-                    cell?.focusBtn.isHidden = true
-//                    cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
-//                    focusBtn = cell?.focusBtn
-//                    if model?.is_focus == 1 {
-//                        focusBtn.setTitle("已关注", for: .normal)
-//                    }else {
-//                        focusBtn.setTitle("+关注", for: .normal)
-//                    }
-                    
-                }
-                return cell!
+            if webViewH == 0 {
+              cell?.loadWebView(url)
             }
-            
+            cell?.webview.uiDelegate = self
+            cell?.webview.navigationDelegate = self
+            cell?.webview.frame.size.height = webViewH
+            return cell!
             
         }
         

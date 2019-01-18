@@ -41,13 +41,17 @@ struct SystemMsgModelData: Codable {
     var cateID, msgID: Int?
     var createdAt, title, content: String?
     var img: String?
+    var parent_cate_id: Int?//相关联的内容类别id:1课程，2轻听随看，3资讯，4展览，5活动，6 博物馆,7攻略
+    var parent_id: Int?//相关联的内容id
     
     enum CodingKeys: String, CodingKey {
         case cateID = "cate_id"
         case msgID = "msg_id"
         case createdAt = "created_at"
         case title, content, img
+        case parent_cate_id, parent_id
     }
+    
 }
 
 

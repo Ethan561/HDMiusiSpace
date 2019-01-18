@@ -368,6 +368,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             self.loadingView?.removeFromSuperview()
             self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.myTableView.ly_showEmptyView()
+            self.loadingView?.removeFromSuperview()
         }
     }
     

@@ -371,6 +371,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             self.myTableView.ly_showEmptyView()
 //            self.loadingView?.removeFromSuperview()
             //
+            self.loadingView?.removeFromSuperview()
         }
     }
     

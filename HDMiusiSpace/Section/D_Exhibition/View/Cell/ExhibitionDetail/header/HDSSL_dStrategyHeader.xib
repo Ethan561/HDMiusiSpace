@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDSSL_dStrategyHeader" customModule="HDMiusiSpace" customModuleProvider="target">
+            <connections>
+                <outlet property="authorL" destination="jlk-rS-ovZ" id="kPo-BN-quj"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Rjq-XH-vmn"/>
+                <outlet property="imgView" destination="Hb5-rR-SwP" id="5nB-fv-4bC"/>
+                <outlet property="timeL" destination="qkT-7a-aA2" id="qKE-x7-eXx"/>
+                <outlet property="titleL" destination="i6n-ff-L4n" id="UYM-rQ-KNh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吉萨的机会都是减肥的方式地方可节省空间啊实况解说" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6n-ff-L4n">
+                    <rect key="frame" x="15" y="15" width="345" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="T1M-gz-gzA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hb5-rR-SwP">
+                    <rect key="frame" x="20" y="73" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="PvP-f8-v5B"/>
+                        <constraint firstAttribute="height" constant="50" id="nsN-O6-3Dp"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018-11-11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkT-7a-aA2">
+                    <rect key="frame" x="280" y="90.5" width="80" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="5Fj-qK-DbN"/>
+                        <constraint firstAttribute="width" constant="80" id="Ekr-iP-rzz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人民日报" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlk-rS-ovZ">
+                    <rect key="frame" x="90" y="78" width="175" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="mBC-kh-3K6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jlk-rS-ovZ" firstAttribute="leading" secondItem="Hb5-rR-SwP" secondAttribute="trailing" constant="20" id="0r8-Ce-75H"/>
+                <constraint firstItem="Hb5-rR-SwP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="3T1-ql-l0u"/>
+                <constraint firstItem="qkT-7a-aA2" firstAttribute="leading" secondItem="jlk-rS-ovZ" secondAttribute="trailing" constant="15" id="6bG-Cl-BJ9"/>
+                <constraint firstItem="i6n-ff-L4n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="A5R-6A-zMc"/>
+                <constraint firstItem="qkT-7a-aA2" firstAttribute="centerY" secondItem="Hb5-rR-SwP" secondAttribute="centerY" id="Bir-4D-fnB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qkT-7a-aA2" secondAttribute="trailing" constant="15" id="DDx-O6-sCi"/>
+                <constraint firstItem="i6n-ff-L4n" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="Mln-ui-eht"/>
+                <constraint firstItem="Hb5-rR-SwP" firstAttribute="top" secondItem="i6n-ff-L4n" secondAttribute="bottom" constant="8" id="Xex-Gv-0Ra"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="i6n-ff-L4n" secondAttribute="trailing" constant="15" id="a7N-dS-dHO"/>
+                <constraint firstItem="jlk-rS-ovZ" firstAttribute="centerY" secondItem="Hb5-rR-SwP" secondAttribute="centerY" id="qCy-1m-zus"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-271" y="-140"/>
+        </view>
+    </objects>
+</document>

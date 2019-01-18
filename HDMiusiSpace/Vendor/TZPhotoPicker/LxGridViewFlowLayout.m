@@ -211,6 +211,7 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             
             [_beingMovedPromptView addSubview:snapshotView];
             [_beingMovedPromptView addSubview:highlightedSnapshotView];
+            _beingMovedPromptView.transform = CGAffineTransformMakeScale(1.1, 1.1);//放大1.1倍
 //            [self.collectionView addSubview:_beingMovedPromptView];
             UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
             [window addSubview:_beingMovedPromptView];

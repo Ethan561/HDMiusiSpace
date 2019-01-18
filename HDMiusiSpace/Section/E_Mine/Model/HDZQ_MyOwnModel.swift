@@ -38,7 +38,7 @@ struct SearResultData:Codable {
 struct FollowPerModel:Codable {
     var uid: Int = 0
     var is_focus: Int = 0
-//    var cateId: Int = 0
+    var cate_id: Int = 0
     var title: String
     var img: String
     var sub_title: String

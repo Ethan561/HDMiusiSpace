@@ -231,11 +231,23 @@ extension HDHSP_PersonSearchVC:UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
-        let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
         let model = dataArr[indexPath.row]
-        vc.toid = model.uid
-        self.navigationController?.pushViewController(vc, animated: true)
+        let storyBoard = UIStoryboard.init(name: "RootE", bundle: Bundle.main)
+        if model.cate_id == 3 {
+            let vc: HDZQ_OthersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDZQ_OthersCenterVC") as! HDZQ_OthersCenterVC
+            vc.toid = model.uid
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc: HDLY_TeachersCenterVC = storyBoard.instantiateViewController(withIdentifier: "HDLY_TeachersCenterVC") as! HDLY_TeachersCenterVC
+            vc.detailId = model.uid
+            if model.cate_id == 1 {
+                vc.type = 2
+            } else {
+                vc.type = 1
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
 
 }

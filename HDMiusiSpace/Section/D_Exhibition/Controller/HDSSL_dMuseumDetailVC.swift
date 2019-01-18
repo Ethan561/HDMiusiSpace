@@ -277,6 +277,7 @@ extension HDSSL_dMuseumDetailVC {
         }) { (errorCode, msg) in
             self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.myTableView.ly_showEmptyView()
+            self.loadingView?.removeFromSuperview()
         }
     }
     
@@ -685,6 +686,16 @@ extension HDSSL_dMuseumDetailVC : WKNavigationDelegate{
             }
             
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
     }
     
 }

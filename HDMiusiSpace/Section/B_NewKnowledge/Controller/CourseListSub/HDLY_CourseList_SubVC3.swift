@@ -115,6 +115,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
+            self.loadingView?.removeFromSuperview()
         }
     }
     
@@ -518,6 +519,17 @@ extension HDLY_CourseList_SubVC3 : WKNavigationDelegate,WKUIDelegate {
             }
         }
     }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.tableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.tableView.ly_showEmptyView()
+    }
+    
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let arr = message.components(separatedBy: "#")
         print(message,arr)//

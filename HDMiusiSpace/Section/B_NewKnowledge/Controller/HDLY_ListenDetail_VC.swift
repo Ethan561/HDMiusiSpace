@@ -84,12 +84,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         //MVVM
         bindViewModel()
         
-        if listen_id != nil {
-            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
-            loadingView?.frame = self.view.bounds
-            view.addSubview(loadingView!)
-            viewModel.dataRequestWithListenID(listenID: listen_id!, self)
-        }
+        refreshAction()
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
         player.showFloatingBtn = true
         navBgView.isHidden = true
@@ -109,6 +104,9 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     @objc func refreshAction() {
         if listen_id != nil {
+            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+            loadingView?.frame = self.view.bounds
+            view.addSubview(loadingView!)
             viewModel.dataRequestWithListenID(listenID: listen_id!, self)
         }
     }
@@ -128,6 +126,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         }
         viewModel.showEmptyView.bind() { (show) in
             if show {
+                weakSelf?.loadingView?.removeFromSuperview()
                 weakSelf?.myTableView.ly_showEmptyView()
             }else {
                 weakSelf?.myTableView.ly_hideEmptyView()
@@ -898,5 +897,15 @@ extension HDLY_ListenDetail_VC : WKNavigationDelegate {
                 self.loadingView?.removeFromSuperview()
             }
         }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.myTableView.ly_showEmptyView()
     }
 }

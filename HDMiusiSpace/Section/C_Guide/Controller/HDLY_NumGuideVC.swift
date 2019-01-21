@@ -19,8 +19,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     @IBOutlet weak var numViewHCons: NSLayoutConstraint!
     var numStr = ""
-    var exhibit_num = ""
-    var exhibition_id: Int?
+    var exhibit_num = ""//展品编号
+    var exhibition_id: Int?//展览ID
     var titleName = ""
 
     var dataArr = ["1","2","3","4","5","6","7","8","9","","0",""]
@@ -133,6 +133,9 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     func dataRequest(exhibit_num: String) {
         player.stop()
+        slide.value = 0
+        timeL.text = "00:00/00:00"
+        isPlaying = false
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
@@ -245,8 +248,6 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
                     cell.tagBtn.isSelected = false
                 }
             }
-            
-            
             return cell
         }
         
@@ -254,39 +255,32 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if isPlaying == true {
-            if indexPath.row == 11{
+        if indexPath.row < 11 {
+            if indexPath.row < 9 {
+                numStr.append("\(indexPath.row+1)")
+            }
+            if indexPath.row == 10 {
+                numStr.append("0")
+            }
+            if indexPath.row == 9 && numStr.count > 0{
+                numStr.removeLast()
+            }
+            if numStr.count > 4 {
+                numStr =  String(numStr.prefix(4))
+            }
+            numL.text = numStr
+        }
+        
+        if indexPath.row == 11 {
+            if numStr.count == 0 {
+                HDAlert.showAlertTipWith(type: .onlyText, text: "请输入展品编号！")
+                return
+            }
+            if player.fileno != numStr && numStr.count > 0 {
+                dataRequest(exhibit_num: numStr)
+            }else {
                 playAction()
             }
-        }else {
-            if indexPath.row < 11 {
-                if indexPath.row < 9 {
-                    numStr.append("\(indexPath.row+1)")
-                }
-                if indexPath.row == 10 {
-                    numStr.append("0")
-                }
-                if indexPath.row == 9 && numStr.count > 0{
-                    numStr.removeLast()
-                }
-                if numStr.count > 4 {
-                    numStr =  String(numStr.prefix(4))
-                }
-                numL.text = numStr
-            }
-            
-            if indexPath.row == 11 {
-                if numStr.count == 0 {
-                    HDAlert.showAlertTipWith(type: .onlyText, text: "请输入展品编号！")
-                    return
-                }
-                if player.fileno != numStr && numStr.count > 0 {
-                    dataRequest(exhibit_num: numStr)
-                }else {
-                    playAction()
-                }
-            }
-            
         }
     }
     
@@ -305,9 +299,9 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
         let width:CGFloat   = 90
         let space = (ScreenWidth-3*width)/4.0
         var spaceH:CGFloat = 20.0
-//        if ScreenWidth == 320 {
-//            spaceH = 10
-//        }
+        if ScreenWidth == 320 {
+            spaceH = 10
+        }
         return UIEdgeInsets.init(top: spaceH, left: space, bottom: spaceH, right: space)
     }
     

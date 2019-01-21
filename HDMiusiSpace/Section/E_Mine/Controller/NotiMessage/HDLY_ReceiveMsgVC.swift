@@ -162,22 +162,52 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let model = dataArr[indexPath.row]
-        // 1普通评论点赞 2普通评论回复 3展览评星点赞 4展览评星回复 5关注 6问题答复
-        if model.cateID == 2 {
+        if model.cateID == 2 ||  model.cateID == 4 || model.cateID == 6 {
+            seeTheReplyAction(model: model)
+        }
+    }
+    
+    func seeTheReplyAction(model: DynamicMsgModelData) {
+        //parent_cate_id:关联的内容类别id:1资讯，2轻听随看，3展览,4精选专题,5攻略,6课程,7用户关注
+        if model.parent_cate_id == 1 {
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             vc.topic_id = String.init(format: "%ld", model.parent_id ?? 0)
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        if model.cateID == 4 {
-            // 1全部，2有图
-            let sb = UIStoryboard.init(name: "RootD", bundle: nil)
-            let commentListvc = sb.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
-            commentListvc.listType = 1
-            commentListvc.exhibition_id = model.parent_id
-            self.navigationController?.pushViewController(commentListvc, animated: true)
+        else if model.parent_cate_id == 2 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            if model.parent_id != nil {
+                desVC.listen_id = "\(model.parent_id!)"
+            }
+            self.navigationController?.pushViewController(desVC, animated: true)
         }
-        if  model.cateID == 6 {
+        else if model.parent_cate_id == 4 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            if model.parent_id != nil {
+                desVC.topic_id = "\(model.parent_id!)"
+            }
+            desVC.fromRootAChoiceness = false
+            self.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if model.parent_cate_id == 3 {
+            //展览详情
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            if model.parent_id != nil {
+                vc.exhibition_id = model.parent_id
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.parent_cate_id == 5 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            if model.parent_id != nil {
+                vc.topic_id = "\(model.parent_id!)"
+            }
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.parent_cate_id == 6 {
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
             vc.courseId = String.init(format: "%ld", model.parent_id ?? 0)
             vc.showAnswerQuestion = true
@@ -185,7 +215,9 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
         }
         
     }
+    
 }
+
 
 
 class HDLY_ReceiveMsgCell1: UITableViewCell {

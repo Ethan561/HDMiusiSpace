@@ -159,11 +159,32 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let model = dataArr[indexPath.row]
+        // 1普通评论点赞 2普通评论回复 3展览评星点赞 4展览评星回复 5关注 6问题答复
+        if model.cateID == 2 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld", model.parent_id ?? 0)
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        if model.cateID == 4 {
+            // 1全部，2有图
+            let sb = UIStoryboard.init(name: "RootD", bundle: nil)
+            let commentListvc = sb.instantiateViewController(withIdentifier: "HDSSL_commentListVC") as! HDSSL_commentListVC
+            commentListvc.listType = 1
+            commentListvc.exhibition_id = model.parent_id
+            self.navigationController?.pushViewController(commentListvc, animated: true)
+        }
+        if  model.cateID == 6 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+            vc.courseId = String.init(format: "%ld", model.parent_id ?? 0)
+            vc.showAnswerQuestion = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
     }
-    
-    
 }
 
 

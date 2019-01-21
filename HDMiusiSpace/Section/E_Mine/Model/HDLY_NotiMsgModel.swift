@@ -69,13 +69,16 @@ struct DynamicMsgModelData: Codable {
     var createdAt, title, des: String?
     var avatar: String?
     var uid: Int?
+    var parent_id: Int?
     
     enum CodingKeys: String, CodingKey {
         case cateID = "cate_id"
         case msgID = "msg_id"
         case createdAt = "created_at"
         case title, des, avatar, uid
+        case parent_id
     }
+    
 }
 
 

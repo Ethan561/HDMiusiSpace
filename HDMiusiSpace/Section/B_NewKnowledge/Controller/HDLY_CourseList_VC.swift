@@ -28,6 +28,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var infoModel: CourseDetail?
     var isMp3Course = false
     var showLeaveMsg = false
+    var showAnswerQuestion = false
+
     var chapterListVC: HDLY_CourseList_SubVC1?
     
     var kVideoCover = ""
@@ -401,6 +403,10 @@ extension HDLY_CourseList_VC {
         if showLeaveMsg == true {
             self.pageMenu(self.pageMenu, itemSelectedFrom: 0, to: 3)
             self.pageMenu.selectedItemIndex = 3
+        }
+        if showAnswerQuestion == true {
+            self.pageMenu(self.pageMenu, itemSelectedFrom: 0, to: 2)
+            self.pageMenu.selectedItemIndex = 2
         }
     }
     

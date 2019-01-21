@@ -63,16 +63,14 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
             //系统消息
             cell?.titleL.text = "系统消息"
             cell?.imgV.image = UIImage.init(named: "xi_icon_xtxi")
+            cell?.timeL.text = model.data?.systemMsgTime
+            cell?.subTitleL.text = model.data?.systemMsgTitle
+            cell?.timeL.isHidden  = false
             if self.model.data?.systemMsgNum ?? 0 > 0 {
-                cell?.countL.isHidden = false
-                cell?.timeL.isHidden = false
                 cell?.countL.text = "\(self.model.data?.systemMsgNum ?? 0)"
-                cell?.timeL.text = model.data?.systemMsgTime
-                cell?.subTitleL.text = model.data?.systemMsgTitle
                 cell?.countL.isHidden = false
-            }else {
+            } else {
                 cell?.timeL.text = model.data?.systemMsgTime
-                cell?.subTitleL.text = "暂无消息"
                 cell?.countL.isHidden = true
             }
             
@@ -81,15 +79,14 @@ extension HDLY_MessageCenterVC : UITableViewDataSource, UITableViewDelegate {
             cell?.titleL.text = "收到的动态消息"
             cell?.imgV.image = UIImage.init(named: "xi_icon_dtxi")
             cell?.lineView.isHidden = true
+            cell?.timeL.text = model.data?.dynamicMsgTime
+            cell?.subTitleL.text = model.data?.dynamicMsgTitle
+            cell?.timeL.isHidden  = false
+
             if self.model.data?.dynamicMsgNum ?? 0 > 0 {
                 cell?.countL.isHidden = false
-                cell?.timeL.isHidden = false
                 cell?.countL.text = "\(self.model.data?.dynamicMsgNum ?? 0)"
-                cell?.timeL.text = model.data?.dynamicMsgTime
-                cell?.subTitleL.text = model.data?.dynamicMsgTitle
             } else {
-                cell?.timeL.text = model.data?.dynamicMsgTime
-                cell?.subTitleL.text = "暂无消息"
                 cell?.countL.isHidden = true
             }
         }

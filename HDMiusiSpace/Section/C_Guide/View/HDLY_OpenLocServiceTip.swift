@@ -25,4 +25,9 @@ class HDLY_OpenLocServiceTip: UIView {
     }
     
     
+    @IBAction func closeAction(_ sender: Any) {
+        self.removeFromSuperview()
+    }
+    
+    
 }

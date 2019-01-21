@@ -67,6 +67,9 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if HDDeclare.shared.isSystemLocateEnable == false {
+            showOpenLocServiceTipView()
+        }
         
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
@@ -83,9 +86,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
                 btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
                 btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
                 btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
-                if HDDeclare.shared.isSystemLocateEnable == false {
-                    showOpenLocServiceTipView()
-                }
+     
             }
             return
         }

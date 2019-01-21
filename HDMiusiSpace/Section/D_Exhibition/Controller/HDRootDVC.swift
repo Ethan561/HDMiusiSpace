@@ -48,7 +48,9 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if HDDeclare.shared.isSystemLocateEnable == false {
+            showOpenLocServiceTipView()
+        }
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         guard str != nil else {
@@ -253,7 +255,6 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         tipView.sureBtnBlock = {
             weakS?.changeCityAction()
         }
-        
     }
     
     func changeCityAction() {
@@ -274,6 +275,22 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         HDDeclare.shared.locModel.longitude = "\(HDLY_LocationTool.shared.coordinate!.longitude)"
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootDSubVC_Refresh_Noti"), object: nil)
+    }
+    
+    //弹窗提醒开启定位
+    func showOpenLocServiceTipView() {
+        let tipView: HDLY_OpenLocServiceTip = HDLY_OpenLocServiceTip.createViewFromNib() as! HDLY_OpenLocServiceTip
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        guard let topVC = self.getTopVC() else {
+            return
+        }
+        
+        if topVC.isKind(of: HDRootCVC.self){
+            win.addSubview(tipView)
+        }
     }
     
     

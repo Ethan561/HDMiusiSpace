@@ -36,7 +36,7 @@ open class ESRefreshDataManager {
     open var lastRefreshInfo = [String: Date]()
     open var expiredTimeIntervalInfo = [String: TimeInterval]()
     open var refreshingInfo = [String: Date]()
-
+    
     public required init() {
         if let lastRefreshInfo = UserDefaults.standard.dictionary(forKey: ESRefreshDataManager.lastRefreshKey) as? [String: Date] {
             self.lastRefreshInfo = lastRefreshInfo

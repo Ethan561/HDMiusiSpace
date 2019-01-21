@@ -71,7 +71,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     //拉伸形变图片
     private let mainImageView: UIImageView = {
         let imageView = UIImageView.init()
-        imageView.image = UIImage.init(named: "refresh_path_2")
+        imageView.image = UIImage.init(named: "mus_bar")
         return imageView
     }()
     
@@ -131,6 +131,8 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     
     open func refreshAnimationBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
+        mainImageView.image = UIImage.init(named: "refresh_path_2")
+
         indicatorView.isHidden = false
         imageView.isHidden = true
         //titleLabel.text = loadingDescription//加载中。。。
@@ -196,7 +198,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             //titleLabel.text = releaseToRefreshDescription//松开刷新
             self.setNeedsLayout()
             self.impact()
-
+            
 //            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions.curveLinear, animations: {
 //                self.mainImageView.frame = CGRect.init(x: (self.bounds.size.width - 39.0) / 2.0,
 //                                                       y: self.bounds.size.height - 25 ,
@@ -208,6 +210,8 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             break
         case .pullToRefresh:
             //titleLabel.text = pullToRefreshDescription//下拉刷新
+            mainImageView.image = UIImage.init(named: "mus_bar")
+
             mainImageView.isHidden = false
             jumpImageView1.isHidden = true
             jumpImageView2.isHidden = true

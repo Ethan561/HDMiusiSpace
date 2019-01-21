@@ -159,7 +159,6 @@ class HDRootEVC: HDItemBaseVC {
     }
     
     func addRefresh() {
-//        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
 //        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)

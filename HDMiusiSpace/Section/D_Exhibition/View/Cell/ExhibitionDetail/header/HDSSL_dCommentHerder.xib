@@ -68,7 +68,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <state key="normal" title="全部(1)">
-                        <color key="titleColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -81,7 +81,7 @@
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-78-UKn">
                     <rect key="frame" x="86" y="45.5" width="60" height="26"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.88627450980392153" green="0.89803921568627454" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="pJa-KW-k9v"/>
                         <constraint firstAttribute="height" constant="26" id="r8f-K0-lXK"/>

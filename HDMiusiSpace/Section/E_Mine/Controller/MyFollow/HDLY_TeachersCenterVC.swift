@@ -179,10 +179,10 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.teacherDesL.text = model.des
         
         let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)
+
+        tabHeader.frame.size.height = 215 + desHeight! - 75
         
-        tabHeader.frame.size.height = 190 + desHeight! - 75
-        
-        topConstraint.constant = 190 + desHeight! - 75
+        topConstraint.constant = 215 + desHeight! - 75
         
         tabHeader.leftView.isHidden = true
         tabHeader.rightView.isHidden = true
@@ -281,8 +281,8 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
 
                 cell?.titleL.text = model.title
                 cell?.authorL.text = String.init(format: "%@  %@", (model.teacherName)! ,(model.teacherTitle)!)
-                cell?.countL.text = model.purchases == nil ? "0" : "\(model.purchases!)" + "人在学"
-                cell?.courseL.text = model.classNum == nil ? "0" : "\(model.classNum!)" + "课时"
+                cell?.countL.text = model.purchases == nil ? "0人在学" : "\(model.purchases!)" + "人在学"
+                cell?.courseL.text = model.classNum == nil ? "0课时" : "\(model.classNum!)" + "课时"
                 if model.fileType == 1 {//mp3
                     cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
                 }else {

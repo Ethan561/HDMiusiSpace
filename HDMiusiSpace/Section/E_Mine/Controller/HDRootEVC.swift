@@ -269,18 +269,23 @@ extension HDRootEVC {
                         starTitleString.append(starimgStr)
                         starTitleString.append(NSAttributedString.init(string: " "))
                         starTitleString.append(NSAttributedString.init(string: infoModel?.star ?? "0"))
-                        self.starTitleStrings.append(starTitleString)
-                        
+                        self.starTitleStrings.append(starTitleString) 
                     }
                     var indexPaths = [IndexPath]()
                     for j in 0..<model.data.count {
                         let indexPath = NSIndexPath.init(row: self.myDynamics.count + j, section: 1)
                         indexPaths.append(indexPath as IndexPath)
                     }
-                    self.myTableView.beginUpdates()
+                    
                     self.myDynamics.append(contentsOf: model.data)
-                    self.myTableView.insertRows(at: indexPaths, with: .fade)
-                    self.myTableView.endUpdates()
+                    if self.skip > 0 {
+                        self.myTableView.beginUpdates()
+                       self.myTableView.insertRows(at: indexPaths, with: .fade)
+                        self.myTableView.endUpdates()
+                    } else {
+                        self.myTableView.reloadData()
+                    }
+                    
                     self.myTableView.es.stopLoadingMore()
                     self.myTableView.es.stopPullToRefresh()
                     if model.data.count == 0 {

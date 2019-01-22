@@ -26,6 +26,9 @@ final class HDFloatingButtonManager: NSObject {
         super.init()
         setup()
         NotificationCenter.default.addObserver(self, selector: #selector(avplayerIsPlayOrPause(noti:)), name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(avplayerFinishPlaying(noti:)), name: NSNotification.Name(rawValue: "AVPlayerFinishPlaying"), object: nil)
+
     }
     
     func setup() {
@@ -82,7 +85,7 @@ final class HDFloatingButtonManager: NSObject {
         if (topVC.isKind(of: HDLY_ListenDetail_VC.self)) {
             return
         }
-        LOG("vcname: \(topVC.className)")
+        //LOG("vcname: \(topVC.className)")
         
         if let obj = noti.object as? Bool {
             if obj {
@@ -109,8 +112,13 @@ final class HDFloatingButtonManager: NSObject {
         }else {
             floatingBtnView.show = false
         }*/
- 
+
     }
+    
+    @objc func avplayerFinishPlaying(noti:Notification) {
+        floatingBtnView.closeAction()
+    }
+    
 }
 
 extension HDFloatingButtonManager: HDFloatingButtonViewDelegate {

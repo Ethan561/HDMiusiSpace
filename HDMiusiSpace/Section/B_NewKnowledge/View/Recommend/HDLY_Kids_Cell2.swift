@@ -51,7 +51,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
                 imgV.kf.setImage(with: URL.init(string: (model?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL.text = model?.title
-            countL.text = model?.views?.string == nil ? "0" :(model?.views?.string)! + "人在学"
+            countL.text = model?.views?.string == nil ? "0人在学" :(model?.views?.string)! + "人在学"
             if model?.price != nil {
                 priceL.text = "¥" + "\(model!.price!)"
             }
@@ -62,7 +62,7 @@ class HDLY_Kids_Cell2: UITableViewCell {
                 imgV1.kf.setImage(with: URL.init(string: (model1?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             titleL1.text = model1?.title
-            countL1.text = model1?.views?.string == nil ? "0" :(model1?.views?.string)! + "人在学"
+            countL1.text = model1?.views?.string == nil ? "0人在学" :(model1?.views?.string)! + "人在学"
             if model1?.price != nil {
                 priceL1.text = "¥" + "\(model1!.price!)"
             }

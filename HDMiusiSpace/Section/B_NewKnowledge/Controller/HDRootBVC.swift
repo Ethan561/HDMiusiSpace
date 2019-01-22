@@ -61,6 +61,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     }()
     
     var childVCScrollView: UIScrollView?
+    var recommendSubVC:HDLY_Recommend_SubVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,11 +78,10 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         self.voiceView.isHidden = true
         self.voiceView.delegate = self
         kWindow?.addSubview(self.voiceView)
-        
         setupViews()
+        addRefresh()
         //
-        dataRequestForBanner()
-        dataRequestForMenu()
+        refreshAction()
         searchBtn.isHidden = true
         
     }
@@ -158,7 +158,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
         }
     }
 
-    func dataRequestForMenu() {
+    func dataRequestForMenu(isRefresh: Bool) {
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -172,18 +172,42 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             for model in self.menuArr {
                 menuTitleArr.append(model.cateName)
             }
+            self.pageMenu.removeAllItems()
             self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
-            self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+            if isRefresh == false {
+                self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+            }else {
+                self.recommendSubVC?.dataRequest()
+            }
+            self.myTableView.es.stopPullToRefresh()
+
         }) { (errorCode, msg) in
             self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.myTableView.ly_showEmptyView()
+            self.myTableView.es.stopPullToRefresh()
         }
     }
     
     @objc func refreshAction() {
-        dataRequestForMenu()
         dataRequestForBanner()
+        dataRequestForMenu(isRefresh: false)
     }
+    
+    func addRefresh() {
+        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
+        self.myTableView.es.addPullToRefresh(animator: header) { [weak self] in
+            self?.refresh()
+        }
+        self.myTableView.refreshIdentifier = String.init(describing: self)
+        self.myTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func refresh() {
+        dataRequestForBanner()
+        dataRequestForMenu(isRefresh: true)
+    }
+    
     
     //跳转搜索入口
     @IBAction func searchAction(_ sender: UIButton) {
@@ -223,6 +247,7 @@ extension HDRootBVC {
             case 0://推荐
                 let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
                 self.addChildViewController(baseVC)
+                recommendSubVC = baseVC
                 self.contentScrollView.addSubview(self.childViewControllers[0].view)
                 baseVC.showListenView.bind { [weak self] show in
                     if show {

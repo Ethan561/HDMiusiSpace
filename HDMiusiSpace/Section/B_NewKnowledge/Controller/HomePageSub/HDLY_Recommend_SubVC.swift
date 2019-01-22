@@ -115,6 +115,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
                     }
                 }
                 self.tableView.reloadData()
+                self.tableView.es.stopLoadingMore()
             }
             
         }) { (errorCode, msg) in

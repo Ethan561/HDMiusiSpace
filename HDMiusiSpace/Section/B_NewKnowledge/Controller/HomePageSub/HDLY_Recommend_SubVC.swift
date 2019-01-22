@@ -55,6 +55,10 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         super.viewWillAppear(animated)
         self.dataRequest()
         player.showFloatingBtn = true
+        if player.state == .paused {
+            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+            HDFloatingButtonManager.manager.floatingBtnView.show = true
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -189,7 +193,7 @@ extension HDLY_Recommend_SubVC {
                 }else {
                     cell?.moreL.text = ""
                 }
-            }else {
+            } else {
                 cell?.moreL.text = "更多"
             }
 
@@ -358,12 +362,36 @@ extension HDLY_Recommend_SubVC {
 
 extension HDLY_Recommend_SubVC {
     
+    // 轻听随看
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
         vc.listen_id = model.article_id?.string
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    func didTapItemPlayBtnAt(_ model:BRecmdModel) {
+        playingAction(model)
+    }
+
+    func playingAction(_ model: BRecmdModel) {
+        guard let url = model.voice else {
+            return
+        }
+        if player.state == .playing && player.url == url {
+            return
+        }
+        var voicePath = model.voice!
+        if voicePath.contains("m4a") {
+            voicePath = model.voice!.replacingOccurrences(of: "m4a", with: "wav")
+        }
+        player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
+        player.url = url
+        HDFloatingButtonManager.manager.floatingBtnView.show = true
+        HDFloatingButtonManager.manager.listenID = String.init(format: "%ld", model.article_id?.int ?? 0)
+        HDFloatingButtonManager.manager.iconUrl =  model.icon
+    }
+    
+    //精选专题
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
         
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
@@ -371,6 +399,7 @@ extension HDLY_Recommend_SubVC {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    //亲子互动
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
         vc.courseId = model.article_id?.string

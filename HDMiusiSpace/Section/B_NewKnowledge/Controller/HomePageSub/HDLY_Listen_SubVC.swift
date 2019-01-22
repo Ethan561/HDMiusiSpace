@@ -79,6 +79,7 @@ class HDLY_Listen_SubVC:                                                        
         dataRequest(cate_id: "-1")
 
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         player.showFloatingBtn = true

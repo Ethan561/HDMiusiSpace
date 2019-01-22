@@ -154,11 +154,11 @@ extension HDLY_Recommend_SubVC {
             return 126*ScreenWidth/375.0
         }else if model.type?.int == 2 {
             return 208*ScreenWidth/375.0
-        }else if model.type?.int == 3 {
+        }else if model.type?.int == 3 && model.listen?.count ?? 0 > 0{
             return 240*ScreenWidth/375.0
         }else if model.type?.int == 4 {
             return 280*ScreenWidth/375.0
-        }else if model.type?.int == 5 {
+        }else if model.type?.int == 5 && model.interactionlist?.count ?? 0 > 0 {
             return 260*ScreenWidth/375.0
         }
         else if model.type?.int == 6 {
@@ -252,7 +252,7 @@ extension HDLY_Recommend_SubVC {
             }
 
             return cell!
-        }else if model.type?.int == 5 {
+        }else if model.type?.int == 5 && model.interactionlist?.count ?? 0 > 0{
             let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
             cell?.dataArray = model.interactionlist
             cell?.delegate = self

@@ -207,7 +207,8 @@ extension HDLY_CourseList_SubVC1 {
                 else if listModel.freeType == 1 {
                     cell!.tagL.isHidden = false
                     cell!.tagL.text = "试听"
-                    cell!.tagL.textColor = UIColor.HexColor(0xC1B6AE)
+                    cell!.tagL.backgroundColor = UIColor.HexColor(0xC1B6AE)
+                    cell!.tagL.textColor = UIColor.white
                     
                     cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
                     cell!.nameL.textColor = UIColor.HexColor(0x4A4A4A)
@@ -225,7 +226,8 @@ extension HDLY_CourseList_SubVC1 {
                 }
                 else if listModel.freeType == 2 {
                     cell!.tagL.isHidden = false
-                    cell!.tagL.textColor = UIColor.HexColor(0xD8B98D)
+                    cell!.tagL.backgroundColor = UIColor.HexColor(0xD8B98D)
+                    cell!.tagL.textColor = UIColor.white
                     cell!.tagL.text = "SVIP"
                     cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
                 }

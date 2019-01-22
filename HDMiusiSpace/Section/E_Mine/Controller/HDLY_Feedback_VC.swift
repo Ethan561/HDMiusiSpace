@@ -48,7 +48,10 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
         guard let parentId =  self.parent_id else {
             return
         }
-        if textView.text.isEmpty == true {return}
+        if textView.text.isEmpty == true {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请填写内容")
+            return
+        }
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
             return

@@ -845,8 +845,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
         } else {
             guard let video = model.audio else {return}
-            if video.isEmpty == false && video.contains(".mp3") {
-                player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+            if video.isEmpty == false && video.contains("http://") {
+                var voicePath = video
+                if voicePath.contains("m4a") {
+                    voicePath = video.replacingOccurrences(of: "m4a", with: "wav")
+                }
+                player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 player.url = video
                 self.playModel = model
                 item.playBtn.isSelected = true

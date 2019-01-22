@@ -206,11 +206,16 @@ extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
         
          let player = HDLY_AudioPlayer.shared
         if idxStrig != "" {
-            let URLS = URL.init(string: url)
+            var voicePath = url
+            if voicePath.contains("m4a") {
+                voicePath = url.replacingOccurrences(of: "m4a", with: "wav")
+            }
+            let URLS = URL.init(string: voicePath)
             player.delegate = self
             if player.fileno == url {
                 player.play()
             } else {
+                
                player.play(file: Music.init(name: "", url: URLS!))
                player.fileno =  url
             }

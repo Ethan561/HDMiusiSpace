@@ -13,7 +13,6 @@ let SearchHistory : String = "SearchHistory"
 class HDSSL_SearchVC: HDItemBaseVC {
 
     public var searchContent: String?
-    
     private var take = 10
     private var skip = 0
     var currentType: Int = 0  //当前搜索类型

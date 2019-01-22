@@ -230,8 +230,13 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
             }
         } else {
-            if video.isEmpty == false && video.contains(".mp3") {
-                player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+            if video.isEmpty == false && video.contains("http://") {
+                var voicePath = video
+                if voicePath.contains("m4a") {
+                    voicePath = video.replacingOccurrences(of: "m4a", with: "wav")
+                }
+
+                player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 player.url = video
                 currentModel = listModel
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_default")
@@ -269,8 +274,12 @@ extension HDLY_ExhibitListVC {
                     cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
                 }
             } else {
-                if video.isEmpty == false && video.contains(".mp3") {
-                    player.play(file: Music.init(name: "", url:URL.init(string: video)!))
+                if video.isEmpty == false && video.contains("http://") {
+                    var voicePath = video
+                    if voicePath.contains("m4a") {
+                        voicePath = video.replacingOccurrences(of: "m4a", with: "wav")
+                    }
+                    player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = video
                     currentModel = listModel
                     cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")

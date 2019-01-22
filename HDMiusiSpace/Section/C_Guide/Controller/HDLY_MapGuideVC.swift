@@ -262,8 +262,12 @@ extension HDLY_MapGuideVC {
         } else {
             if player.state == .paused {
                 player.play()
-            }else if ann.audio.contains(".mp3") {
-                player.play(file: Music.init(name: "", url:URL.init(string: ann.audio)!))
+            }else if ann.audio.contains("http://") {
+                var voicePath = ann.audio!
+                if voicePath.contains("m4a") {
+                    voicePath = ann.audio.replacingOccurrences(of: "m4a", with: "wav")
+                }
+                player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 player.fileno = ann.identify
                 ann.annType = kAnnotationType_ReadOne
                 let key = String.init(format: "isReadPin_%@", ann.identify)
@@ -284,8 +288,12 @@ extension HDLY_MapGuideVC {
         } else {
             if player.state == .paused {
                 player.play()
-            }else if ann.audio.contains(".mp3") {
-                player.play(file: Music.init(name: "", url:URL.init(string: ann.audio)!))
+            }else if ann.audio.contains("http://") {
+                var voicePath = ann.audio!
+                if voicePath.contains("m4a") {
+                    voicePath = ann.audio.replacingOccurrences(of: "m4a", with: "wav")
+                }
+                player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 player.fileno = ann.identify
                 ann.annType = kAnnotationType_ReadOne
                 let key = String.init(format: "isReadPin_%@", ann.identify)

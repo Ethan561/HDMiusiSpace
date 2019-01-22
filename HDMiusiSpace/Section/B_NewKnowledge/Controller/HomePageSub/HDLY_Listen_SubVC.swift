@@ -273,7 +273,11 @@ class HDLY_Listen_SubVC:                                                        
         guard let url = model.voice else {
             return
         }
-        player.play(file: Music.init(name: "", url:URL.init(string: url)!))
+        var voicePath = model.voice!
+        if voicePath.contains("m4a") {
+            voicePath = model.voice!.replacingOccurrences(of: "m4a", with: "wav")
+        }
+        player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
         player.url = url
         HDFloatingButtonManager.manager.floatingBtnView.show = true
         HDFloatingButtonManager.manager.listenID = "\(model.listenID!)"

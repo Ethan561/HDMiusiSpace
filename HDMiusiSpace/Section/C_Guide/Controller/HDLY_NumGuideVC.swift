@@ -168,8 +168,12 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
                 player.play()
                 isPlaying = true
             }else {
-                if self.exhibitInfo?.audio != nil {
-                    player.play(file: Music.init(name: "", url:URL.init(string: self.exhibitInfo!.audio!)!))
+                if self.exhibitInfo?.audio != nil && self.exhibitInfo?.audio?.contains("http://") ?? false {
+                    var voicePath = self.exhibitInfo!.audio!
+                    if voicePath.contains("m4a") {
+                        voicePath = self.exhibitInfo!.audio!.replacingOccurrences(of: "m4a", with: "wav")
+                    }
+                    player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = self.exhibitInfo!.audio!
                     player.fileno = numStr
                     isPlaying = true

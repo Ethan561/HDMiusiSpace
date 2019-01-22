@@ -224,7 +224,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             self.imgV.kf.setImage(with: URL.init(string: infoModel!.img!), placeholder: UIImage.grayImage(sourceImageV: self.imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
         
-        if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains(".mp3"))! {
+        if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains("http://"))! {
             if player.url != self.infoModel?.voice {
                 player.stop()
             }
@@ -362,9 +362,13 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
 extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
     
     @objc  func playOrPauseAction(_ sender: UIButton) {
-        if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains(".mp3"))! {
+        if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains("http://"))! {
             if ZFReachabilityManager.shared().isReachable == false {
                 HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
+            }
+            var voicePath = self.infoModel!.voice!
+            if voicePath.contains("m4a") {
+                voicePath = self.infoModel!.voice!.replacingOccurrences(of: "m4a", with: "wav")
             }
             //
             if player.state == .playing {
@@ -374,7 +378,7 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
                 if player.state == .paused {
                     player.play()
                 }else {
-                    player.play(file: Music.init(name: "", url:URL.init(string: self.infoModel!.voice!)!))
+                    player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = self.infoModel!.voice!
                     if self.infoModel?.listenID?.string != nil {
                         viewModel.listenedNumAdd(listenID: self.infoModel!.listenID!.string)

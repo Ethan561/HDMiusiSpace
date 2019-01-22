@@ -399,7 +399,12 @@ extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
         self.playingIndex = indexStr
         
         cell.startAnimating()
-        audioPlayer.play(file: Music.init(name: "", url: URL.init(string: model.video)!))
+        
+        var voicePath = model.video
+        if voicePath.contains("m4a") {
+            voicePath = model.video.replacingOccurrences(of: "m4a", with: "wav")
+        }
+        audioPlayer.play(file: Music.init(name: "", url: URL.init(string: voicePath)!))
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
 
     }

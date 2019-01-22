@@ -675,7 +675,11 @@ extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
     
     func audioPlayOrPauseAction() {
         let course = infoModel!.data
-        if course.video.isEmpty == false && course.video.contains(".mp3") {
+        if course.video.isEmpty == false && course.video.contains("http://") {
+            var voicePath = course.video
+            if voicePath.contains("m4a") {
+                voicePath = course.video.replacingOccurrences(of: "m4a", with: "wav")
+            }
             if audioPlayer.state == .playing {
                 audioPlayer.pause()
                 playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControlState.normal)

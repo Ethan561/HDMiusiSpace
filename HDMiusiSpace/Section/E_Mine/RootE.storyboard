@@ -3140,7 +3140,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikf-uX-4bU">
-                                                    <rect key="frame" x="251" y="7" width="22" height="22"/>
+                                                    <rect key="frame" x="251" y="7" width="30" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="FhS-H7-itI"/>
+                                                    </constraints>
                                                     <state key="normal" image="xz_icon_share_black_default"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家博物馆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZx-5C-0GZ">
@@ -3156,7 +3159,7 @@
                                                 <constraint firstItem="auV-UF-Fwt" firstAttribute="top" secondItem="t8b-AY-gIu" secondAttribute="top" constant="5" id="24T-6w-gGV"/>
                                                 <constraint firstItem="qgh-rR-Fmk" firstAttribute="leading" secondItem="t8b-AY-gIu" secondAttribute="leading" constant="32.5" id="2xI-SX-b2Q"/>
                                                 <constraint firstItem="auV-UF-Fwt" firstAttribute="leading" secondItem="qgh-rR-Fmk" secondAttribute="trailing" constant="25" id="Q3W-c5-CM6"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ikf-uX-4bU" secondAttribute="trailing" id="Saw-a7-vVj"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ikf-uX-4bU" secondAttribute="trailing" constant="10" id="Saw-a7-vVj"/>
                                                 <constraint firstAttribute="trailing" secondItem="sZx-5C-0GZ" secondAttribute="trailing" constant="10" id="YB8-Nk-vmy"/>
                                                 <constraint firstItem="qgh-rR-Fmk" firstAttribute="top" secondItem="t8b-AY-gIu" secondAttribute="top" id="lKT-Nc-6Mf"/>
                                                 <constraint firstAttribute="bottom" secondItem="qgh-rR-Fmk" secondAttribute="bottom" id="lT6-y2-uKJ"/>

@@ -18,6 +18,9 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
     @IBOutlet weak var collectionBtn: UIButton!
     @IBOutlet weak var likeNumL: UILabel!
     
+    var skip = 0
+    var take = 10
+    var cmtNum = 0
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
     //
@@ -60,11 +63,11 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         setupBarBtn()
-        
+        addRefresh()
         //MVVM
         bindViewModel()
         refreshAction()//获取详情数据
-        requestComments(skip: 0, take: 10)//获取评论
+        
         weak var weakS = self
         self.myTableView.delegate = self
         self.myTableView.dataSource = self
@@ -86,6 +89,22 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
             
         }
     }
+    
+    func addRefresh() {
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        self.myTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.myTableView.refreshIdentifier = String.init(describing: self)
+        self.myTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func loadMore() {
+        skip = skip + take
+        requestComments(skip: skip, take: take)
+    }
+    
     //MARK:-获取评论
     @objc func requestComments(skip:Int,take:Int) {
         if strategyid != nil {
@@ -106,7 +125,9 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         //评论
         viewModel.commentModels.bind { (models) in
             var comments = models
-            weakSelf!.htmls.removeAll()
+            if weakSelf?.skip == 0 {
+                weakSelf?.htmls.removeAll()
+            }
             for i in 0..<comments.count {
                 var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {
@@ -126,13 +147,33 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
                         comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
                     }
                 }
-                weakSelf?.htmls.updateValue(hms, forKey: i)
+                if weakSelf?.skip == 0 {
+                    weakSelf?.htmls.updateValue(hms, forKey: i)
+                } else {
+                    weakSelf!.htmls.updateValue(hms, forKey: i + (weakSelf?.commentModels.count)!)
+                }
                 comments[i].height = comments[i].height
             }
-            weakSelf?.commentModels = comments
+            if weakSelf?.skip == 0 {
+                weakSelf?.commentModels = comments
+            } else {
+                var indexPaths = [IndexPath]()
+                for j in 0..<comments.count {
+                    let indexPath = NSIndexPath.init(row: (weakSelf?.commentModels.count)! + j, section: 1)
+                    indexPaths.append(indexPath as IndexPath)
+                }
+                weakSelf?.commentModels.append(contentsOf: comments)
+                weakSelf?.myTableView.beginUpdates()
+                weakSelf?.myTableView.insertRows(at: indexPaths, with: .fade)
+                weakSelf?.myTableView.endUpdates()
+            }
+            
+            weakSelf?.myTableView.es.stopLoadingMore()
+            weakSelf?.myTableView.es.stopPullToRefresh()
+            if comments.count == 0 {
+                self.myTableView.es.noticeNoMoreData()
+            }
             weakSelf?.myTableView.reloadData()
-            
-            
         }
         //空数据
         viewModel.showEmptyView.bind() { (show) in
@@ -146,10 +187,11 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
+            weakSelf?.cmtNum = (weakSelf?.cmtNum)! + 1
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
-            //            weakSelf?.refreshAction()
+             weakSelf?.skip = 0
             weakSelf?.requestComments(skip: 0, take: 10)
         }
         //点赞
@@ -187,6 +229,8 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         publicViewModel.deleteCommentReplySuccess.bind { (ret) in
             //
             if ret == true {
+                weakSelf?.skip = 0
+                weakSelf?.cmtNum = (weakSelf?.cmtNum)! - 1
                 weakSelf?.requestComments(skip: 0, take: 10)
             }
         }
@@ -200,6 +244,9 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         
         self.strategyModel = model
         self.myTableView.reloadData()
+        if let cmtNum = model.comments?.int {
+            self.cmtNum = cmtNum
+        }
         //点赞
         likeNumL.text = strategyModel!.likes!.string
         if ((strategyModel?.isLike) != nil) {
@@ -267,10 +314,11 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            guard let cmtNum = strategyModel?.commentList!.count else {
+            if self.cmtNum == 0{
                 return 0.01
             }
-            if cmtNum > 0{
+            
+            if self.cmtNum > 0{
                 return 50
             }
         }
@@ -291,9 +339,6 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            guard let cmtNum = strategyModel?.comments!.int else {
-                return nil
-            }
             if cmtNum > 0{
                 let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
                 titleV.titleL.text = "评论 （\(cmtNum)）"
@@ -390,7 +435,6 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
             if commentModel.list.count > 0 {
                 cell?.subContainerView.isHidden = false
                 cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
-                
                 cell?.showMoreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     self?.commentModels[index].showAll = true
                     self?.myTableView.reloadRows(at: [indexPath], with: .none)
@@ -554,6 +598,8 @@ extension HDSSL_StrategyDetialVC: WKNavigationDelegate,WKUIDelegate {
             }
             DispatchQueue.main.async { [unowned self] in
                 self.webViewH = CGFloat(webheight + 10)
+                self.skip = 0
+                self.requestComments(skip: 0, take: 10)//获取评论
                 self.myTableView.reloadData()
                 self.loadingView?.removeFromSuperview()
             }

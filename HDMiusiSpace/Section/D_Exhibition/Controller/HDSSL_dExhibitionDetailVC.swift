@@ -516,9 +516,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             guard self.exdataModel != nil else {
                 return 0.01
             }
-//            if (self.exdataModel?.data?.commentList?.total)! > 2 {
+            if (self.exdataModel?.data?.commentList?.total)! > 0 {
                 return 40
-//            }
+            }
         }
         return 0.01
     }
@@ -549,7 +549,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if self.exdataModel == nil {
                 return nil
             }
-//            if (self.exdataModel?.data?.commentList?.total)! > 2 {
+            if (self.exdataModel?.data?.commentList?.total)! > 0 {
                 let btn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
                 btn.backgroundColor = UIColor.white
                 btn.setTitle(String.init(format: "查看更多评论（%d）", self.exdataModel?.data?.commentList?.total ?? 0), for: .normal)
@@ -561,7 +561,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 btn.addSubview(line)
                 
                 return btn
-//            }
+            }
             
             
         }

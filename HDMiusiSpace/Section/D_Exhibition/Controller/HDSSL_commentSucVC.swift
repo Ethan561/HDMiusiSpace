@@ -26,16 +26,22 @@ class HDSSL_commentSucVC: HDItemBaseVC {
     var paperPath: String? //画报地址
     var shareView: HDLY_ShareView?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.hidesBackButton = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationItem.hidesBackButton = false
+    }
     
     override func viewDidLoad() {
         isHideBackBtn = true
         super.viewDidLoad()
-
+        
         loadMyView()
         
-        //
         bindViewModel()
-        
         //请求数据
         viewModel.request_getNerverCommentList(skip: 0, take: 100, vc: self)
     }
@@ -71,6 +77,12 @@ class HDSSL_commentSucVC: HDItemBaseVC {
     func dealData(data:[HDSSL_uncommentModel]) {
         //
         self.dataArray = data
+        
+        if (dataArray?.count)! > 0 {
+            dTableView.tableFooterView = getTableFooter()
+        }else {
+            dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        }
         dTableView.reloadData()
         
     }
@@ -91,7 +103,7 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         
         dTableView.delegate = self
         dTableView.dataSource = self
-        dTableView.tableFooterView = getTableFooter()
+        
     }
     @objc func action_close(){
         var isHave: Int = 0

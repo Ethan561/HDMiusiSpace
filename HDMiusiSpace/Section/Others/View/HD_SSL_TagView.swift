@@ -228,10 +228,10 @@ class HD_SSL_TagView: UIView {
                 
                 btn.titleLabel?.font = UIFont.systemFont(ofSize: 18)
                 btn.titleLabel?.lineBreakMode = .byTruncatingTail
-                var space = 10.0
+                var space = 12.0
                 var kkWith = self.frame.size.width
                 if Device_Is_iPhoneSE == true {
-                    space = 5.0
+                    space = 8.0
                     kkWith = 320
                 }
                 let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith-CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)

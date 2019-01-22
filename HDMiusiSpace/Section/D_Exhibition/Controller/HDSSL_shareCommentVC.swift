@@ -79,7 +79,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
             if self.shareModel.is_tour == 0 {
                 self.list_img2.isHidden = true
             }
-            self.museumBtn.setTitle(self.shareModel.museum_address, for: .normal)
+            self.museumBtn.setTitle(String.init(format: " %@", self.shareModel.museum_address ?? ""), for: .normal)
             self.commentTextView.text = self.shareModel.content
             
             self.qr_img.kf.setImage(with: URL.init(string: self.shareModel.qr_code ?? ""), placeholder: UIImage.grayImage(sourceImageV: self.qr_img), options: nil, progressBlock: nil, completionHandler: nil)

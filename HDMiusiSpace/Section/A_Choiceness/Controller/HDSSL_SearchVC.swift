@@ -515,6 +515,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             }
             
             headerTitle.text = title
+            headerTitle.textColor = UIColor.HexColor(0x9B9B9B)
             view.addSubview(headerTitle)
             
             let line = UIView.init(frame: CGRect.init(x: 20, y: 43, width: ScreenWidth-40, height: 0.5))

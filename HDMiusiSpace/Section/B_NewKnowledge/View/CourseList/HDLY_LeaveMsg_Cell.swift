@@ -42,6 +42,8 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapAction(ges:)))
         self.longPressView.addGestureRecognizer(tap)
         tableView.register(UINib.init(nibName: "HDZQ_MoreCommentsCell", bundle: nil), forCellReuseIdentifier: "HDZQ_MoreCommentsCell")
+        tableView.isScrollEnabled = false
+        tableView.bounces = false
         subContainerView.isHidden = true
     }
 
@@ -71,7 +73,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_LeaveMsg_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_LeaveMsg_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_LeaveMsg_Cell.className, owner: nil, options: nil)?.first as? HDLY_LeaveMsg_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+//        cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
     }
     
@@ -90,6 +92,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
             showMoreBtn.isHidden = true
             tableViewHeightConstraint.constant = CGFloat(subModel.height + 20)
         }
+        tableView.isScrollEnabled = false
         tableView.reloadData()
     }
     
@@ -101,6 +104,7 @@ extension HDLY_LeaveMsg_Cell : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.isScrollEnabled = false
         let model = self.subCommentsList![indexPath.row]
         let attStr = self.htmls![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HDZQ_MoreCommentsCell") as! HDZQ_MoreCommentsCell
@@ -122,6 +126,7 @@ extension HDLY_LeaveMsg_Cell : UITableViewDelegate {
         return CGFloat(model.height)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let model = self.subCommentsList![indexPath.row]
         if self.answer != nil {
             self.answer(model.commentID,model.uNickname)

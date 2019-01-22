@@ -33,6 +33,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     @IBOutlet weak var commitBtn: UIButton!  //删除按钮
     @IBOutlet weak var imgBgView: UIView!
     @IBOutlet weak var scrollContentView: UIView!
+    @IBOutlet weak var isDropImageTip: UIButton!
+    var isHideTip: Bool = false
     
     var textNum:Int = 0
     var articleID: String?
@@ -148,7 +150,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     func initCollectionView() {
         imagePickerView.superVC = self
         imagePickerView.delegate = self
-        imgBgView.addSubview(imagePickerView)
+//        imgBgView.addSubview(imagePickerView)
+        imgBgView.insertSubview(imagePickerView, at: 0)
     }
     
 
@@ -205,6 +208,10 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     
     }
         
+    @IBAction func action_dropImageTip(_ sender: UIButton) {
+        isDropImageTip.isHidden = true
+        isHideTip = true
+    }
     @IBAction func errorBtnChooseAction(_ sender: UIButton) {
         let index = sender.tag - 100
         switch index {
@@ -420,6 +427,16 @@ extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
     func getBackSelectedPhotos(_ images: [Any]!) {
         print(images)
         self.commentPhotos = images as! [UIImage]
+        
+        if isHideTip == false {
+            if self.commentPhotos.count > 0 {
+                self.isDropImageTip.isHidden = false
+            }else{
+                self.isDropImageTip.isHidden = true
+                isHideTip = true
+            }
+        }
+        
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             if self.commentPhotos.count == 0{

@@ -68,7 +68,7 @@ class HDSSL_orderShareVC: HDItemBaseVC {
             self.exhibition_img.kf.setImage(with: URL.init(string: self.shareModel.img ?? ""), placeholder: UIImage.grayImage(sourceImageV: self.exhibition_img), options: nil, progressBlock: nil, completionHandler: nil)
             
             self.exhibition_name.text = self.shareModel.title
-            self.exhibition_des.text = self.shareModel.author! + self.shareModel.sub_title!
+            self.exhibition_des.text = self.shareModel.author! + " " +  self.shareModel.sub_title!
             
             self.class_timeNum.text = String.init(format: "%d课时", self.shareModel.class_num!)
             self.calss_price.text = "¥" + self.shareModel.pay_amount!

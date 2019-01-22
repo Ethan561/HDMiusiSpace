@@ -21,6 +21,9 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     
     var feedbackChooseTip: HDLY_FeedbackChoose_View?
     var showFeedbackChooseTip = false
+    var skip = 0
+    var take = 10
+    var cmtNum = 0
     //
     var infoModel: TopicModelData?
     var commentModels = [TopicCommentList]()
@@ -59,7 +62,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         commentBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
         textBgView.layer.cornerRadius = 19
         setupBarBtn()
-        
+        addRefresh()
         //MVVM
         bindViewModel()
         refreshAction()
@@ -97,6 +100,21 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         }
     }
     
+    func addRefresh() {
+        var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
+        footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
+        self.myTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
+            self?.loadMore()
+        }
+        self.myTableView.refreshIdentifier = String.init(describing: self)
+        self.myTableView.expiredTimeInterval = 20.0
+    }
+    
+    private func loadMore() {
+        skip = skip + take
+        requestComments(skip: skip, take: take)
+    }
+    
     //MVVM
     
     func bindViewModel() {
@@ -107,7 +125,10 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         viewModel.commentModels.bind { (models) in
             var comments = models
-            weakSelf?.htmls.removeAll()
+            if weakSelf?.skip == 0 {
+                weakSelf?.htmls.removeAll()
+            }
+           
             for i in 0..<comments.count {
                 var hms = [NSAttributedString]()
                 for j in 0..<comments[i].list.count {
@@ -127,10 +148,32 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                         comments[i].topHeight = comments[i].topHeight + comments[i].list[j].height
                     }
                 }
-                weakSelf?.htmls.updateValue(hms, forKey: i)
+                if weakSelf?.skip == 0 {
+                    weakSelf?.htmls.updateValue(hms, forKey: i)
+                } else {
+                    weakSelf!.htmls.updateValue(hms, forKey: i + (weakSelf?.commentModels.count)!)
+                }
                 comments[i].height = comments[i].height
             }
-            weakSelf?.commentModels = comments
+            if weakSelf?.skip == 0 {
+                weakSelf?.commentModels = comments
+            } else {
+                var indexPaths = [IndexPath]()
+                for j in 0..<comments.count {
+                    let indexPath = NSIndexPath.init(row: (weakSelf?.commentModels.count)! + j, section: 2)
+                    indexPaths.append(indexPath as IndexPath)
+                }
+                weakSelf?.commentModels.append(contentsOf: comments)
+                weakSelf?.myTableView.beginUpdates()
+                weakSelf?.myTableView.insertRows(at: indexPaths, with: .fade)
+                weakSelf?.myTableView.endUpdates()  
+            }
+            
+            weakSelf?.myTableView.es.stopLoadingMore()
+            weakSelf?.myTableView.es.stopPullToRefresh()
+            if comments.count == 0 {
+                self.myTableView.es.noticeNoMoreData()
+            }
             weakSelf?.myTableView.reloadData()
         }
         
@@ -145,10 +188,11 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         
         //评论
         publicViewModel.commentSuccess.bind { (flag) in
+            weakSelf?.cmtNum = (weakSelf?.cmtNum)! + 1
             weakSelf?.keyboardTextField.textView.text = " "
             weakSelf?.keyboardTextField.textView.deleteBackward()
             weakSelf?.closeKeyBoardView()
-            //            weakSelf?.refreshAction()
+            weakSelf?.skip = 0
             weakSelf?.requestComments(skip: 0, take: 10)
         }
         //
@@ -187,6 +231,8 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         publicViewModel.deleteCommentReplySuccess.bind { (ret) in
             //
             if ret == true {
+                weakSelf?.skip = 0
+                weakSelf?.cmtNum = (weakSelf?.cmtNum)! - 1
                 weakSelf?.requestComments(skip: 0, take: 10)
             }
         }
@@ -201,6 +247,11 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         self.myTableView.reloadData()
         //        self.getWebHeight()
         //点赞
+        if let cmtNum = infoModel?.comments.int {
+            self.cmtNum = cmtNum
+        }
+        
+        
         likeNumL.text = infoModel!.likes.string
         if ((infoModel?.isLike) != nil) {
             if infoModel!.isLike == 0 {
@@ -284,10 +335,11 @@ extension HDLY_TopicDetail_VC {
             }
         }
         if section == 2 {
-            guard let cmtNum = infoModel?.commentList.count else {
+            if self.cmtNum == 0{
                 return 0.01
             }
-            if cmtNum > 0{
+            
+            if self.cmtNum > 0{
                 return 50
             }
         }
@@ -315,12 +367,9 @@ extension HDLY_TopicDetail_VC {
             }
         }
         if section == 2 {
-            guard let cmtNum = infoModel?.comments.int else {
-                return nil
-            }
             if cmtNum > 0{
                 let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
-                titleV.titleL.text = "评论 （\(cmtNum)）"
+                titleV.titleL.text = "评论 （\(self.cmtNum)）"
                 return titleV
             }
         }
@@ -385,6 +434,10 @@ extension HDLY_TopicDetail_VC {
             var subCommentsH = 0
             if commentModel.list.count < 3 {
                 subCommentsH = commentModel.height + 60
+                if commentModel.list.count == 0 {
+                    subCommentsH = 50
+                }
+                
             } else {
                 if commentModel.showAll {
                     subCommentsH = commentModel.height + 50
@@ -583,7 +636,6 @@ extension HDLY_TopicDetail_VC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 0 {
             self.pushToPlatCenter()
         }
@@ -903,6 +955,7 @@ extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
             DispatchQueue.main.async { [unowned self] in
                 self.webViewH = CGFloat(webheight + 10)
                 self.myTableView.reloadData()
+                self.skip = 0
                 self.requestComments(skip: 0, take: 10)
                 self.loadingView?.removeFromSuperview()
             }

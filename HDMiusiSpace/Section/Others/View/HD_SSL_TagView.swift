@@ -61,8 +61,10 @@ class HD_SSL_TagView: UIView {
         
         if sender.isSelected == true {
             sender.backgroundColor = UIColor.RGBColor(215, 99, 72)
+            sender.layer.borderColor = UIColor.white.cgColor
         }else {
             sender.backgroundColor = UIColor.white
+            sender.layer.borderColor = borderColor.cgColor
         }
         
         self.reloadSelectedArray(String(sender.tag-10))
@@ -137,6 +139,7 @@ class HD_SSL_TagView: UIView {
                 let btn = view as! UIButton
                 btn.isSelected = false
                 btn.backgroundColor = UIColor.white
+                btn.layer.borderColor = borderColor.cgColor
             }
         }
         

@@ -38,6 +38,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "订单详情"
         loadMyViews()
         bindViewModel()
         
@@ -48,7 +49,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         //发布按钮
         let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 44))
         publishBtn.setTitle("客服", for: .normal)
-        publishBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        publishBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         publishBtn.setTitleColor(UIColor.black, for: .normal)
         publishBtn.addTarget(self, action: #selector(action_server), for: .touchUpInside)
         
@@ -56,15 +57,15 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         self.navigationItem.rightBarButtonItem = item
         
         //UI
-        btn_state.layer.cornerRadius = 15
-        btn_state.layer.borderWidth = 0.5
+        btn_state.layer.cornerRadius = 14
+        btn_state.layer.borderWidth = 1.0
         btn_state.layer.borderColor = UIColor.white.cgColor
         btn_state.layer.masksToBounds = true
         
         btn_bottom.layer.cornerRadius = 28
         
         img_content.layer.cornerRadius = 5
-        
+        img_content.layer.masksToBounds = true
         //
         if order?.status == 1 {  //1待支付
             
@@ -89,7 +90,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
             lab_state.text = "订单已完成"
             btn_state.isHidden = false
             if order?.cateID == 1 { //课程
-                btn_state.setTitle("评论晒图", for: .normal)
+                btn_state.setTitle("晒单分享", for: .normal)
                 btn_bottom.setTitle("立即学习", for: .normal)
             }else { //展览门票
                 btn_state.setTitle("待评价", for: .normal)
@@ -135,7 +136,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         //
         img_content.kf.setImage(with: URL.init(string: (orderDetail?.img)!), placeholder: UIImage.grayImage(sourceImageV: img_content), options: nil, progressBlock: nil, completionHandler: nil)
         lab_contentTitle.text = orderDetail?.title
-        classTimeLab.text = String.init(format: "%d", orderDetail?.classNum ?? 0)
+        classTimeLab.text = String.init(format: "%d课时", orderDetail?.classNum ?? 0)
         authorLab.text = String.init(format: "%@", orderDetail?.author ?? "")
         lab_contentSalePrice.text = String.init(format: "¥%@", orderDetail?.amount ?? "")
         lab_contentVIP.text = String.init(format: "%@", orderDetail?.discount ?? "")
@@ -161,7 +162,6 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         if order?.status == 2 {  //2已完成
             
             if order?.cateID == 1 { //课程
-                //评论晒图
                 //请求图片地址，然后跳转页面
                 viewModel.getOrderSharePicPath(apiToken: HDDeclare.shared.api_token ?? "", order_id: (order?.orderID)!, vc: self) //HDDeclare.shared.api_token ?? ""
             }else { //展览门票

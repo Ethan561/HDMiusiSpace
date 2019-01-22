@@ -24,7 +24,7 @@ class HDSSL_recordCell: UITableViewCell {
     func reloadViews(){
         cell_titleL.text = cellData?.title
         cell_timeL.text = cellData?.payTime
-        cell_priceL.text = cellData?.payAmount
+        cell_priceL.text = String.init(format: "%@%@", cellData?.cardID==5 ? "+":"-",(cellData?.payAmount!)!)
         
         cell_img.kf.setImage(with: URL.init(string: (cellData?.img)!), placeholder: UIImage.init(named: "wd_img_jyjl_m"), options: nil, progressBlock: nil, completionHandler: nil)
 //        if cellData?.cardID == 1 {

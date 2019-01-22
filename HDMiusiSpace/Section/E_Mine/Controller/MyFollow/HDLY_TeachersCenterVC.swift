@@ -281,8 +281,8 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
 
                 cell?.titleL.text = model.title
                 cell?.authorL.text = String.init(format: "%@  %@", (model.teacherName)! ,(model.teacherTitle)!)
-                cell?.countL.text = model.purchases == nil ? "0" : "\(model.purchases!)" + "人在学"
-                cell?.courseL.text = model.classNum == nil ? "0" : "\(model.classNum!)" + "课时"
+                cell?.countL.text = model.purchases == nil ? "0人在学" : "\(model.purchases!)" + "人在学"
+                cell?.courseL.text = model.classNum == nil ? "0课时" : "\(model.classNum!)" + "课时"
                 if model.fileType == 1 {//mp3
                     cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
                 }else {

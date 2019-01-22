@@ -179,18 +179,22 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 //        
 //        return
         if  self.infoModel?.data  != nil {
-            if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
-                if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
-                    self.pushToLoginVC(vc: self)
+            if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+                if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self.pushToLoginVC(vc: self)
+                        return
+                    }
+                    //获取订单信息
+                    guard let goodId = self.infoModel?.data.articleID.int else {
+                        return
+                    }
+                    publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, self)
                     return
+                    
+                }else {
+                    self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
                 }
-                //获取订单信息
-                guard let goodId = self.infoModel?.data.articleID.int else {
-                    return
-                }
-                publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, self)
-                return
-    
             }else {
                 self.performSegue(withIdentifier: "PushTo_HDLY_CourseList_VC_line", sender: self.courseId)
             }

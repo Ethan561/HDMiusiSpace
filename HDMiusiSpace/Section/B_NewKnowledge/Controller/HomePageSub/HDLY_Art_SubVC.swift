@@ -199,7 +199,7 @@ extension HDLY_Art_SubVC {
             cell?.titleL.text = model.title
             cell?.authorL.text = String.init(format: "%@  %@",model.teacher_name, model.teacher_title)
 
-            cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
+            cell?.countL.text = model.purchases == 0 ? "0人在学" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
             if model.fileType == 1 {//mp3
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
@@ -214,7 +214,7 @@ extension HDLY_Art_SubVC {
             cell?.imgV.kf.setImage(with: URL.init(string: model.img), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             cell?.titleL.text = model.title
             cell?.authorL.text = String.init(format: "%@  %@",model.teacher_name, model.teacher_title)
-            cell?.countL.text = model.purchases == 0 ? "0" :"\(model.purchases)" + "人在学"
+            cell?.countL.text = model.purchases == 0 ? "0人在学" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
 //            cell?.priceL.text = "¥" + "\(model.price)"
             if model.fileType == 1 {//mp3

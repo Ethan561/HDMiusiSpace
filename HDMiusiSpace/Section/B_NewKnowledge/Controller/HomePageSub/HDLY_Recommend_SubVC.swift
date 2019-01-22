@@ -30,7 +30,8 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     }()
     
     let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
-    
+    var player = HDLY_AudioPlayer.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
@@ -53,7 +54,12 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.dataRequest()
+        player.showFloatingBtn = true
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.showFloatingBtn = false
     }
     
     func addRefresh() {
@@ -200,8 +206,8 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.titleL.text = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
-            cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0" :(model.boutiquelist?.views?.string)! + "人在学"
-            cell?.courseL.text = model.boutiquelist?.classnum?.string == nil ? "0" :(model.boutiquelist?.classnum?.string)! + "课时"
+            cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0人在学" :(model.boutiquelist?.views?.string)! + "人在学"
+            cell?.courseL.text = model.boutiquelist?.classnum?.string == nil ? "0课时" :(model.boutiquelist?.classnum?.string)! + "课时"
             if model.boutiquelist?.file_type?.int == 1 {//mp3
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
             }else {
@@ -226,8 +232,8 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.titleL.text = model.boutiquecard?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
-            cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0" :(model.boutiquecard?.views?.string)! + "人在学"
-            cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0" :(model.boutiquecard?.classnum?.string)! + "课时"
+            cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0人在学" :(model.boutiquecard?.views?.string)! + "人在学"
+            cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0课时" :(model.boutiquecard?.classnum?.string)! + "课时"
             if model.boutiquecard?.file_type?.int == 1 {//mp3
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
             }else {
@@ -246,7 +252,7 @@ extension HDLY_Recommend_SubVC {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.interactioncard?.title
-            cell?.countL.text = (model.interactioncard?.views?.string)! + "人在学"
+            cell?.countL.text = String.init(format: "%ld人在学", model.interactioncard?.views?.string ?? 0)
             if model.interactioncard?.price != nil {
                 cell?.priceL.text = "¥" + "\(model.interactioncard!.price!)"
             }
@@ -370,7 +376,6 @@ extension HDLY_Recommend_SubVC {
         vc.courseId = model.article_id?.string
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 
 }
 

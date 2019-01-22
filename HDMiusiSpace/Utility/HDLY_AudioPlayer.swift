@@ -204,9 +204,17 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
         updateNowPlayingInfoCenter()
         if state == .stopped {
             delegate?.finishPlaying!()
-            let isPlaying = false
             if showFloatingBtn == true {
-                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerFinishPlaying"), object: nil)
+            }
+        }
+        
+        if state == .playing || state == .paused  {
+            var isPlaying = false
+            if state == .playing {
+                isPlaying = true
+            }
+            if showFloatingBtn == true {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
             }
         }

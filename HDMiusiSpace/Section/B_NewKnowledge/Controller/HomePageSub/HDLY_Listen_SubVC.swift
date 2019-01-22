@@ -212,14 +212,12 @@ class HDLY_Listen_SubVC:                                                        
             }else {
                 cell.voiceBtn.isHidden = false
                 cell.voiceBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
-                    if model.voice?.contains(".mp3") == true {
+                    if model.voice?.contains("http://") == true {
                         self?.playingAction(model)
                     }
                 }
-                
             }
         }
-    
         return cell
     }
     
@@ -273,6 +271,9 @@ class HDLY_Listen_SubVC:                                                        
         guard let url = model.voice else {
             return
         }
+        if player.state == .playing && player.url == url {
+            return
+        }
         var voicePath = model.voice!
         if voicePath.contains("m4a") {
             voicePath = model.voice!.replacingOccurrences(of: "m4a", with: "wav")
@@ -281,7 +282,7 @@ class HDLY_Listen_SubVC:                                                        
         player.url = url
         HDFloatingButtonManager.manager.floatingBtnView.show = true
         HDFloatingButtonManager.manager.listenID = "\(model.listenID!)"
-        HDFloatingButtonManager.manager.iconUrl =  "dl_icon_map_gray"
+        HDFloatingButtonManager.manager.iconUrl =  model.icon
         
     }
 }

@@ -39,6 +39,7 @@ struct BRecmdModel:Codable {
     var title: String?
     var des: String?
     var img: String?
+    var icon: String?
     var price: String?
     var is_top: TStrInt?
     var is_big: TStrInt?
@@ -47,7 +48,8 @@ struct BRecmdModel:Codable {
     var classnum: TStrInt?
     var file_type: TStrInt?//1是MP3;2是MP4
     var is_free: TStrInt?//1免费，0不免费
-    
+    var is_voice: Int?
+    var voice: String?
     var teacher_name: String?
     var teacher_title: String?
     

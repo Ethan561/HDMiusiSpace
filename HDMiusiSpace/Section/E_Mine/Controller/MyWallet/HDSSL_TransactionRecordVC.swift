@@ -122,17 +122,15 @@ extension HDSSL_TransactionRecordVC: UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerview = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 40))
+        headerview.backgroundColor = UIColor.white
+        
         let monthLabel = UILabel.init(frame: CGRect.init(x: 20, y: 0, width: 300, height: 40))
         
         let model = recordArray[section]
-        
         monthLabel.text = model.month ?? ""
-        
         headerview.addSubview(monthLabel)
-        
-        
+
         return headerview
-        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //

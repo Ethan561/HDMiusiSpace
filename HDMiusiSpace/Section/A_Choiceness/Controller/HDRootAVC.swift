@@ -7,7 +7,7 @@
 //
 
 import UIKit
-////import ESPullToRefresh
+
 class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate,UIScrollViewDelegate {
     
     @IBOutlet weak var myTableView: UITableView!

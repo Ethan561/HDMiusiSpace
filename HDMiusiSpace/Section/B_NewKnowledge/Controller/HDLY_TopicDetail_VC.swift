@@ -550,7 +550,8 @@ extension HDLY_TopicDetail_VC {
                     let returnArr = commentModel.list
                     if returnArr.count > 0{
                         for returnModel in returnArr {
-                            if returnModel.uid == HDDeclare.shared.uid {
+                            
+                            if returnModel.uid == HDDeclare.shared.uid && returnModel.commentID == commentId {
                                 //自己的回复，模型转换
                                 let model1 = TopicCommentList.init(uid: returnModel.uid, comment: returnModel.comment, likeNum: commentModel.likeNum, createdAt: "", commentID: returnModel.commentID, avatar: "", nickname: returnModel.uNickname, isLike: 0, list: [], showAll: true, height: 44, topHeight: 64)
                                 self?.commentView.model = model1

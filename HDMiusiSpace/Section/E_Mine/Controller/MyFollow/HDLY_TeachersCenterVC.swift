@@ -179,10 +179,10 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         tabHeader.teacherDesL.text = model.des
         
         let desHeight = model.des?.getContentHeight(font: UIFont.systemFont(ofSize: 14.0), width: ScreenWidth - 40)
+
+        tabHeader.frame.size.height = 215 + desHeight! - 75
         
-        tabHeader.frame.size.height = 190 + desHeight! - 75
-        
-        topConstraint.constant = 190 + desHeight! - 75
+        topConstraint.constant = 215 + desHeight! - 75
         
         tabHeader.leftView.isHidden = true
         tabHeader.rightView.isHidden = true

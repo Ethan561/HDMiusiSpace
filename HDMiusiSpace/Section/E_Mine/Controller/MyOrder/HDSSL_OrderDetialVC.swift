@@ -49,7 +49,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         //发布按钮
         let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 44))
         publishBtn.setTitle("客服", for: .normal)
-        publishBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        publishBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         publishBtn.setTitleColor(UIColor.black, for: .normal)
         publishBtn.addTarget(self, action: #selector(action_server), for: .touchUpInside)
         

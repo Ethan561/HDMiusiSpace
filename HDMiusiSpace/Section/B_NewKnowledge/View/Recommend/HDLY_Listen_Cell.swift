@@ -10,6 +10,7 @@ import UIKit
 
 protocol HDLY_Listen_Cell_Delegate:NSObjectProtocol {
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Listen_Cell)
+    func didTapItemPlayBtnAt(_ model:BRecmdModel)
 }
 
 class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
@@ -90,7 +91,16 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
                 }
                 cell.titleL.text = model.title
                 cell.countL.text = model.views?.string == nil ? "0" : (model.views?.string)! + "人听过"
-                
+                if model.is_voice == 0 {
+                    cell.voiceBtn.isHidden = true
+                }else {
+                    cell.voiceBtn.isHidden = false
+                    cell.voiceBtn.addTouchUpInSideBtnAction { [weak self] (btn) in
+                        if model.voice?.contains("http://") == true {
+                            self?.delegate?.didTapItemPlayBtnAt(model)
+                        }
+                    }
+                }
             }
         }
         return cell

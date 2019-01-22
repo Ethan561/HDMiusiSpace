@@ -18,7 +18,8 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     @IBOutlet weak var btn_location: UIButton!
     @IBOutlet weak var menuContentView: UIView!
     var currentCityName: String?
-    
+    var player = HDLY_AudioPlayer.shared
+
     lazy var pageMenu: SPPageMenu = {
         let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:0, y: 0, width: Int(140), height: Int(PageMenuH)), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
         
@@ -70,7 +71,6 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         if HDDeclare.shared.isSystemLocateEnable == false {
             showOpenLocServiceTipView()
         }
-        
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         if str?.count == 0 {
@@ -120,6 +120,13 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
                 HDDeclare.shared.locModel.cityName = str!
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
             }
+        }
+        
+        player.showFloatingBtn = false
+        if player.state == .playing {
+            player.pause()
+            HDFloatingButtonManager.manager.floatingBtnView.show = false
+
         }
         
     }

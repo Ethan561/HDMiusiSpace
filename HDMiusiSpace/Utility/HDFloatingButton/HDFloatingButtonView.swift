@@ -171,6 +171,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
             self.playBtn.isHidden = false
             self.closeBtn.isHidden = true
             self.foldBtn.isHidden = true
+            playBtn.image = UIImage.init(named: "float_icon_pause")
 
             UIView.animate(withDuration: animationDuration, animations: {
                 if self.isRight {
@@ -214,6 +215,8 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         
         if showType == .FloatingButtonPause {
             bgView.frame = (kWindow?.bounds)!
+            playBtn.image = UIImage.init(named: "float_icon_play")
+
             kWindow?.addSubview(bgView)
             weak var weakS = self
             bgView.touchBlock = {

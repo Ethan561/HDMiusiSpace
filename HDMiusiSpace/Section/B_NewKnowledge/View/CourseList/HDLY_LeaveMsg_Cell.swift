@@ -73,7 +73,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_LeaveMsg_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_LeaveMsg_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_LeaveMsg_Cell.className, owner: nil, options: nil)?.first as? HDLY_LeaveMsg_Cell
         }
-//        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
     }
     
@@ -82,15 +82,15 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
         if  self.subCommentsList!.count > 2 {
             if showAll {
                 showMoreBtn.isHidden = true
-                tableViewHeightConstraint.constant =  CGFloat(subModel.height + 20)
+                tableViewHeightConstraint.constant =  CGFloat(subModel.height + 20 - 1)
             } else {
                 showMoreBtn.isHidden = false
-                tableViewHeightConstraint.constant =  CGFloat(subModel.topHeight)
+                tableViewHeightConstraint.constant =  CGFloat(subModel.topHeight - 1)
                 showMoreBtn.setTitle("查看全部件\( self.subCommentsList!.count)条回复", for: .normal)
             }
         } else {
             showMoreBtn.isHidden = true
-            tableViewHeightConstraint.constant = CGFloat(subModel.height + 20)
+            tableViewHeightConstraint.constant = CGFloat(subModel.height + 20 - 1)
         }
         tableView.isScrollEnabled = false
         tableView.reloadData()

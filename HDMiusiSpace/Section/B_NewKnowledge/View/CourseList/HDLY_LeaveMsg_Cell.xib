@@ -36,7 +36,7 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1s-DG-GNG">
                         <rect key="frame" x="60" y="269.5" width="240" height="1"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="O3T-ja-Y34"/>
                         </constraints>
@@ -75,10 +75,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xw0-HV-DZt">
-                        <rect key="frame" x="60" y="137.5" width="240" height="133"/>
+                        <rect key="frame" x="60" y="137.5" width="240" height="128"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAy-hE-SiN">
-                                <rect key="frame" x="126" y="103" width="97" height="20"/>
+                                <rect key="frame" x="126" y="98" width="97" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Jeg-gq-fcP"/>
                                 </constraints>
@@ -131,7 +131,7 @@
                     <constraint firstItem="tvj-dN-MXU" firstAttribute="trailing" secondItem="kw7-g0-bMh" secondAttribute="trailing" id="ocK-Cs-Xtn"/>
                     <constraint firstAttribute="trailing" secondItem="kw7-g0-bMh" secondAttribute="trailing" constant="5" id="org-9v-TtW"/>
                     <constraint firstItem="Fb7-kr-BOi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="pZE-ev-Dtu"/>
-                    <constraint firstAttribute="bottom" secondItem="xw0-HV-DZt" secondAttribute="bottom" id="rni-iv-utq"/>
+                    <constraint firstAttribute="bottom" secondItem="xw0-HV-DZt" secondAttribute="bottom" constant="5" id="rni-iv-utq"/>
                     <constraint firstAttribute="trailing" secondItem="r1s-DG-GNG" secondAttribute="trailing" constant="20" id="wac-Q8-Mj2"/>
                     <constraint firstAttribute="bottom" secondItem="r1s-DG-GNG" secondAttribute="bottom" id="wxV-g9-LVF"/>
                 </constraints>

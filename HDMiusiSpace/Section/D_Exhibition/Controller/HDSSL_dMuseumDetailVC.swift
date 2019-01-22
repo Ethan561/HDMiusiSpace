@@ -119,7 +119,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         tFooter.backgroundColor = UIColor.white
         
         let tipEnd = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 20))
-        tipEnd.text = "到底了～"
+        tipEnd.text = "到底啦～"
         tipEnd.textColor = UIColor.lightGray
         tipEnd.font = UIFont.systemFont(ofSize: 11)
         tipEnd.textAlignment = .center

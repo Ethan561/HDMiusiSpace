@@ -63,7 +63,6 @@
 		1B7A669421C4A32400DDFE5E /* HDZQ_CommentActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */; };
 		1B7A669521C4A32400DDFE5E /* HDZQ_CommentActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */; };
 		1B87792721B27D1D00850B55 /* HDZQ_FoorprintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */; };
-		1B87792821B27D1D00850B55 /* HDZQ_FoorprintCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */; };
 		1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */; };
 		1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
@@ -698,7 +697,6 @@
 		1B7A669221C4A32400DDFE5E /* HDZQ_CommentActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_CommentActionCell.swift; sourceTree = "<group>"; };
 		1B7A669321C4A32400DDFE5E /* HDZQ_CommentActionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_CommentActionCell.xib; sourceTree = "<group>"; };
 		1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FoorprintCell.swift; sourceTree = "<group>"; };
-		1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FoorprintCell.xib; sourceTree = "<group>"; };
 		1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPExhibitPlayCell.swift; sourceTree = "<group>"; };
 		1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FPExhibitPlayCell.xib; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -2832,7 +2830,6 @@
 				1B2928EF21A67A8F00FEF21C /* HDZQ_MyFollowCell.xib */,
 				1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */,
 				1B87792521B27D1D00850B55 /* HDZQ_FoorprintCell.swift */,
-				1B87792621B27D1D00850B55 /* HDZQ_FoorprintCell.xib */,
 				1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */,
 				1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */,
 				1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */,
@@ -3190,7 +3187,6 @@
 				D62277E421368069008F1416 /* Image.xcassets in Resources */,
 				D620E1C321A2B53C0034E258 /* HDLY_StrategyListCell.xib in Resources */,
 				D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */,
-				1B87792821B27D1D00850B55 /* HDZQ_FoorprintCell.xib in Resources */,
 				D6866A4A2126A0ED0044EEAA /* HDLY_CourseList_SubVC1.xib in Resources */,
 				D6EEDDB52190271100F730BA /* HDLY_GuideMapCell.xib in Resources */,
 				A7C59E56219C08AE00F67F0C /* HDSSL_Sec1Cell.xib in Resources */,
@@ -4066,11 +4062,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Hengda Wenbo S. &T.Co., LTD.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = VU2Q8T3ABN;
+				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4082,10 +4078,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "61a4316f-87ec-4c84-b4d9-4eee05cfaff1";
-				PROVISIONING_PROFILE_SPECIFIER = Enter_HDMiusiSpace;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -4099,10 +4095,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Hengda Wenbo S. &T.Co., LTD.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = VU2Q8T3ABN;
+				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4114,10 +4110,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpaceEnter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = Enter_HDMiusiSpace;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

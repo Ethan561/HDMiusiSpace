@@ -31,7 +31,9 @@ class HDLY_MuseumTagsCell: UITableViewCell {
     func showCellData() {
 
         if self.contentView.subviews.count > 1 {
-            return
+            for v in self.contentView.subviews {
+                v.removeFromSuperview()
+            }
         }
         if self.imgArr != nil {
             var x:CGFloat = 20

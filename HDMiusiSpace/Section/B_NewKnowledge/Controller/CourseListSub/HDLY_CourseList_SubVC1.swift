@@ -47,6 +47,15 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
         tableView.delegate = self
         tableView.dataSource = self
         self.bottomHCons.constant = 0
+        let emptyView:HDEmptyView = HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_nothing", titleStr: "还没有内容呢～", detailStr: "", btnTitleStr: "") {
+            
+        }
+        emptyView.contentViewY = 0
+        emptyView.titleLabTextColor = UIColor.lightGray
+        emptyView.backgroundColor = UIColor.white
+        emptyView.contentView.backgroundColor = UIColor.clear
+        self.tableView.ly_emptyView = emptyView
+        
         dataRequest()
         bindViewModel()
     }
@@ -64,6 +73,8 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
+        tableView.ly_startLoading()
+
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseChapterInfo(api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -103,13 +114,15 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
                 self.isBuy = true
-
             }
+            self.tableView.ly_endLoading()
             self.tableView.reloadData()
-            
+
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
+            self.tableView.ly_endLoading()
+
         }
     }
     

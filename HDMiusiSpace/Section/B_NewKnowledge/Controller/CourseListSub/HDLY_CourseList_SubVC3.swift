@@ -97,14 +97,21 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                 self.infoModel = model
                 self.tableView.reloadData()
                 self.tableView.ly_endLoading()
-                if self.infoModel?.data.isBuy == 1 {//0未购买，1已购买
+                if self.infoModel?.data.isFree == 0 {//1免费，0不免费
+                    if self.infoModel?.data.isBuy == 1 {//0未购买，1已购买
+                        self.buyBtn.isHidden = true
+                        self.leaveMsgView.isHidden = false
+                        self.bottomHCons.constant = 56
+                    }else {
+                        self.buyBtn.isHidden = false
+                        self.leaveMsgView.isHidden = true
+                        self.bottomHCons.constant = 74
+                    }
+                }
+                else {
                     self.buyBtn.isHidden = true
                     self.leaveMsgView.isHidden = false
                     self.bottomHCons.constant = 56
-                }else {
-                    self.buyBtn.isHidden = false
-                    self.leaveMsgView.isHidden = true
-                    self.bottomHCons.constant = 74
                 }
             }
             catch let error {

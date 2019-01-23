@@ -223,7 +223,6 @@ extension HDLY_Recommend_SubVC {
                 if model.boutiquelist?.price != nil {
                     cell?.priceL.text = "¥" + "\(model.boutiquelist!.price!)"
                 }
-
             }else {
                 cell?.priceL.text = "免费"
                 cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)

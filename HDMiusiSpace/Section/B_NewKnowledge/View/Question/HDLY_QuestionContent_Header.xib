@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_img1" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-zg-9eb">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-zg-9eb">
                     <rect key="frame" x="20" y="10" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="hwS-HU-sOf"/>
@@ -111,7 +111,6 @@
         </view>
     </objects>
     <resources>
-        <image name="user_img1" width="30" height="30"/>
         <image name="点赞1" width="16" height="16"/>
     </resources>
 </document>

@@ -132,17 +132,31 @@ extension HDLY_ReceiveMsgVC : UITableViewDataSource, UITableViewDelegate {
 //            1普通评论点赞 2普通评论回复 3展览评星点赞 4展览评星回复 5关注 6问题答复
             if model.cateID == 2 ||  model.cateID == 4 || model.cateID == 6 {
                 let cell1 = tableView.dequeueReusableCell(withIdentifier: "HDLY_ReceiveMsgCell1") as? HDLY_ReceiveMsgCell1
-                cell1?.avatarImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell1?.avatarBtn.kf.setImage(with: URL.init(string: model.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell1?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self?.pushToLoginVC(vc: self!)
+                    } else {
+                        self?.pushToOthersPersonalCenterVC(model.uid ?? 0)
+                    }
+                })
                 cell1?.titleL.text = model.title
                 cell1?.contentL.text = model.des
                 cell1?.dateL.text = model.createdAt
 
                 return cell1!
             }else {
-                cell?.avatarImgV.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                 cell?.titleL.text = model.title
                 cell?.contentL.text = model.des
                 cell?.dateL.text = model.createdAt
+                cell?.avatarBtn.kf.setImage(with: URL.init(string: model.avatar!), for: .normal, placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                    if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                        self?.pushToLoginVC(vc: self!)
+                    } else {
+                        self?.pushToOthersPersonalCenterVC(model.uid ?? 0)
+                    }
+                })
             }
         }
         return cell!
@@ -226,12 +240,13 @@ class HDLY_ReceiveMsgCell1: UITableViewCell {
     @IBOutlet weak var dateL: UILabel!
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var contentL: UILabel!
+    @IBOutlet weak var avatarBtn: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatarImgV.layer.cornerRadius = 22
-        avatarImgV.layer.masksToBounds = true
+        avatarBtn.layer.cornerRadius = 22
+        avatarBtn.layer.masksToBounds = true
         
     }
 }
@@ -243,11 +258,12 @@ class HDLY_ReceiveMsgCell2: UITableViewCell {
     @IBOutlet weak var dateL: UILabel!
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var contentL: UILabel!
+    @IBOutlet weak var avatarBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatarImgV.layer.cornerRadius = 22
-        avatarImgV.layer.masksToBounds = true
+        avatarBtn.layer.cornerRadius = 22
+        avatarBtn.layer.masksToBounds = true
         
     }
 }

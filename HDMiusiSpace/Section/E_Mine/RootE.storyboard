@@ -1308,8 +1308,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="157.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xtxi_icon_ms" translatesAutoresizingMaskIntoConstraints="NO" id="jpp-Tt-9UY">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jpp-Tt-9UY">
                                                     <rect key="frame" x="20" y="35" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="jpp-Tt-9UY" secondAttribute="height" id="HkV-ts-i4j"/>
                                                         <constraint firstAttribute="width" constant="44" id="OQq-al-d8c"/>
@@ -1397,22 +1399,35 @@
                                                         <constraint firstItem="7Gr-kO-T87" firstAttribute="top" secondItem="w2c-gh-yud" secondAttribute="bottom" constant="5" id="q1k-Yq-EYb"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-Cr-fPP">
+                                                    <rect key="frame" x="20" y="35" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="wd_img_tx">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="GGd-6X-hYP" firstAttribute="centerX" secondItem="jdE-xN-4qT" secondAttribute="centerX" id="8Xu-Ko-zeK"/>
                                                 <constraint firstItem="GGd-6X-hYP" firstAttribute="top" secondItem="jdE-xN-4qT" secondAttribute="top" constant="15" id="8pG-YI-a0F"/>
                                                 <constraint firstItem="qMU-bC-Lph" firstAttribute="leading" secondItem="jpp-Tt-9UY" secondAttribute="trailing" constant="10" id="BvU-gF-IUt"/>
+                                                <constraint firstItem="pAS-Cr-fPP" firstAttribute="bottom" secondItem="jpp-Tt-9UY" secondAttribute="bottom" id="Cts-4O-06e"/>
+                                                <constraint firstItem="pAS-Cr-fPP" firstAttribute="trailing" secondItem="jpp-Tt-9UY" secondAttribute="trailing" id="SuC-KX-5ff"/>
                                                 <constraint firstItem="jpp-Tt-9UY" firstAttribute="width" secondItem="jpp-Tt-9UY" secondAttribute="height" id="Vo3-WT-avN"/>
                                                 <constraint firstItem="qMU-bC-Lph" firstAttribute="top" secondItem="jpp-Tt-9UY" secondAttribute="top" id="nvz-Xc-XSF"/>
+                                                <constraint firstItem="pAS-Cr-fPP" firstAttribute="leading" secondItem="jpp-Tt-9UY" secondAttribute="leading" id="oWG-N3-MOC"/>
                                                 <constraint firstAttribute="bottom" secondItem="qMU-bC-Lph" secondAttribute="bottom" constant="20" id="pFO-Xb-y7w"/>
                                                 <constraint firstItem="jpp-Tt-9UY" firstAttribute="top" secondItem="jdE-xN-4qT" secondAttribute="top" constant="35" id="qch-Qh-NOh"/>
                                                 <constraint firstAttribute="trailing" secondItem="qMU-bC-Lph" secondAttribute="trailing" constant="35" id="wBj-sc-66g"/>
+                                                <constraint firstItem="pAS-Cr-fPP" firstAttribute="top" secondItem="jpp-Tt-9UY" secondAttribute="top" id="xEz-QN-5VZ"/>
                                                 <constraint firstItem="jpp-Tt-9UY" firstAttribute="leading" secondItem="jdE-xN-4qT" secondAttribute="leading" constant="20" id="z6D-Ib-oMt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="avatarBtn" destination="pAS-Cr-fPP" id="cCk-ep-Hn6"/>
                                             <outlet property="avatarImgV" destination="jpp-Tt-9UY" id="dPm-Vp-zNE"/>
                                             <outlet property="contentL" destination="baF-uy-Evz" id="X1t-fl-QTP"/>
                                             <outlet property="dateL" destination="GGd-6X-hYP" id="nnW-hc-BQB"/>
@@ -1426,8 +1441,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="130.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xtxi_icon_ms" translatesAutoresizingMaskIntoConstraints="NO" id="YHj-C8-GDm">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YHj-C8-GDm">
                                                     <rect key="frame" x="20" y="35" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="YHj-C8-GDm" secondAttribute="height" id="Mrb-Hz-W6f"/>
                                                         <constraint firstAttribute="width" constant="44" id="T3y-Ur-jmW"/>
@@ -1488,14 +1505,24 @@
                                                         <constraint firstItem="uu3-q3-Lmk" firstAttribute="leading" secondItem="9EC-oj-Q2U" secondAttribute="trailing" constant="13" id="uVZ-dN-nRv"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTC-gi-ALD">
+                                                    <rect key="frame" x="20" y="35" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <state key="normal" image="wd_img_tx"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="UTC-gi-ALD" firstAttribute="leading" secondItem="YHj-C8-GDm" secondAttribute="leading" id="17L-Ng-hxq"/>
                                                 <constraint firstItem="89N-Kv-ZcL" firstAttribute="top" secondItem="HWr-iz-iAS" secondAttribute="top" constant="15" id="3nT-SK-wkC"/>
                                                 <constraint firstItem="89N-Kv-ZcL" firstAttribute="centerX" secondItem="HWr-iz-iAS" secondAttribute="centerX" id="3t7-bd-tKF"/>
+                                                <constraint firstItem="UTC-gi-ALD" firstAttribute="trailing" secondItem="YHj-C8-GDm" secondAttribute="trailing" id="Cw8-wx-eet"/>
+                                                <constraint firstItem="UTC-gi-ALD" firstAttribute="bottom" secondItem="YHj-C8-GDm" secondAttribute="bottom" id="LGo-EK-aSy"/>
                                                 <constraint firstItem="5FF-e0-xQu" firstAttribute="top" secondItem="YHj-C8-GDm" secondAttribute="top" id="UFW-gF-UmV"/>
                                                 <constraint firstItem="YHj-C8-GDm" firstAttribute="leading" secondItem="HWr-iz-iAS" secondAttribute="leading" constant="20" id="V8f-xv-K2k"/>
                                                 <constraint firstItem="YHj-C8-GDm" firstAttribute="width" secondItem="YHj-C8-GDm" secondAttribute="height" id="Wu7-R5-wjO"/>
+                                                <constraint firstItem="UTC-gi-ALD" firstAttribute="top" secondItem="YHj-C8-GDm" secondAttribute="top" id="c1B-Xp-fop"/>
                                                 <constraint firstItem="YHj-C8-GDm" firstAttribute="top" secondItem="HWr-iz-iAS" secondAttribute="top" constant="35" id="dL3-Ij-rjc"/>
                                                 <constraint firstAttribute="trailing" secondItem="5FF-e0-xQu" secondAttribute="trailing" constant="35" id="dpv-0b-cge"/>
                                                 <constraint firstItem="5FF-e0-xQu" firstAttribute="leading" secondItem="YHj-C8-GDm" secondAttribute="trailing" constant="10" id="jIp-s0-goG"/>
@@ -1504,6 +1531,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="avatarBtn" destination="UTC-gi-ALD" id="AxZ-Uh-nG0"/>
                                             <outlet property="avatarImgV" destination="YHj-C8-GDm" id="VrT-sh-1pn"/>
                                             <outlet property="contentL" destination="iAh-Z0-36H" id="wzP-hU-4iA"/>
                                             <outlet property="dateL" destination="89N-Kv-ZcL" id="4Yt-35-ns1"/>

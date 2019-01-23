@@ -68,7 +68,6 @@
                             <constraint firstAttribute="width" constant="30" id="43N-CV-VA5"/>
                             <constraint firstAttribute="height" constant="30" id="uYU-FN-RGv"/>
                         </constraints>
-                        <state key="normal" image="user_img1"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvj-dN-MXU">
                         <rect key="frame" x="60" y="22" width="255" height="76.5"/>
@@ -153,7 +152,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user_img1" width="30" height="30"/>
         <image name="点赞1" width="16" height="16"/>
     </resources>
 </document>

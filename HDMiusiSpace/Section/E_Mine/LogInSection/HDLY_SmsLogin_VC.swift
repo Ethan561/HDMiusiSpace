@@ -31,7 +31,8 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         self.isShowNavShadowLayer = false
         setupThridLogin()
         loginBtn.layer.cornerRadius = 23
-        setupBarBtn()
+        self.hd_navigationBarHidden = true
+//        setupBarBtn()
         phoneTF.keyboardType = .numberPad
         phoneTF.returnKeyType = .done
         phoneTF.delegate = self
@@ -41,23 +42,8 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         
     }
     
-    func setupBarBtn() {
-        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
-        leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-        leftBarBtn.setImage(UIImage.init(named: "float_icon_close"), for: UIControlState.normal)
-        leftBarBtn.addTarget(self, action: #selector(back), for: UIControlEvents.touchUpInside)
-        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
-        self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
-        //
-//        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
-//        rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-//        rightBarBtn.setTitle("注册", for: .normal)
-//        rightBarBtn.setTitleColor(UIColor.HexColor(0x4A4A4A), for: .normal)
-//        
-//        rightBarBtn.addTarget(self, action: #selector(pushToRegisterVC), for: UIControlEvents.touchUpInside)
-//        let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
-//        self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
-        
+    @IBAction func backAction(_ sender: Any) {
+        self.back()
     }
     
     @objc func pushToRegisterVC() {

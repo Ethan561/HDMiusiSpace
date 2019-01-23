@@ -197,7 +197,11 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             weakSelf?.myTableView.es.stopLoadingMore()
             weakSelf?.myTableView.es.stopPullToRefresh()
             if comments.count == 0 {
-                self.myTableView.es.noticeNoMoreData()
+                if weakSelf?.skip != 0 {
+                    weakSelf?.myTableView.es.noticeNoMoreData()
+                } else {
+                    weakSelf?.myTableView.es.removeRefreshFooter()
+                }
             }
             weakSelf?.myTableView.reloadData()
         }

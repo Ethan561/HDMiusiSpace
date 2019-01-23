@@ -90,6 +90,8 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         }
         
         collectionview.reloadData()
+        //MARK: 暂时隐藏VIP充值入口
+        menuBg2.isHidden = true
     }
     
     func reloadUI(_ goodd: GoodsData) {

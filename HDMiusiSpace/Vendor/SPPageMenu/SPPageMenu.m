@@ -722,7 +722,8 @@
     CGPoint newCenter = self.tracker.center;
     if (self.trackerStyle == SPPageMenuTrackerStyleLine) {
         newCenter.x = fromButton.center.x + xDistance * progress;
-        newFrame.size.width = fromButton.frame.size.width + wDistance * progress;
+//        newFrame.size.width = fromButton.frame.size.width + wDistance * progress;
+        newFrame.size.width = 34;
         self.tracker.frame = newFrame;
         self.tracker.center = newCenter;
     } else if (self.trackerStyle == SPPageMenuTrackerStyleLineAttachment){
@@ -1112,7 +1113,7 @@
     switch (self.trackerStyle) {
         case SPPageMenuTrackerStyleLine:
         {
-            trackerW = selectedButtonWidth;
+            trackerW = 34;
             trackerH = _trackerHeight;
             trackerX = selectedButton.frame.origin.x;
             trackerY = self.itemScrollView.bounds.size.height - trackerH;

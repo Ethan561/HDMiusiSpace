@@ -20,9 +20,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_nothing" translatesAutoresizingMaskIntoConstraints="NO" id="bSF-ZO-etH">
-                        <rect key="frame" x="40" y="0.0" width="240" height="128"/>
+                        <rect key="frame" x="40" y="5" width="240" height="123"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="128" id="TZH-5R-QEH"/>
+                            <constraint firstAttribute="height" constant="123" id="TZH-5R-QEH"/>
                             <constraint firstAttribute="width" constant="240" id="f3l-Jg-f0c"/>
                         </constraints>
                     </imageView>
@@ -49,12 +49,15 @@
                     <constraint firstItem="AdG-d8-4XH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="MZ9-fs-gCf"/>
                     <constraint firstItem="O9R-ef-vfH" firstAttribute="top" secondItem="bSF-ZO-etH" secondAttribute="bottom" id="X3g-Hb-Ok8"/>
                     <constraint firstAttribute="trailing" secondItem="AdG-d8-4XH" secondAttribute="trailing" constant="20" id="d3E-Kh-PKO"/>
-                    <constraint firstItem="bSF-ZO-etH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="dRx-ra-R69"/>
+                    <constraint firstItem="bSF-ZO-etH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="dRx-ra-R69"/>
                     <constraint firstAttribute="bottom" secondItem="AdG-d8-4XH" secondAttribute="bottom" id="e1p-sJ-mcK"/>
                     <constraint firstItem="O9R-ef-vfH" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fG7-qF-W8g"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bottomLineView" destination="AdG-d8-4XH" id="M4L-PS-MfF"/>
+            </connections>
             <point key="canvasLocation" x="137.59999999999999" y="207.79610194902551"/>
         </tableViewCell>
     </objects>

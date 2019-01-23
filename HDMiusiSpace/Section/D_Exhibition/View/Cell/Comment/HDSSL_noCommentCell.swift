@@ -10,6 +10,7 @@ import UIKit
 
 class HDSSL_noCommentCell: UITableViewCell {
 
+    @IBOutlet weak var bottomLineView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

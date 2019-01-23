@@ -364,6 +364,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
+            if commentModels.count == 0 { return 1 }
             return commentModels.count
         }
         return 0
@@ -383,6 +384,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if indexPath.section == 1 {
+            if commentModels.count == 0 { return 150 }
             let commentModel = commentModels[index]
             let textH = commentModel.comment.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
             var subCommentsH = 0
@@ -421,6 +423,11 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         else if indexPath.section ==  1 {
+            if commentModels.count == 0 {
+                let cell = HDSSL_noCommentCell.getMyTableCell(tableV: tableView) as HDSSL_noCommentCell
+                cell.bottomLineView.isHidden = true
+                return cell
+            }
             let cell = HDLY_LeaveMsg_Cell.getMyTableCell(tableV: tableView)
             let commentModel = self.commentModels[index]
             cell?.uid = commentModel.uid

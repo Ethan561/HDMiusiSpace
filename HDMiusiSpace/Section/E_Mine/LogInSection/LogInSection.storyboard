@@ -227,7 +227,7 @@
                                     <constraint firstAttribute="width" constant="30" id="hgM-md-mAp"/>
                                     <constraint firstAttribute="height" constant="30" id="iCg-QF-DBy"/>
                                 </constraints>
-                                <state key="normal" image="float_icon_close"/>
+                                <state key="normal" image="icon_dl_close"/>
                                 <connections>
                                     <action selector="backAction:" destination="iJS-qq-LDt" eventType="touchUpInside" id="Uis-Me-W5u"/>
                                 </connections>
@@ -783,7 +783,7 @@
         <image name="dl_icon_qq" width="19" height="20"/>
         <image name="dl_icon_wb" width="25" height="20"/>
         <image name="dl_icon_wc" width="25" height="20"/>
-        <image name="float_icon_close" width="20" height="20"/>
         <image name="icon_choose_red" width="16" height="16"/>
+        <image name="icon_dl_close" width="16" height="16"/>
     </resources>
 </document>

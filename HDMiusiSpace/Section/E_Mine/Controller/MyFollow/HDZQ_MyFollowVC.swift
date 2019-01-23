@@ -13,14 +13,14 @@ class HDZQ_MyFollowVC: HDItemBaseVC {
     @IBOutlet weak var scrollView: UIScrollView!
     private var menuIndex = 0
     lazy var pageMenu: SPPageMenu = {
-        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:0, y: 0, width: ScreenWidth, height: 44), trackerStyle: SPPageMenuTrackerStyle.lineAttachment)
+        let page:SPPageMenu = SPPageMenu.init(frame: CGRect.init(x:0, y: 0, width: ScreenWidth, height: 44), trackerStyle: SPPageMenuTrackerStyle.line)
         
         page.delegate = self
         page.itemTitleFont = UIFont.init(name: "PingFangSC-Regular", size: 18)!
         page.dividingLine.isHidden = true
         page.selectedItemTitleColor = UIColor.HexColor(0x333333)
         page.unSelectedItemTitleColor = UIColor.HexColor(0x9B9B9B)
-        page.tracker.backgroundColor = UIColor.red
+        page.tracker.backgroundColor = UIColor.HexColor(0xE8593E)
         page.backgroundColor = UIColor.white
         page.layer.shadowColor = UIColor.lightGray.cgColor
         page.layer.shadowOffset = CGSize.init(width: 0, height: 5)

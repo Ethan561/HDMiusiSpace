@@ -89,7 +89,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var currentPlayTime: TimeInterval = 0
     var isStatusBarHidden = false//是否隐藏状态栏
     var shareView: HDLY_ShareView?
-    
+    var isNeedRefresh = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,15 +100,11 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.contentScrollView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
         contentView.addSubview(contentScrollView)
         menuView.addSubview(self.pageMenu)
-        
         setupPlayer()
-        
         dataRequest()
         addContentSubViewsWithArr(titleArr: titleArray)
         bindViewModel()
-        
         wwanTipView.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +113,12 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         UIApplication.shared.statusBarStyle = .lightContent
         
         NotificationCenter.default.addObserver(self, selector: #selector(playOrPauseNoti(_:)), name: NSNotification.Name.init("HDLY_CourseList_VC_PlayOrPause_Noti"), object: nil)
+        if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            dataRequest()
+            isNeedRefresh = false
+        }else {
+            isNeedRefresh = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -214,6 +216,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         if self.infoModel?.data.articleID.string != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
                 return
             }
             publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: infoModel!.data.articleID.string, cate_id: "3", self)

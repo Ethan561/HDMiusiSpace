@@ -428,7 +428,7 @@ extension HDLY_RootCSubVC {
         }
         if result == 2 {
             orderTipView?.successView.isHidden = false
-            self.dataRequest()
+            self.refreshAction()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
                 self.orderTipView?.sureBlock = nil
                 self.orderTipView?.removeFromSuperview()

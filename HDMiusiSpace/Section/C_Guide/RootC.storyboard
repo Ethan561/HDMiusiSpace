@@ -602,7 +602,7 @@
         <!--GuideVC-->
         <scene sceneID="wmP-bM-n1v">
             <objects>
-                <viewController storyboardIdentifier="HDLY_QRGuideVC" id="NC4-T1-L9G" customClass="HDLY_QRGuideVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HDLY_QRGuideVC" hidesBottomBarWhenPushed="YES" id="NC4-T1-L9G" customClass="HDLY_QRGuideVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dB-ea-vq7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

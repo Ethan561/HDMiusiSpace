@@ -47,6 +47,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
+    var isNeedRefresh = false
     
     override func loadView() {
         super.loadView()
@@ -69,6 +70,16 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         weak var weakS = self
         self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithBlock {
             weakS?.refreshAction()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            refreshAction()
+            isNeedRefresh = false
+        }else {
+            isNeedRefresh = false
         }
     }
     
@@ -277,6 +288,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     @IBAction func commentBtnAction(_ sender: UIButton) {
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
+            isNeedRefresh = true
             return
         }
         keyboardTextField.placeholderLabel.text = "写下你的评论吧"
@@ -298,6 +310,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         if let idnum = infoModel?.articleID.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
                 return
             }
             if fromRootAChoiceness == true {
@@ -560,6 +573,7 @@ extension HDLY_TopicDetail_VC {
             cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self?.pushToLoginVC(vc: self!)
+                    self?.isNeedRefresh = true
                 } else {
                     self?.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", success: { (result) in
                         if self?.commentModels[index].isLike == 0 {
@@ -580,6 +594,7 @@ extension HDLY_TopicDetail_VC {
             cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self?.pushToLoginVC(vc: self!)
+                    self?.isNeedRefresh = true
                 } else {
                     self?.pushToOthersPersonalCenterVC(commentModel.uid)
                 }
@@ -713,6 +728,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
         if let idnum = infoModel?.platform_id {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
                 return
             }
             doFocusRequest(api_token: HDDeclare.shared.api_token!, id: "\(idnum)", cate_id: "1")
@@ -796,6 +812,7 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
         if commentText.isEmpty == false && infoModel?.articleID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
                 return
             }
             

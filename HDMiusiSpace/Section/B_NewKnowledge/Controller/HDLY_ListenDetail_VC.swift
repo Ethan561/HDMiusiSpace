@@ -65,6 +65,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
+    var isNeedRefresh = false
     
     override func loadView() {
         super.loadView()
@@ -96,7 +97,12 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         HDFloatingButtonManager.manager.floatingBtnView.show = false
-
+        if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            refreshAction()
+            isNeedRefresh = false
+        }else {
+            isNeedRefresh = false
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -361,6 +367,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     @IBAction func commentBtnAction(_ sender: UIButton) {
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
+            isNeedRefresh = true
             return
         }
         keyboardTextField.placeholderLabel.text = "写下你的评论吧"
@@ -372,6 +379,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if let idnum = infoModel?.listenID?.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
+
                 return
             }
             publicViewModel.doLikeRequest(id: idnum, cate_id: "4", self)
@@ -382,6 +391,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if let idnum = infoModel?.listenID?.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
+
                 return
             }
             publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "4", self)
@@ -392,6 +403,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         if let idnum = infoModel?.teacherID?.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
+
                 return
             }
             publicViewModel.doFocusRequest(api_token: HDDeclare.shared.api_token!, id: idnum, cate_id: "2", self)
@@ -628,6 +641,8 @@ extension HDLY_ListenDetail_VC {
                 cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                         self?.pushToLoginVC(vc: self!)
+                        self?.isNeedRefresh = true
+
                     } else {
                         self?.doLikeRequest(id: String(commentModel.commentID), cate_id: "5", success: { (result) in
                             if self?.commentModels[index].isLike == 0 {
@@ -648,6 +663,7 @@ extension HDLY_ListenDetail_VC {
                 cell?.avatarBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                     if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                         self?.pushToLoginVC(vc: self!)
+                        self?.isNeedRefresh = true
                     } else {
                         self?.pushToOthersPersonalCenterVC(commentModel.uid)
                     }
@@ -753,6 +769,8 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.commentView.removeFromSuperview()
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
+
                 return
             }
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
@@ -852,6 +870,8 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
         if commentText.isEmpty == false && infoModel?.listenID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
+                isNeedRefresh = true
+
                 return
             }
             

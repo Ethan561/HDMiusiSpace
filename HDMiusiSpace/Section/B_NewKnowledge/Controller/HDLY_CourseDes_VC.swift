@@ -60,8 +60,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var webViewH:CGFloat = 0
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
-    
     var shareView: HDLY_ShareView?
+    var isNeedRefresh = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,8 +92,12 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         super.viewWillAppear(animated)
         self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
-        
-
+        if  HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            refreshAction()
+            isNeedRefresh = false
+        }else {
+            isNeedRefresh = false
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -183,6 +187,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                         self.pushToLoginVC(vc: self)
+                        isNeedRefresh = true
                         return
                     }
                     //获取订单信息
@@ -282,6 +287,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     @IBAction func likeBtnAction(_ sender: UIButton) {
         if self.infoModel?.data.articleID.string != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                isNeedRefresh = true
                 self.pushToLoginVC(vc: self)
                 return
             }
@@ -636,6 +642,7 @@ extension HDLY_CourseDes_VC {
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.data.teacherID.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+                isNeedRefresh = true
                 self.pushToLoginVC(vc: self)
                 return
             }

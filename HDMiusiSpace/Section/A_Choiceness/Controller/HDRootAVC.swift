@@ -34,6 +34,8 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         return tmp!
     }()
     
+    var isNeedRefresh = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +73,12 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            refreshAction()
+            isNeedRefresh = false
+        }else {
+            isNeedRefresh = false
+        }
     }
     
     func addRefresh() {
@@ -385,6 +392,7 @@ extension HDRootAVC {
         let cardID:String = String(sender.tag)
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
+            isNeedRefresh = true
             return
         }
         publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: cardID, cate_id: "1", self)

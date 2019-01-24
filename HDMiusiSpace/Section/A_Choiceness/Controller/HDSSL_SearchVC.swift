@@ -369,9 +369,9 @@ extension HDSSL_SearchVC{
         header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         
-        self.resultTableView.es.addPullToRefresh(animator: header) { [weak self] in
-            self?.refresh()
-        }
+//        self.resultTableView.es.addPullToRefresh(animator: header) { [weak self] in
+//            self?.refresh()
+//        }
         self.resultTableView.es.addInfiniteScrolling(animator: footer) { [weak self] in
             self?.loadMore()
         }

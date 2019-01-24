@@ -179,11 +179,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+
+
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        if HDFloatingButtonManager.manager.floatingBtnView.show == true {
+            LOG("======= 暂停了=====")
+            if HDLY_AudioPlayer.shared.state == .playing {
+                HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+                HDFloatingButtonManager.manager.floatingBtnView.showView()
+            }
+        }
+        LOG("=======了=====\(HDFloatingButtonManager.manager.floatingBtnView.show) === \(HDLY_AudioPlayer.shared.state)")
+
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

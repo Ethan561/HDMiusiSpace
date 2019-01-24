@@ -97,7 +97,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         return btn
     }()
 
-    var show:Bool = false{
+    var show:Bool = false {
         didSet {
             if show {
                 self.showView()

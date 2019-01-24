@@ -80,7 +80,7 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
 
  
         }) { (errorCode, msg) in

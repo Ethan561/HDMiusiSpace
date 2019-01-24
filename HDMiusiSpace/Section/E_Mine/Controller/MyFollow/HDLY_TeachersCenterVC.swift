@@ -130,7 +130,7 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
     }
     
     func refreshUIForTeacher(_ model: TeacherDynamicData) {
-        
+        tabHeader.vipImg.isHidden = true
         tabHeader.avatar.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         tabHeader.nickNameL.text = model.title
         tabHeader.desLabel.text = model.subTitle
@@ -170,10 +170,10 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
     }
     
     func refreshUIForPlat(_ model: PlatDynamicData) {
-        
+        tabHeader.vipImg.isHidden = true
         tabHeader.avatar.kf.setImage(with: URL.init(string: model.avatar!), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         tabHeader.nickNameL.text = model.title
-        tabHeader.desLabel.text = "学习机构"
+        tabHeader.desLabel.text = model.des
         tabHeader.teacherDesL.isHidden = false
         tabHeader.genderImg.isHidden = true
         tabHeader.teacherDesL.text = model.des

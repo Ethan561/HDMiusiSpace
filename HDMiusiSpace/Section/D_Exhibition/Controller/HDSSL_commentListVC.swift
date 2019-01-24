@@ -321,14 +321,18 @@ extension HDSSL_commentListVC: HDZQ_CommentActionDelegate {
                 print("删除")
                 //删除自己评论接口
                 self.commentView.removeFromSuperview()
-                if model.showAll == true {
-                    //借用showAll字断，true表示删除评论，false表示删除回复
-                    publicViewModel.deleteComment(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
-                }else{
-                    publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                
+                let deleteView:HDZQ_DynamicDeleteView = HDZQ_DynamicDeleteView.createViewFromNib() as! HDZQ_DynamicDeleteView
+                deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+                deleteView.sureBlock = {
+                    if model.showAll == true {
+                        //借用showAll字断，true表示删除评论，false表示删除回复
+                        self.publicViewModel.deleteComment(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                    }else{
+                        self.publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                    }   
                 }
-                
-                
+                kWindow?.addSubview(deleteView)
             }
         } else {
             //二级弹出列表
@@ -637,6 +641,10 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
     //MARK: ---判断是否登陆
     func replyCommentWith(_ keyboardTextField: KeyboardTextField){
         commentText =  keyboardTextField.textView.text
+        
+        if commentText == "" {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请输入评论内容")
+        }
         currentCommentModel = self.commentArray[currentRow!]
         
         if commentText.isEmpty == false && currentCommentModel.commentID != nil {

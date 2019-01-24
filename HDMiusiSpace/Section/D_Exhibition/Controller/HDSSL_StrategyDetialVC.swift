@@ -318,13 +318,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            if self.cmtNum == 0{
-                return 0.01
-            }
-            
-            if self.cmtNum > 0{
-                return 50
-            }
+            return 50
         }
         return 0.01
     }
@@ -343,11 +337,9 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            if cmtNum > 0{
-                let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
-                titleV.titleL.text = "评论 （\(cmtNum)）"
-                return titleV
-            }
+            let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
+            titleV.titleL.text = "评论 （\(cmtNum)）"
+            return titleV
         }
         
         return nil
@@ -578,9 +570,13 @@ extension HDSSL_StrategyDetialVC: HDZQ_CommentActionDelegate {
             }else if index == 2 {
                 print("删除")
                 self.commentView.removeFromSuperview()
-                //删除评论
-                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
-                
+                let deleteView:HDZQ_DynamicDeleteView = HDZQ_DynamicDeleteView.createViewFromNib() as! HDZQ_DynamicDeleteView
+                deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+                deleteView.sureBlock = {
+                    //删除评论
+                    self.publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                }
+                kWindow?.addSubview(deleteView)
             }
         } else {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
@@ -647,7 +643,7 @@ extension HDSSL_StrategyDetialVC : KeyboardTextFieldDelegate {
         keyboardTextField.delegate = self
         keyboardTextField.isLeftButtonHidden = true
         keyboardTextField.isRightButtonHidden = false
-        keyboardTextField.rightButton.setTitle("发布", for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitle("发表", for: UIControlState.normal)
         keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
         keyboardTextField.rightButton.backgroundColor = UIColor.clear
         keyboardTextField.placeholderLabel.text = "发回复"

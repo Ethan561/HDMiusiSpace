@@ -82,6 +82,8 @@ class HDSSL_commentVC: HDItemBaseVC {
 
             //跳到发布成功页面
             weakSelf?.jumpSuccessVC()
+            //发送通知刷新展览详情页面评论数据
+            NotificationCenter.default.post(name: NSNotification.Name.init("KNoti_Refresh_Comments"), object: nil)
         }
         
         

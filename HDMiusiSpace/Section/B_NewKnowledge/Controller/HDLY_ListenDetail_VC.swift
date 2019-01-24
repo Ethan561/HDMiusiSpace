@@ -473,25 +473,21 @@ extension HDLY_ListenDetail_VC {
     
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let cmtNum = infoModel?.comments else {
+        guard (infoModel?.comments) != nil else {
             return 0.01
         }
-        if cmtNum > 0 && section == 1{
+        if  section == 1{
             return 50
         }
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let cmtNum = infoModel?.comments else {
-            return nil
-        }
-        if cmtNum > 0 && section == 1{
+        if section == 1 {
             let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
             titleV.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50)
             titleV.titleL.text = "评论"
             return titleV
         }
-        
         return nil
     }
     //footer
@@ -761,8 +757,15 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
             }else if index == 2 {
                 print("删除")
                 self.commentView.removeFromSuperview()
-                //删除评论
-                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                let deleteView:HDZQ_DynamicDeleteView = HDZQ_DynamicDeleteView.createViewFromNib() as! HDZQ_DynamicDeleteView
+                deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+                deleteView.sureBlock = {
+                    //删除评论
+                    self.publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                }
+                
+                kWindow?.addSubview(deleteView)
+               
                 
             }
         } else {

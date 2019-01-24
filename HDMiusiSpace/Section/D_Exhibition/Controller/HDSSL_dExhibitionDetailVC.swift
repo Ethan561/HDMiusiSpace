@@ -75,6 +75,10 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
             HDLY_LocationTool.shared.startLocation()
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshDatas),
+                                               name: NSNotification.Name.init(rawValue: "KNoti_Refresh_Comments"),
+                                               object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,14 +164,22 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         bannerView.imgPathArr = bannerImgArr!
         imgsArr = bannerImgArr
         //轮播图数量
-        let str = "\(1)/\(imgsArr!.count)"
-        self.bannerNumL.text = str
+        if (imgsArr?.count)! > 1 {
+            let str = "\(1)/\(imgsArr!.count)"
+            self.bannerNumL.text = str
+        }else{
+            self.bannerNumL.isHidden = true
+        }
+        
         if self.exdataModel?.data?.isFavorite == 1 {
             self.likeBtn.isSelected = true
         }
         self.dTableView.reloadData()
     }
-    
+    //MARK: -----Notification
+    @objc func refreshDatas() {
+        loadMyDatas()
+    }
     //MARK: -----action
     @IBAction func action_back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

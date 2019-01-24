@@ -120,6 +120,8 @@ class HDSSL_commentSucVC: HDItemBaseVC {
                 //展览详情
                 if vc.isKind(of: HDSSL_dExhibitionDetailVC.self) {
                     self.navigationController?.popToViewController(vc, animated: true)
+                }else if vc.isKind(of: HDSSL_OrderDetialVC.self) {
+                    self.navigationController?.popToViewController(vc, animated: true)
                 }
                 
             }

@@ -352,13 +352,7 @@ extension HDLY_TopicDetail_VC {
             }
         }
         if section == 2 {
-            if self.cmtNum == 0{
-                return 0.01
-            }
-            
-            if self.cmtNum > 0{
-                return 50
-            }
+            return 50
         }
         return 0.01
     }
@@ -384,11 +378,9 @@ extension HDLY_TopicDetail_VC {
             }
         }
         if section == 2 {
-            if cmtNum > 0{
-                let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
-                titleV.titleL.text = "评论 （\(self.cmtNum)）"
-                return titleV
-            }
+            let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
+            titleV.titleL.text = "评论 （\(self.cmtNum)）"
+            return titleV
         }
         
         return nil

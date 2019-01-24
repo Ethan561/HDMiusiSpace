@@ -18,14 +18,13 @@ class QRCode_View: UIView,AVCaptureMetadataOutputObjectsDelegate {
     let lineImgName = ""
     let bgImgName = "dl_img_sys"
     
-    var ownerVC:UIViewController?
+    var ownerVC: UIViewController?
+    var cameraAuthorizationStatus: AVAuthorizationStatus = .notDetermined
     
     private lazy var session:AVCaptureSession = {
         
         //获取摄像设备
-        
         let device:AVCaptureDevice =  AVCaptureDevice.default(for: .video)!
-        
         //创建输入流
         
         var input:AVCaptureDeviceInput?
@@ -266,13 +265,15 @@ class QRCode_View: UIView,AVCaptureMetadataOutputObjectsDelegate {
     
     func adjustCameraAuth(){
         let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        self.cameraAuthorizationStatus = authStatus
+        
         switch authStatus {
         case .authorized:
             loadCamera()
             //print("")
         case .denied:
             //print("被拒绝再次提问")
-            let alert = UIAlertController.init(title: "需要获取相机权限", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController.init(title: "需要获取相机权限才能正常使用该功能", message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
             let confirm = UIAlertAction.init(title: "去获取", style: .default) { (alert) in
                 let url = URL(string: UIApplicationOpenSettingsURLString)

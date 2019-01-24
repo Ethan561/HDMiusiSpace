@@ -34,7 +34,9 @@ class HDLY_QRGuideVC: HDItemBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.codeView.rerunning()
+        if self.codeView.cameraAuthorizationStatus == .authorized {
+            self.codeView.rerunning()
+        }
     }
     
     func showWebVC(url: String) {

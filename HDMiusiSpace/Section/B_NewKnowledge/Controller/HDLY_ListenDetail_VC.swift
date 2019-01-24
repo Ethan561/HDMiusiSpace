@@ -761,8 +761,15 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
             }else if index == 2 {
                 print("删除")
                 self.commentView.removeFromSuperview()
-                //删除评论
-                publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                let deleteView:HDZQ_DynamicDeleteView = HDZQ_DynamicDeleteView.createViewFromNib() as! HDZQ_DynamicDeleteView
+                deleteView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+                deleteView.sureBlock = {
+                    //删除评论
+                    self.publicViewModel.deleteCommentReply(api_token: HDDeclare.shared.api_token ?? "", comment_id: model.commentID,self)
+                }
+                
+                kWindow?.addSubview(deleteView)
+               
                 
             }
         } else {

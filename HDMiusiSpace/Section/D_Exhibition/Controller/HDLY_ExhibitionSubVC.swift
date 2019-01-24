@@ -235,7 +235,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         //
-        self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-100)
+        self.tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight)-50)
         
     }
 }

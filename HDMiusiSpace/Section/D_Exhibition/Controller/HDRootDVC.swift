@@ -272,7 +272,7 @@ extension HDRootDVC {
             myTableView.showsVerticalScrollIndicator = false
             searchBtn.isHidden = false
         }
-        if self.myTableView.contentOffset.y <  60{
+        if self.myTableView.contentOffset.y <  50 {
             searchBtn.isHidden = true
         } else {
             searchBtn.isHidden = false
@@ -286,25 +286,18 @@ extension HDRootDVC {
             if self.childVCScrollView != nil {
                 if self.childVCScrollView!.contentOffset.y > 0 {
                     self.myTableView.contentOffset = CGPoint.init(x: 0, y: searchBarH)
-                    print(111)
                 }
-                print(222)
             }
             let offSetY = scrollView.contentOffset.y
             if offSetY >= searchBarH {
-                print(333)
                 self.myTableView.contentOffset = CGPoint.init(x: 0, y: searchBarH )// myTableView 不滚动
             } else {
-                print(444)
                 if offSetY < 0 {
-                    print(555)
                     self.myTableView.contentOffset = CGPoint.init(x: 0, y: -1 )// myTableView 不滚动
-//                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToRefresh"), object: nil)  //子视图不滚动
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
                 }
             }
-            print(666)
         }
     }
 }

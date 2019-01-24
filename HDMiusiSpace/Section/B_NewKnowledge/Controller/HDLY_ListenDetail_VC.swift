@@ -473,25 +473,21 @@ extension HDLY_ListenDetail_VC {
     
     //header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let cmtNum = infoModel?.comments else {
+        guard (infoModel?.comments) != nil else {
             return 0.01
         }
-        if cmtNum > 0 && section == 1{
+        if  section == 1{
             return 50
         }
         return 0.01
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let cmtNum = infoModel?.comments else {
-            return nil
-        }
-        if cmtNum > 0 && section == 1{
+        if section == 1 {
             let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
             titleV.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 50)
             titleV.titleL.text = "评论"
             return titleV
         }
-        
         return nil
     }
     //footer

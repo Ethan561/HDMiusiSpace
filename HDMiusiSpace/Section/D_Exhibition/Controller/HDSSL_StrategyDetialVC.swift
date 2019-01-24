@@ -318,13 +318,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            if self.cmtNum == 0{
-                return 0.01
-            }
-            
-            if self.cmtNum > 0{
-                return 50
-            }
+            return 50
         }
         return 0.01
     }
@@ -343,11 +337,9 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
         }
         
         if section == 1 {
-            if cmtNum > 0{
-                let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
-                titleV.titleL.text = "评论 （\(cmtNum)）"
-                return titleV
-            }
+            let titleV:HDLY_ListenComment_Header = HDLY_ListenComment_Header.createViewFromNib() as! HDLY_ListenComment_Header
+            titleV.titleL.text = "评论 （\(cmtNum)）"
+            return titleV
         }
         
         return nil

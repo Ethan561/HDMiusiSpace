@@ -354,7 +354,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row
         if section == 0 {
             if index == 0 {//会员
-                return 120
+                return 0.01
             }else if index == 1 {//我的钱包
                 return 60
             }else if index == 2 {//我的订单
@@ -379,8 +379,9 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
         let index = indexPath.row
         if section == 0 {
             if index == 0 {//会员
-                let cell = HDLY_Membership_Cell.getMyTableCell(tableV: tableView)
-                return cell!
+//                let cell = HDLY_Membership_Cell.getMyTableCell(tableV: tableView)
+//                return cell!
+                return UITableViewCell()
             }else if index == 1 {//我的钱包
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "我的钱包"

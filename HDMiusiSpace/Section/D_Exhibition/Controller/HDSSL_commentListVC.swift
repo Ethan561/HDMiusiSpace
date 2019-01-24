@@ -641,6 +641,10 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
     //MARK: ---判断是否登陆
     func replyCommentWith(_ keyboardTextField: KeyboardTextField){
         commentText =  keyboardTextField.textView.text
+        
+        if commentText == "" {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请输入评论内容")
+        }
         currentCommentModel = self.commentArray[currentRow!]
         
         if commentText.isEmpty == false && currentCommentModel.commentID != nil {

@@ -14,6 +14,8 @@
 		1B1C2D9521AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */; };
 		1B1C2D9721AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */; };
 		1B1C2D9921AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */; };
+		1B1DAB9521F9467E00826951 /* HDZQ_RootDSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B1DAB9421F9467E00826951 /* HDZQ_RootDSearchView.xib */; };
+		1B1DAB9721F9468C00826951 /* HDZQ_RootDSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1DAB9621F9468C00826951 /* HDZQ_RootDSearchView.swift */; };
 		1B21CBA921B0DDA5006246DF /* UIView+Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBA821B0DDA5006246DF /* UIView+Badge.swift */; };
 		1B21CBAB21B0EB96006246DF /* HDZQ_OthersCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */; };
 		1B21CBAD21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B21CBAC21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift */; };
@@ -648,6 +650,8 @@
 		1B1C2D9421AD2F6F00254854 /* HDZQ_AboutMuseFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseFooterView.xib; sourceTree = "<group>"; };
 		1B1C2D9621AD39C100254854 /* HDZQ_AboutMuseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_AboutMuseHeaderView.xib; sourceTree = "<group>"; };
 		1B1C2D9821AD39D000254854 /* HDZQ_AboutMuseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_AboutMuseHeaderView.swift; sourceTree = "<group>"; };
+		1B1DAB9421F9467E00826951 /* HDZQ_RootDSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RootDSearchView.xib; sourceTree = "<group>"; };
+		1B1DAB9621F9468C00826951 /* HDZQ_RootDSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_RootDSearchView.swift; sourceTree = "<group>"; };
 		1B21CBA821B0DDA5006246DF /* UIView+Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Badge.swift"; sourceTree = "<group>"; };
 		1B21CBAA21B0EB96006246DF /* HDZQ_OthersCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_OthersCenterVC.swift; sourceTree = "<group>"; };
 		1B21CBAC21B10650006246DF /* HDZQ_PersonOthersHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_PersonOthersHeaderView.swift; sourceTree = "<group>"; };
@@ -2859,6 +2863,8 @@
 			children = (
 				A74E6FBD219A6B58007CD3E7 /* location */,
 				A74E6FBC219A6B26007CD3E7 /* Cell */,
+				1B1DAB9621F9468C00826951 /* HDZQ_RootDSearchView.swift */,
+				1B1DAB9421F9467E00826951 /* HDZQ_RootDSearchView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3296,6 +3302,7 @@
 				D637568C219FFCD1004AD093 /* HDLY_MuseumInfoType4Cell.xib in Resources */,
 				D62277822136335B008F1416 /* HDLY_FeedbackChoose_View.xib in Resources */,
 				D66A8A5C212E3B8D009A879F /* HDLY_ListenComment_Header.xib in Resources */,
+				1B1DAB9521F9467E00826951 /* HDZQ_RootDSearchView.xib in Resources */,
 				D6C9FC172117FA3A007C8E56 /* Main.storyboard in Resources */,
 				D637567C219FE7DC004AD093 /* HDLY_MuseumTagsCell.xib in Resources */,
 			);
@@ -3522,6 +3529,7 @@
 				A7441D3321A2A0D50064E6A6 /* TZAssetCell.m in Sources */,
 				D62277DC21368069008F1416 /* VideoPickerPreviewCell.swift in Sources */,
 				1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */,
+				1B1DAB9721F9468C00826951 /* HDZQ_RootDSearchView.swift in Sources */,
 				D614CFBF21D727D700CA13AC /* ESPullToRefresh+Manager.swift in Sources */,
 				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
 				A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */,

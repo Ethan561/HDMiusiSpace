@@ -41,9 +41,17 @@ class HDSSL_commentReplyCell: UITableViewCell {
     func reloadCellView(){
         cell_portrial.kf.setImage(with: URL.init(string: String.init(format: "%@", (myModel?.avatar)!)), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
         cell_usreName.text = String.init(format: "%@", (myModel?.nickname)!)
-        cell_content.text = String.init(format: "%@", (myModel?.content)!)
+        //加载富文本
+        let attrStr = try! NSMutableAttributedString(
+            data: ((myModel?.content!.data(using: .unicode, allowLossyConversion: true)!)!),
+            options:[.documentType: NSAttributedString.DocumentType.html,
+                     .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+        
+        cell_content.attributedText = attrStr
+        
         cell_date.text = String.init(format: "%@", (myModel?.commentDate)!)
-        btn_like.setTitle(String.init(format: "%d", (myModel?.likeNum!.int)! ?? 0), for: .normal)
+        btn_like.setTitle(String.init(format: "%d", myModel?.likeNum!.int ?? 0), for: .normal)
         if myModel?.isLike == 1 {
             btn_like.isSelected = true
         }else{

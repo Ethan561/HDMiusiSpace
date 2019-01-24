@@ -399,7 +399,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 weakSelf?.currentRow = indexPath.section
                 weakSelf?.keyboardTextField.textView.text = " "
                 weakSelf?.keyboardTextField.textView.deleteBackward()
-//                weakSelf?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
+                weakSelf?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
                 weakSelf?.keyboardTextField.returnID = 0
                 weakSelf?.keyboardTextField.type = 1
                 weakSelf?.showKeyBoardView()
@@ -417,7 +417,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
                 self?.currentRow = indexPath.section
                 self?.keyboardTextField.textView.text = " "
                 self?.keyboardTextField.textView.deleteBackward()
-//                self?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
+                self?.keyboardTextField.placeholderLabel.text = "回复@\(model.nickname!)"
                 self?.keyboardTextField.returnID = 0
                 self?.keyboardTextField.type = 1
                 self?.showKeyBoardView()

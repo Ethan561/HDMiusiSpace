@@ -686,6 +686,9 @@ extension HDSSL_StrategyDetialVC : KeyboardTextFieldDelegate {
     //发送评论
     func sendCommentContent(_ keyboardTextField: KeyboardTextField) {
         commentText =  keyboardTextField.textView.text
+        if commentText == "" {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请输入评论内容")
+        }
         if commentText.isEmpty == false && strategyModel?.strategyID != nil {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)

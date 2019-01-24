@@ -8,11 +8,14 @@
 
 import UIKit
 
+typealias SelectActionClouser = (_ type: Int)->Void
+
 class HDLY_CourseRecmd_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var sectionL: UILabel!
-    
+    public var didSelectItem: SelectActionClouser?
+
     var listArray: Array<CourseInfoRecommends>? {
         didSet{
             myCollectionView.reloadData()
@@ -88,6 +91,7 @@ class HDLY_CourseRecmd_Cell: UITableViewCell,UICollectionViewDelegate,UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.didSelectItem?(indexPath.row)
         
     }
     

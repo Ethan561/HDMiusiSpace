@@ -604,6 +604,11 @@ extension HDLY_CourseDes_VC {
             if model?.recommendsList?.count ?? 0 > 0 {
                 cell?.listArray = model?.recommendsList
             }
+            cell?.didSelectItem = { [weak self] (index) in
+                let m = model!.recommendsList![index]
+                self?.showCourseRecmd(m)
+            }
+            
             return cell!
         }
         
@@ -630,6 +635,12 @@ extension HDLY_CourseDes_VC {
 }
 
 extension HDLY_CourseDes_VC {
+    
+    func showCourseRecmd(_ model: CourseInfoRecommends) {
+        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        vc.courseId = String.init(format: "%ld", model.articleID)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @objc func moreBtnAction(_ sender: UIButton) {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC

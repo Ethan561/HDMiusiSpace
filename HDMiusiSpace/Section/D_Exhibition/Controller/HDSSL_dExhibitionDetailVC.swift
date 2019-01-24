@@ -84,6 +84,11 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        player.stop()
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -837,11 +842,23 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 player.pause()
                 item.playBtn.isSelected = false
                 playModel?.isPlaying = false
-            }else {
+            }else if player.state == .paused {
                 player.play()
                 item.playBtn.isSelected = true
                 playModel?.isPlaying = true
-                
+            }else {
+                guard let video = model.audio else {return}
+                if video.isEmpty == false && video.contains("http://") {
+                    var voicePath = video
+                    if voicePath.contains("m4a") {
+                        voicePath = video.replacingOccurrences(of: "m4a", with: "wav")
+                    }
+                    player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
+                    player.url = video
+                    self.playModel = model
+                    item.playBtn.isSelected = true
+                    playModel?.isPlaying = true
+                }
             }
         } else {
             guard let video = model.audio else {return}
@@ -863,6 +880,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func freeListenListFinishPlaying() {
         playModel?.isPlaying = false
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.exdataModel!.data!.dataList!.count + 2)], with: .none)
     }
 
     

@@ -49,6 +49,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         self.tableView.ly_emptyView = empV
     }
     
+    
    @objc func dataRequest()  {
         tableView.ly_startLoading()
         let cityName: String = HDDeclare.shared.locModel.cityName

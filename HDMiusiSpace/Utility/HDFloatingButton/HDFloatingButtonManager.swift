@@ -52,9 +52,9 @@ final class HDFloatingButtonManager: NSObject {
             return
         }
         if url.contains("http") {
-            self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.grayImage(sourceImageV: self.floatingBtnView.imgBtn), options: nil, progressBlock: nil, completionHandler: nil)
+            self.floatingBtnView.imgBtn.kf.setImage(with: URL.init(string: url), placeholder: UIImage.init(named: "img_kj_listen"), options: nil, progressBlock: nil, completionHandler: nil)
         } else {
-            self.floatingBtnView.imgBtn.image = UIImage.init(named: url)
+            self.floatingBtnView.imgBtn.image = UIImage.init(named: "img_kj_listen")
         }
     }
     

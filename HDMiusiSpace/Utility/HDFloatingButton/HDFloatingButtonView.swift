@@ -56,7 +56,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
     }()
     lazy var imgBtn: UIImageView = {
         let btn = UIImageView.init()
-        btn.image = UIImage.init(named: "user_img2")
+        btn.image = UIImage.init(named: "img_kj_listen")
         let tap = UITapGestureRecognizer(target: self, action:#selector(showDetailAction))
 //        tap.cancelsTouchesInView = false
         btn.frame = CGRect.zero

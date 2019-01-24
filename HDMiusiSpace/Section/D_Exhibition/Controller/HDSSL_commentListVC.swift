@@ -55,7 +55,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
         addRefresh() //刷新
         
         //请求数据
-        viewModel.request_getExhibitionCommentList(type: 1, skip: 0, take: 10, exhibitionID: self.exhibition_id!, vc: self)
+        viewModel.request_getExhibitionCommentList(type: listType!, skip: 0, take: 10, exhibitionID: self.exhibition_id!, vc: self)
     }
     
     func loadMyViews() {
@@ -180,6 +180,10 @@ class HDSSL_commentListVC: HDItemBaseVC {
             self.dTableView.es.stopPullToRefresh()
             self.dTableView.es.stopLoadingMore()
         }else{
+            if skip == 0 {
+                self.commentArray.removeAll()
+                self.myModel = nil
+            }
             self.dTableView.es.noticeNoMoreData()
         }
         

@@ -50,6 +50,7 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     }
     
     @objc func dataRequest() {
+        chooseProduct = nil
         viewModel.requestMyWalletData(apiToken: HDDeclare.shared.api_token!, vc: self)
     }
     
@@ -148,7 +149,6 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         self.loadingView?.removeFromSuperview()
     }
     
-
 }
 
 //private let reuseIdentifier = "Cell"

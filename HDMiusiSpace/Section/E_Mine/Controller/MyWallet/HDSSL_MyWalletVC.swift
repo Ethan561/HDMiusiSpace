@@ -18,7 +18,8 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     @IBOutlet weak var collectionview: UICollectionView!
     //mvvm
     private var viewModel = HDZQ_MyViewModel()
-    
+    var loadingView: HDLoadingView?
+
     var goodsData: GoodsData?
     var chooseProduct: GoodsList?
     
@@ -31,9 +32,11 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         bindViewModel()
         dataRequest()
         NotificationCenter.default.addObserver(self, selector: #selector(dataRequest), name: NSNotification.Name.init(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closeLodingNoti(noti:)), name: NSNotification.Name.init(rawValue: "HDLY_IAPStore_MyWalletCloseLoading_Noti"), object: nil)
         
     }
+    
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self
@@ -130,6 +133,10 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     @IBAction func action_recharge(_ sender: UIButton) {
         print("充值")
         if chooseProduct != nil {
+            loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
+            loadingView?.frame = self.view.bounds
+            view.addSubview(loadingView!)
+            
             HDLY_IAPStore.shared.buyProduceWithProdectID(chooseProduct!.product_id!)
         } else {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请先选择充值金额")
@@ -137,17 +144,13 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         HDLY_IAPStore.shared.requestProducts(nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func closeLodingNoti(noti: Notification) {
+        self.loadingView?.removeFromSuperview()
     }
-    */
+    
 
 }
+
 //private let reuseIdentifier = "Cell"
 
 extension HDSSL_MyWalletVC :UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {

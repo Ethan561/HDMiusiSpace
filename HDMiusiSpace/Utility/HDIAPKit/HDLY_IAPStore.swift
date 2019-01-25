@@ -79,10 +79,10 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr!, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG("\(String(describing: dic))")
+            LOG("==== 内购校验成功验证 ==== ：\(String(describing: dic))")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
-
- 
+            
+            
         }) { (errorCode, msg) in
             
         }
@@ -146,17 +146,21 @@ extension HDLY_IAPStore {
                 print("支付失败")
                 //应该移除交易队列
                 queue.finishTransaction(transaction)
-                
+                HDAlert.showAlertTipWith(type: .onlyText, text: "支付失败")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_MyWalletCloseLoading_Noti"), object: nil)//通知我的钱包移除loading
+
             case .purchased:
                 print("支付成功")
                 //应该移除交易队列
                 queue.finishTransaction(transaction)
                 // 获取购买凭据
-                verifyPruchase()
+//                verifyPruchase()
 //                self.verifyPruchase { (mydic, error) in
 //                    print("verifyPruchase：\(String(describing: mydic))")
 //                }
-                
+//                HDAlert.showAlertTipWith(type: .onlyText, text: "支付成功")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_MyWalletCloseLoading_Noti"), object: nil)//通知我的钱包移除loading
+
             case .purchasing:
                 print("正在支付")
                 
@@ -170,7 +174,7 @@ extension HDLY_IAPStore {
     
     
     
-    
+    /*
     func verifyPruchase(completion:@escaping(NSDictionary?, NSError?) -> Void) {
         // 验证凭据，获取到苹果返回的交易凭据
         let receiptURL = Bundle.main.appStoreReceiptURL
@@ -230,7 +234,8 @@ extension HDLY_IAPStore {
             }
         }
         dataTask.resume()
-    }
+    }*/
+    
 }
 
 

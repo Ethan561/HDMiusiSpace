@@ -47,7 +47,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAction),
                                                name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"),
                                                object: nil)
-    
+        //
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
     }

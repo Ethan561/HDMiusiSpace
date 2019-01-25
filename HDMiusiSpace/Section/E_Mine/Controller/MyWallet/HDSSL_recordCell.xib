@@ -32,18 +32,18 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFq-BB-Yhx">
-                        <rect key="frame" x="255" y="24.5" width="50" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+100.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFq-BB-Yhx">
+                        <rect key="frame" x="240" y="24.5" width="70" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="6c5-nd-Nin"/>
-                            <constraint firstAttribute="width" constant="50" id="Ep5-dQ-zhQ"/>
+                            <constraint firstAttribute="width" constant="70" id="Ep5-dQ-zhQ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山水画中的四季变更" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhh-aE-ock">
-                        <rect key="frame" x="82" y="14" width="173" height="21"/>
+                        <rect key="frame" x="82" y="14" width="158" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="e2X-H9-fQR"/>
                         </constraints>
@@ -52,7 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08-08 12:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nmo-gH-Eme">
-                        <rect key="frame" x="82" y="35" width="173" height="21"/>
+                        <rect key="frame" x="82" y="35" width="158" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="uBK-Nj-s2c"/>
                         </constraints>
@@ -71,7 +71,7 @@
                     <constraint firstItem="kFq-BB-Yhx" firstAttribute="leading" secondItem="Vhh-aE-ock" secondAttribute="trailing" id="oeV-kN-WRY"/>
                     <constraint firstItem="kFq-BB-Yhx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qIR-MD-nBk"/>
                     <constraint firstItem="JSv-Of-5fe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tJu-UT-bMF"/>
-                    <constraint firstAttribute="trailing" secondItem="kFq-BB-Yhx" secondAttribute="trailing" constant="15" id="vBh-Ly-AfM"/>
+                    <constraint firstAttribute="trailing" secondItem="kFq-BB-Yhx" secondAttribute="trailing" constant="10" id="vBh-Ly-AfM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

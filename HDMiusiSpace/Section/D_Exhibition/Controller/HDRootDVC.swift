@@ -292,8 +292,8 @@ extension HDRootDVC {
             if offSetY >= searchBarH {
                 self.myTableView.contentOffset = CGPoint.init(x: 0, y: searchBarH )// myTableView 不滚动
             } else {
-                if offSetY < 0 {
-                    self.myTableView.contentOffset = CGPoint.init(x: 0, y: -1 )// myTableView 不滚动
+                if offSetY <= 0 {
+                    self.myTableView.contentOffset = CGPoint.init(x: 0, y: 0)// myTableView 不滚动
                 } else {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
                 }

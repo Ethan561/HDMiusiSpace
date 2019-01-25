@@ -230,10 +230,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lip-CA-u3m">
-                                        <rect key="frame" x="112.5" y="547" width="150" height="50"/>
+                                        <rect key="frame" x="105.5" y="547" width="164" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dET-d6-Psp">
-                                                <rect key="frame" x="10" y="3" width="140" height="44"/>
+                                                <rect key="frame" x="10" y="3" width="154" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="ej5-OH-H6S"/>
@@ -249,8 +249,8 @@
                                                     <action selector="playBtnAction:" destination="rmx-2m-SvM" eventType="touchUpInside" id="lFu-4H-siC"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="接官渡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAS-Q2-r2W">
-                                                <rect key="frame" x="58" y="14.5" width="84" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="接官渡接官渡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAS-Q2-r2W">
+                                                <rect key="frame" x="58" y="14.5" width="98" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="vvd-66-gQj"/>
                                                 </constraints>
@@ -271,7 +271,7 @@
                                             <constraint firstItem="dET-d6-Psp" firstAttribute="centerY" secondItem="lip-CA-u3m" secondAttribute="centerY" id="Wab-qn-Ogk"/>
                                             <constraint firstItem="LAS-Q2-r2W" firstAttribute="centerY" secondItem="lip-CA-u3m" secondAttribute="centerY" id="Wr0-Pl-GT0"/>
                                             <constraint firstAttribute="height" constant="50" id="jXr-6a-uEB"/>
-                                            <constraint firstAttribute="width" constant="150" id="tzs-hh-t5I"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="tzs-hh-t5I"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -524,7 +524,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_img_tj1" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-Oj-d5d">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MFM-Oj-d5d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="MFM-Oj-d5d" secondAttribute="height" multiplier="375:280" id="2oU-HQ-xCr"/>
@@ -637,6 +637,5 @@
         <image name="dldt_icon_jh1" width="16" height="2"/>
         <image name="icon_paly_white" width="46" height="46"/>
         <image name="nav_back_white" width="12" height="20"/>
-        <image name="zl_img_tj1" width="335" height="188"/>
     </resources>
 </document>

@@ -49,6 +49,7 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         playerBgView.layer.cornerRadius = 22
         playerBgView.layer.masksToBounds = true
         playerView.isHidden = true
+        player.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,8 +153,11 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
         self.mapView?.smallAllAnnView()
         
         if annView.annotation.annType == kAnnotationType_More {
-            //self.showMapList(ann: annView.annotation)
+//            self.showMapList(ann: annView.annotation)
             playerView.isHidden = true
+            annView.bigPicture()
+            player.stop()
+
         }
         else if annView.annotation.annType == kAnnotationType_One || annView.annotation.annType == kAnnotationType_ReadOne {
             playerView.isHidden = false
@@ -163,6 +167,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             self.autoPlayAction()
             if annView.annotation.type == 2 {
                 playerView.isHidden = true
+                player.stop()
             }
         }
     }
@@ -208,6 +213,7 @@ extension HDLY_MapGuideVC {
                 ann.star = model.star.string
                 ann.type = model.type
                 ann.identify = model.exhibitionID.string
+                ann.audioId = String.init(format: "%ld", model.audio_id)
                 let key = "isReadPin_\(ann.identify!)"
                 let isRead: String? = userDef.object(forKey: key) as? String
                 if isRead == "1" {
@@ -282,19 +288,35 @@ extension HDLY_MapGuideVC {
         guard let ann = self.chooseAnn else {
             return
         }
-        if player.state == .playing {
-            player.pause()
-            playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
-        } else {
-            if player.state == .paused {
-                player.play()
-            }else if ann.audio.contains("http://") {
+        if player.fileno == ann.audioId {
+            if player.state == .playing {
+                player.pause()
+                playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+            } else {
+                if player.state == .paused {
+                    player.play()
+                }else if ann.audio.contains("http://") {
+                    var voicePath = ann.audio!
+                    if voicePath.contains("m4a") {
+                        voicePath = ann.audio.replacingOccurrences(of: "m4a", with: "wav")
+                    }
+                    player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
+                    player.fileno = ann.audioId
+                    ann.annType = kAnnotationType_ReadOne
+                    let key = String.init(format: "isReadPin_%@", ann.identify)
+                    UserDefaults.standard.set("1", forKey: key)
+                    //                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
+                }
+                playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+            }
+        }else {
+            if ann.audio.contains("http://") {
                 var voicePath = ann.audio!
                 if voicePath.contains("m4a") {
                     voicePath = ann.audio.replacingOccurrences(of: "m4a", with: "wav")
                 }
                 player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
-                player.fileno = ann.identify
+                player.fileno = ann.audioId
                 ann.annType = kAnnotationType_ReadOne
                 let key = String.init(format: "isReadPin_%@", ann.identify)
                 UserDefaults.standard.set("1", forKey: key)
@@ -302,6 +324,7 @@ extension HDLY_MapGuideVC {
             }
             playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
         }
+        
     }
     
     @IBAction func locBtnAction(_ sender: Any) {
@@ -328,6 +351,26 @@ extension HDLY_MapGuideVC {
     
     @IBAction func mapSmallAction(_ sender: Any) {
         self.mapView?.narrowZoom()
+    }
+    
+}
+
+extension HDLY_MapGuideVC : HDLY_AudioPlayer_Delegate {
+    
+    @objc  func playOrPauseAction(_ sender: UIButton)
+    {
+        
+    }
+    
+    // === HDLY_AudioPlayer_Delegate ===
+    
+    func finishPlaying() {
+        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+        //timeL.text = "\(currentTime)/\(totalTime)"
+        //      LOG(" progress: \(progress)")
     }
     
 }

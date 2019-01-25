@@ -197,7 +197,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
                 if player.state == .playing {
                     cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
-                }else {
+                } else {
                     cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
                 }
             }
@@ -225,7 +225,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 player.pause()
                 cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
-            }else {
+            } else {
                 player.play()
                 cell?.tipImgV.image = UIImage.init(named: "dl_icon_pause")
             }
@@ -235,7 +235,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
                 if voicePath.contains("m4a") {
                     voicePath = video.replacingOccurrences(of: "m4a", with: "wav")
                 }
-
+                
                 player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 player.url = video
                 currentModel = listModel

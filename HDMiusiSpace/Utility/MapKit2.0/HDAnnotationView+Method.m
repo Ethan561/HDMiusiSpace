@@ -221,9 +221,9 @@
             return;
         }
         //过滤合并点位
-        if (self.annotation.annType == kAnnotationType_More) {
-            return;
-        }
+//        if (self.annotation.annType == kAnnotationType_More) {
+//            return;
+//        }
         
         NSURL *poiImgURL = [NSURL URLWithString:imgStr];
         [self sd_setImageWithURL:poiImgURL forState:UIControlStateNormal placeholderImage:myImage];

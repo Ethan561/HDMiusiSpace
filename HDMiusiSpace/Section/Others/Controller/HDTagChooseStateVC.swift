@@ -22,7 +22,7 @@ class HDTagChooseStateVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //加载数据
         loadMyDatas()
         

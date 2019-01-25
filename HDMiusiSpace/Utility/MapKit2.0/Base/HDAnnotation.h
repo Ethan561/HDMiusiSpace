@@ -31,6 +31,8 @@ typedef enum{
 @property (nonatomic, strong) NSString   *title;        // 名称
 @property (nonatomic, strong) NSString   *subtitle;     // 小坐标，一般不显示
 @property (nonatomic, strong) NSString   *identify;     // 展品的编号
+@property (nonatomic, strong) NSString   *audioId;     //
+
 @property (nonatomic, strong) NSString   *poiImgPath;   // 展品的POI显示的图片
 @property (nonatomic, strong) NSString   *audio;        // 展品的音频地址
 @property (nonatomic, strong) NSString   *pointCount;

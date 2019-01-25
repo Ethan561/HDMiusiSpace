@@ -53,7 +53,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         dataRequest()
 //        audioPlayer.delegate = self
         bindViewModel()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -486,7 +487,8 @@ extension  HDLY_CourseList_SubVC3 {
         }
         if result == 2 {
             orderTipView?.successView.isHidden = false
-            self.dataRequest()
+//            self.dataRequest()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
                 self.orderTipView?.sureBlock = nil
                 self.orderTipView?.removeFromSuperview()

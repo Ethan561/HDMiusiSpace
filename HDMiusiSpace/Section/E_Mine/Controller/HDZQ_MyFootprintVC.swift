@@ -213,9 +213,13 @@ extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
             let URLS = URL.init(string: voicePath)
             player.delegate = self
             if player.fileno == url {
-                player.play()
+                if player.state == .paused {
+                    player.play()
+                } else {
+                    player.play(file: Music.init(name: "", url: URLS!))
+                    player.fileno =  url
+                }
             } else {
-                
                player.play(file: Music.init(name: "", url: URLS!))
                player.fileno =  url
             }

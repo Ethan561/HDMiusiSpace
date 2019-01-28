@@ -25,6 +25,7 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         HDFloatingButtonManager.manager.floatingBtnView.show = false
         let player = HDLY_AudioPlayer.shared
         player.showFloatingBtn = false

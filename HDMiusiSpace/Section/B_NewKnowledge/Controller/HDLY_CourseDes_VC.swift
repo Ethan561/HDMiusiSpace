@@ -92,6 +92,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.videoPlayer.isViewControllerDisappear = false
         UIApplication.shared.statusBarStyle = .lightContent
         if  HDDeclare.shared.loginStatus == .kLogin_Status_Login {

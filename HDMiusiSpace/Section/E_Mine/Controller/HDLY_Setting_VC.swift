@@ -15,6 +15,7 @@ class HDLY_Setting_VC: HDItemBaseVC {
     var logoutTip:HDLY_LogoutTip_View = HDLY_LogoutTip_View.createViewFromNib() as! HDLY_LogoutTip_View
     var isLogin = false
     var cacheSize = "0MB"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"
@@ -24,6 +25,8 @@ class HDLY_Setting_VC: HDItemBaseVC {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             isLogin = true
         }

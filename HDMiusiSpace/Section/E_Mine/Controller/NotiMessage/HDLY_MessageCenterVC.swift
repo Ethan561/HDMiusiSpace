@@ -21,6 +21,7 @@ class HDLY_MessageCenterVC: HDItemBaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         dataRequest()
 
     }

@@ -28,7 +28,10 @@ class HDZQ_MyFollowVC: HDItemBaseVC {
         page.permutationWay = SPPageMenuPermutationWay.notScrollAdaptContent
         return page
     }()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false

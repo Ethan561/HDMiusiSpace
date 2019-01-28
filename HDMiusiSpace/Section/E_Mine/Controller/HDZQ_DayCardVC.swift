@@ -13,6 +13,10 @@ class HDZQ_DayCardVC: HDItemBaseVC {
     private var daycardList = [Date_list]()
     
     @IBOutlet weak var tableView: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "收藏的日卡"

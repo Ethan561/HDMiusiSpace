@@ -585,6 +585,7 @@ extension HDSSL_StrategyDetialVC: HDZQ_CommentActionDelegate {
                 return
             }
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
+            self.commentView.removeFromSuperview()
         }
     }
     

@@ -113,6 +113,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         UIApplication.shared.statusBarStyle = .lightContent
         
         NotificationCenter.default.addObserver(self, selector: #selector(playOrPauseNoti(_:)), name: NSNotification.Name.init("HDLY_CourseList_VC_PlayOrPause_Noti"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerNeedPauseNoti(_:)), name: NSNotification.Name.init("HDLYCourseListVC_VideoNeedStop_Noti"), object: nil)
+
         if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             dataRequest()
             isNeedRefresh = false
@@ -174,6 +177,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             else if state == ZFPlayerPlaybackState.playStatePlayStopped {
                 _self?.uploadRecordActions()
+            }  else if state == ZFPlayerPlaybackState.playStatePlaying {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TeacherReturn_PlayerNeedStop_Noti"), object: nil)
             }
         }
         
@@ -191,6 +196,13 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             self.chapterListVC?.isPlaying = false
         }
         
+    }
+    
+    @objc func playerNeedPauseNoti(_ noti:Notification) {
+        if self.player.currentPlayerManager.playState == .playStatePlaying {
+            self.player.currentPlayerManager.pause!()
+            self.chapterListVC?.isPlaying = false
+        }
     }
     
     

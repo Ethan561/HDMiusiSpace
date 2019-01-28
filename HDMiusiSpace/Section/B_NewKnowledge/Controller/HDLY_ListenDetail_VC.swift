@@ -441,6 +441,8 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
                 if player.state == .paused {
                     player.play()
                 }else {
+                    //let url = "http://47.105.71.75/uploadfiles/mp3/20180905/201809051500582729.mp3"
+                    
                     player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = self.infoModel!.voice!
                     if self.infoModel?.listenID?.string != nil {

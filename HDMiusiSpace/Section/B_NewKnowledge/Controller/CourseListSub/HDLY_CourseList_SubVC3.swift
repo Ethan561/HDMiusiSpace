@@ -19,12 +19,9 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var orderTipView: HDLY_CreateOrderTipView?
-    
-    let audioPlayer = HDLY_AudioPlayer.shared
-
     var infoModel: CourseQuestion?
     var courseId: String?
-    
+    var player = HDLY_AudioPlayer.shared
     var playingIndex: String?
     
     //
@@ -38,6 +35,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         buyBtn.layer.cornerRadius = 27
         buyBtn.isHidden = true
         leaveMsgBgV.layer.cornerRadius = 19
+        player.showFloatingBtn = false
+        player.delegate = self
         //
         bottomHCons.constant = 56
         bottomView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 10, shadowOffset: CGSize.init(width: 0, height: -5))
@@ -45,17 +44,16 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
-        audioPlayer.showFloatingBtn = false
         let empV = EmptyConfigView.NoDataEmptyView()
         self.tableView.ly_emptyView = empV
         loadingView = HDLoadingView.createViewFromNib() as? HDLoadingView
         loadingView?.frame = self.view.bounds
         view.addSubview(loadingView!)
         dataRequest()
-//        audioPlayer.delegate = self
         bindViewModel()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(stopPlayerNoti(_:)), name: NSNotification.Name.init(rawValue: "TeacherReturn_PlayerNeedStop_Noti"), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,9 +63,9 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        audioPlayer.stop()
+        player.stop()
     }
-
+    
     @IBAction func buyBtnAction(_ sender: Any) {
         buyGoodsAction()
     }
@@ -388,52 +386,45 @@ extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
         if model.video.isEmpty == true || model.video.contains("http://") == false {
             return
         }
-        if playingIndex != nil {
-            let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
-            let currentIndex = "\(indexPath.section)\(indexPath.row)"
-            
-            if playingIndex! == currentIndex  {
-                
-                if audioPlayer.state == .playing {
-                    self.pause(cell, model)
-                } else {
-                    if audioPlayer.state == .paused {
-                        audioPlayer.play()
-                        cell.startAnimating()
-
-                    }else {
-                        play(cell, model)
-                    }
-                }
-            }else {
-                play(cell, model)
-            }
-            
-        }else { //直接播放
-            play(cell, model)
-        }
+        play(cell, model)
     }
     
     func play(_ cell: HDLY_AnswerAudio_Cell, _ model: QuestionReturnInfo) {
         let indexPath: IndexPath = self.tableView.indexPath(for: cell)!
         let indexStr = "\(indexPath.section)\(indexPath.row)"
         self.playingIndex = indexStr
-        
         cell.startAnimating()
         
         var voicePath = model.video
         if voicePath.contains("m4a") {
             voicePath = model.video.replacingOccurrences(of: "m4a", with: "wav")
         }
-        audioPlayer.play(file: Music.init(name: "", url: URL.init(string: voicePath)!))
-        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+        player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
+        player.url = model.video
+        self.tableView.reloadData()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLYCourseListVC_VideoNeedStop_Noti"), object: nil)
 
     }
+}
+
+extension HDLY_CourseList_SubVC3 : HDLY_AudioPlayer_Delegate {
     
-    func pause(_ cell: HDLY_AnswerAudio_Cell, _ model: QuestionReturnInfo) {
-        audioPlayer.pause()
-        cell.stopAnimating()
+    @objc func stopPlayerNoti(_ noti: Notification) {
+        player.stop()
+        self.playingIndex = nil
+        self.tableView.reloadData()
     }
+        
+    // === HDLY_AudioPlayer_Delegate ===
+    func finishPlaying() {
+       // playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+    }
+    
+    func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
+       // timeL.text = "\(currentTime)/\(totalTime)"
+        LOG(" progress: \(progress)")
+    }
+    
 }
 
 extension  HDLY_CourseList_SubVC3 {

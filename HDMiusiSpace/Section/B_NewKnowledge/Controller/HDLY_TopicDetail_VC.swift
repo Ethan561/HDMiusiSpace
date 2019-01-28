@@ -669,7 +669,7 @@ extension HDLY_TopicDetail_VC {
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
             let model = infoModel!.recommendsList[indexPath.row]
             vc.topic_id = "\(model.articleID)"
-            vc.fromRootAChoiceness = self.fromRootAChoiceness
+            vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

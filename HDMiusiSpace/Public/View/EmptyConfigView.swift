@@ -25,7 +25,7 @@ class EmptyConfigView: HDEmptyView {
     }
     
     public class func NoNetworkEmptyWithBlock(btnClickBlock:@escaping HDTapBlock) -> HDEmptyView {
-        let emptyView:HDEmptyView =  HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_wlsb", titleStr: "网络无法连接，请重试～", detailStr: "", btnTitleStr: "重新加载", btnClickBlock: btnClickBlock)
+        let emptyView:HDEmptyView =  HDEmptyView.emptyActionViewWithImageStr(imageStr: "img_sjjzsb", titleStr: "网络无法连接，请重试～", detailStr: "", btnTitleStr: "重新加载", btnClickBlock: btnClickBlock)
         emptyView.backgroundColor = UIColor.white
         emptyView.contentView.backgroundColor = UIColor.clear
         emptyView.contentViewY = 0

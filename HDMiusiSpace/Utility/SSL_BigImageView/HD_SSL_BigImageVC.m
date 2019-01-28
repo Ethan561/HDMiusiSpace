@@ -52,7 +52,7 @@
     }
     _indexLabel.textAlignment = NSTextAlignmentCenter;
     _indexLabel.textColor = [UIColor whiteColor];
-    _indexLabel.text = [NSString stringWithFormat:@"%d/%ld",_atIndex+1,_imageArray.count];
+    _indexLabel.text = [NSString stringWithFormat:@"%ld/%ld",_atIndex+1,_imageArray.count];
     [self.view addSubview:_indexLabel];
     
 }

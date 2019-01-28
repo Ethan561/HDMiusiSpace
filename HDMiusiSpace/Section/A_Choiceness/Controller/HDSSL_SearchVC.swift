@@ -22,6 +22,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
     @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
     @IBOutlet weak var resultTableView: UITableView! //搜索结果
     @IBOutlet weak var searcgTagBgView: UIView!
+    @IBOutlet weak var tagViewH: NSLayoutConstraint!
     
     var searchTypeArray: [HDSSL_SearchTag] = Array.init()  //搜索类型数组
     var resultArray    : [HDSSL_SearchType] = Array.init()  //搜索类型数组
@@ -203,12 +204,10 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.textFeild.becomeFirstResponder()
         
         //选择标签后，标签模块隐藏
-        let tagframe = searcgTagBgView.frame
-        var historyframe = dTableView.frame
-        historyframe.origin.y -= tagframe.size.height
-        searcgTagBgView.isHidden = true
-        dTableView.frame = historyframe
+        tagViewH.constant = 0
+
     }
+    
     //MARK: - 自定义导航栏
     func loadSearchBar() {
         //搜索btn

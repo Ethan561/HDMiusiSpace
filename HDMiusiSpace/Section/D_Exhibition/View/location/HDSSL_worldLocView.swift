@@ -328,9 +328,11 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
             }
             
             //回调，改变大洲
+            let model = leftTitleArray[indexPath.row]
+            
             weak var weakSelf = self
             if weakSelf?.blockTapLeftTableCell != nil {
-                weakSelf?.blockTapLeftTableCell!(indexPath.row)
+                weakSelf?.blockTapLeftTableCell!(model.type!)
             }
             
         }

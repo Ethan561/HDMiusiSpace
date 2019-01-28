@@ -83,7 +83,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 vippriceL.text = "SVIP￥\(model.vipPrice)"
             }else if model.priceType == 1 {
                 priceL.isHidden = false
-                priceL.text = "免费"
+                priceL.text = "限时免费"
                 priceL.textColor = UIColor.HexColor(0x4A4A4A)
             }else if model.priceType == 2 {
                 priceL.isHidden = false
@@ -126,7 +126,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 vippriceL1.text = "SVIP￥\(model1.vipPrice)"
             }else if model1.priceType == 1 {
                 priceL1.isHidden = false
-                priceL1.text = "免费"
+                priceL1.text = "限时免费"
                 priceL1.textColor = UIColor.HexColor(0x4A4A4A)
 
             }else if model1.priceType == 2 {

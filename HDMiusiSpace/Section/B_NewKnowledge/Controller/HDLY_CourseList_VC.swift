@@ -250,7 +250,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
         self.controlView.showWith(animated: false)
@@ -305,7 +305,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             else if video.isEmpty == false && video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
                 self.chapterListVC?.isPlaying = true
             }
             
@@ -332,6 +332,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             if self.infoModel?.data.fileType == 1 {
                 //1是MP3;2是MP4
                 self.isMp3Course = true
+                self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
             }else {
                 self.isMp3Course = false
             }
@@ -340,8 +342,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
             }
             if self.infoModel != nil {
-                self.kVideoCover = self.infoModel!.data.img
-                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
 
                 if self.infoModel?.data.isFavorite == 1 {
                     self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)

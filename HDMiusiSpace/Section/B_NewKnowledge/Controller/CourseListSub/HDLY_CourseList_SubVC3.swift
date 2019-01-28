@@ -30,6 +30,7 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     //
     var loadingView: HDLoadingView?
     var webViewH:CGFloat = 0
+    var isNeedBuyCourse = false
     
     
     override func viewDidLoad() {
@@ -103,16 +104,19 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                         self.buyBtn.isHidden = true
                         self.leaveMsgView.isHidden = false
                         self.bottomHCons.constant = 56
+                        self.isNeedBuyCourse = false
                     }else {
                         self.buyBtn.isHidden = false
                         self.leaveMsgView.isHidden = true
                         self.bottomHCons.constant = 74
+                        self.isNeedBuyCourse = true
                     }
                 }
                 else {
                     self.buyBtn.isHidden = true
                     self.leaveMsgView.isHidden = false
                     self.bottomHCons.constant = 56
+                    self.isNeedBuyCourse = false
                 }
             }
             catch let error {
@@ -320,7 +324,12 @@ extension HDLY_CourseList_SubVC3 {
                         cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
                         cell?.nameL.text = returnInfo.teacherName
                         cell?.timeL.text = returnInfo.createdAt
-                        cell?.audioTimeL.text = returnInfo.timeLong
+                        if self.isNeedBuyCourse == true {
+                            cell?.audioTimeL.text = String.init(format: "%@ 购课后可听", returnInfo.timeLong)
+
+                        }else {
+                            cell?.audioTimeL.text = returnInfo.timeLong
+                        }
                         cell?.delegate = self
                         cell?.model = returnInfo
                         let currentIndex = "\(section)\(row)"
@@ -370,9 +379,13 @@ extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
         
     }
     
-    
+    //===== AnswerAudioDelegate =====
     func voiceBubbleStratOrStop(_ cell: HDLY_AnswerAudio_Cell, _ model: QuestionReturnInfo) {
-        if model.video.isEmpty == true || model.video.contains(".mp3") == false {
+        if self.isNeedBuyCourse == true {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "购课后可听")
+            return
+        }
+        if model.video.isEmpty == true || model.video.contains("http://") == false {
             return
         }
         if playingIndex != nil {

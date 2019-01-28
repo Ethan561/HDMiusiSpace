@@ -155,6 +155,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bgView1" destination="TMS-gz-6aJ" id="S7f-8H-Cez"/>
+                <outlet property="bgView2" destination="Jfo-Y6-jsI" id="m0u-kI-uNT"/>
                 <outlet property="countL" destination="aj7-fj-4Ht" id="Aho-87-5uA"/>
                 <outlet property="countL1" destination="13C-QT-CLK" id="ypB-1G-t3s"/>
                 <outlet property="imgV" destination="fQq-o0-NpL" id="j9J-eV-Qpv"/>

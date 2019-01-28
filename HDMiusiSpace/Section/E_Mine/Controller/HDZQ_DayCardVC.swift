@@ -21,6 +21,7 @@ class HDZQ_DayCardVC: HDItemBaseVC {
         super.viewDidLoad()
         title = "收藏的日卡"
         tableView.rowHeight = ScreenWidth * 1.25 + 60
+        tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
         requestDayCardData()
     }
 }

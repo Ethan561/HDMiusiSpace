@@ -21,6 +21,8 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
         super.viewDidLoad()
         title = "导览足迹"
         requestFootPrintData()
+        //空数据
+        tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
     }
     
     override func viewWillAppear(_ animated: Bool) {

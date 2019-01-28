@@ -71,6 +71,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
         HDFloatingButtonManager.manager.floatingBtnView.show = false
         player.showFloatingBtn = false
         

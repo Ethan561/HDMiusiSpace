@@ -75,6 +75,10 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         player.showFloatingBtn = false
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        numL.removeObserver(self, forKeyPath: "text")
+    }
     
     func setupNavBarItem() {
         let rightBtn = UIButton.init(type: UIButton.ButtonType.custom)

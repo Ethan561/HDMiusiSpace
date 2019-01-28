@@ -155,7 +155,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
                 self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
     }
@@ -171,7 +171,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
                 self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
     }
@@ -327,9 +327,12 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.isMp3Course = true
                 self.audioPlayer.delegate = self
                 self.tryListenL.text = "试听"
+                self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
             }else {
                 self.isMp3Course = false
                 self.tryListenL.text = "试学"
+                self.kVideoCover = ""
             }
             //self.autoPlayAction()
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
@@ -365,8 +368,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }
             self.bottomHCons.constant = 74
             if self.infoModel != nil {
-                self.kVideoCover = self.infoModel!.data.img
-                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
+   
 //                self.getWebHeight()
                 self.myTableView.reloadData()
                 if self.infoModel?.data.isFavorite == 1 {

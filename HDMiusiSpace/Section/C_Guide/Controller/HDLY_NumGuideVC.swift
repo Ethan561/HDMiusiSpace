@@ -277,7 +277,7 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
         
         if indexPath.row == 11 {
             if numStr.count == 0 {
-                HDAlert.showAlertTipWith(type: .onlyText, text: "请输入展品编号！")
+                HDAlert.showAlertTipWith(type: .onlyText, text: "请输入编号！")
                 return
             }
             if player.fileno != numStr && numStr.count > 0 {

@@ -21,6 +21,7 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         return tableView
     }()
+    
     var dataArr =  [CourseListModel]()
     var isNewest: Bool = false
     var cateID: String = "0"

@@ -241,11 +241,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         
         if isMp3Course {
-            if course.video.isEmpty == false && course.video.contains(".mp3") {
+            if course.video.isEmpty == false && course.video.contains("http://") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
-        
             }
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
@@ -254,7 +253,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
         }
         self.controlView.showWith(animated: false)
-
     }
     
     func autoPlayAction() {
@@ -263,9 +261,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         self.controlView.showWith(animated: true)
-
         if isMp3Course {
-            if course.video.isEmpty == false && course.video.contains(".mp3") {
+            if course.video.isEmpty == false && course.video.contains("http://") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
@@ -279,7 +276,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
     }
     
-    // ChapterListPlayDelegate
+    // HDLY_CourseList_SubVC1：ChapterListPlayDelegate
     func playWithCurrentPlayUrl(_ model: ChapterList) {
         
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
@@ -290,14 +287,14 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.currentPlayerManager.pause!()
                 self.chapterListVC?.isPlaying = false
 
-            }else  if self.player.currentPlayerManager.playState == .playStatePaused{
+            } else  if self.player.currentPlayerManager.playState == .playStatePaused{
                 self.player.currentPlayerManager.play!()
                 self.chapterListVC?.isPlaying = true
             }
         }else {
             listPlayModel = model
             let video = model.video
-            if video.isEmpty == false && video.contains(".mp3") {
+            if video.isEmpty == false && video.contains("http://") {
                 self.player.assetURL = NSURL.init(string: video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false

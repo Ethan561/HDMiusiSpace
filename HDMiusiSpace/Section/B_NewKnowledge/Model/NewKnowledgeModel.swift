@@ -27,6 +27,8 @@ struct BItemModel:Codable {
     var interactioncard: BRecmdModel?
     var interactionlist: [BRecmdModel]?
     var topic: [BRecmdModel]?
+    var topic_num: TStrInt?
+    
 }
 
 struct BCategoryModel:Codable {

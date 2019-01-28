@@ -19,12 +19,14 @@ class HDLY_Kids_Cell2: UITableViewCell {
     @IBOutlet weak var countL: UILabel!
     @IBOutlet weak var priceL: UILabel!
     @IBOutlet weak var tapBtn1: UIButton!
+    @IBOutlet weak var bgView1: UIView!
     
     @IBOutlet weak var imgV1: UIImageView!
     @IBOutlet weak var titleL1: UILabel!
     @IBOutlet weak var countL1: UILabel!
     @IBOutlet weak var priceL1: UILabel!
     @IBOutlet weak var tapBtn2: UIButton!
+    @IBOutlet weak var bgView2: UIView!
     
     weak var delegate: HDLY_Kids_Cell2_Delegate?
     
@@ -56,6 +58,12 @@ class HDLY_Kids_Cell2: UITableViewCell {
                 priceL.text = "¥" + "\(model!.price!)"
             }
             //
+            if dataArray!.count < 2 {
+                bgView1.isHidden = true
+                return
+            }else {
+                bgView1.isHidden = false
+            }
             
             let model1 = dataArray?.last
             if  model1?.img != nil  {

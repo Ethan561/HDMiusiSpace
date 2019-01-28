@@ -16,7 +16,8 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     let showListenView: Bindable = Bindable(false)
     let showKidsView: Bindable = Bindable(false)
     var dataArr =  [BItemModel]()
-    
+    var topicNew: [BRecmdModel]?
+
     //tableView
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)
@@ -190,7 +191,8 @@ extension HDLY_Recommend_SubVC {
             if model.category?.type == 5 {
                 cell?.moreL.text = ""
             } else if model.category?.type == 6 {
-                if model.topic?.count ?? 0 > 1 {
+                let m = dataArr[indexPath.row + 1]
+                if m.topic_num?.int ?? 0 >= 4 {
                     cell?.moreL.text = "换一批"
                 }else {
                     cell?.moreL.text = ""
@@ -272,7 +274,11 @@ extension HDLY_Recommend_SubVC {
         }
         else if model.type?.int == 6 {
             let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
-            cell?.listArray = model.topic
+            if self.topicNew != nil {
+                cell?.listArray = topicNew!
+            }else {
+                cell?.listArray = model.topic
+            }
             cell?.delegate = self
             
             return cell!
@@ -322,14 +328,15 @@ extension HDLY_Recommend_SubVC {
             
         }
         else if model.category?.type == 6 {//换一批
-            if model.topic?.count ?? 0 > 1 {
+            let m = dataArr[index + 1]
+            if m.topic_num?.int ?? 0 >= 4 {
                 courseTopicsRequest()
             }
         }
     }
     
     func courseTopicsRequest()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseTopics(), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseTopics(), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -349,8 +356,7 @@ extension HDLY_Recommend_SubVC {
                         LOG("\(error)")
                     }
                 }
-                var model = self.dataArr.last
-                model?.topic = newTopicsArr
+                self.topicNew = newTopicsArr
                 self.tableView.reloadRows(at: [IndexPath.init(row: self.dataArr.count-1, section: 0)], with: UITableViewRowAnimation.none)
             }
             

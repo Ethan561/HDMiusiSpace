@@ -38,9 +38,9 @@ class RootAViewModel: NSObject {
             
             myTableView.es.stopPullToRefresh()
             myTableView.es.stopLoadingMore()
-
+            
         }) { (errorCode, msg) in
-            let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            let empV = EmptyConfigView.NoNetworkEmptyView()
             myTableView.ly_emptyView = empV
             myTableView.ly_endLoading()
             myTableView.es.stopPullToRefresh()

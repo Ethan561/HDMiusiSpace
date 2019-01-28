@@ -103,7 +103,8 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
 //                                ] as [NSAttributedStringKey : Any]
 //                        vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
 //                        vipPriceString.append(priceString)
-                        self.buyBtn.setAttributedTitle(priceString, for: .normal)
+                        self.buyBtn.setTitle("原价¥\(self.infoModel!.data.yprice!)", for: .normal)
+                        self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
                     }
                     self.bottomHCons.constant = 74
                     self.isBuy = false

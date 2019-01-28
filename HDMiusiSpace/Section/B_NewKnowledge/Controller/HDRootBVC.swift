@@ -180,9 +180,11 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
                 self.recommendSubVC?.dataRequest()
             }
             self.myTableView.es.stopPullToRefresh()
-
+            if self.childViewControllers.count == 0 {
+                self.addContentSubViewsWithArr(titleArr: menuTitleArr)
+            }
         }) { (errorCode, msg) in
-            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
+            self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyView()
             self.myTableView.ly_showEmptyView()
             self.myTableView.es.stopPullToRefresh()
         }
@@ -191,6 +193,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     @objc func refreshAction() {
         dataRequestForBanner()
         dataRequestForMenu(isRefresh: false)
+
     }
     
     func addRefresh() {

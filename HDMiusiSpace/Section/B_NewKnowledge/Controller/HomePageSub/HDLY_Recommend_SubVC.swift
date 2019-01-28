@@ -94,6 +94,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func dataRequest()  {
+        self.tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getNewKnowledgeHomePage(), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

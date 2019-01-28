@@ -108,24 +108,29 @@ class HDLY_Listen_SubVC:                                                        
     }
     
     func dataRequest(cate_id: String) {
+        self.collectionView.ly_startLoading()
 
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "100", cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
             let jsonDecoder = JSONDecoder()
-            let model:CourseListen = try! jsonDecoder.decode(CourseListen.self, from: result)
-            self.tagsArr = model.data.cates
-            self.listArr = model.data.list
-            if self.listArr.count == 0 {
-                self.emptyView.isHidden = false
-            } else {
-                self.emptyView.isHidden = true
-            }
-            if cate_id == "-1" {
-                self.collectionView.reloadData()
-            }else {
-                self.collectionView.reloadSections(IndexSet.init(integer: 1))
+            do {
+                let model:CourseListen = try jsonDecoder.decode(CourseListen.self, from: result)
+                self.tagsArr = model.data.cates
+                self.listArr = model.data.list
+                if self.listArr.count == 0 {
+                    self.emptyView.isHidden = false
+                } else {
+                    self.emptyView.isHidden = true
+                }
+                if cate_id == "-1" {
+                    self.collectionView.reloadData()
+                }else {
+                    self.collectionView.reloadSections(IndexSet.init(integer: 1))
+                }
+            } catch let (error) {
+                LOG("\(error)")
             }
             
         }) { (errorCode, msg) in

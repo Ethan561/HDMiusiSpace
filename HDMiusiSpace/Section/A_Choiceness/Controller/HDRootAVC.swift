@@ -53,7 +53,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         let empV = EmptyConfigView.NoDataEmptyView()
         self.myTableView.ly_emptyView = empV
         myTableView.ly_endLoading()
-
+        
         //MVVM
         bindViewModel()
         addRefresh()
@@ -68,7 +68,10 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         //获取搜索默认提示信息
         searchVM.request_getSearchPlaceholder(vc: self)
         searchBtn.isHidden = true
-
+        weak var weakS = self
+        myTableView.ly_emptyView?.tapContentViewBlock = {
+            weakS?.refreshAction()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

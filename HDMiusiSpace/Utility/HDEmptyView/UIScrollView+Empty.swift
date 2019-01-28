@@ -22,8 +22,8 @@ extension UIScrollView {
                     view.removeFromSuperview()
                 }
             }
-         self.addSubview(ly_emptyView!)
-         self.ly_emptyView?.isHidden = true
+            self.addSubview(ly_emptyView!)
+            self.ly_emptyView?.isHidden = true
         }
         get {
             return objc_getAssociatedObject(self, RuntimeKey.kEmptyViewKey!) as? HDEmptyView
@@ -43,7 +43,6 @@ extension UIScrollView {
     public func ly_showEmptyView() {
         self.ly_emptyView?.superview?.layoutSubviews()
         self.ly_emptyView?.isHidden = false
-        self.isScrollEnabled = false
         //始终保持显示在最上层
         if self.ly_emptyView != nil {
             self.bringSubview(toFront: self.ly_emptyView!)
@@ -51,7 +50,6 @@ extension UIScrollView {
     }
     
     public func ly_hideEmptyView() {
-        self.isScrollEnabled = true
         self.ly_emptyView?.isHidden = true
     }
     
@@ -92,7 +90,7 @@ extension UIScrollView {
         }
         ly_showEmptyView()
     }
-
+    
     fileprivate func hide() {
         if self.ly_emptyView?.autoShowEmptyView == false {
             self.ly_emptyView?.isHidden = true

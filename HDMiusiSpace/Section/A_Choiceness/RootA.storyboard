@@ -246,6 +246,7 @@
                         <outlet property="resultTableView" destination="AES-CV-V5W" id="qLC-uy-1Wm"/>
                         <outlet property="searcgTagBgView" destination="czZ-Tz-OfE" id="K4b-aH-dUr"/>
                         <outlet property="tagBgView" destination="nYr-Qm-kDd" id="yXo-fM-opg"/>
+                        <outlet property="tagViewH" destination="fbm-zF-RdT" id="XZc-k4-gLY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEL-jh-5dD" userLabel="First Responder" sceneMemberID="firstResponder"/>

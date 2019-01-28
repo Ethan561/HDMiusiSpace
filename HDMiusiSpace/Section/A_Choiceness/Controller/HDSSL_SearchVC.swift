@@ -274,8 +274,14 @@ class HDSSL_SearchVC: HDItemBaseVC {
             self.dTableView.isHidden = true
         }
         
+        //点击空白处隐藏键盘
+        let tapGes=UITapGestureRecognizer(target:self,action:#selector(tapTableView))
+        tapGes.cancelsTouchesInView=false
+        self.dTableView.addGestureRecognizer(tapGes)
     }
-    
+    @objc func tapTableView() {
+        self.textFeild.resignFirstResponder()
+    }
     //MARK: - 本地保存搜索历史
     func func_saveHistory(_ searchStr: String) -> Void {
         //去重、最多保存10条

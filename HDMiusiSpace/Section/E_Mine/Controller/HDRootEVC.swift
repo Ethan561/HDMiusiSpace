@@ -362,7 +362,15 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }else if index == 3 {//我的课程
                 return declare.loginStatus == .kLogin_Status_Login ? 60 : 0
             }else if index == 4 {//
-                return declare.loginStatus == .kLogin_Status_Login ? 140 : 0
+                if declare.loginStatus == .kLogin_Status_Login {
+                    if self.courses.count == 0 {
+                        return 0
+                    } else {
+                        return 140
+                    }
+                } else {
+                    return 0
+                }
             }else if index == 5 {//我的动态
                 return declare.loginStatus == .kLogin_Status_Login ? 60 : 0
             }

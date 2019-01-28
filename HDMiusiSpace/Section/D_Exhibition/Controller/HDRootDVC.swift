@@ -381,7 +381,7 @@ extension HDRootDVC {
         
         if currentCityName == nil {
             if str!.count > 0 {
-                print("城市\(str)")
+//                print("城市\(str)")
                 currentCityName = str
                 HDDeclare.shared.locModel.cityName = str!
                 

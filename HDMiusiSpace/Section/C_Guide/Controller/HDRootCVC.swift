@@ -93,7 +93,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         
         if currentCityName == nil {
             if str?.count ?? 0 > 0 {
-                print("城市\(str)")
+//                print("城市\(str)")
                 currentCityName = str
                 btn_location.setTitle(str, for: .normal)
                 HDDeclare.shared.locModel.cityName = str!

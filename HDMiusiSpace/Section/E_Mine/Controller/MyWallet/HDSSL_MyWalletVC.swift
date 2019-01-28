@@ -25,6 +25,11 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     
     var goodArray: [UIView] = Array.init() //商品
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

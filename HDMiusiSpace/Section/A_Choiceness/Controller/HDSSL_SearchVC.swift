@@ -375,9 +375,9 @@ class HDSSL_SearchVC: HDItemBaseVC {
 extension HDSSL_SearchVC{
     
     func addRefresh() {
-        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+//        var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
+//        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol
-        header = ESRefreshHeaderAnimator.init(frame: CGRect.zero)
         footer = ESRefreshFooterAnimator.init(frame: CGRect.zero)
         
 //        self.resultTableView.es.addPullToRefresh(animator: header) { [weak self] in

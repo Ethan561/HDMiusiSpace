@@ -171,7 +171,7 @@ class HD_SSL_TagView: UIView {
                     kkWith = 320
                 }
                     
-                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith - CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
+                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith - CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font ?? 11], context: nil)
                 
                 let BtnW = rect.size.width + CGFloat(space * 2)
                 let BtnH = rect.size.height + CGFloat(space)
@@ -237,7 +237,7 @@ class HD_SSL_TagView: UIView {
                     space = 8.0
                     kkWith = 320
                 }
-                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith-CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font], context: nil)
+                let rect = tagTitle.boundingRect(with: CGSize.init(width: kkWith-CGFloat(space * 2), height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : btn.titleLabel?.font ?? 11], context: nil)
                 
                 let BtnW = rect.size.width + CGFloat(space * 2)
                 let BtnH = rect.size.height + CGFloat(space)

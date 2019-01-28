@@ -975,7 +975,7 @@ extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
     //
     func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
         let webH: Double = Double(model.height!) ?? 0
-        let flag: Int = Int(model.isfolder!) ?? 1
+//        let flag: Int = Int(model.isfolder!) ?? 1
         self.reloadExhibitionCellHeight(webH)
     }
     
@@ -1051,7 +1051,7 @@ extension HDSSL_dExhibitionDetailVC {
         let arr = self.exdataModel?.data?.dataList!
         let model = arr![section-3]
         
-        var titleStr: String?
+//        var titleStr: String?
         
         if model.type == 1{
             let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SameExhibitionListVC") as! HDLY_SameExhibitionListVC
@@ -1065,13 +1065,13 @@ extension HDSSL_dExhibitionDetailVC {
             vc.titleName = "展览攻略"
             self.navigationController?.pushViewController(vc, animated: true)
         }else if model.type == 3 {
-            titleStr = "相关活动"
+//            titleStr = "相关活动"
         }else if model.type == 4 {
-            titleStr = "精选推荐"
+//            titleStr = "精选推荐"
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
             self.navigationController?.pushViewController(vc, animated: true)
         }else if model.type == 5{
-            titleStr = "免费听"
+//            titleStr = "免费听"
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
             vc.museum_id = self.exdataModel!.data!.museum_id ?? 0
             vc.titleName = self.exdataModel?.data?.museumTitle ?? ""

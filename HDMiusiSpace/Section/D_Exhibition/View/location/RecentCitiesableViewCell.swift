@@ -66,7 +66,7 @@ class RecentCitiesTableViewCell: UITableViewCell {
     }
     
     @objc private func btnClick(btn: UIButton) {
-        print(btn.titleLabel?.text!)
+        print(btn.titleLabel?.text! as Any)
         let city: CityModel = recentArray[btn.tag]
         weak var weakSelf = self
         if weakSelf?.blockTapHomeRecentCity != nil {

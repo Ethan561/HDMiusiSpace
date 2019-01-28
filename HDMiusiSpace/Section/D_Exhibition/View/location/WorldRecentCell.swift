@@ -69,7 +69,7 @@ class WorldRecentCell: UITableViewCell {
     }
     
     @objc private func btnClick(btn: UIButton) {
-        print(btn.titleLabel?.text!)
+        print(btn.titleLabel?.text! ?? "")
         
         let model = recentArray[btn.tag]
         

@@ -352,7 +352,7 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
                 UserDefaults.standard.set(city.city_name, forKey: "MyLocationCityName")
                 UserDefaults.standard.set(city.city_id, forKey: "MyLocationCityId")
                 UserDefaults.standard.synchronize()
-                LOG("city.city_name: \(city.city_name)")
+//                LOG("city.city_name: \(city.city_name)")
                 self.saveRecentCityArr(city)
                 
                 //保存选中城市，返回首页

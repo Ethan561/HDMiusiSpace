@@ -72,7 +72,7 @@ class HotCityTableViewCell: UITableViewCell {
     }
     
     @objc private func btnClick(btn: UIButton) {
-        print(btn.titleLabel?.text!)
+        print(btn.titleLabel?.text! ?? "")
         
         let city: CityModel = hotArray[btn.tag]
         weak var weakSelf = self

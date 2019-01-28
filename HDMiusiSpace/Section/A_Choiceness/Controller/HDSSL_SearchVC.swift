@@ -205,6 +205,12 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
         //选择标签后，标签模块隐藏
         tagViewH.constant = 0
+        
+        if self.dTableView.isHidden == true {
+            for v in searcgTagBgView.subviews {
+                v.removeFromSuperview()
+            }
+        }
 
     }
     

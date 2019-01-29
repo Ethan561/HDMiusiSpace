@@ -115,7 +115,6 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             }
             catch let error {
                 LOG("\(error)")
-                self.tableView.ly_endLoading()
             }
 
         }) { (errorCode, msg) in
@@ -229,7 +228,11 @@ extension HDLY_CourseList_SubVC3 {
         if infoModel?.data.list != nil && section > 0{
             let secModel = infoModel!.data.list[section-1]
             if secModel.returnInfo.count > 0 {
-                return secModel.returnInfo.count
+                if secModel.returnInfo.count > 1 && secModel.showAll == true {
+                    return secModel.returnInfo.count
+                }else {
+                    return 1
+                }
             }
         }
         return 0
@@ -255,9 +258,9 @@ extension HDLY_CourseList_SubVC3 {
                 let returnInfo = secModel.returnInfo[row]
                 if returnInfo.type == 1 {//1文字2语音
                     let contentH = secModel.content.getContentHeight(font: UIFont.init(name: "PingFangSC-Regular", size: 14)!, width: ScreenWidth-147)
-                    return contentH + 108
+                    return contentH + 120
                 }else {
-                    return  145
+                    return  160
                 }
             }
         }
@@ -301,7 +304,7 @@ extension HDLY_CourseList_SubVC3 {
         }else {
             
             if infoModel?.data.list != nil && section > 0{
-                let secModel = infoModel!.data.list[section-1]
+                var secModel = infoModel!.data.list[section-1]
                 if secModel.returnInfo.count > 0 {
                     let returnInfo:QuestionReturnInfo = secModel.returnInfo[row]
                     if returnInfo.type == 1 {//1文字2语音
@@ -312,6 +315,19 @@ extension HDLY_CourseList_SubVC3 {
                             cell?.contentL.text = returnInfo.content
                             cell?.timeL.text = returnInfo.createdAt
                         }
+                        if secModel.returnInfo.count > 1 {
+                            if indexPath.row == 0 && infoModel!.data.list[section-1].showAll == false {
+                                cell?.moreBtn.isHidden = false
+                                cell?.moreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                                    self?.infoModel!.data.list[section-1].showAll = true
+                                    self?.tableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                                })
+                            } else {
+                                cell?.moreBtn.isHidden = true
+                            }
+                        }else {
+                            cell?.moreBtn.isHidden = true
+                        }
                         return cell!
                     }else {
                         let cell = HDLY_AnswerAudio_Cell.getMyTableCell(tableV: tableView)
@@ -319,10 +335,10 @@ extension HDLY_CourseList_SubVC3 {
                         cell?.nameL.text = returnInfo.teacherName
                         cell?.timeL.text = returnInfo.createdAt
                         if self.isNeedBuyCourse == true {
-                            cell?.audioTimeL.text = String.init(format: "%@ 购课后可听", returnInfo.timeLong)
+                            cell?.audioTimeL.text = String.init(format: "%@S 购课后可听", returnInfo.timeLong.string)
 
                         }else {
-                            cell?.audioTimeL.text = returnInfo.timeLong
+                            cell?.audioTimeL.text = returnInfo.timeLong.string + "S"
                         }
                         cell?.delegate = self
                         cell?.model = returnInfo
@@ -334,6 +350,20 @@ extension HDLY_CourseList_SubVC3 {
                                 cell?.stopAnimating()
                             }
                         }
+                        if secModel.returnInfo.count > 1 {
+                            if indexPath.row == 0 && infoModel!.data.list[section-1].showAll == false {
+                                cell?.moreBtn.isHidden = false
+                                cell?.moreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
+                                    self?.infoModel!.data.list[section-1].showAll = true
+                                    self?.tableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                                })
+                            } else {
+                                cell?.moreBtn.isHidden = true
+                            }
+                        }else {
+                            cell?.moreBtn.isHidden = true
+                        }
+                        
                         return cell!
                     }
                 }

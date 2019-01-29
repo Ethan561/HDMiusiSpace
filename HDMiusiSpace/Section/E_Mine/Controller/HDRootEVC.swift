@@ -393,14 +393,17 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }else if index == 1 {//我的钱包
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.nameL.text = "我的钱包"
+                cell?.moreImgV.isHidden = false
                 return cell!
             }else if index == 2 {//我的订单
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.moreImgV.isHidden = false
                 cell?.nameL.text = "我的订单"
                 return cell!
             }else if index == 3 {//我的课程
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.isHidden = declare.loginStatus == .kLogin_Status_Login ? false : true
+                cell?.moreImgV.isHidden = false
                 cell?.nameL.text = "我的课程"
                 return cell!
             }else if index == 4 {//

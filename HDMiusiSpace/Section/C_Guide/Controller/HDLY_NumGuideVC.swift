@@ -283,6 +283,10 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
         if indexPath.row == 11 {
             if numStr.count == 0 {
                 HDAlert.showAlertTipWith(type: .onlyText, text: "请输入编号！")
+                player.stop()
+                slide.value = 0
+                timeL.text = "00:00/00:00"
+                isPlaying = false
                 return
             }
             if player.fileno != numStr && numStr.count > 0 {

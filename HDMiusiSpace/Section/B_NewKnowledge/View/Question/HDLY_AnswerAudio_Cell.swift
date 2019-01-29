@@ -21,6 +21,7 @@ class HDLY_AnswerAudio_Cell: UITableViewCell {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var timeL: UILabel!
     
+    @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var audioTimeL: UILabel!
     @IBOutlet weak var audioPlayBtn: UIButton!
     @IBOutlet weak var waveBtn: UIButton!
@@ -37,7 +38,7 @@ class HDLY_AnswerAudio_Cell: UITableViewCell {
         // Initialization code
         avaImgV.layer.cornerRadius = 15
         bgView.layer.cornerRadius = 4
-        
+        moreBtn.isHidden = true
     }
 
     @IBAction func playAction(_ sender: UIButton) {

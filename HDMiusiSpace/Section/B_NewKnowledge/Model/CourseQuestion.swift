@@ -34,7 +34,8 @@ struct CourseQuestionList: Codable {
     var createdAt: String
     var likes, isLike: TStrInt?
     var returnInfo: [QuestionReturnInfo]
-    
+    var showAll = false
+
     enum CodingKeys: String, CodingKey {
         case uid, avatar, nickname, title, content
         case questionID = "question_id"
@@ -51,7 +52,8 @@ struct QuestionReturnInfo: Codable {
     var teacherName: String
     var type: Int
     var content: String
-    var video, timeLong: String
+    var video: String
+    var timeLong: TStrInt
     var createdAt: String
     
     enum CodingKeys: String, CodingKey {

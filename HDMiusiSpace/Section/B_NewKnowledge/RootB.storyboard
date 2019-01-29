@@ -977,7 +977,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMz-Km-Jxs">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哪里出错了？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9F-WM-lQw">
                                                         <rect key="frame" x="20" y="20" width="120" height="21"/>
@@ -990,9 +990,8 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRH-ro-U9u">
-                                                        <rect key="frame" x="26" y="59" width="126" height="26"/>
+                                                        <rect key="frame" x="26" y="59" width="157.5" height="26"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="126" id="qT4-0e-Abb"/>
                                                             <constraint firstAttribute="height" constant="26" id="zBP-me-3y0"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1005,8 +1004,8 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="sa8-dd-rxs"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
-                                                        <rect key="frame" x="26" y="93" width="126" height="26"/>
+                                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAi-ah-4jE">
+                                                        <rect key="frame" x="26" y="93" width="157.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -1017,8 +1016,8 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="fKB-Cd-X9f"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
-                                                        <rect key="frame" x="26" y="127" width="126" height="26"/>
+                                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-Ix-Xuu">
+                                                        <rect key="frame" x="26" y="127" width="157.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -1029,8 +1028,44 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="4S3-rI-aYb"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
-                                                        <rect key="frame" x="225" y="59" width="150" height="26"/>
+                                                    <button hidden="YES" opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trw-sr-Vki">
+                                                        <rect key="frame" x="26" y="161" width="157.5" height="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                        <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
+                                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="BNz-uE-D82"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button hidden="YES" opaque="NO" tag="108" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5A-eK-Nbh">
+                                                        <rect key="frame" x="26" y="195" width="157.5" height="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                        <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
+                                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="un1-CC-fCr"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button hidden="YES" opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzE-bp-4bw">
+                                                        <rect key="frame" x="217.5" y="161" width="157.5" height="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                        <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
+                                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="VFL-YY-TWi"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0C-jm-KVu">
+                                                        <rect key="frame" x="217.5" y="59" width="157.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -1041,8 +1076,8 @@
                                                             <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="SA3-kY-Gg1"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
-                                                        <rect key="frame" x="225" y="93" width="150" height="26"/>
+                                                    <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79H-Ab-zsG">
+                                                        <rect key="frame" x="217.5" y="93" width="157.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -1054,11 +1089,11 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xy-rv-F1u">
-                                                        <rect key="frame" x="225" y="127" width="150" height="26"/>
+                                                        <rect key="frame" x="217.5" y="127" width="157.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                                                        <state key="normal" image="bc_icon_choose_gray">
+                                                        <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
                                                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
@@ -1074,43 +1109,72 @@
                                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button hidden="YES" opaque="NO" tag="109" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PJ-uM-fe2">
+                                                        <rect key="frame" x="217.5" y="195" width="157.5" height="26"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                        <state key="normal" title="图片文字不匹配" image="bc_icon_choose_gray">
+                                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="errorBtnChooseAction:" destination="ZFZ-id-5JC" eventType="touchUpInside" id="118-pb-10e"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="8PJ-uM-fe2" firstAttribute="leading" secondItem="UzE-bp-4bw" secondAttribute="leading" id="0tN-BF-zQ1"/>
                                                     <constraint firstItem="0bj-Ix-Xuu" firstAttribute="trailing" secondItem="OAi-ah-4jE" secondAttribute="trailing" id="1yE-Cc-izR"/>
-                                                    <constraint firstItem="m0C-jm-KVu" firstAttribute="width" secondItem="nMz-Km-Jxs" secondAttribute="width" multiplier="0.4" id="29h-K2-35y"/>
+                                                    <constraint firstItem="m0C-jm-KVu" firstAttribute="width" secondItem="nMz-Km-Jxs" secondAttribute="width" multiplier="0.42" id="29h-K2-35y"/>
                                                     <constraint firstAttribute="trailing" secondItem="m0C-jm-KVu" secondAttribute="trailing" id="3Mr-rH-7ve"/>
                                                     <constraint firstItem="4Xy-rv-F1u" firstAttribute="centerY" secondItem="0bj-Ix-Xuu" secondAttribute="centerY" id="42H-z9-msT"/>
+                                                    <constraint firstItem="trw-sr-Vki" firstAttribute="height" secondItem="0bj-Ix-Xuu" secondAttribute="height" id="70o-Zc-8bG"/>
                                                     <constraint firstItem="OAi-ah-4jE" firstAttribute="leading" secondItem="FRH-ro-U9u" secondAttribute="leading" id="727-1a-iNO"/>
                                                     <constraint firstItem="79H-Ab-zsG" firstAttribute="trailing" secondItem="m0C-jm-KVu" secondAttribute="trailing" id="8E7-Gl-85e"/>
                                                     <constraint firstItem="0bj-Ix-Xuu" firstAttribute="leading" secondItem="OAi-ah-4jE" secondAttribute="leading" id="8mW-yz-fvC"/>
                                                     <constraint firstItem="0bj-Ix-Xuu" firstAttribute="top" secondItem="OAi-ah-4jE" secondAttribute="bottom" constant="8" id="BUh-Ef-f8U"/>
+                                                    <constraint firstItem="z5A-eK-Nbh" firstAttribute="top" secondItem="trw-sr-Vki" secondAttribute="bottom" constant="8" id="BqX-5O-7Kz"/>
+                                                    <constraint firstItem="trw-sr-Vki" firstAttribute="top" secondItem="0bj-Ix-Xuu" secondAttribute="bottom" constant="8" id="CW0-HA-vlJ"/>
+                                                    <constraint firstItem="8PJ-uM-fe2" firstAttribute="height" secondItem="z5A-eK-Nbh" secondAttribute="height" id="HR5-lr-OGW"/>
                                                     <constraint firstItem="0bj-Ix-Xuu" firstAttribute="height" secondItem="OAi-ah-4jE" secondAttribute="height" id="Jiw-E6-ani"/>
+                                                    <constraint firstItem="8PJ-uM-fe2" firstAttribute="centerY" secondItem="z5A-eK-Nbh" secondAttribute="centerY" id="Nkb-FL-2Fl"/>
+                                                    <constraint firstItem="trw-sr-Vki" firstAttribute="leading" secondItem="0bj-Ix-Xuu" secondAttribute="leading" id="Op2-HP-PPl"/>
                                                     <constraint firstAttribute="trailing" secondItem="aen-Wo-zHL" secondAttribute="trailing" constant="82" id="TF8-pt-1uw"/>
                                                     <constraint firstItem="aen-Wo-zHL" firstAttribute="centerY" secondItem="l9F-WM-lQw" secondAttribute="centerY" id="UOz-gO-GH7"/>
+                                                    <constraint firstItem="FRH-ro-U9u" firstAttribute="width" secondItem="nMz-Km-Jxs" secondAttribute="width" multiplier="0.42" id="VF6-6e-IJu"/>
+                                                    <constraint firstItem="z5A-eK-Nbh" firstAttribute="height" secondItem="trw-sr-Vki" secondAttribute="height" id="WFN-p9-ENu"/>
                                                     <constraint firstItem="OAi-ah-4jE" firstAttribute="trailing" secondItem="FRH-ro-U9u" secondAttribute="trailing" id="Xaa-Tu-A2a"/>
+                                                    <constraint firstItem="UzE-bp-4bw" firstAttribute="trailing" secondItem="4Xy-rv-F1u" secondAttribute="trailing" id="Xh6-Xp-JPx"/>
                                                     <constraint firstItem="4Xy-rv-F1u" firstAttribute="leading" secondItem="79H-Ab-zsG" secondAttribute="leading" id="Xwk-MV-Kty"/>
                                                     <constraint firstItem="FRH-ro-U9u" firstAttribute="leading" secondItem="nMz-Km-Jxs" secondAttribute="leading" constant="26" id="Z1X-6J-OoX"/>
+                                                    <constraint firstItem="UzE-bp-4bw" firstAttribute="leading" secondItem="4Xy-rv-F1u" secondAttribute="leading" id="Zbc-qU-ABd"/>
                                                     <constraint firstItem="FRH-ro-U9u" firstAttribute="top" secondItem="l9F-WM-lQw" secondAttribute="bottom" constant="18" id="aBL-PO-Mv4"/>
                                                     <constraint firstItem="OAi-ah-4jE" firstAttribute="height" secondItem="FRH-ro-U9u" secondAttribute="height" id="bL2-tA-6Xs"/>
+                                                    <constraint firstItem="UzE-bp-4bw" firstAttribute="centerY" secondItem="trw-sr-Vki" secondAttribute="centerY" id="c85-E1-GDW"/>
                                                     <constraint firstItem="aen-Wo-zHL" firstAttribute="leading" secondItem="l9F-WM-lQw" secondAttribute="trailing" constant="5" id="cly-5H-2CL"/>
                                                     <constraint firstItem="OAi-ah-4jE" firstAttribute="top" secondItem="FRH-ro-U9u" secondAttribute="bottom" constant="8" id="f0h-x4-458"/>
                                                     <constraint firstItem="4Xy-rv-F1u" firstAttribute="trailing" secondItem="79H-Ab-zsG" secondAttribute="trailing" id="fCX-T2-3ap"/>
                                                     <constraint firstItem="79H-Ab-zsG" firstAttribute="height" secondItem="m0C-jm-KVu" secondAttribute="height" id="gA1-ea-6WR"/>
+                                                    <constraint firstItem="z5A-eK-Nbh" firstAttribute="leading" secondItem="trw-sr-Vki" secondAttribute="leading" id="h9M-5b-rV4"/>
+                                                    <constraint firstItem="z5A-eK-Nbh" firstAttribute="trailing" secondItem="trw-sr-Vki" secondAttribute="trailing" id="hVh-0K-kOZ"/>
                                                     <constraint firstItem="4Xy-rv-F1u" firstAttribute="height" secondItem="79H-Ab-zsG" secondAttribute="height" id="hpg-DE-HGC"/>
                                                     <constraint firstItem="l9F-WM-lQw" firstAttribute="leading" secondItem="nMz-Km-Jxs" secondAttribute="leading" constant="20" id="lRb-Bb-jC8"/>
                                                     <constraint firstItem="m0C-jm-KVu" firstAttribute="centerY" secondItem="FRH-ro-U9u" secondAttribute="centerY" id="m4J-d4-8UR"/>
+                                                    <constraint firstItem="UzE-bp-4bw" firstAttribute="height" secondItem="4Xy-rv-F1u" secondAttribute="height" id="mL5-sa-h89"/>
+                                                    <constraint firstItem="8PJ-uM-fe2" firstAttribute="trailing" secondItem="UzE-bp-4bw" secondAttribute="trailing" id="sYa-xr-0h1"/>
                                                     <constraint firstItem="79H-Ab-zsG" firstAttribute="centerY" secondItem="OAi-ah-4jE" secondAttribute="centerY" id="st3-3W-Nx7"/>
                                                     <constraint firstItem="79H-Ab-zsG" firstAttribute="leading" secondItem="m0C-jm-KVu" secondAttribute="leading" id="t7s-Cc-tLh"/>
-                                                    <constraint firstAttribute="height" constant="160" id="tpY-dw-s92"/>
+                                                    <constraint firstAttribute="height" constant="170" id="tpY-dw-s92"/>
                                                     <constraint firstItem="m0C-jm-KVu" firstAttribute="height" secondItem="FRH-ro-U9u" secondAttribute="height" id="v31-Lj-g0b"/>
                                                     <constraint firstItem="l9F-WM-lQw" firstAttribute="top" secondItem="nMz-Km-Jxs" secondAttribute="top" constant="20" id="vbV-8o-d2M"/>
+                                                    <constraint firstItem="trw-sr-Vki" firstAttribute="trailing" secondItem="0bj-Ix-Xuu" secondAttribute="trailing" id="wD6-Pp-R3s"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6UC-sH-5gs">
-                                                <rect key="frame" x="0.0" y="170" width="375" height="273"/>
+                                                <rect key="frame" x="0.0" y="180" width="375" height="273"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img1" translatesAutoresizingMaskIntoConstraints="NO" id="iKY-cg-yfq">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iKY-cg-yfq">
                                                         <rect key="frame" x="20" y="20" width="131.5" height="90.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="iKY-cg-yfq" secondAttribute="height" multiplier="123:85" id="OeN-Mz-7ga"/>
@@ -1175,11 +1239,11 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6i-pB-TNV">
-                                                <rect key="frame" x="0.0" y="453" width="375" height="447"/>
+                                                <rect key="frame" x="0.0" y="463" width="375" height="437"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9T-vD-XtI">
-                                                <rect key="frame" x="18" y="433" width="170" height="30"/>
+                                                <rect key="frame" x="18" y="443" width="170" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="J0T-bg-9O4"/>
                                                     <constraint firstAttribute="height" constant="30" id="Qni-oM-iPK"/>
@@ -1247,12 +1311,17 @@
                         <outlet property="commitBtn" destination="Idy-wg-MG4" id="K8f-89-jEk"/>
                         <outlet property="countL" destination="2zG-DY-wgf" id="p2N-bA-ThW"/>
                         <outlet property="errorBtn1" destination="FRH-ro-U9u" id="fLG-4y-dMG"/>
-                        <outlet property="errorBtn2" destination="OAi-ah-4jE" id="x0a-xx-B1e"/>
-                        <outlet property="errorBtn3" destination="0bj-Ix-Xuu" id="0Rp-JE-c7W"/>
-                        <outlet property="errorBtn4" destination="m0C-jm-KVu" id="4Qo-Cq-0Bh"/>
-                        <outlet property="errorBtn5" destination="79H-Ab-zsG" id="fIV-20-8tH"/>
-                        <outlet property="errorBtn6" destination="4Xy-rv-F1u" id="h4p-rJ-yrY"/>
+                        <outlet property="errorBtn10" destination="8PJ-uM-fe2" id="NZv-aj-BDT"/>
+                        <outlet property="errorBtn2" destination="m0C-jm-KVu" id="wYX-mv-a02"/>
+                        <outlet property="errorBtn3" destination="OAi-ah-4jE" id="eBr-Np-sPr"/>
+                        <outlet property="errorBtn4" destination="79H-Ab-zsG" id="FAA-9x-DAl"/>
+                        <outlet property="errorBtn5" destination="0bj-Ix-Xuu" id="VMS-Qm-cfe"/>
+                        <outlet property="errorBtn6" destination="4Xy-rv-F1u" id="wuX-RN-eQt"/>
+                        <outlet property="errorBtn7" destination="trw-sr-Vki" id="h5u-4c-3cx"/>
+                        <outlet property="errorBtn8" destination="UzE-bp-4bw" id="gmv-4E-4lj"/>
+                        <outlet property="errorBtn9" destination="z5A-eK-Nbh" id="lyg-a0-7uu"/>
                         <outlet property="errorBtnView" destination="nMz-Km-Jxs" id="Arj-6R-5yM"/>
+                        <outlet property="errorTypeViewHCons" destination="tpY-dw-s92" id="6z6-22-erg"/>
                         <outlet property="imgBgView" destination="I6i-pB-TNV" id="ytl-ih-tPp"/>
                         <outlet property="imgV" destination="iKY-cg-yfq" id="vzf-Am-LJ2"/>
                         <outlet property="isDropImageTip" destination="h9T-vD-XtI" id="RdL-nb-NK4"/>
@@ -1272,7 +1341,7 @@
     <resources>
         <image name="Star_white" width="22" height="22"/>
         <image name="bc_icon_choose_gray" width="16" height="16"/>
-        <image name="icon_delete" width="14" height="18"/>
+        <image name="icon_delete" width="15" height="19"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="img_drop" width="170" height="30"/>
         <image name="jx_zz_1" width="200" height="42"/>

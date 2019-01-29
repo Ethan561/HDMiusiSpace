@@ -13,14 +13,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="KGk-i7-Jjw" customClass="HDLY_AnswerText_Cell" customModule="HDMiusiSpace" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="175.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-ea-JWu">
-                        <rect key="frame" x="60" y="8" width="240" height="159.5"/>
+                        <rect key="frame" x="60" y="8" width="240" height="173.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AXC-zJ-5lb">
                                 <rect key="frame" x="15" y="15" width="30" height="30"/>
@@ -54,6 +54,16 @@
                                 <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jia-AN-zN1">
+                                <rect key="frame" x="180" y="138.5" width="60" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Q1K-xf-eab"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="更多">
+                                    <color key="titleColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -65,8 +75,11 @@
                             <constraint firstItem="AXC-zJ-5lb" firstAttribute="top" secondItem="yOm-ea-JWu" secondAttribute="top" constant="15" id="bP9-Bt-3xL"/>
                             <constraint firstItem="ASa-5v-HeR" firstAttribute="centerY" secondItem="AXC-zJ-5lb" secondAttribute="centerY" id="bd1-eK-tJm"/>
                             <constraint firstItem="mgA-pz-PsS" firstAttribute="leading" secondItem="5Nf-Wa-Ioi" secondAttribute="leading" id="eeJ-uB-i2F"/>
+                            <constraint firstItem="Jia-AN-zN1" firstAttribute="top" secondItem="5Nf-Wa-Ioi" secondAttribute="bottom" constant="15" id="fTZ-F3-rPM"/>
+                            <constraint firstAttribute="bottom" secondItem="Jia-AN-zN1" secondAttribute="bottom" id="jFZ-b3-mHY"/>
                             <constraint firstItem="AXC-zJ-5lb" firstAttribute="leading" secondItem="yOm-ea-JWu" secondAttribute="leading" constant="15" id="lgg-nR-tcC"/>
                             <constraint firstItem="5Nf-Wa-Ioi" firstAttribute="trailing" secondItem="ASa-5v-HeR" secondAttribute="trailing" id="mDo-iR-d4K"/>
+                            <constraint firstAttribute="trailing" secondItem="Jia-AN-zN1" secondAttribute="trailing" id="yPS-Sq-8pM"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -82,10 +95,11 @@
                 <outlet property="avaImgV" destination="AXC-zJ-5lb" id="FyX-n5-VCh"/>
                 <outlet property="bgView" destination="yOm-ea-JWu" id="Rkd-hR-MDh"/>
                 <outlet property="contentL" destination="5Nf-Wa-Ioi" id="UHm-Cv-TaI"/>
+                <outlet property="moreBtn" destination="Jia-AN-zN1" id="JQn-gQ-0U7"/>
                 <outlet property="nameL" destination="ASa-5v-HeR" id="P0s-Fi-f6n"/>
                 <outlet property="timeL" destination="mgA-pz-PsS" id="noH-XP-Djf"/>
             </connections>
-            <point key="canvasLocation" x="34" y="120"/>
+            <point key="canvasLocation" x="33.600000000000001" y="119.64017991004499"/>
         </tableViewCell>
     </objects>
 </document>

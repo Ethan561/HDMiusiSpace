@@ -13,7 +13,6 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     var photoSelectorView: HDLY_PhotoSelectorView!
 
     @IBOutlet weak var scrollviewHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var reportScrollView: UIScrollView!
     @IBOutlet weak var errorBtn1: UIButton!
     @IBOutlet weak var errorBtn2: UIButton!
@@ -21,12 +20,15 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     @IBOutlet weak var errorBtn4: UIButton!
     @IBOutlet weak var errorBtn5: UIButton!
     @IBOutlet weak var errorBtn6: UIButton!
+    @IBOutlet weak var errorBtn7: UIButton!
+    @IBOutlet weak var errorBtn8: UIButton!
+    @IBOutlet weak var errorBtn9: UIButton!
+    @IBOutlet weak var errorBtn10: UIButton!
+    
+    @IBOutlet weak var errorTypeViewHCons: NSLayoutConstraint!
     @IBOutlet weak var errorBtnView: UIView!
-    
     @IBOutlet weak var imgV: UIImageView!
-    
     @IBOutlet weak var titleL: UILabel!
-    
     @IBOutlet weak var textBgView: UIView!
     @IBOutlet weak var textView: HDPlaceholderTextView!
     @IBOutlet weak var countL: UILabel!
@@ -124,6 +126,22 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         errorBtn6.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
         errorBtn6.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
         
+        errorBtn7.isHidden = true
+        errorBtn7.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
+        errorBtn7.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
+        
+        errorBtn8.isHidden = true
+        errorBtn8.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
+        errorBtn8.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
+        
+        errorBtn9.isHidden = true
+        errorBtn9.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
+        errorBtn9.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
+        
+        errorBtn10.isHidden = true
+        errorBtn10.setImage(UIImage.init(named: "bc_icon_choose_gray"), for: .normal)
+        errorBtn10.setImage(UIImage.init(named: "bc_icon_choose_red"), for: .selected)
+        
     }
     //actions
     @objc func action_publish(){
@@ -195,6 +213,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                 errorBtn4.setTitle(model.optionTitle, for: .normal)
 
             case 4:
+                errorTypeViewHCons.constant = 170
                 errorBtn5.isHidden = false
                 errorBtn5.setTitle(model.optionTitle, for: .normal)
 
@@ -202,6 +221,24 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                 errorBtn6.isHidden = false
                 errorBtn6.setTitle(model.optionTitle, for: .normal)
 
+            case 6:
+                errorTypeViewHCons.constant = 200
+                errorBtn7.isHidden = false
+                errorBtn7.setTitle(model.optionTitle, for: .normal)
+                
+            case 7:
+                errorBtn8.isHidden = false
+                errorBtn8.setTitle(model.optionTitle, for: .normal)
+                
+            case 8:
+                errorTypeViewHCons.constant = 230
+                errorBtn9.isHidden = false
+                errorBtn9.setTitle(model.optionTitle, for: .normal)
+                
+            case 9:
+                errorBtn10.isHidden = false
+                errorBtn10.setTitle(model.optionTitle, for: .normal)
+                
             default: break
             }
         }
@@ -227,7 +264,14 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
             errorBtn5.isSelected =  !errorBtn5.isSelected
         case 5:
             errorBtn6.isSelected =  !errorBtn6.isSelected
-            
+        case 6:
+            errorBtn7.isSelected =  !errorBtn7.isSelected
+        case 7:
+            errorBtn8.isSelected =  !errorBtn8.isSelected
+        case 8:
+            errorBtn9.isSelected =  !errorBtn9.isSelected
+        case 9:
+            errorBtn10.isSelected =  !errorBtn10.isSelected
         default: break
             
         }

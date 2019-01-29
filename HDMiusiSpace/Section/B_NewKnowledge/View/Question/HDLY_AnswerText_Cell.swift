@@ -15,13 +15,14 @@ class HDLY_AnswerText_Cell: UITableViewCell {
     @IBOutlet weak var nameL: UILabel!
     @IBOutlet weak var contentL: UILabel!    
     @IBOutlet weak var timeL: UILabel!
+    @IBOutlet weak var moreBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         avaImgV.layer.cornerRadius = 15
         bgView.layer.cornerRadius = 4
-
+        moreBtn.isHidden = true
         
     }
 

@@ -39,11 +39,12 @@ class HDZQ_SignLabelVC: UIViewController {
         if self.type == 2 {
             self.viewModel.request_getLaunchTagList(self,UIScrollView())
         }else{
+            //数据
             self.dataArr = HDDeclare.shared.allTagsArray!
             let tagdatamodel = self.dataArr[(self.type)]  //第三页单选
             
-            self.labTitle.text = String.init(format: "%@", (tagdatamodel.title)!)
-            self.labDes.text = String.init(format: "%@", (tagdatamodel.des)!)
+            self.labTitle.text = String.init(format: "%@", (tagdatamodel.title)!)//标题
+            self.labDes.text = String.init(format: "%@", (tagdatamodel.des)!)//描述
             
             self.tagList = (tagdatamodel.list)!
             self.tagList.forEach({ (model) in
@@ -54,7 +55,7 @@ class HDZQ_SignLabelVC: UIViewController {
         }
         
     }
-    
+    //返回请求结果
     func bindViewModel() {
         viewModel.tagModel.bind { [weak self] (tagDataArray) in
             self?.dataArr = tagDataArray  //返回标签数据，需要保存到本地
@@ -73,7 +74,7 @@ class HDZQ_SignLabelVC: UIViewController {
             self?.loadTagView() //加载tag view
         }
     }
-    
+    //加载页面数据
     func loadTagView() {
         tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
         if type == 2 {
@@ -112,6 +113,7 @@ class HDZQ_SignLabelVC: UIViewController {
             if self?.type == 2 {
                 self?.readyUpload()
             }else {
+                //动画效果
                 let transition = CATransition.init()
                 transition.duration = 0.3
                 transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -135,6 +137,7 @@ class HDZQ_SignLabelVC: UIViewController {
         tagView?.loadTagsView()
         
     }
+    //准备提交数据
     func readyUpload() {
         
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
@@ -151,42 +154,15 @@ class HDZQ_SignLabelVC: UIViewController {
             self.request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
         }
     }
-    func uploadMyTags() {
-        //
-        let deviceno = HDLY_UserModel.shared.getDeviceNum()
-        
-        HDDeclare.shared.selectedTagArray = HDDeclare.shared.careerTagArray! + HDDeclare.shared.stateTagArray! + HDDeclare.shared.funnyTagArray!
-        
-        if HDDeclare.shared.selectedTagArray != nil {
-            
-            var tagIds: String? = ""
-            
-            for i in 0..<HDDeclare.shared.selectedTagArray!.count {
-                let model: HDSSL_Tag = HDDeclare.shared.selectedTagArray![i] as HDSSL_Tag
-                tagIds = tagIds! + String(model.label_id!) + "#"
-            }
-            
-            if self.type == 2 {
-                self.request_saveSelectedTags(deviceno: deviceno, label_id_str: tagIds!, self)
-            } else {
-                let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_SignLabelVC") as! HDZQ_SignLabelVC
-                if  self.type == 0 {
-                    vc.type = 1
-                } else {
-                    vc.type = 2
-                }
-                self.dismiss(animated: true, completion: nil)
-//                self.present(vc, animated: true, completion: nil)
-            }
-        }
-    }
+    
+    //提交
     @IBAction func confirmAction(_ sender: Any) {
-//        self.mySignLabels.removeAll()
+
         tagView?.getBackSelectedTags()
         
     }
+    //返回
     @IBAction func action_back(_ sender: UIButton) {
-//        self.dismiss(animated: true, completion: nil)
         
         let transition = CATransition.init()
         transition.duration = 0.3
@@ -195,7 +171,7 @@ class HDZQ_SignLabelVC: UIViewController {
         transition.subtype = kCATransitionFromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         
-        
+        //上一页，动画效果
         let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_SignLabelVC") as! HDZQ_SignLabelVC
         if  self.type == 2 {
             vc.type = 1
@@ -206,19 +182,21 @@ class HDZQ_SignLabelVC: UIViewController {
             
             self.present(vc, animated: false, completion: nil)
         }else{
-            //获取根VC
-            
-            var rootVC = self.presentingViewController
-            while let parent = rootVC?.presentingViewController {
-                rootVC = parent
-            }
-            
-            //释放所有下级视图
-            rootVC?.dismiss(animated: false, completion: nil)
+            backToRootVC()
         }
         
     }
-    
+    //返回根控制器
+    func backToRootVC() {
+        //获取根VC
+        var rootVC = self.presentingViewController
+        while let parent = rootVC?.presentingViewController {
+            rootVC = parent
+        }
+        //释放所有下级视图
+        rootVC?.dismiss(animated: false, completion: nil)
+    }
+    //请求数据
     func request_saveSelectedTags(deviceno : String,label_id_str: String,_ vc:UIViewController) {
         var token:String = ""
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
@@ -234,12 +212,11 @@ class HDZQ_SignLabelVC: UIViewController {
                 JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
             }
             HDDeclare.shared.labStr?.removeAll()
-//            HDDeclare.shared.selectedTagArray!.forEach({ (m) in
-//                HDDeclare.shared.labStr?.append(m.title!)
-//            })
+
+            //保存个人信息
             if (HDDeclare.shared.funnyTagArray?.count)! > 0 {
                 HDDeclare.shared.funnyTagArray!.forEach({ (m) in
-                    HDDeclare.shared.labStr?.append(m.title!)
+                    HDDeclare.shared.labStr?.append(m.title!)//个人信息标签只显示兴趣
                 })
             }
             
@@ -247,17 +224,7 @@ class HDZQ_SignLabelVC: UIViewController {
             HDAlert.showAlertTipWith(type: .onlyText, text: "修改成功")
             let delay = DispatchTime.now() + DispatchTimeInterval.seconds(1)
             DispatchQueue.main.asyncAfter(deadline: delay, execute: {
-//                let vc = self.presentingViewController?.presentingViewController?.presentingViewController;
-//                vc?.dismiss(animated: true, completion: nil)
-
-                //获取根VC
-                var rootVC = self.presentingViewController
-                while let parent = rootVC?.presentingViewController {
-                    rootVC = parent
-                }
-                //释放所有下级视图
-                rootVC?.dismiss(animated: true, completion: nil)
-                
+                self.backToRootVC()
             })
             
         }) { (errorCode, msg) in

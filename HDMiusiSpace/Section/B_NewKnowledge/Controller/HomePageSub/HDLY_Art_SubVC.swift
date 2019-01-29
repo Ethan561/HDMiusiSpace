@@ -39,9 +39,6 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
-        
         if isNewest == true {
             dataRequest(type: "2", cate_id: cateID)
         }else {
@@ -73,6 +70,10 @@ class HDLY_Art_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.dataArr = model.data
             if self.dataArr.count > 0 {
                 self.tableView.reloadData()
+            }else {
+                let empV = EmptyConfigView.NoDataEmptyView()
+                self.tableView.ly_emptyView = empV
+                self.tableView.ly_showEmptyView()
             }
             
         }) { (errorCode, msg) in

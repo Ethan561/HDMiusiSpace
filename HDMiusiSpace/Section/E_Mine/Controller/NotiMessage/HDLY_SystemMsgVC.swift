@@ -21,23 +21,25 @@ class HDLY_SystemMsgVC: HDItemBaseVC {
         
         self.dataRequest()
         addRefresh()
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
+
     }
     
     func dataRequest()  {
         let token = HDDeclare.shared.api_token ?? ""
-        self.tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .messageCenterSystemList(skip: skip, take: 10, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            self.tableView.ly_endLoading()
             self.tableView.es.stopPullToRefresh()
             let jsonDecoder = JSONDecoder()
             do {
                 let model: HDLY_SystemMsgModel = try jsonDecoder.decode(HDLY_SystemMsgModel.self, from: result)
                 if model.data != nil {
                     self.dataArr = model.data!
+                    if self.dataArr.count == 0 {
+                        let empV = EmptyConfigView.NoDataEmptyView()
+                        self.tableView.ly_emptyView = empV
+                        self.tableView.ly_showEmptyView()
+                    }
                     self.tableView.reloadData()
                 }
             }

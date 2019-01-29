@@ -47,9 +47,6 @@ class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UI
         addRefresh()
         bindViewModel()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
-        
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
     }
     
     var isNeedRefresh = false
@@ -90,8 +87,6 @@ class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UI
     }
     
     @objc func dataRequest()  {
-        tableView.ly_startLoading()
-        
         LOG("HDDeclare.shared.locModel.cityName: \(HDDeclare.shared.locModel.cityName)")
         let token = HDDeclare.shared.api_token ?? ""
         let latitude = HDDeclare.shared.locModel.latitude
@@ -109,6 +104,7 @@ class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UI
                 if self.dataArr.count == 0 {
                     let empV = EmptyConfigView.NoDataEmptyView()//空数据显示
                     self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
                 }
                 self.tableView.reloadData()
             }
@@ -119,7 +115,7 @@ class HDLY_RootCSubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UI
         }) { (errorCode, msg) in
             let empV = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_emptyView = empV
-            self.tableView.ly_endLoading()
+            self.tableView.ly_showEmptyView()
             self.tableView.es.stopPullToRefresh()
         }
     }
@@ -219,7 +215,7 @@ extension HDLY_RootCSubVC {
                     return 200
                 }
                 return 223*ScreenWidth/375.0
-            }else if model.type == 2 {
+            } else if model.type == 2 {
                 return 300*ScreenWidth/320.0
             }
         }

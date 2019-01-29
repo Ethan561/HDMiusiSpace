@@ -42,16 +42,12 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
         }
         dataRequest()
         addRefresh()
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
     }
 
     func dataRequest()  {
-        self.tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBoutique(skip: "\(skip)", take: "10", type: "1", cate_id: "0"), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
-            self.tableView.ly_endLoading()
             self.tableView.es.stopPullToRefresh()
             let jsonDecoder = JSONDecoder()
             do {
@@ -59,6 +55,10 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
                 self.dataArr = model.data
                 if self.dataArr.count > 0 {
                     self.tableView.reloadData()
+                }else {
+                    let empV = EmptyConfigView.NoDataEmptyView()
+                    self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
                 }
             }
             catch let error {

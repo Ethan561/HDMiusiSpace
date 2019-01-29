@@ -48,8 +48,6 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
         }
         self.dataRequest()
         addRefresh()
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,6 +116,10 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
                 }
                 self.tableView.reloadData()
                 self.tableView.es.stopLoadingMore()
+            }else {
+                let empV = EmptyConfigView.NoDataEmptyView()
+                self.tableView.ly_emptyView = empV
+                self.tableView.ly_showEmptyView()
             }
             
         }) { (errorCode, msg) in

@@ -48,27 +48,29 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
                                                name: NSNotification.Name.init(rawValue: "HDLY_RootDSubVC_Refresh_Noti"),
                                                object: nil)
         //
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
+
     }
     
     
    @objc func dataRequest()  {
-        tableView.ly_startLoading()
         let cityName: String = HDDeclare.shared.locModel.cityName
-    let latitude = HDDeclare.shared.locModel.latitude
-    let longitude = HDDeclare.shared.locModel.longitude
+        let latitude = HDDeclare.shared.locModel.latitude
+        let longitude = HDDeclare.shared.locModel.longitude
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .exhibitionExhibitionList(type: type, skip: page, take: 10, city_name: cityName , longitude: longitude, latitude: latitude, keywords: "") , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
             self.tableView.es.stopLoadingMore()
-            self.tableView.ly_endLoading()
             //
             let jsonDecoder = JSONDecoder()
             do {
                 let model:HDLY_dExhibitionListM = try jsonDecoder.decode(HDLY_dExhibitionListM.self, from: result)
                 self.dataArr = model.data
+                if self.dataArr.count == 0 {
+                    let empV = EmptyConfigView.NoDataEmptyView()
+                    self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
+                }
                 self.tableView.reloadData()
             }
             catch let error {
@@ -76,7 +78,6 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
             }
             
         }) { (errorCode, msg) in
-            self.tableView.ly_endLoading()
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
             self.tableView.es.stopPullToRefresh()

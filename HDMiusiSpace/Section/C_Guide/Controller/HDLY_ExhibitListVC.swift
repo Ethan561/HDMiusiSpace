@@ -35,9 +35,6 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         //addRefresh()
         player.delegate = self
         player.stop()
-        
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,17 +55,20 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
     
     func dataRequest()  {
         let token:String =  HDDeclare.shared.api_token ?? ""
-        self.tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitList(exhibition_id: exhibition_id, skip: page, take: 1000, api_token: token), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
-            self.tableView.ly_endLoading()
             let jsonDecoder = JSONDecoder()
             do {
                 let model:HDLY_ExhibitList = try jsonDecoder.decode(HDLY_ExhibitList.self, from: result)
                 self.infoModel = model
                 self.dataArr = model.data.exhibitList
+                if self.dataArr.count == 0 {
+                    let empV = EmptyConfigView.NoDataEmptyView()
+                    self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
+                }
                 self.tableView.reloadData()
                 self.topImgV.kf.setImage(with: URL.init(string: model.data.img), placeholder: UIImage.grayImage(sourceImageV: self.topImgV), options: nil, progressBlock: nil, completionHandler: nil)
             }

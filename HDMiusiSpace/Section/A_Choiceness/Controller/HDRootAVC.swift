@@ -50,10 +50,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }
         getVersionData()
         setupViews()
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.myTableView.ly_emptyView = empV
-        myTableView.ly_endLoading()
-        
         //MVVM
         bindViewModel()
         addRefresh()
@@ -159,6 +155,11 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     func showViewData() {
         self.infoModel = viewModel.rootAData.value
+        if self.infoModel?.data?.count == 0 {
+            let empV = EmptyConfigView.NoDataEmptyView()
+            self.myTableView.ly_emptyView = empV
+            self.myTableView.ly_showEmptyView()
+        }
         self.myTableView.reloadData()
     }
     

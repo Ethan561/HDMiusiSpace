@@ -30,8 +30,6 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         }
         dataRequest()
         addRefresh()
-        let empV = EmptyConfigView.NoDataEmptyView()
-        self.tableView.ly_emptyView = empV
     }
     
     var isNeedRefresh = false
@@ -46,7 +44,6 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
     
     func dataRequest()  {
         let token:String =  HDDeclare.shared.api_token ?? ""
-        tableView.ly_startLoading()
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .guideExhibitionList(museum_id: museum_id, skip: page, take: 20, token: token), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -58,8 +55,11 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
                 self.dataArr = model.data
                 if self.dataArr.count > 0 {
                     self.tableView.reloadData()
+                }else {
+                    let empV = EmptyConfigView.NoDataEmptyView()
+                    self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
                 }
-                self.tableView.ly_endLoading()
             }
             catch let error {
                 LOG("\(error)")

@@ -63,35 +63,31 @@ class HDLY_Kids_Cell2: UITableViewCell {
                 return
             }else {
                 bgView1.isHidden = false
+                let model1 = dataArray![1]
+                if  model1.img != nil  {
+                    imgV1.kf.setImage(with: URL.init(string: (model1.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
+                }
+                titleL1.text = model1.title
+                countL1.text = model1.views?.string == nil ? "0人在学" :(model1.views?.string)! + "人在学"
+                if model1.price != nil {
+                    priceL1.text = "¥" + "\(model1.price!)"
+                }
             }
             
-            let model1 = dataArray?.last
-            if  model1?.img != nil  {
-                imgV1.kf.setImage(with: URL.init(string: (model1?.img)!), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
-            }
-            titleL1.text = model1?.title
-            countL1.text = model1?.views?.string == nil ? "0人在学" :(model1?.views?.string)! + "人在学"
-            if model1?.price != nil {
-                priceL1.text = "¥" + "\(model1!.price!)"
-            }
         }
         
         
     }
     
     @IBAction func tapAction(_ sender: UIButton) {
-        
-        if dataArray?.count == 2 {
-            if sender.tag == 101 {
-                let model = dataArray?.first
-                delegate?.didSelectItemAt(model!, self)
-            }
-            else if sender.tag == 102 {
-                let model1 = dataArray?.last
-                delegate?.didSelectItemAt(model1!, self)
-            }
+        if sender.tag == 101 {
+            let model = dataArray?.first
+            delegate?.didSelectItemAt(model!, self)
         }
-        
+        else if sender.tag == 102 && dataArray?.count ?? 0 >= 2 {
+            let model1 = dataArray![1]
+            delegate?.didSelectItemAt(model1, self)
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

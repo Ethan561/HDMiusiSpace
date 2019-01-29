@@ -26,15 +26,6 @@ class HDSSL_commentSucVC: HDItemBaseVC {
     var paperPath: String? //画报地址
     var shareView: HDLY_ShareView?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.hidesBackButton = true
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationItem.hidesBackButton = false
-    }
-    
     override func viewDidLoad() {
         isHideBackBtn = true
         super.viewDidLoad()
@@ -89,6 +80,15 @@ class HDSSL_commentSucVC: HDItemBaseVC {
     func loadMyView(){
         self.title = "评论成功"
         
+        //返回按钮，空白占位
+        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
+        leftBarBtn.setImage(UIImage.init(named: ""), for: UIControlState.normal)
+        leftBarBtn.setTitle("  ", for: .normal)
+        let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
+        self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
+        
+        //关闭按钮
         let closeBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60, height: 44))
         closeBtn.setTitle("关闭", for: .normal)
         closeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -121,6 +121,8 @@ class HDSSL_commentSucVC: HDItemBaseVC {
                 if vc.isKind(of: HDSSL_dExhibitionDetailVC.self) {
                     self.navigationController?.popToViewController(vc, animated: true)
                 }else if vc.isKind(of: HDSSL_OrderDetialVC.self) {
+                    self.navigationController?.popToViewController(vc, animated: true)
+                }else if vc.isKind(of: HDSSL_MyOrderVC.self) {
                     self.navigationController?.popToViewController(vc, animated: true)
                 }
                 

@@ -104,7 +104,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请填写问题标题（至少10个字）"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请填写问题标题（10-30字）"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                             <color key="value" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
@@ -123,7 +123,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请填写问题描述"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请填写问题描述（200字以内）"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                             <color key="value" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>

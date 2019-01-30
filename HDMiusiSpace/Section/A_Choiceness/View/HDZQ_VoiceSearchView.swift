@@ -102,6 +102,27 @@ class HDZQ_VoiceSearchView: UIView {
         pcmRecorder?.setSaveAudioPath(nil)
         
     }
+    //未获取语音授权时弹出提示信息
+    func showAudioAcessDeniedAlert() {
+        let alertController = UIAlertController(title: "暂时不能使用语音搜索功能哦",
+                                                message: "请到：设置-隐私-麦克风 允许“缪斯空间”使用您的麦克风",
+                                                preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "设置", style: .default) { (alertAction) in
+            
+            // THIS IS WHERE THE MAGIC HAPPENS!!!!
+            if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettings as URL)
+            }
+        }
+        alertController.addAction(settingsAction)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+
 }
 
 extension HDZQ_VoiceSearchView : IFlySpeechRecognizerDelegate {
@@ -127,6 +148,13 @@ extension HDZQ_VoiceSearchView : IFlySpeechRecognizerDelegate {
     
     func onCompleted(_ errorCode: IFlySpeechError!) {
         print(errorCode.errorDesc)
+        if errorCode.errorDesc == "录音失败" {
+            //提示开启权限，到设置
+            removeVoiceView()
+            
+            showAudioAcessDeniedAlert()
+            
+        }
         if errorCode.errorCode == 0 {
             print(voiceResult)
             if voiceResult.count == 0 {

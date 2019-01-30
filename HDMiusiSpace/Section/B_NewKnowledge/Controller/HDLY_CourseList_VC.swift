@@ -164,8 +164,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         
         // 播放完自动播放下一个
-        self.player.playerDidToEnd = { (asset) -> () in
-            
+        self.player.playerDidToEnd = {[weak self] (asset) -> () in
+            self?.videoPlayerDidToEnd()
         }
         
         self.player.playerPlayStateChanged = { (asset,state) -> () in
@@ -185,6 +185,41 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         self.player.playerPlayTimeChanged = { (asset,currentTime,duration) -> () in
             //LOG("===== currentTime: \(currentTime),===== duration:  \(duration)")
             _self?.currentPlayTime = currentTime
+        }
+    }
+    
+    func videoPlayerDidToEnd() {
+        if self.listPlayModel == nil {
+            guard let course = infoModel?.data else {
+                return
+            }
+            if isMp3Course {
+                if course.video.isEmpty == false && course.video.contains("http://") {
+                    self.player.assetURL = NSURL.init(string: course.video)! as URL
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                    self.controlView.coverImageHidden = false
+                }
+            }else {
+                if course.video.isEmpty == false && course.video.contains(".mp4") {
+                    self.player.assetURL = NSURL.init(string: course.video)! as URL
+                    self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                }
+            }
+            self.player.currentPlayerManager.pause!()
+        }else {
+            let video = listPlayModel!.video
+            if video.isEmpty == false && video.contains("http://") {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.coverImageHidden = false
+                self.chapterListVC?.isPlaying = false
+            }
+            else if video.isEmpty == false && video.contains(".mp4") {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                self.chapterListVC?.isPlaying = false
+            }
+            self.player.currentPlayerManager.pause!()
         }
     }
     

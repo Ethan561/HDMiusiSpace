@@ -16,6 +16,8 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var wxBtn: UIButton!
     @IBOutlet weak var qqBtn: UIButton!
     @IBOutlet weak var weiboBtn: UIButton!
+    @IBOutlet weak var thridView: UIView!
+    
     let declare:HDDeclare = HDDeclare.shared
 
     override func viewDidLoad() {
@@ -129,7 +131,10 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             weiboBtn.isHidden = true
         }
-        
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+            thridView.isHidden = true
+        }
+
     }
     
     @IBAction func thridLoginAction(_ sender: UIButton) {

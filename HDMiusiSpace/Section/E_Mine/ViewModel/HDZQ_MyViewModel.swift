@@ -160,6 +160,9 @@ class HDZQ_MyViewModel: NSObject {
     var orderDetail: Bindable = Bindable(OrderDetailModel())
     func requestMyOrderDetail(apiToken:String,orderId:Int,vc:UIViewController) {
         HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .requestMyOrderDetail(api_token: apiToken, orderId: orderId), showHud: true, loadingVC: vc, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            print("\(dic)")
+            
             let jsonDecoder = JSONDecoder()
             
             do {

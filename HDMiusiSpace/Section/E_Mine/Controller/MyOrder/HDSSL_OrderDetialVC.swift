@@ -190,11 +190,36 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
                 self.navigationController?.pushViewController(vc, animated: true)
 
             }else { //展览门票
+                
                 //进入导览
-                let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
-                vc.museum_id = order?.goodsID ?? 0
-                vc.titleName = order?.title ?? ""
-                self.navigationController?.pushViewController(vc, animated: true)
+                if orderDetail?.cateID == 3 {
+                    //进地图导览
+                    let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_MapGuideVC") as! HDLY_MapGuideVC
+                    vc.museum_id = orderDetail?.goodsID ?? 0
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }else if orderDetail?.cateID == 2 {
+                    if orderDetail?.type == 0 {
+                        //数字编号
+                        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
+                        
+                        vc.titleName = orderDetail?.title ?? ""
+                        vc.exhibition_id = orderDetail?.goodsID
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                    }else if orderDetail?.type == 1 {
+                        //列表
+                        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
+                        vc.museum_id = orderDetail?.goodsID ?? 0
+                        vc.titleName = orderDetail?.title ?? ""
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else if orderDetail?.type == 2 {
+                        //扫一扫
+                        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
+                        
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                }
+                
             }
             
         }

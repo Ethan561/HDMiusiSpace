@@ -258,7 +258,7 @@ extension HDLY_CourseList_SubVC3 {
                 let returnInfo = secModel.returnInfo[row]
                 if returnInfo.type == 1 {//1文字2语音
                     let contentH = secModel.content.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-147)
-                    return contentH + 120
+                    return contentH + 145
                 }else {
                     return  160
                 }
@@ -309,12 +309,10 @@ extension HDLY_CourseList_SubVC3 {
                     let returnInfo:QuestionReturnInfo = secModel.returnInfo[row]
                     if returnInfo.type == 1 {//1文字2语音
                         let cell = HDLY_AnswerText_Cell.getMyTableCell(tableV: tableView)
-                        if returnInfo.teacherImg.isEmpty == false {
-                            cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
-                            cell?.nameL.text = returnInfo.teacherName
-                            cell?.contentL.text = returnInfo.content
-                            cell?.timeL.text = returnInfo.createdAt
-                        }
+                        cell?.avaImgV.kf.setImage(with: URL.init(string: returnInfo.teacherImg), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
+                        cell?.nameL.text = returnInfo.teacherName
+                        cell?.contentL.text = returnInfo.content
+                        cell?.timeL.text = returnInfo.createdAt
                         if secModel.returnInfo.count > 1 {
                             if indexPath.row == 0 && infoModel!.data.list[section-1].showAll == false {
                                 cell?.moreBtn.isHidden = false
@@ -336,7 +334,6 @@ extension HDLY_CourseList_SubVC3 {
                         cell?.timeL.text = returnInfo.createdAt
                         if self.isNeedBuyCourse == true {
                             cell?.audioTimeL.text = String.init(format: "%@S 购课后可听", returnInfo.timeLong.string)
-
                         }else {
                             cell?.audioTimeL.text = returnInfo.timeLong.string + "S"
                         }

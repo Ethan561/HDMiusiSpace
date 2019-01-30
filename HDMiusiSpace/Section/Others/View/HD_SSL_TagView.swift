@@ -144,6 +144,49 @@ class HD_SSL_TagView: UIView {
         }
         
     }
+    //加载服务器返回状态
+    func loadSelectedTags(_ tags:[String]) -> Void {
+        if tags.count == 0 {
+            return
+        }
+        for i in 0..<tags.count {
+            let str1 = tags[i]
+            
+            let view = self.viewWithTag(Int(str1)!+10)
+            if (view?.isKind(of: UIButton.self))! {
+                let btn = view as! UIButton
+                btn.isSelected = true
+                btn.backgroundColor = UIColor.RGBColor(215, 99, 72)
+                btn.layer.borderColor = UIColor.white.cgColor
+            }
+        }
+        
+        
+    }
+    
+    //返回多选
+    func getBackMultiSelectedTags(){
+        
+        selctedArray.removeAll()
+        
+        for i in 0..<titleArray.count {
+            let view = self.viewWithTag(i+10)
+            
+            if (view?.isKind(of: UIButton.self))!{
+                let btn = view as! UIButton
+                if btn.isSelected == true
+                {
+                    selctedArray.append(String(i))
+                }
+            }
+        }
+        
+        weak var weakSelf = self
+        
+        if weakSelf?.blockTapTag != nil {
+            weakSelf?.blockTapTag!(selctedArray)
+        }
+    }
     
     //MARK: -- 创建标签引导页的tags
     func loadTagsView() {
@@ -154,7 +197,6 @@ class HD_SSL_TagView: UIView {
                 let tagTitle = titleArray[i] as NSString
                 
                 //记录上一个按钮位置、大小
-                
                 
                 let btn = UIButton.init(type: .custom)
                 btn.backgroundColor = UIColor.white

@@ -52,7 +52,156 @@ class HDZQ_SignLabelVC: UIViewController {
                 self.signLabels.append(title)
             })
             self.loadTagView() //加载tag view
+            
         }
+        
+    }
+    //MARK:--单选标签可以重置，多选标签不可重置
+    func NowResetTags(){
+        if self.dataArr.count > 0 {
+            var array:[HDSSL_Tag]!
+            
+            if self.type == 0 {
+                if HDDeclare.shared.careerTagArray != nil{
+                    array = HDDeclare.shared.careerTagArray
+                    var arr:[String] = Array.init()
+                    
+                    for i in 0..<(array?.count)! {
+                        
+                        let sele = array[i] //已选标签
+                        
+                        for j in 0..<tagList.count {
+                            
+                            let item = tagList[j]
+                            
+                            if item.label_id == sele.label_id { //找到已选标签位置
+                                print(j)
+                                arr.append(String(j))
+                            }
+                        }
+                  
+                    }
+                    
+                    //重置
+                    tagView?.loadSelectedTags(arr)
+                    
+                    
+                }else {
+                    let tagdatamodel = self.dataArr[0]
+                    array = tagdatamodel.list
+                    
+                    if (array?.count)! > 0{
+                        var arr:[String] = Array.init()
+                        
+                        for j in 0..<(array?.count)! {
+                            let model = array?[j]
+                            if model?.is_chose == 1 {
+                                arr.append(String(j))
+                            }
+                        }
+                        
+                        //重置
+                        tagView?.loadSelectedTags(arr)
+                    }
+                }
+            }else if self.type == 1 {
+                if HDDeclare.shared.stateTagArray != nil{
+                    array = HDDeclare.shared.stateTagArray
+                    var arr:[String] = Array.init()
+                    
+                    for i in 0..<(array?.count)! {
+                        
+                        let sele = array[i] //已选标签
+                        
+                        for j in 0..<tagList.count {
+                            
+                            let item = tagList[j]
+                            
+                            if item.label_id == sele.label_id { //找到已选标签位置
+                                print(j)
+                                arr.append(String(j))
+                            }
+                        }
+                        
+                    }
+                    
+                    //重置
+                    tagView?.loadSelectedTags(arr)
+                }else {
+                    let tagdatamodel = self.dataArr[1]
+                    array = tagdatamodel.list
+                    if (array?.count)! > 0{
+                        var arr:[String] = Array.init()
+                        
+                        for j in 0..<(array?.count)! {
+                            let model = array?[j]
+                            if model?.is_chose == 1 {
+                                arr.append(String(j))
+                            }
+                        }
+                        
+                        //重置
+                        tagView?.loadSelectedTags(arr)
+                    }
+                }
+            }else if self.type == 2 {
+                if HDDeclare.shared.funnyTagArray != nil{
+                    array = HDDeclare.shared.funnyTagArray
+                    var arr:[String] = Array.init()
+                    
+                    for i in 0..<(array?.count)! {
+                        
+                        let sele = array[i] //已选标签
+                        
+                        for j in 0..<tagList.count {
+                            
+                            let item = tagList[j]
+                            
+                            if item.label_id == sele.label_id { //找到已选标签位置
+                                print(j)
+                                arr.append(String(j))
+                            }
+                        }
+                        
+                    }
+                    
+                    //重置
+                    tagView?.loadSelectedTags(arr)
+                }else {
+                    let tagdatamodel = self.dataArr[2]
+                    array = tagdatamodel.list
+                    if (array?.count)! > 0{
+                        var arr:[String] = Array.init()
+                        
+                        for j in 0..<(array?.count)! {
+                            let model = array?[j]
+                            if model?.is_chose == 1 {
+                                arr.append(String(j))
+                            }
+                        }
+                        
+                        //重置
+                        tagView?.loadSelectedTags(arr)
+                    }
+                }
+            }
+            
+            
+//            if (array?.count)! > 0{
+//                var arr:[String] = Array.init()
+//
+//                for j in 0..<(array?.count)! {
+//                    let model = array?[j]
+//                    if model?.is_chose == 1 {
+//                        arr.append(String(j))
+//                    }
+//                }
+//
+//                //重置
+//                tagView?.loadSelectedTags(arr)
+//            }
+        }
+
         
     }
     //返回请求结果
@@ -136,13 +285,14 @@ class HDZQ_SignLabelVC: UIViewController {
         tagBgView.addSubview(tagView!)
         tagView?.loadTagsView()
         
+        NowResetTags()
     }
     //准备提交数据
     func readyUpload() {
         
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
         
-        HDDeclare.shared.selectedTagArray = HDDeclare.shared.careerTagArray! + HDDeclare.shared.stateTagArray! + HDDeclare.shared.funnyTagArray!
+        HDDeclare.shared.selectedTagArray = (HDDeclare.shared.careerTagArray == nil ? [HDSSL_Tag]() : HDDeclare.shared.careerTagArray!) + (HDDeclare.shared.stateTagArray == nil ? [HDSSL_Tag]() : HDDeclare.shared.stateTagArray!) + (HDDeclare.shared.funnyTagArray == nil ? [HDSSL_Tag]() : HDDeclare.shared.funnyTagArray!)
         
         if HDDeclare.shared.selectedTagArray != nil {
             var tagIds: String? = ""
@@ -158,7 +308,7 @@ class HDZQ_SignLabelVC: UIViewController {
     //提交
     @IBAction func confirmAction(_ sender: Any) {
 
-        tagView?.getBackSelectedTags()
+        tagView?.getBackMultiSelectedTags()
         
     }
     //返回

@@ -76,6 +76,12 @@ class HDSSL_OrderCell: UITableViewCell {
             
         }else if order?.status == 2 {
             //交易成功，开始上课
+            cell_btn1.isHidden = false
+            cell_btn2.isHidden = false
+            cell_btn3.isHidden = false
+            cell_btn1.setTitle("开始上课", for: .normal)
+            cell_btn1.layer.borderColor = UIColor.black.cgColor
+
         }else if order?.status == 3 {
             //交易取消
             cell_btn2.isHidden = true

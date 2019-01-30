@@ -16,7 +16,8 @@ struct OrderBuyInfoModel: Codable {
 }
 
 struct OrderBuyInfoData: Codable {
-    var goodsID, cateID, title: String?
+    var goodsID, cateID: TStrInt?
+    var title: String?
     var priceType, isVip: Int?
     var price : String?
     var spaceMoney: String?

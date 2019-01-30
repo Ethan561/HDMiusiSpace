@@ -29,6 +29,11 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         return tableView
     }()
     
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,6 +81,15 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
             }
         }
         
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind {[weak self] (model) in
+            self?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind {[weak self] (model) in
+            self?.showPaymentResult(model)
+        }
     }
     //刷新列表
     func refreshTableView(models:[MyOrder]) {
@@ -200,13 +214,69 @@ extension HDSSL_MyOrderSubVC:UITableViewDelegate,UITableViewDataSource {
     
 }
 extension HDSSL_MyOrderSubVC{
-    //操作订单
-    //支付
+    //订单操作
     func payMyOrderOf(_ index: Int) {
         let order = orderArray[index]
-        //订单支付
+        //获取订单信息
+        guard let goodId = order.goodsID else {
+            return
+        }
+        publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: order.cateID ?? 1, goods_id: goodId, self)
+    }
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = "¥\(model.price!)"
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction(model)
+        }
+    }
+    
+    func orderBuyAction( _ model: OrderBuyInfoData) {
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: model.cateID?.int ?? 0, goods_id: model.goodsID?.int ?? 0, pay_type: 1, self)
         
     }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+            self.skip = 0
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.orderTipView?.sureBlock = nil
+                self.orderTipView?.removeFromSuperview()
+                self.requestData()
+            }
+        }
+        
+    }
+    
+    
+    
     //开始上课
     func beginClassForOrderOf(_ index: Int) {
         let order = orderArray[index]

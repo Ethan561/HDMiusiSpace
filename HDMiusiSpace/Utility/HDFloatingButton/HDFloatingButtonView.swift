@@ -36,6 +36,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
     public weak var delegate: HDFloatingButtonViewDelegate?
     var floatingButtonDidSelect: (()->())?
     fileprivate var beginPoint: CGPoint?
+    var isRotation = false
     
     var showType:FloatingButtonShowType = .FloatingButtonPlay
     var bgView:HDFloatingButtonBgView = HDFloatingButtonBgView.init()
@@ -133,7 +134,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         addSubview(self.closeBtn)
 
     }
-
+    
     func showView() {
         let desinationFrame = self.frame
         let xdes = desinationFrame.origin.x
@@ -185,7 +186,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
                 }
   
             }) { (animete) in
-//                self.updateFrame()
+                self.addRotationAnimation()
             }
         }
             
@@ -209,7 +210,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
                 }
 
             }) { (animete) in
-//                self.updateFrame()
+                self.removeRotationAnimation()
             }
         }
         
@@ -234,6 +235,21 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         kWindow?.addSubview(self)
         self.alpha = 1.0
      
+    }
+    
+    func addRotationAnimation() {
+        if isRotation == true {
+            return
+        }
+        isRotation = true
+        imgBtn.layer.removeAllAnimations()
+        let animate = HDAnimate.basicAnimationWithKeyPath("transform.rotation.z", fromValue: nil , toValue: 2 * Double.pi, duration: 5.0, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionLinear)
+        imgBtn.layer.add(animate, forKey: "transform.rotation.z")
+    }
+    
+    func removeRotationAnimation() {
+        isRotation = false
+        imgBtn.layer.removeAllAnimations()
     }
     
     required init?(coder aDecoder: NSCoder) {

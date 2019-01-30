@@ -176,7 +176,7 @@
                 <outlet property="cell_state" destination="ALa-r2-jGA" id="4hA-Cd-xQx"/>
                 <outlet property="cell_title" destination="GQy-kp-Sef" id="njn-g0-grw"/>
             </connections>
-            <point key="canvasLocation" x="29" y="-176"/>
+            <point key="canvasLocation" x="28.800000000000001" y="-176.31184407796104"/>
         </tableViewCell>
     </objects>
 </document>

@@ -341,7 +341,7 @@ extension  HDLY_CourseList_SubVC1{
     }
     
     func orderBuyAction( _ model: OrderBuyInfoData) {
-        guard let goodId = self.infoModel?.data.articleID.int else {
+        guard let goodId = model.goodsID?.int else {
             return
         }
         if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
@@ -351,7 +351,7 @@ extension  HDLY_CourseList_SubVC1{
             }
             return
         }
-        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: model.cateID?.int ?? 0, goods_id: goodId, pay_type: 1, self)
         
     }
     

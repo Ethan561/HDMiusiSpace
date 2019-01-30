@@ -247,7 +247,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     }
     
     func orderBuyAction( _ model: OrderBuyInfoData) {
-        guard let goodId = self.infoModel?.data.articleID.int else {
+        guard let goodId = model.goodsID?.int else {
             return
         }
         if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
@@ -257,7 +257,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }
             return
         }
-        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: 1, goods_id: goodId, pay_type: 1, self)
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: model.cateID?.int ?? 0, goods_id: goodId, pay_type: 1, self)
         
     }
     
@@ -822,10 +822,10 @@ extension HDLY_CourseDes_VC: UMShareDelegate {
         let messageObject = UMSocialMessageObject()
         //创建网页内容对象
         let thumbURL = url
-        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.data.title, descr: self.infoModel?.data.share_des, thumImage: thumbURL)
+        let shareObject = UMShareWebpageObject.shareObject(withTitle: self.infoModel?.data.title, descr: self.infoModel?.data.share_des, thumImage: self.infoModel?.data.img)
         
         //设置网页地址
-        shareObject?.webpageUrl = self.infoModel?.data.img
+        shareObject?.webpageUrl = thumbURL
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject
         weak var weakS = self

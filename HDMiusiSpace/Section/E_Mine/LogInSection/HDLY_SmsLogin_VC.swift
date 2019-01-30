@@ -19,6 +19,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var wxBtn: UIButton!
     @IBOutlet weak var wbBtn: UIButton!
     @IBOutlet weak var qqBtn: UIButton!
+    @IBOutlet weak var thridView: UIView!
     
     var seconds:Int32 = 59
     lazy var timer: Timer = { () ->Timer in
@@ -155,6 +156,9 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             wbBtn.isHidden = true
         }
         
+        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+            thridView.isHidden = true
+        }
     }
     
     @IBAction func thridLoginAction(_ sender: UIButton) {

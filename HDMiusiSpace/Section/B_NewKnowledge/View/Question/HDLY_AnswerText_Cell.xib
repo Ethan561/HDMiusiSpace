@@ -22,7 +22,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOm-ea-JWu">
                         <rect key="frame" x="60" y="8" width="240" height="173.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AXC-zJ-5lb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wd_img_tx" translatesAutoresizingMaskIntoConstraints="NO" id="AXC-zJ-5lb">
                                 <rect key="frame" x="15" y="15" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="ig7-hH-oCZ"/>
@@ -102,4 +102,7 @@
             <point key="canvasLocation" x="33.600000000000001" y="119.64017991004499"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="wd_img_tx" width="60" height="60"/>
+    </resources>
 </document>

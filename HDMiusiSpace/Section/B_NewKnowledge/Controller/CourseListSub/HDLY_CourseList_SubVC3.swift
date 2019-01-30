@@ -115,8 +115,8 @@ class HDLY_CourseList_SubVC3: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             }
             catch let error {
                 LOG("\(error)")
+                self.loadingView?.removeFromSuperview()
             }
-
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
@@ -257,7 +257,7 @@ extension HDLY_CourseList_SubVC3 {
             if secModel.returnInfo.count > 0 {
                 let returnInfo = secModel.returnInfo[row]
                 if returnInfo.type == 1 {//1文字2语音
-                    let contentH = secModel.content.getContentHeight(font: UIFont.init(name: "PingFangSC-Regular", size: 14)!, width: ScreenWidth-147)
+                    let contentH = secModel.content.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-147)
                     return contentH + 120
                 }else {
                     return  160

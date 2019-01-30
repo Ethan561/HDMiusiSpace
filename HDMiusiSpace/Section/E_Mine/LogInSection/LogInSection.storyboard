@@ -269,6 +269,7 @@
                         <outlet property="qqBtn" destination="S4t-M1-jvN" id="rO4-jr-hhI"/>
                         <outlet property="smsBtn" destination="cJB-qL-cb1" id="a9H-1I-cRQ"/>
                         <outlet property="smsTF" destination="a0s-yF-guC" id="F4a-sN-zn3"/>
+                        <outlet property="thridView" destination="wqM-85-sdb" id="MiC-2W-tlt"/>
                         <outlet property="wbBtn" destination="pz4-xr-2E1" id="mzc-gG-K3x"/>
                         <outlet property="wxBtn" destination="e3z-lO-O3u" id="8gw-WT-AD7"/>
                         <segue destination="8Pl-c5-VXd" kind="show" id="SZm-JR-rpQ"/>
@@ -476,6 +477,7 @@
                         <outlet property="phoneTF" destination="K58-OA-WTB" id="60x-ca-i6x"/>
                         <outlet property="pwdTF" destination="1x0-jf-ExW" id="FDw-Xi-zPk"/>
                         <outlet property="qqBtn" destination="Onf-DA-kU2" id="ps2-bf-PHM"/>
+                        <outlet property="thridView" destination="sMO-hk-xle" id="Ydd-Tj-Qv0"/>
                         <outlet property="weiboBtn" destination="38Z-Ne-jmr" id="Fwm-Mh-IZM"/>
                         <outlet property="wxBtn" destination="7UN-Qp-SAG" id="fMq-hb-t7B"/>
                     </connections>

@@ -134,15 +134,27 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         }
         
         // 播放完自动播放下一个
-        self.videoPlayer.playerDidToEnd = { (asset) -> () in
-            
+        self.videoPlayer.playerDidToEnd = {[weak self] (asset) -> () in
+            self?.videoPlayerDidToEnd()
         }
         self.videoPlayer.playerPlayStateChanged = { (asset,state) -> () in
             if ZFReachabilityManager.shared().isReachable == false {
                 HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
             }
         }
-        
+    }
+    
+    func videoPlayerDidToEnd() {
+        if isMp3Course == false{
+            guard let course = infoModel?.data else {
+                return
+            }
+            if course.video.isEmpty == false && course.video.contains(".mp4") {
+                self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
+                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                self.videoPlayer.currentPlayerManager.pause!()
+            }
+        }
     }
     
     @IBAction func playClick(_ sender: UIButton) {
@@ -341,7 +353,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {
-                        let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.yprice!)")
+                        let priceString = NSMutableAttributedString.init(string: "¥\(self.infoModel!.data.yprice!)")
 //                        let ypriceAttribute =
 //                            [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
 //                             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体

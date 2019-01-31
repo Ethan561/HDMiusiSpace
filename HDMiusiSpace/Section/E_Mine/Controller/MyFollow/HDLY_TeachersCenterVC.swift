@@ -21,7 +21,14 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
     let tabHeader = HDZQ_PersonOthersHeaderView.createViewFromNib() as! HDZQ_PersonOthersHeaderView
     private var take = 10
     private var skip = 0
-    
+    var feedbackChooseTip: HDLY_FeedbackChoose_View?
+    var showFeedbackChooseTip = false
+    lazy var commentView: HDZQ_CommentActionView = {
+        let tmp =  Bundle.main.loadNibNamed("HDZQ_CommentActionView", owner: nil, options: nil)?.last as? HDZQ_CommentActionView
+        tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        tmp?.reportDelegate = self
+        return tmp!
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,12 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 215))
         v.addSubview(tabHeader)
         self.view.addSubview(v)
+        
+        let publishBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 34))
+        publishBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
+        publishBtn.addTarget(self, action: #selector(showErrorView), for: .touchUpInside)
+        let item = UIBarButtonItem.init(customView: publishBtn)
+        self.navigationItem.rightBarButtonItem = item
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -230,6 +243,83 @@ class HDLY_TeachersCenterVC: HDItemBaseVC {
         }
     }
     
+
+}
+
+extension HDLY_TeachersCenterVC {
+    
+    @objc func showErrorView() {
+        tapErrorBtnAction()
+    }
+    
+    func tapErrorBtnAction() {
+        if showFeedbackChooseTip == false {
+            let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
+            feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
+            feedbackChooseTip?.frame = CGRect.init(x: ScreenWidth-20-120, y: 10, width: 120, height: 50)
+            feedbackChooseTip?.tapBtn1.setTitle("举报", for: .normal)
+            feedbackChooseTip?.tapBtn2.isHidden = true
+            self.view.addSubview(feedbackChooseTip!)
+            showFeedbackChooseTip = true
+            weak var weakS = self
+            feedbackChooseTip?.tapBlock = { (index) in
+                weakS?.feedbackChooseAction(index: 2)
+            }
+        } else {
+            closeFeedbackChooseTip()
+        }
+    }
+    
+    func closeFeedbackChooseTip() {
+        feedbackChooseTip?.tapBlock = nil
+        feedbackChooseTip?.removeFromSuperview()
+        showFeedbackChooseTip = false
+    }
+    
+    func feedbackChooseAction(index: Int) {
+        closeFeedbackChooseTip()
+        var cate_id = "11"//讲师
+        if type == 2 {
+            cate_id = "12"
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(detailId), cate_id: cate_id), success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let jsonDecoder = JSONDecoder()
+            //JSON转Model：
+            let model:ReportErrorModel = try! jsonDecoder.decode(ReportErrorModel.self, from: result)
+            var strs = [String]()
+            var reportType = [Int]()
+            model.data?.optionList.forEach({ (m) in
+                strs.append(m.optionTitle)
+                reportType.append(m.optionID)
+            })
+            
+            self.commentView.dataArr = strs
+            self.commentView.reportType = reportType
+            self.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+            self.commentView.type = 1
+            self.commentView.tableHeightConstraint.constant = CGFloat((self.commentView.dataArr.count)*50)
+            self.commentView.tableView.reloadData()
+            kWindow?.addSubview(self.commentView)
+            self.commentView.tableView.reloadData()
+        }) { (errorCode, msg) in
+            
+        }
+    }
+}
+
+extension HDLY_TeachersCenterVC: MyReportProtocol {
+    func reportActionSelected(type: Int, index: Int, comment: String, reportType: Int?) {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendError(api_token: HDDeclare.shared.api_token ?? "", option_id_str: String(reportType!), parent_id: String(detailId), cate_id: "8", content: self.commentView.dataArr[index], uoload_img: [""]), showHud: true, loadingVC: self, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
+            self.commentView.removeFromSuperview()
+        }) { (errorCode, msg) in
+            
+        }
+    }
     
 }
 
@@ -305,7 +395,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
             let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
             if self.news.count > 0 {
                 let model = news[indexPath.row]
-                cell?.titleLTopCons.constant = 16
+                cell?.titleLTopCons.constant = 16   
                 cell?.desView.isHidden = true
                 cell?.moreBtn.isHidden = true
                 cell?.publishLabel.text = "发布了文章"

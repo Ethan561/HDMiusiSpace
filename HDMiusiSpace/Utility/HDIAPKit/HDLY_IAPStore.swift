@@ -72,6 +72,7 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
         
         let encodeStr = receiptData?.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
         guard let token  = HDDeclare.shared.api_token else {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录账号")
             return
         }
         let uuid = UIDevice.current.getUUID()

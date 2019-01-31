@@ -185,13 +185,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         if HDFloatingButtonManager.manager.floatingBtnView.show == true {
-            LOG("======= 暂停了=====")
+//            LOG("======= 暂停了=====")
             if HDLY_AudioPlayer.shared.state == .playing {
                 HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
                 HDFloatingButtonManager.manager.floatingBtnView.showView()
             }
         }
-        LOG("=======了=====\(HDFloatingButtonManager.manager.floatingBtnView.show) === \(HDLY_AudioPlayer.shared.state)")
+//        LOG("=======了=====\(HDFloatingButtonManager.manager.floatingBtnView.show) === \(HDLY_AudioPlayer.shared.state)")
 
     }
     
@@ -226,14 +226,13 @@ extension AppDelegate : JPUSHRegisterDelegate {
         if response.notification.request.trigger is UNPushNotificationTrigger {
             JPUSHService.handleRemoteNotification(userInfo)
             LOG("通知消息:\(userInfo)")
-            LOG("通知消息title:\(userInfo["title"])")
-            LOG("通知消息content:\(userInfo["content"])")
-            
             guard let nav = navigationController else {
                 return
             }
             
             let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SystemMsgVC") as! HDLY_SystemMsgVC
+            vc.hidesBottomBarWhenPushed = true
+            
             //前台弹窗提醒
             if UIApplication.shared.applicationState == .active  {
                 let msg:String = String.init(format: "通知消息:%@", userInfo["content"] as! String)
@@ -249,11 +248,8 @@ extension AppDelegate : JPUSHRegisterDelegate {
                 alertController.addAction(okAction)
                 nav.visibleViewController?.present(alertController, animated: true, completion: nil)
             }
-            
             //后台通知消息点击查看
             if UIApplication.shared.applicationState == .inactive  {
-                
-                
                 nav.pushViewController(vc, animated: true)
             }
             
@@ -291,11 +287,8 @@ extension AppDelegate : JPUSHRegisterDelegate {
         
         //后台通知消息点击查看
         if UIApplication.shared.applicationState == .inactive  {
-            
-            
             nav.pushViewController(vc, animated: true)
         }
-        
         completionHandler(UIBackgroundFetchResult.newData)
         
     }
@@ -320,7 +313,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         }
         let signKey1:String = MD5(alias)+HengDaSignKey
         JPUSHService.setAlias(MD5(signKey1), completion: { (iResCode, iAlias, seq) in
-            print("=== setAliasSuccess,\(MD5(signKey1)) . completion,\(iResCode),\(iAlias),\(seq)")
+            print("=== setAliasSuccess,\(MD5(signKey1)) . completion,\(iResCode),\(iAlias!),\(seq)")
         }, seq: 0)
         
     }

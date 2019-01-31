@@ -116,7 +116,7 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             
             //
             let urlPrefix:String   = map.mapPath + "/"
-            let mapItemCachePath:String = String.init(format: "%@/Resource/WebMap", kCachePath)
+            let mapItemCachePath:String = String.init(format: "%@/Resource/WebMap/%ld", kCachePath,self.museum_id)
             mapV!.initMinMapImage(withUrlPrefix: urlPrefix, mapItemCachePath: mapItemCachePath)
             
             mapV!.dataSource = self

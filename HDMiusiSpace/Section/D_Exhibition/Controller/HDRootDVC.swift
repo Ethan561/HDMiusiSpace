@@ -350,6 +350,8 @@ extension HDRootDVC {
         }
         let targetViewController:UIViewController = self.childViewControllers[toIndex]
         if targetViewController.isViewLoaded == true {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
+
             return;
         }
         targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight))
@@ -360,6 +362,8 @@ extension HDRootDVC {
         }
         s.contentOffset = contentOffset
         contentScrollView.addSubview(targetViewController.view)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
+
     }
 }
 

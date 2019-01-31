@@ -54,6 +54,7 @@ struct OrderDetailModel: Codable {
     var isComment:Int?//是否评论1已评论0未评论
     var isShare:Int? //是否分享1已分享0未分享
     var phone: String?//客服电话
+    var type:Int?  //展览类型 0数字编号版1列表版2扫一扫版
     
     enum CodingKeys: String, CodingKey {
         case orderID = "order_id"
@@ -68,6 +69,7 @@ struct OrderDetailModel: Codable {
         case classNum = "class_num"
         case isComment = "is_comment"
         case isShare = "is_share"
+        case type
     }
 }
 //---订单分享图片

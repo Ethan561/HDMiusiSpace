@@ -62,6 +62,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     var childVCScrollView: UIScrollView?
     var recommendSubVC:HDLY_Recommend_SubVC?
+    var listenSubVC:HDLY_Listen_SubVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +110,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
             self.automaticallyAdjustsScrollViewInsets = false
         }
         //
-        tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as! RootBHeaderView
+        tabHeader = Bundle.main.loadNibNamed("RootBHeaderView", owner: nil, options: nil)?.first as? RootBHeaderView
         tabHeader.pagerView.dataSource = self
         tabHeader.pagerView.delegate = self
         tabHeader.pagerView.isInfinite = true
@@ -209,6 +210,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     private func refresh() {
         dataRequestForBanner()
         dataRequestForMenu(isRefresh: true)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLYListenSubVC_NeedRefresh_Noti"), object: nil)
+
     }
     
     
@@ -268,6 +271,7 @@ extension HDRootBVC {
                 self.addChildViewController(baseVC)
             case 2://轻听随看
                 let baseVC:HDLY_Listen_SubVC = HDLY_Listen_SubVC.init()
+                self.listenSubVC = baseVC
                 self.addChildViewController(baseVC)
             case 3://艺术
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
@@ -303,6 +307,9 @@ extension HDRootBVC {
         }
         let targetViewController:UIViewController = self.childViewControllers[toIndex]
         if targetViewController.isViewLoaded == true {
+            if toIndex == 2 {
+                self.listenSubVC?.dataRequest(cate_id: self.listenSubVC?.cateID ?? "-1")
+            }
             return;
         }
         targetViewController.view.frame = CGRect.init(x: ScreenWidth*CGFloat(toIndex), y: 0, width: ScreenWidth, height: ScreenHeight-CGFloat(kTopHeight) - CGFloat(kTabBarHeight))
@@ -313,6 +320,9 @@ extension HDRootBVC {
         }
         s.contentOffset = contentOffset
         self.contentScrollView.addSubview(targetViewController.view)
+        if toIndex == 2 {
+            self.listenSubVC?.dataRequest(cate_id: self.listenSubVC?.cateID ?? "-1")
+        }
     }
 }
 

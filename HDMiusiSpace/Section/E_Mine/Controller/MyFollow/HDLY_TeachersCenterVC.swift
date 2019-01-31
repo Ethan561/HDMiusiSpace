@@ -395,7 +395,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
             let cell = HDLY_MyDynamicCell.getMyTableCell(tableV: tableView)
             if self.news.count > 0 {
                 let model = news[indexPath.row]
-                cell?.titleLTopCons.constant = 16   
+                cell?.titleLTopCons.constant = 16
                 cell?.desView.isHidden = true
                 cell?.moreBtn.isHidden = true
                 cell?.publishLabel.text = "发布了文章"

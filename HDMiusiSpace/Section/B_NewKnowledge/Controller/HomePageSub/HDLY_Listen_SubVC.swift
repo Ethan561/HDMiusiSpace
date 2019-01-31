@@ -22,6 +22,7 @@ class HDLY_Listen_SubVC:                                                        
     var listArr = [ListenList]()
     var tagsArr = [ListenTags]()
     var player = HDLY_AudioPlayer.shared
+    var cateID = "-1"
     
     lazy var emptyView: UIView = {
         let emptyV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260))
@@ -74,10 +75,10 @@ class HDLY_Listen_SubVC:                                                        
         }else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshNoti), name: NSNotification.Name.init(rawValue: "HDLYListenSubVC_NeedRefresh_Noti"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         dataRequest(cate_id: "-1")
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,6 +97,10 @@ class HDLY_Listen_SubVC:                                                        
         self.collectionView.contentOffset = CGPoint.zero
     }
     
+    @objc func refreshNoti() {
+        self.dataRequest(cate_id: cateID)
+    }
+    
     //监听子视图滚动
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SubTableViewDidScroll"), object: scrollView)
@@ -108,7 +113,6 @@ class HDLY_Listen_SubVC:                                                        
     }
     
     func dataRequest(cate_id: String) {
-        self.collectionView.ly_startLoading()
 
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseListen(skip: "0", take: "100", cate_id: cate_id), showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
@@ -142,7 +146,8 @@ class HDLY_Listen_SubVC:                                                        
     }
     
     @objc func refreshAction() {
-        dataRequest(cate_id: "-1")
+        cateID = "-1"
+        dataRequest(cate_id: cateID)
     }
     
     override func didReceiveMemoryWarning() {
@@ -234,11 +239,13 @@ class HDLY_Listen_SubVC:                                                        
                 collectionView.reloadData()
                 if self.tagsArr.count > 0 && indexPath.row < 4 {
                     let model = self.tagsArr[indexPath.row]
-                    dataRequest(cate_id: "\(model.cateID)")
+                    cateID = "\(model.cateID)"
+                    dataRequest(cate_id: cateID)
                 }
                 if self.tagsArr.count > 0 &&  indexPath.row > 4 {
                     let model = self.tagsArr[indexPath.row-1]
-                    dataRequest(cate_id: "\(model.cateID)")
+                    cateID = "\(model.cateID)"
+                    dataRequest(cate_id: cateID)
                 }
             }
         }

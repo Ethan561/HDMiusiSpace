@@ -17,6 +17,7 @@ class HDSSL_ExhibitionCell: UITableViewCell {
     @IBOutlet weak var cell_starImgView: UIImageView!
     @IBOutlet weak var cell_scoreLab: UILabel!
     
+    @IBOutlet weak var noStarL: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

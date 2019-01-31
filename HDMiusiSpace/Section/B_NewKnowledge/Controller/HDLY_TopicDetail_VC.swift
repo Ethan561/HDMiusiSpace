@@ -162,7 +162,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
                 if weakSelf?.skip == 0 {
                     weakSelf?.htmls.updateValue(hms, forKey: i)
                 } else {
-                    weakSelf!.htmls.updateValue(hms, forKey: i + (weakSelf?.commentModels.count)!)
+                    weakSelf?.htmls.updateValue(hms, forKey: i + (weakSelf?.commentModels.count)!)
                 }
                 comments[i].height = comments[i].height
             }

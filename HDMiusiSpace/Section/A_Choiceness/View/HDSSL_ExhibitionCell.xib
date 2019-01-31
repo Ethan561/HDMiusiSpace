@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="国家博物馆3号展厅|免费" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9j-Zr-Rcj">
-                        <rect key="frame" x="124" y="38" width="166" height="15"/>
+                        <rect key="frame" x="124" y="37.5" width="166" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="tB5-e3-ANR"/>
                         </constraints>
@@ -51,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-XB-FbT">
-                        <rect key="frame" x="284" y="61" width="20" height="15"/>
+                        <rect key="frame" x="284" y="60.5" width="20" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="OSn-oC-V8N"/>
                             <constraint firstAttribute="width" constant="20" id="gOf-kA-x48"/>
@@ -61,21 +61,32 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zl_icon_star_half" translatesAutoresizingMaskIntoConstraints="NO" id="70O-c0-t6Y">
-                        <rect key="frame" x="269" y="62.5" width="12" height="12"/>
+                        <rect key="frame" x="269" y="62" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="2sO-gG-Phh"/>
                             <constraint firstAttribute="width" constant="12" id="P05-p2-CGU"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mow-ND-lNr">
-                        <rect key="frame" x="124" y="59.5" width="137" height="18"/>
+                        <rect key="frame" x="124" y="59" width="137" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="LXC-3P-hpV"/>
                         </constraints>
                     </view>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评星" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gem-B9-S3O">
+                        <rect key="frame" x="261" y="57.5" width="50" height="21"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="rri-gP-XAf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Gem-B9-S3O" firstAttribute="centerY" secondItem="mow-ND-lNr" secondAttribute="centerY" id="1lm-Hv-JCK"/>
                     <constraint firstItem="W9j-Zr-Rcj" firstAttribute="centerY" secondItem="NZP-je-ZzZ" secondAttribute="centerY" id="2Z4-2n-Agt"/>
                     <constraint firstAttribute="trailing" secondItem="2z1-XB-FbT" secondAttribute="trailing" constant="16" id="3al-te-NLx"/>
                     <constraint firstItem="NZP-je-ZzZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="95J-3I-F5z"/>
@@ -83,10 +94,12 @@
                     <constraint firstItem="2z1-XB-FbT" firstAttribute="leading" secondItem="70O-c0-t6Y" secondAttribute="trailing" constant="3" id="Fbt-0M-yhb"/>
                     <constraint firstItem="6wW-WY-k5T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OTS-jb-2RH"/>
                     <constraint firstItem="70O-c0-t6Y" firstAttribute="centerY" secondItem="mow-ND-lNr" secondAttribute="centerY" id="Osw-H3-VPd"/>
+                    <constraint firstItem="Gem-B9-S3O" firstAttribute="leading" secondItem="mow-ND-lNr" secondAttribute="trailing" id="XCb-5l-mqX"/>
                     <constraint firstItem="6wW-WY-k5T" firstAttribute="leading" secondItem="NZP-je-ZzZ" secondAttribute="trailing" constant="10" id="apJ-h4-Jxm"/>
                     <constraint firstItem="70O-c0-t6Y" firstAttribute="leading" secondItem="mow-ND-lNr" secondAttribute="trailing" constant="8" id="fOC-XM-ItZ"/>
                     <constraint firstItem="NZP-je-ZzZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fzW-lb-L8X"/>
                     <constraint firstAttribute="trailing" secondItem="6wW-WY-k5T" secondAttribute="trailing" constant="20" id="iPZ-nD-K0f"/>
+                    <constraint firstAttribute="trailing" secondItem="Gem-B9-S3O" secondAttribute="trailing" constant="9" id="kIK-d5-8rm"/>
                     <constraint firstAttribute="trailing" secondItem="W9j-Zr-Rcj" secondAttribute="trailing" constant="30" id="m1I-ae-Uhc"/>
                     <constraint firstItem="2z1-XB-FbT" firstAttribute="centerY" secondItem="70O-c0-t6Y" secondAttribute="centerY" id="nJD-zj-mwc"/>
                     <constraint firstItem="W9j-Zr-Rcj" firstAttribute="leading" secondItem="NZP-je-ZzZ" secondAttribute="trailing" constant="10" id="tns-Vz-AW3"/>
@@ -101,6 +114,7 @@
                 <outlet property="cell_starImgView" destination="70O-c0-t6Y" id="Ges-Ol-oNN"/>
                 <outlet property="cell_tipBgView" destination="mow-ND-lNr" id="oDb-JR-CY1"/>
                 <outlet property="cell_titleLab" destination="6wW-WY-k5T" id="lvF-fe-CeJ"/>
+                <outlet property="noStarL" destination="Gem-B9-S3O" id="lee-Ts-nfd"/>
             </connections>
             <point key="canvasLocation" x="34" y="77"/>
         </tableViewCell>

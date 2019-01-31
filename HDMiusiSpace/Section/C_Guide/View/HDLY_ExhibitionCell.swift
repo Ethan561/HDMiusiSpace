@@ -64,6 +64,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
             vipPriceL.text = "SVIP免费"
             vipPriceL.textColor = UIColor.HexColor(0xD8B98D)
         }
+        vipPriceL.isHidden = true
         timeL.text = model.times
 //        UIFont.showAllFonts()
         if model.isTz == 1 {

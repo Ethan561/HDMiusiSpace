@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="bottom" secondItem="6e3-B5-ick" secondAttribute="bottom" id="wK7-ee-9K8"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SVIP¥15.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn5-JV-WLt">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SVIP¥15.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn5-JV-WLt">
                                 <rect key="frame" x="197" y="237.5" width="63" height="17"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,7 +68,7 @@
                                 <rect key="frame" x="20" y="233.5" width="16" height="12"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥18.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1v-fP-LGh">
-                                <rect key="frame" x="197" y="217.5" width="63" height="17"/>
+                                <rect key="frame" x="197" y="231" width="63" height="17"/>
                                 <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                                 <color key="textColor" red="0.90980392156862744" green="0.34901960784313724" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                             <constraint firstItem="f1v-fP-LGh" firstAttribute="height" secondItem="Jn5-JV-WLt" secondAttribute="height" id="028-hz-T1h"/>
                             <constraint firstItem="52d-Y8-7FY" firstAttribute="leading" secondItem="39v-14-5fS" secondAttribute="trailing" constant="8" id="3aC-Wu-VO5"/>
                             <constraint firstItem="R4f-rM-fDR" firstAttribute="top" secondItem="LhP-Rr-k4w" secondAttribute="top" id="79X-Du-DD0"/>
-                            <constraint firstItem="Jn5-JV-WLt" firstAttribute="top" secondItem="f1v-fP-LGh" secondAttribute="bottom" constant="3" id="GZl-8t-hKO"/>
+                            <constraint firstItem="f1v-fP-LGh" firstAttribute="centerY" secondItem="vLP-70-rkF" secondAttribute="centerY" id="8tB-td-Ao4"/>
                             <constraint firstAttribute="trailing" secondItem="Jn5-JV-WLt" secondAttribute="trailing" constant="20" id="HTc-1r-yG2"/>
                             <constraint firstItem="R4f-rM-fDR" firstAttribute="leading" secondItem="LhP-Rr-k4w" secondAttribute="leading" id="JHw-rF-10b"/>
                             <constraint firstItem="39v-14-5fS" firstAttribute="leading" secondItem="LhP-Rr-k4w" secondAttribute="leading" constant="20" id="L1l-7t-VuG"/>

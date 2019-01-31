@@ -14,8 +14,11 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
     var dataArr =  [HDLY_ExhibitionListData]()
     var museum_id = 0
     var titleName = ""
-    var vipTipView:HDLY_OpenVipTipView?
+//    var vipTipView:HDLY_OpenVipTipView?
     var page = 0
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        bindViewModel()
         dataRequest()
         addRefresh()
     }
@@ -180,20 +184,25 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
         
         let model = dataArr[indexPath.row]
         if model.isLock == 1 {
-            let tipView:HDLY_OpenVipTipView = HDLY_OpenVipTipView.createViewFromNib() as! HDLY_OpenVipTipView
-            tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
-            tipView.model = model
-            if kWindow != nil {
-                kWindow!.addSubview(tipView)
-            }
-            tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: "http://www.muspace.net/api/guide/vip_privilege?p=i")!))
-            weak var weakS = self
-            tipView.sureBlock = { model in
-                HDAlert.showAlertTipWith(type: .onlyText, text: "敬请期待")
-
-               // weakS?.showDetailVC(model)
-            }
-            vipTipView = tipView
+//            let tipView:HDLY_OpenVipTipView = HDLY_OpenVipTipView.createViewFromNib() as! HDLY_OpenVipTipView
+//            tipView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+//            tipView.model = model
+//            if kWindow != nil {
+//                kWindow!.addSubview(tipView)
+//            }
+//            tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: "http://www.muspace.net/api/guide/vip_privilege?p=i")!))
+//            weak var weakS = self
+//            tipView.sureBlock = { model in
+//                HDAlert.showAlertTipWith(type: .onlyText, text: "敬请期待")
+//
+//               // weakS?.showDetailVC(model)
+//            }
+//            vipTipView = tipView
+            
+            //获取订单信息
+            let goodId = model.exhibitionID
+            publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: 2, goods_id: goodId, self)
+            
             return
         }
         showDetailVC(model)
@@ -202,8 +211,8 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
     
     
     func showDetailVC(_ model:HDLY_ExhibitionListData) {
-        vipTipView?.removeFromSuperview()
-        vipTipView?.sureBlock = nil
+//        vipTipView?.removeFromSuperview()
+//        vipTipView?.sureBlock = nil
         
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
@@ -228,3 +237,79 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
 
 }
 
+extension HDLY_ExhibitionListVC {
+    
+    //MVVM
+    func bindViewModel() {
+        weak var weakSelf = self
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind { (model) in
+            weakSelf?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind { (model) in
+            weakSelf?.showPaymentResult(model)
+        }
+        
+    }
+    
+    
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = String.init(format: "￥%@", model.price!)
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction(model)
+        }
+        
+    }
+    
+    func orderBuyAction(_ model: OrderBuyInfoData) {
+        guard let goodId = model.goodsID?.int else {
+            return
+        }
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: model.cateID?.int ?? 0, goods_id: goodId, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+            self.refreshAction()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.orderTipView?.sureBlock = nil
+                self.orderTipView?.removeFromSuperview()
+            }
+        }
+        
+    }
+    
+    
+}

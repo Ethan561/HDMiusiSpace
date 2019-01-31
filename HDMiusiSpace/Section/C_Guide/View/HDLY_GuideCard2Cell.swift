@@ -90,7 +90,8 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 priceL.text = "SVIP免费"
                 priceL.textColor = UIColor.HexColor(0xD8B98D)
             }
-            
+            vippriceL.isHidden = true
+
             if dataArray!.count < 2 {
                 bgView1.isHidden = true
                 return
@@ -134,8 +135,8 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 priceL1.text = "SVIP免费"
                 priceL1.textColor = UIColor.HexColor(0xD8B98D)
             }
+            vippriceL1.isHidden = true
         }
-        
     }
     
     @IBAction func tapAction(_ sender: UIButton) {

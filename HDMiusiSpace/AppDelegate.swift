@@ -236,8 +236,9 @@ extension AppDelegate : JPUSHRegisterDelegate {
             let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SystemMsgVC") as! HDLY_SystemMsgVC
             //前台弹窗提醒
             if UIApplication.shared.applicationState == .active  {
+                let msg:String = String.init(format: "通知消息:%@", userInfo["content"] as! String)
                 let alertController = UIAlertController(title: "系统消息",
-                    message: "通知消息content:\(userInfo["content"])", preferredStyle: .alert)
+                    message: msg, preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
                 let okAction = UIAlertAction(title: "好的", style: .default, handler: {
                     action in
@@ -250,7 +251,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
             }
             
             //后台通知消息点击查看
-            if UIApplication.shared.applicationState == .background  {
+            if UIApplication.shared.applicationState == .inactive  {
                 
                 
                 nav.pushViewController(vc, animated: true)
@@ -266,7 +267,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         JPUSHService.handleRemoteNotification(userInfo)
         
         LOG("==== didReceiveRemoteNotification ==== :\(userInfo)")
-        guard let nav = navigationController else {
+        guard let nav = self.navigationController else {
             return
         }
         
@@ -275,8 +276,9 @@ extension AppDelegate : JPUSHRegisterDelegate {
 
         //前台弹窗提醒
         if UIApplication.shared.applicationState == .active  {
+            let msg:String = String.init(format: "通知消息:%@", userInfo["content"] as! String)
             let alertController = UIAlertController(title: "系统消息",
-                                                    message: "通知消息content:\(userInfo["content"])", preferredStyle: .alert)
+                                                    message: msg, preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
             let okAction = UIAlertAction(title: "好的", style: .default, handler: {
                 action in
@@ -288,7 +290,7 @@ extension AppDelegate : JPUSHRegisterDelegate {
         }
         
         //后台通知消息点击查看
-        if UIApplication.shared.applicationState == .background  {
+        if UIApplication.shared.applicationState == .inactive  {
             
             
             nav.pushViewController(vc, animated: true)

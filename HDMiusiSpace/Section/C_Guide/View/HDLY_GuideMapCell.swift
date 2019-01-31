@@ -70,6 +70,7 @@ class HDLY_GuideMapCell: UITableViewCell {
             priceL.text = "￥\(model1.price)"
             vipPriceL.text = "SVIP免费"
         }
+        vipPriceL.isHidden = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

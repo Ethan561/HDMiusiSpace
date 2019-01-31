@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="YF8-He-647">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YF8-He-647">
                         <rect key="frame" x="20" y="8" width="153.5" height="109.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="YF8-He-647" secondAttribute="height" multiplier="14:10" id="WEB-Ou-A7p"/>
@@ -70,7 +70,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥19.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWa-Pa-fyY">
-                        <rect key="frame" x="295" y="80.5" width="60" height="16"/>
+                        <rect key="frame" x="295" y="99" width="60" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="He3-RF-fQK"/>
                             <constraint firstAttribute="width" constant="60" id="Q8L-TG-Gex"/>
@@ -79,7 +79,7 @@
                         <color key="textColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SVIP¥15.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXy-dQ-1R6">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SVIP¥15.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXy-dQ-1R6">
                         <rect key="frame" x="280" y="98.5" width="75" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="cvR-ZK-GDi"/>
@@ -102,12 +102,12 @@
                 <constraints>
                     <constraint firstItem="W1v-ra-ful" firstAttribute="trailing" secondItem="YF8-He-647" secondAttribute="trailing" id="DWV-5B-9NO"/>
                     <constraint firstItem="W1v-ra-ful" firstAttribute="leading" secondItem="YF8-He-647" secondAttribute="leading" id="Djd-x9-Vye"/>
+                    <constraint firstItem="oWa-Pa-fyY" firstAttribute="centerY" secondItem="lXy-dQ-1R6" secondAttribute="centerY" id="Hdw-3h-MqM"/>
                     <constraint firstAttribute="trailing" secondItem="lXy-dQ-1R6" secondAttribute="trailing" constant="20" id="JpV-yr-wNv"/>
                     <constraint firstAttribute="bottom" secondItem="PF2-NR-yxb" secondAttribute="bottom" constant="12" id="KT1-Ok-0Pj"/>
                     <constraint firstItem="oSz-Xg-T2a" firstAttribute="leading" secondItem="YF8-He-647" secondAttribute="trailing" constant="18" id="MF0-X2-lod"/>
                     <constraint firstAttribute="bottom" secondItem="YF8-He-647" secondAttribute="bottom" constant="8" id="Mu0-kG-phk"/>
                     <constraint firstItem="tiZ-vT-TAn" firstAttribute="centerY" secondItem="PF2-NR-yxb" secondAttribute="centerY" id="TrH-91-JsP"/>
-                    <constraint firstItem="lXy-dQ-1R6" firstAttribute="top" secondItem="oWa-Pa-fyY" secondAttribute="bottom" constant="2" id="WGk-vM-kXh"/>
                     <constraint firstItem="YF8-He-647" firstAttribute="top" secondItem="5N0-aa-6Nl" secondAttribute="top" constant="8" id="WVN-IB-7Gg"/>
                     <constraint firstItem="tiZ-vT-TAn" firstAttribute="leading" secondItem="PF2-NR-yxb" secondAttribute="trailing" constant="6" id="a6Q-cL-NiB"/>
                     <constraint firstItem="W1v-ra-ful" firstAttribute="top" secondItem="YF8-He-647" secondAttribute="top" id="cjp-Gu-MGa"/>
@@ -139,6 +139,5 @@
     <resources>
         <image name="dl_icon" width="16" height="12"/>
         <image name="dl_icon_suo" width="34" height="34"/>
-        <image name="qtsk_course_img3" width="335" height="188"/>
     </resources>
 </document>

@@ -15,7 +15,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
     public var searchContent: String?
     private var take = 10
     private var skip = 0
-    var currentType: Int = 0  //当前搜索类型
+    var currentType: Int = 0  //默认0全部搜索,搜索类型1、2、3、4
     
     var textFeild                     : UITextField! //输入框
     @IBOutlet weak var tagBgView      : UIView!      //标签背景页
@@ -109,38 +109,75 @@ class HDSSL_SearchVC: HDItemBaseVC {
             weakSelf?.refreshTableView(models: resultArray)
         }
     }
-    //刷新列表
+    //MARK: - 处理接口数据刷新列表
     func refreshTableView(models:[HDSSL_SearchType]) {
         //显示搜索结果
         self.resultTableView.isHidden = false
         self.textFeild.resignFirstResponder()
         
-        if self.currentType == 0 {//0时不需要分页
+        if self.currentType == 0 {
+            //0时不需要分页，会返回多组数据
             skip = 0
-        }
-        
-        if models.count > 0 {
-            if skip == 0 {
-                self.resultArray.removeAll()
-            }
+            
+            self.resultArray.removeAll()
+            
             self.resultArray += models
             
-            self.resultTableView.es.stopPullToRefresh()
             self.resultTableView.es.stopLoadingMore()
             
             self.dealSearchResultData()
-        
+            
             self.resultTableView.reloadData()
+            
         }else{
-            self.resultArray.removeAll()
-            self.resultTableView.es.noticeNoMoreData()
-            self.resultTableView.reloadData()
+            //选定搜索类型，需要分页，只会返回一组数据
+            if models.count > 0 {
+                if skip == 0 {
+                    self.resultArray.removeAll()
+                }
+                self.resultArray += models
+                
+                self.resultTableView.es.stopLoadingMore()
+                
+                self.dealSearchResultData()
+                
+                self.resultTableView.reloadData()
+                
+            }else{
+                self.resultTableView.es.noticeNoMoreData()
+                self.resultTableView.reloadData()
+            }
         }
-        if self.resultArray.count == 0 {
-            self.resultTableView.ly_emptyView = EmptyConfigView.NoSearchDataEmptyView()
-            self.resultTableView.ly_showEmptyView()
-        }
+
+    }
+    
+    //MARK: ---- 交互逻辑 ----
+    //MARK: - 判断空数据页面
+    func juageEmptyView(){
         
+        if self.currentType == 0 {
+            if self.resultArray.count == 0 {
+                showEmptyView()
+            }
+        }else {
+            if self.newsArray.count == 0 && self.currentType == 1{
+                showEmptyView()
+            }
+            if self.classArray.count == 0 && self.currentType == 2{
+                showEmptyView()
+            }
+            if self.exhibitionArray.count == 0 && self.currentType == 3{
+                showEmptyView()
+            }
+            if self.museumArray.count == 0 && self.currentType == 4{
+                showEmptyView()
+            }
+        }
+    }
+    //MARK: - 显示空数据页面
+    func showEmptyView()  {
+        self.resultTableView.ly_emptyView = EmptyConfigView.NoSearchDataEmptyView()
+        self.resultTableView.ly_showEmptyView()
     }
     //MARK: - 处理搜索结果
     func dealSearchResultData(){
@@ -149,23 +186,48 @@ class HDSSL_SearchVC: HDItemBaseVC {
             
             let modelType: Int = model.type!
             
-            switch modelType {
-            case 0:
-                
-                newsArray = model.news_list!
-            case 1:
-                
-                classArray = model.course_list!
-            case 2:
-                
-                exhibitionArray = model.exhibition_list!
-            case 3:
-                
-                museumArray = model.museum_list!
-            default:
-                return
+            if self.currentType == 0{
+                switch modelType {
+                case 0:
+                    newsArray = model.news_list!
+                case 1:
+                    classArray = model.course_list!
+                case 2:
+                    exhibitionArray = model.exhibition_list!
+                case 3:
+                    museumArray = model.museum_list!
+                default:
+                    return
+                }
+            }else{
+                switch modelType {
+                case 0:
+                    if skip == 0 {
+                        self.newsArray.removeAll()
+                    }
+                    newsArray += model.news_list!
+                case 1:
+                    if skip == 0 {
+                        self.classArray.removeAll()
+                    }
+                    classArray += model.course_list!
+                case 2:
+                    if skip == 0 {
+                        self.exhibitionArray.removeAll()
+                    }
+                    exhibitionArray += model.exhibition_list!
+                case 3:
+                    if skip == 0 {
+                        self.museumArray.removeAll()
+                    }
+                    museumArray += model.museum_list!
+                default:
+                    return
+                }
             }
+            
         }
+        juageEmptyView()
     }
     //MARK: - 隐藏搜索结果
     func hideSearchResultView() {
@@ -173,6 +235,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         resultTableView.isHidden = true
     }
     
+    //MARK: ---- 初始化页面 ----
     //MARK: - 加载类型标签
     func loadTagView() {
         let tagView = HD_SSL_TagView.init(frame: tagBgView.bounds)
@@ -194,26 +257,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
         tagBgView.addSubview(tagView)
         tagView.loadNormalTagsView()
     }
-    //标签搜索
-    func searchByTag(_ tagIndex:Int){
-        //资讯、新知、展览、博物馆
-        self.currentType = tagIndex + 1 //设置搜索类型1、2、3、4
-
-        self.textFeild.placeholder = String.init(format: "搜索%@", typeTitleArray[tagIndex])
-        
-        self.textFeild.becomeFirstResponder()
-        
-        //选择标签后，标签模块隐藏
-        tagViewH.constant = 0
-        
-        if self.dTableView.isHidden == true {
-            for v in searcgTagBgView.subviews {
-                v.removeFromSuperview()
-            }
-        }
-
-    }
-    
     //MARK: - 自定义导航栏
     func loadSearchBar() {
         //搜索btn
@@ -257,7 +300,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.navigationItem.titleView = view
         
     }
-    
     //MARK: - 加载搜搜历史
     func loadSearchHistory() {
         let manager = UserDefaults()
@@ -278,9 +320,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
         let tapGes=UITapGestureRecognizer(target:self,action:#selector(tapTableView))
         tapGes.cancelsTouchesInView=false
         self.dTableView.addGestureRecognizer(tapGes)
-    }
-    @objc func tapTableView() {
-        self.textFeild.resignFirstResponder()
     }
     //MARK: - 本地保存搜索历史
     func func_saveHistory(_ searchStr: String) -> Void {
@@ -314,21 +353,36 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.dTableView.reloadData()
     }
     
-    //MARK: - actions
-    //搜索
+    //MARK: ---- actions -----
+    //MARK: - 选择类型标签
+    func searchByTag(_ tagIndex:Int){
+        //资讯、新知、展览、博物馆
+        self.currentType = tagIndex + 1 //设置搜索类型1、2、3、4
+        
+        self.textFeild.placeholder = String.init(format: "搜索%@", typeTitleArray[tagIndex])
+        
+        self.textFeild.becomeFirstResponder()
+        
+        //选择标签后，标签模块隐藏
+        tagViewH.constant = 0
+        
+        if self.dTableView.isHidden == true {
+            for v in searcgTagBgView.subviews {
+                v.removeFromSuperview()
+            }
+        }
+        
+    }
+    //MARK: - 搜索
     @objc func action_search(_ sender: UIButton) {
         if (self.textFeild.text?.count)! > 0 {
-//            self.currentType = 0 //设置搜索类型
+
             //开始搜索
             self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(self.textFeild.text!)
         }else if (placeholderStr?.count)! > 0 {
-//            if (placeholderStr?.count)! > 20 {
-//                let substr = String((placeholderStr?.prefix(20))!)
-//
-//                placeholderStr = substr
-//            }
+
             self.textFeild.text = placeholderStr
             self.viewModel.request_search(str: placeholderStr!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
@@ -336,7 +390,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         }
         
     }
-    //语音输入
+    //MARK: - 语音输入
     @objc func action_voice(_ sender: UIButton) {
         self.textFeild.resignFirstResponder()
         self.hideSearchResultView()
@@ -347,7 +401,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         self.voiceView.voiceBtn.isHidden = true
         self.voiceView.startCollectVoice()
     }
-    
+    //MARK: - 清空搜索历史
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {
         //清空搜索历史记录
         weak var weakself = self
@@ -368,10 +422,17 @@ class HDSSL_SearchVC: HDItemBaseVC {
         
     }
     
+    //MARK: ---- keyboard -----
+    //MARK: - 手势隐藏键盘
+    @objc func tapTableView() {
+        self.textFeild.resignFirstResponder()
+    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         textFeild.resignFirstResponder()
     }
 }
+
+//MARK: ---- 添加刷新机制
 extension HDSSL_SearchVC{
     
     func addRefresh() {
@@ -409,7 +470,8 @@ extension HDSSL_SearchVC{
         self.viewModel.request_search(str: self.textFeild.text!, skip: skip*take, take: take, type: currentType, vc: self)
     }
 }
-//MARK: TextfeildDelegate
+
+//MARK: ---- TextfeildDelegate
 extension HDSSL_SearchVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.hideSearchResultView()
@@ -420,7 +482,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
-//                self.currentType = 0 //设置搜索类型
+
                 //开始搜索
                 self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: self.currentType, vc: self)
                 //保存搜索历史
@@ -432,10 +494,10 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
         return true
     }
 }
-//MARK: UITableView
+//MARK: ---- UITableView
 extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
     
-    //获取搜索结果cell数量
+    //MARK: - 获取搜索结果cell数量
     func getTableViewCells(index: Int) -> Int {
         let model: HDSSL_SearchType = self.resultArray[index]
         
@@ -459,7 +521,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         }
         
     }
-    
+    //MARK: - 获取数据model
     func getResultModel(section: Int) -> HDSSL_SearchType {
         
         let model: HDSSL_SearchType = self.resultArray[section]
@@ -472,15 +534,26 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         if tableView == dTableView {
             return 1 //搜索历史
         }else {
-            return resultArray.count //搜索结果
+            if self.currentType == 0 {
+                return resultArray.count //搜索结果
+            }
+            return 1
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == dTableView {
             return historyArray.count
         }else {
+            if self.currentType == 1 {
+                return newsArray.count
+            }else if self.currentType == 2 {
+                return classArray.count
+            }else if self.currentType == 3 {
+                return exhibitionArray.count
+            }else if self.currentType == 4 {
+                return museumArray.count
+            }
             return self.getTableViewCells(index: section)
         }
         
@@ -640,6 +713,10 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 //评分
                 cell?.cell_scoreLab.text = exhibition.star?.string
                 
+                if exhibition.star?.int == 0 {
+                    cell?.noStarL.isHidden = false
+                }
+                
                 return cell!
                 
             case 3:
@@ -654,7 +731,37 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 //地址
                 cell?.cell_loacationLab.text = String.init(format: "%@", museum.address!)
                 //标签
-                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+//                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                for imgV in (cell?.cell_tipBgView.subviews)! {
+                    imgV.removeFromSuperview()
+                }
+                
+                var x:CGFloat = 0
+                var imgWArr = [CGFloat]()
+                for (i,imgStr) in museum.icon_list!.enumerated() {
+                    let imgV = UIImageView()
+                    imgV.contentMode = .scaleAspectFit
+                    imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+                        
+                        var imgSize:CGSize!
+                        
+                        if img != nil{
+                            imgSize = img!.size
+                        }else{
+                            imgSize = CGSize.init(width: 15, height: 15)
+                        }
+                        //                    let imgSize = img!.size
+                        let imgH: CGFloat = 15
+                        let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                        imgWArr.append(imgW)
+                        if i > 0 {
+                            let w = imgWArr[i-1]
+                            x = x + w
+                        }
+                        imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
+                        cell?.cell_tipBgView.addSubview(imgV)
+                    }
+                }
                 
                 return cell!
                 
@@ -662,7 +769,6 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 break
                 
             }
-            
             
         }
         
@@ -751,15 +857,14 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         
     }
     
-    
 }
-
+//MARK: - 返回语音识别结果，开始搜索
 extension HDSSL_SearchVC : HDZQ_VoiceResultDelegate {
     func voiceResult(result: String) {
         self.voiceView.isHidden = true
         self.textFeild.text = result
         self.func_saveHistory(result)
-//        self.currentType = 0
+
         self.viewModel.request_search(str: result, skip: 0, take: 10, type: self.currentType, vc: self)
     }
 }

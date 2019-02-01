@@ -401,6 +401,13 @@ extension HDSSL_dMuseumDetailVC {
                 return 70
             }else if index == 1 {
                 return 85
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
+//                if cell != nil {
+//                    let height = self.heightForTextView(textView: (cell?.cell_timeL)!, fixedWidth: ScreenWidth*246/320)
+//
+//                    return height + 10
+//                }
+//                return 85
             }else if index == 2 || index == 3 {
                 return 40
             }else if index == 4 {
@@ -433,7 +440,12 @@ extension HDSSL_dMuseumDetailVC {
         }
         return 0.01
     }
-    
+    //计算textView高度
+    func heightForTextView(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
+        let size = CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude)
+        let constraint = textView.sizeThatFits(size)
+        return constraint.height
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {

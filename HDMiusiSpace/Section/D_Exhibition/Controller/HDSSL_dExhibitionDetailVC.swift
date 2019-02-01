@@ -379,9 +379,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 return 80
             }else if indexPath.row == 1 {
-                return 70
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
+//                if cell != nil {
+//                    let height = self.heightForTextView(textView: (cell?.cell_timeL)!, fixedWidth: ScreenWidth*246/320)
+//
+//                    return height + 10
+//                }
+               return 70
             }
-            return 40
+            return 70
         }else if indexPath.section == 1 {
             //H5
             if indexPath.row == 0 {
@@ -584,6 +590,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         }
         //其他footer
         return nil
+    }
+    //计算textView高度
+    func heightForTextView(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
+        let size = CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude)
+        let constraint = textView.sizeThatFits(size)
+        return constraint.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

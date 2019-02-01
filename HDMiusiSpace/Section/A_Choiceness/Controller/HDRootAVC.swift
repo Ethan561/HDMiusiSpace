@@ -129,7 +129,15 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
             }
             weakSelf?.tabHeader.pageControl.numberOfPages = banner.count
             weakSelf?.tabHeader.pagerView.reloadData()
-            weakSelf?.showViewData()
+            ///只有banner时，显示banner
+            if self.infoModel?.data?.count == 0 && self.bannerArr.count == 0{
+                let empV = EmptyConfigView.NoDataEmptyView()
+                self.myTableView.ly_emptyView = empV
+                self.myTableView.ly_showEmptyView()
+            }else{
+                self.myTableView.ly_hideEmptyView()
+            }
+            self.myTableView.reloadData()
         }
         viewModel.isNeedRefresh.bind { (_) in
             weakSelf?.refreshAction()
@@ -156,14 +164,14 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     func showViewData() {
         self.infoModel = viewModel.rootAData.value
-        if self.infoModel?.data?.count == 0 && bannerArr.count == 0{
-            let empV = EmptyConfigView.NoDataEmptyView()
-            self.myTableView.ly_emptyView = empV
-            self.myTableView.ly_showEmptyView()
-        }else{
-            self.myTableView.ly_hideEmptyView()
-        }
-        self.myTableView.reloadData()
+//        if self.infoModel?.data?.count == 0 && bannerArr.count == 0{
+//            let empV = EmptyConfigView.NoDataEmptyView()
+//            self.myTableView.ly_emptyView = empV
+//            self.myTableView.ly_showEmptyView()
+//        }else{
+//            self.myTableView.ly_hideEmptyView()
+//        }
+//        self.myTableView.reloadData()
     }
     
     func setupViews() {

@@ -513,7 +513,13 @@ extension HDLY_ListenDetail_VC {
         let index = indexPath.row
         if indexPath.section == 0 {
             if index == 0 {
-                return 182*ScreenWidth/375.0
+                //标题显示完整，自适应高度
+                if infoModel == nil {
+                    return 180*ScreenWidth/375.0
+                }else {
+                    let size = infoModel?.title!.getLabSize(font: UIFont.systemFont(ofSize: 22), width: ScreenWidth - 40)
+                    return (170 + (size?.height)!)*(ScreenWidth-40)/375.0
+                }
             }
             else if index == 1 {
                 if infoModel?.is_voice == 0 {

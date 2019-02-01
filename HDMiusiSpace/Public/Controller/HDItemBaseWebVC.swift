@@ -99,6 +99,9 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     
     func loadingURL(urltring: String) {
         let urlstr = URL(string: urltring)
+        if urlstr == nil {
+            return
+        }
         self.webView!.load(URLRequest(url: urlstr!))
     }
     

@@ -66,7 +66,9 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             HDLY_LocationTool.shared.startLocation()
         }
         
-        loadMyViews()
+        myTableView.tableFooterView = getTableFooterView()
+        myTableView.separatorStyle = .none
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -75,28 +77,40 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     }
     
     func loadMyViews(){
-        myTableView.tableFooterView = getTableFooterView()
-        myTableView.separatorStyle = .none
-        //参观指南、导览
-        let radierBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
-        radierBtn.setTitle("参观指南", for: .normal)
-        radierBtn.setTitleColor(UIColor.white, for: .normal)
-        radierBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        radierBtn.layer.cornerRadius = 25
-        radierBtn.backgroundColor = UIColor.HexColor(0xE8593E)
-        radierBtn.addTarget(self, action: #selector(action_rader), for: .touchUpInside)
-
-        self.view.addSubview(radierBtn)
         
-        let guideBtn = UIButton.init(frame: CGRect.init(x: ScreenWidth/2+10, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
-        guideBtn.setTitle("导览", for: .normal)
-        guideBtn.setTitleColor(UIColor.white, for: .normal)
-        guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        guideBtn.layer.cornerRadius = 25
-        guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
-        guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+        if self.infoModel?.tourGuide == "" {
+            let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))
+            guideBtn.setTitle("导览", for: .normal)
+            guideBtn.setTitleColor(UIColor.white, for: .normal)
+            guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            guideBtn.layer.cornerRadius = 25
+            guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+            guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+            
+            self.view.addSubview(guideBtn)
+        }else {
+            //参观指南、导览
+            let radierBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
+            radierBtn.setTitle("参观指南", for: .normal)
+            radierBtn.setTitleColor(UIColor.white, for: .normal)
+            radierBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            radierBtn.layer.cornerRadius = 25
+            radierBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+            radierBtn.addTarget(self, action: #selector(action_rader), for: .touchUpInside)
+            
+            self.view.addSubview(radierBtn)
+            
+            let guideBtn = UIButton.init(frame: CGRect.init(x: ScreenWidth/2+10, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
+            guideBtn.setTitle("导览", for: .normal)
+            guideBtn.setTitleColor(UIColor.white, for: .normal)
+            guideBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            guideBtn.layer.cornerRadius = 25
+            guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
+            guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
+            
+            self.view.addSubview(guideBtn)
+        }
         
-        self.view.addSubview(guideBtn)
         
     }
     
@@ -279,6 +293,8 @@ extension HDSSL_dMuseumDetailVC {
                 self.topImgView.kf.setImage(with: URL.init(string: self.infoModel!.img!), placeholder: UIImage.init(named: ""))
                 self.myTableView.reloadData()
             }
+            
+            self.loadMyViews()
             
         }) { (errorCode, msg) in
             self.myTableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))

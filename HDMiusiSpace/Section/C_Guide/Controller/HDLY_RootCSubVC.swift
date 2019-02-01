@@ -200,6 +200,14 @@ extension HDLY_RootCSubVC {
     //row
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let model:MuseumListData = dataArr[section]
+        if model.type == 1 {
+            let listData = model.list
+            if listData!.list.count == 0{
+                return 1
+            }
+        }
+        
         return 2
     }
     

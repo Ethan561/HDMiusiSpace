@@ -74,11 +74,22 @@
                                     <constraint firstAttribute="height" constant="12" id="JHu-UE-AgG"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评星" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u27-OZ-DLD">
+                                <rect key="frame" x="108" y="187" width="42" height="21"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="15R-Ut-84b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7O9-eY-c1G" firstAttribute="top" secondItem="BFy-42-6do" secondAttribute="top" id="4MP-nU-dFU"/>
                             <constraint firstAttribute="trailing" secondItem="VoN-ze-V1d" secondAttribute="trailing" constant="5" id="4jv-kV-YzP"/>
+                            <constraint firstAttribute="trailing" secondItem="u27-OZ-DLD" secondAttribute="trailing" id="EEx-Tu-jHi"/>
                             <constraint firstAttribute="trailing" secondItem="Fkd-ba-CHU" secondAttribute="trailing" constant="5" id="Fvs-Bm-ndN"/>
                             <constraint firstItem="VoN-ze-V1d" firstAttribute="leading" secondItem="BFy-42-6do" secondAttribute="leading" constant="5" id="GAq-Bi-BvO"/>
                             <constraint firstItem="anz-ao-SM1" firstAttribute="centerY" secondItem="GMH-Gh-VjB" secondAttribute="centerY" id="M0G-7u-Zzz"/>
@@ -89,10 +100,12 @@
                             <constraint firstItem="7O9-eY-c1G" firstAttribute="leading" secondItem="BFy-42-6do" secondAttribute="leading" id="Y2k-rn-aq1"/>
                             <constraint firstItem="anz-ao-SM1" firstAttribute="leading" secondItem="GMH-Gh-VjB" secondAttribute="trailing" constant="5" id="eLj-Vf-5ND"/>
                             <constraint firstItem="KNM-7A-mk2" firstAttribute="centerY" secondItem="anz-ao-SM1" secondAttribute="centerY" id="fD1-b6-6fM"/>
+                            <constraint firstItem="u27-OZ-DLD" firstAttribute="centerY" secondItem="GMH-Gh-VjB" secondAttribute="centerY" constant="3" id="i2w-w9-Bjs"/>
                             <constraint firstItem="Fkd-ba-CHU" firstAttribute="top" secondItem="7O9-eY-c1G" secondAttribute="bottom" constant="5" id="kyu-5f-AnP"/>
                             <constraint firstItem="VoN-ze-V1d" firstAttribute="top" secondItem="Fkd-ba-CHU" secondAttribute="bottom" constant="5" id="ofn-dh-v3O"/>
                             <constraint firstItem="KNM-7A-mk2" firstAttribute="leading" secondItem="anz-ao-SM1" secondAttribute="trailing" id="ugh-kh-nn2"/>
                             <constraint firstItem="Fkd-ba-CHU" firstAttribute="leading" secondItem="BFy-42-6do" secondAttribute="leading" constant="5" id="w6h-as-xBA"/>
+                            <constraint firstItem="u27-OZ-DLD" firstAttribute="leading" secondItem="GMH-Gh-VjB" secondAttribute="trailing" id="y5c-ec-p7M"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -123,6 +136,7 @@
                 <outlet property="item_star" destination="anz-ao-SM1" id="Iq9-5J-KV6"/>
                 <outlet property="item_starNum" destination="KNM-7A-mk2" id="t9H-HH-Ju4"/>
                 <outlet property="item_title" destination="Fkd-ba-CHU" id="TTW-Pc-Ow2"/>
+                <outlet property="noStarL" destination="u27-OZ-DLD" id="F4L-5I-3g0"/>
                 <outlet property="shadowView" destination="j8e-kQ-HeZ" id="8ke-gB-Xq9"/>
             </connections>
             <point key="canvasLocation" x="-203.19999999999999" y="125.93703148425789"/>

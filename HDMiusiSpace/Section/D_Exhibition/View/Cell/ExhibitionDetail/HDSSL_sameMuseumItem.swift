@@ -19,6 +19,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
     @IBOutlet weak var item_star: UIImageView!
     @IBOutlet weak var item_starNum: UILabel!
     
+    @IBOutlet weak var noStarL: UILabel!
     var model :ExhibitionList? {
         didSet {
             showCellData()
@@ -36,6 +37,10 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             item_title.text = model!.title
             item_loc.text = model!.address
             item_starNum.text = model!.star.string
+            
+            if model?.star.int == 0 {
+                noStarL.isHidden = false
+            }
             
             let star: Float = Float(model!.star.string) ?? 0.0
             var imgStr = ""

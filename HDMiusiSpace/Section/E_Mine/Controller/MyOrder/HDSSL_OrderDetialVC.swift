@@ -215,7 +215,7 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
                     }else if orderDetail?.type == 2 {
                         //扫一扫
                         let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
-                        
+                        vc.titleName = orderDetail?.title
                         self.navigationController?.pushViewController(vc, animated: true)
                     }
                 }

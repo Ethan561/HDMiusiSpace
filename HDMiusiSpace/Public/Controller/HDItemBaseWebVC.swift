@@ -38,7 +38,10 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
+    }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.webView.frame = self.view.bounds
@@ -178,7 +181,7 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     }
     
     deinit {
-        self.webView.removeObserver(self, forKeyPath: "estimatedProgress")
+        
     }
     
 }

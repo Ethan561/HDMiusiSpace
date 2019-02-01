@@ -359,6 +359,7 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
         }else if model.type == 2 {
             //typeL.text = "扫一扫版"
             let vc:HDLY_QRGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
+            vc.titleName = model.title
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

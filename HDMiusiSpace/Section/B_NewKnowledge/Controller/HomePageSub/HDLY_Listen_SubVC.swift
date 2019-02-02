@@ -23,6 +23,10 @@ class HDLY_Listen_SubVC:                                                        
     var tagsArr = [ListenTags]()
     var player = HDLY_AudioPlayer.shared
     var cateID = "-1"
+    var isAddedPlayNumber = false
+    var lastListenModel: ListenList?
+    
+    let viewModel: ListenDetailViewModel = ListenDetailViewModel()
     
     lazy var emptyView: UIView = {
         let emptyV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 260))
@@ -98,6 +102,7 @@ class HDLY_Listen_SubVC:                                                        
     }
     
     @objc func refreshNoti() {
+        isAddedPlayNumber = false
         self.dataRequest(cate_id: cateID)
     }
     
@@ -297,6 +302,28 @@ class HDLY_Listen_SubVC:                                                        
         HDFloatingButtonManager.manager.listenID = "\(model.listenID!)"
         HDFloatingButtonManager.manager.iconUrl =  model.icon
         
+        addPlayNumber(model)
+    }
+    //MARK:--- 播放数量加1
+    func addPlayNumber(_ model: ListenList){
+        if isAddedPlayNumber == false {
+            if model.listenID != nil {
+                viewModel.listenedNumAdd(listenID: String.init(format: "%d", model.listenID!))
+                lastListenModel = model
+                
+                isAddedPlayNumber = true
+            }
+            
+        }else{
+            //换一个听
+            if lastListenModel?.listenID != model.listenID {
+                if model.listenID != nil {
+                    viewModel.listenedNumAdd(listenID: String.init(format: "%d", model.listenID!))
+                    lastListenModel = model
+                    
+                }
+            }
+        }
     }
 }
 

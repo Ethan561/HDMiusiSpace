@@ -30,6 +30,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     var skip = 0
     var take = 10
     var cmtNum = 0
+    var isAddedPlayNumber: Bool = false
     //
     var player = HDLY_AudioPlayer.shared
     var webViewH:CGFloat = 0
@@ -440,20 +441,31 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
             } else {
                 if player.state == .paused {
                     player.play()
+                    if isAddedPlayNumber == false {
+                        addPlayNumber()
+                        isAddedPlayNumber = true
+                    }
                 }else {
                     //let url = "http://47.105.71.75/uploadfiles/mp3/20180905/201809051500582729.mp3"
                     
                     player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = self.infoModel!.voice!
-                    if self.infoModel?.listenID?.string != nil {
-                        viewModel.listenedNumAdd(listenID: self.infoModel!.listenID!.string)
-                    }
+                    //播放数量加一
+                    addPlayNumber()
                 }
                 playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
             }
         }
     }
-    
+    //MARK:--- 播放数量加1
+    func addPlayNumber(){
+        if isAddedPlayNumber == false {
+            if self.infoModel?.listenID?.string != nil {
+                viewModel.listenedNumAdd(listenID: self.infoModel!.listenID!.string)
+            }
+            isAddedPlayNumber = true
+        }
+    }
     // === HDLY_AudioPlayer_Delegate ===
     
     func finishPlaying() {

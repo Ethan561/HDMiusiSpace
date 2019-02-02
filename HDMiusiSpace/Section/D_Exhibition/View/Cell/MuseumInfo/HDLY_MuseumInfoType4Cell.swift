@@ -79,7 +79,7 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
                 cell.titleL.text = model.title
                 cell.authorL.text = model.teacherName! + " " + model.teacherTitle!
                 cell.countL.text = "\(model.purchases ?? 0)人在学"
-                cell.countL.text = "\(model.classNum ?? 0)课时"
+                cell.courseL.text = "\(model.classNum ?? 0)课时"
             }
         }
         return cell

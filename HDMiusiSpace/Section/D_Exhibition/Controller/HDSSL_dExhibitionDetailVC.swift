@@ -379,12 +379,11 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 return 80
             }else if indexPath.row == 1 {
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
-//                if cell != nil {
-//                    let height = self.heightForTextView(textView: (cell?.cell_timeL)!, fixedWidth: ScreenWidth*246/320)
-//
-//                    return height + 10
-//                }
+                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
+                if cell != nil {
+
+                    return self.reloadTextView((cell?.cell_timeL)!)
+                }
                return 70
             }
             return 40
@@ -610,7 +609,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = HDSSL_Sec0_Cell0.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell0
                 cell.cell_titleL.text = String.init(format: "%@", self.exdataModel?.data?.title ?? "")
-//                cell.cell_starNumL.text = self.exdataModel?.data?.star?.string
+
                 let star: Float! = Float(self.exdataModel?.data?.star?.string ?? "0")
                 cell.cell_starNumL.text = String.init(format: "%.1f", star)
                 
@@ -687,7 +686,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
         }
         else if indexPath.section == 2 {
-//            self.dTableView.separatorColor = UIColor.HexColor(0xEEEEEE)
+
             weak var weakSelf = self
             
             if self.commentArr?.count == 0 {
@@ -979,7 +978,28 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
 }
 //MARK: - webview高度计算（第一版不做展开收起）
 extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
-    
+    //计算时间cell高度
+    func reloadTextView(_ textview: UITextView) -> CGFloat{
+        textview.text = String.init(format: "%@", self.exdataModel?.data?.time ?? "")
+        
+        var bounds: CGRect = CGRect.init(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: ScreenWidth-60, height: 40))
+        // 计算 text view 的高度
+        let maxSize = CGSize.init(width: bounds.size.width, height: CGFLOAT_MAX)
+        let newSize: CGSize = textview.sizeThatFits(maxSize)
+        bounds.size = newSize
+        textview.bounds = bounds
+        
+        print("cell高度\(bounds.size.height)")
+        
+        if bounds.size.height <= 40 {
+            return 40
+        }else if bounds.size.height > 40 && bounds.size.height <= 50{
+            return bounds.size.height+15
+        }
+        
+        return bounds.size.height+20
+        
+    }
     func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
         if self.exhibitionCellH == nil{
             self.exhibitionCellH = height

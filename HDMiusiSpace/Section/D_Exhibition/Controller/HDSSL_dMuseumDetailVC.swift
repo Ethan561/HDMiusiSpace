@@ -400,14 +400,12 @@ extension HDSSL_dMuseumDetailVC {
             if index == 0 {
                 return 70
             }else if index == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
+                if cell != nil {
+                    
+                    return self.reloadTextView((cell?.cell_timeL)!)
+                }
                 return 85
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
-//                if cell != nil {
-//                    let height = self.heightForTextView(textView: (cell?.cell_timeL)!, fixedWidth: ScreenWidth*246/320)
-//
-//                    return height + 10
-//                }
-//                return 85
             }else if index == 2 || index == 3 {
                 return 40
             }else if index == 4 {
@@ -443,12 +441,7 @@ extension HDSSL_dMuseumDetailVC {
         }
         return 0.01
     }
-    //计算textView高度
-    func heightForTextView(textView: UITextView, fixedWidth: CGFloat) -> CGFloat {
-        let size = CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude)
-        let constraint = textView.sizeThatFits(size)
-        return constraint.height
-    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
         if indexPath.section == 0 {
@@ -706,6 +699,28 @@ extension HDSSL_dMuseumDetailVC {
         self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.infoModel!.dataList!.count + 1)], with: .none)
     }
 
+    //计算时间cell高度
+    func reloadTextView(_ textview: UITextView) -> CGFloat{
+        textview.text = String.init(format: "%@", self.infoModel?.time ?? "")
+        
+        var bounds: CGRect = CGRect.init(origin: CGPoint.init(x: 0, y: 0), size: CGSize.init(width: ScreenWidth-60, height: 40))
+        // 计算 text view 的高度
+        let maxSize = CGSize.init(width: bounds.size.width, height: CGFLOAT_MAX)
+        let newSize: CGSize = textview.sizeThatFits(maxSize)
+        bounds.size = newSize
+        textview.bounds = bounds
+        
+        print("cell高度\(bounds.size.height)")
+        
+        if bounds.size.height <= 40 {
+            return 40
+        }else if bounds.size.height > 40 && bounds.size.height <= 50{
+            return bounds.size.height+15
+        }
+        
+        return bounds.size.height+20
+        
+    }
     
 }
 

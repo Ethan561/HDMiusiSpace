@@ -433,7 +433,10 @@ extension HDSSL_dMuseumDetailVC {
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
-                return 200*ScreenWidth/375.0
+//                return 200*ScreenWidth/375.0
+                let width:CGFloat   = ScreenWidth - 40
+                let height:CGFloat  = width*9/16
+                return height + 20
             }else if model.type == 5 {//免费听
                 return (ScreenWidth - 20 * 3)/2.0 + 30
             }

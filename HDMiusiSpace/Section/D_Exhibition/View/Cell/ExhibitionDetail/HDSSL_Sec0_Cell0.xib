@@ -34,7 +34,7 @@
                             <constraint firstAttribute="height" constant="21" id="Hgm-cv-cVJ"/>
                             <constraint firstAttribute="width" constant="42" id="K3b-fU-aQz"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>

@@ -171,7 +171,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
 //        }else{
 //            self.myTableView.ly_hideEmptyView()
 //        }
-//        self.myTableView.reloadData()
+        self.myTableView.reloadData()
     }
     
     func setupViews() {

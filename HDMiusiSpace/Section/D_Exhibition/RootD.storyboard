@@ -337,7 +337,7 @@
                                                     <action selector="collectionBtnAction:" destination="BPt-R1-orn" eventType="touchUpInside" id="hwM-UQ-A9p"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="360" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD4-2P-psh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RD4-2P-psh">
                                                 <rect key="frame" x="122" y="10.5" width="37.5" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="cpm-an-jhb"/>
@@ -1387,7 +1387,7 @@
         <image name="Star_white" width="22" height="22"/>
         <image name="float_icon_close" width="20" height="20"/>
         <image name="icon_baocuo_white" width="22" height="22"/>
-        <image name="icon_delete" width="14" height="18"/>
+        <image name="icon_delete" width="15" height="19"/>
         <image name="icon_like_default" width="24" height="24"/>
         <image name="icon_syh" width="20" height="18"/>
         <image name="icon_xyh" width="20" height="18"/>

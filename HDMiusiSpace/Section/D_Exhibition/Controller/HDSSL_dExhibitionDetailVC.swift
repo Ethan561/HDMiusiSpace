@@ -424,7 +424,10 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
-                return 160*ScreenWidth/375.0 + 20
+                let width:CGFloat   = ScreenWidth - 20 * 2
+                let height:CGFloat  = width*9/16
+                return height + 20
+//                return 160*ScreenWidth/375.0 + 20
             }else if model.type == 5 {//免费听
                 return (ScreenWidth - 20 * 3)/2.0 + 30
             }

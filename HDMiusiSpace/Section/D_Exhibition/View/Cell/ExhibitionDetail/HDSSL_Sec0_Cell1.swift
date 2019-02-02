@@ -8,13 +8,25 @@
 
 import UIKit
 
-class HDSSL_Sec0_Cell1: UITableViewCell {
+let CGFLOAT_MAX : CGFloat = 100.0
+
+class HDSSL_Sec0_Cell1: UITableViewCell,UITextViewDelegate {
 
     @IBOutlet weak var cell_timeL: UITextView!
+    
+    var tableView: UITableView! {
+        
+        var tableView: UIView? = superview
+        while !(tableView is UITableView) && tableView != nil {
+            tableView = tableView?.superview
+        }
+        return tableView as? UITableView
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cell_timeL.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,4 +44,17 @@ class HDSSL_Sec0_Cell1: UITableViewCell {
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
         return cell!
     }
+    func textViewDidChange(_ textView: UITextView) {
+        var bounds: CGRect = textView.bounds
+        // 计算 text view 的高度
+        var maxSize = CGSize.init(width: bounds.size.width, height: CGFLOAT_MAX)
+        var newSize: CGSize = textView.sizeThatFits(maxSize)
+        bounds.size = newSize
+        textView.bounds = bounds
+        // 让 table view 重新计算高度
+        var tableview: UITableView? = self.tableView
+        tableview?.beginUpdates()
+        tableview?.endUpdates()
+    }
 }
+

@@ -204,7 +204,7 @@ extension HDLY_Art_SubVC {
             cell?.countL.text = model.purchases == 0 ? "0人在学" :"\(model.purchases)" + "人在学"
             cell?.courseL.text = "\(model.classNum)" + "课时"
             if model.fileType == 1 {//mp3
-                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_black_default")
+                cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_audio_whitek_default")
             }else {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }

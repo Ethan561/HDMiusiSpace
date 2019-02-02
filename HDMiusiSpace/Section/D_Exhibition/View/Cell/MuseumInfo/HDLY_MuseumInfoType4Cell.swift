@@ -92,8 +92,11 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
     //MARK ----- UICollectionViewDelegateFlowLayout ------
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height:CGFloat  = 188 * ScreenWidth/375.0
-        let width:CGFloat   = height * 335 / 188.0
+//        let height:CGFloat  = 188 * ScreenWidth/375.0
+//        let width:CGFloat   = height * 335 / 188.0
+        //16:9
+        let width:CGFloat   = ScreenWidth - 40
+        let height:CGFloat  = 9 * width/16 + 20
         
         return CGSize.init(width: width, height: height)
     }

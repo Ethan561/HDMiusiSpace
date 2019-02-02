@@ -377,3 +377,19 @@ extension HDLY_CourseList_SubVC2 : WKNavigationDelegate {
         self.tableView.ly_showEmptyView()
     }
 }
+//MARK:--滚动时刷新webView，内容显示完整
+extension HDLY_CourseList_SubVC2: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+        if self.tableView == scrollView {
+            //滚动时刷新webview
+            for view in self.tableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+        }
+    }
+}

@@ -500,7 +500,15 @@ extension HDLY_CourseDes_VC {
         let index = indexPath.row
         if indexPath.section == 0 {
             if index == 0 {
-                return 182*ScreenWidth/375.0
+//                return 182*ScreenWidth/375.0
+                //标题显示完整，自适应高度
+                if infoModel == nil {
+                    return 180*(ScreenWidth-40)/375.0
+                }else {
+                    let size = infoModel?.data.title.getLabSize(font: UIFont.systemFont(ofSize: 22), width: ScreenWidth - 40)
+                    return (180 + (size?.height)!)*(ScreenWidth-40)/375.0
+                }
+                
             }else if index == 1 {
                 return webViewH
             }else if index == 2 {
@@ -863,15 +871,15 @@ extension HDLY_CourseDes_VC: UIScrollViewDelegate {
     //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
-//        if self.myTableView == scrollView {
-//            //滚动时刷新webview
-//            for view in self.myTableView.visibleCells {
-//                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
-//                    let cell = view as! HDLY_CourseWeb_Cell
-//                    cell.webview.setNeedsLayout()
-//                }
-//            }
-//        }
+        if self.myTableView == scrollView {
+            //滚动时刷新webview
+            for view in self.myTableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+        }
         
         //导航栏
         let offSetY = scrollView.contentOffset.y

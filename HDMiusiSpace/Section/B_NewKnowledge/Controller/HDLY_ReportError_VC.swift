@@ -145,6 +145,9 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     }
     //actions
     @objc func action_publish(){
+        
+        self.view.endEditing(true)
+        
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
             return

@@ -120,6 +120,9 @@ class HDSSL_commentVC: HDItemBaseVC {
     //actions
     @objc func action_publish(){
         print("发布")
+        
+        self.view.endEditing(true)//发布前，隐藏键盘，获取准确评论内容，防止有拼音掺杂
+        
         if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
             self.pushToLoginVC(vc: self)
             return
@@ -132,6 +135,7 @@ class HDSSL_commentVC: HDItemBaseVC {
         
         if self.commentPhotos.count == 0 {
             //无图评论
+            print(self)
             //正式发布
             self.viewModel.request_PublishCommentWith(exhibitId: self.exhibition_id!, star: self.starNumber!, content: self.commentContent
                 ?? "", uploadImags: self.ImagePathArray, self)

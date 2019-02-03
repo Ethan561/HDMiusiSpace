@@ -625,6 +625,7 @@ extension HDSSL_StrategyDetialVC: WKNavigationDelegate,WKUIDelegate {
     }
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        //检测是否点击web页面卡片
         let arr = message.components(separatedBy: "#")
         print(message,arr)//
         if arr.count == 2 {

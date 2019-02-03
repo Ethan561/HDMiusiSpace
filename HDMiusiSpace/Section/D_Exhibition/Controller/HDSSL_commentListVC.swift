@@ -568,7 +568,7 @@ extension HDSSL_commentListVC:UITableViewDelegate,UITableViewDataSource {
         //头像、间距等高度
         let otherH = 48.0 + 30.0
         //文本
-        let size = content.getLabSize(font: UIFont.systemFont(ofSize: 11), width: ScreenWidth - 55)
+        let size = content.getLabSize(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth - 55)
         //图片
         var imgH: CGFloat? = 0.0
         if (model.imgList?.count)! > 0 {

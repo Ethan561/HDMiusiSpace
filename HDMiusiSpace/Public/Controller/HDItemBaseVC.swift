@@ -127,7 +127,7 @@ class HDItemBaseVC: UIViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+    //检测是否点击web页面卡片
     func didTapWebCard(_ type: Int, _ articleId: Int) {// 1 课程 2 展览 3 博物馆
         if type == 1 {
             let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC

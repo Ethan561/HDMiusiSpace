@@ -736,7 +736,7 @@ extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
                 if audioPlayer.state == .paused {
                     audioPlayer.play()
                 }else {
-                    audioPlayer.play(file: Music.init(name: "", url:URL.init(string: course.video)!))
+                    audioPlayer.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 }
                 playBtn.setImage(UIImage.init(named: "xz_daoxue_pause"), for: UIControlState.normal)
             }

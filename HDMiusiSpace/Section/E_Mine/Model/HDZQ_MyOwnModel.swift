@@ -433,12 +433,14 @@ struct PlatDynamicData: Codable {
     var avatar: String?
     var platformID, isFocus: Int?
     var newsList: [PlatNewsList]?
+    var subTitle: String?
     
     enum CodingKeys: String, CodingKey {
         case title, des, avatar
         case platformID = "platform_id"
         case isFocus = "is_focus"
         case newsList = "news_list"
+        case subTitle = "sub_title"
     }
 }
 

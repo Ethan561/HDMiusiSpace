@@ -44,7 +44,7 @@ class HDLY_MuseumTagsCell: UITableViewCell {
                 imgV.contentMode = .scaleAspectFit
                 imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
                     
-                    let imgSize = img!.size
+//                    let imgSize = img!.size
                     let imgH: CGFloat = 55
                     let imgW: CGFloat = 45
                     imgWArr.append(imgW)

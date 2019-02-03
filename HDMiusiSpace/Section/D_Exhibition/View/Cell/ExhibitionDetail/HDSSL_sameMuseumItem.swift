@@ -65,7 +65,13 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
                 imgV.contentMode = .scaleAspectFit
                 imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
                     
-                    let imgSize = img!.size
+                    var imgSize:CGSize!
+                    if img == nil{
+                        imgSize = CGSize.init(width: 20, height: 15)
+                    }else {
+                        imgSize = img!.size
+                    }
+                    
                     let imgH: CGFloat = 15
                     let imgW: CGFloat = 15*imgSize.width/imgSize.height
                     imgWArr.append(imgW)

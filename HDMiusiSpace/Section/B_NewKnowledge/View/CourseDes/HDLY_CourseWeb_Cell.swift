@@ -58,7 +58,7 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
             if let encodedStr = webUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let myUrl = URL(string: encodedStr) {
                     let myRequest = URLRequest(url: myUrl)
-                    self.webview.load(myRequest)
+                    self.webview.load(myRequest)                    
                 }
             }
         }

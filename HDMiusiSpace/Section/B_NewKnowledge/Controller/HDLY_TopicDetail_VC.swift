@@ -28,6 +28,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     var infoModel: TopicModelData?
     var commentModels = [TopicCommentList]()
     var topic_id:String?
+    var isZhuanaTi: Bool = false
     var commentText = ""
     var shareView: HDLY_ShareView?
     var currentRow : Int?
@@ -895,7 +896,11 @@ extension HDLY_TopicDetail_VC {
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             vc.articleID = infoModel?.articleID.string
-            vc.typeID = "4"
+            if isZhuanaTi == true {
+                vc.typeID = "9"
+            }else {
+                vc.typeID = "4"
+            }
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }

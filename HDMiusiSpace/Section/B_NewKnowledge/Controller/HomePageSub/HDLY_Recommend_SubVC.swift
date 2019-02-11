@@ -405,6 +405,7 @@ extension HDLY_Recommend_SubVC {
         
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
         vc.topic_id = model.article_id?.string
+        vc.isZhuanaTi = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

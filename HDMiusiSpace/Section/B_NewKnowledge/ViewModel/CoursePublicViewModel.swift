@@ -196,6 +196,18 @@ class CoursePublicViewModel: NSObject {
         }
         
     }
+    //评论内容进行举报
+    func reportUserComment(api_token: String, option_id_str: String, comment_id: Int,content:String)  {
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .commentReportOption(api_token: api_token, comment_id: comment_id, option_id_str: option_id_str), success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            HDAlert.showAlertTipWith(type: .onlyText, text: "举报成功")
+        }) { (errorCode, msg) in
+            
+        }
+        
+    }
+    
     //评论展览评星删除
     let deleteCommentSuccess: Bindable = Bindable(false)
     func deleteComment(api_token: String, comment_id: Int,_ vc:UIViewController)  {

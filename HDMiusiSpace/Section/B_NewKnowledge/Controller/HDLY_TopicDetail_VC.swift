@@ -720,6 +720,9 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 return
             }
             publicViewModel.reportCommentContent(api_token: HDDeclare.shared.api_token ?? "", option_id_str:String(reportType!) , comment_id: model.commentID,content: self.commentView.dataArr[index])
+            //对评论进行举报
+//            publicViewModel.reportUserComment(api_token: HDDeclare.shared.api_token ?? "", option_id_str: String(reportType!), comment_id: model.commentID, content: self.commentView.dataArr[index])
+            
             self.commentView.removeFromSuperview()
         }
     }

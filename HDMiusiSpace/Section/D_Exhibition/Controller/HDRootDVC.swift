@@ -135,6 +135,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         
         //
         let headView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: searchBarH))
+        tabHeader.frame = headView.bounds
         headView.addSubview(tabHeader)
         headView.backgroundColor = .red
         myTableView.tableHeaderView = headView

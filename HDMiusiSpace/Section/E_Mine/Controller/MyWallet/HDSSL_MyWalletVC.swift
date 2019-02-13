@@ -147,7 +147,6 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
         } else {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请先选择充值金额")
         }
-        HDLY_IAPStore.shared.requestProducts(nil)
     }
     
     @objc func closeLodingNoti(noti: Notification) {

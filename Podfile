@@ -23,6 +23,6 @@
  pod 'BaiduMobStatCodeless'
  pod 'SwiftyStoreKit'
  #pod 'Alamofire'
- 
+ pod 'KeychainAccess'
 
  end

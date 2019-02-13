@@ -610,6 +610,7 @@
 		D6C9FCDD21183B21007C8E56 /* HDTagChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */; };
 		D6DED8D92137BBB800B42E9A /* HDLY_Feedback_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */; };
 		D6E725CB21C4EA4300C7E714 /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E725CA21C4EA4300C7E714 /* ViewController+Extension.swift */; };
+		D6E945CE2213B97F00E63D24 /* HDLY_KeychainTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E945CD2213B97F00E63D24 /* HDLY_KeychainTool.swift */; };
 		D6EEDD9D218FEFE700F730BA /* HDLY_RootCSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDD9C218FEFE700F730BA /* HDLY_RootCSubVC.swift */; };
 		D6EEDDA021901B0700F730BA /* HDLY_GuideSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */; };
 		D6EEDDA121901B0700F730BA /* HDLY_GuideSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */; };
@@ -1355,6 +1356,7 @@
 		D6C9FCDC21183B21007C8E56 /* HDTagChooseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDTagChooseVC.swift; sourceTree = "<group>"; };
 		D6DED8D82137BBB800B42E9A /* HDLY_Feedback_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_Feedback_VC.swift; sourceTree = "<group>"; };
 		D6E725CA21C4EA4300C7E714 /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		D6E945CD2213B97F00E63D24 /* HDLY_KeychainTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_KeychainTool.swift; sourceTree = "<group>"; };
 		D6EEDD9C218FEFE700F730BA /* HDLY_RootCSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_RootCSubVC.swift; sourceTree = "<group>"; };
 		D6EEDD9E21901B0700F730BA /* HDLY_GuideSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GuideSectionCell.swift; sourceTree = "<group>"; };
 		D6EEDD9F21901B0700F730BA /* HDLY_GuideSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GuideSectionCell.xib; sourceTree = "<group>"; };
@@ -2555,6 +2557,7 @@
 				D6C9FC6F21181FD1007C8E56 /* HDDeclare.swift */,
 				D67ABF86212BAF1800276CDE /* HDLY_AudioPlayer.swift */,
 				D619533C21A5369B0039D151 /* HDLY_LocationTool.swift */,
+				D6E945CD2213B97F00E63D24 /* HDLY_KeychainTool.swift */,
 				D6C9FC7021181FD1007C8E56 /* Network */,
 				D6C9FC7A21181FD1007C8E56 /* HDFloatingButton */,
 			);
@@ -3714,6 +3717,7 @@
 				A740F19821391AA20015B628 /* HDTagChooseCareerVC.swift in Sources */,
 				D670D399212586D10064750A /* HDLY_BuyNote_Cell.swift in Sources */,
 				D66C35BC213F5E2100363D7C /* YYMemoryCache.m in Sources */,
+				D6E945CE2213B97F00E63D24 /* HDLY_KeychainTool.swift in Sources */,
 				D6115AFD218FD490004A05DA /* ZFPortraitControlView.m in Sources */,
 				D637568F219FFCF3004AD093 /* HDLY_MuseumInfoType5Cell.swift in Sources */,
 				D61E94C42192D12400C5299F /* HDMapView+AnnView.m in Sources */,

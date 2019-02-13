@@ -101,9 +101,9 @@ final class HDLY_LocationTool: NSObject,CLLocationManagerDelegate {
         
         if UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!) {
             
-            //openUrlStr = "baidumap://map/direction?origin=latlng:\(fromLoc.latitude),\(fromLoc.longitude)|name:我的位置&destination=latlng:\(endLoc.latitude),\(endLoc.longitude)|name:\(endLocName)&mode=driving"
-            openUrlStr = "iosamap://navi?sourceApplication=随便写&backScheme=随便写&lat=\(endLoc.latitude)&lon=\(endLoc.longitude)&dev=0&style=2"
-
+//            openUrlStr = "iosamap://navi?sourceApplication=随便写&backScheme=随便写&lat=\(endLoc.latitude)&lon=\(endLoc.longitude)&dev=0&style=2"
+            
+            openUrlStr = "iosamap://path?sourceApplication=导航功能&backScheme=\("缪斯空间")&poiname=\(endLocName)&poiid=BGVIS&lat=\(endLoc.latitude)&lon=\(endLoc.longitude)&dname=\(endLocName)&dev=0&m=0"
         }
 
         if openUrlStr != nil {

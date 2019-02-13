@@ -89,6 +89,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func setupIAP() {
+        
+        /*
+        if HDLY_KeychainTool.shared.getAllStoredKeys().count > 0 {
+            let items = HDLY_KeychainTool.shared.getAllStoredItems()
+            for item in items {
+                print("item: \(item)")
+                let value = item["value"] as? Data
+                if value != nil {
+                    HDLY_IAPStore.shared.verifyPruchaseWithReceiptData(receiptData: value! as NSData)
+                    
+                }
+            }
+            
+        }*/
+        
         //在启动时添加应用程序的观察者 可确保在应用程序的所有启动过程中都会持续，从而允许您的应用程序 接收所有支付队列通知。如果此时有任何待处理的事务，将触发block，以便可以更新应用程序状态和UI。如果没有待处理的事务，则不会调用
         
         //掉单恢复内购处理

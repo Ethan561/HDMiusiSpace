@@ -70,11 +70,14 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
         // 从沙盒中获取到购买凭据
         let receiptData = NSData(contentsOf: receiptURL!)
         
+//        HDLY_KeychainTool.shared.saveDataValue(key: "com.hengdawb.smart.HDMiusiSpace", value: receiptData! as Data)
+        
         let encodeStr = receiptData?.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
         guard let token  = HDDeclare.shared.api_token else {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录账号")
             return
         }
+        
         let uuid = UIDevice.current.getUUID()
         LOG("uuid:\(uuid)")
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr!, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
@@ -87,7 +90,32 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
         }) { (errorCode, msg) in
             
         }
+    
+        
     }
+    
+    //keychain 本地订单校验
+    func verifyPruchaseWithReceiptData(receiptData: NSData) {
+        
+        let encodeStr = receiptData.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
+        guard let token  = HDDeclare.shared.api_token else {
+            HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录账号")
+            return
+        }
+        let uuid = UIDevice.current.getUUID()
+        LOG("uuid:\(uuid)")
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
+            
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("==== 内购校验成功验证 ==== ：\(String(describing: dic))")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
+            
+            HDLY_KeychainTool.shared.removeAllItems()
+        }) { (errorCode, msg) in
+            
+        }
+    }
+    
     
     
     //添加订单状态观察者

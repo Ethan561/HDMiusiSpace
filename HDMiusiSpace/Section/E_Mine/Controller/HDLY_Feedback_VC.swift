@@ -56,6 +56,10 @@ class HDLY_Feedback_VC: HDItemBaseVC , UITextViewDelegate {
             self.pushToLoginVC(vc: self)
             return
         }
+        
+        //防止多次提交
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .sendFeedback(api_token: HDDeclare.shared.api_token!, cate_id: idnum, parent_id: parentId, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")

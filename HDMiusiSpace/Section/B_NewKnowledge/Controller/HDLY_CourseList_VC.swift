@@ -173,7 +173,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
             }
             if state == ZFPlayerPlaybackState.playStatePaused {
-                _self?.uploadRecordActions()
+                
             }
             else if state == ZFPlayerPlaybackState.playStatePlayStopped {
                 _self?.uploadRecordActions()
@@ -381,7 +381,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
                 self.isMp3Course = false
             }
-
+            
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
             }else {
             }
@@ -407,6 +407,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         super.didReceiveMemoryWarning()
     }
     @IBAction func backAction(_ sender: Any) {
+        self.uploadRecordActions()
         self.back()
     }
 }

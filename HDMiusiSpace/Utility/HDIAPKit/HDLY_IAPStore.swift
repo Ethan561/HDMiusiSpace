@@ -12,6 +12,7 @@ import SwiftyStoreKit
 
 let VERIFY_RECEIPT_URL = "https://buy.itunes.apple.com/verifyReceipt"
 let ITMS_SANDBOX_VERIFY_RECEIPT_URL = "https://sandbox.itunes.apple.com/verifyReceipt"
+let IAP_Is_Sandbox = "1"//是否是测试环境 1是, 0不是
 
 final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransactionObserver  {
     
@@ -64,53 +65,62 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
     
     //4、添加票据校验
     func verifyPruchase() {
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_MyWalletCloseLoading_Noti"), object: nil)//通知我的钱包移除loading
+
         // 验证凭据，获取到苹果返回的交易凭据
         let receiptURL = Bundle.main.appStoreReceiptURL
         // 从沙盒中获取到购买凭据
         let receiptData = NSData(contentsOf: receiptURL!)
-        
-//        HDLY_KeychainTool.shared.saveDataValue(key: "com.hengdawb.smart.HDMiusiSpace", value: receiptData! as Data)
-        
         let encodeStr = receiptData?.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
         guard let token  = HDDeclare.shared.api_token else {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录账号")
             return
         }
         
-        let uuid = UIDevice.current.getUUID()
+        let randomNum = Int(arc4random_uniform(8999999) + 1000000)
+        let millisecond = Date().milliStamp
+        let uuid = String.init(format: "%@%ld", millisecond,randomNum)
+        //未验证成功订单本地永久保存
+        HDLY_KeychainTool.shared.saveDataValue(key: uuid, value: receiptData! as Data)
+
         LOG("uuid:\(uuid)")
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr!, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
+        
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr!, password: "", is_sandbox: IAP_Is_Sandbox, uuid: uuid, api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("==== 内购校验成功验证 ==== ：\(String(describing: dic))")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
             
+            let statusCode:Int = dic?["status"] as! Int
+            if statusCode == 1 {
+                HDLY_KeychainTool.shared.removeItem(key: uuid)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
+            }
             
         }) { (errorCode, msg) in
             
         }
-    
         
     }
     
     //keychain 本地订单校验
-    func verifyPruchaseWithReceiptData(receiptData: NSData) {
+    func verifyPruchaseWithReceiptData(receiptData: NSData, key: String) {
         
         let encodeStr = receiptData.base64EncodedString(options: NSData.Base64EncodingOptions.endLineWithLineFeed)
         guard let token  = HDDeclare.shared.api_token else {
             HDAlert.showAlertTipWith(type: .onlyText, text: "请先登录账号")
             return
         }
-        let uuid = UIDevice.current.getUUID()
+        let uuid = key
         LOG("uuid:\(uuid)")
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr, password: "", is_sandbox: "1", uuid: "", api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .verifyTransaction(cate_id: 5, receipt_data: encodeStr, password: "", is_sandbox: IAP_Is_Sandbox, uuid: uuid, api_token: token), showHud: false, loadingVC: UIViewController(), success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("==== 内购校验成功验证 ==== ：\(String(describing: dic))")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
-            
-            HDLY_KeychainTool.shared.removeAllItems()
+            let statusCode:Int = dic?["status"] as! Int
+            if statusCode == 1 {
+                HDLY_KeychainTool.shared.removeItem(key: uuid)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_IAPStore_verifyPruchaseSuccess_Noti"), object: nil)//通知我的钱包界面刷新
+            }
         }) { (errorCode, msg) in
             
         }

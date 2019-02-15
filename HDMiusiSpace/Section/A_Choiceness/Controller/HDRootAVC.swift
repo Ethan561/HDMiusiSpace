@@ -77,7 +77,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
             isNeedRefresh = false
         }else {
             isNeedRefresh = false
-        }
+        } 
     }
     
     func addRefresh() {

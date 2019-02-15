@@ -28,6 +28,18 @@ class HDSSL_MyWalletVC: HDItemBaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        //掉单校验处理
+        if HDLY_KeychainTool.shared.getAllStoredKeys().count > 0 {
+            let items = HDLY_KeychainTool.shared.getAllStoredItems()
+            for item in items {
+                print("item: \(item)")
+                let key = item["key"] as? String
+                let value = item["value"] as? Data
+                if key != nil && value != nil {
+                    HDLY_IAPStore.shared.verifyPruchaseWithReceiptData(receiptData: value! as NSData, key: key!)
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {

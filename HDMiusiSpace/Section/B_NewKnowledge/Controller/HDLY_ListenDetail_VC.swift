@@ -367,6 +367,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             //报错
             let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ReportError_VC") as! HDLY_ReportError_VC
             vc.articleID = infoModel?.listenID?.string
+            vc.typeID = "2"
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }

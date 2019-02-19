@@ -343,6 +343,13 @@ extension HDLY_RootCSubVC:HDLY_GuideCard2Cell_Delegate {
             return
         }
         
+        if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
+            let logVC = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SmsLogin_VC") as! HDItemBaseVC
+            self.navigationController?.pushViewController(logVC, animated: true)
+            isNeedRefresh = true
+            return
+        }
+        
         if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
             //typeL.text = "数字编号版"
             let vc:HDLY_NumGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC

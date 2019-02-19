@@ -245,7 +245,6 @@
 		D614CFC021D727D700CA13AC /* ESRefreshAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFB221D727D500CA13AC /* ESRefreshAnimator.swift */; };
 		D614CFC121D727D700CA13AC /* ESRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFB321D727D500CA13AC /* ESRefreshComponent.swift */; };
 		D614CFC321D727D700CA13AC /* ESRefreshHeaderAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFB921D727D500CA13AC /* ESRefreshHeaderAnimator.swift */; };
-		D614CFC421D727D800CA13AC /* icon_pull_to_refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D614CFBA21D727D500CA13AC /* icon_pull_to_refresh_arrow@2x.png */; };
 		D614CFC521D727D800CA13AC /* ESRefreshFooterAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFBB21D727D500CA13AC /* ESRefreshFooterAnimator.swift */; };
 		D614CFC621D727D800CA13AC /* ESRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFBC21D727D500CA13AC /* ESRefreshProtocol.swift */; };
 		D614CFC721D727D800CA13AC /* ES.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614CFBD21D727D500CA13AC /* ES.swift */; };
@@ -932,7 +931,6 @@
 		D614CFB221D727D500CA13AC /* ESRefreshAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshAnimator.swift; sourceTree = "<group>"; };
 		D614CFB321D727D500CA13AC /* ESRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshComponent.swift; sourceTree = "<group>"; };
 		D614CFB921D727D500CA13AC /* ESRefreshHeaderAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshHeaderAnimator.swift; sourceTree = "<group>"; };
-		D614CFBA21D727D500CA13AC /* icon_pull_to_refresh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_pull_to_refresh_arrow@2x.png"; sourceTree = "<group>"; };
 		D614CFBB21D727D500CA13AC /* ESRefreshFooterAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshFooterAnimator.swift; sourceTree = "<group>"; };
 		D614CFBC21D727D500CA13AC /* ESRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESRefreshProtocol.swift; sourceTree = "<group>"; };
 		D614CFBD21D727D500CA13AC /* ES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ES.swift; sourceTree = "<group>"; };
@@ -1782,7 +1780,6 @@
 			children = (
 				D614CFB921D727D500CA13AC /* ESRefreshHeaderAnimator.swift */,
 				D614CFBB21D727D500CA13AC /* ESRefreshFooterAnimator.swift */,
-				D614CFBA21D727D500CA13AC /* icon_pull_to_refresh_arrow@2x.png */,
 			);
 			path = Animator;
 			sourceTree = "<group>";
@@ -3225,7 +3222,6 @@
 				D6EEDDAC21901FF000F730BA /* HDLY_Kids_Cell2.xib in Resources */,
 				D66EDFA2212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.xib in Resources */,
 				A799C039219FEFB500BA526C /* HDSSL_sameMuseumCell.xib in Resources */,
-				D614CFC421D727D800CA13AC /* icon_pull_to_refresh_arrow@2x.png in Resources */,
 				1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
 				1B48151B21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib in Resources */,

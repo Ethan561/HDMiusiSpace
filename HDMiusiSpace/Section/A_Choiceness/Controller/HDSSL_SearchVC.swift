@@ -545,6 +545,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         if tableView == dTableView {
             return historyArray.count
         }else {
+            //搜索结果
             if self.currentType == 1 {
                 return newsArray.count
             }else if self.currentType == 2 {
@@ -554,6 +555,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             }else if self.currentType == 4 {
                 return museumArray.count
             }
+            
+            //self.currentType = 0
             return self.getTableViewCells(index: section)
         }
         
@@ -650,8 +653,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             switch model.type {
             
             case 0:
-                let list = model.news_list
-                let news: HDSSL_SearchNews = list![indexPath.row]
+                
+                let news: HDSSL_SearchNews = newsArray[indexPath.row]
                 
                 let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
                 cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
@@ -669,8 +672,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 return cell
                 
             case 1:
-                let list = model.course_list
-                let course: HDSSL_SearchCourse = list![indexPath.row]
+                
+                let course: HDSSL_SearchCourse = classArray[indexPath.row]
                 
                 let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
                 cell?.tag = indexPath.row
@@ -692,8 +695,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 return cell!
                 
             case 2:
-                let list = model.exhibition_list
-                let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
+
+                let exhibition: HDSSL_SearchExhibition = exhibitionArray[indexPath.row]
                 
                 let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
                 cell?.tag = indexPath.row
@@ -720,8 +723,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 return cell!
                 
             case 3:
-                let list = model.museum_list
-                let museum: HDSSL_SearchMuseum = list![indexPath.row]
+
+                let museum: HDSSL_SearchMuseum = museumArray[indexPath.row]
                 
                 let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
                 cell?.tag = indexPath.row

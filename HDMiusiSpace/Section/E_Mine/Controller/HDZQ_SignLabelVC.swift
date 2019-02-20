@@ -177,6 +177,9 @@ class HDZQ_SignLabelVC: UIViewController {
         //获取根VC
         var rootVC = self.presentingViewController
         while let parent = rootVC?.presentingViewController {
+            if parent.isKind(of: HDTagChooseVC.self) {
+                return
+            }
             rootVC = parent
         }
         //释放所有下级视图

@@ -39,6 +39,7 @@
 #import "FLAnimatedImage.h"
 #import "SSL_PickerView.h"
 #import "SSLPickerFooterView.h"
+#import "NSString+YYAdd.h"
 
 //极光推送
 #import "JPUSHService.h"

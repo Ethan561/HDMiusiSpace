@@ -257,9 +257,14 @@ extension HDLY_CourseList_SubVC3 {
             if secModel.returnInfo.count > 0 {
                 let returnInfo = secModel.returnInfo[row]
                 if returnInfo.type == 1 {//1文字2语音
-                    let contentH = secModel.content.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-147)
-                    return contentH + 145
-                }else {
+                    //let contentH = returnInfo.content.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-150)
+                    let contentStr:NSString = returnInfo.content as NSString
+                    
+                    let contentH = contentStr.height(for: UIFont.systemFont(ofSize: 14), width: ScreenWidth-150)
+                    
+                    
+                    return contentH + 140
+                } else {
                     return  160
                 }
             }

@@ -70,7 +70,7 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
         searchBar.layer.cornerRadius = 10.0
         searchBar.backgroundColor = UIColor.HexColor(0xefefef)
         searchBar.font = UIFont.systemFont(ofSize: 15)
-        searchBar.attributedPlaceholder = NSAttributedString.init(string: " 请输入昵称或者ID", attributes: [
+        searchBar.attributedPlaceholder = NSAttributedString.init(string: " 请输入昵称或手机号", attributes: [
             NSAttributedString.Key.foregroundColor:UIColor.darkGray])//HDDeclare.getTranslate(str: "search_hint")
         searchBar.delegate = self
         searchBar.returnKeyType = .search

@@ -305,6 +305,7 @@
 		D61E94D52192D12400C5299F /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B22192D12400C5299F /* UIImageView+WebCache.m */; };
 		D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B52192D12400C5299F /* UIView+WebCacheOperation.m */; };
 		D61E94D72192D12400C5299F /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D61E94B92192D12400C5299F /* UIButton+WebCache.m */; };
+		D61F538E221D07580017B5A1 /* NSString+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D61F538D221D07580017B5A1 /* NSString+YYAdd.m */; };
 		D620E1B621A246810034E258 /* HDLY_MuseumRecmdItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1B421A246810034E258 /* HDLY_MuseumRecmdItem.swift */; };
 		D620E1B721A246810034E258 /* HDLY_MuseumRecmdItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D620E1B521A246810034E258 /* HDLY_MuseumRecmdItem.xib */; };
 		D620E1BA21A246B90034E258 /* HDLY_FreeListenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620E1B821A246B90034E258 /* HDLY_FreeListenItem.swift */; };
@@ -1022,6 +1023,8 @@
 		D61E94B92192D12400C5299F /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		D61E94BA2192D12400C5299F /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
 		D61E94BB2192D12400C5299F /* HDBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDBaseModel.h; sourceTree = "<group>"; };
+		D61F538C221D07580017B5A1 /* NSString+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYAdd.h"; sourceTree = "<group>"; };
+		D61F538D221D07580017B5A1 /* NSString+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYAdd.m"; sourceTree = "<group>"; };
 		D620E1B421A246810034E258 /* HDLY_MuseumRecmdItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumRecmdItem.swift; sourceTree = "<group>"; };
 		D620E1B521A246810034E258 /* HDLY_MuseumRecmdItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumRecmdItem.xib; sourceTree = "<group>"; };
 		D620E1B821A246B90034E258 /* HDLY_FreeListenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_FreeListenItem.swift; sourceTree = "<group>"; };
@@ -1878,6 +1881,8 @@
 		D61E94972192D12400C5299F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D61F538C221D07580017B5A1 /* NSString+YYAdd.h */,
+				D61F538D221D07580017B5A1 /* NSString+YYAdd.m */,
 				D61E94BB2192D12400C5299F /* HDBaseModel.h */,
 				D61E94982192D12400C5299F /* HDBaseModel.m */,
 				D61E94992192D12400C5299F /* SDWebImage */,
@@ -3492,6 +3497,7 @@
 				D6C9FCCA21183515007C8E56 /* HDRootCVC.swift in Sources */,
 				D66991C42130EA7A002568B2 /* HDLY_QuestionContent_Header.swift in Sources */,
 				D61E94D32192D12400C5299F /* SDWebImageDownloaderOperation.m in Sources */,
+				D61F538E221D07580017B5A1 /* NSString+YYAdd.m in Sources */,
 				D61E94D62192D12400C5299F /* UIView+WebCacheOperation.m in Sources */,
 				D696C3F021A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift in Sources */,
 				D620E1BF21A2B2CD0034E258 /* HDLY_StrategyListVC.swift in Sources */,

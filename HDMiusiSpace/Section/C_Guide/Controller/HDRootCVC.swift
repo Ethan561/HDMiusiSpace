@@ -71,26 +71,27 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         if HDDeclare.shared.isSystemLocateEnable == false {
             showOpenLocServiceTipView()
         }
+        player.showFloatingBtn = false
+        if player.state == .playing {
+            player.pause()
+            HDFloatingButtonManager.manager.floatingBtnView.show = false
+            
+        }
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
-        if str?.count == 0 {
-            let city = HDLY_LocationTool.shared.city ?? ""
+        guard str != nil else {
+            let city = HDLY_LocationTool.shared.city ?? "无法获取位置"
             btn_location.setTitle(city, for: .normal)
+            UserDefaults.standard.set(city, forKey: "MyLocationCityName")
+            HDDeclare.shared.locModel.cityName = city
             //定位按钮设置
             btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
             btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
             btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
-            if city.count == 0  {
-                btn_location.setTitle("无法获取定位", for: .normal)
-                //定位按钮设置
-                btn_location.setImage(UIImage.init(named: "zl_icon_arrow"), for: .normal)
-                btn_location.titleEdgeInsets = UIEdgeInsets.init(top: 0, left: -(btn_location.imageView?.image?.size.width)!, bottom: 0, right: (btn_location.imageView?.image?.size.width)!)
-                btn_location.imageEdgeInsets = UIEdgeInsets.init(top: 0, left: (btn_location.titleLabel?.bounds.size.width)!, bottom: 0, right: -(btn_location.titleLabel?.bounds.size.width)!)
-     
-            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
+
             return
         }
-        
         if currentCityName == nil {
             if str?.count ?? 0 > 0 {
 //                print("城市\(str)")
@@ -120,13 +121,6 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
                 HDDeclare.shared.locModel.cityName = str!
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLY_RootCSubVC_Refresh_Noti"), object: nil)
             }
-        }
-        
-        player.showFloatingBtn = false
-        if player.state == .playing {
-            player.pause()
-            HDFloatingButtonManager.manager.floatingBtnView.show = false
-
         }
         
     }

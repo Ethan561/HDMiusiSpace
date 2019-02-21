@@ -130,7 +130,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     }
     
     open func refreshAnimationBegin(view: ESRefreshComponent) {
-        indicatorView.startAnimating()
+        //indicatorView.startAnimating()
         mainImageView.image = UIImage.init(named: "refresh_path_2")
 
         indicatorView.isHidden = false

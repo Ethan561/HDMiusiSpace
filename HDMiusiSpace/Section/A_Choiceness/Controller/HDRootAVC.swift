@@ -497,6 +497,12 @@ extension HDRootAVC {
     }
     
     func getVersionData() {
+        //应用程序信息
+        let infoDictionary = Bundle.main.infoDictionary!
+        //let appDisplayName = infoDictionary["CFBundleDisplayName"] //程序名称
+        let majorVersion = infoDictionary["CFBundleShortVersionString"]//主程序版本号
+        LOG("===majorVersion: \(majorVersion)")
+        
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkVersion(version_id: 0, device_id: HDDeclare.shared.deviceno ?? ""), cache: false, showHud: false, showErrorTip: false, loadingVC: self, success: { (result) in
             let jsonDecoder = JSONDecoder()
             do {

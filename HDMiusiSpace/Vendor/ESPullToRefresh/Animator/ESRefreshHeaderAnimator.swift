@@ -138,7 +138,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         //titleLabel.text = loadingDescription//加载中。。。
         //imageView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat.pi)
         mainImageView.center = self.center
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0, delay: 0, options: .curveLinear, animations: {
             self.mainImageView.frame = CGRect.init(x: (self.bounds.size.width - 39.0) / 2.0,
                                                y: self.bounds.size.height - self.trigger,
                                                width: 39.0,
@@ -163,7 +163,6 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     
     open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // Do nothing
-        //print("progress:\(progress)")
         if ZFReachabilityManager.shared().isReachable == false {
             self.imageView.image = UIImage.init(named: "close-circle")
             self.titleLabel.text = "刷新失败"
@@ -175,10 +174,13 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         self.titleLabel.isHidden = true
         
         let p = max(0.0, min(1.0, progress))
+        print("progress:\(p)")
+
         if progress < 1.2 {
-            self.mainImageView.frame = CGRect.init(x: (self.bounds.size.width - 39.0) / 2.0,
+            let imgViewWith = 49.0 - p * 10
+            self.mainImageView.frame = CGRect.init(x: (self.bounds.size.width - imgViewWith) / 2.0,
                                                    y: self.bounds.size.height - trigger * p,
-                                                   width: 39.0,
+                                                   width: imgViewWith,
                                                    height: trigger * p)
         } else {
             

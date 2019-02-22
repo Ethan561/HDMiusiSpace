@@ -371,25 +371,8 @@ extension HDRootAVC {
             vc.fromRootAChoiceness = true
             self.navigationController?.pushViewController(vc, animated: true)
         }else if model.type.int == 2 {//日卡
-            if model.itemCard?.cardID ==  1 {//日卡类型id,1课程2展览3活动
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-                vc.courseId = String.init(format: "%ld", model.itemCard?.articleID ?? 0)
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if model.itemCard?.cardID ==  2 {
-                //展览详情
-                let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
-                let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
-                vc.exhibition_id = model.itemCard?.articleID
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else if model.itemCard?.cardID ==  3 {
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
-                vc.topic_id = String.init(format: "%ld", model.itemCard?.articleID ?? 0)
-                vc.fromRootAChoiceness = true
-                self.navigationController?.pushViewController(vc, animated: true)
+            if let item = model.itemCard {
+                self.pushToCardDetail(model: item)
             }
         }
     }
@@ -411,6 +394,37 @@ extension HDRootAVC {
             return
         }
         publicViewModel.doFavoriteRequest(api_token: HDDeclare.shared.api_token!, id: cardID, cate_id: "1", self)
+    }
+    
+    //日卡跳转
+    func pushToCardDetail(model: ChoicenessItemCard) {
+        //cate_id: 轮播图类型1课程，2轻听随看，4展览，5活动
+        if model.cardID ==  1 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+            vc.courseId = String.init(format: "%ld", model.articleID)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if  model.cardID == 2 {
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            desVC.listen_id = String.init(format: "%ld", model.articleID)
+            desVC.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(desVC, animated: true)
+        }
+        else if model.cardID ==  4 {
+            //展览详情
+            let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
+            let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
+            vc.exhibition_id = model.articleID
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if model.cardID ==  5 {
+            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
+            vc.topic_id = String.init(format: "%ld", model.articleID)
+            vc.fromRootAChoiceness = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

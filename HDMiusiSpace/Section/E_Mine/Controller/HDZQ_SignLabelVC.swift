@@ -178,6 +178,11 @@ class HDZQ_SignLabelVC: UIViewController {
         var rootVC = self.presentingViewController
         while let parent = rootVC?.presentingViewController {
             if parent.isKind(of: HDTagChooseVC.self) {
+                parent.dismiss(animated: false, completion: nil)
+                return
+            }
+            if parent.isKind(of: HDTabBarVC.self) {
+                parent.dismiss(animated: false, completion: nil)
                 return
             }
             rootVC = parent

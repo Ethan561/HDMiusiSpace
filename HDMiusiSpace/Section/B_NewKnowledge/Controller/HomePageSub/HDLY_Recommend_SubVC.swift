@@ -261,7 +261,7 @@ extension HDLY_Recommend_SubVC {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.interactioncard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.interactioncard?.title
-            cell?.countL.text = String.init(format: "%ld人在学", model.interactioncard?.views?.string ?? 0)
+            cell?.countL.text = String.init(format: "%ld人在学", model.interactioncard?.views?.int ?? 0)
             if model.interactioncard?.price != nil {
                 cell?.priceL.text = "¥" + "\(model.interactioncard!.price!)"
             }

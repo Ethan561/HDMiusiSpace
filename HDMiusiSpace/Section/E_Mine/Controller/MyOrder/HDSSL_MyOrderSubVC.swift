@@ -44,12 +44,21 @@ class HDSSL_MyOrderSubVC: HDItemBaseVC {
         addRefresh() //刷新
         bindViewModel()
         requestData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "MyOrderVC_NeedRefresh_Noti"), object: nil)
+
     }
     
     //请求订单列表
     func requestData() {
         viewModel.requestMyOrderList(apiToken: HDDeclare.shared.api_token ?? "", skip: skip*10, take: take, status: type!, vc: self)  //HDDeclare.shared.api_token ?? ""
     }
+    
+    @objc func refreshAction() {
+        self.skip = 0
+        requestData()
+    }
+    
     //mvvm
     func bindViewModel() {
         

@@ -34,6 +34,9 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
     var order: MyOrder?
     var orderDetail: OrderDetailModel?
     private var viewModel = HDZQ_MyViewModel()
+    //MVVM
+    let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
+    var orderTipView: HDLY_CreateOrderTipView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +133,17 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
                 self.navigationController?.pushViewController(shareOrderVC, animated: true)
             }
         }
+        
+        //获取订单支付信息
+        publicViewModel.orderBuyInfo.bind {[weak self] (model) in
+            self?.showOrderTipView(model)
+        }
+        
+        //生成订单并支付
+        publicViewModel.orderResultInfo.bind {[weak self] (model) in
+            self?.showPaymentResult(model)
+        }
+        
     }
     func reloadMyViewWithData(_ model: OrderDetailModel){
         self.orderDetail = model
@@ -177,8 +191,8 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
     //点击底部按钮
     @IBAction func action_tapBottom(_ sender: UIButton) {
         if order?.status == 1 {  //1待支付
-            
             //去支付
+            self.payMyOrderOf(order!)
             
         }else if order?.status == 2 {  //2已完成
             
@@ -225,15 +239,83 @@ class HDSSL_OrderDetialVC: HDItemBaseVC {
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+extension HDSSL_OrderDetialVC{
+    //订单操作
+    func payMyOrderOf(_ order: MyOrder) {
+        //获取订单信息
+        guard let goodId = order.goodsID else {
+            return
+        }
+        publicViewModel.orderGetBuyInfoRequest(api_token: HDDeclare.shared.api_token!, cate_id: order.cateID ?? 1, goods_id: goodId, self)
+    }
+    
+    //显示支付弹窗
+    func showOrderTipView( _ model: OrderBuyInfoData) {
+        let tipView: HDLY_CreateOrderTipView = HDLY_CreateOrderTipView.createViewFromNib() as! HDLY_CreateOrderTipView
+        guard let win = kWindow else {
+            return
+        }
+        tipView.frame = win.bounds
+        win.addSubview(tipView)
+        orderTipView = tipView
+        
+        tipView.titleL.text = model.title
+        if model.price != nil {
+            tipView.priceL.text = "¥\(model.price!)"
+            tipView.spaceCoinL.text = model.spaceMoney
+            tipView.sureBtn.setTitle("支付\(model.price!)空间币", for: .normal)
+        }
+        weak var _self = self
+        tipView.sureBlock = {
+            _self?.orderBuyAction(model)
+        }
+    }
+    
+    func orderBuyAction( _ model: OrderBuyInfoData) {
+        if Float(model.spaceMoney!) ?? 0 < Float(model.price!) ?? 0 {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.pushToMyWalletVC()
+                self.orderTipView?.removeFromSuperview()
+            }
+            return
+        }
+        publicViewModel.createOrderRequest(api_token: HDDeclare.shared.api_token!, cate_id: model.cateID?.int ?? 0, goods_id: model.goodsID?.int ?? 0, pay_type: 1, self)
+        
+    }
+    
+    //显示支付结果
+    func showPaymentResult(_ model: OrderResultData) {
+        guard let result = model.isNeedPay else {
+            return
+        }
+        if result == 2 {
+            orderTipView?.successView.isHidden = false
+            img_icon_state.image = UIImage.init(named: "wddd_ywc")
+            lab_state.text = "订单已完成"
+            order?.status = 2
+            lab_contentRealPrice.text = String.init(format: "¥%@", orderDetail?.amount ?? "")
+
+            btn_state.isHidden = false
+            if order?.cateID == 1 { //课程
+                btn_state.setTitle("晒单分享", for: .normal)
+                btn_bottom.setTitle("立即学习", for: .normal)
+            }else { //展览门票
+                btn_state.setTitle("待评价", for: .normal)
+                classBgView.isHidden = true
+                btn_bottom.setTitle("进入导览", for: .normal)
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MyOrderVC_NeedRefresh_Noti"), object: nil)
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
+                self.orderTipView?.sureBlock = nil
+                self.orderTipView?.removeFromSuperview()
+            }
+        }
+    }
+}
+
+
+

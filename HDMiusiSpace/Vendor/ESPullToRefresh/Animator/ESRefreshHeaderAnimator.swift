@@ -56,7 +56,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     //刷新成功提醒
     fileprivate let imageView: UIImageView = {
         let imageView = UIImageView.init()
-        imageView.image = UIImage(named: "refresh_success")
+        imageView.image = UIImage(named: "check-circle")
         return imageView
     }()
     
@@ -164,6 +164,13 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     open func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // Do nothing
         //print("progress:\(progress)")
+        if ZFReachabilityManager.shared().isReachable == false {
+            self.imageView.image = UIImage.init(named: "close-circle")
+            self.titleLabel.text = "刷新失败"
+        }else {
+            self.imageView.image = UIImage.init(named: "check-circle")
+            self.titleLabel.text = "刷新成功"
+        }
         self.imageView.isHidden = true
         self.titleLabel.isHidden = true
         

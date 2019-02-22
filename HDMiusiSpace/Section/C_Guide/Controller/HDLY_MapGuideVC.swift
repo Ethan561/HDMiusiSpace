@@ -109,8 +109,9 @@ extension HDLY_MapGuideVC:HDMapViewDelegate,HDMapViewDataSource {
             let mapSize : CGSize = self.getMapSize()
             let mapV = HDMapView.init(frame: self.mapBgView.bounds, contentSize: mapSize)
             self.mapBgView.insertSubview(mapV!, at: 0)
-            mapV?.minimumZoomScale = 1.5
-            mapV?.zoomScale = 1.5
+            let miniScale : CGFloat = CGFloat(self.mapBgView.bounds.size.height/mapSize.height)
+            mapV?.minimumZoomScale = miniScale
+            mapV?.zoomScale = miniScale
             mapV!.levelsOfZoom  = 4
             mapV!.levelsOfDetail = 3
             

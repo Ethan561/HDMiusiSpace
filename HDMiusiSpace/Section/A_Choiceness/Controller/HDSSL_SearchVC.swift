@@ -144,6 +144,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
                 self.resultTableView.reloadData()
                 
             }else{
+                juageEmptyView()
+                
                 self.resultTableView.es.noticeNoMoreData()
                 self.resultTableView.reloadData()
             }
@@ -536,8 +538,13 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         }else {
             if self.currentType == 0 {
                 return resultArray.count //搜索结果
+            }else {
+                if resultArray.count == 0 {
+                    return 0
+                }
+                return 1
             }
-            return 1
+            
         }
     }
     

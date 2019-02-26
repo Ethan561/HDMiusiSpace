@@ -25,7 +25,8 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     
     var infoModel: CourseDetail?
     var courseId: String?
-    
+    var isCanLearnCourse = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //
@@ -85,13 +86,17 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                     self.buyBtn.setTitle("¥\(self.infoModel!.data.yprice!)", for: .normal)
                     self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
                     self.bottomHCons.constant = 74
+                    self.isCanLearnCourse = false
                 }else {
                     self.bottomHCons.constant = 0
                     self.bottomView.isHidden = true
+                    self.isCanLearnCourse = true
+
                 }
             }else {
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
+                self.isCanLearnCourse = true
             }
 //            self.getWebHeight()
             self.tableView.reloadData()
@@ -190,12 +195,18 @@ extension HDLY_CourseList_SubVC2 {
             }
             cell?.webview.frame.size.height = webViewH
             cell?.webview.navigationDelegate = self
+            cell?.webview.uiDelegate = self
+            
             return cell!
         }
         else if index == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
             cell?.contentL.text = model?.buynotice
-            
+            if isCanLearnCourse == false {
+                cell?.titleL.text = "购买须知"
+            }else {
+                cell?.titleL.text = "学习须知"
+            }
             return cell!
         }
         
@@ -218,6 +229,78 @@ extension HDLY_CourseList_SubVC2 {
 }
 
 //MARK: ---- WKNavigationDelegate ----
+
+extension HDLY_CourseList_SubVC2 : WKNavigationDelegate, WKUIDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            DispatchQueue.main.async { [unowned self] in
+                self.webViewH = CGFloat(webheight + 10)
+                self.tableView.reloadData()
+                self.loadingView?.removeFromSuperview()
+            }
+        }
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.tableView.ly_showEmptyView()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.loadingView?.removeFromSuperview()
+        self.tableView.ly_showEmptyView()
+    }
+    
+    //折叠、展开
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        
+        let arr = message.components(separatedBy: ",")
+        let webheight = Double(arr.last ?? "0")
+        print(message,arr)//展开是1 , 收起是2
+        
+        DispatchQueue.main.async { [unowned self] in
+//            self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight ?? 0))
+            //            print("(webView.frame: \(webView.frame)")
+            
+            let model = FoldModel()
+            model.isfolder = arr.first
+            model.height = arr.last
+            weak var weakSelf = self
+            
+//            self.delegate?.webViewFolderAction(model, self)
+            
+            //            if weakSelf?.blockRefreshHeight != nil {
+            //                weakSelf?.blockRefreshHeight!(model)
+            //
+            //            }
+        }
+        completionHandler()
+    }
+    
+}
+
+//MARK:--滚动时刷新webView，内容显示完整
+extension HDLY_CourseList_SubVC2: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+        if self.tableView == scrollView {
+            //滚动时刷新webview
+            for view in self.tableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+        }
+    }
+}
+    
 
 extension HDLY_CourseList_SubVC2 {
     @objc func focusBtnAction()  {
@@ -351,45 +434,3 @@ extension  HDLY_CourseList_SubVC2 {
     }
 }
 
-extension HDLY_CourseList_SubVC2 : WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        var webheight = 0.0
-        // 获取内容实际高度
-        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
-            if let tempHeight: Double = result as? Double {
-                webheight = tempHeight
-                print("webheight: \(webheight)")
-            }
-            DispatchQueue.main.async { [unowned self] in
-                self.webViewH = CGFloat(webheight + 10)
-                self.tableView.reloadData()
-                self.loadingView?.removeFromSuperview()
-            }
-        }
-    }
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        self.loadingView?.removeFromSuperview()
-        self.tableView.ly_showEmptyView()
-    }
-    
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        self.loadingView?.removeFromSuperview()
-        self.tableView.ly_showEmptyView()
-    }
-}
-//MARK:--滚动时刷新webView，内容显示完整
-extension HDLY_CourseList_SubVC2: UIScrollViewDelegate {
-    //
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
-        if self.tableView == scrollView {
-            //滚动时刷新webview
-            for view in self.tableView.visibleCells {
-                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
-                    let cell = view as! HDLY_CourseWeb_Cell
-                    cell.webview.setNeedsLayout()
-                }
-            }
-        }
-    }
-}

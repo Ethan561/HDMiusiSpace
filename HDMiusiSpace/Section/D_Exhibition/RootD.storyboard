@@ -994,7 +994,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="lCi-UA-3aR">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lCi-UA-3aR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                         </imageView>
                                     </subviews>
@@ -1394,7 +1394,6 @@
         <image name="jx_zz_1" width="200" height="42"/>
         <image name="kz_icon_sfz" width="36" height="16"/>
         <image name="nav_back_white" width="12" height="20"/>
-        <image name="qtsk_course_img3" width="335" height="188"/>
         <image name="search_icon_search_big_default" width="18" height="18"/>
         <image name="xz_icon_share_white_default" width="22" height="22"/>
         <image name="xz_star_gray" width="24" height="24"/>

@@ -33,7 +33,7 @@
                             </constraints>
                             <state key="normal" image="search_icon_Voice_default"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨家成霸道口语课" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-wu-oYJ">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-wu-oYJ">
                             <rect key="frame" x="32" y="8" width="257" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="k0e-4m-DjQ"/>

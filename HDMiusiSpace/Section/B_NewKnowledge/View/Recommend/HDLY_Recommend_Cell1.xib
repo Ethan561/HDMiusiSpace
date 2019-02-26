@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kdm-0U-y4J">
                         <rect key="frame" x="20" y="10" width="145" height="103.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img1" translatesAutoresizingMaskIntoConstraints="NO" id="8cL-jz-Iba">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8cL-jz-Iba">
                                 <rect key="frame" x="0.0" y="0.0" width="145" height="103.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8cL-jz-Iba" secondAttribute="height" multiplier="14:10" id="cxJ-7B-CvT"/>
@@ -169,7 +169,6 @@
     </objects>
     <resources>
         <image name="dl_zz1" width="112" height="84"/>
-        <image name="jxtj_img1" width="140" height="100"/>
         <image name="xinzhi_icon_video_black_default" width="12" height="10"/>
     </resources>
 </document>

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="296" height="175"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img4" translatesAutoresizingMaskIntoConstraints="NO" id="Iuo-wC-k9B">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iuo-wC-k9B">
                         <rect key="frame" x="0.0" y="10" width="296" height="155"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现代生活美学" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAH-c9-oB0">
@@ -101,7 +101,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="jxtj_img4" width="335" height="189"/>
         <image name="xinzhi_icon_audio_whitek_default" width="12" height="10"/>
     </resources>
 </document>

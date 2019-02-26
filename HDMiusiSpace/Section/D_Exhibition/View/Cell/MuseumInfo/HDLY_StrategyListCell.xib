@@ -26,7 +26,7 @@
                             <constraint firstAttribute="height" constant="1" id="DA5-X6-RdR"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="QBh-vL-KmF">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QBh-vL-KmF">
                         <rect key="frame" x="20" y="10" width="110" height="79.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="QBh-vL-KmF" secondAttribute="height" multiplier="94:68" id="AEk-aF-Wna"/>
@@ -115,6 +115,5 @@
     <resources>
         <image name="jx_icon_zan" width="12" height="12"/>
         <image name="jx_iocn_pl" width="12" height="12"/>
-        <image name="qtsk_course_img3" width="335" height="188"/>
     </resources>
 </document>

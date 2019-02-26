@@ -19,13 +19,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="240"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_img2" translatesAutoresizingMaskIntoConstraints="NO" id="9gn-eD-b8m">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9gn-eD-b8m">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="180"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="9gn-eD-b8m" secondAttribute="height" multiplier="2:3" id="I6u-kR-Qk3"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="三分钟带你了解…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwq-79-hed">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwq-79-hed">
                         <rect key="frame" x="0.0" y="188" width="120" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="wlf-fs-c6W"/>
@@ -34,7 +34,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1600人听过" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heY-0w-MPB">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heY-0w-MPB">
                         <rect key="frame" x="0.0" y="213" width="120" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="2Kn-BC-KmJ"/>
@@ -78,7 +78,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="qtsk_img2" width="120" height="180"/>
         <image name="xz_icon_listen_default" width="72" height="72"/>
     </resources>
 </document>

@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R4f-rM-fDR">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="211"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jx_img_rika" translatesAutoresizingMaskIntoConstraints="NO" id="6e3-B5-ick">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6e3-B5-ick">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="211"/>
                                     </imageView>
                                 </subviews>
@@ -115,6 +115,5 @@
     </objects>
     <resources>
         <image name="dl_icon" width="16" height="12"/>
-        <image name="jx_img_rika" width="335" height="480"/>
     </resources>
 </document>

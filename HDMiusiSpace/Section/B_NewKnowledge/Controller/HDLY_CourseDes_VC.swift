@@ -41,6 +41,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var orderTipView: HDLY_CreateOrderTipView?
     var isStatusBarHidden = false//是否隐藏状态栏
     var isFromTeacherCenter = false
+    var isCanLearnCourse = false
 
 //    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     var kVideoCover = ""
@@ -369,6 +370,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
 //                        vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
 //                        vipPriceString.append(priceString)
                         self.buyBtn.setAttributedTitle(priceString, for: .normal)
+                        self.isCanLearnCourse = false
                     }
                     self.listenBgView.isHidden = false
 
@@ -376,10 +378,14 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                     self.buyBtn.setAttributedTitle(nil, for: .normal)
                     self.buyBtn.setTitle("立即学习", for: .normal)
                     self.listenBgView.isHidden = true
+                    self.isCanLearnCourse = true
+
                 }
             }else {
                 self.buyBtn.setTitle("立即学习", for: .normal)
                 self.listenBgView.isHidden = true
+                self.isCanLearnCourse = true
+
             }
             self.bottomHCons.constant = 74
             if self.infoModel != nil {
@@ -621,7 +627,12 @@ extension HDLY_CourseDes_VC {
         else if indexPath.section == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
             if model?.buynotice.count ?? 0 > 3 {
-                cell?.titleL.text = "购买须知"
+                if isCanLearnCourse == false {
+                    cell?.titleL.text = "购买须知"
+                }else {
+                    cell?.titleL.text = "学习须知"
+                }
+                
                 cell?.contentL.text = model?.buynotice
             }
             return cell!

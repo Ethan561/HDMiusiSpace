@@ -19,10 +19,18 @@
  pod 'UMengUShare/Social/ReducedSina'
  pod 'Bugly', '~> 2.5.0'
  pod 'JPush'#极光推送
- # 集成百度统计
+ # 集成百度统计 （埋点技术）
  pod 'BaiduMobStatCodeless'
+ 
  pod 'SwiftyStoreKit'
  #pod 'Alamofire'
  pod 'KeychainAccess'
-
+ 
+ 
+ 
  end
+
+
+
+
+

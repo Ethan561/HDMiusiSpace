@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="290.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img3" translatesAutoresizingMaskIntoConstraints="NO" id="HHy-cE-bDd">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HHy-cE-bDd">
                         <rect key="frame" x="20" y="20" width="280" height="194.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="HHy-cE-bDd" secondAttribute="height" multiplier="36:25" id="b3n-3f-uFP"/>
@@ -90,7 +90,6 @@
     </objects>
     <resources>
         <image name="jx_iocn_pl" width="12" height="12"/>
-        <image name="jxtj_img3" width="140" height="100"/>
         <image name="zl_icon_star_gray" width="14" height="14"/>
     </resources>
 </document>

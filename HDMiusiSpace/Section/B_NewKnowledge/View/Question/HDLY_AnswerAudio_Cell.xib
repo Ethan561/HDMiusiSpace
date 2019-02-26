@@ -29,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ZFj-OG-8mX"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="da大叶 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nik-Je-K7L">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nik-Je-K7L">
                                 <rect key="frame" x="55" y="21" width="173" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="aop-P0-1V0"/>
@@ -53,8 +53,8 @@
                                         </constraints>
                                         <state key="normal" image="fs_icon_wave_2"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60S 购课后可听" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-gg-ia1">
-                                        <rect key="frame" x="44" y="15" width="88" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUH-gg-ia1">
+                                        <rect key="frame" x="44" y="15" width="0.0" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="hfN-SX-Hah"/>
                                         </constraints>

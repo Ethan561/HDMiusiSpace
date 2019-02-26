@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXK-Is-VEH">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="200.5"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jxtj_img3" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-sU-pYe">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pw3-sU-pYe">
                                 <rect key="frame" x="0.0" y="0.0" width="281" height="200.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dl_zz1" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-f8-2OW">
@@ -96,6 +96,5 @@
     </objects>
     <resources>
         <image name="dl_zz1" width="112" height="84"/>
-        <image name="jxtj_img3" width="140" height="100"/>
     </resources>
 </document>

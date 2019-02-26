@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HFx-ST-ZJe">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img2" translatesAutoresizingMaskIntoConstraints="NO" id="fQq-o0-NpL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fQq-o0-NpL">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                     </imageView>
                                 </subviews>
@@ -125,7 +125,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDJ-Ic-0DP">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qtsk_course_img3" translatesAutoresizingMaskIntoConstraints="NO" id="4wo-xs-LKj">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4wo-xs-LKj">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="124"/>
                                     </imageView>
                                 </subviews>
@@ -257,7 +257,5 @@
     </objects>
     <resources>
         <image name="dl_icon" width="16" height="12"/>
-        <image name="qtsk_course_img2" width="335" height="188"/>
-        <image name="qtsk_course_img3" width="335" height="188"/>
     </resources>
 </document>

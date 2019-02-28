@@ -172,7 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LOG("===majorVersion: \(String(describing: majorVersion))")
         //设置App版本号
         BaiduMobStat.default()?.shortAppVersion =  majorVersion as? String
-
+        
         //设置是否开启Crash日志收集(默认值YES)
         BaiduMobStat.default()?.enableExceptionLog = true
         
@@ -184,11 +184,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //是否允许获取GPS信息，用于地域统计。 SDK不会主动申请GPS权限，只在宿主App已经有获取GPS权限的情况下，才会获取信息。(默认值 YES)
         BaiduMobStat.default()?.enableGps = true
-
-
+        
+        
         //启动来源分析(帮助用户分析App的启动来源：自然打开、应用跳转、推送唤醒等场景)
         BaiduMobStat.default()?.enableGetPushContent = true
-
+        
         
     }
     

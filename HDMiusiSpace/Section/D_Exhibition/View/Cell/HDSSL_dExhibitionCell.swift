@@ -68,6 +68,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
                 imgStr = "exhibitionCmt_4_5"
             }else if star >= 8 {
                 imgStr = "exhibitionCmt_5_5"
+                
             }
             cell_star.image = UIImage.init(named: imgStr)
             

@@ -64,6 +64,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var shareView: HDLY_ShareView?
     var isNeedRefresh = false
     
+    @IBOutlet weak var wwanTipView: UIView!
+    @IBOutlet weak var wlanTipL: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -88,6 +91,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         view.addSubview(loadingView!)
         dataRequest()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
+        wwanTipView.isHidden = true
         
     }
 
@@ -165,6 +169,12 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         if ZFReachabilityManager.shared().isReachable == false {
             HDAlert.showAlertTipWith(type: .onlyText, text: "网络连接不可用")
         }
+        
+        if ZFReachabilityManager.shared().isReachableViaWWAN == true {
+            wwanTipView.isHidden = false
+            return
+        }
+        
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
@@ -174,6 +184,11 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
+    }
+    
+    @IBAction func WWANBtnAction(_ sender: Any) {
+        wwanTipView.isHidden = true
+        autoPlayAction()
     }
     
     func autoPlayAction() {
@@ -190,6 +205,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
+        wlanTipL.isHidden = false
     }
     
     @IBAction func listenBtnAction(_ sender: UIButton) {

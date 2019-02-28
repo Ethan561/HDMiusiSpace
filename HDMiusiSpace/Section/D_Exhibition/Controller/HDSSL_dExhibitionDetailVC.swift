@@ -296,7 +296,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         
         bannerView = ScrollBannerView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: kBannerHeight))//750:422
         bannerBg.insertSubview(bannerView, at: 0)
-        bannerView.placeholderImg = UIImage.init(named: "img_nothing")!
+        bannerView.placeholderImg = UIImage.grayImage(size: CGSize.init(width: ScreenWidth, height: kBannerHeight))!
         bannerView.pageControlAliment = .center
         bannerView.pageControlBottomDis = 15
         
@@ -556,7 +556,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 return nil
             }
             let firstSecFooter = HDSSL_Sec0Footer.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 100))
-            firstSecFooter.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.museumImg!)!)), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+            firstSecFooter.cell_img.kf.setImage(with: URL.init(string: String.init(format: "%@", (self.exdataModel?.data?.museumImg!)!)), placeholder: UIImage.grayImage(size: firstSecFooter.cell_img.size), options: nil, progressBlock: nil, completionHandler: nil)
             firstSecFooter.cell_title.text = String.init(format: "%@", (self.exdataModel?.data?.museumTitle)!)
             firstSecFooter.cell_address.text = String.init(format: "%@", (self.exdataModel?.data?.museumAddress)!)
             firstSecFooter.TapShowMuseumFunc {

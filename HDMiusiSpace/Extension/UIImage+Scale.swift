@@ -133,7 +133,7 @@ extension UIImage {
         context?.fill(rect)
         
         guard let img = UIGraphicsGetImageFromCurrentImageContext() else {
-            return UIImage.init(named: "img_nothing")
+            return UIImage.init(named: "placeholder_gray")
         }
         UIGraphicsEndImageContext()
         
@@ -150,7 +150,7 @@ extension UIImage {
         context?.fill(rect)
         
         guard let img = UIGraphicsGetImageFromCurrentImageContext() else {
-            return UIImage.init(named: "img_nothing")
+            return UIImage.init(named: "placeholder_gray")
         }
         UIGraphicsEndImageContext()
         

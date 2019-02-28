@@ -63,6 +63,12 @@ class HDLY_GuideCard2Cell: UITableViewCell {
             if  model.img != nil  {
                 imgV.kf.setImage(with: URL.init(string: (model.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
+            
+            //设置图片显示方式
+            imgV.contentMode = .scaleAspectFill
+            //设置图片超出容器的部分不显示
+            imgV.clipsToBounds = true
+            
             titleL.text = model.title
             if model.type == 0 {//0数字编号版 1列表版 2扫一扫版
                 typeL.text = "数字编号版"

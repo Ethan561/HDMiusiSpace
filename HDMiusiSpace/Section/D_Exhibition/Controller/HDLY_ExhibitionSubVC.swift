@@ -61,6 +61,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
             self.tableView.es.stopLoadingMore()
+            self.dataArr.removeAll()
             //
             let jsonDecoder = JSONDecoder()
             do {
@@ -175,11 +176,16 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.tableView.es.stopPullToRefresh()
-            
+            self.museumDataArr.removeAll()
             let jsonDecoder = JSONDecoder()
             do {
                 let model: HDLY_dMuseumListM = try jsonDecoder.decode(HDLY_dMuseumListM.self, from: result)
                 self.museumDataArr = model.data
+                if self.museumDataArr.count == 0 {
+                    let empV = EmptyConfigView.NoDataEmptyView()
+                    self.tableView.ly_emptyView = empV
+                    self.tableView.ly_showEmptyView()
+                }
                 self.tableView.reloadData()
             }
             catch let error {

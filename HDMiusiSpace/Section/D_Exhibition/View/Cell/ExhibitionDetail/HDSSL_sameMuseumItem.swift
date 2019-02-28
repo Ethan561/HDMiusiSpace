@@ -32,8 +32,22 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
         }
         if self.model != nil {
             if  model?.img != nil  {
-                item_img.kf.setImage(with: URL.init(string: (model!.img)), placeholder: UIImage.grayImage(sourceImageV: item_img), options: nil, progressBlock: nil, completionHandler: nil)
+                item_img.kf.indicatorType = .activity
+                item_img.kf.setImage(with: URL.init(string: (model!.img)),
+                                     placeholder: UIImage.grayImage(sourceImageV: item_img),
+                                     options: [
+                                        .scaleFactor(UIScreen.main.scale),
+                                        .transition(.fade(1)),
+                                        .cacheOriginalImage],
+                                     progressBlock: nil,
+                                     completionHandler: nil)
             }
+            
+            //设置图片显示方式
+            item_img.contentMode = .scaleAspectFill
+            //设置图片超出容器的部分不显示
+            item_img.clipsToBounds = true
+            
             item_title.text = model!.title
             item_loc.text = model!.address
             item_starNum.text = model!.star.string
@@ -92,6 +106,10 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
         // Initialization code
         
         shadowView.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.2, shadowRadius: 6, shadowOffset: CGSize.zero)
+        item_img.contentScaleFactor = UIScreen.main.scale
+        item_img.contentMode = .scaleToFill
+        item_img.autoresizingMask = .flexibleHeight
+        item_img.clipsToBounds = true
     }
     //类方法，创建cell
     class func getMyCollectionCell(collectionView : UICollectionView, indexPath : IndexPath) -> HDSSL_sameMuseumItem {

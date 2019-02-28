@@ -185,13 +185,62 @@
                                                 <constraint firstItem="A3M-v1-jAK" firstAttribute="centerY" secondItem="x2Q-rD-mCs" secondAttribute="centerY" id="yge-z6-BM1"/>
                                             </constraints>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-DZ-Ahf">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您正在使用非WIFI网络，播放将产生流量费用" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STc-ML-mhf">
+                                                    <rect key="frame" x="30" y="79.5" width="315" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GmM-yf-2wY">
+                                                    <rect key="frame" x="137.5" y="106.5" width="100" height="30"/>
+                                                    <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="GsX-BZ-kIB"/>
+                                                        <constraint firstAttribute="width" constant="100" id="WVb-A5-7mr"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="点击播放" image="kt_icon_play_xiao">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="WWANBtnAction:" destination="NPJ-qO-nK6" eventType="touchUpInside" id="bpR-QT-n4k"/>
+                                                        <action selector="WWANBtnAction:" destination="0hT-O2-zp2" eventType="touchUpInside" id="z2W-Aj-zcq"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="STc-ML-mhf" secondAttribute="trailing" constant="30" id="7eT-Mn-Oxu"/>
+                                                <constraint firstItem="STc-ML-mhf" firstAttribute="centerX" secondItem="OQP-DZ-Ahf" secondAttribute="centerX" id="A4u-Hw-wjx"/>
+                                                <constraint firstItem="STc-ML-mhf" firstAttribute="centerY" secondItem="OQP-DZ-Ahf" secondAttribute="centerY" constant="-20" id="GhH-bO-rXi"/>
+                                                <constraint firstItem="STc-ML-mhf" firstAttribute="leading" secondItem="OQP-DZ-Ahf" secondAttribute="leading" constant="30" id="Ibx-4x-kz2"/>
+                                                <constraint firstItem="GmM-yf-2wY" firstAttribute="centerX" secondItem="OQP-DZ-Ahf" secondAttribute="centerX" id="N0m-S4-OeC"/>
+                                                <constraint firstItem="GmM-yf-2wY" firstAttribute="top" secondItem="STc-ML-mhf" secondAttribute="bottom" constant="15" id="pzA-ar-IIt"/>
+                                            </constraints>
+                                        </view>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您正在使用非WIFI网络，播放将产生流量费用" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="us2-Nk-39r">
+                                            <rect key="frame" x="20" y="159" width="205.5" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="x2Q-rD-mCs" firstAttribute="leading" secondItem="UAh-GF-4Aa" secondAttribute="leading" id="5Q9-ym-FaM"/>
+                                        <constraint firstAttribute="bottom" secondItem="OQP-DZ-Ahf" secondAttribute="bottom" id="BhQ-tD-asi"/>
                                         <constraint firstAttribute="bottom" secondItem="x2Q-rD-mCs" secondAttribute="bottom" id="J7o-UA-RYe"/>
+                                        <constraint firstItem="us2-Nk-39r" firstAttribute="leading" secondItem="UAh-GF-4Aa" secondAttribute="leading" constant="20" id="TWR-H9-dbr"/>
+                                        <constraint firstItem="OQP-DZ-Ahf" firstAttribute="top" secondItem="UAh-GF-4Aa" secondAttribute="top" id="dAZ-7l-utN"/>
+                                        <constraint firstAttribute="trailing" secondItem="OQP-DZ-Ahf" secondAttribute="trailing" id="ehd-o6-PfW"/>
                                         <constraint firstAttribute="trailing" secondItem="x2Q-rD-mCs" secondAttribute="trailing" id="hTk-7j-cEm"/>
                                         <constraint firstItem="x2Q-rD-mCs" firstAttribute="top" secondItem="UAh-GF-4Aa" secondAttribute="top" id="llh-WA-kUJ"/>
+                                        <constraint firstItem="OQP-DZ-Ahf" firstAttribute="leading" secondItem="UAh-GF-4Aa" secondAttribute="leading" id="qXi-O5-fxJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="us2-Nk-39r" secondAttribute="bottom" constant="40" id="ud5-o1-k8s"/>
                                     </constraints>
                                 </view>
                                 <connections>
@@ -374,6 +423,8 @@
                         <outlet property="topImgV" destination="DNZ-Re-0Jb" id="0RX-0j-L0q"/>
                         <outlet property="topView" destination="UAh-GF-4Aa" id="Goo-jo-ryD"/>
                         <outlet property="tryListenL" destination="eOT-qR-lWM" id="rgP-vH-HHz"/>
+                        <outlet property="wlanTipL" destination="us2-Nk-39r" id="K3o-Ew-Cnf"/>
+                        <outlet property="wwanTipView" destination="OQP-DZ-Ahf" id="OQr-TR-mMg"/>
                         <segue destination="NPJ-qO-nK6" kind="show" identifier="PushTo_HDLY_CourseList_VC_line" id="Yve-By-v2P"/>
                     </connections>
                 </viewController>
@@ -484,6 +535,12 @@
                                             <constraint firstAttribute="height" constant="45" id="0uu-EH-sg1"/>
                                         </constraints>
                                     </imageView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您正在使用非WIFI网络，播放将产生流量费用" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpW-cx-MDo">
+                                        <rect key="frame" x="20" y="159" width="205.5" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjA-Hs-Tz5">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                         <constraints>
@@ -542,6 +599,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="PjA-Hs-Tz5" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="A1E-75-bgc"/>
+                                    <constraint firstAttribute="bottom" secondItem="lpW-cx-MDo" secondAttribute="bottom" constant="40" id="COI-1W-6e7"/>
                                     <constraint firstAttribute="width" secondItem="LYw-Ag-CD4" secondAttribute="height" multiplier="16:9" id="IhP-Cp-ca8"/>
                                     <constraint firstItem="5Vs-R8-Ldf" firstAttribute="leading" secondItem="Uex-bo-XY8" secondAttribute="leading" id="JO5-x6-vjx"/>
                                     <constraint firstItem="5Vs-R8-Ldf" firstAttribute="bottom" secondItem="Uex-bo-XY8" secondAttribute="bottom" id="MJo-yb-DRe"/>
@@ -549,6 +607,7 @@
                                     <constraint firstItem="W9g-Jw-6xn" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="RfV-ze-IVw"/>
                                     <constraint firstItem="Uex-bo-XY8" firstAttribute="top" secondItem="LYw-Ag-CD4" secondAttribute="top" id="Tos-nP-mkg"/>
                                     <constraint firstItem="5Vs-R8-Ldf" firstAttribute="trailing" secondItem="Uex-bo-XY8" secondAttribute="trailing" id="YSh-5i-TjG"/>
+                                    <constraint firstItem="lpW-cx-MDo" firstAttribute="leading" secondItem="LYw-Ag-CD4" secondAttribute="leading" constant="20" id="ard-bh-jLR"/>
                                     <constraint firstAttribute="trailing" secondItem="7h2-yt-a11" secondAttribute="trailing" id="bkX-fa-VzU"/>
                                     <constraint firstAttribute="trailing" secondItem="W9g-Jw-6xn" secondAttribute="trailing" id="cng-tg-G1S"/>
                                     <constraint firstItem="5Vs-R8-Ldf" firstAttribute="top" secondItem="Uex-bo-XY8" secondAttribute="top" id="jGP-eD-rNM"/>
@@ -600,6 +659,7 @@
                         <outlet property="statusBarHCons" destination="ESs-9h-pgu" id="3xQ-LQ-gNo"/>
                         <outlet property="topImgV" destination="8oL-Wv-qtz" id="NMB-xw-YKv"/>
                         <outlet property="topView" destination="LYw-Ag-CD4" id="rvP-oH-ula"/>
+                        <outlet property="wlanTipL" destination="lpW-cx-MDo" id="bgB-UQ-Cr5"/>
                         <outlet property="wwanTipBtn" destination="rRy-jp-4Fk" id="bSi-5x-7ev"/>
                         <outlet property="wwanTipView" destination="5Vs-R8-Ldf" id="REG-7x-sXX"/>
                     </connections>

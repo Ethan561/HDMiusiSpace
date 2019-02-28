@@ -91,6 +91,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var shareView: HDLY_ShareView?
     var isNeedRefresh = false
     
+    @IBOutlet weak var wlanTipL: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
@@ -321,6 +323,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
+        wlanTipL.isHidden = false
     }
     
     // HDLY_CourseList_SubVC1：ChapterListPlayDelegate

@@ -50,6 +50,11 @@ class HDSSL_dMuseumCell: UITableViewCell {
             }else {
                 return
             }
+            //设置图片显示方式
+            cell_img.contentMode = .scaleAspectFill
+            //设置图片超出容器的部分不显示
+            cell_img.clipsToBounds = true
+            
             if model!.isFavorite == 0 {
                 cell_collectImg.isHidden = true
             } else {

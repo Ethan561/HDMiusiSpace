@@ -15,30 +15,30 @@ class HDSSL_SearchVC: HDItemBaseVC {
     public var searchContent: String?
     private var take = 10
     private var skip = 0
-    var currentType: Int = 0  //默认0全部搜索,搜索类型1、2、3、4
+    var currentType    : Int = 0 //默认0全部搜索,搜索类型1、2、3、4
+    var placeholderStr : String? //默认搜索提示信息
     
     var textFeild                     : UITextField! //输入框
     @IBOutlet weak var tagBgView      : UIView!      //标签背景页
     @IBOutlet weak var dTableView     : UITableView! //搜索历史记录
     @IBOutlet weak var resultTableView: UITableView! //搜索结果
     @IBOutlet weak var searcgTagBgView: UIView!
-    @IBOutlet weak var tagViewH: NSLayoutConstraint!
+    @IBOutlet weak var tagViewH       : NSLayoutConstraint!
     
-    var searchTypeArray: [HDSSL_SearchTag] = Array.init()  //搜索类型数组
-    var resultArray    : [HDSSL_SearchType] = Array.init()  //搜索类型数组
-    var newsArray      : [HDSSL_SearchNews] = Array.init()  //资讯
-    var classArray     : [HDSSL_SearchCourse] = Array.init()//新知
-    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()//展览
-    var museumArray    : [HDSSL_SearchMuseum] = Array.init()//博物馆
+    var searchTypeArray: [HDSSL_SearchTag]        = Array.init()  //搜索类型数组
+    var resultArray    : [HDSSL_SearchType]       = Array.init()  //搜索结果分类数组
+    var newsArray      : [HDSSL_SearchNews]       = Array.init()  //资讯
+    var classArray     : [HDSSL_SearchCourse]     = Array.init()  //新知
+    var exhibitionArray: [HDSSL_SearchExhibition] = Array.init()  //展览
+    var museumArray    : [HDSSL_SearchMuseum]     = Array.init()  //博物馆
     
     var typeTitleArray : [String] = Array.init()  //类型标题
     var historyArray   : [String] = Array.init()  //搜索历史
-
+    
     //mvvm
     var viewModel: HDSSL_SearchViewModel = HDSSL_SearchViewModel()
     
-    var placeholderStr: String? //默认搜素提示信息
-    
+    //语音识别
     lazy var voiceView: HDZQ_VoiceSearchView = {
         let tmp =  Bundle.main.loadNibNamed("HDZQ_VoiceSearchView", owner: nil, options: nil)?.last as? HDZQ_VoiceSearchView
         tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -132,27 +132,68 @@ class HDSSL_SearchVC: HDItemBaseVC {
         }else{
             //选定搜索类型，需要分页，只会返回一组数据
             if models.count > 0 {
-                if skip == 0 {
-                    self.resultArray.removeAll()
-                }
-                self.resultArray += models
-                
                 self.resultTableView.es.stopLoadingMore()
                 
-                self.dealSearchResultData()
+                let  model :HDSSL_SearchType = models[0]
+                
+                if model.type == 0 {
+                    
+                    if model.news_list?.count == 0 {
+                        loadNoMore()
+                        return
+                    }else {
+                        if skip == 0 {
+                            self.newsArray.removeAll()
+                        }
+                        newsArray += model.news_list!
+                    }
+                }else if model.type == 1 {
+                    if model.course_list?.count == 0 {
+                        loadNoMore()
+                        return
+                    }else {
+                        if skip == 0 {
+                            self.classArray.removeAll()
+                        }
+                        classArray += model.course_list!
+                    }
+                }else if model.type == 2 {
+                    if model.exhibition_list?.count == 0 {
+                        loadNoMore()
+                        return
+                    }else {
+                        if skip == 0 {
+                            self.exhibitionArray.removeAll()
+                        }
+                        exhibitionArray += model.exhibition_list!
+                    }
+                }else if model.type == 3 {
+                    if model.museum_list?.count == 0 {
+                        loadNoMore()
+                        return
+                    }else {
+                        if skip == 0 {
+                            self.museumArray.removeAll()
+                        }
+                        museumArray += model.museum_list!
+                    }
+                }
                 
                 self.resultTableView.reloadData()
                 
             }else{
                 juageEmptyView()
                 
-                self.resultTableView.es.noticeNoMoreData()
-                self.resultTableView.reloadData()
+                loadNoMore()
             }
         }
 
     }
-    
+    func loadNoMore(){
+        
+        self.resultTableView.es.noticeNoMoreData()
+        self.resultTableView.reloadData()
+    }
     //MARK: ---- 交互逻辑 ----
     //MARK: - 判断空数据页面
     func juageEmptyView(){
@@ -198,31 +239,6 @@ class HDSSL_SearchVC: HDItemBaseVC {
                     exhibitionArray = model.exhibition_list!
                 case 3:
                     museumArray = model.museum_list!
-                default:
-                    return
-                }
-            }else{
-                switch modelType {
-                case 0:
-                    if skip == 0 {
-                        self.newsArray.removeAll()
-                    }
-                    newsArray += model.news_list!
-                case 1:
-                    if skip == 0 {
-                        self.classArray.removeAll()
-                    }
-                    classArray += model.course_list!
-                case 2:
-                    if skip == 0 {
-                        self.exhibitionArray.removeAll()
-                    }
-                    exhibitionArray += model.exhibition_list!
-                case 3:
-                    if skip == 0 {
-                        self.museumArray.removeAll()
-                    }
-                    museumArray += model.museum_list!
                 default:
                     return
                 }
@@ -384,7 +400,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
             //保存搜索历史
             self.func_saveHistory(self.textFeild.text!)
         }else if (placeholderStr?.count)! > 0 {
-
+            //搜索提示信息
             self.textFeild.text = placeholderStr
             self.viewModel.request_search(str: placeholderStr!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
@@ -421,9 +437,7 @@ class HDSSL_SearchVC: HDItemBaseVC {
         if kWindow != nil {
             kWindow!.addSubview(tipView)
         }
-        
     }
-    
     //MARK: ---- keyboard -----
     //MARK: - 手势隐藏键盘
     @objc func tapTableView() {
@@ -490,9 +504,7 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
                 //保存搜索历史
                 self.func_saveHistory(textField.text!)
             }
-            
         }
-        
         return true
     }
 }
@@ -507,17 +519,14 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         
         switch modelType {
         case 0:
-            
-            return min(3, (model.news_list?.count)!)
+            return model.news_num! > 3 ?  4 : (model.news_list?.count)!
+//            return min(4, (model.news_list?.count)!)
         case 1:
-        
-            return min(3, (model.course_list?.count)!)
+            return model.course_num! > 3 ?  4 : (model.course_list?.count)!
         case 2:
-        
-            return min(3, (model.exhibition_list?.count)!)
+            return model.exhibition_num! > 3 ?  4 : (model.exhibition_list?.count)!
         case 3:
-        
-            return min(3, (model.museum_list?.count)!)
+            return model.museum_num! > 3 ?  4 : (model.museum_list?.count)!
         default:
             return 0
         }
@@ -539,12 +548,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             if self.currentType == 0 {
                 return resultArray.count //搜索结果
             }else {
-                if resultArray.count == 0 {
-                    return 0
-                }
                 return 1
             }
-            
         }
     }
     
@@ -562,17 +567,18 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             }else if self.currentType == 4 {
                 return museumArray.count
             }
-            
             //self.currentType = 0
             return self.getTableViewCells(index: section)
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == dTableView {
             return 44
         }else {
+            if indexPath.row == 3 && self.currentType == 0{
+                return 44
+            }
             return 90
         }
         
@@ -594,7 +600,14 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             
             var title: String?
             
-            switch self.getResultModel(section: section).type {
+            var typeSel: Int!
+            if currentType == 0 {
+                typeSel = self.getResultModel(section: section).type
+            }else {
+                typeSel = currentType - 1
+            }
+            
+            switch typeSel {
             case 0:
                 title = "资讯"
             case 1:
@@ -605,7 +618,6 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 title = "博物馆"
             default:
                 return nil
-                
             }
             
             headerTitle.text = title
@@ -655,133 +667,190 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             return cell
         }else {
             //搜索结果
-            let model = self.getResultModel(section: indexPath.section)
-            
-            switch model.type {
-            
+            var typeSel: Int!
+            if currentType == 0 {
+                let model = self.getResultModel(section: indexPath.section)
+                typeSel = model.type
+            }else {
+                typeSel = currentType - 1
+            }
+            switch typeSel {
             case 0:
-                
-                let news: HDSSL_SearchNews = newsArray[indexPath.row]
-                
-                let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
-                cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
-                cell.tag = indexPath.row
-                
-                cell.cell_titleLab.text = String.init(format: "%@", news.title!)
-                
-                let plat = (news.plat_title == nil ? "" : "|"+news.plat_title!)
-                cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
-                
-                cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
-                
-                cell.cell_likeBtn.setTitle(String.init(format: "%d", news.likes!), for: .normal)
-                
-                return cell
-                
+                if indexPath.row == 3 && self.currentType == 0{
+                    let cell = UITableViewCell.init()
+                    
+                    let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
+                    showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.setTitle("更多资讯内容", for: .normal)
+                    showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                    showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
+                    showMoreBtn.tag = typeSel!
+                    showMoreBtn.addTarget(self, action: #selector(showMoreSearchResults(_:)), for: .touchUpInside)
+                    
+                    cell.addSubview(showMoreBtn)
+                    
+                    cell.selectionStyle = .none
+                    return cell
+                    
+                }else {
+                    let news: HDSSL_SearchNews = newsArray[indexPath.row]
+                    let cell = HDSSL_newsCell.getMyTableCell(tableV: tableView) as HDSSL_newsCell
+                    cell.cell_imgView.kf.setImage(with: URL.init(string: news.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell.tag = indexPath.row
+                    cell.cell_titleLab.text = String.init(format: "%@", news.title!)
+                    
+                    let plat = (news.plat_title == nil ? "" : "|"+news.plat_title!)
+                    cell.cell_tipsLab.text = String.init(format:"%@%@", news.keywords!,plat)
+                    
+                    cell.cell_commentBtn.setTitle(String.init(format: "%d", news.comments!), for: .normal)
+                    
+                    cell.cell_likeBtn.setTitle(String.init(format: "%d", news.likes!), for: .normal)
+                    
+                    return cell
+                }
+    
             case 1:
-                
-                let course: HDSSL_SearchCourse = classArray[indexPath.row]
-                
-                let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
-                cell?.tag = indexPath.row
-                
-                cell?.cell_imgView.kf.setImage(with: URL.init(string: course.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
-                cell?.cell_titleLab.text = String.init(format: "%@", course.title!)
-                cell?.cell_teacherNameLab.text = String.init(format: "%@", course.teacher_name!)
-                
-                let typeimgName = course.file_type == 1 ? "xz_icon_audio_black_default":"xz_icon_video_black_default"
-                cell?.cell_typeImgView.image = UIImage.init(named: typeimgName)
-                cell?.cell_peopleAndTimeLab.text = String.init(format: "%d在学 %d课时", course.purchases!,course.class_num!)
-                if course.is_free == 1 {
-                    cell?.cell_priceLab.text = "免费"
-                    cell?.cell_priceLab.textColor = UIColor.black
+                if indexPath.row == 3 && self.currentType == 0{
+                    let cell = UITableViewCell.init()
+                    let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
+                    showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.setTitle("更多新知内容", for: .normal)
+                    showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                    showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
+                    showMoreBtn.tag = typeSel!
+                    showMoreBtn.addTarget(self, action: #selector(showMoreSearchResults(_:)), for: .touchUpInside)
+                    cell.addSubview(showMoreBtn)
+                    cell.selectionStyle = .none
+                    return cell
                 }else {
-                    cell?.cell_priceLab.text = String.init(format: "¥%@", course.price!)
-                }
-                
-                return cell!
-                
-            case 2:
-
-                let exhibition: HDSSL_SearchExhibition = exhibitionArray[indexPath.row]
-                
-                let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
-                cell?.tag = indexPath.row
-                cell?.cell_imgView.kf.setImage(with: URL.init(string: exhibition.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
-                //标题
-                cell?.cell_titleLab.text = String.init(format: "%@", exhibition.title!)
-                //位置价格
-                var priceStr: String?
-                if exhibition.is_free == 1 {
-                    priceStr = "|免费"
-                }else {
-                    priceStr = String.init(format: "|%.1f", exhibition.price!)
-                }
-                cell?.cell_locationLab.text = String.init(format: "%@%@", exhibition.address!,priceStr!)
-                //标签
-                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
-                //评分
-                cell?.cell_scoreLab.text = exhibition.star?.string
-                
-                if exhibition.star?.int == 0 {
-                    cell?.noStarL.isHidden = false
-                }
-                
-                return cell!
-                
-            case 3:
-
-                let museum: HDSSL_SearchMuseum = museumArray[indexPath.row]
-                
-                let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
-                cell?.tag = indexPath.row
-                cell?.cell_imgView.kf.setImage(with: URL.init(string: museum.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
-                //标题
-                cell?.cell_titleLab.text = String.init(format: "%@", museum.title!)
-                //地址
-                cell?.cell_loacationLab.text = String.init(format: "%@", museum.address!)
-                //标签
-//                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
-                for imgV in (cell?.cell_tipBgView.subviews)! {
-                    imgV.removeFromSuperview()
-                }
-                
-                var x:CGFloat = 0
-                var imgWArr = [CGFloat]()
-                for (i,imgStr) in museum.icon_list!.enumerated() {
-                    let imgV = UIImageView()
-                    imgV.contentMode = .scaleAspectFit
-                    imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
-                        
-                        var imgSize:CGSize!
-                        
-                        if img != nil{
-                            imgSize = img!.size
-                        }else{
-                            imgSize = CGSize.init(width: 15, height: 15)
-                        }
-                        //                    let imgSize = img!.size
-                        let imgH: CGFloat = 15
-                        let imgW: CGFloat = 15*imgSize.width/imgSize.height
-                        imgWArr.append(imgW)
-                        if i > 0 {
-                            let w = imgWArr[i-1]
-                            x = x + w
-                        }
-                        imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
-                        cell?.cell_tipBgView.addSubview(imgV)
+                    let course: HDSSL_SearchCourse = classArray[indexPath.row]
+                    
+                    let cell = HDSSL_ClassCell.getMyTableCell(tableV: tableView)
+                    cell?.tag = indexPath.row
+                    
+                    cell?.cell_imgView.kf.setImage(with: URL.init(string: course.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                    cell?.cell_titleLab.text = String.init(format: "%@", course.title!)
+                    cell?.cell_teacherNameLab.text = String.init(format: "%@", course.teacher_name!)
+                    
+                    let typeimgName = course.file_type == 1 ? "xz_icon_audio_black_default":"xz_icon_video_black_default"
+                    cell?.cell_typeImgView.image = UIImage.init(named: typeimgName)
+                    cell?.cell_peopleAndTimeLab.text = String.init(format: "%d在学 %d课时", course.purchases!,course.class_num!)
+                    if course.is_free == 1 {
+                        cell?.cell_priceLab.text = "免费"
+                        cell?.cell_priceLab.textColor = UIColor.black
+                    }else {
+                        cell?.cell_priceLab.text = String.init(format: "¥%@", course.price!)
                     }
+                    return cell!
                 }
-                
-                return cell!
-                
+            case 2:
+                if indexPath.row == 3 && self.currentType == 0{
+                    let cell = UITableViewCell.init()
+                    
+                    let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
+                    showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.setTitle("更多展览内容", for: .normal)
+                    showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                    showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
+                    showMoreBtn.tag = typeSel!
+                    showMoreBtn.addTarget(self, action: #selector(showMoreSearchResults(_:)), for: .touchUpInside)
+                    
+                    cell.addSubview(showMoreBtn)
+                    cell.selectionStyle = .none
+                    return cell
+                }else {
+                    let exhibition: HDSSL_SearchExhibition = exhibitionArray[indexPath.row]
+                    
+                    let cell = HDSSL_ExhibitionCell.getMyTableCell(tableV: tableView)
+                    cell?.tag = indexPath.row
+                    cell?.cell_imgView.kf.setImage(with: URL.init(string: exhibition.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                    //标题
+                    cell?.cell_titleLab.text = String.init(format: "%@", exhibition.title!)
+                    //位置价格
+                    var priceStr: String?
+                    if exhibition.is_free == 1 {
+                        priceStr = "|免费"
+                    }else {
+                        priceStr = String.init(format: "|%.1f", exhibition.price!)
+                    }
+                    cell?.cell_locationLab.text = String.init(format: "%@%@", exhibition.address!,priceStr!)
+                    //标签
+                    cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: exhibition.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                    //评分
+                    cell?.cell_scoreLab.text = exhibition.star?.string
+                    
+                    if exhibition.star?.int == 0 {
+                        cell?.noStarL.isHidden = false
+                    }
+                    return cell!
+                }
+            case 3:
+                if indexPath.row == 3 && self.currentType == 0{
+                    let cell = UITableViewCell.init()
+                    
+                    let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 140, height: 38))
+                    showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0)
+                    showMoreBtn.setTitle("更多博物馆内容", for: .normal)
+                    showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+                    showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
+                    showMoreBtn.tag = typeSel!
+                    showMoreBtn.addTarget(self, action: #selector(showMoreSearchResults(_:)), for: .touchUpInside)
+                    
+                    cell.addSubview(showMoreBtn)
+                    cell.selectionStyle = .none
+                    return cell
+                    
+                }else {
+                    let museum: HDSSL_SearchMuseum = museumArray[indexPath.row]
+                    
+                    let cell = HDSSL_MuseumCell.getMyTableCell(tableV: tableView)
+                    cell?.tag = indexPath.row
+                    cell?.cell_imgView.kf.setImage(with: URL.init(string: museum.img!), placeholder: UIImage.init(named: "img_nothing"), options: nil, progressBlock: nil, completionHandler: nil)
+                    //标题
+                    cell?.cell_titleLab.text = String.init(format: "%@", museum.title!)
+                    //地址
+                    cell?.cell_loacationLab.text = String.init(format: "%@", museum.address!)
+                    //标签
+                    //                cell?.cell_tipBgView.addSubview(self.getImagesWith(arr: museum.icon_list!, frame: (cell?.cell_tipBgView.bounds)!))
+                    for imgV in (cell?.cell_tipBgView.subviews)! {
+                        imgV.removeFromSuperview()
+                    }
+                    var x:CGFloat = 0
+                    var imgWArr = [CGFloat]()
+                    for (i,imgStr) in museum.icon_list!.enumerated() {
+                        let imgV = UIImageView()
+                        imgV.contentMode = .scaleAspectFit
+                        imgV.kf.setImage(with: URL.init(string: imgStr), placeholder: nil, options: nil, progressBlock: nil) { (img, err, cache, url) in
+                            
+                            var imgSize:CGSize!
+                            
+                            if img != nil{
+                                imgSize = img!.size
+                            }else{
+                                imgSize = CGSize.init(width: 15, height: 15)
+                            }
+                            //                    let imgSize = img!.size
+                            let imgH: CGFloat = 15
+                            let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                            imgWArr.append(imgW)
+                            if i > 0 {
+                                let w = imgWArr[i-1]
+                                x = x + w
+                            }
+                            imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
+                            cell?.cell_tipBgView.addSubview(imgV)
+                        }
+                    }
+                    return cell!
+                }
             default:
                 break
-                
             }
-            
         }
-        
         return UITableViewCell()
     }
     
@@ -793,7 +862,6 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         for i in 0..<arr.count {
             //
             var size1 = CGSize.zero
-
             if i > 0 {
                 size1 = UIImage.getImageSize(arr[i-1])
             }
@@ -804,56 +872,60 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             imgView.centerY = bgView.centerY
             bgView.addSubview(imgView)
         }
-        
         return bgView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         if tableView == dTableView {
             //点击搜索历史，1开始搜索，2刷新搜索历史记录列表
             let str: String = historyArray[indexPath.row]
             textFeild.text = str
-            //
             self.viewModel.request_search(str: str, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(str)
         }else {
+            //点击查看更多cell
+            if indexPath.row == 3 && currentType == 0{
+                return
+            }
             //进入详情
-            let model = self.getResultModel(section: indexPath.section)
-            if model.type == 0 {
+            var typeSel: Int!
+            if currentType == 0 {
+                let model = self.getResultModel(section: indexPath.section)
+                typeSel = model.type
+            }else {
+                typeSel = currentType - 1
+            }
+            
+            if typeSel == 0 {
                 //资讯
-                let list = model.news_list
-                let news: HDSSL_SearchNews = list![indexPath.row]
+                let news: HDSSL_SearchNews = newsArray[indexPath.row]
                 
                 let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_TopicDetail_VC") as! HDLY_TopicDetail_VC
                 vc.topic_id = String(news.article_id!)
                 vc.fromRootAChoiceness = true
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            }else if model.type == 1 {
+            }else if typeSel == 1 {
                 //新知、课程
-                let list = model.course_list
-                let course: HDSSL_SearchCourse = list![indexPath.row]
+                let course: HDSSL_SearchCourse = classArray[indexPath.row]
                 
                 let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
                 vc.courseId = String(course.class_id!)
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if model.type == 2 {
+            }else if typeSel == 2 {
                 //展览
-                let list = model.exhibition_list
-                let exhibition: HDSSL_SearchExhibition = list![indexPath.row]
+                let exhibition: HDSSL_SearchExhibition = exhibitionArray[indexPath.row]
                 //展览详情
                 let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
                 let vc: HDSSL_dExhibitionDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dExhibitionDetailVC") as! HDSSL_dExhibitionDetailVC
                 
                 vc.exhibition_id = exhibition.exhibition_id
                 self.navigationController?.pushViewController(vc, animated: true)
-            }else if model.type == 3 {
+            }else if typeSel == 3 {
                 //博物馆
-                let list = model.museum_list
-                let museum: HDSSL_SearchMuseum = list![indexPath.row]
+                let museum: HDSSL_SearchMuseum = museumArray[indexPath.row]
                 //博物馆详情
                 let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
                 let vc: HDSSL_dMuseumDetailVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_dMuseumDetailVC") as! HDSSL_dMuseumDetailVC
@@ -861,12 +933,18 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 vc.museumId = museum.museum_id!
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            
-            
         }
-        
     }
-    
+    //查看更多
+    @objc func showMoreSearchResults(_ btn : UIButton) -> Void {
+        print(btn.tag)
+        //博物馆详情
+        let storyBoard = UIStoryboard.init(name: "RootA", bundle: Bundle.main)
+        let vc: HDSSL_SearchMoreVC = storyBoard.instantiateViewController(withIdentifier: "HDSSL_SearchMoreVC") as! HDSSL_SearchMoreVC
+        vc.currentType = btn.tag+1
+        vc.searchContent = self.textFeild.text!
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 //MARK: - 返回语音识别结果，开始搜索
 extension HDSSL_SearchVC : HDZQ_VoiceResultDelegate {

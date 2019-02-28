@@ -91,8 +91,8 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         
         //data
         loadMyDatas()
-        viewModel.request_getCityList(type: 1, vc: self) //请求国内城市数据
-        viewModel.request_getWorldCityList(kind: 1, type: 0, isrecommand: true, vc: self) //请求国际数据
+        viewModel.request_getCityList(type: 2, vc: self) //请求国内城市数据
+        viewModel.request_getWorldCityList(kind: 2, type: 0, isrecommand: true, vc: self) //请求国际数据
         self.dTableView.ccpIndexView()
     }
     
@@ -233,7 +233,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
                 return
             }
             weakSelf?.currentLeftType = index
-            weakSelf?.viewModel.request_getWorldCityList(kind: 1, type: index, isrecommand: index == 0 ? true : false, vc: self)
+            weakSelf?.viewModel.request_getWorldCityList(kind: 2, type: index, isrecommand: index == 0 ? true : false, vc: self)
         }
         
         worldLocView.BlockRightFunc { (city) in

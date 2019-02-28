@@ -50,7 +50,10 @@ class HDLY_GuideMapCell: UITableViewCell {
             imgV.kf.setImage(with: URL.init(string: (model1.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
         typeL.text = model1.version
-        
+        //设置图片显示方式
+        imgV.contentMode = .scaleAspectFill
+        //设置图片超出容器的部分不显示
+        imgV.clipsToBounds = true
         // 免费类型：0不免费,1所有人免费,2svip免费
         priceL.isHidden = true
         vipPriceL.isHidden = true

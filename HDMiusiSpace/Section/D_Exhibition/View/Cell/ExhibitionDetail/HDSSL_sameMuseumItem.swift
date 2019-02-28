@@ -42,6 +42,12 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
                                      progressBlock: nil,
                                      completionHandler: nil)
             }
+            
+            //设置图片显示方式
+            item_img.contentMode = .scaleAspectFill
+            //设置图片超出容器的部分不显示
+            item_img.clipsToBounds = true
+            
             item_title.text = model!.title
             item_loc.text = model!.address
             item_starNum.text = model!.star.string

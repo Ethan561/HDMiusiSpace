@@ -364,7 +364,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             }else {
                 self.isMp3Course = false
                 self.tryListenL.text = "试学"
-                self.kVideoCover = ""
+                self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
             }
             //self.autoPlayAction()
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费

@@ -203,7 +203,6 @@
 		A7EA12AB21B79F2A00CBAFCF /* HDSSL_MyOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EA12AA21B79F2A00CBAFCF /* HDSSL_MyOrderModel.swift */; };
 		A7F1C50D213E5216009039D8 /* HDSSL_TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */; };
 		A7F1C50F213E523B009039D8 /* HDSSL_TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */; };
-		A7FEE9642227AD4D00069FEB /* HDSSL_SearchMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FEE9632227AD4D00069FEB /* HDSSL_SearchMoreVC.swift */; };
 		D60706B82145FF250035B160 /* HDLY_GenderTip_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */; };
 		D60706BA2145FF390035B160 /* HDLY_GenderTip_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */; };
 		D60E856B2191642D00072BF9 /* HDLY_ExhibitionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60E856A2191642D00072BF9 /* HDLY_ExhibitionListVC.swift */; };
@@ -267,6 +266,7 @@
 		D619533F21A545880039D151 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D619533E21A545880039D151 /* MapKit.framework */; };
 		D619C0CC21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D619C0CA21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift */; };
 		D619C0CD21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D619C0CB21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib */; };
+		D61BC32B22290210006F5631 /* HDSSL_SearchMoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61BC32A2229020D006F5631 /* HDSSL_SearchMoreVC.swift */; };
 		D61D246521C73F0100F054E5 /* UITableView+CCPIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */; };
 		D61D246621C73F0200F054E5 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = D61D246421C73F0100F054E5 /* Aspects.m */; };
 		D61D36D6219BC41B0019586B /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61D36D5219BC41B0019586B /* UIFont+Extension.swift */; };
@@ -862,7 +862,6 @@
 		A7EA12AA21B79F2A00CBAFCF /* HDSSL_MyOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyOrderModel.swift; sourceTree = "<group>"; };
 		A7F1C50C213E5216009039D8 /* HDSSL_TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagViewModel.swift; sourceTree = "<group>"; };
 		A7F1C50E213E523B009039D8 /* HDSSL_TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_TagModel.swift; sourceTree = "<group>"; };
-		A7FEE9632227AD4D00069FEB /* HDSSL_SearchMoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchMoreVC.swift; sourceTree = "<group>"; };
 		D60706B72145FF250035B160 /* HDLY_GenderTip_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_GenderTip_View.swift; sourceTree = "<group>"; };
 		D60706B92145FF390035B160 /* HDLY_GenderTip_View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_GenderTip_View.xib; sourceTree = "<group>"; };
 		D607702821A8FCBD006B19B1 /* HDMiusiSpace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HDMiusiSpace.entitlements; sourceTree = "<group>"; };
@@ -956,6 +955,7 @@
 		D619533E21A545880039D151 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D619C0CA21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_PlatformFoucsCell.swift; sourceTree = "<group>"; };
 		D619C0CB21CDE229007231F8 /* HDLY_PlatformFoucsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_PlatformFoucsCell.xib; sourceTree = "<group>"; };
+		D61BC32A2229020D006F5631 /* HDSSL_SearchMoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDSSL_SearchMoreVC.swift; sourceTree = "<group>"; };
 		D61D246121C73F0100F054E5 /* UITableView+CCPIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CCPIndexView.h"; sourceTree = "<group>"; };
 		D61D246221C73F0100F054E5 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
 		D61D246321C73F0100F054E5 /* UITableView+CCPIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CCPIndexView.m"; sourceTree = "<group>"; };
@@ -2619,9 +2619,9 @@
 		D6C9FC9B211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D61BC32A2229020D006F5631 /* HDSSL_SearchMoreVC.swift */,
 				D6C9FCC5211834E8007C8E56 /* HDRootAVC.swift */,
 				A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */,
-				A7FEE9632227AD4D00069FEB /* HDSSL_SearchMoreVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3569,7 +3569,7 @@
 				A7C59E3A219BED5E00F67F0C /* ScrollBannerView.swift in Sources */,
 				D619C0CC21CDE229007231F8 /* HDLY_PlatformFoucsCell.swift in Sources */,
 				A737389D2140D1EF009ACB4F /* HDSSL_SearchVC.swift in Sources */,
-				A7FEE9642227AD4D00069FEB /* HDSSL_SearchMoreVC.swift in Sources */,
+				D61BC32B22290210006F5631 /* HDSSL_SearchMoreVC.swift in Sources */,
 				A7AC35BF214A521A004E8BC1 /* HDSSL_MuseumCell.swift in Sources */,
 				D6724629211D5C8F00239109 /* HDLY_Recommend_Cell1.swift in Sources */,
 				D6EEDD9D218FEFE700F730BA /* HDLY_RootCSubVC.swift in Sources */,

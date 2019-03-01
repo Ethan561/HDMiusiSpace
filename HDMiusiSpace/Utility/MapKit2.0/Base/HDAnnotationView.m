@@ -16,7 +16,7 @@
 #import "HDAnnotationView+Method.h"
 
 
-#define Ann_DefaultWidth   45
+#define Ann_DefaultWidth   30
 
 @interface HDAnnotationView()
 

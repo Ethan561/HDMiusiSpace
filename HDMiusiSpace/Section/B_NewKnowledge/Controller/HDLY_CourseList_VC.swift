@@ -204,7 +204,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }else {
                 if course.video.isEmpty == false && course.video.contains(".mp4") {
                     self.player.assetURL = NSURL.init(string: course.video)! as URL
-                    self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 }
             }
             self.player.currentPlayerManager.pause!()
@@ -218,7 +218,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             else if video.isEmpty == false && video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.chapterListVC?.isPlaying = false
             }
             self.player.currentPlayerManager.pause!()
@@ -246,6 +246,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     @IBAction func WWANBtnAction(_ sender: Any) {
         wwanTipView.isHidden = true
         autoPlayAction()
+        wlanTipL.isHidden = false
     }
     
     func uploadRecordActions() {
@@ -298,7 +299,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
         self.controlView.showWith(animated: false)
@@ -323,7 +324,6 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
-        wlanTipL.isHidden = false
     }
     
     // HDLY_CourseList_SubVC1：ChapterListPlayDelegate
@@ -352,7 +352,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             else if video.isEmpty == false && video.contains(".mp4") {
                 self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.chapterListVC?.isPlaying = true
             }
             
@@ -383,6 +383,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
             }else {
                 self.isMp3Course = false
+                self.kVideoCover = self.infoModel!.data.img
+                self.topImgV.kf.setImage(with: URL.init(string: self.kVideoCover))
             }
             
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费

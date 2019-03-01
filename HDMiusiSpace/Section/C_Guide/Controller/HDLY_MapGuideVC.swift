@@ -213,7 +213,7 @@ extension HDLY_MapGuideVC {
                 }
                 ann.star = model.star.string
                 ann.type = model.type
-                ann.identify = model.exhibitionID.string
+                ann.identify = String.init(format: "%ld", model.audio_id)
                 ann.audioId = String.init(format: "%ld", model.audio_id)
                 let key = "isReadPin_\(ann.identify!)"
                 let isRead: String? = userDef.object(forKey: key) as? String

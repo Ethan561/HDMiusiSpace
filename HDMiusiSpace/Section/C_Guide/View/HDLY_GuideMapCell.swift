@@ -15,6 +15,7 @@ class HDLY_GuideMapCell: UITableViewCell {
     @IBOutlet weak var vipPriceL: UILabel!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var freeL: UILabel!
+    @IBOutlet weak var shaowBg: UIView!
     
     var model:MuseumMapModel? {
         didSet {
@@ -36,10 +37,20 @@ class HDLY_GuideMapCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        bgView.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
+        shaowBg.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
+        //设置图片显示方式
+        imgV.contentMode = .scaleAspectFill
+        //设置图片超出容器的部分不显示
+        imgV.clipsToBounds = true
+        bgView.layer.cornerRadius = 10
+        bgView.layer.masksToBounds = true
         
-//        imgV.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 50, height: 50))
-        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        imgV.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 10, height: 10))
+
     }
     
     func showData() {
@@ -50,10 +61,9 @@ class HDLY_GuideMapCell: UITableViewCell {
             imgV.kf.setImage(with: URL.init(string: (model1.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
         }
         typeL.text = model1.version
-        //设置图片显示方式
-        imgV.contentMode = .scaleAspectFill
-        //设置图片超出容器的部分不显示
-        imgV.clipsToBounds = true
+        
+
+        
         // 免费类型：0不免费,1所有人免费,2svip免费
         priceL.isHidden = true
         vipPriceL.isHidden = true

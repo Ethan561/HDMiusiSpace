@@ -19,6 +19,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="299.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pts-fd-s4H">
+                        <rect key="frame" x="20" y="20" width="280" height="259.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhP-Rr-k4w">
                         <rect key="frame" x="20" y="20" width="280" height="259.5"/>
                         <subviews>
@@ -74,7 +78,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f1v-fP-LGh" firstAttribute="height" secondItem="Jn5-JV-WLt" secondAttribute="height" id="028-hz-T1h"/>
                             <constraint firstItem="52d-Y8-7FY" firstAttribute="leading" secondItem="39v-14-5fS" secondAttribute="trailing" constant="8" id="3aC-Wu-VO5"/>
@@ -96,9 +100,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="LhP-Rr-k4w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="06i-MC-YNT"/>
+                    <constraint firstItem="pts-fd-s4H" firstAttribute="leading" secondItem="LhP-Rr-k4w" secondAttribute="leading" id="Aad-I6-fCe"/>
                     <constraint firstItem="LhP-Rr-k4w" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Q5z-ZU-BbJ"/>
                     <constraint firstAttribute="trailing" secondItem="LhP-Rr-k4w" secondAttribute="trailing" constant="20" id="YQB-i7-Bz7"/>
+                    <constraint firstItem="pts-fd-s4H" firstAttribute="top" secondItem="LhP-Rr-k4w" secondAttribute="top" id="Ycv-Cp-7Z3"/>
                     <constraint firstAttribute="bottom" secondItem="LhP-Rr-k4w" secondAttribute="bottom" constant="20" id="ds4-hr-1Zf"/>
+                    <constraint firstItem="pts-fd-s4H" firstAttribute="bottom" secondItem="LhP-Rr-k4w" secondAttribute="bottom" id="v24-eD-OWg"/>
+                    <constraint firstItem="pts-fd-s4H" firstAttribute="trailing" secondItem="LhP-Rr-k4w" secondAttribute="trailing" id="xt9-Hx-FZA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -107,6 +115,7 @@
                 <outlet property="freeL" destination="vLP-70-rkF" id="VvG-be-ujQ"/>
                 <outlet property="imgV" destination="6e3-B5-ick" id="Shh-0c-CFB"/>
                 <outlet property="priceL" destination="f1v-fP-LGh" id="AAE-mM-Xig"/>
+                <outlet property="shaowBg" destination="pts-fd-s4H" id="w94-55-rTt"/>
                 <outlet property="typeL" destination="52d-Y8-7FY" id="jgr-ec-iMM"/>
                 <outlet property="vipPriceL" destination="Jn5-JV-WLt" id="MCd-6i-vcU"/>
             </connections>

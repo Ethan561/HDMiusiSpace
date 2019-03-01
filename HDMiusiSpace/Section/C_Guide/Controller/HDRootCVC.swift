@@ -108,7 +108,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             }
         }else {
             if currentCityName == str {
-
+                
             }else {
                 btn_location.setTitle(str, for: .normal)
                 //定位按钮设置

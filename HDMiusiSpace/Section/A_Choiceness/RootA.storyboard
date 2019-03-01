@@ -253,6 +253,40 @@
             </objects>
             <point key="canvasLocation" x="3301.5999999999999" y="-1057.4212893553224"/>
         </scene>
+        <!--Search MoreVC-->
+        <scene sceneID="Zzs-nc-Xhs">
+            <objects>
+                <viewController storyboardIdentifier="HDSSL_SearchMoreVC" id="PYq-Bb-Uu6" customClass="HDSSL_SearchMoreVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LYl-B2-wPd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hPg-C5-nLD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="PYq-Bb-Uu6" id="nFI-C9-uy8"/>
+                                    <outlet property="delegate" destination="PYq-Bb-Uu6" id="qo4-c0-Okn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hPg-C5-nLD" firstAttribute="bottom" secondItem="gb2-rA-OEN" secondAttribute="bottom" id="Km1-OK-ksB"/>
+                            <constraint firstItem="hPg-C5-nLD" firstAttribute="leading" secondItem="gb2-rA-OEN" secondAttribute="leading" id="OhA-aR-kP7"/>
+                            <constraint firstItem="hPg-C5-nLD" firstAttribute="trailing" secondItem="gb2-rA-OEN" secondAttribute="trailing" id="gnL-2i-dfg"/>
+                            <constraint firstItem="hPg-C5-nLD" firstAttribute="top" secondItem="LYl-B2-wPd" secondAttribute="top" id="weE-rl-raH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gb2-rA-OEN"/>
+                    </view>
+                    <connections>
+                        <outlet property="dTableView" destination="hPg-C5-nLD" id="c9y-CU-jTY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNd-bz-wkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4048.8000000000002" y="-1065.5172413793105"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon_delete" width="15" height="19"/>

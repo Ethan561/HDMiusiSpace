@@ -51,10 +51,15 @@ class HDLY_GuideCard2Cell: UITableViewCell {
         bgView.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
         bgView1.configShadow(cornerRadius: 10, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: CGSize.zero)
 
+    }
+
+    override func layoutSubviews() {
+         super.layoutSubviews()
+        
         imgV.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 10, height: 10))
         imgV1.addRoundedCorners(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radii: CGSize.init(width: 10, height: 10))
     }
-
+    
     func showViewData() {
         if dataArray != nil {
             guard let model = dataArray?.first else {
@@ -64,10 +69,10 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 imgV.kf.setImage(with: URL.init(string: (model.img!)), placeholder: UIImage.grayImage(sourceImageV: imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             
-            //设置图片显示方式
-            imgV.contentMode = .scaleAspectFill
-            //设置图片超出容器的部分不显示
-            imgV.clipsToBounds = true
+//            //设置图片显示方式
+//            imgV.contentMode = .scaleAspectFill
+//            //设置图片超出容器的部分不显示
+//            imgV.clipsToBounds = true
             
             titleL.text = model.title
             if model.type == 0 {//0数字编号版 1列表版 2扫一扫版

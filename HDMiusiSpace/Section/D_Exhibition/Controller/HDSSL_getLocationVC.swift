@@ -212,6 +212,7 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         dTableView.register(RecentCitiesTableViewCell.self, forCellReuseIdentifier: recentCell)
         dTableView.register(CurrentCityTableViewCell.self, forCellReuseIdentifier: currentCell)
         dTableView.register(HotCityTableViewCell.self, forCellReuseIdentifier: hotCityCell)
+        dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         // 右边索引
         dTableView.sectionIndexColor = mainColor

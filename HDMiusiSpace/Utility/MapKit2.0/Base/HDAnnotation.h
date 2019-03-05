@@ -32,17 +32,20 @@ typedef enum{
 @property (nonatomic, strong) NSString   *subtitle;     // 小坐标，一般不显示
 @property (nonatomic, strong) NSString   *identify;     // 展品的编号
 @property (nonatomic, strong) NSString   *audioId;     //
+@property (nonatomic, strong) NSString   *exhibition_id;
 
 @property (nonatomic, strong) NSString   *poiImgPath;   // 展品的POI显示的图片
 @property (nonatomic, strong) NSString   *audio;        // 展品的音频地址
 @property (nonatomic, strong) NSString   *pointCount;
 @property (nonatomic, strong) NSString   *star;//评星
 @property (nonatomic, assign) NSInteger  type; //类型1音频2列表
+@property (nonatomic, assign) NSInteger  exhibition_type;
 
 @property (nonatomic, assign) BOOL       isHighShow;    // 是否重点展品
 @property (nonatomic, strong) NSString   *poiBigPath;   // 展品放大时候图片
 @property (nonatomic, strong) NSString   *serviceType;  // 服务设施类型
 @property (nonatomic, assign) NSInteger   beaconNum;    // 当前点的蓝牙号
+
 @property (nonatomic, strong) NSString   *beaconCount;  // 一对多蓝牙数量
 @property (nonatomic, assign) AnnotationType annType;   // 当前POI对应的展品的播放状态
 @property (nonatomic, strong) HDMapModel *res;

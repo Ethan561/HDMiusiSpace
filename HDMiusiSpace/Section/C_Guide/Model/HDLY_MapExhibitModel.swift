@@ -39,11 +39,13 @@ struct HDLY_MapList: Codable {
     let longitude, latitude: String
     let star, exhibitionID: TStrInt
     let audio_id: Int
+    let exhibition_type: Int //0数字编号版 1列表版 2扫一扫版
     
     enum CodingKeys: String, CodingKey {
         case type, title, audio, longitude, latitude, star
         case exhibitionID = "exhibition_id"
         case audio_id
+        case exhibition_type
     }
     
 }

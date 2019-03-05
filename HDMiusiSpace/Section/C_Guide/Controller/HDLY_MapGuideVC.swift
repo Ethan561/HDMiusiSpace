@@ -74,13 +74,28 @@ class HDLY_MapGuideVC: HDItemBaseVC {
 
     @objc func showExhibitListNoti(noti: Notification) {
         let ann:HDAnnotation = noti.object as! HDAnnotation
-        let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
-        vc.exhibition_id = Int(ann.identify) ?? 0
+        let sb = UIStoryboard.init(name: "RootC", bundle: nil)
+
+        if ann.exhibition_type == 0 {//0数字编号版 1列表版 2扫一扫版
+            let vc:HDLY_NumGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_NumGuideVC") as! HDLY_NumGuideVC
+            vc.titleName = ann.title
+            vc.exhibition_id = Int(ann.exhibition_id) ?? 0
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if ann.exhibition_type == 1 {
+            let vc:HDLY_ExhibitListVC = sb.instantiateViewController(withIdentifier: "HDLY_ExhibitListVC") as! HDLY_ExhibitListVC
+            vc.exhibition_id = Int(ann.exhibition_id) ?? 0
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if ann.exhibition_type == 2 {
+            let vc:HDLY_QRGuideVC = sb.instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
+            vc.titleName = ann.title
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+
         let userDefaults = UserDefaults.standard
         let key = String.init(format: "isReadPin_%@", ann.identify)
         userDefaults.set("1", forKey: key)
-//        self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -208,6 +223,7 @@ extension HDLY_MapGuideVC {
                 ann.audio = model.audio
                 ann.title = model.title
                 ann.annType = kAnnotationType_One
+                ann.exhibition_type = model.exhibition_type
                 if model.type == 2 {
                     ann.annType = kAnnotationType_More
                 }
@@ -215,6 +231,8 @@ extension HDLY_MapGuideVC {
                 ann.type = model.type
                 ann.identify = String.init(format: "%ld", model.audio_id)
                 ann.audioId = String.init(format: "%ld", model.audio_id)
+                ann.exhibition_id = String.init(format: "%ld", model.exhibitionID.int)
+
                 let key = "isReadPin_\(ann.identify!)"
                 let isRead: String? = userDef.object(forKey: key) as? String
                 if isRead == "1" {

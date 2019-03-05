@@ -529,7 +529,8 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
     self.landScapeControlView.player = player;
     self.portraitControlView.player = player;
     /// 封面图加到播放视图底部了，解决播放时候黑屏闪一下问题
-    [player.currentPlayerManager.view insertSubview:self.coverImageView atIndex:0];
+//    [player.currentPlayerManager.view insertSubview:self.coverImageView atIndex:0];
+    [player.currentPlayerManager.view setBackgroundColor:[UIColor blackColor]];
     self.coverImageView.frame = player.currentPlayerManager.view.bounds;
     self.coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }

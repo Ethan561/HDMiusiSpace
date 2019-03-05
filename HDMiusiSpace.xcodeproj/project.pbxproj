@@ -2619,8 +2619,8 @@
 		D6C9FC9B211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D61BC32A2229020D006F5631 /* HDSSL_SearchMoreVC.swift */,
 				D6C9FCC5211834E8007C8E56 /* HDRootAVC.swift */,
+				D61BC32A2229020D006F5631 /* HDSSL_SearchMoreVC.swift */,
 				A737389C2140D1EF009ACB4F /* HDSSL_SearchVC.swift */,
 			);
 			path = Controller;

@@ -25,7 +25,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     
     var infoModel: CourseDetail?
     var courseId: String?
-    var isCanLearnCourse = false
+    var isFreeCourse = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,17 +86,15 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                     self.buyBtn.setTitle("¥\(self.infoModel!.data.yprice!)", for: .normal)
                     self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
                     self.bottomHCons.constant = 74
-                    self.isCanLearnCourse = false
                 }else {
                     self.bottomHCons.constant = 0
                     self.bottomView.isHidden = true
-                    self.isCanLearnCourse = true
-
                 }
+                self.isFreeCourse = false
             }else {
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
-                self.isCanLearnCourse = true
+                self.isFreeCourse = true
             }
 //            self.getWebHeight()
             self.tableView.reloadData()
@@ -157,7 +155,20 @@ extension HDLY_CourseList_SubVC2 {
         }else if index == 1 {
             return webViewH
         }else if index == 2 {
-            return 145*ScreenWidth/375.0
+            var content: String?
+            if isFreeCourse == false {
+                content = infoModel?.data.buynotice
+            }else {
+                content = infoModel?.data.notice
+            }
+            guard let buynotice = content else {
+                return 0.01
+            }
+            if buynotice.count < 1 {
+                return 0.01
+            }
+            let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
+            return textH + 80 + 15
         }
         return 0.01
     }
@@ -201,12 +212,22 @@ extension HDLY_CourseList_SubVC2 {
         }
         else if index == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
-            cell?.contentL.text = model?.buynotice
-            if isCanLearnCourse == false {
+            if isFreeCourse == false {
                 cell?.titleL.text = "购买须知"
+                cell?.contentL.text = model?.buynotice
+                if model?.buynotice.count ?? 0 < 1 {
+                    cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                }
             }else {
                 cell?.titleL.text = "学习须知"
+                cell?.contentL.text = model?.notice
+                if model?.notice?.count ?? 0 < 1 {
+                    cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                }
             }
+  
             return cell!
         }
         

@@ -561,7 +561,7 @@ extension HDLY_CourseDes_VC {
             guard let buynotice = content else {
                 return 0.01
             }
-            if buynotice.count < 3 {
+            if buynotice.count < 1 {
                 return 0.01
             }
             let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
@@ -650,10 +650,18 @@ extension HDLY_CourseDes_VC {
             if isFreeCourse == false {
                 cell?.titleL.text = "购买须知"
                 cell?.contentL.text = model?.buynotice
-
+                if model?.buynotice.count ?? 0 < 1 {
+                    cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                }
+                
             }else {
                 cell?.titleL.text = "学习须知"
                 cell?.contentL.text = model?.notice
+                if model?.notice?.count ?? 0 < 1 {
+                    cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                }
             }
             
             return cell!

@@ -219,7 +219,7 @@ extension HDLY_ExhibitListVC:UITableViewDataSource, UITableViewDelegate {
         guard let video = listModel.audio else {
             return
         }
-        if listModel.title == currentModel.title {
+        if listModel.title == currentModel.title && player.state != .stopped {
             cell?.nameL.textColor = UIColor.HexColor(0xE8593E)
             if player.state == .playing {
                 player.pause()
@@ -256,9 +256,18 @@ extension HDLY_ExhibitListVC {
     
     func finishPlaying() {
         let cell0:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
-        cell0?.setSelected(false, animated: true)
+        //cell0?.setSelected(false, animated: true)
+        
+        let listModel = dataArr[selectRow]
+        if listModel.title == currentModel.title {
+            cell0?.nameL.textColor = UIColor.HexColor(0xE8593E)
+            cell0?.tipImgV.image = UIImage.init(named: "dl_icon_paly")
+        }
+        
+        /*
         if selectRow + 1 < dataArr.count {
             selectRow = selectRow + 1
+            
             let cell:HDLY_ExhibitCell? = self.tableView.cellForRow(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_ExhibitCell
             let listModel = dataArr[selectRow]
             guard let video = listModel.audio else {
@@ -287,7 +296,8 @@ extension HDLY_ExhibitListVC {
                     isUpload = false
                 }
             }
-        }
+        }*/
+        
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {

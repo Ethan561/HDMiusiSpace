@@ -435,6 +435,22 @@ extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
     }
 }
 
+extension HDLY_CourseList_SubVC3: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+        if self.tableView == scrollView {
+            //滚动时刷新webview
+            for view in self.tableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+        }
+    }
+}
+
 extension HDLY_CourseList_SubVC3 : HDLY_AudioPlayer_Delegate {
     
     @objc func stopPlayerNoti(_ noti: Notification) {

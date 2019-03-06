@@ -591,6 +591,21 @@ extension HDSSL_StrategyDetialVC: HDZQ_CommentActionDelegate {
     
 }
 
+extension HDSSL_StrategyDetialVC: UIScrollViewDelegate {
+    //
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //LOG("*****:HDLY_ListenDetail_VC:\(scrollView.contentOffset.y)")
+        if self.myTableView == scrollView {
+            //滚动时刷新webview
+            for view in self.myTableView.visibleCells {
+                if view.isKind(of: HDLY_CourseWeb_Cell.self) {
+                    let cell = view as! HDLY_CourseWeb_Cell
+                    cell.webview.setNeedsLayout()
+                }
+            }
+        }
+    }
+}
 
 //MARK: ---- WebView Delegate ----
 

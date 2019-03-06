@@ -174,6 +174,9 @@ class HDLY_Listen_SubVC:                                                        
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
+            if self.tagsArr.count < 4 {
+                return self.tagsArr.count
+            }
             if isFolder == true {
                 return self.tagsArr.count+1
             }

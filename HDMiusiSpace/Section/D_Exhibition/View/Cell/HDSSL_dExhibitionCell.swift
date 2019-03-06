@@ -14,12 +14,12 @@ class HDSSL_dExhibitionCell: UITableViewCell {
     @IBOutlet weak var cellTitle: UILabel!
     @IBOutlet weak var cell_locaAndPrice: UILabel!
     @IBOutlet weak var cell_number: UILabel!
-    @IBOutlet weak var cell_star: UIImageView!
+    @IBOutlet weak var cell_starL: UILabel!
     @IBOutlet weak var cell_tagBg: UIView!
-    @IBOutlet weak var tagL: UILabel!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var shadowBg: UIView!
     @IBOutlet weak var cell_noStarLab: UILabel!
+    @IBOutlet weak var tagBgWidthCons: NSLayoutConstraint!
     
     var model: HDLY_dExhibitionListD? {
         didSet {
@@ -50,34 +50,21 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             cell_img.contentMode = .scaleAspectFill
             //设置图片超出容器的部分不显示
             cell_img.clipsToBounds = true
-            var imgStr = ""
-            
             cell_noStarLab.isHidden = true
             cell_number.isHidden = false
-            cell_star.isHidden = false
+            cell_starL.isHidden = false
             
             if star == 0 {
                 //评分为0的时候显示暂无评星
                 cell_noStarLab.isHidden = false
                 cell_number.isHidden = true
-                cell_star.isHidden = true
-            }else if star < 2 {
-                imgStr = "exhibitionCmt_1_5"
-            }else if star >= 2 && star < 4 {
-                imgStr = "exhibitionCmt_2_5"
-            }else if star >= 4 && star < 6 {
-                imgStr = "exhibitionCmt_3_5"
-            }else if star >= 6 && star < 8 {
-                imgStr = "exhibitionCmt_4_5"
-            }else if star >= 8 {
-                imgStr = "exhibitionCmt_5_5"
-                
+                cell_starL.isHidden = true
             }
-            cell_star.image = UIImage.init(named: imgStr)
             
             var x:CGFloat = 0
             var imgWArr = [CGFloat]()
-            
+            var iconBgWidth:CGFloat = 0
+
             for (i,imgStr) in model!.iconList!.enumerated() {
                 let imgV = UIImageView()
                 imgV.contentMode = .scaleAspectFit
@@ -100,8 +87,11 @@ class HDSSL_dExhibitionCell: UITableViewCell {
                     }
                     imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
                     self.cell_tagBg.addSubview(imgV)
+                    iconBgWidth = x + imgWArr.last!
+                    self.tagBgWidthCons.constant = iconBgWidth
                 }
             }
+            
         }
     }
     

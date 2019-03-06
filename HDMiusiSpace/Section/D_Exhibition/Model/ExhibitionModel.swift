@@ -43,6 +43,8 @@ struct HDLY_dExhibitionListD: Codable {
     var star: TStrInt?
     var iconList: [String]?
     
+    var iconTitleString: NSMutableAttributedString?
+    
     enum CodingKeys: String, CodingKey {
         case exhibitionID = "exhibition_id"
         case img, title, address

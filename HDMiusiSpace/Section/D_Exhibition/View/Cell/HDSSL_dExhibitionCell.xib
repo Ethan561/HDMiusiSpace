@@ -61,10 +61,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhq-9c-sqK">
-                                <rect key="frame" x="118" y="217.5" width="150" height="18"/>
+                                <rect key="frame" x="118" y="218.5" width="150" height="16"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="cKa-CT-uFh"/>
+                                    <constraint firstAttribute="height" constant="16" id="cKa-CT-uFh"/>
                                     <constraint firstAttribute="width" constant="150" id="fn2-kO-Hyd"/>
                                 </constraints>
                             </view>

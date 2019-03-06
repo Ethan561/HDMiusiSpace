@@ -174,7 +174,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         self.titleLabel.isHidden = true
         
         let p = max(0.0, min(1.0, progress))
-        print("progress:\(p)")
+        //print("progress:\(p)")
 
         if progress < 1.2 {
             let imgViewWith = 49.0 - p * 10

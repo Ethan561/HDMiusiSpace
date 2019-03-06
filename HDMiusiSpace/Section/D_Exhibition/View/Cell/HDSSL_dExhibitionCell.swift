@@ -75,11 +75,11 @@ class HDSSL_dExhibitionCell: UITableViewCell {
                     if img != nil{
                         imgSize = img!.size
                     }else{
-                        imgSize = CGSize.init(width: 15, height: 15)
+                        imgSize = CGSize.init(width: 12, height: 12)
                     }
 //                    let imgSize = img!.size
-                    let imgH: CGFloat = 15
-                    let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                    let imgH: CGFloat = 12
+                    let imgW: CGFloat = imgH * imgSize.width/imgSize.height
                     imgWArr.append(imgW)
                     if i > 0 {
                         let w = imgWArr[i-1]

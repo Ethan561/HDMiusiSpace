@@ -466,7 +466,7 @@ extension HDLY_CourseList_SubVC3 : HDLY_AudioPlayer_Delegate {
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
        // timeL.text = "\(currentTime)/\(totalTime)"
-        LOG(" progress: \(progress)")
+        //LOG(" progress: \(progress)")
     }
     
 }

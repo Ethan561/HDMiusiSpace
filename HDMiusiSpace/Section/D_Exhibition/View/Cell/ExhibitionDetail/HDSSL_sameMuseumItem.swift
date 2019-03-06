@@ -16,9 +16,11 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
     @IBOutlet weak var item_title: UILabel!
     @IBOutlet weak var item_loc: UILabel!
     @IBOutlet weak var item_iconBg: UIView!
-    @IBOutlet weak var item_star: UIImageView!
     @IBOutlet weak var item_starNum: UILabel!
     
+    @IBOutlet weak var starL: UILabel!
+    @IBOutlet weak var tagBgWidthCons: NSLayoutConstraint!
+
     @IBOutlet weak var noStarL: UILabel!
     var model :ExhibitionList? {
         didSet {
@@ -54,26 +56,14 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             
             if model?.star.int == 0 {
                 noStarL.isHidden = false
+                starL.isHidden = true
+                item_starNum.isHidden = true
             }
-            
-            let star: Float = Float(model!.star.string) ?? 0.0
-            var imgStr = ""
-            if star < 2.0 {
-                imgStr = "exhibitionCmt_1_5"
-            }else if star >= 2.0 && star < 4.0 {
-                imgStr = "exhibitionCmt_2_5"
-            }else if star >= 4.0 && star < 6.0 {
-                imgStr = "exhibitionCmt_3_5"
-            }else if star >= 6.0 && star < 8.0 {
-                imgStr = "exhibitionCmt_4_5"
-            }else if star >= 8.0 {
-                imgStr = "exhibitionCmt_5_5"
-            }
-            item_star.image = UIImage.init(named: imgStr)
             
             var x:CGFloat = 0
             var imgWArr = [CGFloat]()
-            
+            var iconBgWidth:CGFloat = 0
+
             for (i,imgStr) in model!.iconList!.enumerated() {
                 let imgV = UIImageView()
                 imgV.contentMode = .scaleAspectFit
@@ -81,13 +71,13 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
                     
                     var imgSize:CGSize!
                     if img == nil{
-                        imgSize = CGSize.init(width: 20, height: 15)
+                        imgSize = CGSize.init(width: 15, height: 12)
                     }else {
                         imgSize = img!.size
                     }
                     
-                    let imgH: CGFloat = 15
-                    let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                    let imgH: CGFloat = 10
+                    let imgW: CGFloat = imgH*imgSize.width/imgSize.height
                     imgWArr.append(imgW)
                     if i > 0 {
                         let w = imgWArr[i-1]
@@ -95,6 +85,8 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
                     }
                     imgV.frame = CGRect.init(x: x, y: 2, width: imgW, height: imgH)
                     self.item_iconBg.addSubview(imgV)
+                    iconBgWidth = x + imgWArr.last!
+                    self.tagBgWidthCons.constant = iconBgWidth
                 }
             }
         }

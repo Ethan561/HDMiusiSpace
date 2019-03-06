@@ -29,7 +29,8 @@ struct CourseInfoModel: Codable {
     var recommendsList: [CourseInfoRecommends]?
     var share_url: String?
     var share_des: String?
-
+    var notice: String?
+    
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
         case img, title, buynotice
@@ -49,7 +50,7 @@ struct CourseInfoModel: Codable {
         case recommendsList = "recommends_list"
         case share_url
         case share_des
-
+        case notice
     }
 }
 

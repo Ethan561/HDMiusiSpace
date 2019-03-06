@@ -831,11 +831,11 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                             if img != nil{
                                 imgSize = img!.size
                             }else{
-                                imgSize = CGSize.init(width: 15, height: 15)
+                                imgSize = CGSize.init(width: 12, height: 12)
                             }
                             //                    let imgSize = img!.size
-                            let imgH: CGFloat = 15
-                            let imgW: CGFloat = 15*imgSize.width/imgSize.height
+                            let imgH: CGFloat = 12
+                            let imgW: CGFloat = 12*imgSize.width/imgSize.height
                             imgWArr.append(imgW)
                             if i > 0 {
                                 let w = imgWArr[i-1]
@@ -867,7 +867,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             }
             let size = UIImage.getImageSize(arr[i])
 
-            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width:18 * (size.width/2)/(size.height/2), height: 18))
+            let imgView = UIImageView.init(frame: CGRect.init(x: CGFloat(Int(size1.width/2 + 2) * i), y: 0, width:12 * (size.width/2)/(size.height/2), height: 12))
             imgView.kf.setImage(with: URL.init(string: arr[i]))
             imgView.centerY = bgView.centerY
             bgView.addSubview(imgView)

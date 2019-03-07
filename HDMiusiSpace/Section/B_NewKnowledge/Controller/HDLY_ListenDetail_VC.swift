@@ -93,6 +93,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         player.showFloatingBtn = true
         navBgView.isHidden = true
         navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(avplayerInterruptionPauseNoti(noti:)), name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -483,6 +485,12 @@ extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
         timeL.text = "\(currentTime)/\(totalTime)"
 //      LOG(" progress: \(progress)")
+    }
+    
+    
+    @objc func avplayerInterruptionPauseNoti(noti:Notification) {
+        player.pause()
+        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
     }
     
 }

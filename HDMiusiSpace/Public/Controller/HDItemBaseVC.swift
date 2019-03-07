@@ -148,6 +148,13 @@ class HDItemBaseVC: UIViewController {
             vc.museumId = articleId
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        else if type == 4 {
+            //轻听随看
+            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
+            desVC.listen_id = String.init(format: "%ld", articleId)
+            self.navigationController?.pushViewController(desVC, animated: true)
+        }
+
     }
     
     func didSelectItemAtPagerViewCell(model: BbannerModel , vc: UIViewController) {

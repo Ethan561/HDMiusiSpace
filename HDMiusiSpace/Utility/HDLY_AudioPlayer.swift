@@ -52,6 +52,20 @@ final class HDLY_AudioPlayer: NSObject {
     private override init() {
         super.init()
        config()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:NSNotification.Name.AVAudioSessionInterruption, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//            selector:@selector(audioInterruption)
+//            name:AVAudioSessionInterruptionNotification object:nil];//设置通知
+//
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//            selector:@selector(audioRouteChangeListenerCallback:)
+//            name:AVAudioSessionRouteChangeNotification object:nil];//设置通知
+
+        
     }
     
     //初始化设置
@@ -283,6 +297,65 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
 //        }
     }
     
+    
+}
+
+extension HDLY_AudioPlayer{
+    
+    @objc func audioRouteChangeNoti(_ noti: Notification) {
+        LOG("==== ----- audioRouteChangeNoti")
+    }
+    
+    @objc func audioInterruptionNoti() {
+        LOG("===== audioInterruptionNoti")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
+
+    }
+    
+    /*
+    #pragma mark -------- Interrupt Methods --------
+    
+    // 判断耳机拔插事件的
+    - (void)audioRouteChangeListenerCallback:(NSNotification*)notification {
+    NSDictionary *interuptionDict = notification.userInfo;
+    NSInteger routeChangeReason = [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+    switch (routeChangeReason) {
+    case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+    //LOG(@"AVAudioSessionRouteChangeReasonNewDeviceAvailable");
+    // LOG(@"耳机插入");
+    break;
+    
+    case AVAudioSessionRouteChangeReasonCategoryChange:            // called at start - also when other audio wants to play
+    // LOG(@"AVAudioSessionRouteChangeReasonCategoryChange");
+    break;
+    
+    case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+    dispatch_async(dispatch_get_main_queue(), ^{
+    //   LOG(@"AVAudioSessionRouteChangeReasonOldDeviceUnavailable");
+    //  LOG(@"耳机拔出，停止播放操作");
+    [self playerDidEnterBackground];
+    });
+    break;
+    }
+    }
+    
+    - (void)audioInterruption
+    {
+    if (_playerStatus == kPlay_Status_Playing) {
+    //        [self audioControlAction];
+    LOG(@"播放")
+    }else if (_playerStatus == kPlay_Status_Pause) {
+    LOG(@"暂停")
+    [self.audioPlayer pause];
+    _currentTime = CMTimeGetSeconds(_audioPlayer.currentTime);
+    _playerStatus = kPlay_Status_Pause;
+    [self removeTimeObserverFromPlayer];
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(updatePlayBtnStatus:)]) {
+    [self.delegate updatePlayBtnStatus:NO];
+    }
+    }
+    }*/
     
 }
 

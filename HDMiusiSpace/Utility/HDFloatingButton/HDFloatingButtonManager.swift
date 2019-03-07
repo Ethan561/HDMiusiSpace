@@ -29,6 +29,8 @@ final class HDFloatingButtonManager: NSObject {
         
         NotificationCenter.default.addObserver(self, selector: #selector(avplayerFinishPlaying(noti:)), name: NSNotification.Name(rawValue: "AVPlayerFinishPlaying"), object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(avplayerInterruptionPauseNoti(noti:)), name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
+
     }
     
     func setup() {
@@ -117,6 +119,13 @@ final class HDFloatingButtonManager: NSObject {
     
     @objc func avplayerFinishPlaying(noti:Notification) {
         floatingBtnView.closeAction()
+    }
+    
+    @objc func avplayerInterruptionPauseNoti(noti:Notification) {
+        
+//        floatingBtnView.showType = .FloatingButtonPause
+//        floatingBtnView.showView()
+        
     }
     
 }

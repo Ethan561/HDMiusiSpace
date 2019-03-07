@@ -67,5 +67,6 @@
 /// 显示控制层
 - (void)showControlViewWithAnimated:(BOOL)animated;
 
+- (void)showCoverImagView;
 
 @end

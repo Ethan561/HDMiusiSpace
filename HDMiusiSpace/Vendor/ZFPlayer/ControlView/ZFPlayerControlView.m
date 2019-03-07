@@ -535,6 +535,10 @@ static const CGFloat ZFPlayerControlViewAutoFadeOutTimeInterval = 0.25f;
     self.coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
+- (void)showCoverImagView {
+     [_player.currentPlayerManager.view insertSubview:self.coverImageView atIndex:0];
+}
+
 #pragma mark - getter
 
 - (ZFPortraitControlView *)portraitControlView {

@@ -38,11 +38,12 @@ class WorldHotCell: UITableViewCell {
     }
     
     func setupUI() {
-        if hotArray.count == 0 {
-            return
-        }
+        
         for v in self.subviews {
             v.removeFromSuperview()
+        }
+        if hotArray.count == 0 {
+            return
         }
         
         self.backgroundColor = cellColor

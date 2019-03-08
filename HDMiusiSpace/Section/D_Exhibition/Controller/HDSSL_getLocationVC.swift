@@ -233,6 +233,9 @@ class HDSSL_getLocationVC: HDItemBaseVC {
             if weakSelf?.currentLeftType == index {
                 return
             }
+            weakSelf?.worldLocView.hotArray.removeAll()
+            //刷新国际页面
+            weakSelf?.worldLocView.refreshTable(2)
             weakSelf?.currentLeftType = index
             weakSelf?.viewModel.request_getWorldCityList(kind: 2, type: index, isrecommand: index == 0 ? true : false, vc: self)
         }

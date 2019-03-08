@@ -176,19 +176,25 @@ class HDZQ_SignLabelVC: UIViewController {
     func backToRootVC() {
         //获取根VC
         var rootVC = self.presentingViewController
-        while let parent = rootVC?.presentingViewController {
-            if parent.isKind(of: HDTagChooseVC.self) {
-                parent.dismiss(animated: false, completion: nil)
-                return
+        if rootVC?.isKind(of: UITabBarController.self) == true{
+            rootVC?.dismiss(animated: false, completion: nil)
+            return
+        }else {
+            while let parent = rootVC?.presentingViewController {
+                if parent.isKind(of: HDTagChooseVC.self) {
+                    parent.dismiss(animated: false, completion: nil)
+                    return
+                }
+                if parent.isKind(of: HDTabBarVC.self) {
+                    parent.dismiss(animated: false, completion: nil)
+                    return
+                }
+                rootVC = parent
             }
-            if parent.isKind(of: HDTabBarVC.self) {
-                parent.dismiss(animated: false, completion: nil)
-                return
-            }
-            rootVC = parent
+            //释放所有下级视图
+            rootVC?.dismiss(animated: false, completion: nil)
         }
-        //释放所有下级视图
-        rootVC?.dismiss(animated: false, completion: nil)
+        
     }
     //MARK:--准备提交数据
     func readyUpload() {

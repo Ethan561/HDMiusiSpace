@@ -295,6 +295,8 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
+                self.controlView.showCoverImagView()
+
             }
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
@@ -316,7 +318,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.assetURL = NSURL.init(string: course.video)! as URL
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
-                
+                 self.controlView.showCoverImagView()
             }
         } else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {

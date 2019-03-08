@@ -555,6 +555,9 @@ extension HDLY_CourseDes_VC {
             var content: String?
             if isFreeCourse == false {
                 content = infoModel?.data.buynotice
+                if self.infoModel?.data.isBuy == 1 {  //1已购买
+                    return 0.01
+                }
             }else {
                 content = infoModel?.data.notice
             }
@@ -648,10 +651,18 @@ extension HDLY_CourseDes_VC {
         else if indexPath.section == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
             if isFreeCourse == false {
+                
                 cell?.titleL.text = "购买须知"
                 cell?.contentL.text = model?.buynotice
                 if model?.buynotice.count ?? 0 < 1 {
                     cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                }
+                
+                cell?.titleL.isHidden = false
+                if self.infoModel?.data.isBuy == 1 {  //1已购买
+                    cell?.titleL.text = ""
+                    cell?.titleL.isHidden = true
                     cell?.contentL.text = ""
                 }
                 

@@ -36,7 +36,7 @@ class HDLY_SameExhibitionListVC: HDItemBaseVC {
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getSameExhibitionList(exhibition_id: exhibitionId, museum_id: museumId, skip: 0, take: 20, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getSameExhibitionList(exhibition_id: exhibitionId, museum_id: museumId, skip: 0, take: 200, api_token: token) , showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

@@ -54,7 +54,9 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             item_loc.text = model!.address
             item_starNum.text = model!.star.string
             
-            if model?.star.int == 0 {
+            let star: Float! = Float(model!.star.string)
+            if star == 0 {
+                //评分为0的时候显示暂无评星
                 noStarL.isHidden = false
                 starL.isHidden = true
                 item_starNum.isHidden = true

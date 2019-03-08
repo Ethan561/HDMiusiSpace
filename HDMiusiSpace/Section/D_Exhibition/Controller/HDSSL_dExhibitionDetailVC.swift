@@ -1091,6 +1091,7 @@ extension HDSSL_dExhibitionDetailVC {
         if model.type == 1{
             let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDLY_SameExhibitionListVC") as! HDLY_SameExhibitionListVC
             vc.museumId = self.exdataModel?.data?.museum_id ?? 0
+            vc.exhibitionId = self.exhibition_id ?? 0
             vc.titleName = "同馆展览-" + self.exdataModel!.data!.museumTitle!
             self.navigationController?.pushViewController(vc, animated: true)
             

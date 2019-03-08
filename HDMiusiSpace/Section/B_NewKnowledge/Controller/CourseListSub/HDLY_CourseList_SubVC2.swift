@@ -56,7 +56,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             token = HDDeclare.shared.api_token!
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseInfo(api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseDetailInfo(api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -158,6 +158,9 @@ extension HDLY_CourseList_SubVC2 {
             var content: String?
             if isFreeCourse == false {
                 content = infoModel?.data.buynotice
+                if self.infoModel?.data.isBuy == 1 {
+                    return 0.01
+                }
             }else {
                 content = infoModel?.data.notice
             }
@@ -218,6 +221,12 @@ extension HDLY_CourseList_SubVC2 {
                 if model?.buynotice.count ?? 0 < 1 {
                     cell?.titleL.text = ""
                     cell?.contentL.text = ""
+                }
+                cell?.titleL.isHidden = false
+                if self.infoModel?.data.isBuy == 1 {
+                    cell?.titleL.text = ""
+                    cell?.contentL.text = ""
+                    cell?.titleL.isHidden = true
                 }
             }else {
                 cell?.titleL.text = "学习须知"

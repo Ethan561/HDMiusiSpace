@@ -28,7 +28,7 @@ class HDLY_MyDynamicCell: UITableViewCell {
     @IBOutlet weak var desView: UIView!
     @IBOutlet weak var des1L: UILabel!
     @IBOutlet weak var des2L: UILabel!
-    
+    @IBOutlet weak var imageType: UIImageView!
     @IBOutlet weak var titleLTopCons: NSLayoutConstraint!
     @IBOutlet weak var moreBtn: UIButton!
     

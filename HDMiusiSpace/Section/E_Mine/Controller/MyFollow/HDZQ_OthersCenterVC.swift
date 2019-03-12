@@ -269,8 +269,13 @@ extension HDZQ_OthersCenterVC:UITableViewDataSource,UITableViewDelegate {
             let star: Float! = Float(infoM.star ?? "0")
             if star == 0 {
                 cell?.des1L.text = "暂无评分"
+                cell?.des2L.isHidden = true
+            } else {
+                cell?.des2L.isHidden = false
+                cell?.des1L.text = "缪斯评分"
+                cell?.des2L.text = String(star)
             }
-            cell?.des2L.attributedText = starTitleStrings[indexPath.row]
+            cell?.imageType.kf.setImage(with: URL.init(string: (infoM.iconList?.first ?? "")), placeholder: UIImage.grayImage(sourceImageV: cell!.imageType))
         } else {
             cell?.titleLTopCons.constant = 16
             cell?.desView.isHidden = true

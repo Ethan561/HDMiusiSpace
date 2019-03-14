@@ -26,7 +26,7 @@ class HDItemBaseWebVC: HDItemBaseVC, WKNavigationDelegate, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.titleName
+        self.navTitle = self.titleName
         //
         self.webView.addSubview(self.progressView)
         self.view.addSubview(webView)

@@ -406,6 +406,16 @@ extension HDFloatingButtonView {
         
     }
     
+    @objc func pauseAction() {
+        player.pause()
+        bgView.touchBlock = nil
+        bgView.removeFromSuperview()
+        self.show = false
+        
+    }
+    
+    
+    
     //展开
     @objc func unfoldAction()  {
         self.showType = .FloatingButtonPause

@@ -27,7 +27,7 @@ class HDLY_SameExhibitionListVC: HDItemBaseVC {
         }
         self.dataRequest()
         addRefresh()
-        self.title = titleName
+        self.navTitle = titleName
         
     }
     

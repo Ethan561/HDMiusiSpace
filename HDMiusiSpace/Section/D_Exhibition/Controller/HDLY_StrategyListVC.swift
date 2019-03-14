@@ -26,7 +26,7 @@ class HDLY_StrategyListVC: HDItemBaseVC {
         }
         self.dataRequest()
         addRefresh()
-        self.title = titleName
+        self.navTitle = titleName
         tableView.separatorStyle = .none
     }
     

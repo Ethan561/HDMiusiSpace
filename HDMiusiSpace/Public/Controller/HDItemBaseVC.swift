@@ -14,6 +14,13 @@ class HDItemBaseVC: UIViewController {
 //    var refreshFooter: MJRefreshAutoNormalFooter?
     var isHideBackBtn: Bool = false
     public var isShowNavShadowLayer = true
+    
+    lazy var scrollNavTitleView: HDScrollNaviTitleView = {
+        let v = HDScrollNaviTitleView.init(frame: CGRect.init(x: 60, y: 0, width: ScreenWidth - 120, height: 44))
+        return v
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if isHideBackBtn == true {
@@ -70,11 +77,24 @@ class HDItemBaseVC: UIViewController {
             navigationBar.layer.shadowColor = UIColor.white.cgColor
         }
         
-        
     }
 
+    var navTitle: String?  {
+        didSet {
+            let name = navTitle ?? "  "
+            self.scrollNavTitleView.titleName = name
+            self.scrollNavTitleView.titleFont = UIFont.boldSystemFont(ofSize: 18)
+            self.scrollNavTitleView.titleColor = UIColor.HexColor(0x333333)
+            self.navigationItem.titleView = self.scrollNavTitleView
+        }
+    }
 
-   @objc func back() {
+    func titleRelease() {
+        scrollNavTitleView.removeTimer()
+        scrollNavTitleView.removeFromSuperview()
+    }
+    
+    @objc func back() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -225,4 +245,148 @@ class HDItemBaseVC: UIViewController {
     */
 
 }
+
+
+class HDScrollNaviTitleView: UIView {
+    
+    var titleName: String = "" {
+        didSet {
+            showTitleName()
+        }
+    }
+    
+    var titleFont: UIFont = UIFont.systemFont(ofSize: 17) {
+        didSet {
+            
+        }
+    }
+    
+    var titleColor: UIColor = UIColor.black {
+        didSet {
+            
+        }
+    }
+    
+    lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView.init()
+        sv.isPagingEnabled = false
+        sv.showsHorizontalScrollIndicator = false
+        sv.bounces = false
+        return sv
+    }()
+    
+    lazy var labelFirst: UILabel = {
+        let lab = UILabel.init()
+        lab.textAlignment = .center
+        return lab
+    }()
+    
+    lazy var labelSecond: UILabel = {
+        let lab = UILabel.init()
+        lab.textAlignment = .center
+        return lab
+    }()
+    
+
+    let padding: CGFloat  = 0.5
+    let labelMargin: CGFloat = 10
+    var textWidth:CGFloat = 0
+    
+    //MARK: ====
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.isUserInteractionEnabled = false
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.labelFirst.textColor = titleColor
+        self.labelSecond.textColor = titleColor
+        
+        self.labelFirst.font = titleFont
+        self.labelSecond.font = titleFont
+        
+        let textW = titleName.getContentWidth(font: titleFont)
+        
+        textWidth = textW + labelMargin + scrollView.frame.size.width
+        scrollView.frame = self.bounds
+        
+        if textW <= self.frame.size.width {
+            scrollView.contentSize = self.frame.size
+            labelFirst.frame = self.bounds
+            labelSecond.removeFromSuperview()
+        } else {
+            scrollView.contentSize = CGSize.init(width: textW * 2 + labelMargin + scrollView.frame.size.width, height: self.frame.size.height)
+            labelFirst.frame = CGRect.init(x: 0, y: 0, width: textW, height: self.frame.size.height)
+            labelSecond.frame = CGRect.init(x: textW + labelMargin, y: 0, width: textW, height: self.frame.size.height)
+
+            if myTimer == nil {
+                addTimer()
+            }
+        }
+        
+        
+    }
+    
+    
+    func setupChildView() {
+        self.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.labelFirst)
+        self.scrollView.addSubview(self.labelSecond)
+    }
+    
+    func showTitleName() {
+        setupChildView()
+        if titleName.count > 0 {
+            self.labelFirst.text = titleName
+            self.labelSecond.text = titleName
+        }
+    }
+    
+    var myTimer: Timer?
+    
+    //MARK: ==== timer ===
+    func addTimer() {
+        self.myTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(runTimer), userInfo: nil, repeats: true)
+        guard let tm = myTimer else {
+            return
+        }
+        RunLoop.current.add(tm, forMode: RunLoopMode.commonModes)
+    }
+    
+    @objc func runTimer() {
+        var x = self.scrollView.contentOffset.x
+        x += padding
+        if x <= self.textWidth && (x + padding) >= self.textWidth {
+            x = 0
+        }
+        self.scrollView.setContentOffset(CGPoint.init(x: x, y: 0), animated: false)
+    }
+    
+    func removeTimer() {
+        myTimer?.invalidate()
+        myTimer = nil
+    }
+    
+    deinit {
+        removeTimer()
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 

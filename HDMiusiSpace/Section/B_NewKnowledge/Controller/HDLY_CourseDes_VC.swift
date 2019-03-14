@@ -79,7 +79,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.listenBgView.isHidden = true
         bindViewModel()
         if audioPlayer.state == .playing {
-            HDFloatingButtonManager.manager.floatingBtnView.closeAction()
+            HDFloatingButtonManager.manager.floatingBtnView.playBtnAction()
+            HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
         }
         audioPlayer.showFloatingBtn = false
         navBgView.isHidden = true

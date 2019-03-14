@@ -122,7 +122,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
                 typeL1.text = "数字编号版"
             }else if model1.type == 1 {
                 typeL1.text = "列表版"
-            }else if model1.type == 1 {
+            }else if model1.type == 2 {
                 typeL1.text = "扫一扫版"
             }
             

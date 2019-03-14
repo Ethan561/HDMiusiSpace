@@ -29,8 +29,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = titleName
+        self.navTitle = titleName
         let layout = UICollectionViewFlowLayout()
         let itemW = 90
         let itemH = 60
@@ -76,9 +75,10 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         player.showFloatingBtn = false
         
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        numL.removeObserver(self, forKeyPath: "text")
+        
     }
     
     func setupNavBarItem() {
@@ -156,7 +156,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
             let jsonDecoder = JSONDecoder()
             let model:HDLY_ExhibitListM = try! jsonDecoder.decode(HDLY_ExhibitListM.self, from: data!)
             self.exhibitInfo = model
-            self.title = model.title
+            self.navTitle = model.title
             self.playAction()
             
         }) { (errorCode, msg) in
@@ -207,6 +207,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     }
     
     deinit {
+        numL.removeObserver(self, forKeyPath: "text")
         LOG("==== \(self.className) 释放了")
     }
     

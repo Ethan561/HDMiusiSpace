@@ -29,7 +29,7 @@ class HDLY_QRGuideVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.codeView)
-        self.title = self.titleName
+        self.navTitle = self.titleName
     }
     
     override func viewWillAppear(_ animated: Bool) {

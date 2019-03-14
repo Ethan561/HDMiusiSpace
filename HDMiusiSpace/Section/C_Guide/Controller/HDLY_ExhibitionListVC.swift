@@ -24,7 +24,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
         self.view.addSubview(self.tableView)
-        self.title = self.titleName
+        self.navTitle = self.titleName
         
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
@@ -228,7 +228,7 @@ extension HDLY_ExhibitionListVC:UITableViewDataSource,UITableViewDelegate {
             
         }else if model.type == 2 {
             let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_QRGuideVC") as! HDLY_QRGuideVC
-            self.titleName = model.title ?? ""
+            vc.titleName = model.title ?? ""
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

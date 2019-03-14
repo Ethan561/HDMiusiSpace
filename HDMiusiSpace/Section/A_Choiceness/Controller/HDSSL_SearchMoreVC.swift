@@ -63,6 +63,7 @@ class HDSSL_SearchMoreVC: HDItemBaseVC {
         if searchContent != nil {
             self.textFeild.text = searchContent
             self.func_saveHistory(searchContent!)
+            skip = 0
             self.viewModel.request_search(str: searchContent!, skip: 0, take: 10, type: self.currentType, vc: self)
         }
         
@@ -132,8 +133,9 @@ class HDSSL_SearchMoreVC: HDItemBaseVC {
     }
     //MARK: - 搜索
     @objc func action_search(_ sender: UIButton) {
+        skip = 0
+        self.dTableView.es.resetNoMoreData()
         if (self.textFeild.text?.count)! > 0 {
-            
             //开始搜索
             self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
@@ -228,13 +230,13 @@ extension HDSSL_SearchMoreVC{
                 self.resultArray.removeAll()
             }
             
-            self.resultArray += models
+            self.resultArray = models
             
             self.dTableView.es.stopLoadingMore()
             
             self.dealSearchResultData()
             
-            self.dTableView.reloadData()
+//            self.dTableView.reloadData()
             
         }else{
             
@@ -301,9 +303,9 @@ extension HDSSL_SearchMoreVC{
             default:
                 return
             }
-            
         }
         juageEmptyView()
+        self.dTableView.reloadData()
     }
 }
 //MARK: ---- 添加刷新机制
@@ -323,6 +325,7 @@ extension HDSSL_SearchMoreVC{
     
     private func refresh() {
         skip = 0
+        self.dTableView.es.resetNoMoreData()
         requestData()
     }
     
@@ -349,6 +352,7 @@ extension HDSSL_SearchMoreVC: UITextFieldDelegate {
             if (textField.text?.count)! > 0 {
                 
                 skip = 0
+                self.dTableView.es.resetNoMoreData()
                 //开始搜索
                 self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: self.currentType, vc: self)
                 //保存搜索历史
@@ -367,6 +371,7 @@ extension HDSSL_SearchMoreVC : HDZQ_VoiceResultDelegate {
         self.textFeild.text = result
         self.func_saveHistory(result)
         skip = 0
+        self.dTableView.es.resetNoMoreData()
         self.viewModel.request_search(str: result, skip: 0, take: 10, type: self.currentType, vc: self)
     }
 }

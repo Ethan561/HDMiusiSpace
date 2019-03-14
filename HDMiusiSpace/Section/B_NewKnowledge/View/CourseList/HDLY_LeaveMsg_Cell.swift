@@ -86,7 +86,7 @@ class HDLY_LeaveMsg_Cell: UITableViewCell {
             } else {
                 showMoreBtn.isHidden = false
                 tableViewHeightConstraint.constant =  CGFloat(subModel.topHeight - 1)
-                showMoreBtn.setTitle("查看全部件\( self.subCommentsList!.count)条回复", for: .normal)
+                showMoreBtn.setTitle("查看全部\( self.subCommentsList!.count)条回复", for: .normal)
             }
         } else {
             showMoreBtn.isHidden = true

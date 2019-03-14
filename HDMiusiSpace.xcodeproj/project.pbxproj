@@ -4111,7 +4111,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhao XinXin (FZ6RJ5Q7Y5)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wenbo Online Culture Development Co., Ltd (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;

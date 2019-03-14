@@ -52,7 +52,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             
             item_title.text = model!.title
             item_loc.text = model!.address
-            item_starNum.text = model!.star.string
+           
             
             let star: Float! = Float(model!.star.string)
             if star == 0 {
@@ -61,7 +61,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
                 starL.isHidden = true
                 item_starNum.isHidden = true
             }
-            
+            item_starNum.text = String(star)
             var x:CGFloat = 0
             var imgWArr = [CGFloat]()
             var iconBgWidth:CGFloat = 0

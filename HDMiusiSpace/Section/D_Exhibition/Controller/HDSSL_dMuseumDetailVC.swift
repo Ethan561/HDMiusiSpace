@@ -353,6 +353,9 @@ extension HDSSL_dMuseumDetailVC {
                 header.moreBtn.setTitle("更多", for: .normal)
                 if model.type == 1 {//同馆展览
                     header.titleL.text = String.init(format: "同馆展览(%d)", model.exhibition?.exhibitionNum ?? 0)//model.exhibition?.categoryTitle
+                    if (model.exhibition?.exhibitionNum ?? 0) <= 2 {
+                        header.moreBtn.isHidden = true
+                    }
                 }
                 else if model.type == 2 {
                     header.titleL.text = model.raiders?.categoryTitle

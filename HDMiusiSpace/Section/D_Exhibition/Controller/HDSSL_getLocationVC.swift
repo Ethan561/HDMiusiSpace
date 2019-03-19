@@ -172,9 +172,9 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         //搜索结果
         viewModel.searchResultA.bind { (array) in
             //城市
-            guard array.count > 0 else {
-                return
-            }
+//            guard array.count > 0 else {
+//                return
+//            }
             
             weakSelf?.searchArray = array
             weakSelf?.searchresultView.cityArray = array
@@ -531,7 +531,7 @@ extension HDSSL_getLocationVC {
         if contain == false {
             self.recentArray.insert(city, at: 0)
             for (i,_) in self.recentArray.enumerated() {
-                if i > 2 {
+                if i > 5 {
                     self.recentArray.remove(at: i)
                 }
             }
@@ -557,7 +557,7 @@ extension HDSSL_getLocationVC:UITextFieldDelegate {
             
             if (textField.text?.count)! > 0 {
                 //API search
-                viewModel.request_searchCityString(string: textField.text!, kind: 1, vc: self)
+                viewModel.request_searchCityString(string: textField.text!, kind: 2, vc: self)
             }
         }
         

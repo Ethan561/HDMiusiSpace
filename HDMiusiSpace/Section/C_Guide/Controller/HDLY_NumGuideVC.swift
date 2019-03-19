@@ -27,6 +27,9 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     var exhibitInfo: HDLY_ExhibitListM?
     var isPlaying = false
     
+    var isUpload = false
+    let uploadVM = HDLY_RootCVM()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navTitle = titleName
@@ -158,7 +161,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
             self.exhibitInfo = model
             self.navTitle = model.title
             self.playAction()
-            
+            self.isUpload = false
+
         }) { (errorCode, msg) in
 
         }
@@ -197,6 +201,13 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
         slide.value = progress
         timeL.text = "\(currentTime)/\(totalTime)"
+        if progress > 0.5 && isUpload == false {
+            isUpload = true
+            let token:String? = HDDeclare.shared.api_token
+            if token != nil {
+                uploadVM.uploadFootprintRequest(api_token: token!, exhibit_id: self.exhibitInfo?.exhibitID ?? 0, self)
+            }
+        }
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {

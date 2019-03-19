@@ -17,7 +17,11 @@ class HD_searchResultView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dTableView: UITableView!
     
-    var cityArray: [CityModel]? = Array.init()
+    var cityArray: [CityModel]? = Array.init() {
+        didSet {
+            showViewData()
+        }
+    }
     
     var blockTapResultCell:TapResultCellBlock?
     
@@ -53,6 +57,15 @@ class HD_searchResultView: UIView {
         dTableView.dataSource = self
         dTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
+    }
+    
+    func showViewData() {
+        if cityArray?.count == 0 {
+            self.dTableView.ly_emptyView = EmptyConfigView.NoSearchDataEmptyView()
+            self.dTableView.ly_showEmptyView()
+        }else {
+            self.dTableView.reloadData()
+        }
     }
     
     //回调

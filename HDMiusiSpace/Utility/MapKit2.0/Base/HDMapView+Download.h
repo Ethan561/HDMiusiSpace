@@ -13,5 +13,6 @@
 - (void)recordItemToSet:(NSString *)suffixPath;
 - (void)startDownloadItem;
 - (void)downloadFirstLevel;
+//清除缓存
 
 @end

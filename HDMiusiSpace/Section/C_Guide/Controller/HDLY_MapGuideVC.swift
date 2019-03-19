@@ -50,6 +50,15 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         playerBgView.layer.masksToBounds = true
         playerView.isHidden = true
         player.delegate = self
+        //
+        HDBaseModel.clearMapCaches()
+        let mapPath = String.init(format: "%@/Resource/WebMap/", kCachePath)
+        do {
+            try FileManager.default.removeItem(atPath: mapPath)
+        } catch  {
+            LOG("error :\(error)")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

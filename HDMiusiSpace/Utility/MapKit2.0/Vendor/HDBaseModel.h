@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSString *ID;
 @property (nonatomic, strong) NSString *Des;
 
++ (void)clearMapCaches;
+
 @end
 
 

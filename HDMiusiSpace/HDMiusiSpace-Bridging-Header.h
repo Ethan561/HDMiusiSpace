@@ -60,6 +60,7 @@
 //#import <AdSupport/AdSupport.h>
 
 #import "UITableView+CCPIndexView.h"
+#import "HDBaseModel.h"
 
 
 

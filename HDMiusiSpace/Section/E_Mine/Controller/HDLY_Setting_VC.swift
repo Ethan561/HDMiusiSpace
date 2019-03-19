@@ -251,6 +251,7 @@ extension HDLY_Setting_VC {
         let okAction = UIAlertAction(title: "好的", style: .default, handler: {
             action in
             KingfisherManager.shared.cache.clearDiskCache()
+            HDBaseModel.clearMapCaches()
             HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "清除缓存成功！")
             let mapPath = String.init(format: "%@/Resource/WebMap", kCachePath)
             do {

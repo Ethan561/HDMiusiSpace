@@ -8,6 +8,7 @@
 
 #import "HDBaseModel.h"
 #import <objc/runtime.h>
+#import "SDImageCache.h"
 
 @implementation HDBaseModel
 
@@ -170,6 +171,12 @@
  NSLog(@"%@",per);
  
  */
+
++ (void)clearMapCaches {
+    [[SDImageCache sharedImageCache] clearDisk];
+    
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+}
 
 @end
 

@@ -189,6 +189,7 @@ class HDZQ_OthersCenterVC: HDItemBaseVC {
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             if let is_focus:Int = (dic!["data"] as! Dictionary)["is_focus"] {
+                NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "ChangeFollowState")))
                 if is_focus == 1 {
                     self.tabHeader.followBtn.setTitle("已关注", for: .normal)
                     self.tabHeader.followBtn.setBackgroundImage(UIImage.getImgWithColor(UIColor.HexColor(0xCCCCCC), imgSize: self.tabHeader.followBtn.size), for: .normal)

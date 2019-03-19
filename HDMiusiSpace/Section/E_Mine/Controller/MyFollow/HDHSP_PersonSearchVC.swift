@@ -36,7 +36,7 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshFollowState), name: Notification.Name(rawValue: "ChangeFollowState"), object: nil)
         tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight - kTopHeight)
         view.addSubview(self.tableView)
         tableView.register(UINib.init(nibName: "HDZQ_MyFollowCell", bundle: nil), forCellReuseIdentifier: "HDZQ_MyFollowCell")
@@ -46,9 +46,17 @@ class HDHSP_PersonSearchVC: HDItemBaseVC {
         loadSearchBar()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "ChangeFollowState"), object: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //requestData()
+    }
+    
+    @objc func refreshFollowState() {
+         requestData(keyWords: searchBar.text ?? "")
     }
     
     //MARK: 初始化导航条

@@ -51,6 +51,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
         starSlider = XHStarRateView.init(frame: starView.bounds, numberOfStars: 5, rateStyle: .HalfStar, isAnination: true,andForegroundImg:"zlpl_star_red" , finish: { (index) in
 
         })
+        starSlider.isUserInteractionEnabled = false
         starView.addSubview(starSlider)
         
     }
@@ -86,7 +87,7 @@ class HDSSL_shareCommentVC: HDItemBaseVC {
             self.qr_title.text = self.shareModel.qr_code_title
             self.qr_des.text = self.shareModel.qr_code_des
             
-            self.starSlider.setCurrentScore(CGFloat(self.shareModel!.star!))
+            self.starSlider.setCurrentScore(CGFloat(self.shareModel!.star!)*0.5)
         }
         
     }

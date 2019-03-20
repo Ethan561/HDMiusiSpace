@@ -37,7 +37,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
         webView.backgroundColor = UIColor.blue
-        webView.navigationDelegate = self
+//        webView.navigationDelegate = self
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.scrollView.showsVerticalScrollIndicator = false

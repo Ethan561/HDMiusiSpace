@@ -14,8 +14,9 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     
     //接收
     var exhibition_id: Int?
-    var exhibitionCellH: Double?  //展览介绍高度
-    var exhibitCellH: Double?     //展品介绍高度
+    var exhibitionCellH: CGFloat = 0  //展览介绍高度
+    var exhibitCellH: CGFloat = 0     //展品介绍高度
+    var textViewH: CGFloat = 0
     
     //
     @IBOutlet weak var bannerBg  : UIView!      //
@@ -354,17 +355,15 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         let arr = self.exdataModel?.data?.dataList!
         
         if arr == nil {
-            return 3
+            return 4
         }
-        return 3 + (arr?.count)!
+        return 4 + (arr?.count)!
     }
     //section=0基本信息5条，section=1展览介绍和展品介绍两个H5，section=2评论，section=3同馆展览
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 5
-        }else if section == 1 {
-            return 2
-        }else if section == 2 {
+        }else if section == 3 {
             if self.commentArr?.count == 0 {
                 return 1
             }
@@ -381,24 +380,21 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }else if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
                 if cell != nil {
-
-                    return self.reloadTextView((cell?.cell_timeL)!)
+                    return self.textViewH == 0 ? self.reloadTextView((cell?.cell_timeL)!) : self.textViewH
+//                    return self.reloadTextView((cell?.cell_timeL)!)
                 }
                return 70
             }
             return 40
         }else if indexPath.section == 1 {
             //H5
-            if indexPath.row == 0 {
-                return CGFloat(self.exhibitionCellH ?? 0)  //展览介绍
-            }else if indexPath.row == 1 {
-                if self.exdataModel?.data?.isExhibit == 0{
-                    return 0.01
-                }
-                return CGFloat(self.exhibitCellH ?? 0) //展品介绍
-            }
-            
+            return self.exhibitionCellH  //展览介绍
         }else if indexPath.section == 2 {
+            if self.exdataModel?.data?.isExhibit == 0{
+                return 0.01
+            }
+            return self.exhibitCellH //展品介绍
+        }else if indexPath.section == 3 {
             //1暂无评论
             if self.commentArr?.count == 0 {
                 return 150
@@ -415,7 +411,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             return comH
         }else {
             let arr = self.exdataModel?.data?.dataList!
-            let model = arr![indexPath.section-3]
+            let model = arr![indexPath.section-4]
             if model.type == 1{//同馆展览
                 return 250
             }else if model.type == 2{//展览攻略
@@ -437,15 +433,22 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     //MARK: ---------Header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == 3 {
             if self.commentArr?.count == 0 {
                 return 44
             }
             return 90
         }
-        if section > 2{
+        
+        if section == 2 {
+            if self.exdataModel?.data?.isExhibit == 1 {
+                return 44
+            }
+        }
+        
+        if section > 3{
             let arr = self.exdataModel?.data?.dataList!
-            let model = arr![section-3]
+            let model = arr![section-4]
             if model.type == 5{
                 return 60
             }
@@ -455,7 +458,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 2 {
+        if section == 3 {
             
             //评论
             let commentHeader = HDSSL_dCommentHerder.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 90))
@@ -490,11 +493,19 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
             return commentHeader
         }
-        if section > 2 {
+        if section == 2 {
+            if self.exdataModel?.data?.isExhibit == 1 {
+                let normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
+                normalHeader.headerMore.isHidden = true
+                normalHeader.headerTitle.text = "展品介绍"
+                return normalHeader
+            }
+        }
+        if section > 3 {
             let normalHeader = HDSSL_dHeaderNormal.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 44))
             
             let arr = self.exdataModel?.data?.dataList!
-            let model = arr![section-3]
+            let model = arr![section-4]
             
             var titleStr: String?
             
@@ -537,7 +548,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         if section == 0 {
             return 100
         }
-        if section == 2 {
+        if section == 3 {
             guard self.exdataModel != nil else {
                 return 0.01
             }
@@ -570,7 +581,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             
             return firstSecFooter
         }
-        if section == 2 {
+        if section == 3 {
             if self.exdataModel == nil {
                 return nil
             }
@@ -602,7 +613,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //
-        weak var weakSelf = self
+//        weak var weakSelf = self
 
         if indexPath.section == 0 {
             
@@ -653,39 +664,30 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
         }
         else if indexPath.section == 1 {
-            
-            //加载两个webView
-            //展览介绍🈴️展品介绍
-            if indexPath.row == 0 {
-                let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
-                let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
-                cell.loadWebView(path)
-                cell.delegate = self
-                cell.blockHeightFunc { (height) in
-                    
-                    weakSelf?.reloadExhibitionCellHeight(height)
-                }
-                
-                return cell
-            }else if indexPath.row == 1{
-                if self.exdataModel?.data?.isExhibit == 0{
-                    let cell = UITableViewCell.init()
-                    return cell
-                }
-                let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
-                let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
-                cell.loadWebView(path)
-                cell.blockHeightFunc { (height) in
-                    
-                    weak var weakSelf = self
-                    weakSelf?.reloadExhibitCellHeight(height)
-                    
-                }
+            let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
+            let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
+            if self.exhibitionCellH == 0 {
+               cell.loadWebView(path)
+            }
+            cell.delegate = self
+            cell.webview.navigationDelegate = self
+            cell.webview.frame.size.height = exhibitionCellH
+            return cell
+        }else if indexPath.section == 2 {
+            if self.exdataModel?.data?.isExhibit == 0{
+                let cell = UITableViewCell.init()
                 return cell
             }
-            
+            let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
+            let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
+            if self.exhibitCellH == 0 {
+               cell.loadWebView(path)
+            }
+            cell.webview.navigationDelegate = self
+            cell.webview.frame.size.height = exhibitCellH
+            return cell
         }
-        else if indexPath.section == 2 {
+        else if indexPath.section == 3 {
 
             weak var weakSelf = self
             
@@ -702,19 +704,14 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             cell.selectionStyle = .none
             cell.myModel = self.commentArr![indexPath.row]
             cell.BlockTapImgItemFunc { (index,cellIndex) in
-//                print("点击第\(index)张图片，第\(cellIndex)个cell")
                 weakSelf?.showCommentBigImgAt(cellIndex, index)
             }
             cell.BlockTapLikeFunc { (index) in
-//                print("点击喜欢按钮，位置\(index)")
                 weakSelf?.commentTapLikeButton(index)
             }
             cell.BlockTapCommentFunc { (index) in
-//                print("点击评论按钮，位置\(index)")
-                
                 weakSelf?.action_showMoreComment()
             }
-            //
             cell.cell_portrialBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                     self?.pushToLoginVC(vc: self!)
@@ -728,7 +725,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         else  {
             
             let arr = self.exdataModel?.data?.dataList!
-            let model = arr![indexPath.section-3]
+            let model = arr![indexPath.section-4]
             if model.type == 1{
                 let cell = HDSSL_sameMuseumCell.getMyTableCell(tableV: tableView)
                 cell?.listArray = model.exhibition?.list
@@ -796,9 +793,9 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section > 2 {
+        if indexPath.section > 3 {
             let arr = self.exdataModel?.data?.dataList!
-            let model = arr![indexPath.section-3]
+            let model = arr![indexPath.section-4]
             if model.type == 2 {//展览攻略
                 if model.raiders?.strategyID != nil {
                     self.showRelatedStrategyVC(model.raiders!)
@@ -997,25 +994,53 @@ extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
             return bounds.size.height+15
         }
         
+        self.textViewH = bounds.size.height+20
+        
         return bounds.size.height+20
         
     }
     func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
-        if self.exhibitionCellH == nil{
-            self.exhibitionCellH = height
-            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-        }
+        self.exhibitionCellH = CGFloat(height)
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
     }
     
-    //
     func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
         let webH: Double = Double(model.height!) ?? 0
-//        let flag: Int = Int(model.isfolder!) ?? 1
         self.reloadExhibitionCellHeight(webH)
     }
     
     
 }
+
+extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var webheight = 0.0
+        // 获取内容实际高度
+        
+        webView.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
+            if let tempHeight: Double = result as? Double {
+                webheight = tempHeight
+                print("webheight: \(webheight)")
+            }
+            
+            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitionHTML {
+                DispatchQueue.main.async { [unowned self] in
+                    self.exhibitionCellH = CGFloat(webheight + 10)
+                    self.dTableView.reloadData()
+                }
+            }
+            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitHTML {
+                DispatchQueue.main.async { [unowned self] in
+                    self.exhibitCellH = CGFloat(webheight + 10)
+                    self.dTableView.reloadData()
+                }
+            }
+            
+        }
+    }
+}
+
 
 extension HDSSL_dExhibitionDetailVC{
     //获取评论cell的高度
@@ -1041,29 +1066,14 @@ extension HDSSL_dExhibitionDetailVC{
     }
     //刷新展览介绍cell高度
     func reloadExhibitionCellHeight(_ height: Double) {
-        
-        if self.exhibitionCellH == nil {
-            self.exhibitionCellH = height
-            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-        }else if self.exhibitionCellH != height {
-            
-            self.exhibitionCellH = height
-            self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-        }
-        
+        self.exhibitionCellH = CGFloat(height)
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
     }
     //刷新展品介绍cell高度
     func reloadExhibitCellHeight(_ height: Double) {
 //        print("返回的webview高度是\(height)")
-        if self.exhibitCellH == nil{
-            self.exhibitCellH = height
-            self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
-        }
-        if self.exhibitCellH! != height {
-            self.exhibitCellH = height
-            self.dTableView.reloadRows(at: [IndexPath.init(row: 1, section: 1)], with: .none)
-        }
-        
+        self.exhibitCellH = CGFloat(height)
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 2)], with: .none)
     }
     
     //显示评论图片大图
@@ -1084,7 +1094,7 @@ extension HDSSL_dExhibitionDetailVC {
     //更多界面
     @objc func moreBtnAction(_ section: Int) {
         let arr = self.exdataModel?.data?.dataList!
-        let model = arr![section-3]
+        let model = arr![section-4]
         
 //        var titleStr: String?
         

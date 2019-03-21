@@ -70,7 +70,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
-        //statusBarHCons.constant = kStatusBarHeight+24
+        statusBarHCons.constant = kStatusBarHeight
         myTableView.separatorStyle = .none
         buyBtn.layer.cornerRadius = 27
         listenBgView.configShadow(cornerRadius: 25, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)

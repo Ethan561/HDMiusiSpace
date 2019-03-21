@@ -75,7 +75,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        statusBarHCons.constant = kStatusBarHeight+24
+        statusBarHCons.constant = kStatusBarHeight
         self.hd_navigationBarHidden = true
         myTableView.separatorStyle = .none
         myTableView.estimatedRowHeight = 0

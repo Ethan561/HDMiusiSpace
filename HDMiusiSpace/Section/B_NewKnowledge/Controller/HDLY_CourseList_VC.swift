@@ -96,7 +96,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
-        statusBarHCons.constant = 44
+        statusBarHCons.constant = kStatusBarHeight
         //
         self.player.controlView = self.controlView
         self.contentScrollView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)

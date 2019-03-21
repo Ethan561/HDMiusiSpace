@@ -90,7 +90,7 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
-                cell.countL.text = model.views?.string == nil ? "0" : (model.views?.string)! + "人听过"
+                cell.countL.text = model.views?.string == nil ? "0" : (model.views?.string)! + "人浏览"
                 if model.is_voice == 0 {
                     cell.voiceBtn.isHidden = true
                 }else {

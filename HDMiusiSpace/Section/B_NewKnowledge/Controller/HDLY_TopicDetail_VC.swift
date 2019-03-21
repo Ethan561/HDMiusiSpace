@@ -1042,6 +1042,15 @@ extension HDLY_TopicDetail_VC: UIScrollViewDelegate {
                 }
             }
         }
+        //导航栏
+        let offSetY = scrollView.contentOffset.y
+        if offSetY >= 120 {
+            self.title = infoModel?.title
+        } else {
+            self.title = ""
+        }
     }
 }
+
+
 

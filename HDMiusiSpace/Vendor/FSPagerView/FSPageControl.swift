@@ -111,9 +111,12 @@ open class FSPageControl: UIControl {
             case .left, .leading:
                 return 0
             case .center, .fill:
-                let midX = self.contentView.bounds.midX
-                let amplitude = CGFloat(self.numberOfPages/2) * diameter + spacing*CGFloat((self.numberOfPages-1)/2)
-                return midX - amplitude
+//                let midX = self.contentView.bounds.midX
+//                let amplitude = CGFloat(self.numberOfPages/2) * diameter + spacing*CGFloat((self.numberOfPages-1)/2)
+                
+                let itemW:CGFloat = CGFloat(self.numberOfPages) * diameter + CGFloat(self.numberOfPages-1) * spacing
+                
+                return (ScreenWidth - itemW) * 0.5
             case .right, .trailing:
                 let contentWidth = diameter*CGFloat(self.numberOfPages) + CGFloat(self.numberOfPages-1)*spacing
                 return contentView.frame.width - contentWidth

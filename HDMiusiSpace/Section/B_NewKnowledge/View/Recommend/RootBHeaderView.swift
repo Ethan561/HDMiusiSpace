@@ -30,13 +30,13 @@ class RootBHeaderView: UIView {
     
     @IBOutlet weak var pageControl: FSPageControl! {
         didSet {
-            self.pageControl.contentHorizontalAlignment = .center
             self.pageControl.contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             self.pageControl.setImage(UIImage(named:"banner_icon_default"), for: .normal)
             self.pageControl.setImage(UIImage(named:"banner_icon_pressed"), for: .selected)
             self.pageControl.itemSpacing = 12
-            self.pageControl.interitemSpacing = 15
-
+            self.pageControl.interitemSpacing = 16
+            self.pageControl.contentHorizontalAlignment = .center
+            
         }
     }
     

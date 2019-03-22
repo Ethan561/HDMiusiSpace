@@ -23,12 +23,13 @@ struct MuseumListData: Codable {
 
 struct MuseumListCard: Codable {
     let count: Int
+    let exhibit_count: Int
     let distance, title: String
     let museumID: Int
     let list: [MuseumListModel]
     
     enum CodingKeys: String, CodingKey {
-        case count, distance, title
+        case count, exhibit_count, distance, title
         case museumID = "museum_id"
         case list
     }
@@ -54,6 +55,7 @@ struct MuseumListModel: Codable {
 
 struct MuseumMapModel: Codable {
     let museumID, count: Int
+    let exhibit_count: Int
     let distance, title: String
     let id: Int
     let img: String?
@@ -64,7 +66,7 @@ struct MuseumMapModel: Codable {
     
     enum CodingKeys: String, CodingKey {
         case museumID = "museum_id"
-        case count, distance, title, id, img
+        case count, exhibit_count, distance, title, id, img
         case priceType = "price_type"
         case price
         case vipPrice = "vip_price"

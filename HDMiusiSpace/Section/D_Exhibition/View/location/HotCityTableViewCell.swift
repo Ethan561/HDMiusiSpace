@@ -56,7 +56,7 @@ class HotCityTableViewCell: UITableViewCell {
             let row = i / 3
             
             let btn = UIButton(frame: CGRect(x: btnMargin + CGFloat(column) * (btnWidth + btnMargin), y: 15 + CGFloat(row) * (btnHeight + btnMargin), width: btnWidth, height: btnHeight))
-            btn.setTitle(city.city_name!, for: .normal)
+            btn.setTitle(city.city_name ?? "", for: .normal)
             btn.setTitleColor(mainColor, for: .normal)
             btn.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             btn.backgroundColor = UIColor.white

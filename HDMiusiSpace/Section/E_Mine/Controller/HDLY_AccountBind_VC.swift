@@ -188,8 +188,10 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
         let openid   = resp.uid!
         let b_nickname = resp.name!
         let b_avatar = resp.iconurl ?? ""
+        let unionid = resp.unionId ?? ""
         let params: [String: Any] = ["openid": openid,
                                      "b_from": from,
+                                     "unionid": unionid,
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
                                      "api_token": api_token,

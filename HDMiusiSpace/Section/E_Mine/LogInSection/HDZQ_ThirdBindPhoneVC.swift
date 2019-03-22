@@ -12,7 +12,6 @@ class HDZQ_ThirdBindPhoneVC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var smsTF: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
-    
     @IBOutlet weak var smsBtn: UIButton!
     
     public var params : [String: Any]?
@@ -45,7 +44,9 @@ class HDZQ_ThirdBindPhoneVC: HDItemBaseVC, UITextFieldDelegate {
                 return
             }
 
-            let dic = ["phone": phoneTF.text ?? "","p":"i","smscode":smsTF.text ?? ""]
+            let dic = ["phone": phoneTF.text ?? "",
+                       "p":"i",
+                       "smscode":smsTF.text ?? "",]
             self.params?.merge(dic, uniquingKeysWith: { $1 })
             
             HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .thirdBindPhone(params: params!) ,showHud: true, loadingVC: self , success: { (result) in

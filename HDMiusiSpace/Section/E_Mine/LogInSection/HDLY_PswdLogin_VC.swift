@@ -179,8 +179,11 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         let openid   = resp.uid!
         let b_nickname = resp.name!
         let b_avatar = resp.iconurl ?? ""
+        let unionid = resp.unionId ?? ""
+
         let params: [String: Any] = ["openid": openid,
                                      "b_from": from,
+                                     "unionid": unionid,
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
                                      "deviceno": deviceno,

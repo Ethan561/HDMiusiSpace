@@ -32,7 +32,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     var cmtNum = 0
     var isAddedPlayNumber: Bool = false
     //
-    var player = HDLY_AudioPlayer.shared
+    var player = HDFloatingButtonManager.manager
     var webViewH:CGFloat = 0
     var infoModel: ListenDetail?
     var commentModels = [TopicCommentList]()
@@ -433,7 +433,7 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
 }
 
-extension HDLY_ListenDetail_VC : HDLY_AudioPlayer_Delegate {
+extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
     
     @objc  func playOrPauseAction(_ sender: UIButton) {
         if self.infoModel?.voice != nil && (self.infoModel?.voice?.contains("http://"))! {
@@ -802,7 +802,6 @@ extension HDLY_ListenDetail_VC: HDZQ_CommentActionDelegate {
                 
                 kWindow?.addSubview(deleteView)
                
-                
             }
         } else {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {

@@ -78,9 +78,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.bottomHCons.constant = 0
         self.listenBgView.isHidden = true
         bindViewModel()
-        if audioPlayer.state == .playing {
-            HDFloatingButtonManager.manager.floatingBtnView.playBtnAction()
-//            HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
+        //
+        if HDFloatingButtonManager.manager.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
         }
         audioPlayer.showFloatingBtn = false
         navBgView.isHidden = true
@@ -176,7 +176,6 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             return
         }
         
-        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
         }else {
@@ -197,7 +196,6 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             return
         }
 
-        HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         if isMp3Course {
             audioPlayOrPauseAction()
         }else {

@@ -110,8 +110,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
     }
     
     var isRight: Bool = true
-    var player = HDLY_AudioPlayer.shared
-
+    
     //
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -147,6 +146,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         }else {
             isRight = true
         }
+        self.isHidden = false
         
         if showType == .FloatingButtonFolder {
             self.imgBtn.isHidden = true
@@ -244,6 +244,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         isRotation = true
         imgBtn.layer.removeAllAnimations()
         let animate = HDAnimate.basicAnimationWithKeyPath("transform.rotation.z", fromValue: nil , toValue: 2 * Double.pi, duration: 5.0, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionLinear)
+        animate.isRemovedOnCompletion = false
         imgBtn.layer.add(animate, forKey: "transform.rotation.z")
     }
     
@@ -399,7 +400,7 @@ extension HDFloatingButtonView {
 extension HDFloatingButtonView {
     
     @objc func closeAction() {
-        player.stop()
+        HDFloatingButtonManager.manager.stop()
         bgView.touchBlock = nil
         bgView.removeFromSuperview()
         self.show = false
@@ -407,10 +408,8 @@ extension HDFloatingButtonView {
     }
     
     @objc func pauseAction() {
-        player.pause()
-        bgView.touchBlock = nil
-        bgView.removeFromSuperview()
-        self.show = false
+        HDFloatingButtonManager.manager.pause()
+        self.isHidden = true
         
     }
     
@@ -432,6 +431,7 @@ extension HDFloatingButtonView {
     }
     
     @objc func playBtnAction()  {
+        let player = HDFloatingButtonManager.manager
         if player.state == .playing {
             self.showType = .FloatingButtonPause
             player.pause()

@@ -31,7 +31,7 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     }()
     
     let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
-    var player = HDLY_AudioPlayer.shared
+    var player = HDFloatingButtonManager.manager
 
     override func viewDidLoad() {
         super.viewDidLoad()

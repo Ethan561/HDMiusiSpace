@@ -269,7 +269,6 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         self.jumpImageView1.layer.removeAllAnimations()
         self.jumpImageView2.layer.removeAllAnimations()
         self.jumpImageView3.layer.removeAllAnimations()
-        
         //
         let pX = ScreenWidth * 0.5
 //        let pY = self.bounds.size.height - 40
@@ -277,10 +276,10 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         
         let anchorX = 0.5
         let anchorY = 0.5
-        
         let duration = 0.5
+        let space:CGFloat = 1.0
         
-        let animate = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth), y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth), y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
+        let animate = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
         animate.autoreverses = true
         jumpImageView1.layer.anchorPoint = CGPoint.init(x: anchorX, y: anchorY)
         
@@ -294,7 +293,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             self.jumpImageView2.layer.add(animate2, forKey: "position")
         }
         
-        let animate3 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth), y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth), y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
+        let animate3 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
         animate3.autoreverses = true
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {

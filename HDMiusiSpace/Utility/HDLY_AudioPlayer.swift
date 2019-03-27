@@ -51,12 +51,12 @@ final class HDLY_AudioPlayer: NSObject {
     
     private override init() {
         super.init()
-       config()
+        config()
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:NSNotification.Name.AVAudioSessionInterruption, object: nil)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:NSNotification.Name.AVAudioSessionRouteChange, object: nil)
-
+        
 //        [[NSNotificationCenter defaultCenter] addObserver:self
 //            selector:@selector(audioInterruption)
 //            name:AVAudioSessionInterruptionNotification object:nil];//设置通知
@@ -169,7 +169,7 @@ final class HDLY_AudioPlayer: NSObject {
             let isPlaying = true
             if showFloatingBtn == true {
                 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
             }
         }
     }
@@ -219,7 +219,7 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
         if state == .stopped {
             delegate?.finishPlaying!()
             if showFloatingBtn == true {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerFinishPlaying"), object: nil)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerFinishPlaying"), object: nil)
             }
         }
         
@@ -229,7 +229,7 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
                 isPlaying = true
             }
             if showFloatingBtn == true {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
             }
         }
     }
@@ -253,16 +253,15 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
             delegate?.finishPlaying!()
             let isPlaying = false
             if showFloatingBtn == true {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
-                
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
             }
-
+            
         } else if stopReason == .error {
             stop()
             resetAudioPlayer()
             let isPlaying = false
             if showFloatingBtn == true {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerPlayingOrPause"), object: isPlaying)
             }
         }
     }
@@ -296,8 +295,6 @@ extension HDLY_AudioPlayer: STKAudioPlayerDelegate {
 //            playTime.text = "--:--"
 //        }
     }
-    
-    
 }
 
 extension HDLY_AudioPlayer{

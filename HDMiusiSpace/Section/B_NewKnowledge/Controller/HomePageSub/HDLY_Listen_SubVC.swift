@@ -21,7 +21,7 @@ class HDLY_Listen_SubVC:                                                        
     var tagsSelectIndex = 0
     var listArr = [ListenList]()
     var tagsArr = [ListenTags]()
-    var player = HDLY_AudioPlayer.shared
+    var player = HDFloatingButtonManager.manager
     var cateID = "-1"
     var isAddedPlayNumber = false
     var lastListenModel: ListenList?

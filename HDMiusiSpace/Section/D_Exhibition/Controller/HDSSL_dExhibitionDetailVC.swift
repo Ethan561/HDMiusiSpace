@@ -666,11 +666,19 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         else if indexPath.section == 1 {
             let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
-            if self.exhibitionCellH == 0 {
-               cell.loadWebView(path)
+  
+            if isExhibitionCellFloder == true {
+                cell.loadWebView(path)
             }
-            cell.delegate = self
-            cell.webview.navigationDelegate = self
+            cell.blockHeightFunc { [weak self](height) in
+                self?.reloadExhibitionCellHeight(height)
+            }
+//
+            cell.blockRefreshHeightFunc { [weak self](height,type) in
+                self?.isExhibitionCellFloder = (type == 2) ? true : false
+                self?.reloadExhibitionCellHeight(height)
+            }
+//            cell.delegate = self
             cell.webview.frame.size.height = exhibitionCellH
             return cell
         }else if indexPath.section == 2 {
@@ -678,14 +686,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let cell = UITableViewCell.init()
                 return cell
             }
-            let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
+            let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
+            
             if self.exhibitCellH == 0 {
-               cell.loadWebView(path)
+                cell?.loadWebView(path)
             }
-            cell.webview.navigationDelegate = self
-            cell.webview.frame.size.height = exhibitCellH
-            return cell
+            cell?.webview.frame.size.height = exhibitCellH
+
+            cell?.webview.navigationDelegate = self
+            return cell!
         }
         else if indexPath.section == 3 {
 
@@ -974,7 +984,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
     
 }
 //MARK: - webview高度计算（第一版不做展开收起）
-extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
+extension  HDSSL_dExhibitionDetailVC {
     //计算时间cell高度
     func reloadTextView(_ textview: UITextView) -> CGFloat{
         textview.text = String.init(format: "%@", self.exdataModel?.data?.time ?? "")
@@ -999,18 +1009,20 @@ extension  HDSSL_dExhibitionDetailVC : HDSSL_Sec1CellDelegate {
         return bounds.size.height+20
         
     }
-    func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
-        self.exhibitionCellH = CGFloat(height)
-        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
-    }
     
-    func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
-        let webH: Double = Double(model.height!) ?? 0
-        self.reloadExhibitionCellHeight(webH)
-    }
+//    func backWebviewHeight(_ height: Double , _ cell: UITableViewCell) {
+//        self.exhibitionCellH = CGFloat(height)
+//        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+//    }
+//
+//    func webViewFolderAction(_ model: FoldModel, _ cell: UITableViewCell) {
+//        let webH: Double = Double(model.height!) ?? 0
+//        self.reloadExhibitionCellHeight(webH)
+//    }
     
     
 }
+
 
 extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
     
@@ -1023,17 +1035,17 @@ extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
                 webheight = tempHeight
                 print("webheight: \(webheight)")
             }
-            
-            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitionHTML {
-                DispatchQueue.main.async { [unowned self] in
-                    self.exhibitionCellH = CGFloat(webheight + 10)
-                    self.dTableView.reloadData()
-                }
-            }
+//
+//            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitionHTML {
+//                DispatchQueue.main.async { [unowned self] in
+//                    self.exhibitionCellH = CGFloat(webheight + 10)
+//                    self.dTableView.reloadData()
+//                }
+//            }
             if webView.url?.absoluteString == self.exdataModel?.data?.exhibitHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.exhibitCellH = CGFloat(webheight + 10)
-                    self.dTableView.reloadData()
+                    self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
                 }
             }
             
@@ -1066,14 +1078,20 @@ extension HDSSL_dExhibitionDetailVC{
     }
     //刷新展览介绍cell高度
     func reloadExhibitionCellHeight(_ height: Double) {
+        if self.exhibitionCellH == CGFloat(height) {
+            return
+        }
         self.exhibitionCellH = CGFloat(height)
-        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+        self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
     }
     //刷新展品介绍cell高度
     func reloadExhibitCellHeight(_ height: Double) {
 //        print("返回的webview高度是\(height)")
+        if self.exhibitCellH == CGFloat(height) {
+            return
+        }
         self.exhibitCellH = CGFloat(height)
-        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: 2)], with: .none)
+        self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
     }
     
     //显示评论图片大图

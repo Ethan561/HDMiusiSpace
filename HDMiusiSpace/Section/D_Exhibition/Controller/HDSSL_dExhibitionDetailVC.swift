@@ -667,11 +667,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
   
-            if isExhibitionCellFloder == true {
+            if isExhibitionCellFloder == true && path.contains("exhibition_html") {
                 cell.loadWebView(path)
             }
             cell.blockHeightFunc { [weak self](height) in
                 self?.reloadExhibitionCellHeight(height)
+//                self?.isExhibitionCellFloder = false
             }
 //
             cell.blockRefreshHeightFunc { [weak self](height,type) in

@@ -71,7 +71,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
         if path == "" || path?.count == 0 {
             return
         }
-
+        
         if let webUrlString = path {
             if let encodedStr = webUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
                 if let myUrl = URL(string: encodedStr) {

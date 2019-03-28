@@ -30,6 +30,7 @@ class HDSSL_Sec1Cell: UITableViewCell {
         let webConfiguration = WKWebViewConfiguration()
         //初始化偏好设置属性：preferences
         webConfiguration.preferences = WKPreferences()
+        webConfiguration.userContentController.add(self, name: "Fold")
         //是否支持JavaScript
         webConfiguration.preferences.javaScriptEnabled = true
         //不通过用户交互，是否可以打开窗口
@@ -38,13 +39,12 @@ class HDSSL_Sec1Cell: UITableViewCell {
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
         webView.backgroundColor = UIColor.blue
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
+//        webView.navigationDelegate = self
+//        webView.uiDelegate = self
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.scrollView.showsVerticalScrollIndicator = false
         webView.scrollView.showsHorizontalScrollIndicator = false
-        
         return webView
     }()
     
@@ -129,35 +129,49 @@ extension HDSSL_Sec1Cell:WKNavigationDelegate ,WKUIDelegate{
     }
     
     
-    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        
-        let arr = message.components(separatedBy: ",")
-        let webheight = Double(arr.last ?? "0")
-        print(message,arr)//展开是1 , 收起是2
-        
-        DispatchQueue.main.async { [unowned self] in
-            self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight ?? 0))
-            print("(webView.frame: \(webView.frame)")
-            
-            let model = FoldModel()
-            model.isfolder = arr.first
-            model.height = arr.last
-            weak var weakSelf = self
-            
-//            self.delegate?.webViewFolderAction(model, self)
+//    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
 //
-            if weakSelf?.blockRefreshHeight != nil {
-                let h: Double = Double(arr.last ?? "0") ?? 0
-                let type:Int = Int(arr.first ?? "2") ?? 2
-                
-                weakSelf?.blockRefreshHeight!(h,type)
-
-            }
-        }
-        completionHandler()
-    }
+//        let arr = message.components(separatedBy: ",")
+//        let webheight = Double(arr.last ?? "0")
+//        print(message,arr)//展开是1 , 收起是2
+//
+//        DispatchQueue.main.async { [unowned self] in
+//            self.webview.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: CGFloat(webheight ?? 0))
+//            print("(webView.frame: \(webView.frame)")
+//
+//            let model = FoldModel()
+//            model.isfolder = arr.first
+//            model.height = arr.last
+//            weak var weakSelf = self
+//
+////            self.delegate?.webViewFolderAction(model, self)
+////
+//            if weakSelf?.blockRefreshHeight != nil {
+//                let h: Double = Double(arr.last ?? "0") ?? 0
+//                let type:Int = Int(arr.first ?? "2") ?? 2
+//
+//                weakSelf?.blockRefreshHeight!(h,type)
+//
+//            }
+//        }
+//        completionHandler()
+//    }
 }
 
+extension HDSSL_Sec1Cell :WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
+        guard let arr = message.body as? NSArray else { return }
+        guard let floder = arr[0] as? String else { return }
+        guard let height = arr[1] as? String else { return }
+        if self.blockRefreshHeight != nil {
+            let type = Int(floder)
+            let h = Double(height)
+            self.blockRefreshHeight!(h!,type!)
+
+        }
+    }
+}
 
 class FoldModel: NSObject {
     var isfolder : String?

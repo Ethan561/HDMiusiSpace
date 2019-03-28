@@ -667,12 +667,12 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitionHTML ?? "")
   
-            if isExhibitionCellFloder == true {
+            if isExhibitionCellFloder == true && exhibitionCellH == 0 {
                 cell.loadWebView(path)
             }
-            cell.blockHeightFunc { [weak self](height) in
-                self?.reloadExhibitionCellHeight(height)
-            }
+//            cell.blockHeightFunc { [weak self](height) in
+//                self?.reloadExhibitionCellHeight(height)
+//            }
 //
             cell.blockRefreshHeightFunc { [weak self](height,type) in
                 self?.isExhibitionCellFloder = (type == 2) ? true : false
@@ -680,22 +680,22 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
 //            cell.delegate = self
             cell.webview.frame.size.height = exhibitionCellH
+            cell.webview.navigationDelegate = self
             return cell
         }else if indexPath.section == 2 {
             if self.exdataModel?.data?.isExhibit == 0{
                 let cell = UITableViewCell.init()
                 return cell
             }
-            let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+            let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView) as HDLY_CourseWeb_Cell
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
             
             if self.exhibitCellH == 0 {
-                cell?.loadWebView(path)
+                cell.loadWebView(path)
             }
-            cell?.webview.frame.size.height = exhibitCellH
-
-            cell?.webview.navigationDelegate = self
-            return cell!
+            cell.webview.frame.size.height = exhibitCellH
+            cell.webview.navigationDelegate = self
+            return cell
         }
         else if indexPath.section == 3 {
 
@@ -1035,17 +1035,20 @@ extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
                 webheight = tempHeight
                 print("webheight: \(webheight)")
             }
-//
-//            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitionHTML {
-//                DispatchQueue.main.async { [unowned self] in
-//                    self.exhibitionCellH = CGFloat(webheight + 10)
-//                    self.dTableView.reloadData()
-//                }
-//            }
+            
+            if webView.url?.absoluteString == self.exdataModel?.data?.exhibitionHTML {
+                DispatchQueue.main.async { [unowned self] in
+                    self.exhibitionCellH = CGFloat(webheight + 10)
+                    self.dTableView.reloadData()
+//                    self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
+                }
+            }
+            
             if webView.url?.absoluteString == self.exdataModel?.data?.exhibitHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.exhibitCellH = CGFloat(webheight + 10)
-                    self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+//                    self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+                    self.dTableView.reloadData()
                 }
             }
             
@@ -1054,7 +1057,7 @@ extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
 }
 
 
-extension HDSSL_dExhibitionDetailVC{
+extension HDSSL_dExhibitionDetailVC {
     //获取评论cell的高度
     func getCommentCellHeight(_ model: CommentListModel) -> CGFloat {
         let content = String.init(format: "%@", model.content)
@@ -1082,7 +1085,8 @@ extension HDSSL_dExhibitionDetailVC{
             return
         }
         self.exhibitionCellH = CGFloat(height)
-        self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
+//        self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
+        self.dTableView.reloadData()
     }
     //刷新展品介绍cell高度
     func reloadExhibitCellHeight(_ height: Double) {
@@ -1231,3 +1235,9 @@ extension HDSSL_dExhibitionDetailVC {
     
 }
 
+
+//extension HDSSL_dExhibitionDetailVC :WKScriptMessageHandler {
+//    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+//        print(message.body)
+//    }
+//}

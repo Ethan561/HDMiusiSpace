@@ -225,7 +225,7 @@ class HDLY_Listen_SubVC:                                                        
                 cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell.titleL.text = model.title
-            cell.countL.text = "\(model.listening!)人浏览"
+            cell.countL.text = "\(model.listening!)人浏览过"
             if model.is_voice == 0 {
                 cell.voiceBtn.isHidden = true
             }else {

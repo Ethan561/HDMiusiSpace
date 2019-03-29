@@ -79,6 +79,11 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         NotificationCenter.default.addObserver(self, selector: #selector(refreshDatas),
                                                name: NSNotification.Name.init(rawValue: "KNoti_Refresh_Comments"),
                                                object: nil)
+        if HDFloatingButtonManager.manager.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
+            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+        }
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
         
     }
     

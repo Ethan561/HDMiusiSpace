@@ -153,10 +153,11 @@ final class HDFloatingButtonManager: NSObject {
     }
     
     @objc func avplayerInterruptionPauseNoti(noti:Notification) {
-        
-//        floatingBtnView.showType = .FloatingButtonPause
-//        floatingBtnView.showView()
-        
+        pause()
+        floatingBtnView.showType = .FloatingButtonPause
+        if self.showFloatingBtn == true {
+            floatingBtnView.showView()
+        }
     }
     
 }

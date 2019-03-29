@@ -68,6 +68,15 @@ class HDRootEVC: HDItemBaseVC {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        HDFloatingButtonManager.manager.showFloatingBtn = true
+        if  HDFloatingButtonManager.manager.state == .paused {
+//            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+            HDFloatingButtonManager.manager.floatingBtnView.show = true
+        }
+    }
+    
     @objc func LoginSuccess(noti:Notification) {
         skip = 0
         addRefresh()

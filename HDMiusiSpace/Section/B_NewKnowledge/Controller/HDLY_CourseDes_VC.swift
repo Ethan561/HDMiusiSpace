@@ -82,6 +82,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         if HDFloatingButtonManager.manager.state == .playing {
             HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
         }
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
         audioPlayer.showFloatingBtn = false
         navBgView.isHidden = true
         navBgView.configShadow(cornerRadius: 0, shadowColor: UIColor.lightGray, shadowOpacity: 0.5, shadowRadius: 5, shadowOffset: CGSize.zero)

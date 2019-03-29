@@ -63,7 +63,7 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
                 }
             }
         }
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,12 +71,13 @@ class HDRootCVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         if HDDeclare.shared.isSystemLocateEnable == false {
             showOpenLocServiceTipView()
         }
-        player.showFloatingBtn = false
-        if player.state == .playing {
-            player.pause()
-            HDFloatingButtonManager.manager.floatingBtnView.show = false
-            
+        
+        if HDFloatingButtonManager.manager.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
+            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
         }
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
+        
         //刷新选中的城市
         let str: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
         guard str != nil else {

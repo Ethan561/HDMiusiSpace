@@ -83,6 +83,15 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        HDFloatingButtonManager.manager.showFloatingBtn = true
+        if  HDFloatingButtonManager.manager.state == .paused {
+//            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+            HDFloatingButtonManager.manager.floatingBtnView.show = true
+        }
+    }
+    
     func addRefresh() {
         var header: ESRefreshProtocol & ESRefreshAnimatorProtocol
         var footer: ESRefreshProtocol & ESRefreshAnimatorProtocol

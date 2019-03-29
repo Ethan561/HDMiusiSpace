@@ -68,7 +68,11 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
         
         myTableView.tableFooterView = getTableFooterView()
         myTableView.separatorStyle = .none
-        
+        if HDFloatingButtonManager.manager.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
+            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+        }
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -172,8 +176,6 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     
     deinit {
         LOG(" 释放 ---")
-        
-        
     }
     
     @IBAction func action_back(_ sender: UIButton) {

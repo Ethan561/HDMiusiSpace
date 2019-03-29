@@ -23,6 +23,11 @@ class HDZQ_MyFootprintVC: HDItemBaseVC {
         requestFootPrintData()
         //空数据
         tableView.ly_emptyView = EmptyConfigView.NoDataEmptyView()
+        if HDFloatingButtonManager.manager.state == .playing {
+            HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
+            HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
+        }
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

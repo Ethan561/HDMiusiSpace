@@ -53,13 +53,15 @@ class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.dataRequest()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         player.showFloatingBtn = true
         if player.state == .paused {
             HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
             HDFloatingButtonManager.manager.floatingBtnView.show = true
         }
     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         player.showFloatingBtn = false

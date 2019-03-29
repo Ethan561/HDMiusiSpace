@@ -1243,17 +1243,3 @@ extension HDSSL_dExhibitionDetailVC {
     }
     
 }
-
-
-extension HDSSL_dExhibitionDetailVC :WKScriptMessageHandler {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body)
-        guard let arr = message.body as? NSArray else { return }
-        guard let floder = arr[0] as? String else { return }
-        guard let height = arr[1] as? String else { return }
-        let type = Int(floder)
-        let h = Double(height)
-        self.isExhibitCellFloder = (type == 2) ? true : false
-        self.reloadExhibitCellHeight(h!)
-    }
-}

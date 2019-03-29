@@ -37,7 +37,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     var playModel:DMuseumListenList?
     var playingSelectRow = -1
     var shareView: HDLY_ShareView?
-    
+    var isFloder = true
    var loadingView: HDLoadingView?
     
     //攻略收藏
@@ -474,13 +474,19 @@ extension HDSSL_dMuseumDetailVC {
                 guard let url = self.infoModel?.museumHTML else {
                     return cell!
                 }
-                if webViewH == 0 {
+                if webViewH == 0 && self.isFloder {
                    cell?.loadWebView(url)
                 }
-                
+                cell!.blockHeightFunc { [weak self] (type,height) in
+                    self?.isFloder = (type == 2) ? true : false
+                    if self?.webViewH == CGFloat(height) {
+                        return
+                    }
+                    self?.webViewH = CGFloat(height)
+                    self?.myTableView.reloadData()
+                }
                 cell?.webview.navigationDelegate = self
                 cell?.webview.frame.size.height = webViewH
-
                 return cell!
             }
             else  {

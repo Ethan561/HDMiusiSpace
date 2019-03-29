@@ -46,6 +46,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     let player = HDLY_AudioPlayer.shared//播放
     var playingSelectRow = -1
     var isExhibitionCellFloder = true//折叠状态
+    var isExhibitCellFloder = true//折叠状态
     
     //攻略收藏
     var collectionSection = -1
@@ -386,7 +387,6 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HDSSL_Sec0_Cell1") as? HDSSL_Sec0_Cell1
                 if cell != nil {
                     return self.textViewH == 0 ? self.reloadTextView((cell?.cell_timeL)!) : self.textViewH
-//                    return self.reloadTextView((cell?.cell_timeL)!)
                 }
                return 70
             }
@@ -675,15 +675,14 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             if isExhibitionCellFloder == true && exhibitionCellH == 0 {
                 cell.loadWebView(path)
             }
-//            cell.blockHeightFunc { [weak self](height) in
-//                self?.reloadExhibitionCellHeight(height)
-//            }
+            cell.blockHeightFunc { [weak self](height) in
+                self?.reloadExhibitionCellHeight(height)
+            }
 //
             cell.blockRefreshHeightFunc { [weak self](height,type) in
                 self?.isExhibitionCellFloder = (type == 2) ? true : false
                 self?.reloadExhibitionCellHeight(height)
             }
-//            cell.delegate = self
             cell.webview.frame.size.height = exhibitionCellH
             cell.webview.navigationDelegate = self
             return cell
@@ -694,9 +693,13 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView) as HDLY_CourseWeb_Cell
             let path = String.init(format: "%@", self.exdataModel?.data?.exhibitHTML ?? "")
-            
-            if self.exhibitCellH == 0 {
+            if self.exhibitCellH == 0 && self.isExhibitCellFloder == true {
                 cell.loadWebView(path)
+                
+            }
+            cell.blockHeightFunc { [weak self] (type,height) in
+                self?.isExhibitCellFloder = (type == 2) ? true : false
+                self?.reloadExhibitCellHeight(Double(height))
             }
             cell.webview.frame.size.height = exhibitCellH
             cell.webview.navigationDelegate = self
@@ -1100,7 +1103,8 @@ extension HDSSL_dExhibitionDetailVC {
             return
         }
         self.exhibitCellH = CGFloat(height)
-        self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+//        self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+        self.dTableView.reloadData()
     }
     
     //显示评论图片大图
@@ -1241,8 +1245,15 @@ extension HDSSL_dExhibitionDetailVC {
 }
 
 
-//extension HDSSL_dExhibitionDetailVC :WKScriptMessageHandler {
-//    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-//        print(message.body)
-//    }
-//}
+extension HDSSL_dExhibitionDetailVC :WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
+        guard let arr = message.body as? NSArray else { return }
+        guard let floder = arr[0] as? String else { return }
+        guard let height = arr[1] as? String else { return }
+        let type = Int(floder)
+        let h = Double(height)
+        self.isExhibitCellFloder = (type == 2) ? true : false
+        self.reloadExhibitCellHeight(h!)
+    }
+}

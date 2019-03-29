@@ -10,11 +10,12 @@ import UIKit
 import WebKit
 
 typealias CourseWebTapBloclk = (_ type: Int, _ articleId: Int) -> Void //
+typealias FoldOrUnfoldBlock = (_ type: Int, _ height: Double) -> Void //
 
 class HDLY_CourseWeb_Cell: UITableViewCell {
     
     var tapBloclk: CourseWebTapBloclk?
-    
+    var foldBlock: FoldOrUnfoldBlock?
     // MARK: - 懒加载
     lazy var webview: WKWebView = {
         let webConfiguration = WKWebViewConfiguration()
@@ -24,12 +25,13 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         webConfiguration.preferences.javaScriptEnabled = true
         //不通过用户交互，是否可以打开窗口
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = false
-        
+        webConfiguration.userContentController.add(self, name: "Fold")
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
         webView.backgroundColor = UIColor.blue
 //        webView.navigationDelegate = self
 //        webView.uiDelegate = self
+        
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
         webView.scrollView.showsVerticalScrollIndicator = false
@@ -42,6 +44,11 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
     func tapBloclkFunc(block: @escaping CourseWebTapBloclk) {
         tapBloclk = block
     }
+    
+    func blockHeightFunc(block: @escaping FoldOrUnfoldBlock) {
+        foldBlock = block
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -122,4 +129,17 @@ extension HDLY_CourseWeb_Cell: WKNavigationDelegate ,WKUIDelegate{
     
 }
 
-
+extension HDLY_CourseWeb_Cell :WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
+        guard let arr = message.body as? NSArray else { return }
+        guard let floder = arr[0] as? String else { return }
+        guard let height = arr[1] as? String else { return }
+        if self.foldBlock != nil {
+            let type = Int(floder)
+            let h = Double(height)
+            self.foldBlock!(type!,h!)
+            
+        }
+    }
+}

@@ -161,7 +161,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     //MARK: - init
     func loadMyViews() -> Void {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
+        
         self.pageMenu.bridgeScrollView = self.contentScrollView
         if navBar_btn1.isSelected == true {
             navBar_btn1.titleLabel?.font = UIFont.init(name: "PingFangSC-Semibold", size: 34)!
@@ -182,6 +182,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         print(sender.tag)
         navBar_btn1.isSelected = !navBar_btn1.isSelected
         condition1 = sender.tag + 1 //保存大页面状态
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
         loadMyViews()
         
     }
@@ -371,7 +372,7 @@ extension HDRootDVC {
         }
         s.contentOffset = contentOffset
         contentScrollView.addSubview(targetViewController.view)
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
 
     }
 }

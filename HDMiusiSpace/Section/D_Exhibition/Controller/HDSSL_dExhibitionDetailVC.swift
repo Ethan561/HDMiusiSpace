@@ -750,7 +750,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 weak var weakSelf = self
                 cell?.BlockTapItemFunc(block: { (model) in
                     //点击同馆展览，进入新页
-                    weakSelf?.showExhibitionDetailVC(exhibitionID: model.exhibitionID)
+                    weakSelf?.showExhibitionDetailVC(exhibitionID: model.exhibitionID ?? 0)
                 })
                 
                 return cell!

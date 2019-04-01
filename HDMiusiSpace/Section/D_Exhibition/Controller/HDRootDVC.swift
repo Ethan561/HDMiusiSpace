@@ -102,7 +102,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         navBar_btn1.isSelected = true
         condition1 = 1
         setupViews()
-        let menuTitleArr = ["热门推荐","全部","最近"]
+        let menuTitleArr = ["热门推荐","博物馆","最近"]
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         self.addContentSubViewsWithArr(titleArr: menuTitleArr)
         loadMyViews()
@@ -182,6 +182,11 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
         print(sender.tag)
         navBar_btn1.isSelected = !navBar_btn1.isSelected
         condition1 = sender.tag + 1 //保存大页面状态
+        if condition1 == 1 {
+            self.pageMenu.setTitle("博物馆", forItemAt: 1)
+        }else {
+            self.pageMenu.setTitle("全部", forItemAt: 1)
+        }        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
         loadMyViews()
         

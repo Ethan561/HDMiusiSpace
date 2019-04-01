@@ -160,6 +160,9 @@ enum HD_LY_API {
     //获取展览列表
     case exhibitionExhibitionList(type:Int, skip:Int, take:Int, city_name: String, longitude: String, latitude: String, keywords: String, api_token: String)
     
+    //展览博物馆分类
+    case exhibitionNewMuseumList(skip:Int, take:Int, city_name: String, longitude: String, latitude: String,  api_token: String)
+
     //获取博物馆列表
     case exhibitionMuseumList(type:Int, skip:Int, take:Int, city_name: String, longitude: String, latitude: String, keywords: String, api_token: String)
 
@@ -468,7 +471,8 @@ extension HD_LY_API: TargetType {
             return "/api/dynamic/plat_index"
         case .deleteCommentReply(api_token: _, comment_id: _):
             return "/api/comment/del_comment"
-            
+        case .exhibitionNewMuseumList(_):
+            return "/api/exhibition/new_museum_list"
             
             
         }
@@ -1074,8 +1078,11 @@ extension HD_LY_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
-            
-            
+        case .exhibitionNewMuseumList(let skip, let take, let city_name, let longitude, let latitude, let api_token):
+            params = params.merging(["skip": skip, "take": take, "city_name": city_name, "longitude": longitude, "latitude": latitude, "api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
             
             

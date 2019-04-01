@@ -35,7 +35,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
         if self.model != nil {
             if  model?.img != nil  {
                 item_img.kf.indicatorType = .activity
-                item_img.kf.setImage(with: URL.init(string: (model!.img)),
+                item_img.kf.setImage(with: URL.init(string: (model!.img ?? "")),
                                      placeholder: UIImage.grayImage(sourceImageV: item_img),
                                      options: [
                                         .scaleFactor(UIScreen.main.scale),
@@ -54,7 +54,7 @@ class HDSSL_sameMuseumItem: UICollectionViewCell {
             item_loc.text = model!.address
            
             
-            let star: Float! = Float(model!.star.string)
+            let star: Float! = Float(model!.star?.string ?? "0")
             if star == 0 {
                 //评分为0的时候显示暂无评星
                 noStarL.isHidden = false

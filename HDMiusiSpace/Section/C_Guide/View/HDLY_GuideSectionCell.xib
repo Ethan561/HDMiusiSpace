@@ -28,6 +28,9 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKv-SQ-pz2">
+                        <rect key="frame" x="20" y="12" width="156.5" height="20"/>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.8km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fD3-BW-6B3">
                         <rect key="frame" x="184.5" y="12" width="45" height="20"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,6 +42,9 @@
                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuding-2" translatesAutoresizingMaskIntoConstraints="NO" id="juT-54-Bq3">
+                        <rect key="frame" x="184.5" y="14" width="15" height="16"/>
+                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3f-LC-URf">
                         <rect key="frame" x="264" y="10" width="46" height="24"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -62,11 +68,17 @@
                     <constraint firstItem="fV1-u8-0cA" firstAttribute="top" secondItem="KQK-Lu-A1Y" secondAttribute="bottom" constant="8" id="6jd-Nd-Mbs"/>
                     <constraint firstItem="fD3-BW-6B3" firstAttribute="centerY" secondItem="KQK-Lu-A1Y" secondAttribute="centerY" id="7AP-6P-1X3"/>
                     <constraint firstAttribute="trailing" secondItem="V3f-LC-URf" secondAttribute="trailing" constant="10" id="E92-GA-omy"/>
+                    <constraint firstItem="TKv-SQ-pz2" firstAttribute="leading" secondItem="KQK-Lu-A1Y" secondAttribute="leading" id="HHA-QA-Slq"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="KQK-Lu-A1Y" secondAttribute="trailing" constant="100" id="SY4-Qq-CeR"/>
+                    <constraint firstItem="TKv-SQ-pz2" firstAttribute="top" secondItem="KQK-Lu-A1Y" secondAttribute="top" id="dI8-uh-joS"/>
+                    <constraint firstItem="TKv-SQ-pz2" firstAttribute="trailing" secondItem="KQK-Lu-A1Y" secondAttribute="trailing" id="e5L-fc-cKQ"/>
                     <constraint firstItem="V3f-LC-URf" firstAttribute="centerY" secondItem="KQK-Lu-A1Y" secondAttribute="centerY" id="i6x-Jj-SPw"/>
                     <constraint firstItem="fD3-BW-6B3" firstAttribute="leading" secondItem="KQK-Lu-A1Y" secondAttribute="trailing" constant="8" id="oco-Qp-71c"/>
+                    <constraint firstItem="juT-54-Bq3" firstAttribute="centerY" secondItem="fD3-BW-6B3" secondAttribute="centerY" id="sCG-gr-KPy"/>
+                    <constraint firstItem="juT-54-Bq3" firstAttribute="leading" secondItem="fD3-BW-6B3" secondAttribute="leading" id="v72-oN-8nZ"/>
                     <constraint firstItem="KQK-Lu-A1Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="vbn-wm-A93"/>
                     <constraint firstItem="KQK-Lu-A1Y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="w52-2e-JuL"/>
+                    <constraint firstItem="TKv-SQ-pz2" firstAttribute="bottom" secondItem="KQK-Lu-A1Y" secondAttribute="bottom" id="wp6-fo-Gon"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -75,8 +87,13 @@
                 <outlet property="moreBtn" destination="V3f-LC-URf" id="ssN-eb-Gxv"/>
                 <outlet property="nameLabel" destination="KQK-Lu-A1Y" id="A7K-PI-ToF"/>
                 <outlet property="subNameL" destination="fV1-u8-0cA" id="ivh-FO-CJF"/>
+                <outlet property="titleBtn" destination="TKv-SQ-pz2" id="mJ8-LQ-Lbi"/>
+                <outlet property="tudingImgV" destination="juT-54-Bq3" id="PxU-cG-fMR"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="tuding-2" width="15.5" height="16"/>
+    </resources>
 </document>

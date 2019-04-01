@@ -534,7 +534,7 @@ extension HDSSL_dMuseumDetailVC {
                     cell?.listArray = model.exhibition?.list
                     weak var weakS = self
                     cell?.BlockTapItemFunc(block: { (m) in
-                        weakS?.showExhibitionDetailVC(exhibitionID: m.exhibitionID)
+                        weakS?.showExhibitionDetailVC(exhibitionID: m.exhibitionID ?? 0)
                     })
                     return cell!
                     

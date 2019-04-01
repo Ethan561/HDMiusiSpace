@@ -122,10 +122,10 @@ struct CommenExhibition: Codable {
 }
 //同馆展览2
 struct ExhibitionList: Codable {
-    let exhibitionID: Int
-    let img: String
-    let title, address: String
-    let star: TStrInt
+    let exhibitionID: Int?
+    let img: String?
+    let title, address: String?
+    let star: TStrInt?
     var iconList: [String]?
     
     enum CodingKeys: String, CodingKey {

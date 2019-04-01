@@ -102,3 +102,29 @@ struct StrategyModel: Codable {
     var title:String
 }
 
+//展览博物馆分类
+
+struct D_ExhibitionMuseumList: Codable {
+    let status: Int
+    let msg: String
+    let data: [D_ExhibitionMuseumListData]
+}
+
+struct D_ExhibitionMuseumListData: Codable {
+    var count, exhibitCount: Int?
+    var distance, title: String?
+    var museumID: Int?
+    var list: [ExhibitionList]?
+    var is_favorites : Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case count
+        case exhibitCount = "exhibit_count"
+        case distance, title
+        case museumID = "museum_id"
+        case list
+        case is_favorites
+    }
+}
+
+

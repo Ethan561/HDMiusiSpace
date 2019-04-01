@@ -14,6 +14,8 @@ class HDLY_GuideSectionCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
     @IBOutlet weak var disL: UILabel!
+    @IBOutlet weak var tudingImgV: UIImageView!
+    @IBOutlet weak var titleBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

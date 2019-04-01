@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
 
     @IBOutlet weak var searchBtn: UIButton!
@@ -186,7 +184,7 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
             self.pageMenu.setTitle("博物馆", forItemAt: 1)
         }else {
             self.pageMenu.setTitle("全部", forItemAt: 1)
-        }        
+        }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
         loadMyViews()
         

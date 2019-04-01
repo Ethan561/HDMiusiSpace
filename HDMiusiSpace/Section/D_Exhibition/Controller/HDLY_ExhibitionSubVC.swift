@@ -399,7 +399,7 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
                     cell.nameLabel.text = model.title
                     cell.nameLabel.textColor = UIColor.HexColor(0xE04735)
                     cell.disL.isHidden = true
-                    cell.subNameL.text = String.init(format: "%ld个展览", model.list?.count ?? 0)
+                    cell.subNameL.text = String.init(format: "%ld个展览", model.count ?? 0)
                     if model.list?.count ?? 0 < 2 {
                         cell.moreBtn.isHidden = true
                     }else {

@@ -232,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         if HDFloatingButtonManager.manager.floatingBtnView.show == true {
 //            LOG("======= 暂停了=====")
-            if HDFloatingButtonManager.manager.state == .playing {
+            if HDFloatingButtonManager.manager.state == .playing && HDFloatingButtonManager.manager.listenID != nil {
                 HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
                 HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
                 HDFloatingButtonManager.manager.floatingBtnView.showView()

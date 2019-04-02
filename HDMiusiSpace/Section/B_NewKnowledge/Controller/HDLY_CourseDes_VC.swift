@@ -42,7 +42,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     var isStatusBarHidden = false//是否隐藏状态栏
     var isFromTeacherCenter = false
     var isFreeCourse = false
-
+    
 //    var kVideoCover = "https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"
     var kVideoCover = ""
 
@@ -63,7 +63,8 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     var shareView: HDLY_ShareView?
     var isNeedRefresh = false
-    
+    var isCellFloder = true//折叠状态
+
     @IBOutlet weak var wwanTipView: UIView!
     @IBOutlet weak var wlanTipL: UILabel!
 
@@ -615,12 +616,17 @@ extension HDLY_CourseDes_VC {
                 guard let url = self.infoModel?.data.url else {
                     return cell!
                 }
-                if webViewH == 0 {
+                if webViewH == 0 && self.isCellFloder == true {
                   cell?.loadWebView(url)
+                }
+                cell?.blockHeightFunc { [weak self] (type,height) in
+                    self?.isCellFloder = (type == 2) ? true : false
+                    self?.reloadExhibitCellHeight(Double(height))
                 }
                 cell?.webview.frame.size.height = webViewH
                 cell?.webview.navigationDelegate = self
                 cell?.webview.uiDelegate = self
+                
                 return cell!
             }
             else if index == 2 {
@@ -808,7 +814,16 @@ extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
 }
 
 extension HDLY_CourseDes_VC {
-
+    func reloadExhibitCellHeight(_ height: Double) {
+        //print("返回的webview高度是\(height)")
+        if self.webViewH == CGFloat(height) {
+            return
+        }
+        self.webViewH = CGFloat(height)
+        self.myTableView.reloadData()
+        self.myTableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableViewScrollPosition.none, animated: false)
+    }
+    
     func tapErrorBtnAction() {
         if showFeedbackChooseTip == false {
             let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
@@ -996,3 +1011,4 @@ extension HDLY_CourseDes_VC : WKNavigationDelegate,WKUIDelegate {
         completionHandler()
     }
 }
+

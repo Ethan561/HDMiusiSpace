@@ -246,7 +246,11 @@ extension HDTagChooseCareerVC: UIScrollViewDelegate {
     
     @IBAction func firstGuideBtnAction(_ sender: Any) {
         
-        firstGuideView.isHidden = true
+//      firstGuideView.isHidden = true
+        self.performSegue(withIdentifier: "HD_PushToTabBarVCLine", sender: nil)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set("1", forKey: "saveTags")
+        userDefaults.synchronize()
     }
     
     //MARK: --- UIScrollViewDelegate --

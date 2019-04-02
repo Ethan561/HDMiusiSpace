@@ -432,8 +432,8 @@
                                     <constraint firstAttribute="height" constant="60" id="y83-nc-9bK"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOJ-ft-CEi">
-                                <rect key="frame" x="20" y="260" width="335" height="80"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOJ-ft-CEi">
+                                <rect key="frame" x="20" y="360" width="335" height="80"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQL-Nq-Dcy">
                                         <rect key="frame" x="0.0" y="79" width="335" height="1"/>
@@ -483,7 +483,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpf-kS-fbs">
-                                <rect key="frame" x="20" y="340" width="335" height="60"/>
+                                <rect key="frame" x="20" y="260" width="335" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WI4-yX-EIr">
                                         <rect key="frame" x="0.0" y="59" width="335" height="1"/>
@@ -538,17 +538,17 @@
                             <constraint firstItem="9XQ-tK-9No" firstAttribute="top" secondItem="HO2-kX-sGq" secondAttribute="bottom" constant="30" id="1oQ-ID-cZ2"/>
                             <constraint firstItem="HO2-kX-sGq" firstAttribute="trailing" secondItem="jfX-P3-fLF" secondAttribute="trailing" constant="-3" id="9F2-8r-HbH"/>
                             <constraint firstItem="Gwf-EN-DaR" firstAttribute="trailing" secondItem="9XQ-tK-9No" secondAttribute="trailing" id="DAX-W0-IXD"/>
-                            <constraint firstItem="OOJ-ft-CEi" firstAttribute="top" secondItem="Gwf-EN-DaR" secondAttribute="bottom" id="F2M-3v-4aF"/>
+                            <constraint firstItem="OOJ-ft-CEi" firstAttribute="top" secondItem="Gwf-EN-DaR" secondAttribute="bottom" constant="100" id="F2M-3v-4aF"/>
                             <constraint firstItem="9XQ-tK-9No" firstAttribute="leading" secondItem="gxE-N9-4in" secondAttribute="leading" constant="20" id="NJ2-ux-zFl"/>
                             <constraint firstItem="OOJ-ft-CEi" firstAttribute="leading" secondItem="Gwf-EN-DaR" secondAttribute="leading" id="P2C-00-KR1"/>
                             <constraint firstItem="Gwf-EN-DaR" firstAttribute="leading" secondItem="9XQ-tK-9No" secondAttribute="leading" id="RVo-OX-tFe"/>
                             <constraint firstItem="OOJ-ft-CEi" firstAttribute="trailing" secondItem="Gwf-EN-DaR" secondAttribute="trailing" id="Rbd-9X-Jy4"/>
+                            <constraint firstItem="bpf-kS-fbs" firstAttribute="top" secondItem="Gwf-EN-DaR" secondAttribute="bottom" id="dSb-rv-Nch"/>
                             <constraint firstItem="gxE-N9-4in" firstAttribute="trailing" secondItem="9XQ-tK-9No" secondAttribute="trailing" constant="20" id="j1j-7D-CW6"/>
                             <constraint firstItem="bpf-kS-fbs" firstAttribute="trailing" secondItem="OOJ-ft-CEi" secondAttribute="trailing" id="jrX-o8-Z4E"/>
                             <constraint firstItem="HO2-kX-sGq" firstAttribute="bottom" secondItem="jfX-P3-fLF" secondAttribute="bottom" constant="-3" id="sfQ-ha-qIw"/>
                             <constraint firstItem="bpf-kS-fbs" firstAttribute="leading" secondItem="OOJ-ft-CEi" secondAttribute="leading" id="sx0-dx-BsN"/>
                             <constraint firstItem="Gwf-EN-DaR" firstAttribute="top" secondItem="9XQ-tK-9No" secondAttribute="bottom" id="vY8-OP-hVP"/>
-                            <constraint firstItem="bpf-kS-fbs" firstAttribute="top" secondItem="OOJ-ft-CEi" secondAttribute="bottom" id="yXg-9R-buO"/>
                             <constraint firstItem="HO2-kX-sGq" firstAttribute="centerX" secondItem="1dW-Bc-nBY" secondAttribute="centerX" id="z9X-6R-pPy"/>
                             <constraint firstItem="HO2-kX-sGq" firstAttribute="top" secondItem="gxE-N9-4in" secondAttribute="top" constant="30" id="zDF-m6-nxS"/>
                         </constraints>

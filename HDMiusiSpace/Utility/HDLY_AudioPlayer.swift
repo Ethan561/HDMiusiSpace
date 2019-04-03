@@ -304,8 +304,8 @@ extension HDLY_AudioPlayer{
     }
     
     @objc func audioInterruptionNoti() {
-        LOG("===== audioInterruptionNoti")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
+//        LOG("===== audioInterruptionNoti")
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
 
     }
     

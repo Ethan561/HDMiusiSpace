@@ -303,6 +303,7 @@ class HDLY_Listen_SubVC:                                                        
         player.url = url
         HDFloatingButtonManager.manager.floatingBtnView.show = true
         HDFloatingButtonManager.manager.listenID = "\(model.listenID!)"
+        HDFloatingButtonManager.manager.url = voicePath
         HDFloatingButtonManager.manager.iconUrl =  model.icon
         
         addPlayNumber(model)

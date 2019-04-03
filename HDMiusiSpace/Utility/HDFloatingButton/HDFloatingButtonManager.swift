@@ -286,7 +286,6 @@ extension HDFloatingButtonManager:STKAudioPlayerDelegate {
     
     //MARK: ==== STKAudioPlayerDelegate======
     
-    
     //开始播放歌曲
     func audioPlayer(_ audioPlayer: STKAudioPlayer,
                      didStartPlayingQueueItemId queueItemId: NSObject) {

@@ -399,6 +399,7 @@ extension HDLY_Recommend_SubVC {
         player.url = url
         HDFloatingButtonManager.manager.floatingBtnView.show = true
         HDFloatingButtonManager.manager.listenID = String.init(format: "%ld", model.article_id?.int ?? 0)
+        HDFloatingButtonManager.manager.url = voicePath
         HDFloatingButtonManager.manager.iconUrl =  model.icon
     }
     

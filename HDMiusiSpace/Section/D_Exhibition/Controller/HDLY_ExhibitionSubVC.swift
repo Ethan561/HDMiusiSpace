@@ -388,7 +388,7 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
             if type == 0 {
                 let model:D_ExhibitionMuseumListData = exhibitionMuseumArr[indexPath.section]
                 if index == 0 {
-                    let cell:HDLY_GuideSectionCell = HDLY_GuideSectionCell.getMyTableCell(tableV: tableView)
+                    let cell:HDLY_dExMusSectionCell = HDLY_dExMusSectionCell.getMyTableCell(tableV: tableView)
                     cell.moreBtn.tag = 100 + indexPath.section
                     cell.moreBtn.isHidden = false
                     cell.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
@@ -397,8 +397,6 @@ extension HDLY_ExhibitionSubVC:UITableViewDelegate,UITableViewDataSource {
                     cell.titleBtn.addTarget(self, action: #selector(museumTitleBtnAction(_:)), for: .touchUpInside)
                     
                     cell.nameLabel.text = model.title
-                    cell.nameLabel.textColor = UIColor.HexColor(0xE04735)
-                    cell.disL.isHidden = true
                     cell.subNameL.text = String.init(format: "%ld个展览", model.count ?? 0)
                     if model.list?.count ?? 0 < 2 {
                         cell.moreBtn.isHidden = true

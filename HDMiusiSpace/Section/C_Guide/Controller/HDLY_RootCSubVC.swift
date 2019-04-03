@@ -243,7 +243,7 @@ extension HDLY_RootCSubVC {
                     cell.moreBtn.isHidden = false
                     cell.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
                     cell.nameLabel.text = listData?.title
-                    cell.subNameL.text = String.init(format: "%ld个展览共包含%ld讲解点", listData?.count ?? 0, listData?.exhibit_count ?? 0)
+                    cell.subNameL.text = String.init(format: "展览%ld个 | 讲解点%ld个", listData?.count ?? 0, listData?.exhibit_count ?? 0)
                     cell.disL.text = listData?.distance
                     if model.list?.count ?? 0 < 2 {
                         cell.moreBtn.isHidden = true

@@ -146,6 +146,11 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         }else {
             isRight = true
         }
+        if HDFloatingButtonManager.manager.url.contains("uploadfiles") == false {
+            LOG("===== 没有音频地址，不显示悬浮窗")
+            self.isHidden = true
+            return;
+        }
         self.isHidden = false
         
         if showType == .FloatingButtonFolder {

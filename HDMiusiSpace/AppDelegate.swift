@@ -9,7 +9,6 @@
 import UIKit
 import SwiftyStoreKit
 
-
 //极光推送是否是发布模式
 let isProduction = false
 let HDJPushAliasKey = "HDJPushAliasKey"
@@ -232,7 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         if HDFloatingButtonManager.manager.floatingBtnView.show == true {
 //            LOG("======= 暂停了=====")
-            if HDFloatingButtonManager.manager.state == .playing && HDFloatingButtonManager.manager.listenID != nil {
+            if HDFloatingButtonManager.manager.state == .playing && HDFloatingButtonManager.manager.url.contains("uploadfiles") {
                 HDFloatingButtonManager.manager.floatingBtnView.pauseAction()
                 HDFloatingButtonManager.manager.floatingBtnView.showType = .FloatingButtonPause
                 HDFloatingButtonManager.manager.floatingBtnView.showView()

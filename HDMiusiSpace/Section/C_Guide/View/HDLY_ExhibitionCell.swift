@@ -51,20 +51,24 @@ class HDLY_ExhibitionCell: UITableViewCell {
         //免费类型,0不免费,1所有人免费,2svip免费
         if model.priceType == 0 {
             priceL.isHidden = false
+            vipPriceL.isHidden = true
             priceL.text = "￥\(model.price)"
             priceL.textColor = UIColor.HexColor(0xE8593E)
             vipPriceL.text = "SVIP￥\(model.vipPrice)"
             vipPriceL.textColor = UIColor.HexColor(0xCCCCCC)
 
         }else if model.priceType == 1 {
+            priceL.isHidden = true
+            vipPriceL.isHidden = false
             vipPriceL.text = "限时免费"
             vipPriceL.textColor = UIColor.HexColor(0x4A4A4A)
             
         }else if model.priceType == 2 {
+            priceL.isHidden = true
+            vipPriceL.isHidden = false
             vipPriceL.text = "SVIP免费"
             vipPriceL.textColor = UIColor.HexColor(0xD8B98D)
         }
-        vipPriceL.isHidden = true
         timeL.text = model.times
 //        UIFont.showAllFonts()
         if model.isTz == 1 {

@@ -44,7 +44,7 @@
                                     <constraint firstAttribute="width" constant="40" id="hIc-lX-wNL"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="GEb-sO-wsx">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="GEb-sO-wsx">
                                 <rect key="frame" x="28" y="28" width="12" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="12" id="JxO-QO-qjA"/>

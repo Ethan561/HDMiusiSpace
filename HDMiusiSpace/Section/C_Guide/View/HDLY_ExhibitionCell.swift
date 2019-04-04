@@ -24,7 +24,6 @@ class HDLY_ExhibitionCell: UITableViewCell {
     var modelA:HDLY_ExhibitionListData? {
         didSet {
             showViewData()
-            
         }
     }
     func showViewData() {

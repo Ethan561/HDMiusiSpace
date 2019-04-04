@@ -26,6 +26,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
     var infoModel: CourseDetail?
     var courseId: String?
     var isFreeCourse = false
+    var isCellFloder = true//折叠状态
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,11 +87,13 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                     self.buyBtn.setTitle("¥\(self.infoModel!.data.yprice!)", for: .normal)
                     self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
                     self.bottomHCons.constant = 74
+                    self.isFreeCourse = false
+
                 }else {
                     self.bottomHCons.constant = 0
                     self.bottomView.isHidden = true
+                    self.isFreeCourse = true
                 }
-                self.isFreeCourse = false
             }else {
                 self.bottomHCons.constant = 0
                 self.bottomView.isHidden = true
@@ -204,8 +207,12 @@ extension HDLY_CourseList_SubVC2 {
             guard let url = self.infoModel?.data.url else {
                 return cell!
             }
-            if webViewH == 0 {
-              cell?.loadWebView(url)
+            if webViewH == 0 && self.isCellFloder == true {
+                cell?.loadWebView(url)
+            }
+            cell?.blockHeightFunc { [weak self] (type,height) in
+                self?.isCellFloder = (type == 2) ? true : false
+                self?.reloadExhibitCellHeight(Double(height))
             }
             cell?.webview.frame.size.height = webViewH
             cell?.webview.navigationDelegate = self
@@ -333,6 +340,18 @@ extension HDLY_CourseList_SubVC2: UIScrollViewDelegate {
     
 
 extension HDLY_CourseList_SubVC2 {
+    
+    func reloadExhibitCellHeight(_ height: Double) {
+        //print("返回的webview高度是\(height)")
+        if self.webViewH == CGFloat(height) {
+            return
+        }
+        self.webViewH = CGFloat(height)
+        self.tableView.reloadData()
+        self.tableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableViewScrollPosition.none, animated: false)
+    }
+    
+    
     @objc func focusBtnAction()  {
         if let idnum = infoModel?.data.teacherID.string {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {

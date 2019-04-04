@@ -136,7 +136,7 @@
                         <constraint firstAttribute="width" constant="2" id="my9-XM-xfg"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="d5t-MB-sZh">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="d5t-MB-sZh">
                     <rect key="frame" x="93" y="78" width="12" height="12"/>
                 </imageView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文博在线”是一个文博领域的信息聚合，会为您提供一些“基本的”信息服务。我们希望这里所有的内容，都由使用者共同维护、发展和传播。我们也希望“在线文博”成为文博人和文博爱好者生活方式的一种，并从中感受到文化的快乐。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wol-kA-TbP">

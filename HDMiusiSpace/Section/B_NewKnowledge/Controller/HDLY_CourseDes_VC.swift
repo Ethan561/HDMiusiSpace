@@ -390,13 +390,13 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                         self.buyBtn.setAttributedTitle(priceString, for: .normal)
                     }
                     self.listenBgView.isHidden = false
-
+                    self.isFreeCourse = false
                 }else {
                     self.buyBtn.setAttributedTitle(nil, for: .normal)
                     self.buyBtn.setTitle("立即学习", for: .normal)
                     self.listenBgView.isHidden = true
+                    self.isFreeCourse = true
                 }
-                self.isFreeCourse = false
             }else {
                 self.buyBtn.setTitle("立即学习", for: .normal)
                 self.listenBgView.isHidden = true

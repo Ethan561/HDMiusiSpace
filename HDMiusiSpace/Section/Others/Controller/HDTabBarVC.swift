@@ -18,10 +18,10 @@ class HDTabBarVC: UITabBarController {
     func loadControllers() {
         let nav1: HDItemBaseNaviVC = UIStoryboard.init(name: "RootA", bundle: nil).instantiateViewController(withIdentifier: "HDRootANavVC") as! HDItemBaseNaviVC
         let nav2: HDItemBaseNaviVC = UIStoryboard.init(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDRootBNavVC") as! HDItemBaseNaviVC
-        let nav3: HDItemBaseNaviVC = UIStoryboard.init(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDRootCNavVC") as! HDItemBaseNaviVC
+//        let nav3: HDItemBaseNaviVC = UIStoryboard.init(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDRootCNavVC") as! HDItemBaseNaviVC
         let nav4: HDItemBaseNaviVC = UIStoryboard.init(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDRootDNavVC") as! HDItemBaseNaviVC
         let nav5: HDItemBaseNaviVC = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDRootENavVC") as! HDItemBaseNaviVC
-        self.viewControllers = [nav1, nav2, nav3, nav4, nav5]
+        self.viewControllers = [nav1, nav2, nav4, nav5]
         //
         setupTabbar()
     }
@@ -32,7 +32,7 @@ class HDTabBarVC: UITabBarController {
         tabBar.tabBarItemAttributes = [
             [kTabBarItemTitle: "精选", kTabBarNormalImgName: "tab_icon_jingxuan_default", kTabBarSelectedImgName: "tab_icon_jingxuan_pressed", kTabBarItemType: "0"],
             [kTabBarItemTitle: "新知", kTabBarNormalImgName: "tab_icon_xinzhi_default", kTabBarSelectedImgName: "tab_icon_xinzhi_pressed", kTabBarItemType: "0"],
-            [kTabBarItemTitle: "导览", kTabBarNormalImgName: "tab_icon_daolan_default", kTabBarSelectedImgName: "tab_icon_daolan_pressed", kTabBarItemType: "0"],
+//            [kTabBarItemTitle: "导览", kTabBarNormalImgName: "tab_icon_daolan_default", kTabBarSelectedImgName: "tab_icon_daolan_pressed", kTabBarItemType: "0"],
             [kTabBarItemTitle: "看展", kTabBarNormalImgName: "tab_icon_kanzhan_default", kTabBarSelectedImgName: "tab_icon_kanzhan_pressed", kTabBarItemType: "0"],
             [kTabBarItemTitle: "我的", kTabBarNormalImgName: "tab_icon_wode_default", kTabBarSelectedImgName: "tab_icon_wode_pressed", kTabBarItemType: "0"]
         ]

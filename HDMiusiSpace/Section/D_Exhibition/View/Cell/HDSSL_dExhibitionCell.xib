@@ -24,7 +24,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-ps-TEc">
-                        <rect key="frame" x="20" y="10" width="280" height="249.5"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="249.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LVe-UC-o7B">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="157"/>
@@ -117,14 +117,14 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4cY-ps-TEc" secondAttribute="trailing" constant="20" id="E9Z-SE-ccX"/>
                     <constraint firstAttribute="trailing" secondItem="phD-sH-KsA" secondAttribute="trailing" constant="22" id="KQA-pL-aqN"/>
                     <constraint firstItem="phD-sH-KsA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="LyP-fE-2cS"/>
                     <constraint firstItem="phD-sH-KsA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="N0y-jj-iw0"/>
-                    <constraint firstItem="4cY-ps-TEc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="P0P-ub-o7g"/>
-                    <constraint firstAttribute="bottom" secondItem="4cY-ps-TEc" secondAttribute="bottom" constant="10" id="WYb-MJ-xbz"/>
+                    <constraint firstItem="4cY-ps-TEc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="P0P-ub-o7g"/>
+                    <constraint firstAttribute="bottom" secondItem="4cY-ps-TEc" secondAttribute="bottom" constant="20" id="WYb-MJ-xbz"/>
                     <constraint firstAttribute="bottom" secondItem="phD-sH-KsA" secondAttribute="bottom" constant="12" id="ccb-WZ-rpj"/>
                     <constraint firstItem="4cY-ps-TEc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sOB-sn-WwH"/>
                 </constraints>

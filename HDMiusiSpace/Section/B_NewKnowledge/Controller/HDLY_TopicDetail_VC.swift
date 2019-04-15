@@ -339,7 +339,7 @@ extension HDLY_TopicDetail_VC {
         if section == 0 {
             if  infoModel?.title != nil {
                 let height = infoModel!.title.getContentHeight(font: UIFont.init(name: "PingFangSC-Semibold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20), width: ScreenWidth-40)
-                return height+16
+                return height+30
             }
             return 60
         }
@@ -783,7 +783,7 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
         keyboardTextField.toFullyBottom()
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
-        view.backgroundColor = UIColor.HexColor(0x000000, 0.3)
+//        view.backgroundColor = UIColor.HexColor(0x000000, 0.3)
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(closeKeyBoardView))
         view.addGestureRecognizer(tap)
         keyboardTextField.addAttachmentView(view)

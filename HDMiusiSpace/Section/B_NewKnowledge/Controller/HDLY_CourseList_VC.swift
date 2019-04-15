@@ -107,6 +107,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         addContentSubViewsWithArr(titleArr: titleArray)
         bindViewModel()
         wwanTipView.isHidden = true
+        setupShadow()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +141,17 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         return self.isStatusBarHidden
     }
     
+    func setupShadow() {
+        //1.设置阴影颜色
+        menuView.layer.shadowColor = UIColor.lightGray.cgColor
+        
+        //2.设置阴影偏移范围
+        menuView.layer.shadowOffset = CGSize.zero
+        menuView.layer.shadowRadius = 3
+        
+        //3.设置阴影颜色的透明度
+        menuView.layer.shadowOpacity = 0.5
+    }
     //MVVM
     func bindViewModel() {
         weak var weakSelf = self

@@ -306,7 +306,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         bannerView.placeholderImg = UIImage.grayImage(size: CGSize.init(width: ScreenWidth, height: kBannerHeight))!
         bannerView.pageControlAliment = .center
         bannerView.pageControlBottomDis = 15
-        
+
         if bannerView.pageControl != nil {
             bannerView.pageControl!.isHidden = true
         }
@@ -325,6 +325,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
         bannerView.imgPathArr = bannerImgArr!
         imgsArr = bannerImgArr
         bannerView.delegate = self
+        bannerView.autoScrollTimeIntervar = 5
         bannerView.clickItemClosure = { (index) -> Void in
             LOG("闭包回调---\(index)")
         }

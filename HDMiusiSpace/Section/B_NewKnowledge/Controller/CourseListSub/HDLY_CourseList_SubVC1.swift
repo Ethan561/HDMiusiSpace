@@ -212,9 +212,9 @@ extension HDLY_CourseList_SubVC1 {
             cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
 
             let width = listModel.title.getContentWidth(font: UIFont.systemFont(ofSize: 14), height: 21)
-            if width > ScreenWidth - 190 {
-                cell!.nameWidthCons.constant = ScreenWidth - 190
-            }
+//            if width > ScreenWidth - 190 {
+//                cell!.nameWidthCons.constant = ScreenWidth - 190
+//            }
             if self.isBuy == false {
                 //0收费 1免费 2vip免费
                 if listModel.freeType == 0 {

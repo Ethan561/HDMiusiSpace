@@ -194,7 +194,6 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     @objc func refreshAction() {
         dataRequestForBanner()
         dataRequestForMenu(isRefresh: false)
-
     }
     
     func addRefresh() {

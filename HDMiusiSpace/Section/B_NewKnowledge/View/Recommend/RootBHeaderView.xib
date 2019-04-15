@@ -46,7 +46,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="297" height="36"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.40485873290000002" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.11641160105068496" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="U4H-FL-m7e" firstAttribute="centerY" secondItem="oHf-gX-T0b" secondAttribute="centerY" id="5TA-3C-t1J"/>
                         <constraint firstAttribute="height" constant="36" id="678-5v-yjF"/>

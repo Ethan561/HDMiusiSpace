@@ -53,7 +53,7 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 20
         self.myCollectionView.setCollectionViewLayout(layout, animated: true)
         //
         self.myCollectionView.scrollsToTop = false

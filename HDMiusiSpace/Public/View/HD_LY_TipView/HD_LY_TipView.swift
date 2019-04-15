@@ -36,8 +36,8 @@ class HD_LY_TipView: UIView {
         self.init(frame: frame)
         self.frame = (kKeyWindow?.bounds)!
         backgroundView.frame = self.bounds
-        backgroundView.backgroundColor = UIColor.black
-        backgroundView.alpha = 0.1
+        backgroundView.backgroundColor = UIColor.clear
+//        backgroundView.alpha = 0.1
         self.addSubview(backgroundView)
         
         self.alertType = alertType

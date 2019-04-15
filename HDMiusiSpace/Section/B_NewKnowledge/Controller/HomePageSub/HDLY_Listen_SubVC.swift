@@ -66,7 +66,6 @@ class HDLY_Listen_SubVC:                                                        
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(self.collectionView)
-        
         collectionView.register(UINib.init(nibName: HDLY_Listen_CollectionCell.className, bundle: nil), forCellWithReuseIdentifier: HDLY_Listen_CollectionCell.className)
         
         
@@ -283,7 +282,7 @@ class HDLY_Listen_SubVC:                                                        
             if ScreenWidth == 320 {
                 space = 5
             }
-            return UIEdgeInsets.init(top: 10, left: space, bottom: 10, right: space)
+            return UIEdgeInsets.init(top: 10, left: space, bottom: 20, right: space)
         }
         return UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
     }

@@ -17,7 +17,7 @@ class HDLY_RecmdMore_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
+        tableView.backgroundColor = UIColor.white
         tableView.showsVerticalScrollIndicator = false
         
         return tableView

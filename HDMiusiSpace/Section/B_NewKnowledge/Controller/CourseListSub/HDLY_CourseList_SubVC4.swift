@@ -32,8 +32,10 @@ class HDLY_CourseList_SubVC4: HDItemBaseVC,UITableViewDataSource,UITableViewDele
         emptyView.backgroundColor = UIColor.white
         emptyView.contentView.backgroundColor = UIColor.clear
         self.tableView.ly_emptyView = emptyView
-
+        
         dataRequest()
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLY_CourseList_SubVC4_NeedRefresh_Noti"), object: nil)
+        
     }
 
     func dataRequest()  {
@@ -126,8 +128,8 @@ extension HDLY_CourseList_SubVC4 {
                 return  0.01
             }
             if let text = commentModel.content {
-                let textH = text.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-85)
-                return textH + 90
+                let textH = text.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-90)
+                return textH + 100
             }
         }
         return 0.01

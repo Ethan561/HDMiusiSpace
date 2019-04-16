@@ -56,6 +56,8 @@ class HDLY_LeaveMsg_VC: HDItemBaseVC,UITextViewDelegate {
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "提交成功")
             self.textView.text = ""
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "HDLY_CourseList_SubVC4_NeedRefresh_Noti"), object: nil, userInfo: nil)
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.navigationController?.popViewController(animated: true)
             })

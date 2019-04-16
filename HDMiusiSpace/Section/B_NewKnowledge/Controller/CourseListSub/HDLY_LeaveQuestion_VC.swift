@@ -57,6 +57,7 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "问题提交成功")
             self.textView.text = ""
             self.titleTextView.text = ""
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
                 self.navigationController?.popViewController(animated: true)
             })

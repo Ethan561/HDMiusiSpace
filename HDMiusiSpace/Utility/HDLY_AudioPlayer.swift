@@ -32,7 +32,7 @@ final class HDLY_AudioPlayer: NSObject {
     //当前播放状态
     var state:STKAudioPlayerState = []
     //播放音频资源
-    var queue = [Music(name: "", url: URL(string: "")!)]
+//    var queue = [Music(name: "", url: URL(string: "")!)]
     var currentItem: Music?
     
     //当前播放音乐索引

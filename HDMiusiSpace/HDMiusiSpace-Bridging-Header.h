@@ -61,6 +61,7 @@
 
 #import "UITableView+CCPIndexView.h"
 #import "HDBaseModel.h"
+#import "NSString+Helper.h"
 
 
 

@@ -29,13 +29,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOL-a1-7No">
-                        <rect key="frame" x="20" y="12" width="224.5" height="20"/>
+                        <rect key="frame" x="20" y="12" width="184.5" height="20"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进入&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkY-R9-uaI">
-                        <rect key="frame" x="184.5" y="12" width="40" height="20"/>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkY-R9-uaI">
+                        <rect key="frame" x="184.5" y="12" width="0.0" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="9tt-gl-ycZ"/>
+                            <constraint firstAttribute="width" id="9tt-gl-ycZ"/>
                             <constraint firstAttribute="height" constant="20" id="j9W-LF-gfC"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -43,7 +43,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuding-2" translatesAutoresizingMaskIntoConstraints="NO" id="EL3-OR-T5s">
-                        <rect key="frame" x="229.5" y="14" width="15" height="16"/>
+                        <rect key="frame" x="189.5" y="14" width="15" height="16"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18处展览讲解" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndj-c3-KNC">
                         <rect key="frame" x="20" y="40" width="87" height="17"/>

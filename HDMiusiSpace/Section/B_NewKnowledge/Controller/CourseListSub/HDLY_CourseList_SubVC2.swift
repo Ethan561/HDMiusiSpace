@@ -174,7 +174,7 @@ extension HDLY_CourseList_SubVC2 {
                 return 0.01
             }
             let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
-            return textH + 80 + 15
+            return textH + 80 + 15 + 8
         }
         return 0.01
     }

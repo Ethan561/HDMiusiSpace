@@ -13,7 +13,9 @@ import UIKit
 extension String {
     func getContentWidth(font: UIFont, height: CGFloat = 15) -> CGFloat {
         let fontName:UIFont = font
-        let rect = NSString(string: self).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: fontName], context: nil)
+        let paragraphStyle = NSMutableParagraphStyle.init()
+        paragraphStyle.lineBreakMode = .byCharWrapping
+        let rect = NSString(string: self).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: fontName,  NSAttributedStringKey.paragraphStyle: paragraphStyle], context: nil)
         return ceil(rect.width)
     }
     

@@ -568,8 +568,13 @@ extension HDLY_CourseDes_VC {
             if buynotice.count < 1 {
                 return 0.01
             }
-            let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
-            return textH + 80 + 15
+            //let textH = buynotice.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
+            let noticeText:NSString =  buynotice as NSString
+            let textSize:CGSize = noticeText.textSize(with: UIFont.systemFont(ofSize: 14), constrainedTo: CGSize.init(width: ScreenWidth-40, height: CGFloat(MAXFLOAT)))
+            //CGSize textSize = [string textSizeWithFont:[UIFont systemFontOfSize:font]
+                //constrainedToSize:CGSizeMake(300, MAXFLOAT)];
+            
+            return textSize.height + 80 + 15 + 8
         }
         else if indexPath.section == 3 {
             guard let recommendsList = infoModel?.data.recommendsList else {
@@ -580,7 +585,6 @@ extension HDLY_CourseDes_VC {
             }
             return 0.01
         }
-        
         return 0.01
     }
     

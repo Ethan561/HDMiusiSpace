@@ -12,7 +12,11 @@ class HDZQ_RootDSearchView: UIView {
     @IBOutlet weak var voiceSearchBtn: UIButton!
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var placeholderLab: UILabel!
+    @IBOutlet weak var searchBgView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        searchBgView.layer.cornerRadius = 10
+        searchBgView.layer.masksToBounds = true
     }
 }

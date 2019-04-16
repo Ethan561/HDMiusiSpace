@@ -216,6 +216,7 @@ extension HDLY_Recommend_SubVC {
             }else {
                 cell?.newTipL.isHidden = true
             }
+            cell?.newTipL.text = "新课时"
             cell?.titleL.text = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
             cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0人在学" :(model.boutiquelist?.views?.string)! + "人在学"

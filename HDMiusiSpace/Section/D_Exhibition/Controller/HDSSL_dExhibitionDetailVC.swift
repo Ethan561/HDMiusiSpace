@@ -937,6 +937,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         dTableView.separatorStyle = .none
         
         //导览按钮
+        /*
         let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))
         guideBtn.setTitle("导览", for: .normal)
         guideBtn.setTitleColor(UIColor.white, for: .normal)
@@ -944,7 +945,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
         guideBtn.layer.cornerRadius = 25
         guideBtn.backgroundColor = UIColor.HexColor(0xE8593E)
         guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
-        self.view.addSubview(guideBtn)
+        self.view.addSubview(guideBtn)*/
     }
 
     //MARK: - 查看更多评论

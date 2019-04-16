@@ -83,6 +83,7 @@ struct CourseListModel: Codable {
     let img: String
     let classNum, purchases, isBigImg: Int
     let teacher_name, teacher_title: String
+    var is_top: TStrInt?
 
     enum CodingKeys: String, CodingKey {
         case classID = "class_id"
@@ -93,6 +94,7 @@ struct CourseListModel: Codable {
         case purchases
         case isBigImg = "is_big_img"
         case fileType = "file_type"
+        case is_top
     }
 }
 

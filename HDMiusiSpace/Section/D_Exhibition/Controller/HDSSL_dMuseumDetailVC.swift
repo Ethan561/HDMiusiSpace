@@ -81,7 +81,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     }
     
     func loadMyViews(){
-        
+        /*
         if self.infoModel?.tourGuide == "" {
             let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))
             guideBtn.setTitle("导览", for: .normal)
@@ -113,7 +113,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
             
             self.view.addSubview(guideBtn)
-        }
+        }*/
         
         
     }

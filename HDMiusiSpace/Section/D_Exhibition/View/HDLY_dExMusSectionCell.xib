@@ -75,7 +75,7 @@
                     <constraint firstItem="BOL-a1-7No" firstAttribute="bottom" secondItem="So9-Gz-O1f" secondAttribute="bottom" id="jHh-Ig-Dgt"/>
                     <constraint firstItem="BOL-a1-7No" firstAttribute="leading" secondItem="So9-Gz-O1f" secondAttribute="leading" id="m7p-IG-xny"/>
                     <constraint firstItem="CkY-R9-uaI" firstAttribute="leading" secondItem="So9-Gz-O1f" secondAttribute="trailing" constant="8" id="mcv-yJ-qdi"/>
-                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="So9-Gz-O1f" secondAttribute="trailing" constant="100" id="ovG-gF-KRh"/>
+                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="So9-Gz-O1f" secondAttribute="trailing" constant="50" id="ovG-gF-KRh"/>
                     <constraint firstItem="EL3-OR-T5s" firstAttribute="leading" secondItem="CkY-R9-uaI" secondAttribute="trailing" constant="5" id="pvI-hd-1qg"/>
                     <constraint firstItem="BOL-a1-7No" firstAttribute="trailing" secondItem="EL3-OR-T5s" secondAttribute="trailing" id="uiQ-Lm-Dz9"/>
                     <constraint firstItem="ndj-c3-KNC" firstAttribute="top" secondItem="So9-Gz-O1f" secondAttribute="bottom" constant="8" id="un3-e1-uxU"/>

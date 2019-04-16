@@ -16,11 +16,12 @@ class HDLY_FeedbackChoose_View: UIView {
     @IBOutlet weak var tapBtn1: UIButton!
     @IBOutlet weak var tapBtn2: UIButton!
     var tapBlock: ChooseBlock?
+    @IBOutlet weak var topCons: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 2
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.clear
         self.configShadow(cornerRadius: 2, shadowColor: UIColor.HexColor(0x000000), shadowOpacity: 0.15, shadowRadius: 5, shadowOffset: CGSize.zero)
     }
     
@@ -31,5 +32,8 @@ class HDLY_FeedbackChoose_View: UIView {
         }
     }
     
+    @IBAction func tapAction(_ sender: Any) {
+        self.removeFromSuperview()
+    }
     
 }

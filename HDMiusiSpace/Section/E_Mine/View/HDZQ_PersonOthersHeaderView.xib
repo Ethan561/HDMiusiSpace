@@ -17,14 +17,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wd_img_tx" translatesAutoresizingMaskIntoConstraints="NO" id="I74-7t-UcR">
-                    <rect key="frame" x="45" y="30" width="60" height="60"/>
+                    <rect key="frame" x="35" y="30" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="EpK-p9-5LU"/>
                         <constraint firstAttribute="width" constant="60" id="eze-Lj-BKb"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-5E-HF2">
-                    <rect key="frame" x="120" y="30" width="0.0" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-5E-HF2">
+                    <rect key="frame" x="110" y="30" width="0.0" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="36U-cL-6XN"/>
                         <constraint firstAttribute="height" constant="40" id="ADq-fT-zZm"/>
@@ -34,16 +34,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9C-lq-3wk">
-                    <rect key="frame" x="120" y="70" width="130" height="0.0"/>
+                    <rect key="frame" x="110" y="70" width="150" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_women" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-Q3-A5q">
-                    <rect key="frame" x="125" y="39" width="22" height="22"/>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_women" translatesAutoresizingMaskIntoConstraints="NO" id="T7P-Q3-A5q">
+                    <rect key="frame" x="115" y="39" width="22" height="22"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4y-va-qXY">
-                    <rect key="frame" x="260" y="45" width="70" height="30"/>
+                    <rect key="frame" x="270" y="45" width="70" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.34901960780000002" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="2Dx-XB-DIV"/>
@@ -137,7 +137,7 @@
                     </constraints>
                 </view>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_svip" translatesAutoresizingMaskIntoConstraints="NO" id="d5t-MB-sZh">
-                    <rect key="frame" x="93" y="78" width="12" height="12"/>
+                    <rect key="frame" x="83" y="78" width="12" height="12"/>
                 </imageView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="文博在线”是一个文博领域的信息聚合，会为您提供一些“基本的”信息服务。我们希望这里所有的内容，都由使用者共同维护、发展和传播。我们也希望“在线文博”成为文博人和文博爱好者生活方式的一种，并从中感受到文化的快乐。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wol-kA-TbP">
                     <rect key="frame" x="20" y="120" width="335" height="75"/>
@@ -154,9 +154,9 @@
                 <constraint firstItem="g0e-WX-Fdh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Ix-bv-IbV"/>
                 <constraint firstItem="E9C-lq-3wk" firstAttribute="top" secondItem="FDD-5E-HF2" secondAttribute="bottom" id="BIJ-CH-dgK"/>
                 <constraint firstItem="seh-Ru-D2d" firstAttribute="leading" secondItem="v2q-Sc-vDF" secondAttribute="trailing" constant="1" id="Deo-O4-meN"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c4y-va-qXY" secondAttribute="trailing" constant="45" id="E2w-jU-rL8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c4y-va-qXY" secondAttribute="trailing" constant="35" id="E2w-jU-rL8"/>
                 <constraint firstItem="FDD-5E-HF2" firstAttribute="top" secondItem="I74-7t-UcR" secondAttribute="top" id="F4g-Qu-7gh"/>
-                <constraint firstItem="I74-7t-UcR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="45" id="FJu-9X-Y6j"/>
+                <constraint firstItem="I74-7t-UcR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="35" id="FJu-9X-Y6j"/>
                 <constraint firstItem="v2q-Sc-vDF" firstAttribute="top" secondItem="I74-7t-UcR" secondAttribute="bottom" constant="5" id="FmN-eS-n9G"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="v2q-Sc-vDF" secondAttribute="bottom" id="HB0-KY-2Yv"/>
                 <constraint firstItem="d5t-MB-sZh" firstAttribute="trailing" secondItem="I74-7t-UcR" secondAttribute="trailing" id="Neu-U4-TL0"/>

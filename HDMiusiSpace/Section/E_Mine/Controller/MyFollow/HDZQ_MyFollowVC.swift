@@ -35,7 +35,7 @@ class HDZQ_MyFollowVC: HDItemBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isShowNavShadowLayer = false
-        let menuTitleArr = ["讲师/机构","用户"]
+        let menuTitleArr = ["出品方/机构","用户"]
         self.view.addSubview(pageMenu)
         self.pageMenu.setItems(menuTitleArr, selectedItemIndex: 0)
         addContentSubViewsWithArr(titleArr: menuTitleArr)

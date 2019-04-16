@@ -13,11 +13,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="HDLY_FeedbackChoose_View" customModule="HDMiusiSpace" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HqD-Zl-ad1">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="hKv-1l-A1K" appends="YES" id="gqn-S4-auk"/>
+                    </connections>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdm-L1-dwX">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="100"/>
+                    <rect key="frame" x="235" y="65" width="120" height="100"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhF-dd-7f5">
                             <rect key="frame" x="0.0" y="49.5" width="120" height="1"/>
@@ -55,34 +63,42 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="9G6-hr-Grs" secondAttribute="trailing" id="2wc-Rt-hEx"/>
-                        <constraint firstItem="dhF-dd-7f5" firstAttribute="centerX" secondItem="Zdm-L1-dwX" secondAttribute="centerX" id="92F-VF-I6m"/>
+                        <constraint firstAttribute="height" constant="100" id="2Ku-9X-9xi"/>
                         <constraint firstItem="dhF-dd-7f5" firstAttribute="top" secondItem="p76-hN-sY1" secondAttribute="bottom" id="Cha-qF-P38"/>
-                        <constraint firstItem="p76-hN-sY1" firstAttribute="top" secondItem="Zdm-L1-dwX" secondAttribute="top" id="CxS-5C-0a0"/>
                         <constraint firstItem="9G6-hr-Grs" firstAttribute="top" secondItem="dhF-dd-7f5" secondAttribute="bottom" id="FC2-9Z-bes"/>
-                        <constraint firstItem="9G6-hr-Grs" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="JRf-zA-ntN"/>
-                        <constraint firstAttribute="trailing" secondItem="p76-hN-sY1" secondAttribute="trailing" id="ZLa-0N-eNR"/>
-                        <constraint firstAttribute="trailing" secondItem="dhF-dd-7f5" secondAttribute="trailing" id="ebk-jO-jWI"/>
-                        <constraint firstItem="dhF-dd-7f5" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="kY5-r0-8L8"/>
-                        <constraint firstItem="p76-hN-sY1" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="tBB-Sf-Ubu"/>
+                        <constraint firstItem="9G6-hr-Grs" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="HNb-6Z-Buh"/>
+                        <constraint firstItem="p76-hN-sY1" firstAttribute="top" secondItem="Zdm-L1-dwX" secondAttribute="top" id="g76-Zc-CXC"/>
+                        <constraint firstItem="p76-hN-sY1" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="iPh-OZ-buX"/>
+                        <constraint firstItem="dhF-dd-7f5" firstAttribute="leading" secondItem="Zdm-L1-dwX" secondAttribute="leading" id="ils-4a-Qk7"/>
+                        <constraint firstAttribute="trailing" secondItem="dhF-dd-7f5" secondAttribute="trailing" id="jR8-Qc-ELm"/>
+                        <constraint firstAttribute="trailing" secondItem="p76-hN-sY1" secondAttribute="trailing" id="rRb-u5-lZY"/>
+                        <constraint firstAttribute="width" constant="120" id="rfu-93-ci6"/>
+                        <constraint firstAttribute="trailing" secondItem="9G6-hr-Grs" secondAttribute="trailing" id="zay-Qo-OH6"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Zdm-L1-dwX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KDM-VE-EY6"/>
-                <constraint firstItem="Zdm-L1-dwX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="S5f-9d-68e"/>
-                <constraint firstAttribute="trailing" secondItem="Zdm-L1-dwX" secondAttribute="trailing" id="YhJ-Xd-YHZ"/>
-                <constraint firstAttribute="bottom" secondItem="Zdm-L1-dwX" secondAttribute="bottom" id="lVE-C4-7kP"/>
+                <constraint firstItem="Zdm-L1-dwX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="45" id="3ea-Oy-Xbd"/>
+                <constraint firstItem="HqD-Zl-ad1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6Cd-Ts-wS0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HqD-Zl-ad1" secondAttribute="trailing" id="6Y4-Bt-9hW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="HqD-Zl-ad1" secondAttribute="bottom" id="Drp-7W-a1C"/>
+                <constraint firstItem="HqD-Zl-ad1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="MGc-v2-lQq"/>
+                <constraint firstItem="Zdm-L1-dwX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-20" id="nl4-og-zqj"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="contentView" destination="Zdm-L1-dwX" id="lin-Rv-k4S"/>
                 <outlet property="tapBtn1" destination="p76-hN-sY1" id="6NU-f4-06q"/>
                 <outlet property="tapBtn2" destination="9G6-hr-Grs" id="4gX-i6-aLv"/>
+                <outlet property="topCons" destination="3ea-Oy-Xbd" id="SKF-R2-zR3"/>
             </connections>
-            <point key="canvasLocation" x="0.0" y="-54.5"/>
+            <point key="canvasLocation" x="0.0" y="-54.872563718140931"/>
         </view>
+        <tapGestureRecognizer id="hKv-1l-A1K">
+            <connections>
+                <action selector="tapAction:" destination="iN0-l3-epB" id="Eje-ri-QLn"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

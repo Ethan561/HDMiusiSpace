@@ -213,6 +213,12 @@ extension HDLY_RecmdMore_VC {
                 cell?.priceL.text = "免费"
                 cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
             }
+            if model.is_top?.int  == 1 {
+                cell?.newTipL.isHidden = false
+            }else {
+                cell?.newTipL.isHidden = true
+            }
+            cell?.newTipL.text = "新课时"
             
             return cell!
         }

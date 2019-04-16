@@ -94,7 +94,7 @@ class HDLY_MuseumInfoType5Cell: UITableViewCell,UICollectionViewDelegate,UIColle
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = listArray![indexPath.row]
-//        selectRow = indexPath.row
+        selectRow = indexPath.row
         let item:HDLY_FreeListenItem = collectionView.cellForItem(at: indexPath) as! HDLY_FreeListenItem
         delegate?.didSelectItemAt(model, item, self, indexPath.row)
         
@@ -130,6 +130,7 @@ extension HDLY_MuseumInfoType5Cell {
     func finishPlaying() {
         let cell:HDLY_FreeListenItem? = self.myCollectionView.cellForItem(at: IndexPath.init(row: selectRow, section: 0)) as? HDLY_FreeListenItem
         cell?.playBtn.isSelected = false
+        self.playModel?.isPlaying = false
         delegate?.freeListenListFinishPlaying()
 
     }

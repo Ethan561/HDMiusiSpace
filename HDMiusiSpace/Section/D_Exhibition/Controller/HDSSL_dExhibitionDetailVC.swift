@@ -17,7 +17,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
     var exhibitionCellH: CGFloat = 0  //展览介绍高度
     var exhibitCellH: CGFloat = 0     //展品介绍高度
     var textViewH: CGFloat = 0
-    
+    var freeListenSection: Int = -1
+
     //
     @IBOutlet weak var bannerBg  : UIView!      //
     @IBOutlet weak var dTableView: UITableView! //
@@ -536,6 +537,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 subTitle.font = UIFont.systemFont(ofSize: 12)
                 subTitle.textColor = UIColor.HexColor(0x999999)
                 normalHeader.addSubview(subTitle)
+                freeListenSection = section
             }
             normalHeader.headerTitle.text = titleStr
             normalHeader.tag = section
@@ -789,6 +791,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 }
                 return cell
             }else if model.type == 5 {//免费听
+                freeListenSection = indexPath.section
                 let cell:HDLY_MuseumInfoType5Cell = HDLY_MuseumInfoType5Cell.getMyTableCell(tableV: tableView)
                 if model.listen?.list != nil {
                     cell.listArray = model.listen!.list
@@ -916,16 +919,16 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 playModel?.isPlaying = true
             }
         }
-        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.exdataModel!.data!.dataList!.count + 2)], with: .none)
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: freeListenSection)], with: .none)
         
     }
     
     func freeListenListFinishPlaying() {
         playModel?.isPlaying = false
-        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.exdataModel!.data!.dataList!.count + 2)], with: .none)
+        self.dTableView.reloadRows(at: [IndexPath.init(row: 0, section: freeListenSection)], with: .none)
     }
 
-    
+    //
     func setupdTableView()  {
         //
         dTableView.delegate = self

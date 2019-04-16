@@ -211,13 +211,19 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     }
     
     @objc func showVoiceSearchView() {
-        self.voiceView.voiceLabel.text = "想搜什么？说说试试"
-        self.voiceView.voiceResult = ""
-        self.voiceView.isHidden = false
-        self.voiceView.gifView?.isHidden = false
-        self.voiceView.voiceBtn.isHidden = true
-        self.voiceView.startCollectVoice()
+        let isCanRecord = HDSSL_SearchViewModel.getRecordPermission()
+        if isCanRecord == true {
+            self.voiceView.voiceLabel.text = "想搜什么？说说试试"
+            self.voiceView.voiceResult = ""
+            self.voiceView.isHidden = false
+            self.voiceView.gifView?.isHidden = false
+            self.voiceView.voiceBtn.isHidden = true
+            self.voiceView.startCollectVoice()
+        } else {
+            HDSSL_SearchViewModel.showAudioAcessDeniedAlert(self)
+        }
     }
+    
 }
 
 extension HDRootDVC:UITableViewDataSource,UITableViewDelegate {

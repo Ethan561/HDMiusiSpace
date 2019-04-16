@@ -84,4 +84,44 @@ class HDSSL_SearchViewModel: NSObject {
             //
         }
     }
+    
+    
+    class func getRecordPermission() -> Bool {
+        var allow = false
+        let audioSession = AVAudioSession.sharedInstance()
+        //首先要判断是否允许访问麦克风
+        audioSession.requestRecordPermission { (allowed) in
+            if !allowed {
+                allow = false
+                LOG("录音权限未开启")
+            }else{
+                allow = true
+                LOG("=== 录音权限开启")
+            }
+        }
+        return allow
+    }
+    
+    //未获取语音授权时弹出提示信息
+    class  func showAudioAcessDeniedAlert(_ vc: UIViewController) {
+        let alertController = UIAlertController(title: "暂时不能使用语音搜索功能哦",
+                                                message: "请到：设置-隐私-麦克风 允许“缪斯空间”使用您的麦克风",
+                                                preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "设置", style: .default) { (alertAction) in
+            
+            // THIS IS WHERE THE MAGIC HAPPENS!!!!
+            if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(appSettings as URL)
+            }
+        }
+        alertController.addAction(settingsAction)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        vc.present(alertController, animated: true, completion: nil)
+    }
+
+    
 }

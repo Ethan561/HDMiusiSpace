@@ -236,3 +236,4 @@ struct Ws:Codable {
     var cw = [Cw]()
     var bg: Int = 0
 }
+

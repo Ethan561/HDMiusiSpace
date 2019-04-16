@@ -410,14 +410,20 @@ class HDSSL_SearchVC: HDItemBaseVC {
     }
     //MARK: - 语音输入
     @objc func action_voice(_ sender: UIButton) {
-        self.textFeild.resignFirstResponder()
-        self.hideSearchResultView()
-        self.voiceView.voiceLabel.text = "想搜什么？说说试试"
-        self.voiceView.voiceResult = ""
-        self.voiceView.isHidden = false
-        self.voiceView.gifView?.isHidden = false
-        self.voiceView.voiceBtn.isHidden = true
-        self.voiceView.startCollectVoice()
+        let isCanRecord = HDSSL_SearchViewModel.getRecordPermission()
+        if isCanRecord == true {
+            self.textFeild.resignFirstResponder()
+            self.hideSearchResultView()
+            self.voiceView.voiceLabel.text = "想搜什么？说说试试"
+            self.voiceView.voiceResult = ""
+            self.voiceView.isHidden = false
+            self.voiceView.gifView?.isHidden = false
+            self.voiceView.voiceBtn.isHidden = true
+            self.voiceView.startCollectVoice()
+        } else {
+            HDSSL_SearchViewModel.showAudioAcessDeniedAlert(self)
+        }
+
     }
     //MARK: - 清空搜索历史
     @IBAction func action_cleanSearchHistory(_ sender: UIButton) {

@@ -54,7 +54,6 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         bindViewModel()
         addRefresh()
         refreshAction()
-        
         //定位
         HDLY_LocationTool.shared.startLocation()
         let cityName: String? = UserDefaults.standard.object(forKey: "MyLocationCityName") as? String
@@ -217,12 +216,17 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     }
     
     @objc func showVoiceSearchView() {
-        self.voiceView.voiceLabel.text = "想搜什么？说说试试"
-        self.voiceView.voiceResult = ""
-        self.voiceView.isHidden = false
-        self.voiceView.gifView?.isHidden = false
-        self.voiceView.voiceBtn.isHidden = true
-        self.voiceView.startCollectVoice()
+        let isCanRecord = HDSSL_SearchViewModel.getRecordPermission()
+        if isCanRecord == true {
+            self.voiceView.voiceLabel.text = "想搜什么？说说试试"
+            self.voiceView.voiceResult = ""
+            self.voiceView.isHidden = false
+            self.voiceView.gifView?.isHidden = false
+            self.voiceView.voiceBtn.isHidden = true
+            self.voiceView.startCollectVoice()
+        } else {
+            HDSSL_SearchViewModel.showAudioAcessDeniedAlert(self)
+        }
     }
     
     override func didReceiveMemoryWarning() {

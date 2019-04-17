@@ -213,7 +213,8 @@ enum HD_LY_API {
     //平台主页
     case dynamicPlatIndex(platform_id:Int, api_token: String, skip:Int, take:Int)
     
-    
+    //判断是否购买
+    case orderIsBuyCheck(api_token: String, cate_id:Int, goods_id:Int)
     
     
     
@@ -473,6 +474,10 @@ extension HD_LY_API: TargetType {
             return "/api/comment/del_comment"
         case .exhibitionNewMuseumList(_):
             return "/api/exhibition/new_museum_list"
+        case .orderIsBuyCheck(_):
+            return "/api/order/is_buy_check"
+            
+            
             
             
         }
@@ -1083,7 +1088,12 @@ extension HD_LY_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-            
+        
+        case .orderIsBuyCheck(let api_token, let cate_id, let goods_id):
+            params = params.merging(["api_token": api_token, "cate_id": cate_id, "goods_id": goods_id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
             
             
         }

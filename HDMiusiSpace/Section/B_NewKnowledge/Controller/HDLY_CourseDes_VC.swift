@@ -528,7 +528,7 @@ extension HDLY_CourseDes_VC {
                     return 180*(ScreenWidth-40)/375.0
                 }else {
                     let size = infoModel?.data.title.getLabSize(font: UIFont.systemFont(ofSize: 22), width: ScreenWidth - 40)
-                    return (180 + (size?.height)!)*(ScreenWidth-40)/375.0
+                    return (180 + (size?.height)!)*(ScreenWidth-40)/375.0 + 8
                 }
                 
             }else if index == 1 {

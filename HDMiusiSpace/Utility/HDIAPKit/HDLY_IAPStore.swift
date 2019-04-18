@@ -10,6 +10,8 @@ import UIKit
 import StoreKit
 import SwiftyStoreKit
 
+//###上线需修改地方####
+
 let VERIFY_RECEIPT_URL = "https://buy.itunes.apple.com/verifyReceipt"
 let ITMS_SANDBOX_VERIFY_RECEIPT_URL = "https://sandbox.itunes.apple.com/verifyReceipt"
 let IAP_Is_Sandbox = "1"//是否是测试环境 1是, 0不是

@@ -139,8 +139,8 @@
                                                                     <constraint firstAttribute="height" constant="468" id="Idr-d2-Ajc"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="归属感，你的缪斯空间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGn-lh-Gv9">
-                                                                <rect key="frame" x="76" y="498" width="223" height="26.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="馆藏世界，讲给你听" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGn-lh-Gv9">
+                                                                <rect key="frame" x="87" y="498" width="201" height="26.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>

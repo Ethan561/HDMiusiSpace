@@ -560,11 +560,11 @@ extension HDRootAVC : HDZQ_VoiceResultDelegate {
 extension HDRootAVC:PrivacyViewDelegate {
     
     func setUpPrivacy() {
-        HDDeclare.shared.tabBarVC?.tabBar.isUserInteractionEnabled = false
-        navigationController?.navigationBar.isUserInteractionEnabled = false
-        privacyView.delegate = self
-        self.view.addSubview(privacyView)
         guard let _ : Bool = UserDefaults.standard.value(forKey: "FirstOpenApp") as? Bool else {
+            HDDeclare.shared.tabBarVC?.tabBar.isUserInteractionEnabled = false
+            navigationController?.navigationBar.isUserInteractionEnabled = false
+            privacyView.delegate = self
+            self.view.addSubview(privacyView)
             UserDefaults.standard.set(true, forKey: "FirstOpenApp")
             return
         }

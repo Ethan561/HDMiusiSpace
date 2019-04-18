@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyStoreKit
 
+//###上线需修改地方####
 //极光推送是否是发布模式
 let isProduction = false
 let HDJPushAliasKey = "HDJPushAliasKey"

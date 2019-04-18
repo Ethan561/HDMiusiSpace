@@ -43,6 +43,8 @@ struct BRecmdModel:Codable {
     var img: String?
     var icon: String?
     var price: String?
+    var yprice: String?
+    var oprice: String?
     var is_top: TStrInt?
     var is_big: TStrInt?
     var is_card: TStrInt?
@@ -79,7 +81,8 @@ struct CourseListModel: Codable {
     let title: String
     let price: String
     let isFree ,fileType: Int
-    
+    var yprice: String?
+    var oprice: String?
     let img: String
     let classNum, purchases, isBigImg: Int
     let teacher_name, teacher_title: String
@@ -87,7 +90,7 @@ struct CourseListModel: Codable {
 
     enum CodingKeys: String, CodingKey {
         case classID = "class_id"
-        case uid, title, price
+        case uid, title, price,oprice,yprice
         case isFree = "is_free"
         case img, teacher_name, teacher_title
         case classNum = "class_num"

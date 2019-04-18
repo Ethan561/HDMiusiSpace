@@ -19,7 +19,7 @@ struct ChapterData: Codable {
     let img: String
     let isFree: Int
     let video: String
-    var yprice, price : String?
+    var yprice, oprice, price : String?
     let fileType, isFavorite: TStrInt
     let isBuy: Int
     let sectionList: [ChapterSection]
@@ -28,7 +28,7 @@ struct ChapterData: Codable {
         case articleID = "article_id"
         case img
         case isFree = "is_free"
-        case video, yprice, price
+        case video, yprice, oprice, price
         case fileType = "file_type"
         case isFavorite = "is_favorite"
         case isBuy = "is_buy"

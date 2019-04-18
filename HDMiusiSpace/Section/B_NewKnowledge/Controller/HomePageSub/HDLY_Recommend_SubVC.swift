@@ -229,7 +229,22 @@ extension HDLY_Recommend_SubVC {
             if model.boutiquelist?.is_free?.int == 0 {
                 cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
                 if model.boutiquelist?.price != nil {
-                    cell?.priceL.text = "¥" + "\(model.boutiquelist!.price!)"
+                    let priceString = NSMutableAttributedString.init(string: "¥\(model.boutiquelist!.oprice!)")
+                    let ypriceAttribute =
+                        [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),//字体
+                            NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                            ] as [NSAttributedStringKey : Any]
+                    priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
+                    //
+                    let vipPriceString = NSMutableAttributedString.init(string: "¥\(model.boutiquelist!.price!) ")
+                    let vipPriceAttribute =
+                        [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xE8593E),//颜色
+                            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
+                            ] as [NSAttributedStringKey : Any]
+                    vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
+                    vipPriceString.append(priceString)
+                    cell?.priceL.attributedText = vipPriceString
                 }
             }else {
                 cell?.priceL.text = "免费"

@@ -19,7 +19,7 @@ struct CourseInfoModel: Codable {
     var img, title, buynotice: String
     var isFree: Int
     var video: String
-    var yprice, price : String?
+    var yprice, oprice, price : String?
     var teacherID: TStrInt
     var url: String
     var fileType: Int
@@ -35,7 +35,7 @@ struct CourseInfoModel: Codable {
         case articleID = "article_id"
         case img, title, buynotice
         case isFree = "is_free"
-        case video, yprice, price
+        case video, yprice, oprice, price
         case teacherID = "teacher_id"
         case url
         case fileType = "file_type"

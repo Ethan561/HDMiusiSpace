@@ -364,6 +364,8 @@
 		D628268421B9324200693DEC /* HDLY_CreateOrderTipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D628268321B9324200693DEC /* HDLY_CreateOrderTipView.xib */; };
 		D628A79422659FAD003C9546 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D628A79222659FAD003C9546 /* NSString+Helper.m */; };
 		D62B44E6219A7AE100A977CF /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D62B44E5219A7AE100A977CF /* XHStarRateView.m */; };
+		D62B6D0F2268111D000F1017 /* HDZQ_PrivacyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D62B6D0D2268111D000F1017 /* HDZQ_PrivacyView.xib */; };
+		D62B6D102268111D000F1017 /* HDZQ_PrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B6D0E2268111D000F1017 /* HDZQ_PrivacyView.swift */; };
 		D62F65D5219914D000D32544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62F65D4219914D000D32544 /* CoreLocation.framework */; };
 		D62FB0E221AFE980000D84BF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D62FB0E121AFE980000D84BF /* Security.framework */; };
 		D632C1DF225459EC0064A062 /* HDLY_dExMusSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632C1DD225459EC0064A062 /* HDLY_dExMusSectionCell.swift */; };
@@ -1091,6 +1093,8 @@
 		D628A79322659FAD003C9546 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		D62B44E4219A7AE100A977CF /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
 		D62B44E5219A7AE100A977CF /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
+		D62B6D0D2268111D000F1017 /* HDZQ_PrivacyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDZQ_PrivacyView.xib; sourceTree = "<group>"; };
+		D62B6D0E2268111D000F1017 /* HDZQ_PrivacyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDZQ_PrivacyView.swift; sourceTree = "<group>"; };
 		D62F65D4219914D000D32544 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D62FB0E121AFE980000D84BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D632C1DD225459EC0064A062 /* HDLY_dExMusSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_dExMusSectionCell.swift; sourceTree = "<group>"; };
@@ -2541,6 +2545,8 @@
 				D67E3AA4213CE7920058FBA6 /* HDRefreshFooterAnimator.swift */,
 				D696C3F321A3DCAD00B7E3FA /* HDLY_ShareView.swift */,
 				D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */,
+				D62B6D0E2268111D000F1017 /* HDZQ_PrivacyView.swift */,
+				D62B6D0D2268111D000F1017 /* HDZQ_PrivacyView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3294,6 +3300,7 @@
 				D628268421B9324200693DEC /* HDLY_CreateOrderTipView.xib in Resources */,
 				1B38C17521E49DC7006F804C /* voiceSearch.gif in Resources */,
 				A799C031219FB72D00BA526C /* HDSSL_dCommentHerder.xib in Resources */,
+				D62B6D0F2268111D000F1017 /* HDZQ_PrivacyView.xib in Resources */,
 				D620E1B721A246810034E258 /* HDLY_MuseumRecmdItem.xib in Resources */,
 				1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */,
 				D66C35C3213F805300363D7C /* HDLY_MineHome_Header.xib in Resources */,
@@ -3805,6 +3812,7 @@
 				A7B8447921A5269600FC8465 /* HDSSL_commentReplyCell.swift in Sources */,
 				D62277D721368069008F1416 /* Extensions.swift in Sources */,
 				A7441D3D21A2A0D50064E6A6 /* TZPhotoPreviewCell.m in Sources */,
+				D62B6D102268111D000F1017 /* HDZQ_PrivacyView.swift in Sources */,
 				D66EDFA1212AD69C004DACE0 /* HDLY_ListenPlayer_Cell.swift in Sources */,
 				D68D50D4213A438B000F80E6 /* ChoicenessModel.swift in Sources */,
 				A7441D3A21A2A0D50064E6A6 /* TZProgressView.m in Sources */,

@@ -58,6 +58,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cell_timeL" destination="iaR-fM-91K" id="ayS-nL-kz8"/>
+                <outlet property="nameL" destination="zFv-IL-byj" id="Tss-hz-yUs"/>
             </connections>
             <point key="canvasLocation" x="65.599999999999994" y="108.84557721139431"/>
         </tableViewCell>

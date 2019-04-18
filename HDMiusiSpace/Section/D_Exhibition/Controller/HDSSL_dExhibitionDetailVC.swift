@@ -641,7 +641,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
             }
             else if indexPath.row == 1 {
                 let cell = HDSSL_Sec0_Cell1.getMyTableCell(tableV: tableView) as HDSSL_Sec0_Cell1
-
+                cell.nameL.text = "展期："
                 cell.cell_timeL.text = String.init(format: "%@", self.exdataModel?.data?.time ?? "")
                 return cell
             }

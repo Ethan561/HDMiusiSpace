@@ -392,6 +392,7 @@ extension HDLY_Recommend_SubVC {
         if player.state == .playing && player.url == url {
             return
         }
+        
         var voicePath = model.voice!
         if voicePath.contains("m4a") {
             voicePath = model.voice!.replacingOccurrences(of: "m4a", with: "wav")

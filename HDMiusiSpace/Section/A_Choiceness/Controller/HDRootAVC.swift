@@ -34,6 +34,13 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         return tmp!
     }()
     
+    //MARK: 隐私政策
+    lazy var privacyView:HDZQ_PrivacyView = {
+        let tempView = Bundle.main.loadNibNamed("HDZQ_PrivacyView", owner: nil, options: nil)?.last as! HDZQ_PrivacyView
+        tempView.frame = CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        return tempView
+    }()
+    
     var isNeedRefresh = false
     
     override func viewDidLoad() {
@@ -48,6 +55,8 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         if kTopHeight == 64 {
             navbarCons.constant = 72
         }
+        setUpPrivacy()//隐藏隐私政
+
         getVersionData()
         setupViews()
         //MVVM
@@ -545,4 +554,38 @@ extension HDRootAVC : HDZQ_VoiceResultDelegate {
         vc.searchContent = result
         self.navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+// MARK: - 隐私政策弹窗
+extension HDRootAVC:PrivacyViewDelegate {
+    
+    func setUpPrivacy() {
+        HDDeclare.shared.tabBarVC?.tabBar.isUserInteractionEnabled = false
+        navigationController?.navigationBar.isUserInteractionEnabled = false
+        privacyView.delegate = self
+        self.view.addSubview(privacyView)
+        guard let _ : Bool = UserDefaults.standard.value(forKey: "FirstOpenApp") as? Bool else {
+            UserDefaults.standard.set(true, forKey: "FirstOpenApp")
+            return
+        }
+    }
+    
+    func chickPrivacyURLLink() {
+        let vc = HDLY_WKWebVC()
+        vc.titleName = "隐私协议"
+        vc.urlPath = "http://www.muspace.net/api/users/about_html/ysxy?p=i"
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func chickRefuseBtn() {
+        HDDeclare.shared.tabBarVC?.tabBar.isUserInteractionEnabled = true
+        navigationController?.navigationBar.isUserInteractionEnabled = true
+    }
+    
+    func chickAgreeBtn() {
+        HDDeclare.shared.tabBarVC?.tabBar.isUserInteractionEnabled = true
+        navigationController?.navigationBar.isUserInteractionEnabled = true
+    }
+    
 }

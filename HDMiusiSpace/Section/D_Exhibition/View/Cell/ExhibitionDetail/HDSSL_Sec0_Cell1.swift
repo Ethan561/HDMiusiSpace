@@ -14,6 +14,7 @@ class HDSSL_Sec0_Cell1: UITableViewCell {
 
     @IBOutlet weak var cell_timeL: UITextView!
 
+    @IBOutlet weak var nameL: UILabel!
     var tableView: UITableView! {
         
         var tableView: UIView? = superview

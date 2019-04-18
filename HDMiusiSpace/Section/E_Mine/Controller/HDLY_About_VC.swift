@@ -96,7 +96,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 2
+            return 1
         }
         if section == 1 {
             return 3
@@ -115,18 +115,18 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
         cell?.isUserInteractionEnabled = true
         if section == 0 {
-            if index == 0 {//客服热线
+            /*if index == 0 {//客服热线
                 cell?.nameL.text = "客服热线"
                 cell?.subNameL.text = self.phone
                 cell?.moreImgV.isHidden = true
                 return cell!
             }else if index == 1 {//个人资料设置
-                cell?.nameL.text = "联系邮箱"
-                cell?.subNameL.text = self.email
-                cell?.moreImgV.isHidden = true
-                cell?.bottomLine.isHidden = true
-                return cell!
-            }
+            }*/
+            cell?.nameL.text = "联系邮箱"
+            cell?.subNameL.text = self.email
+            cell?.moreImgV.isHidden = true
+            cell?.bottomLine.isHidden = true
+            return cell!
         }
         if section == 1 {
             if index == 0 {//功能介绍

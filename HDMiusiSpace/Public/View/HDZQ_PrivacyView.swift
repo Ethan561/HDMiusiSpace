@@ -26,12 +26,14 @@ class HDZQ_PrivacyView: UIView {
     @IBOutlet weak var refuseBtn: UIButton!
     @IBOutlet weak var agreeBtn: UIButton!
     weak var delegate: PrivacyViewDelegate?
+    
+    @IBOutlet weak var bgView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        myContentView.layer.masksToBounds = true
-//        myContentView.layer.cornerRadius = 5.0
-          myContentView.configShadow(cornerRadius: 5, shadowColor: UIColor.clear, shadowOpacity: 1, shadowRadius: 5, shadowOffset: CGSize.zero)
+        bgView.layer.masksToBounds = true
+        bgView.layer.cornerRadius = 5.0
+        myContentView.configShadow(cornerRadius: 5, shadowColor: UIColor.clear, shadowOpacity: 1, shadowRadius: 5, shadowOffset: CGSize.zero)
 //        agreeBtn.setTitle(HDDeclare.getTranslate(str: "agree") , for: .normal)
 //        agreeBtn.layer.borderColor = UIColor.HexColor(0xEEEEEE).cgColor
 //        agreeBtn.layer.borderWidth = 0.5

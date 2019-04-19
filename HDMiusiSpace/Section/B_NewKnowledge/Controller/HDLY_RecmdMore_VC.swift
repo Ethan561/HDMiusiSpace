@@ -246,9 +246,31 @@ extension HDLY_RecmdMore_VC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let model = dataArr[indexPath.row]
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = "\(model.classID)"
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        //获取课程购买信息
+        guard let token = HDDeclare.shared.api_token else {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: "\(model.classID)"), showHud: false, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
+            let is_buy: Int  = dataDic["is_buy"] as! Int
+            if is_buy == 1 {//已购买
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+                vc.courseId = "\(model.classID)"
+                vc.showLeaveMsg = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                vc.courseId = "\(model.classID)"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
     }
 
 }

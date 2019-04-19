@@ -10,7 +10,7 @@ import UIKit
 //import ESPullToRefresh
 let PushTo_HDLY_RecmdMore_VC_Line = "PushTo_HDLY_RecmdMore_VC_Line"
 
-class HDLY_Recommend_SubVC: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
+class HDLY_Recommend_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,HDLY_Listen_Cell_Delegate,HDLY_Topic_Cell_Delegate,HDLY_Kids_Cell2_Delegate{
     
     
     let showListenView: Bindable = Bindable(false)
@@ -311,16 +311,18 @@ extension HDLY_Recommend_SubVC {
         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
         
         let model = dataArr[indexPath.row]
+        
+        var courseId: String?
         if model.type?.int == 0 {
             
         }else if model.type?.int == 1 {
-            vc.courseId = model.boutiquelist?.article_id?.string
+            courseId = model.boutiquelist?.article_id?.string
         }else if model.type?.int == 2 {
-            vc.courseId = model.boutiquecard?.article_id?.string
+            courseId = model.boutiquecard?.article_id?.string
         }else if model.type?.int == 3 {//轻听随看
             
         }else if model.type?.int == 4 {
-            vc.courseId = model.interactioncard?.article_id?.string
+            courseId = model.interactioncard?.article_id?.string
             
         }else if model.type?.int == 5 {
             
@@ -328,7 +330,30 @@ extension HDLY_Recommend_SubVC {
         else if model.type?.int == 6 {
             
         }
-        self.navigationController?.pushViewController(vc, animated: true)
+        //获取课程购买信息
+        guard let token = HDDeclare.shared.api_token else {
+            self.pushToLoginVC(vc: self)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: courseId ?? "0"), showHud: false, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
+            let is_buy: Int  = dataDic["is_buy"] as! Int
+            if is_buy == 1 {//已购买
+                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+                vc.courseId = courseId
+                vc.showLeaveMsg = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else {
+                vc.courseId = courseId
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }) { (errorCode, msg) in
+            
+        }
+        
     }
 }
 

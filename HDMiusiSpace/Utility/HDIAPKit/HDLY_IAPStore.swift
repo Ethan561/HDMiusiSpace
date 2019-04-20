@@ -14,7 +14,7 @@ import SwiftyStoreKit
 
 let VERIFY_RECEIPT_URL = "https://buy.itunes.apple.com/verifyReceipt"
 let ITMS_SANDBOX_VERIFY_RECEIPT_URL = "https://sandbox.itunes.apple.com/verifyReceipt"
-let IAP_Is_Sandbox = "1"//是否是测试环境 1是, 0不是
+let IAP_Is_Sandbox = "0"//是否是测试环境 1是, 0不是
 
 final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransactionObserver  {
     

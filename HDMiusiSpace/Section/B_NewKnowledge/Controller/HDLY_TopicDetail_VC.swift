@@ -870,6 +870,9 @@ extension HDLY_TopicDetail_VC {
         feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
         feedbackChooseTip?.frame = win.bounds
         feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
+        if fromRootAChoiceness == true {
+            feedbackChooseTip?.tapBtn1.setTitle("分享", for: .normal)
+        }
         feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
         win.addSubview(feedbackChooseTip!)
         showFeedbackChooseTip = true
@@ -887,9 +890,18 @@ extension HDLY_TopicDetail_VC {
     
     func feedbackChooseAction(index: Int) {
         if index == 1 {
-            //分享
-            shareBtnAction()
-            closeFeedbackChooseTip()
+            if fromRootAChoiceness == true {
+                //分享
+                shareBtnAction()
+                closeFeedbackChooseTip()
+            }else {
+                //反馈
+                let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
+                vc.typeID = "4"
+                vc.parent_id = self.infoModel?.articleID.string
+                self.navigationController?.pushViewController(vc, animated: true)
+                closeFeedbackChooseTip()
+            }
 
         }else {
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {

@@ -125,6 +125,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }else {
             isNeedRefresh = false
         }
+        HDFloatingButtonManager.manager.showFloatingBtn = false
+        HDFloatingButtonManager.manager.floatingBtnView.show = false
+        HDFloatingButtonManager.manager.floatingBtnView.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {

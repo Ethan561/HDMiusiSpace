@@ -229,9 +229,9 @@ extension HDLY_Recommend_SubVC {
             if model.boutiquelist?.is_free?.int == 0 {
                 cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
                 if model.boutiquelist?.price != nil {
-                    let priceString = NSMutableAttributedString.init(string: "¥\(model.boutiquelist!.oprice!)")
+                    let priceString = NSMutableAttributedString.init(string: "原价¥\(model.boutiquelist!.oprice!)")
                     let ypriceAttribute =
-                        [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                        [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0x999999),//颜色
                             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),//字体
                             NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
                             ] as [NSAttributedStringKey : Any]
@@ -343,7 +343,6 @@ extension HDLY_Recommend_SubVC {
             if is_buy == 1 {//已购买
                 let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
                 vc.courseId = courseId
-                vc.showLeaveMsg = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }else {
                 vc.courseId = courseId

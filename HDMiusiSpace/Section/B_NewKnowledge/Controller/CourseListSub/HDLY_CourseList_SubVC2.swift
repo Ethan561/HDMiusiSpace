@@ -92,7 +92,7 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                 }else {
                     self.bottomHCons.constant = 0
                     self.bottomView.isHidden = true
-                    self.isFreeCourse = true
+                    self.isFreeCourse = false
                 }
             }else {
                 self.bottomHCons.constant = 0
@@ -229,12 +229,12 @@ extension HDLY_CourseList_SubVC2 {
                     cell?.titleL.text = ""
                     cell?.contentL.text = ""
                 }
-                cell?.titleL.isHidden = false
-                if self.infoModel?.data.isBuy == 1 {
-                    cell?.titleL.text = ""
-                    cell?.contentL.text = ""
-                    cell?.titleL.isHidden = true
-                }
+//                cell?.titleL.isHidden = false
+//                if self.infoModel?.data.isBuy == 1 {
+//                    cell?.titleL.text = ""
+//                    cell?.contentL.text = ""
+//                    cell?.titleL.isHidden = true
+//                }
             }else {
                 cell?.titleL.text = "学习须知"
                 cell?.contentL.text = model?.notice

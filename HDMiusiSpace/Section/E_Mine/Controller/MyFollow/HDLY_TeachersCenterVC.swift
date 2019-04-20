@@ -347,7 +347,7 @@ extension HDLY_TeachersCenterVC:UITableViewDelegate,UITableViewDataSource {
         header.addSubview(top)
         let label = UILabel.init(frame: CGRect.init(x: 20, y: 18, width: 200, height: 20))
         if type == 1 {
-            label.text = "讲师课程"
+            label.text = "出品方课程"
         } else {
             label.text = "他的动态"
         }

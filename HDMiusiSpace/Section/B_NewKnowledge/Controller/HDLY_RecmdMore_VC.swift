@@ -209,9 +209,9 @@ extension HDLY_RecmdMore_VC {
             if model.isFree == 0 {
 //                cell?.priceL.text = "¥" + "\(model.price)"
 //                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
-                let priceString = NSMutableAttributedString.init(string: "¥\(model.oprice!)")
+                let priceString = NSMutableAttributedString.init(string: "原价¥\(model.oprice!)")
                 let ypriceAttribute =
-                    [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                    [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0x999999),//颜色
                         NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),//字体
                         NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
                         ] as [NSAttributedStringKey : Any]
@@ -260,7 +260,6 @@ extension HDLY_RecmdMore_VC {
             if is_buy == 1 {//已购买
                 let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
                 vc.courseId = "\(model.classID)"
-                vc.showLeaveMsg = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }else {
                 let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC

@@ -372,7 +372,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {
-                        let priceString = NSMutableAttributedString.init(string: "¥\(self.infoModel!.data.oprice!)")
+                        let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
                         let ypriceAttribute =
                             [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
                              NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
@@ -395,7 +395,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                     self.buyBtn.setAttributedTitle(nil, for: .normal)
                     self.buyBtn.setTitle("立即学习", for: .normal)
                     self.listenBgView.isHidden = true
-                    self.isFreeCourse = true
+                    self.isFreeCourse = false
                 }
             }else {
                 self.buyBtn.setTitle("立即学习", for: .normal)
@@ -669,12 +669,12 @@ extension HDLY_CourseDes_VC {
                     cell?.contentL.text = ""
                 }
                 
-                cell?.titleL.isHidden = false
-                if self.infoModel?.data.isBuy == 1 {  //1已购买
-                    cell?.titleL.text = ""
-                    cell?.titleL.isHidden = true
-                    cell?.contentL.text = ""
-                }
+//                cell?.titleL.isHidden = false
+//                if self.infoModel?.data.isBuy == 1 {  //1已购买
+//                    cell?.titleL.text = ""
+//                    cell?.titleL.isHidden = true
+//                    cell?.contentL.text = ""
+//                }
                 
             }else {
                 cell?.titleL.text = "学习须知"

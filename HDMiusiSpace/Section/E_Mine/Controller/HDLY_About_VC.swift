@@ -13,11 +13,14 @@ class HDLY_About_VC: HDItemBaseVC {
     @IBOutlet weak var myTableView: UITableView!
     
     private var phone = "010-85619596"
-    private var email = "postmaster@muspace.com"
+    private var email = "service@muspace.com.cn"
     private var gnjs  = "http://www.muspace.net/api/users/about_html/gnjs?p=i"
     private var ysxy  = "http://www.muspace.net/api/users/about_html/ysxy?p=i"
     private var syxy  = "http://www.muspace.net/api/users/about_html/syxy?p=i"
     private var version = "1.0.0"
+    
+    private var appStoreUrl = "https://itunes.apple.com/cn/app/id1444721499?mt=8"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "关于缪斯空间"
@@ -99,7 +102,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
         if section == 1 {
-            return 3
+            return 2
         }
         return 0
     }
@@ -162,10 +165,11 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         let section = indexPath.section
         let index = indexPath.row
         if section == 0 && index == 0 {
-            open(scheme: "tel:\(self.phone)")
+//            open(scheme: "tel:\(self.phone)")
+            open(scheme: "mailto://\(self.email)")
         }
         if section == 0 && index == 1 {
-            open(scheme: "mailto://\(self.email)")
+//            open(scheme: "mailto://\(self.email)")
         }
         if section == 1 && index == 0 {
             let vc = HDLY_WKWebVC()
@@ -176,18 +180,18 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
         if section == 1 && index == 1 {
             // 弹窗评分
             //            open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
-            open(scheme: "https://fir.im/musespace")
+            open(scheme: appStoreUrl)
         }
         if section == 1 && index == 2 {
-            open(scheme: "https://fir.im/musespace")
+            open(scheme: appStoreUrl)
         }
     }
     
     
     
-    func showAlert(msg: String) {
-        open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
-    }
+//    func showAlert(msg: String) {
+//        open(scheme: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1130149052")
+//    }
     
 }
 

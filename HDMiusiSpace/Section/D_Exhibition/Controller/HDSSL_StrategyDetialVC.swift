@@ -747,7 +747,7 @@ extension HDSSL_StrategyDetialVC {
         let  tipView = HDLY_FeedbackChoose_View.createViewFromNib()
         feedbackChooseTip = tipView as? HDLY_FeedbackChoose_View
         feedbackChooseTip?.frame = win.bounds
-        feedbackChooseTip?.tapBtn1.setTitle("反馈", for: .normal)
+        feedbackChooseTip?.tapBtn1.setTitle("分享", for: .normal)
         feedbackChooseTip?.tapBtn2.setTitle("报错", for: .normal)
         win.addSubview(feedbackChooseTip!)
         showFeedbackChooseTip = true

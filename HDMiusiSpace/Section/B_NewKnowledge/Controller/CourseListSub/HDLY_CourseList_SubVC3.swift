@@ -293,7 +293,7 @@ extension HDLY_CourseList_SubVC3 {
             }else if row == 1 {
                 let cell = HDLY_QuestionNumTitle_Cell.getMyTableCell(tableV: tableView)
                 if infoModel?.data != nil {
-                    cell?.countL.text = "讲师共回答了\(infoModel!.data.answerNum)个问题"
+                    cell?.countL.text = "出品方共回答了\(infoModel!.data.answerNum)个问题"
                 }
                 if infoModel?.data.isBuy == 1 {
                     cell?.noticeBtn.addTarget(self, action: #selector(noticeBtnAction), for: UIControlEvents.touchUpInside)

@@ -432,7 +432,7 @@ extension HDSSL_dMuseumDetailVC {
                 return 300
             }
             else if model.type == 2 {//展览攻略
-                return 330
+                return ScreenWidth*290/330 + 10
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐

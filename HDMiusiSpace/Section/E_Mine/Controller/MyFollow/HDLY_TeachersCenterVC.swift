@@ -276,34 +276,44 @@ extension HDLY_TeachersCenterVC {
     }
     
     func feedbackChooseAction(index: Int) {
-        closeFeedbackChooseTip()
-        var cate_id = "11"//讲师
-        if type == 2 {
-            cate_id = "12"
-        }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(detailId), cate_id: cate_id), success: { (result) in
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG("\(String(describing: dic))")
-            let jsonDecoder = JSONDecoder()
-            //JSON转Model：
-            let model:ReportErrorModel = try! jsonDecoder.decode(ReportErrorModel.self, from: result)
-            var strs = [String]()
-            var reportType = [Int]()
-            model.data?.optionList.forEach({ (m) in
-                strs.append(m.optionTitle)
-                reportType.append(m.optionID)
-            })
-            
-            self.commentView.dataArr = strs
-            self.commentView.reportType = reportType
-            self.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
-            self.commentView.type = 1
-            self.commentView.tableHeightConstraint.constant = CGFloat((self.commentView.dataArr.count)*50)
-            self.commentView.tableView.reloadData()
-            kWindow?.addSubview(self.commentView)
-            self.commentView.tableView.reloadData()
-        }) { (errorCode, msg) in
-            
+        
+        if index == 1 {
+            closeFeedbackChooseTip()
+            //反馈
+            let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDLY_Feedback_VC") as! HDLY_Feedback_VC
+            vc.typeID = "1"
+            vc.parent_id = "0"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else {
+            closeFeedbackChooseTip()
+            var cate_id = "11"//讲师
+            if type == 2 {
+                cate_id = "12"
+            }
+            HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getErrorOption(id: String(detailId), cate_id: cate_id), success: { (result) in
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                LOG("\(String(describing: dic))")
+                let jsonDecoder = JSONDecoder()
+                //JSON转Model：
+                let model:ReportErrorModel = try! jsonDecoder.decode(ReportErrorModel.self, from: result)
+                var strs = [String]()
+                var reportType = [Int]()
+                model.data?.optionList.forEach({ (m) in
+                    strs.append(m.optionTitle)
+                    reportType.append(m.optionID)
+                })
+                
+                self.commentView.dataArr = strs
+                self.commentView.reportType = reportType
+                self.commentView.tableHeightConstraint.constant = CGFloat(50 * strs.count)
+                self.commentView.type = 1
+                self.commentView.tableHeightConstraint.constant = CGFloat((self.commentView.dataArr.count)*50)
+                self.commentView.tableView.reloadData()
+                kWindow?.addSubview(self.commentView)
+                self.commentView.tableView.reloadData()
+            }) { (errorCode, msg) in
+                
+            }
         }
     }
 }

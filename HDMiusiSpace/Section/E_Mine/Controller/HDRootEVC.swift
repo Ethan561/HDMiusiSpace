@@ -571,9 +571,11 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
 
 extension HDRootEVC:HDLY_MineCourse_Cell_Delegate {
     func didSelectItemAt(_ model: MyCollectCourseModel, _ cell: HDLY_MineCourse_Cell) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = String(model.classId)
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = String(model.classId)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        let courseId = String(model.classId) ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
 }
 

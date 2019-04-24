@@ -183,9 +183,12 @@ extension HDZQ_MyFootprintVC : UITableViewDelegate {
 
 extension HDZQ_MyFootprintVC : HDZQ_FPExhibitPlayActionDelegate {
     func showRelatedCoursesDetail(courseId: String) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = courseId
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = courseId
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+//        let courseId = String(model.classId) ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
     
     func exhibitPlayAction(index: IndexPath,row:Int,idxStrig:String,url:String) {

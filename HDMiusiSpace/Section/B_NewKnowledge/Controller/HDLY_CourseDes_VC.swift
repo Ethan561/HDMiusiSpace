@@ -556,9 +556,9 @@ extension HDLY_CourseDes_VC {
             var content: String?
             if isFreeCourse == false {
                 content = infoModel?.data.buynotice
-                if self.infoModel?.data.isBuy == 1 {  //1已购买
-                    return 0.01
-                }
+//                if self.infoModel?.data.isBuy == 1 {  //1已购买
+//                    return 0.01
+//                }
             }else {
                 content = infoModel?.data.notice
             }

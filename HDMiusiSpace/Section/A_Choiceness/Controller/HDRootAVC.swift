@@ -425,10 +425,12 @@ extension HDRootAVC {
     func pushToCardDetail(model: ChoicenessItemCard) {
         //cate_id: 轮播图类型1课程，2轻听随看，4展览，5活动
         if model.cardID ==  1 {
-            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-            vc.courseId = String.init(format: "%ld", model.articleID)
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+//            let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//            vc.courseId = String.init(format: "%ld", model.articleID)
+//            vc.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(vc, animated: true)
+            let courseId = String.init(format: "%ld", model.articleID)
+            self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
         }
         else if  model.cardID == 2 {
             let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
@@ -457,9 +459,11 @@ extension HDRootAVC {
 extension HDRootAVC : HDLY_Topic_Cell_Delegate {
 
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Topic_Cell) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = model.article_id?.string
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = model.article_id?.string
+//        self.navigationController?.pushViewController(vc, animated: true)
+        let courseId = model.article_id?.string ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
 }
 

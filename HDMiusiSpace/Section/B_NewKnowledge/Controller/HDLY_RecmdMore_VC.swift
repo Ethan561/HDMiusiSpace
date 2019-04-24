@@ -246,7 +246,10 @@ extension HDLY_RecmdMore_VC {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let model = dataArr[indexPath.row]
+        let id = "\(model.classID)"
+        self.pushCourseListWithBuyInfo(courseId: id, vc: self)
         
+        /*
         //获取课程购买信息
         guard let token = HDDeclare.shared.api_token else {
             self.pushToLoginVC(vc: self)
@@ -269,7 +272,8 @@ extension HDLY_RecmdMore_VC {
             
         }) { (errorCode, msg) in
             
-        }
+        }*/
+        
     }
 
 }

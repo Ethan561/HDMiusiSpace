@@ -150,9 +150,12 @@ class HDItemBaseVC: UIViewController {
     //检测是否点击web页面卡片
     func didTapWebCard(_ type: Int, _ articleId: Int) {// 1 课程 2 展览 3 博物馆
         if type == 1 {
-            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-            desVC.courseId = "\(articleId)"
-            self.navigationController?.pushViewController(desVC, animated: true)
+//            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//            desVC.courseId = "\(articleId)"
+//            self.navigationController?.pushViewController(desVC, animated: true)
+            
+            let courseId =  "\(articleId)" ?? "0"
+            self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
         }
         else if type == 2 {
             let storyBoard = UIStoryboard.init(name: "RootD", bundle: Bundle.main)
@@ -180,9 +183,12 @@ class HDItemBaseVC: UIViewController {
     func didSelectItemAtPagerViewCell(model: BbannerModel , vc: UIViewController) {
         //cate_id: 轮播图类型1课程，2轻听随看，3资讯，4展览，5活动
         if model.cate_id?.int == 1 {
-            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-            desVC.courseId = model.mid?.string
-            vc.navigationController?.pushViewController(desVC, animated: true)
+//            let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//            desVC.courseId = model.mid?.string
+//            vc.navigationController?.pushViewController(desVC, animated: true)
+            
+            let courseId =   model.mid?.string ?? "0"
+            self.pushCourseListWithBuyInfo(courseId: courseId, vc: vc)
         }
         else if model.cate_id?.int == 2 {
             let desVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ListenDetail_VC") as! HDLY_ListenDetail_VC
@@ -210,6 +216,33 @@ class HDItemBaseVC: UIViewController {
         }
     }
     
+    //判断课程是否购买
+    func pushCourseListWithBuyInfo(courseId: String, vc: UIViewController) {
+        //获取课程购买信息
+        guard let token = HDDeclare.shared.api_token else {
+            self.pushToLoginVC(vc: vc)
+            return
+        }
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: courseId), showHud: false, success: { (result) in
+            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+            LOG("\(String(describing: dic))")
+            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
+            let is_buy: Int  = dataDic["is_buy"] as! Int
+            if is_buy == 1 {//已购买
+                let courseListVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+                courseListVC.courseId = courseId
+                courseListVC.hidesBottomBarWhenPushed = true
+                vc.navigationController?.pushViewController(courseListVC, animated: true)
+            }else {//未购买
+                let courseDesVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                courseDesVC.courseId = courseId
+                courseDesVC.hidesBottomBarWhenPushed = true
+                vc.navigationController?.pushViewController(courseDesVC, animated: true)
+            }
+        }) { (errorCode, msg) in
+            
+        }
+    }
     // 跳转到第三方
     func open(scheme: String) {
         if let url = URL(string: scheme) {

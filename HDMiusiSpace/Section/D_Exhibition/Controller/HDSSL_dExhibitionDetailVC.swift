@@ -1186,9 +1186,12 @@ extension HDSSL_dExhibitionDetailVC {
     
     //精选推荐详情
     func showRecomendDetailVC(classID: Int) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = "\(classID)"
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = "\(classID)"
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let courseId = "\(classID)" ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
 }
 

@@ -308,7 +308,7 @@ extension HDLY_Recommend_SubVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
         
         let model = dataArr[indexPath.row]
         
@@ -330,6 +330,10 @@ extension HDLY_Recommend_SubVC {
         else if model.type?.int == 6 {
             
         }
+        let id = courseId ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: id, vc: self)
+        
+        /*
         //获取课程购买信息
         guard let token = HDDeclare.shared.api_token else {
             self.pushToLoginVC(vc: self)
@@ -351,7 +355,7 @@ extension HDLY_Recommend_SubVC {
             
         }) { (errorCode, msg) in
             
-        }
+        }*/
         
     }
 }
@@ -455,9 +459,12 @@ extension HDLY_Recommend_SubVC {
     
     //亲子互动
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2) {
-        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = model.article_id?.string
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = model.article_id?.string
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let courseId = model.article_id?.string ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
 
 }

@@ -159,9 +159,12 @@ extension HDZQ_MyCoursesSubVC:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = courses[indexPath.row]
-         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-        vc.courseId = String(model.classId)
-        self.navigationController?.pushViewController(vc, animated: true)
+//         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//        vc.courseId = String(model.classId)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        let courseId = String(model.classId) ?? "0"
+        self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
         
     }
     

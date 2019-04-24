@@ -917,9 +917,11 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                 //新知、课程
                 let course: HDSSL_SearchCourse = classArray[indexPath.row]
                 
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-                vc.courseId = String(course.class_id!)
-                self.navigationController?.pushViewController(vc, animated: true)
+//                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+//                vc.courseId = String(course.class_id!)
+//                self.navigationController?.pushViewController(vc, animated: true)
+                let courseId = String(course.class_id!)
+                self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
             }else if typeSel == 2 {
                 //展览
                 let exhibition: HDSSL_SearchExhibition = exhibitionArray[indexPath.row]

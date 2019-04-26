@@ -220,7 +220,11 @@ class HDItemBaseVC: UIViewController {
     func pushCourseListWithBuyInfo(courseId: String, vc: UIViewController) {
         //获取课程购买信息
         guard let token = HDDeclare.shared.api_token else {
-            self.pushToLoginVC(vc: vc)
+//            self.pushToLoginVC(vc: vc)
+            let courseDesVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+            courseDesVC.courseId = courseId
+            courseDesVC.hidesBottomBarWhenPushed = true
+            vc.navigationController?.pushViewController(courseDesVC, animated: true)
             return
         }
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: courseId), showHud: false, success: { (result) in

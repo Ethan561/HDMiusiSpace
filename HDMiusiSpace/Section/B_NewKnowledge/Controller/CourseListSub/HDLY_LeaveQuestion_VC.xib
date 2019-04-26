@@ -12,9 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDLY_LeaveQuestion_VC" customModule="HDMiusiSpace" customModuleProvider="target">
             <connections>
+                <outlet property="cmtBtn" destination="czG-9C-Jmz" id="xoG-VX-cWN"/>
                 <outlet property="navHCons" destination="N4z-fN-ss5" id="cW7-Av-onp"/>
                 <outlet property="navView" destination="PMi-3a-W9A" id="F5Z-on-9qX"/>
-                <outlet property="textView" destination="wRl-bx-5tJ" id="Q7u-ER-WJq"/>
+                <outlet property="textViewC" destination="wRl-bx-5tJ" id="Vfo-bF-zNy"/>
                 <outlet property="titleTextView" destination="0hS-SJ-6z7" id="QR1-Ec-Dlb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

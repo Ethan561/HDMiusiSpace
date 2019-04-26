@@ -81,8 +81,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     }
     
     func loadMyViews(){
-        /*
-        if self.infoModel?.tourGuide == "" {
+        
+        if self.infoModel?.tourGuide == "" && (self.infoModel?.is_tour ?? 0) != 0{
             let guideBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: ScreenWidth-40, height: 50))
             guideBtn.setTitle("导览", for: .normal)
             guideBtn.setTitleColor(UIColor.white, for: .normal)
@@ -92,7 +92,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
             
             self.view.addSubview(guideBtn)
-        }else {
+        }else if (self.infoModel?.is_tour ?? 0) != 0 {
             //参观指南、导览
             let radierBtn = UIButton.init(frame: CGRect.init(x: 20, y: ScreenHeight-60, width: (ScreenWidth-60)/2, height: 50))
             radierBtn.setTitle("参观指南", for: .normal)
@@ -113,7 +113,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
             guideBtn.addTarget(self, action: #selector(action_guide), for: .touchUpInside)
             
             self.view.addSubview(guideBtn)
-        }*/
+        }
         
         
     }

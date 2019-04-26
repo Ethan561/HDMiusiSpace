@@ -79,6 +79,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
             self.textFeild.text = searchContent
             self.func_saveHistory(searchContent!)
             self.currentType = 0
+            self.skip = 0
+            self.resultArray.removeAll()
             self.viewModel.request_search(str: searchContent!, skip: 0, take: 10, type: 0, vc: self)
         }
     }
@@ -394,7 +396,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
     //MARK: - 搜索
     @objc func action_search(_ sender: UIButton) {
         if (self.textFeild.text?.count)! > 0 {
-
+            self.skip = 0
+            self.resultArray.removeAll()
             //开始搜索
             self.viewModel.request_search(str: self.textFeild.text!, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
@@ -504,7 +507,8 @@ extension HDSSL_SearchVC: UITextFieldDelegate {
             textFeild.resignFirstResponder()
             
             if (textField.text?.count)! > 0 {
-
+                self.skip = 0
+                self.resultArray.removeAll()
                 //开始搜索
                 self.viewModel.request_search(str: textField.text!, skip: 0, take: 10, type: self.currentType, vc: self)
                 //保存搜索历史
@@ -887,6 +891,8 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
             //点击搜索历史，1开始搜索，2刷新搜索历史记录列表
             let str: String = historyArray[indexPath.row]
             textFeild.text = str
+            self.skip = 0
+            self.resultArray.removeAll()
             self.viewModel.request_search(str: str, skip: 0, take: 10, type: self.currentType, vc: self)
             //保存搜索历史
             self.func_saveHistory(str)
@@ -954,13 +960,15 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
 //MARK: - 返回语音识别结果，开始搜索
 extension HDSSL_SearchVC : HDZQ_VoiceResultDelegate {
     func voiceResult(result: String) {
         self.voiceView.isHidden = true
         self.textFeild.text = result
         self.func_saveHistory(result)
-
+        self.skip = 0
+        self.resultArray.removeAll()
         self.viewModel.request_search(str: result, skip: 0, take: 10, type: self.currentType, vc: self)
     }
 }

@@ -13,19 +13,20 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var navHCons: NSLayoutConstraint!
     @IBOutlet weak var titleTextView: HDPlaceholderTextView!
-    @IBOutlet weak var textView: HDPlaceholderTextView!
+    @IBOutlet weak var textViewC: HDPlaceholderTextView!
     
     var courseId: String?
     var textNum:Int = 0
     
+    @IBOutlet weak var cmtBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
         navHCons.constant = CGFloat(kTopHeight)
         
-        textView.delegate = self
-        textView.returnKeyType = .done
+        textViewC.delegate = self
+        textViewC.returnKeyType = .done
         titleTextView.delegate = self
         titleTextView.returnKeyType = .done
         
@@ -43,7 +44,7 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "标题(10-30字)")
             return
         }
-        if textView.text.isEmpty == true || textView.text.count > 200 {
+        if textViewC.text.isEmpty == true || textViewC.text.count > 200 {
             HDAlert.showAlertTipWith(type: .onlyText, text: "描述200字以内")
             return
         }
@@ -51,11 +52,11 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
             self.pushToLoginVC(vc: self)
             return
         }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestion(api_token: HDDeclare.shared.api_token!, id: idnum, title: titleTextView.text, content: textView.text), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseQuestion(api_token: HDDeclare.shared.api_token!, id: idnum, title: titleTextView.text, content: textViewC.text), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             HDAlert.showAlertTipWith(type: .onlyText, text: "问题提交成功")
-            self.textView.text = ""
+            self.textViewC.text = ""
             self.titleTextView.text = ""
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2, execute: {
@@ -104,7 +105,12 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
                 textView.text = str
             }
         }
-        
+        if titleTextView.text.count < 10 ||  textViewC.text.isEmpty == true {
+            cmtBtn.setTitleColor(UIColor.HexColor(0x9B9B9B), for: UIControlState.normal)
+        }else {
+            cmtBtn.setTitleColor(UIColor.HexColor(0x333333), for: UIControlState.normal)
+        }
+    
         self.textNum = textView.text.count
     }
     

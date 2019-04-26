@@ -223,18 +223,13 @@ extension HDLY_CourseList_SubVC2 {
         else if index == 2 {
             let cell = HDLY_BuyNote_Cell.getMyTableCell(tableV: tableView)
             if isFreeCourse == false {
-                cell?.titleL.text = "购买须知"
-                cell?.contentL.text = model?.buynotice
-                if model?.buynotice.count ?? 0 < 1 {
+                if self.infoModel?.data.isBuy == 0 {
+                    cell?.titleL.text = "购买须知"
+                    cell?.contentL.text = model?.buynotice
+                }else {
                     cell?.titleL.text = ""
                     cell?.contentL.text = ""
                 }
-//                cell?.titleL.isHidden = false
-//                if self.infoModel?.data.isBuy == 1 {
-//                    cell?.titleL.text = ""
-//                    cell?.contentL.text = ""
-//                    cell?.titleL.isHidden = true
-//                }
             }else {
                 cell?.titleL.text = "学习须知"
                 cell?.contentL.text = model?.notice

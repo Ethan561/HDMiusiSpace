@@ -146,7 +146,8 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     
     //MARK: 三方登录
     func setupThridLogin() {
-        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false {
+        // 检测是否安装了QQ
+        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false {
             qqBtn.isHidden = true
         }
         if UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false {
@@ -156,7 +157,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             wbBtn.isHidden = true
         }
         
-        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             thridView.isHidden = true
         }
     }

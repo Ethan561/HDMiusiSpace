@@ -122,7 +122,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     }
     
     func setupThridLogin() {
-        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false {
+        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false {
             qqBtn.isHidden = true
         }
         if UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false {
@@ -131,7 +131,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             weiboBtn.isHidden = true
         }
-        if UMSocialManager.default().isInstall(UMSocialPlatformType.QQ) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
+        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             thridView.isHidden = true
         }
 

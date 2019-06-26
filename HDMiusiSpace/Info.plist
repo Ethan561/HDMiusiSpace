@@ -52,9 +52,19 @@
 				<string>wx9ca30fef57bc6b2c</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>mtjCall</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mtj9961b5be7e</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqqapi</string>
@@ -156,6 +166,6 @@
 	<key>mtj_appkey</key>
 	<string>9961b5be7e</string>
 	<key>mtj_deubglog</key>
-	<integer>1</integer>
+	<integer>0</integer>
 </dict>
 </plist>

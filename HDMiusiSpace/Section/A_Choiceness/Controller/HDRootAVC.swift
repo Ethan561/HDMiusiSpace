@@ -87,7 +87,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
             isNeedRefresh = false
         }
         
-        BaiduMobStat.default()?.logEvent("HDMiusiSpace0001", eventLabel: "HDRootAVC viewWillAppear")
+        //BaiduMobStat.default()?.logEvent("HDMiusiSpace0001", eventLabel: "HDRootAVC viewWillAppear")
         
     }
     

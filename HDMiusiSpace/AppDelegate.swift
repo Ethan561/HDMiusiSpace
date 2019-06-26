@@ -164,6 +164,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //设置埋点参数
     func setUpBaiduMobStat() {
+        
+         BaiduMobStat.default()?.enableViewControllerAutoTrack = false
+         BaiduMobStat.default()?.start(withAppId: "9961b5be7e")
         //userId:设置自定义的用户识别id
         BaiduMobStat.default()?.userId = HDLY_UserModel.shared.getDeviceNum()
         

@@ -28,7 +28,7 @@ final class HDLY_IAPStore: NSObject ,SKProductsRequestDelegate, SKPaymentTransac
     }
     
     func setup() {
-
+        
     }
     
     //1、根据产品ID数组 查询在线商品

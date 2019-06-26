@@ -315,6 +315,8 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
                 collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
             }
         }
+        addPlayNumber()
+
     }
     
     func showFocusView(_ isFocus: Bool) {
@@ -453,7 +455,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
                 if player.state == .paused {
                     player.play()
                     if isAddedPlayNumber == false {
-                        addPlayNumber()
+                        //addPlayNumber()
                         isAddedPlayNumber = true
                     }
                 }else {
@@ -462,7 +464,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
                     player.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                     player.url = self.infoModel!.voice!
                     //播放数量加一
-                    addPlayNumber()
+                    //addPlayNumber()
                 }
                 playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
             }

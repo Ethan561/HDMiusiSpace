@@ -718,7 +718,6 @@ extension HDLY_CourseDes_VC {
             let  model  = recommendsMessage[indexPath.row]
             self.pushToOthersPersonalCenterVC(model.uid ?? 0)
         }
-
     }
 }
 

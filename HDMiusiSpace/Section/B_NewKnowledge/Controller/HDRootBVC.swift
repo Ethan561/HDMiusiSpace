@@ -438,6 +438,7 @@ extension HDRootBVC {
         let model = bannerArr[index]
         if  model.img != nil  {
             cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+
         }
         
         return cell

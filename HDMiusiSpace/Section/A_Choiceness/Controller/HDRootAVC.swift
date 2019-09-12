@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerViewDataSource,FSPagerViewDelegate,UIScrollViewDelegate {
     
@@ -479,7 +480,11 @@ extension HDRootAVC {
         let cell:HDPagerViewCell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index) as! HDPagerViewCell
         let model = bannerArr[index]
         if  model.img != nil  {
+            let itemSize = CGSize.init(width: ScreenWidth - 40, height: (ScreenWidth - 40) * 190 / 335 )
+//            let processor = CroppingImageProcessor(size:itemSize)
+//            let options: KingfisherOptionsInfo = [.processor(processor)]
             cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
+//            cell.imgV.clipsToBounds
         }
         
         return cell

@@ -134,6 +134,7 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
                 weakSelf?.likeBtn.isSelected = true
             }
         }
+        
         //点赞
         publicViewModel.likeModel.bind { (model) in
             

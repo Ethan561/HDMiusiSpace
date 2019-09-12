@@ -18,6 +18,8 @@ class HDPagerViewCell: FSPagerViewCell {
         super.awakeFromNib()
         bgView.layer.cornerRadius = 8
         bgView.layer.masksToBounds = true
+        imgV.contentMode = .scaleAspectFill
+
         
     }
 

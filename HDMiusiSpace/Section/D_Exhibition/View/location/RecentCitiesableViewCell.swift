@@ -17,7 +17,7 @@ class RecentCitiesTableViewCell: UITableViewCell {
     var blockTapHomeRecentCity : TapHomeRecentItemBlock?
     
     // 使用tableView.dequeueReusableCell会自动调用这个方法
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //self.setupUI()
     }

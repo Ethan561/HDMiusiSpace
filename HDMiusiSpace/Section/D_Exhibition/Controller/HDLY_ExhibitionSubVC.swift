@@ -21,10 +21,10 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
     
     //tableView
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableView.Style.grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.backgroundColor = UIColor.white
         tableView.showsVerticalScrollIndicator = false
         
@@ -42,7 +42,7 @@ class HDLY_ExhibitionSubVC: HDItemBaseVC {
         NotificationCenter.default.addObserver(self, selector: #selector(headerViewToRefresh), name: NSNotification.Name.init(rawValue: "headerViewToRefresh"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView(noti:)), name: NSNotification.Name.init(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: nil)
         if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }

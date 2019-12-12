@@ -123,7 +123,7 @@ class HDLY_ExhibitionCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_ExhibitionCell.className, bundle: nil), forCellReuseIdentifier: HDLY_ExhibitionCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_ExhibitionCell.className, owner: nil, options: nil)?.first as? HDLY_ExhibitionCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

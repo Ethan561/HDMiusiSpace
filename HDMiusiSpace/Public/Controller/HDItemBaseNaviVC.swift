@@ -17,7 +17,7 @@ class HDItemBaseNaviVC: UINavigationController {
     }
 
 //    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-//        if self.childViewControllers.count == 1 {
+//        if self.children.count == 1 {
 //            viewController.hidesBottomBarWhenPushed = true
 //        }
 //        super.pushViewController(viewController, animated: animated)

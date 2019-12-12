@@ -85,7 +85,7 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_CourseWeb_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_CourseWeb_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_CourseWeb_Cell.className, owner: nil, options: nil)?.first as? HDLY_CourseWeb_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

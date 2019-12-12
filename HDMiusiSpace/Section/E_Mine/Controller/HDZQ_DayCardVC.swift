@@ -158,7 +158,7 @@ class HDetailItemColletionViewLayout: UICollectionViewFlowLayout {
         
         // 设置内边距
         let inset = (collectionView!.frame.width - itemSize.width) * 0.5
-        sectionInset = UIEdgeInsetsMake(0, 30, 0, 30)
+        sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

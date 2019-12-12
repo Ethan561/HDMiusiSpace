@@ -248,7 +248,7 @@ class HDFloatingButtonView: UIView, UIGestureRecognizerDelegate {
         }
         isRotation = true
         imgBtn.layer.removeAllAnimations()
-        let animate = HDAnimate.basicAnimationWithKeyPath("transform.rotation.z", fromValue: nil , toValue: 2 * Double.pi, duration: 5.0, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionLinear)
+        let animate = HDAnimate.basicAnimationWithKeyPath("transform.rotation.z", fromValue: nil , toValue: 2 * Double.pi, duration: 5.0, repeatCount: Float.infinity, timingFunction: CAMediaTimingFunctionName.linear.rawValue)
         animate.isRemovedOnCompletion = false
         imgBtn.layer.add(animate, forKey: "transform.rotation.z")
     }

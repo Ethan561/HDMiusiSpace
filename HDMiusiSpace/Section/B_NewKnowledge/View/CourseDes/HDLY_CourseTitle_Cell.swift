@@ -52,7 +52,7 @@ class HDLY_CourseTitle_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_CourseTitle_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_CourseTitle_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_CourseTitle_Cell.className, owner: nil, options: nil)?.first as? HDLY_CourseTitle_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

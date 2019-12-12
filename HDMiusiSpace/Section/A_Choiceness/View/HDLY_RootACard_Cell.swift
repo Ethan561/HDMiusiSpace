@@ -39,7 +39,7 @@ class HDLY_RootACard_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_RootACard_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_RootACard_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_RootACard_Cell.className, owner: nil, options: nil)?.first as? HDLY_RootACard_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

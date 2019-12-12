@@ -107,7 +107,7 @@ class HDSSL_dExhibitionCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_dExhibitionCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_dExhibitionCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_dExhibitionCell.className, owner: nil, options: nil)?.first as? HDSSL_dExhibitionCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

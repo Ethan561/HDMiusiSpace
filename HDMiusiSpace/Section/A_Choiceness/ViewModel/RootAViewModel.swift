@@ -78,7 +78,7 @@ class RootAViewModel: NSObject {
     }
     
     func dataRequestForBanner()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getChoicenessHomeBanner(), showHud: false, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getChoicenessHomeBanner, showHud: false, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             

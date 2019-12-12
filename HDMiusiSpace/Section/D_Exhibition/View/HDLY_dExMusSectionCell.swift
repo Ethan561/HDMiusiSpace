@@ -39,7 +39,7 @@ class HDLY_dExMusSectionCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_dExMusSectionCell.className, bundle: nil), forCellReuseIdentifier: HDLY_dExMusSectionCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_dExMusSectionCell.className, owner: nil, options: nil)?.first as? HDLY_dExMusSectionCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

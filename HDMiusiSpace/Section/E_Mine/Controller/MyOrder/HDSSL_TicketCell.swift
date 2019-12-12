@@ -156,7 +156,7 @@ class HDSSL_TicketCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_TicketCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_TicketCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_TicketCell.className, owner: nil, options: nil)?.first as? HDSSL_TicketCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

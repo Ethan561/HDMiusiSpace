@@ -30,7 +30,7 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
             tableV.register(UINib.init(nibName: HDLY_Topic_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_Topic_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_Topic_Cell.className, owner: nil, options: nil)?.first as? HDLY_Topic_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     
@@ -49,7 +49,7 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
         let itemH = 140
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumLineSpacing = 20
         self.myCollectionView.setCollectionViewLayout(layout, animated: true)
         //

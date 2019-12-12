@@ -125,7 +125,7 @@ class HDLY_AnswerAudio_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_AnswerAudio_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_AnswerAudio_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_AnswerAudio_Cell.className, owner: nil, options: nil)?.first as? HDLY_AnswerAudio_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

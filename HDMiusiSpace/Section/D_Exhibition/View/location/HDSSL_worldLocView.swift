@@ -357,8 +357,8 @@ extension HDSSL_worldLocView: UITableViewDelegate,UITableViewDataSource {
                 
                 let string = locString + gps
                 
-                let myAttribute = [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                                   NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)] as [NSAttributedStringKey : Any]
+                let myAttribute = [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                   NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)] as [NSAttributedString.Key : Any]
                 let attString = NSMutableAttributedString(string: string)
                 attString.addAttributes(myAttribute, range: NSRange.init(location: locString.count, length: gps.count))
                 

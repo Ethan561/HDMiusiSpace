@@ -90,21 +90,21 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
                     if self.infoModel!.data.yprice != nil {
                         let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
                         let ypriceAttribute =
-                            [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
-                                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
-                                NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                                ] as [NSAttributedStringKey : Any]
+                            [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                                NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                                ] as [NSAttributedString.Key : Any]
                         priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
                         //
                         let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
                         let vipPriceAttribute =
-                            [NSAttributedStringKey.foregroundColor : UIColor.white,//颜色
-                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),//字体
-                                ] as [NSAttributedStringKey : Any]
+                            [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
+                                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
+                                ] as [NSAttributedString.Key : Any]
                         vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
                         vipPriceString.append(priceString)
                         self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
-                        self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+                        self.buyBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
                     }
                     self.bottomHCons.constant = 74
                     self.isBuy = false

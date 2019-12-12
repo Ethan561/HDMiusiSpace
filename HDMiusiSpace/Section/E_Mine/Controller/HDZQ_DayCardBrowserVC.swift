@@ -26,7 +26,7 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
         layout.minimumLineSpacing = 40
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         layout.itemSize = CGSize(width: ScreenWidth - 40, height: (ScreenWidth - 40)*10/7)
         collectionView.collectionViewLayout = layout
        
@@ -51,14 +51,14 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath.init(row: index, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+        collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
     }
 
     func setLeftBar() {
-        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        let leftBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-        leftBarBtn.setImage(UIImage.init(named: "nav_back_white"), for: UIControlState.normal)
-        leftBarBtn.addTarget(self, action: #selector(back), for: UIControlEvents.touchUpInside)
+        leftBarBtn.setImage(UIImage.init(named: "nav_back_white"), for: UIControl.State.normal)
+        leftBarBtn.addTarget(self, action: #selector(back), for: UIControl.Event.touchUpInside)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
         
@@ -71,7 +71,7 @@ class HDZQ_DayCardBrowserVC: HDItemBaseVC {
         navigationBar.barTintColor = UIColor.black
         navigationBar.isTranslucent = true
         navigationBar.tintColor = .white
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBar.layer.shadowColor = UIColor.black.cgColor
     }
     

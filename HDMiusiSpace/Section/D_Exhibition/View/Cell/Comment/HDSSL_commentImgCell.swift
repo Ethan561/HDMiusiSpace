@@ -48,7 +48,7 @@ class HDSSL_commentImgCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_commentImgCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_commentImgCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_commentImgCell.className, owner: nil, options: nil)?.first as? HDSSL_commentImgCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

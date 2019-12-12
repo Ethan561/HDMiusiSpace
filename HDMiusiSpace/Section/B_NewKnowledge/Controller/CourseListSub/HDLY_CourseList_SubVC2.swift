@@ -70,22 +70,22 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
                     guard let price = self.infoModel!.data.yprice else {return}
                     let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
                     let ypriceAttribute =
-                        [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
-                            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
-                            NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                            ] as [NSAttributedStringKey : Any]
+                        [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                            NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                            ] as [NSAttributedString.Key : Any]
                     priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
                     //
                     let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
                     let vipPriceAttribute =
-                        [NSAttributedStringKey.foregroundColor : UIColor.white,//颜色
-                            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),//字体
-                            ] as [NSAttributedStringKey : Any]
+                        [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
+                            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
+                            ] as [NSAttributedString.Key : Any]
                     vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
                     vipPriceString.append(priceString)
 //                    self.buyBtn.setAttributedTitle(priceString, for: .normal)
                     self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
-                    self.buyBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+                    self.buyBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
                     self.bottomHCons.constant = 74
                     self.isFreeCourse = false
 
@@ -190,7 +190,7 @@ extension HDLY_CourseList_SubVC2 {
             cell?.titleL.text = model?.title
             cell?.nameL.text = model?.teacherName
             cell?.desL.text = model?.teacherTitle
-            cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+            cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControl.Event.touchUpInside)
             focusBtn = cell?.focusBtn
             if model?.isFocus == 1 {
                 focusBtn.setTitle("已关注", for: .normal)
@@ -343,7 +343,7 @@ extension HDLY_CourseList_SubVC2 {
         }
         self.webViewH = CGFloat(height)
         self.tableView.reloadData()
-        self.tableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableViewScrollPosition.none, animated: false)
+        self.tableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableView.ScrollPosition.none, animated: false)
     }
     
     

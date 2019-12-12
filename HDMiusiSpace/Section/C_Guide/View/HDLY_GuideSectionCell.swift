@@ -39,7 +39,7 @@ class HDLY_GuideSectionCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_GuideSectionCell.className, bundle: nil), forCellReuseIdentifier: HDLY_GuideSectionCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_GuideSectionCell.className, owner: nil, options: nil)?.first as? HDLY_GuideSectionCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

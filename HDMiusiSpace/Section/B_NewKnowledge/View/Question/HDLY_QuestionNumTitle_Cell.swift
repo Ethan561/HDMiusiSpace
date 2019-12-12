@@ -34,7 +34,7 @@ class HDLY_QuestionNumTitle_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_QuestionNumTitle_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_QuestionNumTitle_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_QuestionNumTitle_Cell.className, owner: nil, options: nil)?.first as? HDLY_QuestionNumTitle_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

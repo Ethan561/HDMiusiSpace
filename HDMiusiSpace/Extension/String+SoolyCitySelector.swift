@@ -26,7 +26,7 @@ extension String {
     // MARK: 判断是否含有中文
     func isIncludeChineseIn() -> Bool {
         
-        for (_, value) in self.characters.enumerated() {
+        for (_, value) in self.enumerated() {
             
             if ("\u{4E00}" <= value  && value <= "\u{9FA5}") {
                 return true

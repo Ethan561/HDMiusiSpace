@@ -276,7 +276,7 @@ class QRCode_View: UIView,AVCaptureMetadataOutputObjectsDelegate {
             let alert = UIAlertController.init(title: "需要获取相机权限才能正常使用该功能", message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
             let confirm = UIAlertAction.init(title: "去获取", style: .default) { (alert) in
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 if UIApplication.shared.canOpenURL(url!){
                     if #available(iOS 10.0, *) {
                         UIApplication.shared.open(url!, options: [:], completionHandler: nil)

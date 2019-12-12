@@ -20,7 +20,7 @@ class HDLY_OpenLocServiceTip: UIView {
     }
     
     @IBAction func sureBtnAction(_ sender: Any) {
-        UIApplication.shared.openURL(URL.init(string: UIApplicationOpenSettingsURLString)!)
+        UIApplication.shared.openURL(URL.init(string: UIApplication.openSettingsURLString)!)
         self.removeFromSuperview()
     }
     

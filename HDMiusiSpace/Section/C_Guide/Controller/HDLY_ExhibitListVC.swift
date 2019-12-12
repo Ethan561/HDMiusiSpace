@@ -141,8 +141,8 @@ class HDLY_ExhibitListVC: HDItemBaseVC, HDLY_AudioPlayer_Delegate {
         self.back()
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.didMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             player.stop()
         }

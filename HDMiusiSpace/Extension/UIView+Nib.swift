@@ -80,7 +80,7 @@ extension UIView {
     
     func toFullyBottom() {
         self.bottom = superview!.bounds.size.height - CGFloat(kBottomHeight)
-        self.autoresizingMask = [UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleWidth]
+        self.autoresizingMask = [UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleWidth]
     }
     
     func getViewFrameToWindow() -> CGRect {

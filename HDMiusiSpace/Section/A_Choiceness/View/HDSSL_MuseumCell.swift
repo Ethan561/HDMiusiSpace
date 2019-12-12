@@ -34,7 +34,7 @@ class HDSSL_MuseumCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_MuseumCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_MuseumCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_MuseumCell.className, owner: nil, options: nil)?.first as? HDSSL_MuseumCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

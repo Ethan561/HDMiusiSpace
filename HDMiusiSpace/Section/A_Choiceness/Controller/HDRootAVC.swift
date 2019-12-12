@@ -197,7 +197,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     func setupViews() {
         if #available(iOS 11.0, *) {
-            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
@@ -357,7 +357,7 @@ extension HDRootAVC {
             collectionRow = indexPath.row
             
             cell?.collectionBtn.tag = model.itemCard?.daycardID ?? 0
-            cell?.collectionBtn.addTarget(self, action: #selector(cardCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+            cell?.collectionBtn.addTarget(self, action: #selector(cardCollectionBtnAction(_:)), for: UIControl.Event.touchUpInside)
             if isCollection != nil {
                 cell?.collectionBtn.isSelected = isCollection!
                 cell?.collectionBtn.transform = CGAffineTransform.init(a: 1, b: 0, c: 0, d: 1.5, tx: 0, ty: 15)

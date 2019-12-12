@@ -32,7 +32,7 @@ class HDItemBaseVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          setupNavigationBar()
-        navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName:TitleFont] as [NSAttributedStringKey : Any]
+        navigationController?.navigationBar.titleTextAttributes = [kCTFontAttributeName:TitleFont] as [NSAttributedString.Key : Any]
             
          //[NSForegroundColorAttributeName:UIColor.white]
 //
@@ -43,11 +43,11 @@ class HDItemBaseVC: UIViewController {
     }
     
     func addLeftBarButtonItem() {
-        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        let leftBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
-        leftBarBtn.setImage(UIImage.init(named: "nav_back"), for: UIControlState.normal)
+        leftBarBtn.setImage(UIImage.init(named: "nav_back"), for: UIControl.State.normal)
         leftBarBtn.setTitle("  ", for: .normal)
-        leftBarBtn.addTarget(self, action: #selector(back), for: UIControlEvents.touchUpInside)
+        leftBarBtn.addTarget(self, action: #selector(back), for: UIControl.Event.touchUpInside)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)
 
@@ -60,7 +60,7 @@ class HDItemBaseVC: UIViewController {
         navigationBar.shadowImage = UIImage.init()
         navigationBar.barTintColor = UIColor.white
         navigationBar.isTranslucent = false
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         if isShowNavShadowLayer {
             //1.设置阴影颜色
@@ -393,7 +393,7 @@ class HDScrollNaviTitleView: UIView {
         guard let tm = myTimer else {
             return
         }
-        RunLoop.current.add(tm, forMode: RunLoopMode.commonModes)
+        RunLoop.current.add(tm, forMode: RunLoop.Mode.common)
     }
     
     @objc func runTimer() {

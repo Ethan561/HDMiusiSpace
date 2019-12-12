@@ -30,7 +30,7 @@ class HDLY_GuideMapCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_GuideMapCell.className, bundle: nil), forCellReuseIdentifier: HDLY_GuideMapCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_GuideMapCell.className, owner: nil, options: nil)?.first as? HDLY_GuideMapCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

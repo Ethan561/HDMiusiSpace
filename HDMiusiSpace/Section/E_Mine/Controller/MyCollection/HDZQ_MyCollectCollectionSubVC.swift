@@ -31,7 +31,7 @@ class HDZQ_MyCollectCollectionSubVC: HDItemBaseVC {
         layout.minimumLineSpacing = 20
        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 20, bottom: 20, right: 20)
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
-        layout.scrollDirection = UICollectionViewScrollDirection.vertical
+        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
         
         let collectionView:UICollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false

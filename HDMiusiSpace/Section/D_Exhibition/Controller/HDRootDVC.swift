@@ -127,8 +127,8 @@ class HDRootDVC: HDItemBaseVC,UIScrollViewDelegate,SPPageMenuDelegate {
     
     func setupViews() {
         if #available(iOS 11.0, *) {
-            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
-            self.contentScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
+            self.contentScrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
@@ -337,17 +337,17 @@ extension HDRootDVC {
                 
             case 0://推荐
                 let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 baseVC.type = 1
-                self.contentScrollView.addSubview(self.childViewControllers[0].view)
+                self.contentScrollView.addSubview(self.children[0].view)
             case 1://全部
                 let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
                 baseVC.type = 0
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 2://最近
                 let baseVC:HDLY_ExhibitionSubVC = HDLY_ExhibitionSubVC.init()
                 baseVC.type = 2
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             default: break
                 
             }
@@ -357,7 +357,7 @@ extension HDRootDVC {
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
         menuIndex = toIndex
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
 
@@ -367,7 +367,7 @@ extension HDRootDVC {
         }else {
             contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
 //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "CHANGEEXHIBITIONMUSEUM"), object: navBar_btn1.isSelected)
 

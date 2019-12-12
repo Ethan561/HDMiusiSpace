@@ -34,7 +34,7 @@ class HDLY_PlatformCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_PlatformCell.className, bundle: nil), forCellReuseIdentifier: HDLY_PlatformCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_PlatformCell.className, owner: nil, options: nil)?.first as? HDLY_PlatformCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

@@ -106,9 +106,9 @@ class HDLY_LeaveQuestion_VC: HDItemBaseVC,UITextViewDelegate {
             }
         }
         if titleTextView.text.count < 10 ||  textViewC.text.isEmpty == true {
-            cmtBtn.setTitleColor(UIColor.HexColor(0x9B9B9B), for: UIControlState.normal)
+            cmtBtn.setTitleColor(UIColor.HexColor(0x9B9B9B), for: UIControl.State.normal)
         }else {
-            cmtBtn.setTitleColor(UIColor.HexColor(0x333333), for: UIControlState.normal)
+            cmtBtn.setTitleColor(UIColor.HexColor(0x333333), for: UIControl.State.normal)
         }
     
         self.textNum = textView.text.count

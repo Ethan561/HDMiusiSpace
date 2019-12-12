@@ -20,7 +20,7 @@ class HDLY_StrategyListVC: HDItemBaseVC {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
         if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }

@@ -111,7 +111,7 @@ class HDZQ_VoiceSearchView: UIView {
         let settingsAction = UIAlertAction(title: "设置", style: .default) { (alertAction) in
             
             // THIS IS WHERE THE MAGIC HAPPENS!!!!
-            if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+            if let appSettings = NSURL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.openURL(appSettings as URL)
             }
         }

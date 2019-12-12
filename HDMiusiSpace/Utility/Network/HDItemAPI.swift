@@ -67,7 +67,7 @@ enum  HDItemAPI {
     case getMyPartnerLoc(user_number: String)
     
     //问卷调查
-    case getQuestionDetailUrl()
+    case getQuestionDetail
     
     //删除随手拍
     case deleteTimeLine( api_token: String, pid: String)
@@ -114,7 +114,7 @@ extension HDItemAPI: TargetType {
             return "api/exhibit_hot"
             
         //问卷调查
-        case .getQuestionDetailUrl():
+        case .getQuestionDetail:
             return "api/question_list"
             
         //随手拍列表
@@ -360,7 +360,7 @@ extension HDItemAPI: TargetType {
             params = ["p":"i",
                       "user_number": user_number]
         //问卷调查
-        case .getQuestionDetailUrl():
+        case .getQuestionDetail:
             params = ["p":"i"]
             
         //删除随手拍

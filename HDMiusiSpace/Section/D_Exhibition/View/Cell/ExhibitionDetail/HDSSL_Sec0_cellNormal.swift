@@ -30,7 +30,7 @@ class HDSSL_Sec0_cellNormal: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_Sec0_cellNormal.className, bundle: nil), forCellReuseIdentifier: HDSSL_Sec0_cellNormal.className)
             cell = Bundle.main.loadNibNamed(HDSSL_Sec0_cellNormal.className, owner: nil, options: nil)?.first as? HDSSL_Sec0_cellNormal
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

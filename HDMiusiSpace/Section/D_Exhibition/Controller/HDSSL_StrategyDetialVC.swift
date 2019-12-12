@@ -202,17 +202,17 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         publicViewModel.likeModel.bind { (model) in
             weakSelf?.likeNumL.text = model.like_num?.string
             if model.is_like?.int == 0 {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             }else {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         //收藏
         publicViewModel.isCollection.bind { (flag) in
             if flag == false {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
         //报错
@@ -255,17 +255,17 @@ class HDSSL_StrategyDetialVC: HDItemBaseVC {
         likeNumL.text = strategyModel!.likes!.string
         if ((strategyModel?.isLike) != nil) {
             if strategyModel!.isLike == 0 {
-                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             }else {
-                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         //收藏
         if ((strategyModel?.isFavorite) != nil) {
             if strategyModel!.isFavorite == 0 {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
     }
@@ -432,7 +432,7 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
             cell?.contentL.text = commentModel.comment
             cell?.timeL.text = commentModel.createdAt
             cell?.nameL.text = commentModel.nickname
-            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControl.State.normal)
             cell?.htmls = self.htmls[indexPath.row]
             cell?.commentContent = commentModel.comment
             if commentModel.list.count > 0 {
@@ -446,9 +446,9 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
                 cell?.subContainerView.isHidden = true
             }
             if commentModel.isLike == 0 {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
             }else {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
             }
             
             cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
@@ -459,12 +459,12 @@ extension HDSSL_StrategyDetialVC:UITableViewDelegate,UITableViewDataSource {
                         if self?.commentModels[index].isLike == 0 {
                             self?.commentModels[index].isLike = 1
                             self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                         }else {
                             self?.commentModels[index].isLike = 0
                             self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                         }
                     }, failure: { (error, msg) in })
@@ -660,11 +660,11 @@ extension HDSSL_StrategyDetialVC : KeyboardTextFieldDelegate {
         keyboardTextField.delegate = self
         keyboardTextField.isLeftButtonHidden = true
         keyboardTextField.isRightButtonHidden = false
-        keyboardTextField.rightButton.setTitle("发表", for: UIControlState.normal)
-        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitle("发表", for: UIControl.State.normal)
+        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         keyboardTextField.rightButton.backgroundColor = UIColor.clear
         keyboardTextField.placeholderLabel.text = "发回复"
-        keyboardTextField.autoresizingMask = [UIViewAutoresizing.flexibleWidth , UIViewAutoresizing.flexibleTopMargin]
+        keyboardTextField.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth , UIView.AutoresizingMask.flexibleTopMargin]
         self.view.addSubview(keyboardTextField)
         keyboardTextField.toFullyBottom()
         
@@ -730,11 +730,11 @@ extension HDSSL_StrategyDetialVC {
     
     func setupBarBtn() {
         //
-        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
+        let rightBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
         rightBarBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
         rightBarBtn.setTitleColor(UIColor.HexColor(0x333333), for: .normal)
-        rightBarBtn.addTarget(self, action: #selector(tapRightBarBtnAction(_:)), for: UIControlEvents.touchUpInside)
+        rightBarBtn.addTarget(self, action: #selector(tapRightBarBtnAction(_:)), for: UIControl.Event.touchUpInside)
         let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
         self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         

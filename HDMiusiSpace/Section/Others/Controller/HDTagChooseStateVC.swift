@@ -77,9 +77,9 @@ class HDTagChooseStateVC: UIViewController {
 //            self.performSegue(withIdentifier: "HD_PushToChooseVCLine", sender: nil)
             let transition = CATransition.init()
             transition.duration = 0.3
-            transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionPush
-            transition.subtype = kCATransitionFromRight
+            transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.push
+            transition.subtype = CATransitionSubtype.fromRight
             self.view.window?.layer.add(transition, forKey: nil)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseVC") as! HDTagChooseVC
@@ -134,9 +134,9 @@ class HDTagChooseStateVC: UIViewController {
 //        }
         let transition = CATransition.init()
         transition.duration = 0.3
-        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
     }

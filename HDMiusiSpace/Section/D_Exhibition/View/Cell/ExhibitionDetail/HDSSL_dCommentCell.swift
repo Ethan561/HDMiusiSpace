@@ -78,7 +78,7 @@ class HDSSL_dCommentCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_dCommentCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_dCommentCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_dCommentCell.className, owner: nil, options: nil)?.first as? HDSSL_dCommentCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     func loadMyView(){

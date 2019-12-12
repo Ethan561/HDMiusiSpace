@@ -53,9 +53,9 @@ final class HDLY_AudioPlayer: NSObject {
         super.init()
         config()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:NSNotification.Name.AVAudioSessionInterruption, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:AVAudioSession.interruptionNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:AVAudioSession.routeChangeNotification, object: nil)
         
 //        [[NSNotificationCenter defaultCenter] addObserver:self
 //            selector:@selector(audioInterruption)

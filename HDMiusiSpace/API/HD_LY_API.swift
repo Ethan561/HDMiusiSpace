@@ -11,12 +11,12 @@ import Moya
 
 enum HD_LY_API {
     //新知首页
-    case getNewKnowledgeHomePage()
+    case getNewKnowledgeHomePage
     //新知首页分类
-    case courseCateList()
+    case courseCateList
     
     //新知轮播图
-    case getNewKnowledgeBanner()
+    case getNewKnowledgeBanner
     
     //课程导读详情
     case courseInfo(api_token: String, id: String)
@@ -25,7 +25,7 @@ enum HD_LY_API {
     case courseBoutique(skip: String, take: String, type: String, cate_id: String)
     
     //精选专题换一换
-    case courseTopics()
+    case courseTopics
     
     //轻听随看列表
     case courseListen(skip: String, take: String, cate_id: String)
@@ -79,7 +79,7 @@ enum HD_LY_API {
     //头像修改
     case modifyAvatar(api_token: String, avatar: Data)
     //获取机器号
-    case requestDeviceno()
+    case requestDeviceno
     
     //发送短信或邮箱验证码
     case sendSmsForCheck(username: String)
@@ -109,7 +109,7 @@ enum HD_LY_API {
     case courseListenedNumAdd(listen_id: String)
     
     //精选首页轮播图
-    case getChoicenessHomeBanner()
+    case getChoicenessHomeBanner
     
     //精选首页
     case choicenessHomeRequest(api_token: String, deviceno: String)
@@ -240,14 +240,14 @@ extension HD_LY_API: TargetType {
         switch self {
             
         //首页展厅列表接口
-        case .getNewKnowledgeHomePage():
+        case .getNewKnowledgeHomePage:
             return "/api/course/index"
         //新知首页分类
-        case .courseCateList():
+        case .courseCateList:
             return "/api/course/cate_list"
 
         //新知轮播图
-        case .getNewKnowledgeBanner():
+        case .getNewKnowledgeBanner:
             return "/api/course/banner"
         //course - 精选推荐更多/最新/艺术/亲子互动
         case .courseBoutique(skip: _, take: _, type: _, cate_id: _):
@@ -256,7 +256,7 @@ extension HD_LY_API: TargetType {
         case .courseInfo(api_token: _, id: _):
             return "/api/course/courseinfo"
         //精选专题换一换
-        case .courseTopics():
+        case .courseTopics:
             return "/api/course/topics"
         //轻听随看列表
         case .courseListen(skip: _, take: _, cate_id: _):
@@ -328,7 +328,7 @@ extension HD_LY_API: TargetType {
         case .modifyAvatar(api_token: _, avatar: _):
             return "/api/users/avatar"
         //获取机器号
-        case .requestDeviceno():
+        case .requestDeviceno:
             return "/api/request_deviceno"
         //发送短信或邮箱验证码
         case .sendSmsForCheck(username: _):
@@ -361,7 +361,7 @@ extension HD_LY_API: TargetType {
             return "/api/course/listen_in"
 
         //精选首页轮播图
-        case .getChoicenessHomeBanner():
+        case .getChoicenessHomeBanner:
             return "/api/index/banner"
             
         //精选首页
@@ -528,13 +528,13 @@ extension HD_LY_API: TargetType {
         
         switch self {
         //展厅列表
-        case .getNewKnowledgeHomePage():
+        case .getNewKnowledgeHomePage:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
 
         //新知轮播图
-        case .getNewKnowledgeBanner():
+        case .getNewKnowledgeBanner:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -556,13 +556,13 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //新知首页分类
-        case .courseCateList():
+        case .courseCateList:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //精选专题换一换
-        case .courseTopics():
+        case .courseTopics:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
@@ -739,7 +739,7 @@ extension HD_LY_API: TargetType {
             return .uploadCompositeMultipart(multipartData, urlParameters: params)
             
         //获取机器号
-        case .requestDeviceno():
+        case .requestDeviceno:
             
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
@@ -815,7 +815,7 @@ extension HD_LY_API: TargetType {
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //精选首页轮播图
-        case .getChoicenessHomeBanner():
+        case .getChoicenessHomeBanner:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

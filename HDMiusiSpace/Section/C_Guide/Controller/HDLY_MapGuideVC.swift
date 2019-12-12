@@ -111,8 +111,8 @@ class HDLY_MapGuideVC: HDItemBaseVC {
         self.back()
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.didMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             player.stop()
         }
@@ -292,7 +292,7 @@ extension HDLY_MapGuideVC {
         }
         if player.state == .playing {
             player.pause()
-            playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+            playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
         } else {
             if player.state == .paused {
                 player.play()
@@ -308,7 +308,7 @@ extension HDLY_MapGuideVC {
                 UserDefaults.standard.set("1", forKey: key)
 //                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
             }
-            playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+            playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControl.State.normal)
         }
     }
     
@@ -319,7 +319,7 @@ extension HDLY_MapGuideVC {
         if player.fileno == ann.audioId {
             if player.state == .playing {
                 player.pause()
-                playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+                playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
             } else {
                 if player.state == .paused {
                     player.play()
@@ -335,7 +335,7 @@ extension HDLY_MapGuideVC {
                     UserDefaults.standard.set("1", forKey: key)
                     //                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
                 }
-                playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+                playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControl.State.normal)
             }
         }else {
             if ann.audio.contains("http://") {
@@ -350,7 +350,7 @@ extension HDLY_MapGuideVC {
                 UserDefaults.standard.set("1", forKey: key)
                 //                self.mapView?.changePOIImg(ann.identify, withPath: "dl_icon_map_gray")
             }
-            playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+            playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControl.State.normal)
         }
         
     }
@@ -393,7 +393,7 @@ extension HDLY_MapGuideVC : HDLY_AudioPlayer_Delegate {
     // === HDLY_AudioPlayer_Delegate ===
     
     func finishPlaying() {
-        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {

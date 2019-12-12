@@ -97,9 +97,9 @@ class HDLY_LeaveMsg_VC: HDItemBaseVC,UITextViewDelegate {
             let textContent = textView.text
             let textNum = textContent?.count
             if textView.text.count < 8 {
-                cmtBtn.setTitleColor(UIColor.HexColor(0x9B9B9B), for: UIControlState.normal)
+                cmtBtn.setTitleColor(UIColor.HexColor(0x9B9B9B), for: UIControl.State.normal)
             }else {
-                cmtBtn.setTitleColor(UIColor.HexColor(0x333333), for: UIControlState.normal)
+                cmtBtn.setTitleColor(UIColor.HexColor(0x333333), for: UIControl.State.normal)
             }
             //截取200个字
             if textNum! > TOTAL_NUM {

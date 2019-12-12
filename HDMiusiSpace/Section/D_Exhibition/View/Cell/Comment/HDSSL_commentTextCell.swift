@@ -70,7 +70,7 @@ class HDSSL_commentTextCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_commentTextCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_commentTextCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_commentTextCell.className, owner: nil, options: nil)?.first as? HDSSL_commentTextCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

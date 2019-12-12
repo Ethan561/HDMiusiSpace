@@ -116,7 +116,7 @@ class ReplicatorAnimation: NSObject {
         let fromValue = CATransform3DRotate(CATransform3DIdentity, 0, 0, 0, 0)
         var toValue:CATransform3D  =  CATransform3DTranslate(CATransform3DIdentity, transX, 0, 0 )
         toValue = CATransform3DRotate(toValue, CGFloat(120.0*Double.pi/180.0), 0, 0, 1)
-        let rotateAni = HDAnimate.basicAnimationWithKeyPath("transform", fromValue: NSValue.init(caTransform3D: fromValue), toValue: NSValue.init(caTransform3D: toValue), duration: 0.8, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseInEaseOut)
+        let rotateAni = HDAnimate.basicAnimationWithKeyPath("transform", fromValue: NSValue.init(caTransform3D: fromValue), toValue: NSValue.init(caTransform3D: toValue), duration: 0.8, repeatCount: Float.infinity, timingFunction: CAMediaTimingFunctionName.easeInEaseOut.rawValue)
         rotateAni.autoreverses = false
         shapeLayer.add(rotateAni, forKey: "rotateAnimation")
         

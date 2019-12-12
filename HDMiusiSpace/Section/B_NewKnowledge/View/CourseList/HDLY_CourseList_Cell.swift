@@ -48,7 +48,7 @@ class HDLY_CourseList_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_CourseList_Cell.className, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
             cell = Bundle.main.loadNibNamed(HDLY_CourseList_Cell.className, owner: nil, options: nil)?.first as? HDLY_CourseList_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

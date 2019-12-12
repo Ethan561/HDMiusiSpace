@@ -114,7 +114,7 @@ class HDSSL_commentReplyCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_commentReplyCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_commentReplyCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_commentReplyCell.className, owner: nil, options: nil)?.first as? HDSSL_commentReplyCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

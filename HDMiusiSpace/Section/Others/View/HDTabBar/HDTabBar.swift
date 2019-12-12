@@ -57,10 +57,10 @@ class HDTabBar: UIView {
                     selectedImageName: tempDic![kTabBarSelectedImgName] as! String,  tabBarItemType: type)
                 if itemTag == 0 {
                     tabBarItem.isSelected = true
-                    tabBarItem.setTitleColor(TabBarSelectedColor, for: UIControlState.selected)
+                    tabBarItem.setTitleColor(TabBarSelectedColor, for: UIControl.State.selected)
                 }
                 //
-                tabBarItem.addTarget(self, action: #selector(itemSelected(_:)), for: UIControlEvents.touchUpInside)
+                tabBarItem.addTarget(self, action: #selector(itemSelected(_:)), for: UIControl.Event.touchUpInside)
                 tabBarItem.tag = itemTag
                 itemTag += 1
                 tabBarItems?.add(tabBarItem)
@@ -73,13 +73,13 @@ class HDTabBar: UIView {
     func tabBarItemWithFrame(frame: CGRect, title: String, normalImageName: String, selectedImageName: String, tabBarItemType: String) -> HDTabBarItem {
         
         let item: HDTabBarItem = HDTabBarItem.init(frame: frame)
-        item.setTitle(title, for: UIControlState.normal)
-        item.setTitle(title, for: UIControlState.selected)
+        item.setTitle(title, for: UIControl.State.normal)
+        item.setTitle(title, for: UIControl.State.selected)
         item.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        item.setTitleColor(TabBarNormalColor, for: UIControlState.normal)
+        item.setTitleColor(TabBarNormalColor, for: UIControl.State.normal)
         //
-        item.setImage(UIImage.init(named: normalImageName), for: UIControlState.normal)
-        item.setImage(UIImage.init(named: selectedImageName), for: UIControlState.selected)
+        item.setImage(UIImage.init(named: normalImageName), for: UIControl.State.normal)
+        item.setImage(UIImage.init(named: selectedImageName), for: UIControl.State.selected)
         item.itemType = tabBarItemType
         
         return item
@@ -94,7 +94,7 @@ class HDTabBar: UIView {
             let temp = item as! HDTabBarItem
             if temp.tag == index {
                 temp.isSelected = true
-                temp.setTitleColor(TabBarSelectedColor, for: UIControlState.selected)
+                temp.setTitleColor(TabBarSelectedColor, for: UIControl.State.selected)
                 //
                 if HDDeclare.shared.tabBarVC != nil {
                     HDDeclare.shared.tabBarVC!.selectedIndex = index

@@ -18,7 +18,7 @@ class HDSSL_SearchViewModel: NSObject {
     //1请求搜索标题，默认搜索提示信息
     func request_getSearchPlaceholder(vc: HDItemBaseVC) {
         //
-        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getSearchPlaceholder(), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getSearchPlaceholder, showHud: true, loadingVC: vc, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -42,7 +42,7 @@ class HDSSL_SearchViewModel: NSObject {
     //2请求标签
     func request_getTags(vc: HDItemBaseVC) {
         //
-        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getSearchTypes(), showHud: true, loadingVC: vc, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_SSL_API.self, target: .getSearchTypes, showHud: true, loadingVC: vc, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -111,7 +111,7 @@ class HDSSL_SearchViewModel: NSObject {
         let settingsAction = UIAlertAction(title: "设置", style: .default) { (alertAction) in
             
             // THIS IS WHERE THE MAGIC HAPPENS!!!!
-            if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+            if let appSettings = NSURL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.openURL(appSettings as URL)
             }
         }

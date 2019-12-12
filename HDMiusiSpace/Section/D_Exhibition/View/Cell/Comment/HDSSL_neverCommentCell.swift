@@ -63,7 +63,7 @@ class HDSSL_neverCommentCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_neverCommentCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_neverCommentCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_neverCommentCell.className, owner: nil, options: nil)?.first as? HDSSL_neverCommentCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

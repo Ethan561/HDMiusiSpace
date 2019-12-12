@@ -50,7 +50,7 @@ class HDLY_MuseumInfoType3Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_MuseumInfoType3Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_MuseumInfoType3Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MuseumInfoType3Cell.className, owner: nil, options: nil)?.first as? HDLY_MuseumInfoType3Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

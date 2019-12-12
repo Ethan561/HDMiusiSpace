@@ -40,7 +40,7 @@ class HDLY_PlatformFoucsCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_PlatformFoucsCell.className, bundle: nil), forCellReuseIdentifier: HDLY_PlatformFoucsCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_PlatformFoucsCell.className, owner: nil, options: nil)?.first as? HDLY_PlatformFoucsCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

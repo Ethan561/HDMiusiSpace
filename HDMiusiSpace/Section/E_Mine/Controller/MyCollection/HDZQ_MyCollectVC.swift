@@ -57,25 +57,25 @@ extension HDZQ_MyCollectVC:SPPageMenuDelegate {
             switch i {
             case 0://资讯
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 baseVC.type = 1
-                self.scrollView.addSubview(self.childViewControllers[0].view)
+                self.scrollView.addSubview(self.children[0].view)
             case 1://展览
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
                 baseVC.type = 2
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 2://攻略
                 let baseVC:HDZQ_MyCollectSubVC = HDZQ_MyCollectSubVC()
                 baseVC.type = 3
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 3://精选
                 let baseVC:HDZQ_MyCollectCollectionSubVC = HDZQ_MyCollectCollectionSubVC()
                 baseVC.type = 5
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 4://轻听
                 let baseVC:HDZQ_MyCollectCollectionSubVC = HDZQ_MyCollectCollectionSubVC()
                 baseVC.type = 4
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             default: break
                 
             }
@@ -85,7 +85,7 @@ extension HDZQ_MyCollectVC:SPPageMenuDelegate {
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
         menuIndex = toIndex
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
         let contentScrollView: UIScrollView = scrollView
@@ -95,7 +95,7 @@ extension HDZQ_MyCollectVC:SPPageMenuDelegate {
         }else {
             contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
             return;
         }

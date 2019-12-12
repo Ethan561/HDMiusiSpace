@@ -35,7 +35,7 @@ class HDSSL_ClassCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_ClassCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_ClassCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_ClassCell.className, owner: nil, options: nil)?.first as? HDSSL_ClassCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

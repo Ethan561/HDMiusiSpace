@@ -105,7 +105,7 @@ public class MTImagePickerPhotosModel : MTImagePickerModel {
         return playerItem
     }
     
-    private func fetchDataSync(complete:@escaping (NSData?, String?, UIImageOrientation, [AnyHashable : Any]?) -> Void) {
+    private func fetchDataSync(complete:@escaping (NSData?, String?, UIImage.Orientation, [AnyHashable : Any]?) -> Void) {
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
         PHImageManager.default().requestImageData(for: self.phasset, options: requestOptions){

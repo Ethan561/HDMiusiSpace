@@ -316,7 +316,7 @@ extension HDDeclare {
         
         UIGraphicsEndImageContext()
         
-        var imageData:Data? = UIImageJPEGRepresentation(newImage!, 1.0) //UIImageJPEGRepresentation(newImage!, 1.0)
+        var imageData:Data? = newImage!.jpegData(compressionQuality: 1.0) //UIImageJPEGRepresentation(newImage!, 1.0)
         
         var sizeOriginKB : CGFloat = CGFloat(((imageData?.count)!)) / 1024.0;
         
@@ -326,7 +326,7 @@ extension HDDeclare {
         
         while (sizeOriginKB > maxSize && resizeRate > 0.1) {
             
-            imageData = UIImageJPEGRepresentation(newImage!, CGFloat(resizeRate))
+            imageData = newImage!.jpegData(compressionQuality: CGFloat(resizeRate))
                 //newImage?.jpegData(compressionQuality: CGFloat(resizeRate))
             
             sizeOriginKB = CGFloat((imageData?.count)!) / 1024.0;

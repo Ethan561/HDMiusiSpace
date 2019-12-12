@@ -41,7 +41,7 @@ class HDSSL_Sec0_Cell0: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_Sec0_Cell0.className, bundle: nil), forCellReuseIdentifier: HDSSL_Sec0_Cell0.className)
             cell = Bundle.main.loadNibNamed(HDSSL_Sec0_Cell0.className, owner: nil, options: nil)?.first as? HDSSL_Sec0_Cell0
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     func loadStar() {

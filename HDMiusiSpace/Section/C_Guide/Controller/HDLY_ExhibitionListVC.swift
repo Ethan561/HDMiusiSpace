@@ -27,7 +27,7 @@ class HDLY_ExhibitionListVC: HDItemBaseVC {
         self.navTitle = self.titleName
         
         if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }

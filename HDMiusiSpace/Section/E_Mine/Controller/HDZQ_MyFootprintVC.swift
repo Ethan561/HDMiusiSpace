@@ -168,9 +168,9 @@ extension HDZQ_MyFootprintVC : UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let sectionHeaderHeight: CGFloat = 45 //这里是我的headerView和footerView的高度
         if tableView.contentOffset.y <= sectionHeaderHeight && tableView.contentOffset.y >= 0 {
-            tableView.contentInset = UIEdgeInsetsMake(-tableView.contentOffset.y, 0, 0, 0)
+            tableView.contentInset = UIEdgeInsets(top: -tableView.contentOffset.y, left: 0, bottom: 0, right: 0)
         } else if tableView.contentOffset.y >= sectionHeaderHeight {
-            tableView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0)
+            tableView.contentInset = UIEdgeInsets(top: -sectionHeaderHeight, left: 0, bottom: 0, right: 0)
         }
     }
 }

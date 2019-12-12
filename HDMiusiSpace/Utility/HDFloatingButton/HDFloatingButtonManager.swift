@@ -59,9 +59,9 @@ final class HDFloatingButtonManager: NSObject {
 
         NotificationCenter.default.addObserver(self, selector: #selector(avplayerInterruptionPauseNoti(noti:)), name: NSNotification.Name(rawValue: "AVPlayerInterruptionPauseNoti"), object: nil)
         //
-        NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:NSNotification.Name.AVAudioSessionInterruption, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioInterruptionNoti),name:AVAudioSession.interruptionNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:NSNotification.Name.AVAudioSessionRouteChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioRouteChangeNoti(_:)),name:AVAudioSession.routeChangeNotification, object: nil)
     }
     
     func setup() {

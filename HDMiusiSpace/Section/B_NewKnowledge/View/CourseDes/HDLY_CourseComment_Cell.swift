@@ -34,7 +34,7 @@ class HDLY_CourseComment_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_CourseComment_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_CourseComment_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_CourseComment_Cell.className, owner: nil, options: nil)?.first as? HDLY_CourseComment_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

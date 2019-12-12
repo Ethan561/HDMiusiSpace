@@ -32,7 +32,7 @@ class HDLY_ListenPlayer_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_ListenPlayer_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_ListenPlayer_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_ListenPlayer_Cell.className, owner: nil, options: nil)?.first as? HDLY_ListenPlayer_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

@@ -17,9 +17,9 @@ enum HD_SSL_API {
     
     //---搜索
     //
-    case getSearchPlaceholder()
+    case getSearchPlaceholder
     //请求搜索类型
-    case getSearchTypes()
+    case getSearchTypes
     //开始搜索
     case startSearchWith(keyword: String,skip: Int, take: Int,searchType: Int)
     
@@ -83,10 +83,10 @@ extension HD_SSL_API: TargetType {
             return "/api/index/labelsave"
             
         //默认搜索提示
-        case .getSearchPlaceholder():
+        case .getSearchPlaceholder:
             return "/api/search/default_title"
         //请求搜索类型
-        case .getSearchTypes():
+        case .getSearchTypes:
             return  "/api/search/search_type"
         //开始搜索
         case .startSearchWith(keyword: _, skip: _, take: _, searchType: _):
@@ -181,13 +181,13 @@ extension HD_SSL_API: TargetType {
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         //默认搜搜提示信息
-        case .getSearchPlaceholder():
+        case .getSearchPlaceholder:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             
         //请求搜索类型
-        case .getSearchTypes():
+        case .getSearchTypes:
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

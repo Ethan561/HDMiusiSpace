@@ -65,7 +65,7 @@ class HDLY_MyDynamicCell: UITableViewCell {
     }
     
     @IBAction func showDeleteView(_ sender: UIButton) {
-        self.contentView.bringSubview(toFront: deletaBtn)
+        self.contentView.bringSubviewToFront(deletaBtn)
         postDeleteButtonClickedNotification()
         if deletaBtn.isHidden == false {
             deletaBtn.isHidden = true
@@ -107,7 +107,7 @@ class HDLY_MyDynamicCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_MyDynamicCell.className, bundle: nil), forCellReuseIdentifier: HDLY_MyDynamicCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MyDynamicCell.className, owner: nil, options: nil)?.first as? HDLY_MyDynamicCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell!
     }

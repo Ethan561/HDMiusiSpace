@@ -47,7 +47,7 @@ class HDZQ_FoorprintCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 15
         layout.minimumInteritemSpacing = 15
-        layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: 140, height:150)
         
         classCollectionView = UICollectionView.init(frame: CGRect.init(x: 0, y: 30, width: width, height: 150), collectionViewLayout: layout)

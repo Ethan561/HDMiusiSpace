@@ -104,8 +104,8 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     
     func setupViews() {
         if #available(iOS 11.0, *) {
-            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
-            self.contentScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
+            self.contentScrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
@@ -132,7 +132,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     }
     
     func dataRequestForBanner()  {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getNewKnowledgeBanner(), showHud: false, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .getNewKnowledgeBanner, showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             
@@ -160,7 +160,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
     }
 
     func dataRequestForMenu(isRefresh: Bool) {
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList(), showHud: true, loadingVC: self, success: { (result) in
+        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseCateList, showHud: true, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
             self.myTableView.ly_hideEmptyView()
@@ -181,7 +181,7 @@ class HDRootBVC: HDItemBaseVC,SPPageMenuDelegate, UITableViewDataSource,UITableV
                 self.recommendSubVC?.dataRequest()
             }
             self.myTableView.es.stopPullToRefresh()
-            if self.childViewControllers.count == 0 {
+            if self.children.count == 0 {
                 self.addContentSubViewsWithArr(titleArr: menuTitleArr)
             }
         }) { (errorCode, msg) in
@@ -257,9 +257,9 @@ extension HDRootBVC {
                 
             case 0://推荐
                 let baseVC:HDLY_Recommend_SubVC = HDLY_Recommend_SubVC.init()
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 recommendSubVC = baseVC
-                self.contentScrollView.addSubview(self.childViewControllers[0].view)
+                self.contentScrollView.addSubview(self.children[0].view)
                 baseVC.showListenView.bind { [weak self] show in
                     if show {
                         guard let vc = self else {
@@ -273,24 +273,24 @@ extension HDRootBVC {
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 baseVC.isNewest = true
                 baseVC.cateID = "0"
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 2://轻听随看
                 let baseVC:HDLY_Listen_SubVC = HDLY_Listen_SubVC.init()
                 self.listenSubVC = baseVC
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 3://艺术
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 baseVC.cateID = "\(model.cateID)"
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 4://亲子
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 baseVC.cateID = "\(model.cateID)"
                 
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             default:
                 let baseVC:HDLY_Art_SubVC = HDLY_Art_SubVC.init()
                 baseVC.cateID = "\(model.cateID)"
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 
                 break
                 
@@ -301,7 +301,7 @@ extension HDRootBVC {
     
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
         // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
@@ -310,7 +310,7 @@ extension HDRootBVC {
         }else {
             self.contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
             if toIndex == 2 {
                 self.listenSubVC?.dataRequest(cate_id: self.listenSubVC?.cateID ?? "-1")

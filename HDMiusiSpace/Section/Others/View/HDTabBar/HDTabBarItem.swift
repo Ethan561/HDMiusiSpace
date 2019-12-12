@@ -47,7 +47,7 @@ class HDTabBarItem: UIButton {
         
         self.titleLabel?.sizeToFit()
         let titleSize: CGSize = (self.titleLabel?.size)!
-//        let imageSize = self.image(for: UIControlState.normal)?.size
+//        let imageSize = self.image(for: UIControl.State.normal)?.size
 //        //image
         if Int(itemType) == 1 {
             

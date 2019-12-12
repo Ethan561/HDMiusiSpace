@@ -44,7 +44,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         return tmp!
     }()
     
-    var webViewH:CGFloat = 0
+    var webViewH:CGFloat = 2000
     
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
@@ -509,7 +509,7 @@ extension HDLY_TopicDetail_VC {
             guard let url = model?.url else {
                 return cell!
             }
-            if webViewH == 0 {
+            if webViewH == 2000 {
                 cell?.loadWebView(url)
             }
             cell?.webview.frame.size.height = webViewH
@@ -694,7 +694,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
-            } else if index == 1 {
+            } else if index == 1 { 
                 print("举报")
                 publicViewModel.getErrorContent(commentId: model.commentID)
                 
@@ -1003,6 +1003,11 @@ extension HDLY_TopicDetail_VC {
 }
 
 extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
+        
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+         self.loadingView?.removeFromSuperview()
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         var webheight = 0.0
         // 获取内容实际高度
@@ -1013,7 +1018,7 @@ extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
             }
             DispatchQueue.main.async { [unowned self] in
                 self.webViewH = CGFloat(webheight + 10)
-                self.myTableView.reloadData()
+//                self.myTableView.reloadData()
                 self.skip = 0
                 self.requestComments(skip: 0, take: 10)
                 self.loadingView?.removeFromSuperview()

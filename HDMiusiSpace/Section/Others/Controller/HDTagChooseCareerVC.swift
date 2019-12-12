@@ -74,7 +74,7 @@ class HDTagChooseCareerVC: UIViewController {
             self.view.window?.layer.add(transition, forKey: nil)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseStateVC") as! HDTagChooseStateVC
-            
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)
             
         }

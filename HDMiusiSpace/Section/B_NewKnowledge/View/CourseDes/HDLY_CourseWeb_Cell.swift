@@ -28,7 +28,7 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         webConfiguration.userContentController.add(self, name: "Fold")
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
-        webView.backgroundColor = UIColor.blue
+        webView.backgroundColor = UIColor.white
 //        webView.navigationDelegate = self
 //        webView.uiDelegate = self
         

@@ -366,6 +366,8 @@ extension HDLY_IAPStore {
                 case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
                 case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
                 case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
+                default:
+                    return
                 }
             }
         }

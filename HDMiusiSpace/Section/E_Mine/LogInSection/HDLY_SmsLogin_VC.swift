@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     @IBOutlet weak var phoneTF: UITextField!
@@ -41,6 +42,12 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         smsTF.returnKeyType = .done
         smsTF.delegate = self
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        configUI()
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -287,4 +294,54 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         return true
     }
 
+}
+
+
+extension HDLY_SmsLogin_VC {
+    
+    func configUI()  {
+//        if #available(iOS 13.0, *) {
+//            let appleIDBtn = ASAuthorizationAppleIDButton.init(frame: CGRect.init(x: 130, y: 20, width: 20, height: 50))
+//            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
+//            self.view.addSubview(appleIDBtn)
+//        } else {
+            let appleIDBtn = UIButton.init(frame: CGRect.init(x: 30, y: 500, width: ScreenWidth - 60, height: 50))
+            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
+            appleIDBtn.backgroundColor = UIColor.purple
+            self.view.addSubview(appleIDBtn)
+//        }
+    }
+    
+    @objc func  didAppleIDBtnClicked() {
+//        self.signInApple = [[SignInApple alloc] init];
+//        [self.signInApple handleAuthorizationAppleIDButtonPress];
+    }
+    
+    
+    func handleAuthorizationAppleIDButtonPress() {
+        if #available(iOS 13.0, *) {
+            // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            // 创建新的AppleID 授权请求\
+            let appleIDRequest = appleIDProvider.createRequest()
+            appleIDRequest.requestedScopes = Array.init()
+            // 在用户授权期间请求的联系信息
+//            appleIDRequest.requestedScopes =  [email] @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+            // 由ASAuthorizationAppleIDProvider创建的授权请求 管理授权请求的控制器
+            let authorizationController = ASAuthorizationController.init(authorizationRequests: [appleIDRequest])
+            // 设置授权控制器通知授权请求的成功与失败的代理
+            authorizationController.delegate = self;
+        
+            authorizationController.presentationContextProvider = self as! ASAuthorizationControllerPresentationContextProviding
+            // 在控制器初始化期间启动授权流
+            authorizationController.performRequests()
+        }else{
+            // 处理不支持系统版本
+            //                   NSLog(@"该系统版本不可用Apple登录");
+        }
+    }
+}
+
+extension HDLY_SmsLogin_VC : ASAuthorizationControllerDelegate {
+    
 }

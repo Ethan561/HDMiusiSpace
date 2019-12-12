@@ -226,9 +226,9 @@ extension HDDeclare {
     }
     
     class func IP_Request_Header() -> String {
-        if HDDeclare.shared.isWLANNet() == true {
-            return kWLAN_Ip_Address
-        }
+//        if HDDeclare.shared.isWLANNet() == true {
+//            return kWLAN_Ip_Address
+//        }
         return kNet_Ip_Address
     }
     

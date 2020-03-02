@@ -691,7 +691,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                     
                     let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
                     showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
-                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 120, bottom: 0, right: 0)
                     showMoreBtn.setTitle("更多资讯内容", for: .normal)
                     showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                     showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
@@ -725,7 +725,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                     let cell = UITableViewCell.init()
                     let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
                     showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
-                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 120, bottom: 0, right: 0)
                     showMoreBtn.setTitle("更多新知内容", for: .normal)
                     showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                     showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
@@ -761,7 +761,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                     
                     let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 130, height: 38))
                     showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
-                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 120, 0, 0)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 120, bottom: 0, right: 0)
                     showMoreBtn.setTitle("更多展览内容", for: .normal)
                     showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                     showMoreBtn.setTitleColor(UIColor.gray, for: .normal)
@@ -803,7 +803,7 @@ extension HDSSL_SearchVC: UITableViewDelegate,UITableViewDataSource {
                     
                     let showMoreBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 140, height: 38))
                     showMoreBtn.setImage(UIImage.init(named: "wd_icon_yj"), for: .normal)
-                    showMoreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0)
+                    showMoreBtn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 130, bottom: 0, right: 0)
                     showMoreBtn.setTitle("更多博物馆内容", for: .normal)
                     showMoreBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                     showMoreBtn.setTitleColor(UIColor.gray, for: .normal)

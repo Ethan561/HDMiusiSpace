@@ -228,8 +228,8 @@ class HDSSL_dExhibitionDetailVC: HDItemBaseVC,HDLY_MuseumInfoType4Cell_Delegate,
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.didMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             player.stop()
         }
@@ -765,7 +765,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 collectionSection = indexPath.section
                 collectionRow = indexPath.row
                 cell?.likeBtn.tag = model.raiders?.strategyID ?? 0
-                cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControl.Event.touchUpInside)
                 if isCollection != nil {
                     cell?.likeBtn.isSelected = isCollection!
                 }else {
@@ -802,7 +802,7 @@ extension HDSSL_dExhibitionDetailVC:UITableViewDelegate,UITableViewDataSource {
                 cell.selectRow = playingSelectRow
                 if playingSelectRow >= 0 {
                     let indexPath = IndexPath.init(row: playingSelectRow, section: 0)
-                    cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+                    cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
                 }
                 
                 player.delegate = cell
@@ -1054,14 +1054,14 @@ extension HDSSL_dExhibitionDetailVC : WKNavigationDelegate{
                 DispatchQueue.main.async { [unowned self] in
                     self.exhibitionCellH = CGFloat(webheight + 10)
                     self.dTableView.reloadData()
-//                    self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
+//                    self.dTableView.reloadSections([1], with: UITableView.RowAnimation.none)
                 }
             }
             
             if webView.url?.absoluteString == self.exdataModel?.data?.exhibitHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.exhibitCellH = CGFloat(webheight + 10)
-//                    self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+//                    self.dTableView.reloadSections([2], with: UITableView.RowAnimation.none)
                     self.dTableView.reloadData()
                 }
             }
@@ -1099,7 +1099,7 @@ extension HDSSL_dExhibitionDetailVC {
             return
         }
         self.exhibitionCellH = CGFloat(height)
-//        self.dTableView.reloadSections([1], with: UITableViewRowAnimation.none)
+//        self.dTableView.reloadSections([1], with: UITableView.RowAnimation.none)
         self.dTableView.reloadData()
     }
     //刷新展品介绍cell高度
@@ -1109,7 +1109,7 @@ extension HDSSL_dExhibitionDetailVC {
             return
         }
         self.exhibitCellH = CGFloat(height)
-//        self.dTableView.reloadSections([2], with: UITableViewRowAnimation.none)
+//        self.dTableView.reloadSections([2], with: UITableView.RowAnimation.none)
         self.dTableView.reloadData()
     }
     

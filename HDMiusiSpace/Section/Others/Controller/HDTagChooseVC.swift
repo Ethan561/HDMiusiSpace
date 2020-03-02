@@ -114,9 +114,9 @@ class HDTagChooseVC: UIViewController {
 //        self.dismiss(animated: true, completion: nil)
         let transition = CATransition.init()
         transition.duration = 0.3
-        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         self.dismiss(animated: false, completion: nil)
         

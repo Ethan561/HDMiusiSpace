@@ -266,13 +266,13 @@ extension HDRootCVC {
                 
             case 0://最近
                 let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 baseVC.type = 1
-                self.contentScrollView.addSubview(self.childViewControllers[0].view)
+                self.contentScrollView.addSubview(self.children[0].view)
             case 1://最火
                 let baseVC:HDLY_RootCSubVC = HDLY_RootCSubVC.init()
                 baseVC.type = 2
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 
             default: break
                 
@@ -283,7 +283,7 @@ extension HDRootCVC {
     
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
         // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
@@ -292,7 +292,7 @@ extension HDRootCVC {
         }else {
             self.contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
             return;
         }

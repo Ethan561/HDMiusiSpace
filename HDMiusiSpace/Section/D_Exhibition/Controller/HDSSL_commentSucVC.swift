@@ -81,9 +81,9 @@ class HDSSL_commentSucVC: HDItemBaseVC {
         self.title = "评论成功"
         
         //返回按钮，空白占位
-        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        let leftBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
-        leftBarBtn.setImage(UIImage.init(named: ""), for: UIControlState.normal)
+        leftBarBtn.setImage(UIImage.init(named: ""), for: UIControl.State.normal)
         leftBarBtn.setTitle("  ", for: .normal)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setLeftBarButton(leftBarButtonItem, animated: false)

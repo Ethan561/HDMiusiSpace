@@ -13,7 +13,7 @@ extension UIButton {
 
     
     @objc func set(image anImage: UIImage?, title: String,
-                   titlePosition: UIViewContentMode, additionalSpacing: CGFloat, state: UIControlState){
+                   titlePosition: UIView.ContentMode, additionalSpacing: CGFloat, state: UIControl.State){
         self.imageView?.contentMode = .center
         self.setImage(anImage, for: state)
         
@@ -23,11 +23,11 @@ extension UIButton {
         self.setTitle(title, for: state)
     }
     
-    private func positionLabelRespectToImage(title: String, position: UIViewContentMode,
+    private func positionLabelRespectToImage(title: String, position: UIView.ContentMode,
                                              spacing: CGFloat) {
         let imageSize = self.imageRect(forContentRect: self.frame)
         let titleFont = self.titleLabel?.font!
-        let titleSize = title.size(withAttributes: [kCTFontAttributeName as NSAttributedStringKey: titleFont!])
+        let titleSize = title.size(withAttributes: [kCTFontAttributeName as NSAttributedString.Key: titleFont!])
         
         var titleInsets: UIEdgeInsets
         var imageInsets: UIEdgeInsets
@@ -79,7 +79,7 @@ extension UIButton{
         }
     }
     
-    @objc dynamic fileprivate func DIY_button_add(action:@escaping  BtnAction ,for controlEvents: UIControlEvents) {
+    @objc dynamic fileprivate func DIY_button_add(action:@escaping  BtnAction ,for controlEvents: UIControl.Event) {
         let eventStr = NSString.init(string: String.init(describing: controlEvents.rawValue))
         if let actions = self.actionDic {
             actions.setObject(action, forKey: eventStr)
@@ -100,7 +100,7 @@ extension UIButton{
     
     @objc fileprivate func touchUpInSideBtnAction(btn: UIButton) {
         if let actionDic = self.actionDic  {
-            if let touchUpInSideAction = actionDic.object(forKey: String.init(describing: UIControlEvents.touchUpInside.rawValue)) as? BtnAction{
+            if let touchUpInSideAction = actionDic.object(forKey: String.init(describing: UIControl.Event.touchUpInside.rawValue)) as? BtnAction{
                 touchUpInSideAction(self)
             }
         }
@@ -108,7 +108,7 @@ extension UIButton{
     
     @objc fileprivate func touchUpOutsideBtnAction(btn: UIButton) {
         if let actionDic = self.actionDic  {
-            if let touchUpOutsideBtnAction = actionDic.object(forKey:   String.init(describing: UIControlEvents.touchUpOutside.rawValue)) as? BtnAction{
+            if let touchUpOutsideBtnAction = actionDic.object(forKey:   String.init(describing: UIControl.Event.touchUpOutside.rawValue)) as? BtnAction{
                 touchUpOutsideBtnAction(self)
             }
         }

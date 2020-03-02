@@ -39,7 +39,7 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
         let itemH = 140
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumLineSpacing = 10
         self.myCollectionView.setCollectionViewLayout(layout, animated: true)
         //
@@ -112,7 +112,7 @@ class HDLY_MuseumInfoType4Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             tableV.register(UINib.init(nibName: HDLY_MuseumInfoType4Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_MuseumInfoType4Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MuseumInfoType4Cell.className, owner: nil, options: nil)?.first as? HDLY_MuseumInfoType4Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

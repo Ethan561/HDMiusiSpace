@@ -30,7 +30,7 @@ extension ALAsset {
         let sema = DispatchSemaphore(value: 0)
         var result:ALAsset?
         DispatchQueue.global().async {
-            lib.asset(for: url as URL!, resultBlock: { (asset) in
+            lib.asset(for: url as URL?, resultBlock: { (asset) in
                 result = asset
                 sema.signal()
             }, failureBlock: { (error) in

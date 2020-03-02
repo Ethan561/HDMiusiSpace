@@ -190,7 +190,7 @@ class HDSSL_OrderCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_OrderCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_OrderCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_OrderCell.className, owner: nil, options: nil)?.first as? HDSSL_OrderCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

@@ -36,7 +36,7 @@ class HDLY_StrategyListCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_StrategyListCell.className, bundle: nil), forCellReuseIdentifier: HDLY_StrategyListCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_StrategyListCell.className, owner: nil, options: nil)?.first as? HDLY_StrategyListCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

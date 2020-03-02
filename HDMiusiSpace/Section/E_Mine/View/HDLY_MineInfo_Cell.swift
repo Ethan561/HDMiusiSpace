@@ -36,7 +36,7 @@ class HDLY_MineInfo_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_MineInfo_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_MineInfo_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MineInfo_Cell.className, owner: nil, options: nil)?.first as? HDLY_MineInfo_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         
         return cell!
     }

@@ -235,17 +235,17 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         publicViewModel.likeModel.bind { (model) in
             weakSelf?.likeNumL.text = model.like_num?.string
             if model.is_like?.int == 0 {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             }else {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         
         publicViewModel.isCollection.bind { (flag) in
             if flag == false {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
         publicViewModel.isFocus.bind { (flag) in
@@ -302,17 +302,17 @@ class HDLY_ListenDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         likeNumL.text = infoModel?.likes?.string
         if ((infoModel?.isLike) != nil) {
             if infoModel!.isLike == 0 {
-                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             } else {
-                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         //收藏
         if ((infoModel?.isFavorite) != nil) {
             if infoModel!.isFavorite == 0 {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
         addPlayNumber()
@@ -450,7 +450,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
             //
             if player.state == .playing {
                 player.pause()
-                playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+                playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
             } else {
                 if player.state == .paused {
                     player.play()
@@ -466,7 +466,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
                     //播放数量加一
                     //addPlayNumber()
                 }
-                playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+                playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControl.State.normal)
             }
         }
     }
@@ -482,7 +482,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
     // === HDLY_AudioPlayer_Delegate ===
     
     func finishPlaying() {
-        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
@@ -493,7 +493,7 @@ extension HDLY_ListenDetail_VC : HDFloatingButtonManager_AudioPlayer_Delegate {
     
     @objc func avplayerInterruptionPauseNoti(noti:Notification) {
         player.pause()
-        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+        playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
     }
     
 }
@@ -593,7 +593,7 @@ extension HDLY_ListenDetail_VC {
                 cell?.titleL.text = model?.title
                 cell?.nameL.text = model?.teacherName
                 cell?.desL.text = model?.teacherTitle
-                cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControl.Event.touchUpInside)
                 focusBtn = cell?.focusBtn
                 if model?.isFocus == 1 {
                     focusBtn.setTitle("已关注", for: .normal)
@@ -614,11 +614,11 @@ extension HDLY_ListenDetail_VC {
                 playerBtn = cell?.playerBtn
                 timeL = cell?.timeL
                 //
-                playerBtn.addTarget(self, action: #selector(playOrPauseAction(_:)), for: UIControlEvents.touchUpInside)
+                playerBtn.addTarget(self, action: #selector(playOrPauseAction(_:)), for: UIControl.Event.touchUpInside)
                 if player.state == .playing {
-                    playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControlState.normal)
+                    playerBtn.setImage(UIImage.init(named: "icon_pause_white"), for: UIControl.State.normal)
                 } else {
-                    playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+                    playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
                     if player.state != .paused {
                         cell?.timeL.text = infoModel?.timelong?.string
                     }
@@ -656,7 +656,7 @@ extension HDLY_ListenDetail_VC {
                 cell?.uid = commentModel.uid
                 cell?.commentId = commentModel.commentID
                 cell?.commentContent = commentModel.comment
-                cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+                cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControl.State.normal)
                 if commentModel.list.count > 0 {
                     cell?.subContainerView.isHidden = false
                     cell?.setupSubContainerView(subModel: commentModel, showAll: commentModel.showAll)
@@ -668,9 +668,9 @@ extension HDLY_ListenDetail_VC {
                     cell?.subContainerView.isHidden = true
                 }
                 if commentModel.isLike == 0 {
-                    cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                    cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                 }else {
-                    cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                    cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                 }
                 
                 cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
@@ -683,12 +683,12 @@ extension HDLY_ListenDetail_VC {
                             if self?.commentModels[index].isLike == 0 {
                                 self?.commentModels[index].isLike = 1
                                 self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
-                                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                                 cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                             }else {
                                 self?.commentModels[index].isLike = 0
                                 self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
-                                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                                 cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                             }
                         }, failure: { (error, msg) in })
@@ -870,11 +870,11 @@ extension HDLY_ListenDetail_VC : KeyboardTextFieldDelegate {
         keyboardTextField.delegate = self
         keyboardTextField.isLeftButtonHidden = true
         keyboardTextField.isRightButtonHidden = false
-        keyboardTextField.rightButton.setTitle("发表", for: UIControlState.normal)
-        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitle("发表", for: UIControl.State.normal)
+        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         keyboardTextField.rightButton.backgroundColor = UIColor.clear
         keyboardTextField.placeholderLabel.text = "发回复"
-        keyboardTextField.autoresizingMask = [UIViewAutoresizing.flexibleWidth , UIViewAutoresizing.flexibleTopMargin]
+        keyboardTextField.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth , UIView.AutoresizingMask.flexibleTopMargin]
         self.view.addSubview(keyboardTextField)
         keyboardTextField.toFullyBottom()
         

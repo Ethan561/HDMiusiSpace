@@ -17,10 +17,10 @@ class HDZQ_MyFollowSubVC: HDItemBaseVC {
     private var take = 10
     private var skip = 0
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableViewStyle.plain)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-44), style: UITableView.Style.plain)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.backgroundColor = UIColor.HexColor(0xF1F1F1)
         tableView.showsVerticalScrollIndicator = false
         

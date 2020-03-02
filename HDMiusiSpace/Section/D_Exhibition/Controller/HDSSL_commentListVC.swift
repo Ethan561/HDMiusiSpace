@@ -598,11 +598,11 @@ extension HDSSL_commentListVC : KeyboardTextFieldDelegate {
         keyboardTextField.delegate = self
         keyboardTextField.isLeftButtonHidden = true
         keyboardTextField.isRightButtonHidden = false
-        keyboardTextField.rightButton.setTitle("发表", for: UIControlState.normal)
-        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitle("发表", for: UIControl.State.normal)
+        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         keyboardTextField.rightButton.backgroundColor = UIColor.clear
         keyboardTextField.placeholderLabel.text = "发回复"
-        keyboardTextField.autoresizingMask = [UIViewAutoresizing.flexibleWidth , UIViewAutoresizing.flexibleTopMargin]
+        keyboardTextField.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth , UIView.AutoresizingMask.flexibleTopMargin]
         self.view.addSubview(keyboardTextField)
         keyboardTextField.toFullyBottom()
         

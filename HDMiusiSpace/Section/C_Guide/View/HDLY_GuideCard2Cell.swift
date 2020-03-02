@@ -181,7 +181,7 @@ class HDLY_GuideCard2Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_GuideCard2Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_GuideCard2Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_GuideCard2Cell.className, owner: nil, options: nil)?.first as? HDLY_GuideCard2Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

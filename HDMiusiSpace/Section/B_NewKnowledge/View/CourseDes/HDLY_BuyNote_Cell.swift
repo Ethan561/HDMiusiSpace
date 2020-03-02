@@ -31,7 +31,7 @@ class HDLY_BuyNote_Cell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_BuyNote_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_BuyNote_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_BuyNote_Cell.className, owner: nil, options: nil)?.first as? HDLY_BuyNote_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

@@ -103,7 +103,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
     }()
     
     fileprivate let indicatorView: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView.init(activityIndicatorStyle: .gray)
+        let indicatorView = UIActivityIndicatorView.init(style: .gray)
         indicatorView.isHidden = true
         return indicatorView
     }()
@@ -279,13 +279,13 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
         let duration = 0.5
         let space:CGFloat = 1.0
         
-        let animate = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
+        let animate = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX - CGFloat(jumpImgWidth) - space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: CAMediaTimingFunctionName.easeIn.rawValue)
         animate.autoreverses = true
         jumpImageView1.layer.anchorPoint = CGPoint.init(x: anchorX, y: anchorY)
         
         jumpImageView1.layer.add(animate, forKey: "position")
         
-        let animate2 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
+        let animate2 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: CAMediaTimingFunctionName.easeIn.rawValue)
         animate2.autoreverses = true
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
@@ -293,7 +293,7 @@ open class ESRefreshHeaderAnimator: UIView, ESRefreshProtocol, ESRefreshAnimator
             self.jumpImageView2.layer.add(animate2, forKey: "position")
         }
         
-        let animate3 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: kCAMediaTimingFunctionEaseIn)
+        let animate3 = HDAnimate.basicAnimationWithKeyPath("position", fromValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: 14)), toValue: NSValue.init(cgPoint: CGPoint.init(x: pX + CGFloat(jumpImgWidth) + space, y: pY)), duration: duration, repeatCount: Float.infinity, timingFunction: CAMediaTimingFunctionName.easeIn.rawValue)
         animate3.autoreverses = true
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {

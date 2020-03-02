@@ -30,7 +30,7 @@ class HDLY_About_VC: HDItemBaseVC {
     
     func setupViews() {
         if #available(iOS 11.0, *) {
-            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }

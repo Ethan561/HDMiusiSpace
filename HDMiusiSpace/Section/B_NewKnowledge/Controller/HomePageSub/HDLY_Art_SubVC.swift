@@ -12,10 +12,10 @@ class HDLY_Art_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIS
     
     //tableView
     lazy var tableView: UITableView = {
-        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableViewStyle.grouped)
+        let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableView.Style.grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.backgroundColor = UIColor.white
         tableView.showsVerticalScrollIndicator = false
         
@@ -35,7 +35,7 @@ class HDLY_Art_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,UIS
         
         NotificationCenter.default.addObserver(self, selector: #selector(pageTitleViewToTop), name: NSNotification.Name.init(rawValue: "headerViewToTop"), object: nil)
         if #available(iOS 11.0, *) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.tableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
@@ -229,17 +229,17 @@ extension HDLY_Art_SubVC {
 //                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
                 let priceString = NSMutableAttributedString.init(string: "原价¥\(model.oprice ?? "")")
                 let ypriceAttribute =
-                    [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0x999999),//颜色
-                        NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12),//字体
-                        NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                        ] as [NSAttributedStringKey : Any]
+                    [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0x999999),//颜色
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),//字体
+                        NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                        ] as [NSAttributedString.Key : Any]
                 priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
                 //
                 let vipPriceString = NSMutableAttributedString.init(string: "¥\(model.price) ")
                 let vipPriceAttribute =
-                    [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xE8593E),//颜色
-                        NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
-                        ] as [NSAttributedStringKey : Any]
+                    [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xE8593E),//颜色
+                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                        ] as [NSAttributedString.Key : Any]
                 vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
                 vipPriceString.append(priceString)
                 cell?.priceL.attributedText = vipPriceString

@@ -58,7 +58,7 @@ import UIKit
             cell = Bundle.main.loadNibNamed(HDLY_ExhibitCell.className, owner: nil, options: nil)?.first as? HDLY_ExhibitCell
         }
         
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

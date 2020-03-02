@@ -64,7 +64,7 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         let dotImg = UIImage.getImgWithColor(UIColor.HexColor(0xE8593E), imgSize: CGSize.init(width: 10, height: 10))
         if dotImg != nil {
          let img = dotImg!.roundImage(cornerRadi: 5)
-            slide.setThumbImage(img, for: UIControlState.normal)
+            slide.setThumbImage(img, for: UIControl.State.normal)
         }
         numL.addObserver(self, forKeyPath: "text", options: NSKeyValueObservingOptions.new, context: nil)
         cleanBtn.isHidden = true
@@ -210,8 +210,8 @@ class HDLY_NumGuideVC: HDItemBaseVC,HDLY_AudioPlayer_Delegate {
         }
     }
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.didMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             player.stop()
         }
@@ -257,12 +257,12 @@ extension HDLY_NumGuideVC :UICollectionViewDelegate,UICollectionViewDataSource,U
                 cell.tagBtn.isHidden = true
             }
             if indexPath.row == 9{
-                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_sc"), for: UIControlState.normal)
+                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_sc"), for: UIControl.State.normal)
             }
             
             if indexPath.row == 11{
-                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_paly_red"), for: UIControlState.normal)
-                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_pause_red"), for: UIControlState.selected)
+                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_paly_red"), for: UIControl.State.normal)
+                cell.tagBtn.setImage(UIImage.init(named: "dl_icon_pause_red"), for: UIControl.State.selected)
                 if isPlaying == true {
                     cell.tagBtn.isSelected = true
                 }else {

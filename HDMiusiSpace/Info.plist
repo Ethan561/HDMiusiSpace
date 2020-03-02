@@ -125,6 +125,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>需要使用蓝牙功能</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>需要使用蓝牙功能</string>
 	<key>NSCameraUsageDescription</key>

@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         Bugly.start(withAppId: "c72887a81c")
         myJPushAlias = HDLY_UserModel.shared.getDeviceNum()
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupIAP()
         do {
             let session:AVAudioSession = AVAudioSession.sharedInstance()
-            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setCategory(AVAudioSession.Category.playback)
             try session.setActive(true)
         }
         catch let error {
@@ -196,7 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let result:Bool = UMSocialManager.default().handleOpen(url)
         
         return result

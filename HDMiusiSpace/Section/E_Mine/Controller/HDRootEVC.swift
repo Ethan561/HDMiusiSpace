@@ -85,7 +85,7 @@ class HDRootEVC: HDItemBaseVC {
     
     func setupViews() {
         if #available(iOS 11.0, *) {
-            self.myTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+            self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
@@ -96,7 +96,7 @@ class HDRootEVC: HDItemBaseVC {
         let v = UIView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 180))
         v.addSubview(tabHeader)
         myTableView.tableHeaderView = v
-        tabHeader.headerBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControlEvents.touchUpInside)
+        tabHeader.headerBtn.addTarget(self, action: #selector(showUserInfoAction), for: UIControl.Event.touchUpInside)
         
         myTableView.separatorStyle = .none
         myTableView.backgroundColor = UIColor.white
@@ -642,7 +642,7 @@ extension HDRootEVC: HDLY_MyDynamicCellDelegate {
                 self.myDynamics.remove(at: index)
                 self.starTitleStrings.remove(at: index)
                 self.iconTitleStrings.remove(at: index)
-                self.myTableView.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+                self.myTableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.fade)
                 self.myTableView.endUpdates()
             }) { (errorCode, msg) in
                 

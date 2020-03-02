@@ -52,7 +52,7 @@ class HDSSL_recordCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_recordCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_recordCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_recordCell.className, owner: nil, options: nil)?.first as? HDSSL_recordCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

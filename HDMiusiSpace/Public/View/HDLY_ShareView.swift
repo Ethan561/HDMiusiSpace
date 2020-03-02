@@ -30,7 +30,7 @@ class HDLY_ShareView: UIView {
         for (i,btn) in btnArr.enumerated() {
             let imgName = imgArr[i]
             let title = titleArr[i]
-            btn?.set(image: UIImage.init(named: imgName), title: title, titlePosition: .bottom, additionalSpacing: 8, state: UIControlState.normal)
+            btn?.set(image: UIImage.init(named: imgName), title: title, titlePosition: .bottom, additionalSpacing: 8, state: UIControl.State.normal)
             btn?.setBackgroundImage(UIImage.getImgWithColor(UIColor.white, imgSize: CGSize.init(width: 20, height: 20)), for: .normal)
             btn?.setBackgroundImage(UIImage.getImgWithColor(UIColor.white, imgSize: CGSize.init(width: 20, height: 20)), for: .normal)
             btn?.tag = 100 + i

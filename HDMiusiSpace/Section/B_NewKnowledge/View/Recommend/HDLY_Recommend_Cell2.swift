@@ -38,7 +38,7 @@ class HDLY_Recommend_Cell2: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_Recommend_Cell2.className, bundle: nil), forCellReuseIdentifier: HDLY_Recommend_Cell2.className)
             cell = Bundle.main.loadNibNamed(HDLY_Recommend_Cell2.className, owner: nil, options: nil)?.first as? HDLY_Recommend_Cell2
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

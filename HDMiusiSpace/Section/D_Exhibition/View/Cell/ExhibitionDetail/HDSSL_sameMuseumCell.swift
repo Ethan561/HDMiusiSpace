@@ -45,7 +45,7 @@ class HDSSL_sameMuseumCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_sameMuseumCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_sameMuseumCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_sameMuseumCell.className, owner: nil, options: nil)?.first as? HDSSL_sameMuseumCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     
@@ -57,7 +57,7 @@ class HDSSL_sameMuseumCell: UITableViewCell {
         let itemH = 230
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumLineSpacing = 20
         self.collectView.setCollectionViewLayout(layout, animated: true)
         //

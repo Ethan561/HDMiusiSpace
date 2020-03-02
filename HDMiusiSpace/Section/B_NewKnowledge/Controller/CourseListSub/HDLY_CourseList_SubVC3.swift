@@ -173,15 +173,15 @@ extension HDLY_CourseList_SubVC3 {
             header.questionL.text = secModel.title
             header.contentL.text = secModel.content
             header.timeL.text = secModel.createdAt
-            header.likeBtn.setTitle(secModel.likes!.string, for: UIControlState.normal)
+            header.likeBtn.setTitle(secModel.likes!.string, for: UIControl.State.normal)
             header.nameL.text = secModel.nickname
             if secModel.avatar.isEmpty == false {
                 header.avaImgV.kf.setImage(with: URL.init(string: secModel.avatar), placeholder: UIImage.init(named: "wd_img_tx"), options: nil, progressBlock: nil, completionHandler: nil)
             }
             if secModel.isLike?.int == 0 {
-                header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
             }else {
-                header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
             }
             header.avatarBtn.tag = section - 1
             header.avatarBtn.addTarget(self, action: #selector(pushPersonalCenter(_:)), for: .touchUpInside)
@@ -194,12 +194,12 @@ extension HDLY_CourseList_SubVC3 {
                         if self?.infoModel!.data.list[index].isLike!.int == 0 {
                             self?.infoModel!.data.list[index].isLike!.int = 1
                             self?.infoModel!.data.list[index].likes!.int = (self?.infoModel!.data.list[index].likes!.int)! + 1
-                            header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            header.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                             header.likeBtn.setTitle(self?.infoModel!.data.list[index].likes!.string, for: .normal)
                         }else {
                             self?.infoModel!.data.list[index].isLike!.int = 0
                             self?.infoModel!.data.list[index].likes!.int = (self?.infoModel!.data.list[index].likes!.int)! - 1
-                            header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            header.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                             header.likeBtn.setTitle(self?.infoModel!.data.list[index].likes!.string, for: .normal)
                         }
                     }, failure: { (error, msg) in })
@@ -296,7 +296,7 @@ extension HDLY_CourseList_SubVC3 {
                     cell?.countL.text = "出品方共回答了\(infoModel!.data.answerNum)个问题"
                 }
                 if infoModel?.data.isBuy == 1 {
-                    cell?.noticeBtn.addTarget(self, action: #selector(noticeBtnAction), for: UIControlEvents.touchUpInside)
+                    cell?.noticeBtn.addTarget(self, action: #selector(noticeBtnAction), for: UIControl.Event.touchUpInside)
                     cell?.noticeL.isHidden = false
                     cell?.noticeImgV.isHidden = false
                 } else {
@@ -323,7 +323,7 @@ extension HDLY_CourseList_SubVC3 {
                                 cell?.moreBtn.isHidden = false
                                 cell?.moreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                                     self?.infoModel!.data.list[section-1].showAll = true
-                                    self?.tableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                                    self?.tableView.reloadSections([section], with: UITableView.RowAnimation.none)
                                 })
                             } else {
                                 cell?.moreBtn.isHidden = true
@@ -357,7 +357,7 @@ extension HDLY_CourseList_SubVC3 {
                                 cell?.moreBtn.isHidden = false
                                 cell?.moreBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                                     self?.infoModel!.data.list[section-1].showAll = true
-                                    self?.tableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                                    self?.tableView.reloadSections([section], with: UITableView.RowAnimation.none)
                                 })
                             } else {
                                 cell?.moreBtn.isHidden = true
@@ -461,7 +461,7 @@ extension HDLY_CourseList_SubVC3 : HDLY_AudioPlayer_Delegate {
         
     // === HDLY_AudioPlayer_Delegate ===
     func finishPlaying() {
-       // playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControlState.normal)
+       // playerBtn.setImage(UIImage.init(named: "icon_paly_white"), for: UIControl.State.normal)
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {

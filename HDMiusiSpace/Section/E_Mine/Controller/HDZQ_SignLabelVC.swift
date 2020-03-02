@@ -119,9 +119,9 @@ class HDZQ_SignLabelVC: UIViewController {
                 //动画效果
                 let transition = CATransition.init()
                 transition.duration = 0.3
-                transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
-                transition.type = kCATransitionPush
-                transition.subtype = kCATransitionFromRight
+                transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
+                transition.type = CATransitionType.push
+                transition.subtype = CATransitionSubtype.fromRight
                 self?.view.window?.layer.add(transition, forKey: nil)
                 
                 let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_SignLabelVC") as! HDZQ_SignLabelVC
@@ -152,9 +152,9 @@ class HDZQ_SignLabelVC: UIViewController {
         
         let transition = CATransition.init()
         transition.duration = 0.3
-        transition.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
+        transition.timingFunction = CAMediaTimingFunction.init(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromLeft
         self.view.window?.layer.add(transition, forKey: nil)
         
         //上一页，动画效果

@@ -25,11 +25,11 @@ class HDLY_ListenTags_CollectionCell: UICollectionViewCell {
         titleL.layer.masksToBounds = true
         titleL.textColor = UIColor.HexColor(0x4A4A4A)
 
-        tagBtn.setImage(UIImage.init(named: "xz_qtsk_icon_arrow_on"), for: UIControlState.selected)
-        tagBtn.setTitle("", for: UIControlState.selected)
+        tagBtn.setImage(UIImage.init(named: "xz_qtsk_icon_arrow_on"), for: UIControl.State.selected)
+        tagBtn.setTitle("", for: UIControl.State.selected)
         
-        tagBtn.setImage(UIImage.init(named: "xinzhi_qingtingsuikan_icon_Arrow_default"), for: UIControlState.normal)
-        tagBtn.setTitle("", for: UIControlState.normal)
+        tagBtn.setImage(UIImage.init(named: "xinzhi_qingtingsuikan_icon_Arrow_default"), for: UIControl.State.normal)
+        tagBtn.setTitle("", for: UIControl.State.normal)
         
     }
     

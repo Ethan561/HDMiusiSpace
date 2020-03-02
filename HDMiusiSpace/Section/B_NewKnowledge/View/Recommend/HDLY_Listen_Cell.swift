@@ -33,7 +33,7 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
             tableV.register(UINib.init(nibName: HDLY_Listen_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_Listen_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_Listen_Cell.className, owner: nil, options: nil)?.first as? HDLY_Listen_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     
@@ -52,7 +52,7 @@ class HDLY_Listen_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionVie
         let itemH = 240
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumLineSpacing = 20
         self.myCollectionView.setCollectionViewLayout(layout, animated: true)
         //

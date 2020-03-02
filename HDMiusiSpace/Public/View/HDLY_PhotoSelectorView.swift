@@ -121,21 +121,21 @@ extension HDLY_PhotoSelectorView: PhotoSelectorCellDelegate,MTImagePickerControl
                 
                 return
             }
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) == false {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) == false {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "相机不可用")
                 
                 return
             }
-            if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.rear) == false {
+            if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerController.CameraDevice.rear) == false {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "相机已损坏，无法使用拍照功能")
                 
                 return
             }
-            self.choosePickerType(type: UIImagePickerControllerSourceType.camera)
+            self.choosePickerType(type: UIImagePickerController.SourceType.camera)
         }
         
         let actionPhoto = UIAlertAction.init(title: "从手机相册中选择", style: .default) { (UIAlertAction) -> Void in
-            self.choosePickerType(type: UIImagePickerControllerSourceType.photoLibrary)
+            self.choosePickerType(type: UIImagePickerController.SourceType.photoLibrary)
         }
         
         alert.addAction(actionCancel)
@@ -145,7 +145,7 @@ extension HDLY_PhotoSelectorView: PhotoSelectorCellDelegate,MTImagePickerControl
        nav?.present(alert, animated: true, completion: nil)
     }
     
-    func choosePickerType(type: UIImagePickerControllerSourceType) {
+    func choosePickerType(type: UIImagePickerController.SourceType) {
         if type == .camera {
             let pickController:UIImagePickerController = UIImagePickerController.init()
             pickController.delegate = self
@@ -192,8 +192,8 @@ extension HDLY_PhotoSelectorView: PhotoSelectorCellDelegate,MTImagePickerControl
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension HDLY_PhotoSelectorView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
         originalPhotos.append(image)
         
         let newImage = image.scaleImage()

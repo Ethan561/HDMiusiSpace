@@ -44,11 +44,11 @@ class HDZQ_MyFollowVC: HDItemBaseVC {
     }
     
     func addRightBarButtonItem() {
-        let leftBarBtn = UIButton.init(type: UIButtonType.custom)
+        let leftBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         leftBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
-        leftBarBtn.setImage(UIImage.init(named: "search_icon_search_small_default"), for: UIControlState.normal)
+        leftBarBtn.setImage(UIImage.init(named: "search_icon_search_small_default"), for: UIControl.State.normal)
         //        leftBarBtn.setTitle("back", for: .normal)
-        leftBarBtn.addTarget(self, action: #selector(searchAction), for: UIControlEvents.touchUpInside)
+        leftBarBtn.addTarget(self, action: #selector(searchAction), for: UIControl.Event.touchUpInside)
         let leftBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: leftBarBtn)
         self.navigationItem.setRightBarButton(leftBarButtonItem, animated: false)
         
@@ -73,13 +73,13 @@ extension HDZQ_MyFollowVC:SPPageMenuDelegate {
             switch i {
             case 0://讲师、机构
                 let baseVC:HDZQ_MyFollowSubVC = HDZQ_MyFollowSubVC()
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 baseVC.type = 1
-                self.scrollView.addSubview(self.childViewControllers[0].view)
+                self.scrollView.addSubview(self.children[0].view)
             case 1://用户
                 let baseVC:HDZQ_MyFollowSubVC = HDZQ_MyFollowSubVC()
                 baseVC.type = 2
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             default: break
                 
             }
@@ -89,7 +89,7 @@ extension HDZQ_MyFollowVC:SPPageMenuDelegate {
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
         menuIndex = toIndex
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
         let contentScrollView: UIScrollView = scrollView
@@ -99,7 +99,7 @@ extension HDZQ_MyFollowVC:SPPageMenuDelegate {
         }else {
             contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
             return;
         }

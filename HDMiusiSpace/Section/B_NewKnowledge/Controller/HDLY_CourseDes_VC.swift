@@ -374,17 +374,17 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                     if self.infoModel!.data.yprice != nil {
                         let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
                         let ypriceAttribute =
-                            [NSAttributedStringKey.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
-                             NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),//字体
-                             NSAttributedStringKey.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                                ] as [NSAttributedStringKey : Any]
+                            [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                             NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                                ] as [NSAttributedString.Key : Any]
                         priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
                         //
                         let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
                         let vipPriceAttribute =
-                            [NSAttributedStringKey.foregroundColor : UIColor.white,//颜色
-                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18),//字体
-                                ] as [NSAttributedStringKey : Any]
+                            [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
+                                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
+                                ] as [NSAttributedString.Key : Any]
                         vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
                         vipPriceString.append(priceString)
                         self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
@@ -470,7 +470,7 @@ extension HDLY_CourseDes_VC {
             }
             if count > 0 {
                 let header = HDLY_CourseComment_Header.createViewFromNib() as! HDLY_CourseComment_Header
-                header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControl.Event.touchUpInside)
                 header.titleL.text = "精选留言"
                 
                 return header
@@ -601,7 +601,7 @@ extension HDLY_CourseDes_VC {
                 cell?.titleL.text = model?.title
                 cell?.nameL.text = model?.teacherName
                 cell?.desL.text = model?.teacherTitle
-                cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControl.Event.touchUpInside)
                 focusBtn = cell?.focusBtn
                 if model?.isFocus == 1 {
                     focusBtn.setTitle("已关注", for: .normal)
@@ -791,14 +791,14 @@ extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
             }
             if audioPlayer.state == .playing {
                 audioPlayer.pause()
-                playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControlState.normal)
+                playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControl.State.normal)
             } else {
                 if audioPlayer.state == .paused {
                     audioPlayer.play()
                 }else {
                     audioPlayer.play(file: Music.init(name: "", url:URL.init(string: voicePath)!))
                 }
-                playBtn.setImage(UIImage.init(named: "xz_daoxue_pause"), for: UIControlState.normal)
+                playBtn.setImage(UIImage.init(named: "xz_daoxue_pause"), for: UIControl.State.normal)
             }
         }
     }
@@ -806,7 +806,7 @@ extension HDLY_CourseDes_VC : HDLY_AudioPlayer_Delegate {
     // === HDLY_AudioPlayer_Delegate ===
     
     func finishPlaying() {
-        playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControlState.normal)
+        playBtn.setImage(UIImage.init(named: "xz_daoxue_play"), for: UIControl.State.normal)
     }
     
     func playerTime(_ currentTime:String,_ totalTime:String,_ progress:Float) {
@@ -824,7 +824,7 @@ extension HDLY_CourseDes_VC {
         }
         self.webViewH = CGFloat(height)
         self.myTableView.reloadData()
-        self.myTableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableViewScrollPosition.none, animated: false)
+        self.myTableView.scrollToRow(at: IndexPath.init(row: 1, section: 0), at: UITableView.ScrollPosition.none, animated: false)
     }
     
     func tapErrorBtnAction() {

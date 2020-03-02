@@ -33,7 +33,7 @@ class RecommendSectionCell: UITableViewCell {
             tableV.register(UINib.init(nibName: RecommendSectionCell.className, bundle: nil), forCellReuseIdentifier: RecommendSectionCell.className)
             cell = Bundle.main.loadNibNamed(RecommendSectionCell.className, owner: nil, options: nil)?.first as? RecommendSectionCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

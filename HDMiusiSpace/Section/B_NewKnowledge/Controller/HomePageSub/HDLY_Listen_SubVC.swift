@@ -203,10 +203,10 @@ class HDLY_Listen_SubVC:                                                        
             }
             if indexPath.row == 4 {
                 cell.isFolder = true
-                cell.tagBtn.setImage(UIImage.init(named: "xinzhi_qingtingsuikan_icon_Arrow_default"), for: UIControlState.normal)
-                cell.tagBtn.setTitle("", for: UIControlState.normal)
+                cell.tagBtn.setImage(UIImage.init(named: "xinzhi_qingtingsuikan_icon_Arrow_default"), for: UIControl.State.normal)
+                cell.tagBtn.setTitle("", for: UIControl.State.normal)
                 cell.tagBtn.isHidden = false
-                cell.tagBtn.addTarget(self, action: #selector(folderBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                cell.tagBtn.addTarget(self, action: #selector(folderBtnAction(_:)), for: UIControl.Event.touchUpInside)
                 cell.titleL.text = ""
             }
             if self.tagsArr.count > 0 &&  indexPath.row > 4 {

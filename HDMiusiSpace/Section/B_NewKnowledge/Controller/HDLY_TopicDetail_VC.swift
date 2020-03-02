@@ -44,7 +44,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         return tmp!
     }()
     
-    var webViewH:CGFloat = 0
+    var webViewH:CGFloat = 2000
     
     var keyboardTextField : KeyboardTextField!
     var focusBtn: UIButton!
@@ -215,17 +215,17 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         publicViewModel.likeModel.bind { (model) in
             weakSelf?.likeNumL.text = model.like_num?.string
             if model.is_like?.int == 0 {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             }else {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         
         publicViewModel.isCollection.bind { (flag) in
             if flag == false {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                weakSelf?.collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
         
@@ -271,17 +271,17 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
         likeNumL.text = infoModel!.likes.string
         if ((infoModel?.isLike) != nil) {
             if infoModel!.isLike == 0 {
-                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_default"), for: UIControl.State.normal)
             }else {
-                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControlState.normal)
+                likeBtn.setImage(UIImage.init(named: "icon_like_pressed"), for: UIControl.State.normal)
             }
         }
         //收藏
         if ((infoModel?.isFavorite) != nil) {
             if infoModel!.isFavorite == 0 {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_gray"), for: UIControl.State.normal)
             } else {
-                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControlState.normal)
+                collectionBtn.setImage(UIImage.init(named: "xz_star_red"), for: UIControl.State.normal)
             }
         }
     }
@@ -489,7 +489,7 @@ extension HDLY_TopicDetail_VC {
                     if model?.platform_title != nil {
                         cell?.fromL.text = "本文章来自" + model!.platform_title!
                     }
-                    cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControlEvents.touchUpInside)
+                    cell?.focusBtn.addTarget(self, action: #selector(focusBtnAction), for: UIControl.Event.touchUpInside)
                     focusBtn = cell?.focusBtn
                     if model?.is_focus == 1 {
                         focusBtn.setTitle("已关注", for: .normal)
@@ -509,7 +509,7 @@ extension HDLY_TopicDetail_VC {
             guard let url = model?.url else {
                 return cell!
             }
-            if webViewH == 0 {
+            if webViewH == 2000 {
                 cell?.loadWebView(url)
             }
             cell?.webview.frame.size.height = webViewH
@@ -543,7 +543,7 @@ extension HDLY_TopicDetail_VC {
             cell?.contentL.text = commentModel.comment
             cell?.timeL.text = commentModel.createdAt
             cell?.nameL.text = commentModel.nickname
-            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControl.State.normal)
             cell?.htmls = self.htmls[indexPath.row]
             cell?.commentContent = commentModel.comment
             if commentModel.list.count > 0 {
@@ -558,9 +558,9 @@ extension HDLY_TopicDetail_VC {
                 cell?.subContainerView.isHidden = true
             }
             if commentModel.isLike == 0 {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
             }else {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
             }
             
             cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
@@ -572,12 +572,12 @@ extension HDLY_TopicDetail_VC {
                         if self?.commentModels[index].isLike == 0 {
                             self?.commentModels[index].isLike = 1
                             self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! + 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                         }else {
                             self?.commentModels[index].isLike = 0
                             self?.commentModels[index].likeNum.int = (self?.commentModels[index].likeNum.int)! - 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.commentModels[index].likeNum.string, for: .normal)
                         }
                     }, failure: { (error, msg) in })
@@ -694,7 +694,7 @@ extension HDLY_TopicDetail_VC: HDZQ_CommentActionDelegate {
                 paste.string = comment
                 HDAlert.showAlertTipWith(type: .onlyText, text: "已复制到剪贴板")
                 self.commentView.removeFromSuperview()
-            } else if index == 1 {
+            } else if index == 1 { 
                 print("举报")
                 publicViewModel.getErrorContent(commentId: model.commentID)
                 
@@ -774,11 +774,11 @@ extension HDLY_TopicDetail_VC : KeyboardTextFieldDelegate {
         keyboardTextField.delegate = self
         keyboardTextField.isLeftButtonHidden = true
         keyboardTextField.isRightButtonHidden = false
-        keyboardTextField.rightButton.setTitle("发表", for: UIControlState.normal)
-        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        keyboardTextField.rightButton.setTitle("发表", for: UIControl.State.normal)
+        keyboardTextField.rightButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         keyboardTextField.rightButton.backgroundColor = UIColor.clear
         keyboardTextField.placeholderLabel.text = "发回复"
-        keyboardTextField.autoresizingMask = [UIViewAutoresizing.flexibleWidth , UIViewAutoresizing.flexibleTopMargin]
+        keyboardTextField.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth , UIView.AutoresizingMask.flexibleTopMargin]
         self.view.addSubview(keyboardTextField)
         keyboardTextField.toFullyBottom()
         
@@ -852,11 +852,11 @@ extension HDLY_TopicDetail_VC {
     
     func setupBarBtn() {
         //
-        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
+        let rightBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
         rightBarBtn.setImage(UIImage.init(named: "xz_icon_more_black_default"), for: .normal)
         rightBarBtn.setTitleColor(UIColor.HexColor(0x333333), for: .normal)
-        rightBarBtn.addTarget(self, action: #selector(tapRightBarBtnAction(_:)), for: UIControlEvents.touchUpInside)
+        rightBarBtn.addTarget(self, action: #selector(tapRightBarBtnAction(_:)), for: UIControl.Event.touchUpInside)
         let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
         self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         
@@ -1003,6 +1003,11 @@ extension HDLY_TopicDetail_VC {
 }
 
 extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
+        
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+         self.loadingView?.removeFromSuperview()
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         var webheight = 0.0
         // 获取内容实际高度
@@ -1013,7 +1018,7 @@ extension HDLY_TopicDetail_VC : WKNavigationDelegate,WKUIDelegate {
             }
             DispatchQueue.main.async { [unowned self] in
                 self.webViewH = CGFloat(webheight + 10)
-                self.myTableView.reloadData()
+//                self.myTableView.reloadData()
                 self.skip = 0
                 self.requestComments(skip: 0, take: 10)
                 self.loadingView?.removeFromSuperview()

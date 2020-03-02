@@ -29,7 +29,7 @@ class HDLY_MuseumInfoImgCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDLY_MuseumInfoImgCell.className, bundle: nil), forCellReuseIdentifier: HDLY_MuseumInfoImgCell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MuseumInfoImgCell.className, owner: nil, options: nil)?.first as? HDLY_MuseumInfoImgCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

@@ -44,7 +44,7 @@ class HDAnimate: NSObject {
          kCAMediaTimingFunctionEaseInEaseOut: String 两头慢，中间快
          kCAMediaTimingFunctionDefault: String       默认效果
          */
-        animation.timingFunction = CAMediaTimingFunction.init(name: timingFunction ?? kCAMediaTimingFunctionEaseOut)
+        animation.timingFunction = CAMediaTimingFunction.init(name: timingFunction.map { CAMediaTimingFunctionName(rawValue: $0) } ?? CAMediaTimingFunctionName.easeOut)
         
         //动画开始和结束时候的动作
         /*
@@ -53,7 +53,7 @@ class HDAnimate: NSObject {
          kCAFillModeBoth        该值是上面两者的组合状态
          kCAFillModeRemoved     默认状态，会恢复原状
          */
-        animation.fillMode = kCAFillModeBoth
+        animation.fillMode = CAMediaTimingFillMode.both
         
         //动画结束时，是否执行逆向动画
         //animation.autoreverses = true
@@ -64,7 +64,7 @@ class HDAnimate: NSObject {
     
     
     //MARK:--- CAKeyframeAnimation
-    class func keyframeAnimationWithKeyPath(_ keyPath : String , values : [Any]? , keyTimes : [NSNumber]? , path : CGPath? , duration : CFTimeInterval , cacluationMode : String , rotationMode : String?) -> CAKeyframeAnimation {
+    class func keyframeAnimationWithKeyPath(_ keyPath : String , values : [Any]? , keyTimes : [NSNumber]? , path : CGPath? , duration : CFTimeInterval , cacluationMode : CAAnimationCalculationMode , rotationMode : CAAnimationRotationMode?) -> CAKeyframeAnimation {
         
         let keyframeAnimate = CAKeyframeAnimation.init(keyPath: keyPath)
         
@@ -82,11 +82,10 @@ class HDAnimate: NSObject {
          `cubic'      对关键帧为坐标点的关键帧进行圆滑曲线相连后插值计算，需要设置timingFunctions。还可以通过tensionValues，continueityValues，biasValues来进行调整自定义
          `cubicPaced' 结合了paced和cubic动画效果
          */
-        keyframeAnimate.calculationMode = cacluationMode
+        keyframeAnimate.calculationMode =  cacluationMode
         
-        //旋转模式：rotationMode
         /*
-         `auto' = kCAAnimationRotateAuto                根据路径自动旋转
+         `auto' = kCAAnimationRotateAuto            cacluationMode    根据路径自动旋转
          `autoReverse' = kCAAnimationRotateAutoReverse  根据路径自动翻转
          */
         keyframeAnimate.rotationMode = rotationMode
@@ -105,7 +104,7 @@ class HDAnimate: NSObject {
     }
     
     //MARK:--- CATransition
-    class func transitionAnimationWith(duration: CFTimeInterval, type: String , subtype: String? , startProgress: Float , endProgress: Float) -> CATransition {
+    class func transitionAnimationWith(duration: CFTimeInterval, type: CATransitionType , subtype: CATransitionSubtype? , startProgress: Float , endProgress: Float) -> CATransition {
         
         let transitionAnimate = CATransition()
         
@@ -118,7 +117,7 @@ class HDAnimate: NSObject {
          kCATransitionFromLeft      从左边转场
          kCATransitionFromRight     从右边转场
          */
-        transitionAnimate.subtype = subtype ?? kCATransitionFromLeft
+        transitionAnimate.subtype = subtype ?? CATransitionSubtype.fromLeft
         
         //动画开始的进度
         transitionAnimate.startProgress = startProgress

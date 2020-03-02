@@ -294,10 +294,10 @@ class HDSSL_getLocationVC: HDItemBaseVC {
         sender.isSelected = !sender.isSelected
         if sender.tag == 0 {
             menu_btn2.isSelected = false
-            dBgView.bringSubview(toFront: dTableView)
+            dBgView.bringSubviewToFront(dTableView)
         }else {
             menu_btn1.isSelected = false
-            dBgView.bringSubview(toFront: worldLocView)
+            dBgView.bringSubviewToFront(worldLocView)
         }
         refreshMenu()
     }
@@ -448,8 +448,8 @@ extension HDSSL_getLocationVC:UITableViewDelegate,UITableViewDataSource {
             
             let string = locString + gps
             
-            let myAttribute = [NSAttributedStringKey.foregroundColor: UIColor.lightGray,
-                               NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)] as [NSAttributedStringKey : Any]
+            let myAttribute = [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                               NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)] as [NSAttributedString.Key : Any]
             let attString = NSMutableAttributedString(string: string)
             attString.addAttributes(myAttribute, range: NSRange.init(location: locString.count, length: gps.count))
             

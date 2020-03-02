@@ -182,7 +182,7 @@ extension HDSSL_commentVC {
                     
                     let image: UIImage = self.commentPhotos[i] as! UIImage
                     
-                    var imgData = UIImagePNGRepresentation(image)
+                    var imgData = image.pngData()
                     
                     //超过5M压缩
                     if (Double(imgData!.count)/1024.0/1204.0) > 5 {

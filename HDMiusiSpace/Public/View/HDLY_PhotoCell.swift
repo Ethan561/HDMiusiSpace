@@ -50,7 +50,7 @@ class HDLY_PhotoCell: UICollectionViewCell {
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
         
-        button.setTitle("X", for: UIControlState.normal)
+        button.setTitle("X", for: UIControl.State.normal)
         button.addTarget(self, action: #selector(deleteButtonDidClick), for: .touchUpInside)
         return button
     }()
@@ -94,18 +94,18 @@ class HDLY_PhotoCell: UICollectionViewCell {
         
         let viewDicts = ["ab": addButton, "rb": deleteButton]
         // 添加按钮
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[ab]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[ab]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[ab]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[ab]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
         
         // 删除按钮
         // 水平方向在父控件右边一定距离
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[rb]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[rb]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
         
         // 垂直方向在父控件顶部一定距离
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[rb]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[rb]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
         //V:|-[view(50.0)] : 视图高度为  50
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[rb(22.0)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[rb(22.0)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[rb(22.0)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[rb(22.0)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDicts))
     }
     
     required init?(coder aDecoder: NSCoder) {

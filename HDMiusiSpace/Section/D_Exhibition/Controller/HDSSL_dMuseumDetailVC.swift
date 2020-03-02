@@ -209,8 +209,8 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     }
     
     
-    override func didMove(toParentViewController parent: UIViewController?) {
-        super.didMove(toParentViewController: parent)
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
         if parent == nil {
             player.stop()
         }
@@ -341,7 +341,7 @@ extension HDSSL_dMuseumDetailVC {
             header.frame =  CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 45)
             header.backgroundColor = UIColor.white
             header.moreBtn.tag = 100 + section
-            header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControlEvents.touchUpInside)
+            header.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: UIControl.Event.touchUpInside)
             if section == 1 {
                 if self.infoModel?.isArea == 0 {
                     return nil //没有平面展示图不显示标题栏
@@ -546,7 +546,7 @@ extension HDSSL_dMuseumDetailVC {
                     collectionSection = indexPath.section
                     collectionRow = indexPath.row
                     cell?.likeBtn.tag = model.raiders?.strategyID ?? 0
-                    cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControlEvents.touchUpInside)
+                    cell?.likeBtn.addTarget(self, action: #selector(strategyCollectionBtnAction(_:)), for: UIControl.Event.touchUpInside)
                     if isCollection != nil {
                         cell?.likeBtn.isSelected = isCollection!
                     }else {
@@ -579,7 +579,7 @@ extension HDSSL_dMuseumDetailVC {
                     cell.selectRow = playingSelectRow
                     if playingSelectRow >= 0 {
                         let indexPath = IndexPath.init(row: playingSelectRow, section: 0)
-                        cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+                        cell.myCollectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
                     }
                     player.delegate = cell
                     

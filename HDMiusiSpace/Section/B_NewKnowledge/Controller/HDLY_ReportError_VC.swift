@@ -73,8 +73,8 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //键盘开启监听
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
@@ -319,7 +319,7 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
                 
                 for i in 0..<self.commentPhotos.count {
                     let img = self.commentPhotos[i]
-                    var imgData = UIImagePNGRepresentation(img)!
+                    var imgData = img.pngData()!
                     if imgData.count/1024/1204 > 1 {
                         imgData = UIImage.resetImgSize(sourceImage: img, maxImageLenght: img.size.width*0.5, maxSizeKB: 1024)//最大1M
                     }
@@ -399,14 +399,14 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
         //获取userInfo
         let kbInfo = notification.userInfo
         //获取键盘的size
-        let kbRect = (kbInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let kbRect = (kbInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         //键盘的y偏移量
         //let changeY = kbRect.origin.y - SCREEN_HEIGHT
         //键盘的高度
         let kbHeight = kbRect.size.height
         //        keyBoardH = kbHeight
         //键盘弹出的时间
-        let duration = kbInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let duration = kbInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
         //界面偏移动画
         UIView.animate(withDuration: duration) {
             self.view.frame = CGRect.init(x: 0, y: -ScreenWidth*0.5, width: self.view.width, height: self.view.height)
@@ -417,9 +417,9 @@ class HDLY_ReportError_VC: HDItemBaseVC , UITextViewDelegate {
     //键盘的隐藏
     @objc func keyBoardWillHide(_ notification: Notification){
         let kbInfo = notification.userInfo
-        let kbRect = (kbInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let kbRect = (kbInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let changeY = kbRect.origin.y
-        let duration = kbInfo?[UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let duration = kbInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! Double
         UIView.animate(withDuration: duration) {
             self.view.frame = CGRect.init(x: 0, y: CGFloat(kTopHeight), width: self.view.width, height: self.view.height)
             
@@ -485,7 +485,7 @@ extension HDLY_ReportError_VC:SSL_PickerViewDelegate {
         }
         
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
             if self.commentPhotos.count == 0{
 //                self.commitBtn.isHidden = true
                 var frame = self.reportScrollView.frame

@@ -82,8 +82,8 @@ open class KeyboardTextField: UIView {
         
         textView.font = UIFont.systemFont(ofSize: 15.0);
         textView.autocapitalizationType = .none
-        textView.scrollIndicatorInsets = UIEdgeInsetsMake(0, -1, 0, 1);//滚动指示器 皮条
-        textView.textContainerInset = UIEdgeInsetsMake(9.0, 3.0, 7.0, 0.0);
+        textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: -1, bottom: 0, right: 1);//滚动指示器 皮条
+        textView.textContainerInset = UIEdgeInsets(top: 9.0, left: 3.0, bottom: 7.0, right: 0.0);
         textView.autocorrectionType = .no
         textView.keyboardType = UIKeyboardType.default;
         textView.returnKeyType = UIReturnKeyType.done;
@@ -108,13 +108,13 @@ open class KeyboardTextField: UIView {
         leftButton.backgroundColor = UIColor.red
         leftButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         leftButton.setTitle("Left", for: .normal)
-        leftButton.addTarget(self, action: #selector(KeyboardTextField.leftButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        leftButton.addTarget(self, action: #selector(KeyboardTextField.leftButtonAction(_:)), for: UIControl.Event.touchUpInside)
         keyboardView.addSubview(leftButton)
         
         rightButton.backgroundColor = UIColor.red
         rightButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         rightButton.setTitle("Right", for: .normal)
-        rightButton.addTarget(self, action: #selector(KeyboardTextField.rightButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        rightButton.addTarget(self, action: #selector(KeyboardTextField.rightButtonAction(_:)), for: UIControl.Event.touchUpInside)
         keyboardView.addSubview(rightButton)
         
         registeringKeyboardNotification()
@@ -389,7 +389,7 @@ extension KeyboardTextField {
             
             let newKeyboardHeight = appropriateInputbarHeight()
             if newKeyboardHeight != keyboardView.bounds.size.height && superview != nil {
-                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions(), animations: { () -> Void in
+                UIView.animate(withDuration: 0.2, delay: 0.0, options: UIView.AnimationOptions(), animations: { () -> Void in
                     let lastKeyboardFrameHeight = (self.lastKeyboardFrame.origin.y == 0.0 ? self.superview!.bounds.size.height : self.lastKeyboardFrame.origin.y)
                     if self.isEditing {
                         self.frame = CGRect(x: self.frame.origin.x,  y: lastKeyboardFrameHeight - newKeyboardHeight - (self.attachmentView?.bounds.size.height ?? 0), width: self.frame.size.width, height: newKeyboardHeight + (self.attachmentView?.bounds.size.height ?? 0))
@@ -408,8 +408,8 @@ extension KeyboardTextField {
 //MARK: Keyboard Notification
 extension KeyboardTextField {
     
-    public var keyboardAnimationOptions : UIViewAnimationOptions {
-        return  UIViewAnimationOptions(rawValue: (7 as UInt) << 16)
+    public var keyboardAnimationOptions : UIView.AnimationOptions {
+        return  UIView.AnimationOptions(rawValue: (7 as UInt) << 16)
     }
     public var keyboardAnimationDuration : TimeInterval {
         return  TimeInterval(0.25)
@@ -418,11 +418,11 @@ extension KeyboardTextField {
     func registeringKeyboardNotification() {
         //  Registering for keyboard notification.
         
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.keyboardWillChangeFrame(_:)),name:NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.keyboardDidChangeFrame(_:)),name:NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.keyboardWillChangeFrame(_:)),name:UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.keyboardDidChangeFrame(_:)),name:UIResponder.keyboardDidChangeFrameNotification, object: nil)
         
         //  Registering for orientation changes notification
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.willChangeStatusBarOrientation(_:)),name: NSNotification.Name.UIApplicationWillChangeStatusBarOrientation, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardTextField.willChangeStatusBarOrientation(_:)),name: UIApplication.willChangeStatusBarOrientationNotification, object: nil)
     
     }
     
@@ -431,7 +431,7 @@ extension KeyboardTextField {
         if !window!.isKeyWindow { return }
         
         guard let userInfo = notification.userInfo else { return }
-        let keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
         let keyboardFrame = keyboardFrameValue.cgRectValue
         lastKeyboardFrame = superview!.convert(keyboardFrame, from: UIApplication.shared.keyWindow)
         if KeyboardTextFieldDebugMode {
@@ -513,10 +513,10 @@ extension KeyboardTextField {
     override open func didMoveToSuperview() {
         if let superview = superview {
             let tapButton = UIButton(frame: superview.bounds)
-            tapButton.addTarget(self, action: #selector(KeyboardTextField.tapAction(_:)), for: UIControlEvents.touchUpInside)
+            tapButton.addTarget(self, action: #selector(KeyboardTextField.tapAction(_:)), for: UIControl.Event.touchUpInside)
             tapButton.tag = tapButtonTag
             tapButton.isHidden = true
-            tapButton.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+            tapButton.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
             tapButton.backgroundColor = tapButtonBackgroundColor
             superview.insertSubview(tapButton, at: 0)
         }
@@ -580,7 +580,7 @@ public final class KeyboardTextView : UITextView {
     
     private var hasDragging : Bool = false
     
-    override open func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         if isDragging == false {
             if hasDragging {
@@ -605,8 +605,8 @@ extension UITextView {
     
     fileprivate func ktf_numberOfLines() -> Int {
         let text = self.text as NSString
-        let textAttributes = [NSAttributedStringKey.font: font!]
-        var width: CGFloat = UIEdgeInsetsInsetRect(frame, textContainerInset).width
+        let textAttributes = [NSAttributedString.Key.font: font!]
+        var width: CGFloat = frame.inset(by: textContainerInset).width
         width -= 2.0 * textContainer.lineFragmentPadding
         let boundingRect: CGRect = text.boundingRect(with: CGSize(width:width,height:9999), options: [NSStringDrawingOptions.usesLineFragmentOrigin , NSStringDrawingOptions.usesFontLeading], attributes: textAttributes, context: nil)
         let line = boundingRect.height / font!.lineHeight
@@ -627,10 +627,10 @@ extension UIView {
     }
     
     public func moveToTop() {
-        superview?.bringSubview(toFront: self)
+        superview?.bringSubviewToFront(self)
     }
     
     public func moveToBottom() {
-        superview?.sendSubview(toBack: self)
+        superview?.sendSubviewToBack(self)
     }
 }

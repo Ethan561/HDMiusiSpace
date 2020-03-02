@@ -45,11 +45,11 @@ class HDLY_ModifyName_VC: HDItemBaseVC {
     
     func setupBarBtn() {
         //
-        let rightBarBtn = UIButton.init(type: UIButtonType.custom)
+        let rightBarBtn = UIButton.init(type: UIButton.ButtonType.custom)
         rightBarBtn.frame = CGRect.init(x: 0, y: 0, width: 45, height: 45)
         rightBarBtn.setTitle("保存", for: .normal)
         rightBarBtn.setTitleColor(UIColor.HexColor(0x333333), for: .normal)
-        rightBarBtn.addTarget(self, action: #selector(modifyUserInfoRequest), for: UIControlEvents.touchUpInside)
+        rightBarBtn.addTarget(self, action: #selector(modifyUserInfoRequest), for: UIControl.Event.touchUpInside)
         let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem.init(customView: rightBarBtn)
         self.navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
         

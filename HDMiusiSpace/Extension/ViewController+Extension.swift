@@ -15,10 +15,10 @@ extension UIViewController {
     func getTopVC() -> (UIViewController?) {
         var window = UIApplication.shared.keyWindow
         //是否为当前显示的window
-        if window?.windowLevel != UIWindowLevelNormal{
+        if window?.windowLevel != UIWindow.Level.normal{
             let windows = UIApplication.shared.windows
             for  windowTemp in windows{
-                if windowTemp.windowLevel == UIWindowLevelNormal{
+                if windowTemp.windowLevel == UIWindow.Level.normal{
                     window = windowTemp
                     break
                 }

@@ -161,9 +161,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         //收藏
         publicViewModel.isCollection.bind { (flag) in
             if flag == false {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControl.State.normal)
             } else {
-                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+                weakSelf?.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControl.State.normal)
             }
         }
     }
@@ -410,9 +410,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             if self.infoModel != nil {
 
                 if self.infoModel?.data.isFavorite == 1 {
-                    self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControlState.normal)
+                    self.likeBtn.setImage(UIImage.init(named: "Star_red"), for: UIControl.State.normal)
                 }else {
-                    self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControlState.normal)
+                    self.likeBtn.setImage(UIImage.init(named: "Star_white"), for: UIControl.State.normal)
                 }
                 if ZFReachabilityManager.shared().isReachableViaWiFi == true {
                     self.autoPlayAction()
@@ -449,23 +449,23 @@ extension HDLY_CourseList_VC {
             case 0://
                 let baseVC:HDLY_CourseList_SubVC1 = HDLY_CourseList_SubVC1.init()
                 baseVC.courseId = self.courseId
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
                 self.chapterListVC = baseVC
                 baseVC.delegate = self
                 baseVC.view.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight-courseListTopH)
-                self.contentScrollView.addSubview(self.childViewControllers[0].view)
+                self.contentScrollView.addSubview(self.children[0].view)
             case 1://
                 let baseVC:HDLY_CourseList_SubVC2 = HDLY_CourseList_SubVC2.init()
                 baseVC.courseId = self.courseId
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 2://
                 let baseVC:HDLY_CourseList_SubVC3 = HDLY_CourseList_SubVC3.init()
                 baseVC.courseId = self.courseId
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             case 3://
                 let baseVC:HDLY_CourseList_SubVC4 = HDLY_CourseList_SubVC4.init()
                 baseVC.courseId = self.courseId
-                self.addChildViewController(baseVC)
+                self.addChild(baseVC)
             default: break
                 
             }
@@ -483,7 +483,7 @@ extension HDLY_CourseList_VC {
     
     //MARK: ---- SPPageMenuDelegate -----
     func pageMenu(_ pageMenu: SPPageMenu, itemSelectedFrom fromIndex: Int, to toIndex: Int) {
-        if self.childViewControllers.count == 0 {
+        if self.children.count == 0 {
             return
         }
         // 如果上一次点击的button下标与当前点击的buton下标之差大于等于2,说明跨界面移动了,此时不动画.
@@ -492,7 +492,7 @@ extension HDLY_CourseList_VC {
         }else {
             self.contentScrollView.setContentOffset(CGPoint.init(x: (Int(contentScrollView.frame.size.width)*toIndex), y: 0), animated: true)
         }
-        let targetViewController:UIViewController = self.childViewControllers[toIndex]
+        let targetViewController:UIViewController = self.children[toIndex]
         if targetViewController.isViewLoaded == true {
             return;
         }

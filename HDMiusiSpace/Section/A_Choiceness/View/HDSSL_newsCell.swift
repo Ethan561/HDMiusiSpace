@@ -32,7 +32,7 @@ class HDSSL_newsCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_newsCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_newsCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_newsCell.className, owner: nil, options: nil)?.first as? HDSSL_newsCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     

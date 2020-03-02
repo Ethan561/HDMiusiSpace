@@ -3371,19 +3371,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources.sh",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D60036152142125A004A0307 /* ShellScript */ = {
@@ -3404,35 +3401,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JoyTool/JoyTool.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JoyTool.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4122,7 +4100,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e";
 			};
@@ -4153,9 +4131,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";
-				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = HDMiusiSpace_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "HDMiusiSpace/HDMiusiSpace-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 arm64e";
 			};

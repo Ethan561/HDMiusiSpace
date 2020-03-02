@@ -21,7 +21,7 @@ class HDLY_MuseumInfoType1Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             tableV.register(UINib.init(nibName: HDLY_MuseumInfoType1Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_MuseumInfoType1Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_MuseumInfoType1Cell.className, owner: nil, options: nil)?.first as? HDLY_MuseumInfoType1Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     
@@ -41,7 +41,7 @@ class HDLY_MuseumInfoType1Cell: UITableViewCell,UICollectionViewDelegate,UIColle
             tableV.register(UINib.init(nibName: HDLY_Topic_Cell.className, bundle: nil), forCellReuseIdentifier: HDLY_Topic_Cell.className)
             cell = Bundle.main.loadNibNamed(HDLY_Topic_Cell.className, owner: nil, options: nil)?.first as? HDLY_Topic_Cell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
     
@@ -59,7 +59,7 @@ class HDLY_MuseumInfoType1Cell: UITableViewCell,UICollectionViewDelegate,UIColle
         let itemH = 140
         layout.itemSize = CGSize.init(width: CGFloat(itemW), height: CGFloat(itemH))
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         layout.minimumLineSpacing = 5
         self.myCollectionView.setCollectionViewLayout(layout, animated: true)
         //

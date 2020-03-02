@@ -127,7 +127,7 @@ class HDSSL_dMuseumCell: UITableViewCell {
             tableV.register(UINib.init(nibName: HDSSL_dMuseumCell.className, bundle: nil), forCellReuseIdentifier: HDSSL_dMuseumCell.className)
             cell = Bundle.main.loadNibNamed(HDSSL_dMuseumCell.className, owner: nil, options: nil)?.first as? HDSSL_dMuseumCell
         }
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell!
     }
 }

@@ -53,7 +53,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
             lab.textColor = UIColor.HexColor(0x9b9b9b)
             lab.font =  UIFont.systemFont(ofSize: 14)
             lab.lineBreakMode = .byTruncatingTail
-            let rect = tagTitle.boundingRect(with: CGSize.init(width:ScreenWidth - 150, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedStringKey.font : lab.font], context: nil)
+            let rect = tagTitle.boundingRect(with: CGSize.init(width:ScreenWidth - 150, height: 30), options: NSStringDrawingOptions(rawValue: NSStringDrawingOptions.RawValue(UInt8(NSStringDrawingOptions.usesLineFragmentOrigin.rawValue) | UInt8(NSStringDrawingOptions.usesFontLeading.rawValue))), attributes: [NSAttributedString.Key.font : lab.font], context: nil)
             
             let BtnW = rect.size.width + 20
             let BtnH = rect.size.height + 10
@@ -104,16 +104,16 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     }
     
     @IBAction func changeAvatarAction(_ sender: UIButton) {
-        let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         // 2 命令（样式：退出Cancel，警告Destructive-按钮标题为红色，默认Default）
-        let cancelAction = UIAlertAction(title: "相机", style: UIAlertActionStyle.default) { (alert) in
+        let cancelAction = UIAlertAction(title: "相机", style: UIAlertAction.Style.default) { (alert) in
             self.chooseFromCamera()
         }
-        let deleteAction = UIAlertAction(title: "相册", style: UIAlertActionStyle.default) { (alert) in
+        let deleteAction = UIAlertAction(title: "相册", style: UIAlertAction.Style.default) { (alert) in
             self.chooseFromLibarary()
         }
         
-        let third = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (alert) in
+        let third = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel) { (alert) in
             
         }
         
@@ -156,9 +156,9 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // 参数 UIImagePickerControllerOriginalImage 代表选取原图片，这里使用 UIImagePickerControllerEditedImage 代表选取的是经过用户拉伸后的图片。
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let pickedImage = info[.editedImage] as? UIImage {
             
             picker.dismiss(animated: true, completion: nil)
             // 这里对选取的图片进行你需要的操作，通常会调整 ContentMode。
@@ -173,7 +173,7 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
     
     func uploadImgsAction(img: UIImage)  {
         
-        var imgData = UIImagePNGRepresentation(img)!
+        var imgData = img.pngData()!
 
         imgData = UIImage.resetImgSize(sourceImage: img, maxImageLenght: img.size.width*0.5, maxSizeKB: 1024)//最大1M
         

@@ -155,11 +155,11 @@ extension HDLY_CourseList_SubVC4 {
             cell?.nameL.text = commentModel.nickname
             cell?.contentL.text = commentModel.content
             cell?.timeL.text = commentModel.time
-            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControlState.normal)
+            cell?.likeBtn.setTitle(commentModel.likeNum.string, for: UIControl.State.normal)
             if commentModel.isLike == 0 {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
             }else {
-                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
             }
             cell?.likeBtn.addTouchUpInSideBtnAction({ [weak self] (btn) in
                 if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
@@ -169,12 +169,12 @@ extension HDLY_CourseList_SubVC4 {
                         if self?.infoModel!.data[index].isLike == 0 {
                             self?.infoModel!.data[index].isLike = 1
                             self?.infoModel!.data[index].likeNum.int = (self?.infoModel!.data[index].likeNum.int)! + 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.infoModel!.data[index].likeNum.string, for: .normal)
                         }else {
                             self?.infoModel!.data[index].isLike = 0
                             self?.infoModel!.data[index].likeNum.int = (self?.infoModel!.data[index].likeNum.int)! - 1
-                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControlState.normal)
+                            cell?.likeBtn.setImage(UIImage.init(named: "点赞1"), for: UIControl.State.normal)
                             cell?.likeBtn.setTitle(self?.infoModel!.data[index].likeNum.string, for: .normal)
                         }
                     }, failure: { (error, msg) in })

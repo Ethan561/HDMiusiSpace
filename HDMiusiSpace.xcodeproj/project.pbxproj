@@ -371,8 +371,6 @@
 		D632C1DF225459EC0064A062 /* HDLY_dExMusSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632C1DD225459EC0064A062 /* HDLY_dExMusSectionCell.swift */; };
 		D632C1E0225459EC0064A062 /* HDLY_dExMusSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D632C1DE225459EC0064A062 /* HDLY_dExMusSectionCell.xib */; };
 		D637566C219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */; };
-		D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */; };
-		D6375674219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */; };
 		D6375677219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */; };
 		D6375678219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */; };
 		D637567B219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */; };
@@ -1100,8 +1098,6 @@
 		D632C1DD225459EC0064A062 /* HDLY_dExMusSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_dExMusSectionCell.swift; sourceTree = "<group>"; };
 		D632C1DE225459EC0064A062 /* HDLY_dExMusSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_dExMusSectionCell.xib; sourceTree = "<group>"; };
 		D637566B219FB3C2004AD093 /* HDLY_ExhibitionMuseumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_ExhibitionMuseumModel.swift; sourceTree = "<group>"; };
-		D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoImgCell.swift; sourceTree = "<group>"; };
-		D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoImgCell.xib; sourceTree = "<group>"; };
 		D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumInfoTitleCell.swift; sourceTree = "<group>"; };
 		D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDLY_MuseumInfoTitleCell.xib; sourceTree = "<group>"; };
 		D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDLY_MuseumTagsCell.swift; sourceTree = "<group>"; };
@@ -1948,8 +1944,6 @@
 			children = (
 				D696C3EF21A3A76A00B7E3FA /* HDLY_dMuseumHeader.swift */,
 				D696C3F121A3A78300B7E3FA /* HDLY_dMuseumHeader.xib */,
-				D6375671219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift */,
-				D6375672219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib */,
 				D6375675219FE687004AD093 /* HDLY_MuseumInfoTitleCell.swift */,
 				D6375676219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib */,
 				D6375679219FE7DC004AD093 /* HDLY_MuseumTagsCell.swift */,
@@ -3241,7 +3235,6 @@
 				D6375678219FE687004AD093 /* HDLY_MuseumInfoTitleCell.xib in Resources */,
 				D671F757211A96BC00A9EE57 /* RecommendHeader.xib in Resources */,
 				D66991BE2130E654002568B2 /* HDLY_QuestionNumTitle_Cell.xib in Resources */,
-				D6375674219FE326004AD093 /* HDLY_MuseumInfoImgCell.xib in Resources */,
 				D632C1E0225459EC0064A062 /* HDLY_dExMusSectionCell.xib in Resources */,
 				D6884E62211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.xib in Resources */,
 				D6866A5D2126CA1C0044EEAA /* HDLY_CourseList_Cell.xib in Resources */,
@@ -3854,7 +3847,6 @@
 				A7C5611121EC786B006BD4F8 /* HDSSL_noCommentCell.swift in Sources */,
 				1B21CBAB21B0EB96006246DF /* HDZQ_OthersCenterVC.swift in Sources */,
 				D671C64A21951112007C6E1A /* HDLY_MuseumListModel.swift in Sources */,
-				D6375673219FE326004AD093 /* HDLY_MuseumInfoImgCell.swift in Sources */,
 				D6115AEC218FD490004A05DA /* ZFPlayerView.m in Sources */,
 				1B30BC9621AE6E450099557F /* HDZQ_SignLabelVC.swift in Sources */,
 				1B2928F521A6A43A00FEF21C /* HDZQ_MyCollectVC.swift in Sources */,

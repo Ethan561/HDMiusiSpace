@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate , HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate{
+class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate , HDLY_MuseumInfoType4Cell_Delegate, HDLY_AudioPlayer_Delegate , HDLY_MuseumInfoType5Cell_Delegate{
     
     @IBOutlet weak var bannerBg: UIView!
     @IBOutlet weak var myTableView: UITableView!
@@ -22,7 +22,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var navHeightCons: NSLayoutConstraint!
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var navShadowImgV: UIImageView!
-
+    
     //MVVM
     let publicViewModel: CoursePublicViewModel = CoursePublicViewModel()
     let collectionViewModel: CoursePublicViewModel = CoursePublicViewModel()
@@ -38,7 +38,7 @@ class HDSSL_dMuseumDetailVC: HDItemBaseVC ,UITableViewDataSource,UITableViewDele
     var playingSelectRow = -1
     var shareView: HDLY_ShareView?
     var isFloder = true
-   var loadingView: HDLoadingView?
+    var loadingView: HDLoadingView?
     
     //攻略收藏
     var collectionSection = -1
@@ -436,7 +436,7 @@ extension HDSSL_dMuseumDetailVC {
             }else if model.type == 3 {//相关活动
                 return 375
             }else if model.type == 4 {//精选推荐
-//                return 200*ScreenWidth/375.0
+                //                return 200*ScreenWidth/375.0
                 let width:CGFloat   = ScreenWidth - 40
                 let height:CGFloat  = width*9/16
                 return height + 20
@@ -453,7 +453,7 @@ extension HDSSL_dMuseumDetailVC {
             
             if indexPath.row == 0 {
                 let cell = HDLY_MuseumInfoTitleCell.getMyTableCell(tableV: tableView) as HDLY_MuseumInfoTitleCell
-            cell.titleL.text = self.infoModel?.title
+                cell.titleL.text = self.infoModel?.title
                 return cell
             }
             else if indexPath.row == 1 {
@@ -470,24 +470,24 @@ extension HDSSL_dMuseumDetailVC {
             }
             else if indexPath.row == 5 {
                 //展开收起
-                let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
+                let cell = HDSSL_Sec1Cell.getMyTableCell(tableV: tableView) as HDSSL_Sec1Cell
                 guard let url = self.infoModel?.museumHTML else {
-                    return cell!
+                    return cell
                 }
                 if webViewH == 0 && self.isFloder {
-                   cell?.loadWebView(url)
+                    cell.loadWebView(url)
                 }
-                cell!.blockHeightFunc { [weak self] (type,height) in
+                cell.blockHeightFunc { [weak self](height) in
+                    self?.reloadExhibitionCellHeight(height)
+                }
+                //
+                cell.blockRefreshHeightFunc { [weak self](height,type) in
                     self?.isFloder = (type == 2) ? true : false
-                    if self?.webViewH == CGFloat(height) {
-                        return
-                    }
-                    self?.webViewH = CGFloat(height)
-                    self?.myTableView.reloadData()
+                    self?.reloadExhibitionCellHeight(height)
                 }
-                cell?.webview.navigationDelegate = self
-                cell?.webview.frame.size.height = webViewH
-                return cell!
+                cell.webview.navigationDelegate = self
+                cell.webview.frame.size.height = webViewH
+                return cell
             }
             else  {
                 let cell = HDSSL_Sec0_cellNormal.getMyTableCell(tableV: tableView) as HDSSL_Sec0_cellNormal
@@ -511,7 +511,7 @@ extension HDSSL_dMuseumDetailVC {
                 return cell
             }
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 1 {//平面展示图
             let cell = HDLY_CourseWeb_Cell.getMyTableCell(tableV: tableView)
             guard let url = self.infoModel?.areaHTML else {
                 return cell!
@@ -524,7 +524,7 @@ extension HDSSL_dMuseumDetailVC {
             cell?.webview.frame.size.height = areaWebViewH
             
             return cell!
-
+            
         }
         else {
             if self.infoModel?.dataList != nil {
@@ -566,7 +566,7 @@ extension HDSSL_dMuseumDetailVC {
                     let cell: HDLY_MuseumInfoType4Cell  = HDLY_MuseumInfoType4Cell.getMyTableCell(tableV: tableView)
                     cell.delegate = self
                     if model.featured?.list != nil {
-                            cell.listArray = model.featured!.list
+                        cell.listArray = model.featured!.list
                     }
                     return cell
                 }else if model.type == 5 {//免费听
@@ -617,7 +617,7 @@ extension HDSSL_dMuseumDetailVC {
                 let okAction1 = UIAlertAction(title: "使用苹果自带地图导航", style: .default, handler: {
                     action in
                     HDLY_LocationTool.onNavForIOSMap(fromLoc: startLoc, endLoc: endLoc, endLocName: name!)
-
+                    
                 })
                 let okAction2 = UIAlertAction(title: "使用百度地图导航", style: .default, handler: {
                     action in
@@ -697,7 +697,7 @@ extension HDSSL_dMuseumDetailVC {
                 self.playModel = model
                 item.playBtn.isSelected = true
                 playModel?.isPlaying = true
-
+                
             }
         }
         player.delegate = cell
@@ -709,7 +709,7 @@ extension HDSSL_dMuseumDetailVC {
         playModel?.isPlaying = false
         self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: self.infoModel!.dataList!.count + 1)], with: .none)
     }
-
+    
     //计算时间cell高度
     func reloadTextView(_ textview: UITextView) -> CGFloat{
         textview.text = String.init(format: "%@", self.infoModel?.time ?? "")
@@ -733,6 +733,16 @@ extension HDSSL_dMuseumDetailVC {
         
     }
     
+    //刷新展览介绍cell高度
+        func reloadExhibitionCellHeight(_ height: Double) {
+            if self.webViewH == CGFloat(height) {
+                return
+            }
+            self.webViewH = CGFloat(height)
+    //        self.dTableView.reloadSections([1], with: UITableView.RowAnimation.none)
+            self.myTableView.reloadData()
+        }
+    
 }
 
 
@@ -750,7 +760,7 @@ extension HDSSL_dMuseumDetailVC : WKNavigationDelegate{
             if webView.url?.absoluteString == self.infoModel?.museumHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.webViewH = CGFloat(webheight + 10)
-//                    self.myTableView.reloadRows(at: [IndexPath.init(row: 5, section: 0)], with: .none)
+                    //                    self.myTableView.reloadRows(at: [IndexPath.init(row: 5, section: 0)], with: .none)
                     self.myTableView.reloadData()
                     self.loadingView?.removeFromSuperview()
                 }
@@ -758,9 +768,9 @@ extension HDSSL_dMuseumDetailVC : WKNavigationDelegate{
             if webView.url?.absoluteString == self.infoModel?.areaHTML {
                 DispatchQueue.main.async { [unowned self] in
                     self.areaWebViewH = CGFloat(webheight + 10)
-//                    self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
+                    //                    self.myTableView.reloadRows(at: [IndexPath.init(row: 0, section: 1)], with: .none)
                     self.myTableView.reloadData()
-
+                    
                     self.loadingView?.removeFromSuperview()
                 }
             }
@@ -801,11 +811,11 @@ extension HDSSL_dMuseumDetailVC {
                     vc.titleName = "展览攻略"
                     self.navigationController?.pushViewController(vc, animated: true)
                 }else if model.type == 3 {//相关活动
-  
+                    
                 }else if model.type == 4 {//精选推荐
                     let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_RecmdMore_VC") as! HDLY_RecmdMore_VC
                     self.navigationController?.pushViewController(vc, animated: true)
-
+                    
                 }else if model.type == 5 {//免费听
                     let vc = UIStoryboard(name: "RootC", bundle: nil).instantiateViewController(withIdentifier: "HDLY_ExhibitionListVC") as! HDLY_ExhibitionListVC
                     vc.museum_id = self.museumId
@@ -828,11 +838,11 @@ extension HDSSL_dMuseumDetailVC {
     
     //展览攻略详情
     func showRelatedStrategyVC(_ raider: DMuseumRaiders)  {
-
-//        let webVC = HDItemBaseWebVC()
-//        webVC.urlPath = raider.strategyUrl
-//        webVC.titleName = raider.title
-//        self.navigationController?.pushViewController(webVC, animated: true)
+        
+        //        let webVC = HDItemBaseWebVC()
+        //        webVC.urlPath = raider.strategyUrl
+        //        webVC.titleName = raider.title
+        //        self.navigationController?.pushViewController(webVC, animated: true)
         let vc = UIStoryboard(name: "RootD", bundle: nil).instantiateViewController(withIdentifier: "HDSSL_StrategyDetialVC") as! HDSSL_StrategyDetialVC
         vc.strategyid = raider.strategyID
         
@@ -841,9 +851,9 @@ extension HDSSL_dMuseumDetailVC {
     
     //精选推荐详情
     func showRecomendDetailVC(classID: Int) {
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-//        vc.courseId = "\(classID)"
-//        self.navigationController?.pushViewController(vc, animated: true)
+        //        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        //        vc.courseId = "\(classID)"
+        //        self.navigationController?.pushViewController(vc, animated: true)
         let courseId = "\(classID)" ?? "0"
         self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
@@ -864,29 +874,29 @@ extension HDSSL_dMuseumDetailVC: UIScrollViewDelegate {
                     let cell = view as! HDLY_CourseWeb_Cell
                     cell.webview.setNeedsLayout()
                 }
-                if view.isKind(of: HDLY_MuseumInfoImgCell.self) {
-                    let cell = view as! HDLY_MuseumInfoImgCell
-                    cell.webView.setNeedsLayout()
+                if view.isKind(of: HDSSL_Sec1Cell.self) {
+                    let cell = view as! HDSSL_Sec1Cell
+                    cell.webview.setNeedsLayout()
                 }
             }
-
+            
             //导航栏
             let offSetY = scrollView.contentOffset.y
             if offSetY >= kTableHeaderViewH {
                 navBgView.isHidden = false
                 navShadowImgV.isHidden = true
-
+                
                 backBtn.setImage(UIImage.init(named: "nav_back"), for: .normal)
                 errorBtn.setImage(UIImage.init(named: "icon_baocuo_black"), for: .normal)
                 shareBtn.setImage(UIImage.init(named: "xz_icon_share_black_default"), for: .normal)
                 if likeBtn.isSelected == false {
                     likeBtn.setImage(UIImage.init(named: "Star_black"), for: .normal)
                 }
-
+                
             } else {
                 navBgView.isHidden = true
                 navShadowImgV.isHidden = false
-
+                
                 backBtn.setImage(UIImage.init(named: "nav_back_white"), for: .normal)
                 errorBtn.setImage(UIImage.init(named: "icon_baocuo_white"), for: .normal)
                 shareBtn.setImage(UIImage.init(named: "xz_icon_share_white_default"), for: .normal)

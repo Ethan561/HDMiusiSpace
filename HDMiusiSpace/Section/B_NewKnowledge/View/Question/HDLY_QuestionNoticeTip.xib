@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,21 +41,21 @@
                                 <action selector="closeAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ql1-mF-KeB"/>
                             </connections>
                         </button>
-                        <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84g-dp-1qC">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTe-a8-Wkc">
                             <rect key="frame" x="20" y="70" width="293" height="312"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </webView>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="yTe-a8-Wkc" firstAttribute="top" secondItem="T2l-oo-jA6" secondAttribute="bottom" constant="18" id="2Dn-s5-iVU"/>
                         <constraint firstAttribute="trailing" secondItem="T2l-oo-jA6" secondAttribute="trailing" constant="15" id="7Dk-6P-9J4"/>
-                        <constraint firstItem="84g-dp-1qC" firstAttribute="leading" secondItem="iSS-t0-Vcm" secondAttribute="leading" constant="20" id="JLO-gc-b4z"/>
                         <constraint firstAttribute="width" secondItem="iSS-t0-Vcm" secondAttribute="height" multiplier="335:404" id="OgB-pr-z3K"/>
-                        <constraint firstAttribute="trailing" secondItem="84g-dp-1qC" secondAttribute="trailing" constant="20" id="RQX-36-8FY"/>
+                        <constraint firstAttribute="bottom" secondItem="yTe-a8-Wkc" secondAttribute="bottom" constant="20" id="PWi-gS-Fqf"/>
+                        <constraint firstAttribute="trailing" secondItem="yTe-a8-Wkc" secondAttribute="trailing" constant="20" id="Prn-Ff-oVE"/>
                         <constraint firstItem="YfF-Yw-2U4" firstAttribute="top" secondItem="iSS-t0-Vcm" secondAttribute="top" constant="24" id="aRP-2A-rpK"/>
                         <constraint firstItem="YfF-Yw-2U4" firstAttribute="leading" secondItem="iSS-t0-Vcm" secondAttribute="leading" constant="44" id="cgx-Wi-0cu"/>
-                        <constraint firstItem="84g-dp-1qC" firstAttribute="top" secondItem="YfF-Yw-2U4" secondAttribute="bottom" constant="25" id="lt4-dC-fMI"/>
-                        <constraint firstAttribute="bottom" secondItem="84g-dp-1qC" secondAttribute="bottom" constant="20" id="pIm-PJ-duL"/>
+                        <constraint firstItem="yTe-a8-Wkc" firstAttribute="leading" secondItem="iSS-t0-Vcm" secondAttribute="leading" constant="20" id="fT9-9q-gdr"/>
                         <constraint firstItem="T2l-oo-jA6" firstAttribute="centerY" secondItem="YfF-Yw-2U4" secondAttribute="centerY" id="vax-rB-mt3"/>
                     </constraints>
                 </view>
@@ -76,8 +74,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="contentView" destination="yTe-a8-Wkc" id="80l-lO-gSC"/>
                 <outlet property="tipBgView" destination="iSS-t0-Vcm" id="VoN-ml-U3H"/>
-                <outlet property="webView" destination="84g-dp-1qC" id="o6N-hg-Y7L"/>
             </connections>
             <point key="canvasLocation" x="136.80000000000001" y="161.01949025487258"/>
         </view>

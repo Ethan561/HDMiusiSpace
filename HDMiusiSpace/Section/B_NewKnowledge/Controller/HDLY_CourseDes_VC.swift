@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate {
+class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet weak var statusBarHCons: NSLayoutConstraint!
     @IBOutlet weak var myTableView: UITableView!

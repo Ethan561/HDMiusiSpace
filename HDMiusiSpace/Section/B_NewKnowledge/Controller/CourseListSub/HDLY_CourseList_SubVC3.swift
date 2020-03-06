@@ -393,7 +393,8 @@ extension HDLY_CourseList_SubVC3 : AnswerAudioDelegate {
         guard let url = self.infoModel?.data.url else {
             return
         }
-        tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+//        tipView.webView.loadRequest(URLRequest.init(url: URL.init(string: url)!))
+        tipView.loadWebView(url)
         
     }
 

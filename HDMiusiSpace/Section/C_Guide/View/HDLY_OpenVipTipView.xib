@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,26 +63,26 @@
                                 <action selector="sureAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="gHW-Zj-Eh6"/>
                             </connections>
                         </button>
-                        <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJV-ee-Let">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZ0-CI-m5E">
                             <rect key="frame" x="0.0" y="119" width="299" height="249"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </webView>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="x5f-AH-0ep" firstAttribute="top" secondItem="dJV-ee-Let" secondAttribute="bottom" constant="15" id="121-8Z-ELk"/>
+                        <constraint firstItem="UZ0-CI-m5E" firstAttribute="top" secondItem="8zd-TA-GdA" secondAttribute="bottom" constant="15" id="0YL-H8-DSd"/>
                         <constraint firstAttribute="bottom" secondItem="x5f-AH-0ep" secondAttribute="bottom" constant="22" id="2sq-fB-0GA"/>
                         <constraint firstItem="ckJ-eq-bK3" firstAttribute="centerY" secondItem="8zd-TA-GdA" secondAttribute="centerY" id="3Te-jR-gun"/>
+                        <constraint firstItem="UZ0-CI-m5E" firstAttribute="leading" secondItem="njI-Wh-6Ee" secondAttribute="leading" id="GrC-tA-dsb"/>
                         <constraint firstAttribute="trailing" secondItem="8zd-TA-GdA" secondAttribute="trailing" id="Gt6-xE-Lxr"/>
                         <constraint firstAttribute="trailing" secondItem="dLA-NU-YHF" secondAttribute="trailing" constant="5" id="NnK-7c-cSW"/>
                         <constraint firstItem="x5f-AH-0ep" firstAttribute="centerX" secondItem="njI-Wh-6Ee" secondAttribute="centerX" id="PEk-jJ-sog"/>
+                        <constraint firstItem="x5f-AH-0ep" firstAttribute="top" secondItem="UZ0-CI-m5E" secondAttribute="bottom" constant="15" id="Q3v-fO-Mli"/>
                         <constraint firstItem="dLA-NU-YHF" firstAttribute="top" secondItem="njI-Wh-6Ee" secondAttribute="top" id="TRa-El-hVs"/>
-                        <constraint firstItem="dJV-ee-Let" firstAttribute="top" secondItem="8zd-TA-GdA" secondAttribute="bottom" constant="15" id="Ue3-WW-6bc"/>
                         <constraint firstItem="ckJ-eq-bK3" firstAttribute="centerX" secondItem="8zd-TA-GdA" secondAttribute="centerX" id="VoH-A0-CYP"/>
+                        <constraint firstAttribute="trailing" secondItem="UZ0-CI-m5E" secondAttribute="trailing" id="azh-uo-sGM"/>
                         <constraint firstItem="8zd-TA-GdA" firstAttribute="leading" secondItem="njI-Wh-6Ee" secondAttribute="leading" id="gz0-Lp-Kvc"/>
                         <constraint firstItem="8zd-TA-GdA" firstAttribute="top" secondItem="njI-Wh-6Ee" secondAttribute="top" id="itE-t4-w7C"/>
-                        <constraint firstAttribute="trailing" secondItem="dJV-ee-Let" secondAttribute="trailing" id="nub-Pn-STu"/>
-                        <constraint firstItem="dJV-ee-Let" firstAttribute="leading" secondItem="njI-Wh-6Ee" secondAttribute="leading" id="q0R-bg-ICC"/>
                         <constraint firstAttribute="width" secondItem="njI-Wh-6Ee" secondAttribute="height" multiplier="275:407" id="zB8-Bn-fhW"/>
                     </constraints>
                 </view>
@@ -104,8 +102,8 @@
             <connections>
                 <outlet property="bgView" destination="njI-Wh-6Ee" id="htJ-yd-b6i"/>
                 <outlet property="closeBtn" destination="dLA-NU-YHF" id="Ues-Hq-V8L"/>
+                <outlet property="contentView" destination="UZ0-CI-m5E" id="7zp-vn-ylb"/>
                 <outlet property="sureBtn" destination="x5f-AH-0ep" id="TYb-Sw-kon"/>
-                <outlet property="webView" destination="dJV-ee-Let" id="L3S-Wd-UJx"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="45.42728635682159"/>
         </view>

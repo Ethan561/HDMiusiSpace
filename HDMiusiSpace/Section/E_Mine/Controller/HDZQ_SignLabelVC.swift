@@ -159,6 +159,8 @@ class HDZQ_SignLabelVC: UIViewController {
         
         //上一页，动画效果
         let vc = UIStoryboard(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_SignLabelVC") as! HDZQ_SignLabelVC
+        vc.modalPresentationStyle = .fullScreen
+
         if  self.type == 2 {
             vc.type = 1
             

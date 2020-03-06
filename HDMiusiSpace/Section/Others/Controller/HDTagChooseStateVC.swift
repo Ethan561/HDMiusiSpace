@@ -83,7 +83,7 @@ class HDTagChooseStateVC: UIViewController {
             self.view.window?.layer.add(transition, forKey: nil)
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTagChooseVC") as! HDTagChooseVC
-            
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)
         }
         return tagview

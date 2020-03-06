@@ -351,6 +351,7 @@ extension HDSSL_commentVC:SSL_PickerViewDelegate {
         let vc = HD_SSL_BigImageVC.init()
         vc.imageArray = commentPhotos
         vc.atIndex = itemIndex
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
     func beginDragingItem() {

@@ -863,6 +863,7 @@ extension HDLY_CourseDes_VC {
             self.navigationController?.pushViewController(vc, animated: true)
             closeFeedbackChooseTip()
         }else {
+            closeFeedbackChooseTip()
             if HDDeclare.shared.loginStatus != .kLogin_Status_Login {
                 self.pushToLoginVC(vc: self)
                 return
@@ -874,7 +875,6 @@ extension HDLY_CourseDes_VC {
                 vc.typeID = "1"
             }
             self.navigationController?.pushViewController(vc, animated: true)
-            closeFeedbackChooseTip()
         }
     }
     

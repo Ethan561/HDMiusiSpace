@@ -352,6 +352,7 @@ extension HDSSL_dExhibitionDetailVC: ScrollBannerViewDelegate {
             let vc = HD_SSL_BigImageVC.init()
             vc.imageArray = imgsArr as NSArray? as! [String]
             vc.atIndex = index
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
             
         }
@@ -1121,6 +1122,7 @@ extension HDSSL_dExhibitionDetailVC {
             let vc = HD_SSL_BigImageVC.init()
             vc.imageArray = model.imgList
             vc.atIndex = index
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
             
         }

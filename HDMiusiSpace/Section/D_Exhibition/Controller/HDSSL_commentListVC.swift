@@ -287,6 +287,7 @@ class HDSSL_commentListVC: HDItemBaseVC {
             let vc = HD_SSL_BigImageVC.init()
             vc.imageArray = model.imgList
             vc.atIndex = index
+            vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
             
         }

@@ -383,7 +383,6 @@ extension HDRootAVC {
             let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
             cell?.listArray = model.itemClass
             cell?.delegate = self as HDLY_Topic_Cell_Delegate
-            
             return cell!
         }
         return UITableViewCell.init()

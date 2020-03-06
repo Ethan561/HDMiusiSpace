@@ -305,10 +305,10 @@ extension HDLY_SmsLogin_VC {
 //            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
 //            self.view.addSubview(appleIDBtn)
 //        } else {
-            let appleIDBtn = UIButton.init(frame: CGRect.init(x: 30, y: 500, width: ScreenWidth - 60, height: 50))
-            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
-            appleIDBtn.backgroundColor = UIColor.purple
-            self.view.addSubview(appleIDBtn)
+//            let appleIDBtn = UIButton.init(frame: CGRect.init(x: 30, y: 500, width: ScreenWidth - 60, height: 50))
+//            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
+//            appleIDBtn.backgroundColor = UIColor.purple
+//            self.view.addSubview(appleIDBtn)
 //        }
     }
     

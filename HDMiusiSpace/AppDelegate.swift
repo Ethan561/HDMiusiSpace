@@ -165,32 +165,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //设置埋点参数
     func setUpBaiduMobStat() {
         
-         BaiduMobStat.default()?.enableViewControllerAutoTrack = false
-         BaiduMobStat.default()?.start(withAppId: "9961b5be7e")
+        BaiduMobStat.default().enableViewControllerAutoTrack = false
+        BaiduMobStat.default().start(withAppId: "9961b5be7e")
         //userId:设置自定义的用户识别id
-        BaiduMobStat.default()?.userId = HDLY_UserModel.shared.getDeviceNum()
+        BaiduMobStat.default().userId = HDLY_UserModel.shared.getDeviceNum()
         
         let infoDictionary = Bundle.main.infoDictionary!
         let majorVersion = infoDictionary["CFBundleShortVersionString"]//主程序版本号
         LOG("===majorVersion: \(String(describing: majorVersion))")
         //设置App版本号
-        BaiduMobStat.default()?.shortAppVersion =  majorVersion as? String
+        BaiduMobStat.default().shortAppVersion =  majorVersion as? String ?? "1.0"
         
         //设置是否开启Crash日志收集(默认值YES)
-        BaiduMobStat.default()?.enableExceptionLog = true
+        BaiduMobStat.default().enableExceptionLog = true
         
         //设置两次session的最小间隔时间(默认值 30s)
-        BaiduMobStat.default()?.sessionResumeInterval = 30
+        BaiduMobStat.default().sessionResumeInterval = 30
         
         //设置是否打印SDK中的日志，用于调试(默认值 NO)
-        BaiduMobStat.default()?.enableDebugOn = false
+        BaiduMobStat.default().enableDebugOn = false
         
         //是否允许获取GPS信息，用于地域统计。 SDK不会主动申请GPS权限，只在宿主App已经有获取GPS权限的情况下，才会获取信息。(默认值 YES)
-        BaiduMobStat.default()?.enableGps = true
+        BaiduMobStat.default().enableGps = true
         
         
         //启动来源分析(帮助用户分析App的启动来源：自然打开、应用跳转、推送唤醒等场景)
-        BaiduMobStat.default()?.enableGetPushContent = true
+        BaiduMobStat.default().enableGetPushContent = true
         
         
     }
@@ -253,6 +253,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK:--推送代理
 extension AppDelegate : JPUSHRegisterDelegate {
+    func jpushNotificationAuthorization(_ status: JPAuthorizationStatus, withInfo info: [AnyHashable : Any]!) {
+        
+    }
+    
     
     @available(iOS 10.0, *)
     func jpushNotificationCenter(_ center: UNUserNotificationCenter!, openSettingsFor notification: UNNotification?) {

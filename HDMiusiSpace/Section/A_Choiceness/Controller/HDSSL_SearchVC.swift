@@ -318,8 +318,8 @@ class HDSSL_SearchVC: HDItemBaseVC {
         view.addSubview(voiceBtn)
         
         self.navigationItem.titleView = view
-        
     }
+    
     //MARK: - 加载搜搜历史
     func loadSearchHistory() {
         let manager = UserDefaults()

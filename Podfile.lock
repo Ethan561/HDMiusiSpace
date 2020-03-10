@@ -1,13 +1,13 @@
 PODS:
-  - Alamofire (4.8.0)
-  - BaiduMobStatCodeless (4.9.5)
-  - Bugly (2.5.0)
-  - JCore (1.2.5)
+  - Alamofire (4.9.1)
+  - BaiduMobStatCodeless (5.2.2)
+  - Bugly (2.5.2)
+  - JCore (2.2.2)
   - JoyTool (0.0.17):
     - Masonry
-  - JPush (3.1.1.1):
-    - JCore (~> 1.2.5)
-  - KeychainAccess (3.1.2)
+  - JPush (3.3.0):
+    - JCore (< 3.0.0, >= 2.0.0)
+  - KeychainAccess (4.1.0)
   - Kingfisher (4.10.1)
   - Masonry (1.1.0)
   - Moya (12.0.1):
@@ -15,9 +15,9 @@ PODS:
   - Moya/Core (12.0.1):
     - Alamofire (~> 4.1)
     - Result (~> 4.0)
-  - Result (4.0.0)
+  - Result (4.1.0)
   - SnapKit (4.2.0)
-  - SwiftyStoreKit (0.14.1)
+  - SwiftyStoreKit (0.15.0)
   - UMengUShare/Core (6.4.8.2):
     - UMengUShare/Network
   - UMengUShare/Network (6.4.8.2)
@@ -29,7 +29,7 @@ PODS:
     - UMengUShare/Core
   - UMengUShare/UI (6.4.8.2):
     - UMengUShare/Core
-  - ZZCircleProgress (0.2.1)
+  - ZZCircleProgress (0.3.1)
 
 DEPENDENCIES:
   - BaiduMobStatCodeless
@@ -49,7 +49,7 @@ DEPENDENCIES:
   - ZZCircleProgress
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - BaiduMobStatCodeless
     - Bugly
@@ -67,22 +67,22 @@ SPEC REPOS:
     - ZZCircleProgress
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  BaiduMobStatCodeless: 8fa2c6bf1cc9f5ec3ec77c69fbf4d5ed195c959a
-  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
-  JCore: 14706de2640b25fb77dbd02332696491407f37c9
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  BaiduMobStatCodeless: bfb398c6c2054b07f97bed51ddf0694311606324
+  Bugly: dbac48b55ad469a97cc4321045cd50df8f63d44f
+  JCore: 2e6690b41b1b59c4a768e0a3187c311911c02ca8
   JoyTool: aead76a56efdbbc496a54c15217fc286382b3e1d
-  JPush: 25dd9013fbe106082c14f9f30a82364ee98852fb
-  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  JPush: 65cd9d8cb050b6d8c95736517d846fac2f53c134
+  KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftyStoreKit: a5cdece4327f3943eb72fa81aebe3aa6684b5eab
+  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
-  ZZCircleProgress: bda14bac390f6c96efcb72f7617bef66c7f2d2d0
+  ZZCircleProgress: 207e454a96f05321be6df16357671d9a870656b6
 
 PODFILE CHECKSUM: 8c4d536e8a44a3eb84f0c9c78422b871405ad270
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.5.3

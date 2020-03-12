@@ -165,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //设置埋点参数
     func setUpBaiduMobStat() {
         
-        BaiduMobStat.default().enableViewControllerAutoTrack = false
+        BaiduMobStat.default().enableViewControllerAutoTrack = true
         BaiduMobStat.default().start(withAppId: "9961b5be7e")
         //userId:设置自定义的用户识别id
         BaiduMobStat.default().userId = HDLY_UserModel.shared.getDeviceNum()
@@ -183,7 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaiduMobStat.default().sessionResumeInterval = 30
         
         //设置是否打印SDK中的日志，用于调试(默认值 NO)
-        BaiduMobStat.default().enableDebugOn = false
+        BaiduMobStat.default().enableDebugOn = true
         
         //是否允许获取GPS信息，用于地域统计。 SDK不会主动申请GPS权限，只在宿主App已经有获取GPS权限的情况下，才会获取信息。(默认值 YES)
         BaiduMobStat.default().enableGps = true

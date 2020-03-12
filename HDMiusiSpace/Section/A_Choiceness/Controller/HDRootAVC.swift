@@ -46,6 +46,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        myTableView.listName = "精选-首页"
         
         self.voiceView.isHidden = true
         self.voiceView.delegate = self
@@ -335,6 +336,8 @@ extension HDRootAVC {
             }
             cell?.moreBtn.tag = 100 + indexPath.row
             cell?.moreBtn.addTarget(self, action: #selector(moreBtnAction(_:)), for: .touchUpInside)
+            cell?.contentTitle = ""
+
             return cell!
         } else if model.type.int == 1 {
             let cell = HDLY_TopicRecmd_Cell.getMyTableCell(tableV: tableView)
@@ -345,6 +348,8 @@ extension HDRootAVC {
                 cell?.desL.text = "\(model.keywords)|\(model.platTitle)"
                 cell?.commentBtn.setTitle(model.comments.string, for: .normal)
                 cell?.likeBtn.setTitle(model.likes.string, for: .normal)
+                cell?.contentTitle = model.title
+
             }
             
             return cell!
@@ -355,6 +360,7 @@ extension HDRootAVC {
             }
             cell?.collectionBtn.isHidden = false
             collectionRow = indexPath.row
+            cell?.contentTitle = "日卡"
             
             cell?.collectionBtn.tag = model.itemCard?.daycardID ?? 0
             cell?.collectionBtn.addTarget(self, action: #selector(cardCollectionBtnAction(_:)), for: UIControl.Event.touchUpInside)
@@ -383,6 +389,8 @@ extension HDRootAVC {
             let cell = HDLY_Topic_Cell.getMyTableCell(tableV: tableView)
             cell?.listArray = model.itemClass
             cell?.delegate = self as HDLY_Topic_Cell_Delegate
+            cell?.contentTitle = ""
+            
             return cell!
         }
         return UITableViewCell.init()

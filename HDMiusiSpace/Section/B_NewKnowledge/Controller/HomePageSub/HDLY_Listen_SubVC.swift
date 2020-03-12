@@ -13,7 +13,6 @@ private let reuseIdentifier = "Cell"
 class HDLY_Listen_SubVC:                                                                               UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     lazy var collectionView: UICollectionView = {
         let myCollectionV = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
-        
         return myCollectionV
     }()
     

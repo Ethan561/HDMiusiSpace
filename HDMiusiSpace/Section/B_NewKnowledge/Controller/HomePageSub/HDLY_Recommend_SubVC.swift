@@ -26,6 +26,7 @@ class HDLY_Recommend_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.backgroundColor = UIColor.white
         tableView.showsVerticalScrollIndicator = false
+        tableView.listName = "新知-推荐"
         
         return tableView
     }()
@@ -204,6 +205,7 @@ extension HDLY_Recommend_SubVC {
             } else {
                 cell?.moreL.text = "更多"
             }
+            cell?.contentTitle =  ""
 
             return cell!
         }else if model.type?.int == 1 {
@@ -218,6 +220,7 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.newTipL.text = "新课时"
             cell?.titleL.text = model.boutiquelist?.title
+            cell?.contentTitle = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)
             cell?.countL.text = model.boutiquelist?.views?.string == nil ? "0人在学" :(model.boutiquelist?.views?.string)! + "人在学"
             cell?.courseL.text = model.boutiquelist?.classnum?.string == nil ? "0课时" :(model.boutiquelist?.classnum?.string)! + "课时"
@@ -258,6 +261,8 @@ extension HDLY_Recommend_SubVC {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquecard!.img!), placeholder: UIImage.grayImage(sourceImageV: cell!.imgV), options: nil, progressBlock: nil, completionHandler: nil)
             }
             cell?.titleL.text = model.boutiquecard?.title
+            cell?.contentTitle =  model.boutiquecard?.title
+
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
             cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0人在学" :(model.boutiquecard?.views?.string)! + "人在学"
             cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0课时" :(model.boutiquecard?.classnum?.string)! + "课时"
@@ -271,7 +276,8 @@ extension HDLY_Recommend_SubVC {
             let cell = HDLY_Listen_Cell.getMyTableCell(tableV: tableView)
             cell?.listArray = model.listen
             cell?.delegate = self
-            
+            cell?.contentTitle =  ""
+
             return cell!
         }else if model.type?.int == 4 {
             let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
@@ -283,13 +289,15 @@ extension HDLY_Recommend_SubVC {
             if model.interactioncard?.price != nil {
                 cell?.priceL.text = "¥" + "\(model.interactioncard!.price!)"
             }
+            cell?.contentTitle =  model.interactioncard?.title
 
             return cell!
         }else if model.type?.int == 5 && model.interactionlist?.count ?? 0 > 0{
             let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
             cell?.dataArray = model.interactionlist
             cell?.delegate = self
-            
+            cell?.contentTitle =  ""
+
             return cell!
         }
         else if model.type?.int == 6 {
@@ -300,7 +308,8 @@ extension HDLY_Recommend_SubVC {
                 cell?.listArray = model.topic
             }
             cell?.delegate = self
-            
+            cell?.contentTitle =  ""
+
             return cell!
         }
         

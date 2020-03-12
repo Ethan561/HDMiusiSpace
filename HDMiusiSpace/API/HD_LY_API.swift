@@ -630,8 +630,9 @@ extension HD_LY_API: TargetType {
             
         //课程章节
         case .courseChapterInfo(api_token: let api_token , id: let id ):
-            
-            params = params.merging(["api_token":api_token,"id":id], uniquingKeysWith: {$1})
+            let deviceno = HDLY_UserModel.shared.getDeviceNum()
+
+            params = params.merging(["api_token":api_token,"id":id,"deviceno": deviceno], uniquingKeysWith: {$1})
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })

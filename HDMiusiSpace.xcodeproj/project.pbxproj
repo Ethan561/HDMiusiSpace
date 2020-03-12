@@ -4140,7 +4140,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: Zhao XinXin (FZ6RJ5Q7Y5)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Beijing Muspace Culture & Technology Co.,Ltd. (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;

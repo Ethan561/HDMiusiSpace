@@ -177,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaiduMobStat.default().shortAppVersion =  majorVersion as? String ?? "1.0"
         
         //设置是否开启Crash日志收集(默认值YES)
-        BaiduMobStat.default().enableExceptionLog = true
+        BaiduMobStat.default().enableExceptionLog = false
         
         //设置两次session的最小间隔时间(默认值 30s)
         BaiduMobStat.default().sessionResumeInterval = 30

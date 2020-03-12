@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let JSONString = UserDefaults.standard.object(forKey: "saveTags") as? String
         
         if "1" == JSONString {
-
+            
             //2、跳转vc
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HDTabBarVC") as! HDTabBarVC
 

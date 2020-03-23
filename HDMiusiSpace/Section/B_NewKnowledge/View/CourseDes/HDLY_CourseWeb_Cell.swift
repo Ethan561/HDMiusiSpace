@@ -51,10 +51,6 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         
         return webView
     }()
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
 
     
     //block

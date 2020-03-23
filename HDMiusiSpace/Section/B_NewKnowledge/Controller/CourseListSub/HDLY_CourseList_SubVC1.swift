@@ -22,7 +22,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var buyBtn: UIButton!
     
     weak var delegate:ChapterListPlayDelegate?
-
+    
     var isBuy = false//已购买或者是免费课程
     
     var infoModel: CourseChapter?
@@ -59,7 +59,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
         dataRequest()
         bindViewModel()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAction), name: NSNotification.Name.init(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +76,7 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
             token = HDDeclare.shared.api_token!
         }
         tableView.ly_startLoading()
-
+        
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseChapterInfo(api_token: token, id: idnum), showHud: false, loadingVC: self, success: { (result) in
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG("\(String(describing: dic))")
@@ -88,15 +88,25 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {
-                        let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
+                        let oprice = Double(self.infoModel!.data.oprice ?? "0")!
+                        let price = Double(self.infoModel!.data.price ?? "0")!
+                        var priceString = NSMutableAttributedString.init(string: "")
+                        var vipPriceString = NSMutableAttributedString.init(string: "")
+                        if oprice > price {
+                            priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
+                            vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
+                        } else {
+                            priceString = NSMutableAttributedString.init(string: "")
+                            vipPriceString = NSMutableAttributedString.init(string: "¥\(self.infoModel!.data.yprice!) ")
+                        }
+                        
                         let ypriceAttribute =
                             [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
                                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
                                 NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
                                 ] as [NSAttributedString.Key : Any]
                         priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
-                        //
-                        let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
+                        
                         let vipPriceAttribute =
                             [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
                                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
@@ -120,12 +130,12 @@ class HDLY_CourseList_SubVC1: HDItemBaseVC,UITableViewDelegate,UITableViewDataSo
             }
             self.tableView.ly_endLoading()
             self.tableView.reloadData()
-
+            
         }) { (errorCode, msg) in
             self.tableView.ly_emptyView = EmptyConfigView.NoNetworkEmptyWithTarget(target: self, action:#selector(self.refreshAction))
             self.tableView.ly_showEmptyView()
             self.tableView.ly_endLoading()
-
+            
         }
     }
     
@@ -210,11 +220,11 @@ extension HDLY_CourseList_SubVC1 {
             cell!.nameL.textColor = UIColor.HexColor(0x4A4A4A)
             cell!.timeL.textColor = UIColor.HexColor(0x9B9B9B)
             cell!.tipImgV.image = UIImage.init(named: "xz_daoxue_play")
-
+            
             let width = listModel.title.getContentWidth(font: UIFont.systemFont(ofSize: 14), height: 21)
-//            if width > ScreenWidth - 190 {
-//                cell!.nameWidthCons.constant = ScreenWidth - 190
-//            }
+            //            if width > ScreenWidth - 190 {
+            //                cell!.nameWidthCons.constant = ScreenWidth - 190
+            //            }
             if self.isBuy == false {
                 //0收费 1免费 2vip免费
                 if listModel.freeType == 0 {
@@ -273,7 +283,7 @@ extension HDLY_CourseList_SubVC1 {
             return
         }
         let listModel = sectionModel.chapterList[indexPath.row]
-    
+        
         if self.isBuy == false {
             //0收费 1免费 2vip免费
             if listModel.freeType == 0 {
@@ -286,7 +296,7 @@ extension HDLY_CourseList_SubVC1 {
                 
             }
             else if listModel.freeType == 2 {
-
+                
             }
         } else {
             selectRow = indexPath.row
@@ -363,9 +373,9 @@ extension  HDLY_CourseList_SubVC1{
         }
         if result == 2 {
             orderTipView?.successView.isHidden = false
-//            self.dataRequest()
+            //            self.dataRequest()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "HDLYCourseDesVC_NeedRefresh_Noti"), object: nil)
-
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) {
                 self.orderTipView?.sureBlock = nil
                 self.orderTipView?.removeFromSuperview()

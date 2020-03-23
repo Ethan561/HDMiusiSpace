@@ -224,31 +224,7 @@ extension HDLY_Art_SubVC {
             }else {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }
-            if model.isFree == 0 {
-//                cell?.priceL.text = "¥" + "\(model.price)"
-//                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
-                let priceString = NSMutableAttributedString.init(string: "原价¥\(model.oprice ?? "")")
-                let ypriceAttribute =
-                    [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0x999999),//颜色
-                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),//字体
-                        NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                        ] as [NSAttributedString.Key : Any]
-                priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
-                //
-                let vipPriceString = NSMutableAttributedString.init(string: "¥\(model.price) ")
-                let vipPriceAttribute =
-                    [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xE8593E),//颜色
-                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
-                        ] as [NSAttributedString.Key : Any]
-                vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
-                vipPriceString.append(priceString)
-                cell?.priceL.attributedText = vipPriceString
-
-            }else {
-                cell?.priceL.text = "免费"
-                cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
-            }
-            
+            cell?.setPriceLabel1(model: model)
             return cell!
         }
         

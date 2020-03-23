@@ -31,7 +31,18 @@ class HDLY_OpenVipTipView: UIView {
                 webView.backgroundColor = UIColor.white
         //        webView.navigationDelegate = self
         //        webView.uiDelegate = self
+                var css = "body{-webkit-user-select:none;-webkit-user-drag:none;}";
+                var javascript = ""
+                javascript.append("var style = document.createElement('style');")
+                javascript.append("style.type = 'text/css';")
+                javascript.append("var cssContent = document.createTextNode('\(css)');")
+                javascript.append("style.appendChild(cssContent);")
+                javascript.append("document.body.appendChild(style);")
+                javascript.append("document.documentElement.style.webkitUserSelect='none';")
+                javascript.append("document.documentElement.style.webkitTouchCallout='none';")
+                let noneSelectScript = WKUserScript.init(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
                 
+                webConfiguration.userContentController.addUserScript(noneSelectScript)
                 webView.scrollView.isScrollEnabled = true
                 webView.scrollView.bounces = false
                 webView.scrollView.showsVerticalScrollIndicator = true

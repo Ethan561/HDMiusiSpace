@@ -35,7 +35,18 @@ class HDSSL_Sec1Cell: UITableViewCell {
         webConfiguration.preferences.javaScriptEnabled = true
         //不通过用户交互，是否可以打开窗口
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = false
+       var css = "body{-webkit-user-select:none;-webkit-user-drag:none;}";
+        var javascript = ""
+        javascript.append("var style = document.createElement('style');")
+        javascript.append("style.type = 'text/css';")
+        javascript.append("var cssContent = document.createTextNode('\(css)');")
+        javascript.append("style.appendChild(cssContent);")
+        javascript.append("document.body.appendChild(style);")
+        javascript.append("document.documentElement.style.webkitUserSelect='none';")
+        javascript.append("document.documentElement.style.webkitTouchCallout='none';")
+        let noneSelectScript = WKUserScript.init(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         
+        webConfiguration.userContentController.addUserScript(noneSelectScript)
         let webFrame = CGRect(x: 0, y: 0, width: ScreenWidth, height: 0)
         let webView = WKWebView(frame: webFrame, configuration: webConfiguration)
         webView.backgroundColor = UIColor.blue

@@ -17,7 +17,7 @@ class HDLY_Recommend_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     let showKidsView: Bindable = Bindable(false)
     var dataArr =  [BItemModel]()
     var topicNew: [BRecmdModel]?
-
+    
     //tableView
     lazy var tableView: UITableView = {
         let tableView:UITableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight), style: UITableView.Style.grouped)
@@ -33,7 +33,7 @@ class HDLY_Recommend_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
     
     let sectionHeader: Array = ["精选推荐", "轻听随看", "亲子互动", "精选专题"]
     var player = HDFloatingButtonManager.manager
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 120
@@ -103,7 +103,7 @@ class HDLY_Recommend_SubVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelega
             
             let jsonDecoder = JSONDecoder()
             let dataA:Array<Dictionary<String,Any>> = dic?["data"] as! Array<Dictionary>
-             self.dataArr.removeAll()
+            self.dataArr.removeAll()
             if dataA.count > 0  {
                 for  tempDic in dataA {
                     let dataDic = tempDic as Dictionary<String, Any>
@@ -206,7 +206,7 @@ extension HDLY_Recommend_SubVC {
                 cell?.moreL.text = "更多"
             }
             cell?.contentTitle =  ""
-
+            
             return cell!
         }else if model.type?.int == 1 {
             let cell = HDLY_Recommend_Cell1.getMyTableCell(tableV: tableView)
@@ -229,31 +229,7 @@ extension HDLY_Recommend_SubVC {
             }else {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }
-            if model.boutiquelist?.is_free?.int == 0 {
-                cell?.priceL.textColor = UIColor.HexColor(0xE8593E)
-                if model.boutiquelist?.price != nil {
-                    let priceString = NSMutableAttributedString.init(string: "原价¥\(model.boutiquelist!.oprice!)")
-                    let ypriceAttribute =
-                        [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0x999999),//颜色
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12),//字体
-                            NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                            ] as [NSAttributedString.Key : Any]
-                    priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
-                    //
-                    let vipPriceString = NSMutableAttributedString.init(string: "¥\(model.boutiquelist!.price!) ")
-                    let vipPriceAttribute =
-                        [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xE8593E),//颜色
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
-                            ] as [NSAttributedString.Key : Any]
-                    vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
-                    vipPriceString.append(priceString)
-                    cell?.priceL.attributedText = vipPriceString
-                }
-            }else {
-                cell?.priceL.text = "免费"
-                cell?.priceL.textColor = UIColor.HexColor(0x4A4A4A)
-            }
-            
+            cell?.setPriceLabel(model: model)
             return cell!
         }else if model.type?.int == 2 {
             let cell = HDLY_Recommend_Cell2.getMyTableCell(tableV: tableView)
@@ -262,7 +238,7 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.titleL.text = model.boutiquecard?.title
             cell?.contentTitle =  model.boutiquecard?.title
-
+            
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquecard?.teacher_name)! ,(model.boutiquecard?.teacher_title)!)
             cell?.countL.text = model.boutiquecard?.views?.string == nil ? "0人在学" :(model.boutiquecard?.views?.string)! + "人在学"
             cell?.courseL.text = model.boutiquecard?.classnum?.string == nil ? "0课时" :(model.boutiquecard?.classnum?.string)! + "课时"
@@ -277,7 +253,7 @@ extension HDLY_Recommend_SubVC {
             cell?.listArray = model.listen
             cell?.delegate = self
             cell?.contentTitle =  ""
-
+            
             return cell!
         }else if model.type?.int == 4 {
             let cell = HDLY_Kids_Cell1.getMyTableCell(tableV: tableView)
@@ -290,14 +266,14 @@ extension HDLY_Recommend_SubVC {
                 cell?.priceL.text = "¥" + "\(model.interactioncard!.price!)"
             }
             cell?.contentTitle =  model.interactioncard?.title
-
+            
             return cell!
         }else if model.type?.int == 5 && model.interactionlist?.count ?? 0 > 0{
             let cell = HDLY_Kids_Cell2.getMyTableCell(tableV: tableView)
             cell?.dataArray = model.interactionlist
             cell?.delegate = self
             cell?.contentTitle =  ""
-
+            
             return cell!
         }
         else if model.type?.int == 6 {
@@ -309,7 +285,7 @@ extension HDLY_Recommend_SubVC {
             }
             cell?.delegate = self
             cell?.contentTitle =  ""
-
+            
             return cell!
         }
         
@@ -317,7 +293,7 @@ extension HDLY_Recommend_SubVC {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        //        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
         
         let model = dataArr[indexPath.row]
         
@@ -343,28 +319,28 @@ extension HDLY_Recommend_SubVC {
         self.pushCourseListWithBuyInfo(courseId: id, vc: self)
         
         /*
-        //获取课程购买信息
-        guard let token = HDDeclare.shared.api_token else {
-            self.pushToLoginVC(vc: self)
-            return
-        }
-        HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: courseId ?? "0"), showHud: false, success: { (result) in
-            let dic = HD_LY_NetHelper.dataToDictionary(data: result)
-            LOG("\(String(describing: dic))")
-            let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
-            let is_buy: Int  = dataDic["is_buy"] as! Int
-            if is_buy == 1 {//已购买
-                let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
-                vc.courseId = courseId
-                self.navigationController?.pushViewController(vc, animated: true)
-            }else {
-                vc.courseId = courseId
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            
-        }) { (errorCode, msg) in
-            
-        }*/
+         //获取课程购买信息
+         guard let token = HDDeclare.shared.api_token else {
+         self.pushToLoginVC(vc: self)
+         return
+         }
+         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: .courseBuyInfo(api_token: token, id: courseId ?? "0"), showHud: false, success: { (result) in
+         let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+         LOG("\(String(describing: dic))")
+         let dataDic:Dictionary<String,Any> = dic?["data"] as! Dictionary<String, Any>
+         let is_buy: Int  = dataDic["is_buy"] as! Int
+         if is_buy == 1 {//已购买
+         let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseList_VC") as! HDLY_CourseList_VC
+         vc.courseId = courseId
+         self.navigationController?.pushViewController(vc, animated: true)
+         }else {
+         vc.courseId = courseId
+         self.navigationController?.pushViewController(vc, animated: true)
+         }
+         
+         }) { (errorCode, msg) in
+         
+         }*/
         
     }
 }
@@ -436,7 +412,7 @@ extension HDLY_Recommend_SubVC {
     func didTapItemPlayBtnAt(_ model:BRecmdModel) {
         playingAction(model)
     }
-
+    
     func playingAction(_ model: BRecmdModel) {
         guard let url = model.voice else {
             return
@@ -468,14 +444,14 @@ extension HDLY_Recommend_SubVC {
     
     //亲子互动
     func didSelectItemAt(_ model:BRecmdModel, _ cell: HDLY_Kids_Cell2) {
-//        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
-//        vc.courseId = model.article_id?.string
-//        self.navigationController?.pushViewController(vc, animated: true)
+        //        let vc = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+        //        vc.courseId = model.article_id?.string
+        //        self.navigationController?.pushViewController(vc, animated: true)
         
         let courseId = model.article_id?.string ?? "0"
         self.pushCourseListWithBuyInfo(courseId: courseId, vc: self)
     }
-
+    
 }
 
 

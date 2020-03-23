@@ -372,15 +372,25 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
                     if self.infoModel!.data.yprice != nil {
-                        let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
+                        let oprice = Double(self.infoModel!.data.oprice ?? "0")!
+                        let price = Double(self.infoModel!.data.price ?? "0")!
+                        var priceString = NSMutableAttributedString.init(string: "")
+                        var vipPriceString = NSMutableAttributedString.init(string: "")
+                        if oprice > price {
+                            priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
+                            vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
+                        } else {
+                            priceString = NSMutableAttributedString.init(string: "")
+                            vipPriceString = NSMutableAttributedString.init(string: "¥\(self.infoModel!.data.yprice!) ")
+                        }
+                        
                         let ypriceAttribute =
                             [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
-                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
-                             NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                                NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
                                 ] as [NSAttributedString.Key : Any]
                         priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
-                        //
-                        let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
+                        
                         let vipPriceAttribute =
                             [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
                                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
@@ -388,6 +398,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                         vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
                         vipPriceString.append(priceString)
                         self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
+                        self.buyBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
                     }
                     self.listenBgView.isHidden = false
                     self.isFreeCourse = false

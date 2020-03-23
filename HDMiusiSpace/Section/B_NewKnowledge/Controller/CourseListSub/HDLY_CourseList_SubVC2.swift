@@ -67,25 +67,35 @@ class HDLY_CourseList_SubVC2: HDItemBaseVC,UITableViewDataSource,UITableViewDele
             
             if self.infoModel?.data.isFree == 0 {//1免费，0不免费
                 if self.infoModel?.data.isBuy == 0 {//0未购买，1已购买
-                    guard let price = self.infoModel!.data.yprice else {return}
-                    let priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
-                    let ypriceAttribute =
-                        [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
-                            NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
-                            ] as [NSAttributedString.Key : Any]
-                    priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
-                    //
-                    let vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
-                    let vipPriceAttribute =
-                        [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
-                            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
-                            ] as [NSAttributedString.Key : Any]
-                    vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
-                    vipPriceString.append(priceString)
-//                    self.buyBtn.setAttributedTitle(priceString, for: .normal)
-                    self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
-                    self.buyBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+                    if self.infoModel!.data.yprice != nil {
+                        let oprice = Double(self.infoModel!.data.oprice ?? "0")!
+                        let price = Double(self.infoModel!.data.price ?? "0")!
+                        var priceString = NSMutableAttributedString.init(string: "")
+                        var vipPriceString = NSMutableAttributedString.init(string: "")
+                        if oprice > price {
+                            priceString = NSMutableAttributedString.init(string: "原价¥\(self.infoModel!.data.oprice!)")
+                            vipPriceString = NSMutableAttributedString.init(string: "优惠价¥\(self.infoModel!.data.yprice!) ")
+                        } else {
+                            priceString = NSMutableAttributedString.init(string: "")
+                            vipPriceString = NSMutableAttributedString.init(string: "¥\(self.infoModel!.data.yprice!) ")
+                        }
+                        
+                        let ypriceAttribute =
+                            [NSAttributedString.Key.foregroundColor : UIColor.HexColor(0xFFD0BB),//颜色
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),//字体
+                                NSAttributedString.Key.strikethroughStyle: NSNumber.init(value: 1)//删除线
+                                ] as [NSAttributedString.Key : Any]
+                        priceString.addAttributes(ypriceAttribute, range: NSRange(location: 0, length: priceString.length))
+                        
+                        let vipPriceAttribute =
+                            [NSAttributedString.Key.foregroundColor : UIColor.white,//颜色
+                                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18),//字体
+                                ] as [NSAttributedString.Key : Any]
+                        vipPriceString.addAttributes(vipPriceAttribute, range: NSRange(location: 0, length: vipPriceString.length))
+                        vipPriceString.append(priceString)
+                        self.buyBtn.setAttributedTitle(vipPriceString, for: .normal)
+                        self.buyBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+                    }
                     self.bottomHCons.constant = 74
                     self.isFreeCourse = false
 

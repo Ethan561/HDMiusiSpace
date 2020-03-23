@@ -31,6 +31,18 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         webView.backgroundColor = UIColor.white
 //        webView.navigationDelegate = self
 //        webView.uiDelegate = self
+        var css = "body{-webkit-user-select:none;-webkit-user-drag:none;}";
+        var javascript = ""
+        javascript.append("var style = document.createElement('style');")
+        javascript.append("style.type = 'text/css';")
+        javascript.append("var cssContent = document.createTextNode('\(css)');")
+        javascript.append("style.appendChild(cssContent);")
+        javascript.append("document.body.appendChild(style);")
+        javascript.append("document.documentElement.style.webkitUserSelect='none';")
+        javascript.append("document.documentElement.style.webkitTouchCallout='none';")
+        let noneSelectScript = WKUserScript.init(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        webConfiguration.userContentController.addUserScript(noneSelectScript)
         
         webView.scrollView.isScrollEnabled = false
         webView.scrollView.bounces = false
@@ -39,6 +51,11 @@ class HDLY_CourseWeb_Cell: UITableViewCell {
         
         return webView
     }()
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+
     
     //block
     func tapBloclkFunc(block: @escaping CourseWebTapBloclk) {
@@ -96,6 +113,10 @@ extension HDLY_CourseWeb_Cell: WKNavigationDelegate ,WKUIDelegate{
         var webheight = 0.0
         
         // 获取内容实际高度
+        var javascript = "document.documentElement.style.webkitTouchCallout='none';"
+        let noneSelectScript = WKUserScript.init(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        self.webview.configuration.userContentController.addUserScript(noneSelectScript)
         self.webview.evaluateJavaScript("document.body.scrollHeight") { [unowned self] (result, error) in
             
             if let tempHeight: Double = result as? Double {

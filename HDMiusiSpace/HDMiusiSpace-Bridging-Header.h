@@ -3,8 +3,9 @@
 //
 
 
-#import <UMSocialCore/UMSocialCore.h>
+#import <UMShare/UMShare.h>
 #import <UShareUI/UShareUI.h>
+#import <UMCommon/UMCommon.h>
 #import <Bugly/Bugly.h>
 #import "SPPageMenu.h"
 #import "NSString+hash.h"

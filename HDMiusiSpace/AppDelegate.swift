@@ -154,7 +154,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func configUSharePlatforms()  {
         // 友盟
-        UMSocialManager.default().umSocialAppkey = "5b6d5e77a40fa3255f0000d3"
+//        UMSocialManager.default().umSocialAppkey = "5b6d5e77a40fa3255f0000d3"
+        UMConfigure.initWithAppkey("5b6d5e77a40fa3255f0000d3", channel: "App Store")
+
         UMSocialManager.default().setPlaform(.wechatSession, appKey: "wx9ca30fef57bc6b2c", appSecret: "4e9f7919fc56d67cfab5f8623e955e01", redirectURL: "http://www.wenbozaixian.com")
         UMSocialManager.default().setPlaform(.QQ, appKey: "1107710751", appSecret: "QkR5CsAp4zF8Vv6a", redirectURL: "http://www.wenbozaixian.com")
         UMSocialManager.default().setPlaform(.sina, appKey: "1098762141", appSecret: "00004c4f1dc6241353460db57d556475", redirectURL: "http://www.wenbozaixian.com")
@@ -253,9 +255,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK:--推送代理
 extension AppDelegate : JPUSHRegisterDelegate {
-    func jpushNotificationAuthorization(_ status: JPAuthorizationStatus, withInfo info: [AnyHashable : Any]!) {
-        
-    }
+//    func jpushNotificationAuthorization(_ status: JPAuthorizationStatus, withInfo info: [AnyHashable : Any]!) {
+//
+//    }
     
     
     @available(iOS 10.0, *)

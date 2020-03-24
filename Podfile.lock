@@ -1,13 +1,13 @@
 PODS:
-  - Alamofire (4.9.1)
-  - BaiduMobStatCodeless (5.2.2)
-  - Bugly (2.5.2)
-  - JCore (2.2.2)
+  - Alamofire (4.8.2)
+  - BaiduMobStatCodeless (5.0.5)
+  - Bugly (2.5.0)
+  - JCore (2.1.1)
   - JoyTool (0.0.17):
     - Masonry
-  - JPush (3.3.0):
+  - JPush (3.2.2):
     - JCore (< 3.0.0, >= 2.0.0)
-  - KeychainAccess (4.1.0)
+  - KeychainAccess (3.2.0)
   - Kingfisher (4.10.1)
   - Masonry (1.1.0)
   - Moya (12.0.1):
@@ -18,17 +18,6 @@ PODS:
   - Result (4.1.0)
   - SnapKit (4.2.0)
   - SwiftyStoreKit (0.15.0)
-  - UMengUShare/Core (6.4.8.2):
-    - UMengUShare/Network
-  - UMengUShare/Network (6.4.8.2)
-  - UMengUShare/Social/ReducedQQ (6.4.8.2):
-    - UMengUShare/Core
-  - UMengUShare/Social/ReducedSina (6.4.8.2):
-    - UMengUShare/Core
-  - UMengUShare/Social/ReducedWeChat (6.4.8.2):
-    - UMengUShare/Core
-  - UMengUShare/UI (6.4.8.2):
-    - UMengUShare/Core
   - ZZCircleProgress (0.3.1)
 
 DEPENDENCIES:
@@ -42,14 +31,10 @@ DEPENDENCIES:
   - Moya (~> 12.0)
   - SnapKit
   - SwiftyStoreKit
-  - UMengUShare/Social/ReducedQQ
-  - UMengUShare/Social/ReducedSina
-  - UMengUShare/Social/ReducedWeChat
-  - UMengUShare/UI
   - ZZCircleProgress
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - BaiduMobStatCodeless
     - Bugly
@@ -63,26 +48,24 @@ SPEC REPOS:
     - Result
     - SnapKit
     - SwiftyStoreKit
-    - UMengUShare
     - ZZCircleProgress
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  BaiduMobStatCodeless: bfb398c6c2054b07f97bed51ddf0694311606324
-  Bugly: dbac48b55ad469a97cc4321045cd50df8f63d44f
-  JCore: 2e6690b41b1b59c4a768e0a3187c311911c02ca8
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BaiduMobStatCodeless: d88efbc97e63d6cc5312d0ddf15b5e9f401e7364
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  JCore: 4072327557f0b83cc22dd4041f2f839740c0077b
   JoyTool: aead76a56efdbbc496a54c15217fc286382b3e1d
-  JPush: 65cd9d8cb050b6d8c95736517d846fac2f53c134
-  KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
+  JPush: 0e9088c85c73275629facc311fe5992dfac36eeb
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
-  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   ZZCircleProgress: 207e454a96f05321be6df16357671d9a870656b6
 
-PODFILE CHECKSUM: 8c4d536e8a44a3eb84f0c9c78422b871405ad270
+PODFILE CHECKSUM: ff6f1088d768dfa83158b863432fecbec593a9fa
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

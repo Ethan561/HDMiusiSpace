@@ -12,7 +12,7 @@
 #import <WebKit/WebKit.h>
 #endif
 
-NS_ASSUME_NONNULL_BEGIN
+@class UIViewController;
 
 /**
  日志发送策略
@@ -46,21 +46,21 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  全局扩展信息
  */
 @interface BaiduMobStatExtraInfo : NSObject
-@property (nonatomic, copy, nullable) NSString* v1;
-@property (nonatomic, copy, nullable) NSString* v2;
-@property (nonatomic, copy, nullable) NSString* v3;
-@property (nonatomic, copy, nullable) NSString* v4;
-@property (nonatomic, copy, nullable) NSString* v5;
-@property (nonatomic, copy, nullable) NSString* v6;
-@property (nonatomic, copy, nullable) NSString* v7;
-@property (nonatomic, copy, nullable) NSString* v8;
-@property (nonatomic, copy, nullable) NSString* v9;
-@property (nonatomic, copy, nullable) NSString* v10;
+@property (nonatomic, copy) NSString* v1;
+@property (nonatomic, copy) NSString* v2;
+@property (nonatomic, copy) NSString* v3;
+@property (nonatomic, copy) NSString* v4;
+@property (nonatomic, copy) NSString* v5;
+@property (nonatomic, copy) NSString* v6;
+@property (nonatomic, copy) NSString* v7;
+@property (nonatomic, copy) NSString* v8;
+@property (nonatomic, copy) NSString* v9;
+@property (nonatomic, copy) NSString* v10;
 @end
 
 /**
  百度移动应用统计接口
- 当前版本 5.2.2_18
+ 当前版本 5.0.5_18
  */
 @interface BaiduMobStat : NSObject
 /**
@@ -74,7 +74,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  传入nil或空字符串@""，可清空标记。
  自定义规则的用户识别id（可以使登录用户账号、手机号等），长度限制256字节
  */
-@property (nonatomic, copy, nullable) NSString *userId;
+@property (nonatomic, copy) NSString *userId;
 
 /**
  设置app的版本号
@@ -190,7 +190,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  设置Crash日志中附带的信息
  长度限制256字节，超出截断
  */
-@property (nonatomic, copy, nullable) NSString *crashExtraInfo;
+@property (nonatomic, copy) NSString *crashExtraInfo;
 
 /**
  获取统计对象的实例
@@ -207,7 +207,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  每个value长度限制256字节
  调用例子见demo工程
  */
-- (void)setUserProperty:(nullable NSDictionary *)userProperty;
+- (void)setUserProperty:(NSDictionary *)userProperty;
 
 /**
  设置应用的appkey，启动统计SDK。
@@ -224,7 +224,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  
  @param info 全局附加信息
  */
-- (void)setGlobalExtraInfo:(BaiduMobStatExtraInfo *) info;
+- (void)setGlobalExtraInfo:(BaiduMobStatExtraInfo*) info;
 
 /**
  清空全局附加信息
@@ -235,55 +235,62 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  记录一次事件的点击，eventId请在网站上创建。未创建的evenId记录将无效。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  */
-- (void)logEvent:(NSString *)eventId;
+- (void)logEvent:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 
 /**
  记录一次事件的时长，eventId请在网站上创建。未创建的evenId记录将无效。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  @param duration 已知的自定义事件时长，单位为毫秒（ms）
  */
-- (void)logEventWithDurationTime:(NSString *)eventId durationTime:(unsigned long)duration;
+- (void)logEventWithDurationTime:(NSString *)eventId eventLabel:(NSString *)eventLabel durationTime:(unsigned long)duration;
 
 /**
  记录一次事件的开始，eventId请在网站上创建。未创建的evenId记录将无效。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  */
-- (void)eventStart:(NSString *)eventId;
+- (void)eventStart:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 
 /**
  记录一次事件的结束，eventId请在网站上创建。未创建的evenId记录将无效。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  */
-- (void)eventEnd:(NSString *)eventId;
+- (void)eventEnd:(NSString *)eventId eventLabel:(NSString *)eventLabel;
 
 /**
  记录一次事件的点击，eventId和对应的attribute的key请在网站上创建，未创建的evenId和key将无法统计。
  
  @param eventId 事件Id，提前在网站端创建
+ @param eventLabel 事件标签，附加参数，不能为空字符串
  @param attributes 事件属性，对应的key需要在网站上创建，注意：value只接受NSString
  */
-- (void)logEvent:(NSString *)eventId attributes:(nullable NSDictionary *)attributes;
+- (void)logEvent:(NSString *)eventId eventLabel:(NSString *)eventLabel attributes:(NSDictionary *)attributes;
 
 /**
  记录一次事件的时长，eventId和对应的attribute的key请在网站上创建，未创建的evenId和key将无法统计。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  @param duration 已知的自定义事件时长，单位为毫秒（ms）
  @param attributes 事件属性，对应的key需要在网站上创建，注意：value只接受NSString
  */
-- (void)logEventWithDurationTime:(NSString *)eventId durationTime:(unsigned long)duration attributes:(nullable NSDictionary *)attributes;
+- (void)logEventWithDurationTime:(NSString *)eventId eventLabel:(NSString *)eventLabel durationTime:(unsigned long)duration attributes:(NSDictionary *)attributes;
 
 /**
  记录一次事件的结束，eventId和对应的attribute的key请在网站上创建，未创建的evenId和key将无法统计。
  
  @param eventId 自定义事件Id，提前在网站端创建
+ @param eventLabel 自定义事件Label，附加参数，不能为空字符串
  @param attributes 事件属性，对应的key需要在网站上创建，注意：value只接受NSString
  */
-- (void)eventEnd:(NSString *)eventId attributes:(nullable NSDictionary *) attributes;
+- (void)eventEnd:(NSString *)eventId eventLabel:(NSString *)eventLabel attributes:(NSDictionary *) attributes;
 
 /**
  记录某个页面访问的开始，请参见Example程序，在合适的位置调用。
@@ -300,6 +307,16 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  @param name 页面名称
  */
 - (void)pageviewEndWithName:(NSString *)name;
+
+/**
+ 记录UIWebView中的行为（需要在网页的JS代码中进行相应配置，详见文档与Demo程序）
+ 在UIWebView的代理方法：
+ - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+ 中，调用此接口，传入request参数，开始统计JS中的操作
+ 
+ @param request UIWebView的请求参数
+ */
+- (void)webviewStartLoadWithRequest:(NSURLRequest *)request;
 
 /**
  记录WkWebView中的行为（需要在网页的JS代码中进行相应配置，详见文档与Demo程序）
@@ -345,33 +362,10 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
 /**
  上传第三方Push平台的Id，pushId长度限制1024字节。设置为nil或者空字符串，则清空对应平台的pushId
  
- @param pushId 从第三方Push SDK接口中获取的pushId
- @param platform 指定Push平台类型，详见枚举声明
+ @prama pushId 从第三方Push SDK接口中获取的pushId
+ @prama platform 指定Push平台类型，详见枚举声明
  */
-- (void)setPushId:(nullable NSString *)pushId platform:(BaiduMobStatPushPlatform)platform;
-@end
-
-/**
- 以下方法未来可能会被弃用，请使用上边相应的无eventLabel参数的方法。
-
- eventId        自定义事件Id，提前在网站端创建
- eventLabel  自定义事件Label，不能为nil
- duration       已知的自定义事件时长，单位为毫秒（ms）
- attributes     事件属性，对应的key需要在网站上创建，注意：value只接受NSString
- 
- @discussion eventLabel本质也是一个事件属性，所以可以弃用这个概念，仅使用attributes参数
- */
-@interface BaiduMobStat (Deprecated)
-
-- (void)logEvent:(NSString *)eventId eventLabel:(NSString *)eventLabel;
-- (void)logEventWithDurationTime:(NSString *)eventId eventLabel:(NSString *)eventLabel durationTime:(unsigned long)duration;
-- (void)eventStart:(NSString *)eventId eventLabel:(NSString *)eventLabel;
-- (void)eventEnd:(NSString *)eventId eventLabel:(NSString *)eventLabel;
-
-- (void)logEvent:(NSString *)eventId eventLabel:(NSString *)eventLabel attributes:(nullable NSDictionary *)attributes;
-- (void)logEventWithDurationTime:(NSString *)eventId eventLabel:(NSString *)eventLabel durationTime:(unsigned long)duration attributes:(nullable NSDictionary *)attributes;
-- (void)eventEnd:(NSString *)eventId eventLabel:(NSString *)eventLabel attributes:(nullable NSDictionary *)attributes;
-
+- (void)setPushId:(NSString *)pushId platform:(BaiduMobStatPushPlatform)platform;
 @end
 
 /**
@@ -386,8 +380,18 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
 /**
  手动设置自动收集的页面名称
  */
-@property (nonatomic, copy, nullable) NSString *titleForBaiduMobStat;
+@property (nonatomic, copy) NSString *titleForBaiduMobStat;
 
+// SDK内部属性，不要设置
+#define UIViewControllerInternalDefine @property (nonatomic, strong) UIScrollView *contentScorllView;@property (nonatomic, strong) NSNumber *pageStartTime;@property (nonatomic, copy) NSString *userHandle;@property (nonatomic, copy) NSString *eventTitle;@property (nonatomic, strong) NSDictionary *mtjDictionary;@property (nonatomic, strong) NSNumber *titleCount;
+UIViewControllerInternalDefine
+
+@end
+
+/**
+ 百度移动统计UIWindow Category
+ */
+@interface UIWindow (BaiduMobStatWindow)
 @end
 
 /**
@@ -399,7 +403,37 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  手动设置自动收集的附加信息
  对应的key需要在网站上创建，注意：value只接受NSString
  */
-@property (nonatomic, copy, nullable) NSDictionary *attributesForBaiduMobStat;
+@property (nonatomic, strong) NSDictionary *attributesForBaiduMobStat;
+
+// SDK内部属性，不要设置
+#define UIViewInternalDefine @property (nonatomic, copy) NSString *hasTable;
+UIViewInternalDefine
+@end
+
+/**
+ 百度移动统计UIWebView Category
+ */
+@interface UIWebView (BaiduMobStatWebView)
+@end
+
+/**
+ 百度移动统计NSInvocation Category
+ */
+@interface NSInvocation (BaiduMobStat)
+- (id)baiduMtj_returnValue;
+@end
+
+/**
+ 百度移动统计WKWebView Category
+ */
+#ifdef __IPHONE_8_0
+@interface WKWebView (BaiduMobStatWKWebView)
+@property (nonatomic, assign) BOOL mtjCallBack;
+
+@end
+#endif
+
+@interface UIScrollView (BaiduMobStatScrollView)
 
 @end
 
@@ -413,7 +447,7 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  如果不设置，则默认采用tableview所在的Controller title作为“栏目名称”
  建议在TableView加载前设置。
  */
-@property (nonatomic, copy, nullable) NSString *listName;
+@property (nonatomic, copy) NSString *listName;
 
 /**
  设置单个TableView是否需要被监控
@@ -422,6 +456,9 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  */
 @property (nonatomic, assign) BOOL enableListTrack;
 
+// SDK内部属性，不要设置
+#define UITableViewInternalDefine @property (atomic, copy) NSString *viewLevel;@property (atomic, copy) NSString *viewStatu;@property (atomic, strong) NSArray *lastCellArr;@property (atomic, copy) NSString *autoName;@property (atomic, strong) NSNumber *lastTime;@property (atomic, strong) NSNumber *startTime;@property (atomic, strong) NSNumber *endTime;
+UITableViewInternalDefine
 @end
 
 @interface UITableViewCell (BaiduMobStatTableViewCell)
@@ -431,15 +468,27 @@ typedef enum _BaiduMobStatFeedTrackStrategy {
  如果不设置，则SDK会自动识别一个Title
  建议在cell加载前设置。
  */
-@property (nonatomic, copy, nullable) NSString *contentTitle;
+@property (nonatomic, copy) NSString *contentTitle;
 
 /**
  设置Cell的信息ID，是用户自身系统中的内容id,长度限制256字节，超出截断
  如果不设置，则id为空
  建议在cell加载前设置。
  */
-@property (nonatomic, copy, nullable) NSString *contentId;
+@property (nonatomic, copy) NSString *contentId;
 
 @end
 
-NS_ASSUME_NONNULL_END
+@interface UIApplication (BaiduMobStatApplication)
+@end
+
+void import_BaiduMobStatViewController ();
+void import_BaiduMobStatWindow ();
+void import_BaiduMobStatView ();
+void import_BaiduMobStatWebView ();
+void import_BaiduMobStatWKWebView ();
+void import_BaiduMobStatNSInvocation ();
+void import_BaiduMobStatScrollView ();
+void import_BaiduMobStatTableView ();
+void import_BaiduMobStatTableViewCell ();
+void import_BaiduMobStatApplication ();

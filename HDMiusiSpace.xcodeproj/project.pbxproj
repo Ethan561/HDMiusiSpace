@@ -68,6 +68,15 @@
 		1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */; };
 		1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
+		1BF949D02429DC9E002708BC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949CF2429DC9E002708BC /* WebKit.framework */; };
+		1BF949D22429DCDB002708BC /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949D12429DCDB002708BC /* Photos.framework */; };
+		1BF949E32429DF02002708BC /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BF949D62429DF02002708BC /* UMSocialSDKResources.bundle */; };
+		1BF949E42429DF02002708BC /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949D72429DF02002708BC /* UShareUI.framework */; };
+		1BF949E52429DF02002708BC /* UMShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949D82429DF02002708BC /* UMShare.framework */; };
+		1BF949E62429DF02002708BC /* libSocialWeChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949DB2429DF02002708BC /* libSocialWeChat.a */; };
+		1BF949E72429DF02002708BC /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949DE2429DF02002708BC /* libSocialSina.a */; };
+		1BF949E82429DF02002708BC /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949E22429DF02002708BC /* libSocialQQ.a */; };
+		1BF949EA2429E2BA002708BC /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949E92429E2BA002708BC /* UMCommon.framework */; };
 		36DEC133CE14160B17C1CD91 /* Pods_HDMiusiSpace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */; };
 		6725EB6A21CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */; };
 		A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */; };
@@ -708,6 +717,18 @@
 		1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPExhibitPlayCell.swift; sourceTree = "<group>"; };
 		1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FPExhibitPlayCell.xib; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
+		1BF949CF2429DC9E002708BC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		1BF949D12429DCDB002708BC /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		1BF949D62429DF02002708BC /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
+		1BF949D72429DF02002708BC /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		1BF949D82429DF02002708BC /* UMShare.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMShare.framework; sourceTree = "<group>"; };
+		1BF949DB2429DF02002708BC /* libSocialWeChat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWeChat.a; sourceTree = "<group>"; };
+		1BF949DC2429DF02002708BC /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
+		1BF949DE2429DF02002708BC /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
+		1BF949DF2429DF02002708BC /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
+		1BF949E12429DF02002708BC /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		1BF949E22429DF02002708BC /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		1BF949E92429E2BA002708BC /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		567F54091CFFFD6CC2EAB4FD /* Pods-HDMiusiSpace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDMiusiSpace.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace.release.xcconfig"; sourceTree = "<group>"; };
 		6725EB6921CA314D007DA8C3 /* HDHSP_PersonSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDHSP_PersonSearchVC.swift; sourceTree = "<group>"; };
 		A70C686721AD11020033C488 /* HDSSL_MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDSSL_MyWalletVC.swift; sourceTree = "<group>"; };
@@ -1386,8 +1407,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BF949EA2429E2BA002708BC /* UMCommon.framework in Frameworks */,
+				1BF949E82429DF02002708BC /* libSocialQQ.a in Frameworks */,
+				1BF949E62429DF02002708BC /* libSocialWeChat.a in Frameworks */,
+				1BF949D22429DCDB002708BC /* Photos.framework in Frameworks */,
+				1BF949E72429DF02002708BC /* libSocialSina.a in Frameworks */,
+				1BF949D02429DC9E002708BC /* WebKit.framework in Frameworks */,
 				1B38C16D21E42D99006F804C /* iflyMSC.framework in Frameworks */,
 				1B38C16521E42AB2006F804C /* libc++.tbd in Frameworks */,
+				1BF949E42429DF02002708BC /* UShareUI.framework in Frameworks */,
 				1B38C16321E42A9D006F804C /* CoreGraphics.framework in Frameworks */,
 				1B38C16121E42A92006F804C /* QuartzCore.framework in Frameworks */,
 				1B38C15F21E42A79006F804C /* AudioToolbox.framework in Frameworks */,
@@ -1396,6 +1424,7 @@
 				1B38C15921E42A34006F804C /* SystemConfiguration.framework in Frameworks */,
 				1B38C15721E42A27006F804C /* AVFoundation.framework in Frameworks */,
 				1B38C15521E42A18006F804C /* libz.tbd in Frameworks */,
+				1BF949E52429DF02002708BC /* UMShare.framework in Frameworks */,
 				D62FB0E221AFE980000D84BF /* Security.framework in Frameworks */,
 				D619533F21A545880039D151 /* MapKit.framework in Frameworks */,
 				A73E44B221B4F839008B780E /* StoreKit.framework in Frameworks */,
@@ -1423,9 +1452,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BF949D42429DF02002708BC /* UMSocial */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949E92429E2BA002708BC /* UMCommon.framework */,
+				1BF949D52429DF02002708BC /* UMSocialUI */,
+				1BF949D82429DF02002708BC /* UMShare.framework */,
+				1BF949D92429DF02002708BC /* SocialLibraries */,
+			);
+			path = UMSocial;
+			sourceTree = "<group>";
+		};
+		1BF949D52429DF02002708BC /* UMSocialUI */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949D62429DF02002708BC /* UMSocialSDKResources.bundle */,
+				1BF949D72429DF02002708BC /* UShareUI.framework */,
+			);
+			path = UMSocialUI;
+			sourceTree = "<group>";
+		};
+		1BF949D92429DF02002708BC /* SocialLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949DA2429DF02002708BC /* WeChat */,
+				1BF949DD2429DF02002708BC /* Sina */,
+				1BF949E02429DF02002708BC /* QQ */,
+			);
+			path = SocialLibraries;
+			sourceTree = "<group>";
+		};
+		1BF949DA2429DF02002708BC /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949DB2429DF02002708BC /* libSocialWeChat.a */,
+				1BF949DC2429DF02002708BC /* UMSocialWechatHandler.h */,
+			);
+			path = WeChat;
+			sourceTree = "<group>";
+		};
+		1BF949DD2429DF02002708BC /* Sina */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949DE2429DF02002708BC /* libSocialSina.a */,
+				1BF949DF2429DF02002708BC /* UMSocialSinaHandler.h */,
+			);
+			path = Sina;
+			sourceTree = "<group>";
+		};
+		1BF949E02429DF02002708BC /* QQ */ = {
+			isa = PBXGroup;
+			children = (
+				1BF949E12429DF02002708BC /* UMSocialQQHandler.h */,
+				1BF949E22429DF02002708BC /* libSocialQQ.a */,
+			);
+			path = QQ;
+			sourceTree = "<group>";
+		};
 		5466206F0BB79C937D51A7AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1BF949D12429DCDB002708BC /* Photos.framework */,
+				1BF949CF2429DC9E002708BC /* WebKit.framework */,
 				1B38C16C21E42D99006F804C /* iflyMSC.framework */,
 				1B38C16421E42AB2006F804C /* libc++.tbd */,
 				1B38C16221E42A9D006F804C /* CoreGraphics.framework */,
@@ -2402,6 +2490,7 @@
 		D6C9FC102117FA3A007C8E56 /* HDMiusiSpace */ = {
 			isa = PBXGroup;
 			children = (
+				1BF949D42429DF02002708BC /* UMSocial */,
 				D607702821A8FCBD006B19B1 /* HDMiusiSpace.entitlements */,
 				D614DFA7211EC9E800A4D459 /* API */,
 				D6C9FC98211825DC007C8E56 /* Section */,
@@ -3067,9 +3156,8 @@
 				D6C9FC0A2117FA3A007C8E56 /* Sources */,
 				D6C9FC0B2117FA3A007C8E56 /* Frameworks */,
 				D6C9FC0C2117FA3A007C8E56 /* Resources */,
-				EA550C47435E5E30A909CE29 /* [CP] Embed Pods Frameworks */,
-				7825E19DD1B1C71CD9B4A1A1 /* [CP] Copy Pods Resources */,
 				D60036152142125A004A0307 /* ShellScript */,
+				4ED4858CC6B91EA6E3B04D25 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3303,6 +3391,7 @@
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
 				A7AA22A721AE274200CDA6CE /* HDSSL_recordCell.xib in Resources */,
+				1BF949E32429DF02002708BC /* UMSocialSDKResources.bundle in Resources */,
 				1B3126B521B7C8AB003785C0 /* HDLY_ChangeCityAlert.xib in Resources */,
 				D61E947B21928E1400C5299F /* HDLY_NumCollectionCell.xib in Resources */,
 				A753D11721B66506009C14D7 /* HD_goodsCell.xib in Resources */,
@@ -3359,30 +3448,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7825E19DD1B1C71CD9B4A1A1 /* [CP] Copy Pods Resources */ = {
+		4ED4858CC6B91EA6E3B04D25 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources.sh",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D60036152142125A004A0307 /* ShellScript */ = {
@@ -3397,48 +3477,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n#\n# Copyright 2016 Bugly, Tencent. All rights reserved.\n#\n# V1.4.0\n#\n# 2016.08.03\n#\n#\n#\n######################################################\n# 1. 脚本集成到Xcode工程的Target\n######################################################\n#\n# --- Copy the SCRIPT to the Run Script of Build Phases in the Xcode project ---\n#\n# #\nBUGLY_APP_ID=\"c72887a81c\"\n# #\nBUGLY_APP_KEY=\"41fc234d-93f3-4fe9-bf7e-d3cd7cfc6dd7\"\n# #\nBUNDLE_IDENTIFIER=\"com.hengdawb.smart.HDMiusiSpaceEnter\"\n# #\nUPLOAD_DSYM_ONLY=1\n#\n# # 脚本默认配置的版本格式为CFBundleShortVersionString(CFBundleVersion),  如果你修改默认的版本格式, 请设置此变量, 如果不想修改, 请忽略此设置\n# CUSTOMIZED_APP_VERSION=\"\"\n#\n# # Debug模式编译是否上传，1＝上传 0＝不上传，默认不上传\n# UPLOAD_DEBUG_SYMBOLS=0\n#\n# # 模拟器编译是否上传，1=上传 0=不上传，默认不上传\n# UPLOAD_SIMULATOR_SYMBOLS=0\n#\n# #只有Archive操作时上传, 1=支持Archive上传 0=所有Release模式编译都上传\n# UPLOAD_ARCHIVE_ONLY=0\n#\n# #\n# source dSYMUpload.sh\n#\n# --- END OF SCRIPT ---\n#\n#\n#\n#\n#######################################################\n# 2. 脚本根据输入参数处理\n#######################################################\n#\n# #命令行下输入应用基本信息, .dSYM文件的父目录路径, 输出文件目录即可\n#\n# sh dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir>\n#\n# #\n#\n# #注意:\n# # 1. dSYMUpload.sh会调用buglySymboliOS.jar进行.dSYM解析，所以依赖Java运行时环境\n# # 2. dSYMUpload.sh和buglySymboliOS.jar的文件路径需一致\n#\n#\n\n#\n# --- CONTENT OF SCRIPT ---\n#\n\n# Bugly服务域名\nBUGLY_DSYM_UPLOAD_DOMAIN=\"api.bugly.qq.com\"\n\n# 注意jar工具的路径跟dSYMUpload.sh脚本路径一致, 请务必保证jar路径的正确性\nBUGLY_SYMBOL_JAR_PATH=\"dsymtool/buglySymboliOS.jar\"\n# 查找添加到系统目录的jar工具\nif [ ! -f \"${BUGLY_SYMBOL_JAR_PATH}\" ]; then\nBUGLY_SYMBOL_JAR_PATH=\"$HOME/bin/buglySymboliOS.jar\"\nfi\n\n# 打印错误信息\nfunction exitWithMessage(){\n    echo \"--------------------------------\"\n    echo \"${1}\"\n    echo \"--------------------------------\"\n    exit ${2}\n}\n\n# 上传bSYMBOL文件\nfunction dSYMUpload() {\n    P_APP_ID=\"$1\"\n    P_APP_KEY=\"$2\"\n    P_APP_BUNDLE_ID=\"$3\"\n    P_APP_VERSION=\"$4\"\n    P_BSYMBOL_ZIP_FILE=\"$5\"\n    \n    #\n    P_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE##*/}\n        P_BSYMBOL_ZIP_FILE_NAME=${P_BSYMBOL_ZIP_FILE_NAME//&/_}\n            P_BSYMBOL_ZIP_FILE_NAME=\"${P_BSYMBOL_ZIP_FILE_NAME// /_}\"\n            \n            DSYM_UPLOAD_URL=\"https://${BUGLY_DSYM_UPLOAD_DOMAIN}/openapi/file/upload/symbol?app_id=${P_APP_ID}&app_key=${P_APP_KEY}\"\n            echo \"dSYM upload url: ${DSYM_UPLOAD_URL}\"\n            \n            echo \"-----------------------------\"\n            STATUS=$(/usr/bin/curl -k \"${DSYM_UPLOAD_URL}\" --form \"api_version=1\" --form \"app_id=${P_APP_ID}\" --form \"app_key=${P_APP_KEY}\" --form \"symbolType=2\"  --form \"bundleId=${BUNDLE_IDENTIFIER}\" --form \"productVersion=${BUGLY_APP_VERSION}\" --form \"fileName=${P_BSYMBOL_ZIP_FILE_NAME}\" --form \"file=@${P_BSYMBOL_ZIP_FILE}\" --verbose)\n            echo \"-----------------------------\"\n            \n            UPLOAD_RESULT=\"FAILTURE\"\n            echo \"Bugly server response: ${STATUS}\"\n            if [ ! \"${STATUS}\" ]; then\n            echo \"Error: Failed to upload the zip archive file.\"\n            elif [[ \"${STATUS}\" == *\"{\\\"reponseCode\\\":\\\"0\\\"}\"* ]]; then\n            echo \"Success to upload the dSYM for the app [${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION}]\"\n            UPLOAD_RESULT=\"SUCCESS\"\n            else\n            echo \"Error: Failed to upload the zip archive file to Bugly.\"\n            fi\n            \n            #Remove temp dSYM archive\n            #echo \"Remove temporary zip archive: ${DSYM_ZIP_FPATH}\"\n            #/bin/rm -f \"${DSYM_ZIP_FPATH}\"\n            \n            if [ \"$?\" -ne 0 ]; then\n            exitWithMessage \"Error: Failed to remove temporary zip archive.\" 0\n            fi\n            \n            echo \"--------------------------------\"\n            echo \"${UPLOAD_RESULT} - dSYM upload complete.\"\n            \n            if [[ \"${UPLOAD_RESULT}\" == \"FAILTURE\" ]]; then\n            echo \"--------------------------------\"\n            echo \"Failed to upload the dSYM\"\n            echo \"Please check the script and try it again.\"\n            fi\n        }\n        \n        # .dSYM解析为bSYMBOL文件\n        function dSYMParse() {\n            DSYM_FILE=\"$1\"\n            DSYM_SYMBOL_FILE=\"$2\"\n            \n            echo \"--------------------------------\"\n            echo \"Extract symbol info from .dSYM file. to ${DSYM_SYMBOL_FILE}\"\n            (/usr/bin/java -Xms512m -Xmx1024m -Dfile.encoding=UTF8 -jar \"${BUGLY_SYMBOL_JAR_PATH}\" -i \"${DSYM_FILE}\" -o \"${DSYM_SYMBOL_FILE}\" ) || exitWithMessage \"Error: Failed to extract symbols.\" 1\n            echo \"--------------------------------\"\n            \n        }\n        \n        # 执行\n        function run() {\n            \n            CONFIG_BUGLY_APP_ID=\"$1\"\n            CONFIG_BUGLY_APP_KEY=\"$2\"\n            \n            CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER=\"$3\"\n            CONFIG_BUGLY_APP_VERSION=\"$4\"\n            CONFIG_DSYM_SOURCE_DIR=\"$5\"\n            CONFIG_DSYM_DEST_DIR=\"$6\"\n            CONFIG_UPLOAD_DSYM_ONLY=\"$7\"\n            \n            # 检查必须参数是否设置\n            if [ ! \"${CONFIG_BUGLY_APP_ID}\" ]; then\n            exitWithMessage \"Error: Bugly App ID not defined. Please set 'BUGLY_APP_ID' \" 0\n            fi\n            \n            if [[ \"${CONFIG_BUGLY_APP_ID}\" == *\"App ID\"* ]]; then\n            exitWithMessage \"Error: Bugly App ID not defined.\" 0\n            fi\n            \n            if [ ! \"${CONFIG_BUGLY_APP_KEY}\" ]; then\n            exitWithMessage \"Error: Bugly App Key not defined.\" 0\n            fi\n            \n            if [ ! \"${CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER}\" ]; then\n            exitWithMessage \"Error: Bundle Identifier not defined.\" 0\n            fi\n            \n            if [ ! \"${CONFIG_BUGLY_APP_VERSION}\" ]; then\n            exitWithMessage \"Error: App Version not defined.\" 0\n            fi\n            \n            if [ ! -e \"${CONFIG_DSYM_SOURCE_DIR}\" ]; then\n            exitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_SOURCE_DIR}\" 0\n            fi\n            \n            if [ ! \"${CONFIG_DSYM_DEST_DIR}\" ]; then\n            exitWithMessage \"Error: Invalid dir ${CONFIG_DSYM_DEST_DIR}\" 0\n            fi\n            \n            if [ ! -e \"${CONFIG_DSYM_DEST_DIR}\" ]; then\n            mkdir ${CONFIG_DSYM_DEST_DIR}\n            fi\n            \n            DSYM_FOLDER=\"${CONFIG_DSYM_SOURCE_DIR}\"\n            IFS=$'\\n'\n            \n            echo \"Scaning dSYM FOLDER: ${DSYM_FOLDER} ...\"\n            RET=\"F\"\n            \n            #\n            for dsymFile in $(find \"$DSYM_FOLDER\" -name '*.dSYM'); do\n            RET=\"T\"\n            echo \"Found dSYM file: $dsymFile\"\n            \n            DSYM_FILE_NAME=${dsymFile##*/}\n                DSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_FILE_NAME}.zip\"\n                DSYM_SYMBOL_ZIP_FILE_NAME=\"${DSYM_SYMBOL_ZIP_FILE_NAME// /_}\"\n                DSYM_SYMBOL_ZIP_FILE=${CONFIG_DSYM_DEST_DIR}/${DSYM_SYMBOL_ZIP_FILE_NAME}\n                \n                if [ $CONFIG_UPLOAD_DSYM_ONLY -eq 1 ]; then\n                if [ -e $DSYM_SYMBOL_ZIP_FILE ]; then\n                rm -f $DSYM_SYMBOL_ZIP_FILE\n                fi\n                # 如果只上传dSYM，直接压缩dSYM目录\n                zip -r -j $DSYM_SYMBOL_ZIP_FILE $dsymFile -x *.plist\n                else\n                # 使用符号表工具来生成Symbol文件\n                dSYMParse $dsymFile $DSYM_SYMBOL_ZIP_FILE\n                fi\n                \n                # 上传\n                dSYMUpload $CONFIG_BUGLY_APP_ID $CONFIG_BUGLY_APP_KEY $CONFIG_BUGLY_APP_BUNDLE_IDENTIFIER $CONFIG_BUGLY_APP_VERSION $DSYM_SYMBOL_ZIP_FILE\n                done\n                \n                if [ $RET = \"F\" ]; then\n                exitWithMessage \"No .dSYM found in ${DSYM_FOLDER}\" 0\n                fi\n            }\n            \n            # 在Xcode工程中执行\n            function runInXcode(){\n                echo \"Uploading dSYM to Bugly in Xcode ...\"\n                \n                echo \"Info.Plist : ${INFOPLIST_FILE}\"\n                \n                BUNDLE_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' \"${INFOPLIST_FILE}\")\n                BUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \"${INFOPLIST_FILE}\")\n                \n                # 组装Bugly默认识别的版本信息(格式为CFBundleShortVersionString(CFBundleVersion), 例如: 1.0(1))\n                if [ ! \"${CUSTOMIZED_APP_VERSION}\" ]; then\n                BUGLY_APP_VERSION=\"${BUNDLE_SHORT_VERSION}(${BUNDLE_VERSION})\"\n                else\n                BUGLY_APP_VERSION=\"${CUSTOMIZED_APP_VERSION}\"\n                fi\n                \n                echo \"--------------------------------\"\n                echo \"Prepare application information.\"\n                echo \"--------------------------------\"\n                \n                echo \"Product Name: ${PRODUCT_NAME}\"\n                echo \"Bundle Identifier: ${BUNDLE_IDENTIFIER}\"\n                echo \"Version: ${BUNDLE_SHORT_VERSION}\"\n                echo \"Build: ${BUNDLE_VERSION}\"\n                \n                echo \"Bugly App ID: ${BUGLY_APP_ID}\"\n                echo \"Bugly App key: ${BUGLY_APP_KEY}\"\n                echo \"Bugly App Version: ${BUGLY_APP_VERSION}\"\n                \n                echo \"--------------------------------\"\n                echo \"Check the arguments ...\"\n                \n                ##检查模拟器编译是否允许上传符号\n                if [ \"$EFFECTIVE_PLATFORM_NAME\" == \"-iphonesimulator\" ]; then\n                if [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then\n                exitWithMessage \"Warning: Build for simulator and skipping to upload. \\nYou can modify 'UPLOAD_SIMULATOR_SYMBOLS' to 1 in the script.\" 0\n                fi\n                fi\n                \n                ##检查是否是Release模式编译\n                if [ \"${CONFIGURATION=}\" == \"Debug\" ]; then\n                if [ $UPLOAD_DEBUG_SYMBOLS -eq 0 ]; then\n                exitWithMessage \"Warning: Build for debug mode and skipping to upload. \\nYou can modify 'UPLOAD_DEBUG_SYMBOLS' to 1 in the script.\" 0\n                fi\n                fi\n                \n                ##检查是否Archive操作\n                if [ $UPLOAD_ARCHIVE_ONLY -eq 1 ]; then\n                if [[ \"$TARGET_BUILD_DIR\" == *\"/Archive\"* ]]; then\n                echo \"Archive the package\"\n                else\n                exitWithMessage \"Warning: Build for NOT Archive mode and skipping to upload. \\nYou can modify 'UPLOAD_ARCHIVE_ONLY' to 0 in the script.\" 0\n                fi\n                fi\n                \n                #\n                run ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${BUILD_DIR}/BuglySymbolTemp ${UPLOAD_DSYM_ONLY}\n            }\n            \n            # 根据Xcode的环境变量判断是否处于Xcode环境\n            INFO_PLIST_FILE=\"${INFOPLIST_FILE}\"\n            \n            BuildInXcode=\"F\"\n            if [ -f \"${INFO_PLIST_FILE}\" ]; then\n            BuildInXcode=\"T\"\n            fi\n            \n            if [ $BuildInXcode = \"T\" ]; then\n            runInXcode\n            else\n            echo \"\\nUsage: dSYMUpload.sh <bugly_app_id> <bugly_app_key> <app_bundle_identifier> <app_version> <dSYM_src_dir> <bSYMBOL_dest_dir> [upload_dsym_only]\\n\"\n            # 你可以在此处直接设置BuglyAppID和BuglyAppKey，排除不常变参数的输入\n            BUGLY_APP_ID=\"$1\"\n            BUGLY_APP_KEY=\"$2\"\n            BUNDLE_IDENTIFIER=\"$3\"\n            BUGLY_APP_VERSION=\"$4\"\n            DWARF_DSYM_FOLDER_PATH=\"$5\"\n            SYMBOL_OUTPUT_PATH=\"$6\"\n            UPLOAD_DSYM_ONLY=$7\n            run ${BUGLY_APP_ID} ${BUGLY_APP_KEY} ${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION} ${DWARF_DSYM_FOLDER_PATH} ${SYMBOL_OUTPUT_PATH} ${UPLOAD_DSYM_ONLY}\n            fi\n";
-		};
-		EA550C47435E5E30A909CE29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JoyTool/JoyTool.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ZZCircleProgress/ZZCircleProgress.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JoyTool.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZZCircleProgress.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDMiusiSpace/Pods-HDMiusiSpace-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4115,6 +4153,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HDMiusiSpace",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial",
 				);
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -4122,7 +4162,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/QQ",
+				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "61a4316f-87ec-4c84-b4d9-4eee05cfaff1";
@@ -4151,6 +4197,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HDMiusiSpace",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial",
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				INFOPLIST_FILE = HDMiusiSpace/Info.plist;
@@ -4159,7 +4207,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/Sina",
+					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/QQ",
+				);
+				MARKETING_VERSION = 2.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "94c60484-6d37-4074-ad1d-48ec5c4b70f9";

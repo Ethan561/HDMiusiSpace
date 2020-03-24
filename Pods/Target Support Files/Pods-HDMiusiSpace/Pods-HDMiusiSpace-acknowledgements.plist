@@ -43,7 +43,7 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright 2020 Baidu. All rights reserved.</string>
+			<string>Copyright 2018 Baidu. All rights reserved.</string>
 			<key>License</key>
 			<string>Copyright</string>
 			<key>Title</key>
@@ -307,17 +307,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			<string>MIT</string>
 			<key>Title</key>
 			<string>SwiftyStoreKit</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
-			<string>Copyright 2011 - 2018 UMeng.com. All rights reserved.
-</string>
-			<key>License</key>
-			<string>Copyright</string>
-			<key>Title</key>
-			<string>UMengUShare</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

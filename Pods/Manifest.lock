@@ -34,7 +34,7 @@ DEPENDENCIES:
   - ZZCircleProgress
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - BaiduMobStatCodeless
     - Bugly
@@ -66,6 +66,6 @@ SPEC CHECKSUMS:
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
   ZZCircleProgress: 207e454a96f05321be6df16357671d9a870656b6
 
-PODFILE CHECKSUM: ff6f1088d768dfa83158b863432fecbec593a9fa
+PODFILE CHECKSUM: 02c8f3e8e5a103295bc9ac76ce64efa9f4d985a7
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.5.3

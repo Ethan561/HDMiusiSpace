@@ -109,7 +109,7 @@ extension HDLY_CourseWeb_Cell: WKNavigationDelegate ,WKUIDelegate{
         var webheight = 0.0
         
         // 获取内容实际高度
-        var javascript = "document.documentElement.style.webkitTouchCallout='none';"
+        let javascript = "document.documentElement.style.webkitTouchCallout='none';"
         let noneSelectScript = WKUserScript.init(source: javascript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
         
         self.webview.configuration.userContentController.addUserScript(noneSelectScript)

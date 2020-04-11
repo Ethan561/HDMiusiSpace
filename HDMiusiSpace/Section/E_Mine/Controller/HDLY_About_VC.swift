@@ -102,7 +102,7 @@ extension HDLY_About_VC: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
         if section == 1 {
-            return 2
+            return 3
         }
         return 0
     }

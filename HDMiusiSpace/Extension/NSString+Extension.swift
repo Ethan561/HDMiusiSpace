@@ -21,7 +21,7 @@ extension String {
     
     func getContentHeight(font: UIFont, width: CGFloat) -> CGFloat {
         let fontName:UIFont = font
-        let rect = NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedString.Key: fontName], context: nil)
+        let rect = NSString(string: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [kCTFontAttributeName as NSAttributedString.Key: fontName], context: nil)
         return ceil(rect.height)
     }
     
@@ -44,5 +44,27 @@ extension NSAttributedString {
     func getAttributeContentHeight(width: CGFloat) -> CGFloat {
         let rect = NSAttributedString.init(attributedString: self).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: [.usesLineFragmentOrigin,.usesFontLeading], context: nil)
         return rect.height
+    }
+}
+
+
+extension String {
+    /// 字符串的匹配范围 方法二(推荐)
+    ///
+    /// - Parameters:
+    ///     - matchStr: 要匹配的字符串
+    /// - Returns: 返回所有字符串范围
+    @discardableResult
+    func hw_exMatchStrRange(_ matchStr: String) -> [NSRange] {
+        var selfStr = self as NSString
+        var withStr = Array(repeating: "X", count: (matchStr as NSString).length).joined(separator: "") //辅助字符串
+        if matchStr == withStr { withStr = withStr.lowercased() } //临时处理辅助字符串差错
+        var allRange = [NSRange]()
+        while selfStr.range(of: matchStr).location != NSNotFound {
+            let range = selfStr.range(of: matchStr)
+            allRange.append(NSRange(location: range.location,length: range.length))
+            selfStr = selfStr.replacingCharacters(in: NSMakeRange(range.location, range.length), with: withStr) as NSString
+        }
+        return allRange
     }
 }

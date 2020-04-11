@@ -43,7 +43,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     }()
     
     lazy var player:ZFPlayerController =  {
-        let playerC = ZFPlayerController.init(playerManager: ZFAVPlayerManager(), containerView: self.containerView)
+        let manager = ZFAVPlayerManager()
+        manager.scalingMode = ZFPlayerScalingMode.aspectFill
+        let playerC = ZFPlayerController.init(playerManager: manager, containerView: self.containerView)
         return playerC
     }()
     

@@ -59,7 +59,7 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }
         setUpPrivacy()//隐藏隐私政
 
-//        getVersionData()
+        getVersionData()
         setupViews()
         //MVVM
         bindViewModel()
@@ -537,7 +537,7 @@ extension HDRootAVC {
         kWindow?.addSubview(alertView)
     }
     
-    /*
+    
     func getVersionData() {
         //应用程序信息
         let infoDictionary = Bundle.main.infoDictionary!
@@ -560,7 +560,7 @@ extension HDRootAVC {
         }) { (error, msg) in
 //            self.showUpdateAlertView(model:nil)
         }
-    }*/
+    }
     
 }
 

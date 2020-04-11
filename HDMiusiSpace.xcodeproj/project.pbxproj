@@ -4145,7 +4145,7 @@
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
@@ -4190,7 +4190,7 @@
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Beijing Muspace Culture & Technology Co.,Ltd. (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;

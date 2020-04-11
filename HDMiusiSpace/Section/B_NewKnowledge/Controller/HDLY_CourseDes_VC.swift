@@ -54,7 +54,9 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     
     let audioPlayer = HDLY_AudioPlayer.shared
     lazy var videoPlayer:ZFPlayerController =  {
-        let playerC = ZFPlayerController.init(playerManager: ZFAVPlayerManager(), containerView: self.containerView)
+        let manager = ZFAVPlayerManager()
+        manager.scalingMode = ZFPlayerScalingMode.aspectFill
+        var playerC = ZFPlayerController.init(playerManager: manager, containerView: self.containerView)
         return playerC
     }()
     var loadingView: HDLoadingView?
@@ -71,6 +73,7 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hd_navigationBarHidden = true
+        self.topView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenWidth / 16 * 9)
         statusBarHCons.constant = kStatusBarHeight
         myTableView.separatorStyle = .none
         buyBtn.layer.cornerRadius = 27
@@ -134,7 +137,6 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
         self.videoPlayer.controlView = self.controlView
         // 设置退到后台继续播放
         self.videoPlayer.pauseWhenAppResignActive = false
-        
         weak var _self = self
         self.videoPlayer.orientationWillChange = { (player,isFullScreen) -> (Void) in
             _self?.isStatusBarHidden = isFullScreen
@@ -546,8 +548,10 @@ extension HDLY_CourseDes_VC {
                 return webViewH
             }else if index == 2 {
                 if infoModel?.data.teacherContent != nil {
+                    let s = infoModel?.data.teacherContent.hw_exMatchStrRange("\r\n")  // 计算该h字符串中包含多少个\r\n 每一个换行符应该多一行
+                    let h = (s?.count ?? 0) * 20
                     let textH = infoModel?.data.teacherContent.getContentHeight(font: UIFont.systemFont(ofSize: 14), width: ScreenWidth-40)
-                    return textH! + 145 + 10
+                    return textH! + 165 + CGFloat(h)
                 }
                 return 140
             }

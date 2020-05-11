@@ -28,6 +28,7 @@ struct CourseDetailModel: Codable {
     var share_url: String?
     var share_des: String?
     var notice: String?
+    var is_portrait: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
@@ -36,6 +37,7 @@ struct CourseDetailModel: Codable {
         case video, yprice, oprice, price
         case teacherID = "teacher_id"
         case url
+        case is_portrait
         case fileType = "file_type"
         case timg
         case teacherName = "teacher_name"

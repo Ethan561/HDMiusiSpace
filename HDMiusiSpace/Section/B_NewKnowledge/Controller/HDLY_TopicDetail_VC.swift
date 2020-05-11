@@ -57,6 +57,7 @@ class HDLY_TopicDetail_VC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hd_navigationBarHidden = false
         myTableView.separatorStyle = .none
         myTableView.estimatedRowHeight = 0
         myTableView.estimatedSectionHeaderHeight = 0

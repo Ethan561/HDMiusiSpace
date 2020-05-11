@@ -19,9 +19,8 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     
     @IBOutlet weak var wxBtn: UIButton!
     @IBOutlet weak var wbBtn: UIButton!
-    @IBOutlet weak var qqBtn: UIButton!
-    @IBOutlet weak var thridView: UIView!
-    
+    @IBOutlet weak var qqBtn: UIButton!    
+    @IBOutlet weak var thirdView: UIStackView!
     var seconds:Int32 = 59
     lazy var timer: Timer = { () ->Timer in
         let currTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.minus), userInfo: nil, repeats: true)
@@ -34,7 +33,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         setupThridLogin()
         loginBtn.layer.cornerRadius = 23
         self.hd_navigationBarHidden = true
-//        setupBarBtn()
+        //        setupBarBtn()
         phoneTF.keyboardType = .numberPad
         phoneTF.returnKeyType = .done
         phoneTF.delegate = self
@@ -42,12 +41,13 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         smsTF.returnKeyType = .done
         smsTF.delegate = self
         
+        configUI()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        configUI()
+        
     }
     
     @IBAction func backAction(_ sender: Any) {
@@ -67,18 +67,18 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
     }
     
     @IBAction func loginBtnAction(_ sender: UIButton) {
-
+        
         let deviceno = HDLY_UserModel.shared.getDeviceNum()
-
+        
         if phoneTF.text?.isEmpty == false && smsTF.text?.isEmpty == false {
             guard  Validate.phoneNum(phoneTF.text!).isRight  else {
                 HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的手机号")
                 return
             }
-//            guard  Validate.verifyNumber(smsTF.text!).isRight  else {
-//                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的验证码")
-//                return
-//            }
+            //            guard  Validate.verifyNumber(smsTF.text!).isRight  else {
+            //                HDAlert.showAlertTipWith(type: HDAlertType.onlyText, text: "请输入正确的验证码")
+            //                return
+            //            }
             HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.usersLogin(username: phoneTF.text!, password: "", smscode: smsTF.text!, deviceno: deviceno), showHud: true, loadingVC: self , success: { (result) in
                 let dic = HD_LY_NetHelper.dataToDictionary(data: result)
                 LOG(" dic ： \(String(describing: dic))")
@@ -163,10 +163,6 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             wbBtn.isHidden = true
         }
-        
-        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
-            thridView.isHidden = true
-        }
     }
     
     @IBAction func thridLoginAction(_ sender: UIButton) {
@@ -219,7 +215,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
                                      "deviceno": deviceno,
-                                     ]
+        ]
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
@@ -265,7 +261,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
@@ -293,46 +289,50 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
         
         return true
     }
-
+    
 }
 
 
 extension HDLY_SmsLogin_VC {
     
     func configUI()  {
-//        if #available(iOS 13.0, *) {
-//            let appleIDBtn = ASAuthorizationAppleIDButton.init(frame: CGRect.init(x: 130, y: 20, width: 20, height: 50))
-//            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
-//            self.view.addSubview(appleIDBtn)
-//        } else {
-//            let appleIDBtn = UIButton.init(frame: CGRect.init(x: 30, y: 500, width: ScreenWidth - 60, height: 50))
-//            appleIDBtn.addTarget(self, action: #selector(didAppleIDBtnClicked), for: .touchUpInside)
-//            appleIDBtn.backgroundColor = UIColor.purple
-//            self.view.addSubview(appleIDBtn)
-//        }
+        if #available(iOS 13.0, *) {
+            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+            appleIDBtn.cornerRadius = 17.5
+            appleIDBtn.frame = CGRect.init(x: 15, y:0, width: 35, height: 35)
+            appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+            let imgV = UIButton()
+//            imgV.frame = CGRect.init(x: 0, y:0, width: 65, height: 65)
+            imgV.addSubview(appleIDBtn)
+            imgV.backgroundColor = UIColor.clear
+            self.thirdView.addArrangedSubview(imgV)
+            //            self.thirdView.addArrangedSubview(appleIDBtn)
+        } else {
+//            let appleIDBtn = UIButton.init(type: .custom)
+//            appleIDBtn.layer.cornerRadius = 17.5
+////            appleIDBtn.frame = CGRect.init(x: 0, y:0, width: 65, height: 65)
+//            appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+//            //            appleIDBtn.setTitle("Sign in with Apple", for: .normal)
+//            appleIDBtn.setImage(UIImage.init(named: "apple1"), for: .normal)
+//            self.thirdView.addArrangedSubview(appleIDBtn)
+        }
     }
-    
-    @objc func  didAppleIDBtnClicked() {
-//        self.signInApple = [[SignInApple alloc] init];
-//        [self.signInApple handleAuthorizationAppleIDButtonPress];
-    }
-    
-    
-    func handleAuthorizationAppleIDButtonPress() {
+    @objc func handleAuthorizationAppleIDButtonPress() {
+        print("00000000000")
         if #available(iOS 13.0, *) {
             // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             // 创建新的AppleID 授权请求\
             let appleIDRequest = appleIDProvider.createRequest()
-            appleIDRequest.requestedScopes = Array.init()
+            appleIDRequest.requestedScopes = [.fullName, .email]
             // 在用户授权期间请求的联系信息
-//            appleIDRequest.requestedScopes =  [email] @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+            //            appleIDRequest.requestedScopes =  [email] @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
             // 由ASAuthorizationAppleIDProvider创建的授权请求 管理授权请求的控制器
             let authorizationController = ASAuthorizationController.init(authorizationRequests: [appleIDRequest])
             // 设置授权控制器通知授权请求的成功与失败的代理
             authorizationController.delegate = self;
-        
-            authorizationController.presentationContextProvider = self as! ASAuthorizationControllerPresentationContextProviding
+            
+            authorizationController.presentationContextProvider = self
             // 在控制器初始化期间启动授权流
             authorizationController.performRequests()
         }else{
@@ -343,5 +343,56 @@ extension HDLY_SmsLogin_VC {
 }
 
 extension HDLY_SmsLogin_VC : ASAuthorizationControllerDelegate {
-    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let user = appleIDCredential.user // 授权的用户唯一标识
+            let fullName = appleIDCredential.fullName // 授权的用户名称
+            let email = appleIDCredential.email // 授权的用户邮箱
+            let identityToken = appleIDCredential.identityToken // 授权用户的JWT凭证
+            let authorizationCode = appleIDCredential.authorizationCode // 授权码
+            
+            print(user)
+            print(fullName)
+            print(email)
+            print(identityToken!)
+            print(authorizationCode!)
+            // Create an account in your system.
+            // For the purpose of this demo app, store the userIdentifier in the keychain.
+            //            do {
+            //                try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
+            //            } catch {
+            //                print("Unable to save userIdentifier to keychain.")
+            //            }
+            
+            // For the purpose of this demo app, show the Apple ID credential information in the ResultViewController.
+            
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                        message: message,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+@available(iOS 13.0, *)
+extension HDLY_SmsLogin_VC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }

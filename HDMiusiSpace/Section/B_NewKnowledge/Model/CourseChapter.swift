@@ -53,7 +53,7 @@ struct ChapterList: Codable {
     let freeType: Int //1免费2vip免费0收费
     let isPlay: Int  //isPlay:是否能播放1能0不能
     var chapter_id: Int = 0
-    
+    var is_portrait: Int = 0
     enum CodingKeys: String, CodingKey {
         case title
         case timeLong = "time_long"
@@ -61,6 +61,7 @@ struct ChapterList: Codable {
         case freeType = "free_type"
         case isPlay = "is_play"
         case chapter_id
+        case is_portrait
     }
 }
 

@@ -30,6 +30,7 @@ struct CourseInfoModel: Codable {
     var share_url: String?
     var share_des: String?
     var notice: String?
+    var is_portrait: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case articleID = "article_id"
@@ -51,6 +52,7 @@ struct CourseInfoModel: Codable {
         case share_url
         case share_des
         case notice
+         case is_portrait
     }
 }
 

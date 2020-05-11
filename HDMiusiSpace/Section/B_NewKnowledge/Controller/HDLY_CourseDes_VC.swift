@@ -160,8 +160,15 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
                 return
             }
             if course.video.isEmpty == false && course.video.contains(".mp4") {
-                self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+               
+                if course.is_portrait == 1 {
+                    let m = ZFAVPlayerManager()
+                    self.videoPlayer.replaceCurrentPlayerManager(m)
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+                } else {
+                    self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                }
+                 self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
                 self.videoPlayer.currentPlayerManager.pause!()
             }
         }
@@ -184,8 +191,16 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             audioPlayOrPauseAction()
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
+                
+                if course.is_portrait == 1 {
+                    let m = ZFAVPlayerManager()
+                    self.videoPlayer.replaceCurrentPlayerManager(m)
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+                } else {
+                    self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                }
                 self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
+                
             }
         }
     }
@@ -204,11 +219,20 @@ class HDLY_CourseDes_VC: HDItemBaseVC ,UITableViewDataSource,UITableViewDelegate
             audioPlayOrPauseAction()
         }else {
             if course.video.isEmpty == false && course.video.contains(".mp4") {
+                if course.is_portrait == 1 {
+                    let m = ZFAVPlayerManager()
+                    self.videoPlayer.replaceCurrentPlayerManager(m)
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+                } else {
+                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+                }
                 self.videoPlayer.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: "", fullScreenMode: ZFFullScreenMode.landscape)
             }
         }
-        wlanTipL.isHidden = false
+        self.wlanTipL.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now()+3.5, execute:{
+           self.wlanTipL.isHidden = true
+        })
     }
     
     @IBAction func listenBtnAction(_ sender: UIButton) {

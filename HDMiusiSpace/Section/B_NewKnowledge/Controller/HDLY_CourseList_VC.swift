@@ -29,7 +29,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
     var isMp3Course = false
     var showLeaveMsg = false
     var showAnswerQuestion = false
-
+    
     var chapterListVC: HDLY_CourseList_SubVC1?
     
     var kVideoCover = ""
@@ -46,6 +46,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         let manager = ZFAVPlayerManager()
         manager.scalingMode = ZFPlayerScalingMode.aspectFill
         let playerC = ZFPlayerController.init(playerManager: manager, containerView: self.containerView)
+        playerC.allowOrentitaionRotation = true
         return playerC
     }()
     
@@ -120,7 +121,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(playOrPauseNoti(_:)), name: NSNotification.Name.init("HDLY_CourseList_VC_PlayOrPause_Noti"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerNeedPauseNoti(_:)), name: NSNotification.Name.init("HDLYCourseListVC_VideoNeedStop_Noti"), object: nil)
-
+        
         if isNeedRefresh == true && HDDeclare.shared.loginStatus == .kLogin_Status_Login {
             dataRequest()
             isNeedRefresh = false
@@ -212,32 +213,33 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             guard let course = infoModel?.data else {
                 return
             }
+            if course.video.isEmpty == false && course.video.contains("http://") {
+                self.player.assetURL = NSURL.init(string: course.video)! as URL
+                print("===============1")
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
             if isMp3Course {
-                if course.video.isEmpty == false && course.video.contains("http://") {
-                    self.player.assetURL = NSURL.init(string: course.video)! as URL
-                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                    self.controlView.coverImageHidden = false
-                }
-            }else {
-                if course.video.isEmpty == false && course.video.contains(".mp4") {
-                    self.player.assetURL = NSURL.init(string: course.video)! as URL
-                    self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                }
+                self.controlView.coverImageHidden = false
             }
             self.player.currentPlayerManager.pause!()
         }else {
             let video = listPlayModel!.video
+            self.player.assetURL = NSURL.init(string: video)! as URL
+            print("===============2")
+            if listPlayModel?.is_portrait == 1 {
+                let m = ZFAVPlayerManager()
+                self.player.replaceCurrentPlayerManager(m)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+            } else {
+                let m = ZFAVPlayerManager()
+                m.scalingMode = ZFPlayerScalingMode.aspectFill
+                self.player.replaceCurrentPlayerManager(m)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
             if video.isEmpty == false && video.contains("http://") {
-                self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
                 self.controlView.coverImageHidden = false
-                self.chapterListVC?.isPlaying = false
             }
-            else if video.isEmpty == false && video.contains(".mp4") {
-                self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.chapterListVC?.isPlaying = false
-            }
+            self.chapterListVC?.isPlaying = false
             self.player.currentPlayerManager.pause!()
         }
     }
@@ -306,21 +308,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             return
         }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
-        
-        if isMp3Course {
-            if course.video.isEmpty == false && course.video.contains("http://") {
-                self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.controlView.coverImageHidden = false
-                self.controlView.showCoverImagView()
-
-            }
-        }else {
-            if course.video.isEmpty == false && course.video.contains(".mp4") {
-                self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-            }
-        }
+        self.setVideoPlayMode(video: course.video, isPortrait: course.is_portrait)
         self.controlView.showWith(animated: false)
     }
     
@@ -330,19 +318,10 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }
         HDFloatingButtonManager.manager.floatingBtnView.closeAction()
         self.controlView.showWith(animated: true)
-        if isMp3Course {
-            if course.video.isEmpty == false && course.video.contains("http://") {
-                self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.controlView.coverImageHidden = false
-                 self.controlView.showCoverImagView()
-            }
-        } else {
-            if course.video.isEmpty == false && course.video.contains(".mp4") {
-                self.player.assetURL = NSURL.init(string: course.video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-            }
-        }
+        self.setVideoPlayMode(video: course.video, isPortrait: course.is_portrait)
+        DispatchQueue.main.asyncAfter(deadline: .now()+5, execute:{
+            self.wlanTipL.isHidden = true
+        })
     }
     
     // HDLY_CourseList_SubVC1：ChapterListPlayDelegate
@@ -355,7 +334,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             if self.player.currentPlayerManager.playState == .playStatePlaying {
                 self.player.currentPlayerManager.pause!()
                 self.chapterListVC?.isPlaying = false
-
+                
             } else  if self.player.currentPlayerManager.playState == .playStatePaused{
                 self.player.currentPlayerManager.play!()
                 self.chapterListVC?.isPlaying = true
@@ -363,21 +342,57 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         }else {
             listPlayModel = model
             let video = model.video
-            if video.isEmpty == false && video.contains("http://") {
-                self.player.assetURL = NSURL.init(string: video)! as URL
+            if ZFReachabilityManager.shared().isReachableViaWWAN == true {
+                self.wlanTipL.isHidden = false
+            }
+            
+            if model.is_portrait == 1 {
+                let m = ZFAVPlayerManager()
+                self.player.replaceCurrentPlayerManager(m)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+            } else {
+                let m = ZFAVPlayerManager()
+                m.scalingMode = ZFPlayerScalingMode.aspectFill
+                self.player.replaceCurrentPlayerManager(m)
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.controlView.coverImageHidden = false
+            }
+            if video.isEmpty == false {
+                self.player.assetURL = NSURL.init(string: video)! as URL
+                print("===============3")
+                if isMp3Course {
+                    self.controlView.coverImageHidden = false
+                    self.controlView.showCoverImagView()
+                }
                 self.chapterListVC?.isPlaying = true
             }
-            else if video.isEmpty == false && video.contains(".mp4") {
-                self.player.assetURL = NSURL.init(string: video)! as URL
-                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
-                self.chapterListVC?.isPlaying = true
-            }
+            DispatchQueue.main.asyncAfter(deadline: .now()+5, execute:{
+                self.wlanTipL.isHidden = true
+            })
             
         }
         
     }
+    
+    // 根据video来确定播放模式
+    func setVideoPlayMode(video:String, isPortrait:Int) {
+        if video.isEmpty == false && video.contains("http://") {
+            
+            if isPortrait == 1 {
+                let m = ZFAVPlayerManager()
+                self.player.replaceCurrentPlayerManager(m)
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.portrait)
+            } else {
+                self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
+            }
+            self.player.assetURL = NSURL.init(string: video)! as URL
+            print("===============4")
+        }
+        if isMp3Course {
+            self.controlView.coverImageHidden = false
+            self.controlView.showCoverImagView()
+        }
+    }·
+    
     func dataRequest()  {
         guard let idnum = self.courseId else {
             return
@@ -423,7 +438,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             }
             
         }) { (errorCode, msg) in
-  
+            
         }
     }
     

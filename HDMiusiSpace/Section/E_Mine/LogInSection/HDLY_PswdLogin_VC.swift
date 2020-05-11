@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var phoneTF: UITextField!
@@ -16,8 +17,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var wxBtn: UIButton!
     @IBOutlet weak var qqBtn: UIButton!
     @IBOutlet weak var weiboBtn: UIButton!
-    @IBOutlet weak var thridView: UIView!
-    
+    @IBOutlet weak var thirdView: UIStackView!
     let declare:HDDeclare = HDDeclare.shared
 
     override func viewDidLoad() {
@@ -31,6 +31,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         phoneTF.delegate = self
         pwdTF.returnKeyType = .done
         pwdTF.delegate = self
+        configUI()
         setupThridLogin()
     }
     
@@ -131,10 +132,6 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         if UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
             weiboBtn.isHidden = true
         }
-        if UIApplication.shared.canOpenURL(URL.init(string: "mqq://")!) == false &&  UMSocialManager.default().isInstall(UMSocialPlatformType.wechatSession) == false && UMSocialManager.default().isInstall(UMSocialPlatformType.sina) == false {
-            thridView.isHidden = true
-        }
-
     }
     
     @IBAction func thridLoginAction(_ sender: UIButton) {
@@ -269,16 +266,92 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+
+extension HDLY_PswdLogin_VC {
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func configUI()  {
+        if #available(iOS 13.0, *) {
+            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
+            appleIDBtn.cornerRadius = 10.0
+            appleIDBtn.frame = CGRect.init(x: 0, y:0, width: 65, height: 65)
+            appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+            self.thirdView.addArrangedSubview(appleIDBtn)
+            
+        } else {
+           
+        }
+    }
+     @objc func handleAuthorizationAppleIDButtonPress() {
+        print("00000000000")
+        if #available(iOS 13.0, *) {
+            // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            // 创建新的AppleID 授权请求\
+            let appleIDRequest = appleIDProvider.createRequest()
+            appleIDRequest.requestedScopes = [.fullName, .email]
+            // 在用户授权期间请求的联系信息
+            //            appleIDRequest.requestedScopes =  [email] @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+            // 由ASAuthorizationAppleIDProvider创建的授权请求 管理授权请求的控制器
+            let authorizationController = ASAuthorizationController.init(authorizationRequests: [appleIDRequest])
+            // 设置授权控制器通知授权请求的成功与失败的代理
+            authorizationController.delegate = self;
+            
+            authorizationController.presentationContextProvider = self
+            // 在控制器初始化期间启动授权流
+            authorizationController.performRequests()
+        }else{
+            // 处理不支持系统版本
+            //                   NSLog(@"该系统版本不可用Apple登录");
+        }
+    }
+}
+
+extension HDLY_PswdLogin_VC : ASAuthorizationControllerDelegate {
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            // Create an account in your system.
+            // For the purpose of this demo app, store the userIdentifier in the keychain.
+//            do {
+//                try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
+//            } catch {
+//                print("Unable to save userIdentifier to keychain.")
+//            }
+            
+            // For the purpose of this demo app, show the Apple ID credential information in the ResultViewController.
+            
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                        message: message,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+@available(iOS 13.0, *)
+extension HDLY_PswdLogin_VC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
 }

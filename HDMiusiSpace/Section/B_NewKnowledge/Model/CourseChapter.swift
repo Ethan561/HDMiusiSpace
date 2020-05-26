@@ -54,12 +54,14 @@ struct ChapterList: Codable {
     let isPlay: Int  //isPlay:是否能播放1能0不能
     var chapter_id: Int = 0
     var is_portrait: Int = 0
+    var default_img:String=""
     enum CodingKeys: String, CodingKey {
         case title
         case timeLong = "time_long"
         case video
         case freeType = "free_type"
         case isPlay = "is_play"
+        case default_img
         case chapter_id
         case is_portrait
     }

@@ -333,6 +333,7 @@ struct UserModel:Codable {
     var favorite_num: Int = 0
     var email: String?
     var bind_wx: Int = 0
+    var bind_apple: Int = 0
     var wb_nickname: String?
     var nickname: String?
     var focus_num: Int = 0

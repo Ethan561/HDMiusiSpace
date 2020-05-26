@@ -87,10 +87,16 @@ class HDLY_Topic_Cell: UITableViewCell,UICollectionViewDelegate,UICollectionView
                     cell.imgV.kf.setImage(with: URL.init(string: model.img!), placeholder: UIImage.grayImage(sourceImageV: cell.imgV), options: nil, progressBlock: nil, completionHandler: nil)
                 }
                 cell.titleL.text = model.title
-                if model.is_top?.int  == 1 {
+                if model.course_top?.int  == 1 {
+                    cell.newTipL.text = "新课程"
                     cell.newTipL.isHidden = false
                 }else {
-                    cell.newTipL.isHidden = true
+                   if model.is_top?.int  == 1 {
+                        cell.newTipL.isHidden = false
+                    }else {
+                        cell.newTipL.isHidden = true
+                    }
+                    cell.newTipL.text = "新课时"
                 }
             }
         }

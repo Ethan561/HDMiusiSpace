@@ -55,6 +55,8 @@ enum HD_ZQ_Person_API {
     case cancelBindThirdAccount(api_token: String,b_from:String)
     //版本更新检测
     case checkVersion(version_id: Int,device_id:String)
+    //校验Apple账号
+    case checkApple(userId:String,identityToken:String)
 }
 extension HD_ZQ_Person_API: TargetType {
     //--- 服务器地址 ---
@@ -108,6 +110,9 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/users/unbind_account_number"
         case .checkVersion(_,_):
             return "/api/version/check_version"
+        case .checkApple(userId: _, identityToken: _):
+            return "/api/users/applesign"
+            
         }
     }
     
@@ -116,12 +121,13 @@ extension HD_ZQ_Person_API: TargetType {
     var method: Moya.Method {
         switch self {
         case .thirdBindPhone(params:_):
-             return  .post
+            return  .post
         case .bindThirdAccount(params:_):
-             return  .post
+            return  .post
         case .cancelBindThirdAccount(_,_):
             return  .post
-
+        case.checkApple(userId: _, identityToken: _):
+            return  .post
         default:
             return .get
         }
@@ -149,7 +155,7 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-        
+            
         case .getMyFavoriteNews(let apiToken,let page,let size, _):
             params = params.merging(["api_token": apiToken,
                                      "skip":page,
@@ -287,8 +293,12 @@ extension HD_ZQ_Person_API: TargetType {
             let signKey =  HDDeclare.getSignKey(params)
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
-        default:
-            return .requestPlain//无参数
+        case .checkApple(let userId, let identityToken):
+            params = params.merging(["clientUser": userId, "identityToken": identityToken], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
         
         return .requestParameters(parameters: params, encoding: URLEncoding.default)

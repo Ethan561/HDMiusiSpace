@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class HDLY_AccountBind_VC: HDItemBaseVC {
     
@@ -19,7 +20,7 @@ class HDLY_AccountBind_VC: HDItemBaseVC {
         setupViews()
         
     }
-
+    
     func setupViews() {
         if #available(iOS 11.0, *) {
             self.myTableView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
@@ -37,7 +38,7 @@ class HDLY_AccountBind_VC: HDItemBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,7 +49,7 @@ class HDLY_AccountBind_VC: HDItemBaseVC {
         }
     }
     
-
+    
 }
 
 // MARK:--- myTableView -----
@@ -59,8 +60,11 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 5
-        
+        if #available(iOS 13.0, *) {
+            return 6
+        }else{
+            return 5
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,59 +73,70 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row
-            if index == 0 {//修改密码
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "修改密码"
-                cell?.subNameL.text = ""
-                cell?.moreImgV.isHidden = false
-                return cell!
-            }else if index == 1 {//手机号
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "手机号"
-                
-                cell?.subNameL.text = declare.phone
-                cell?.moreImgV.isHidden = true
-                
-                let phone = HDDeclare.shared.phone
-                guard let foot =  phone?.suffix(4) else { return cell! }
-                guard let head =  phone?.prefix(3) else { return cell! }
-                cell?.subNameL.text = String(head) + "····" + String(foot)
-                
-                return cell!
+        if index == 0 {//修改密码
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.nameL.text = "修改密码"
+            cell?.subNameL.text = ""
+            cell?.moreImgV.isHidden = false
+            return cell!
+        }else if index == 1 {//手机号
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.nameL.text = "手机号"
+            
+            cell?.subNameL.text = declare.phone
+            cell?.moreImgV.isHidden = true
+            
+            let phone = HDDeclare.shared.phone
+            guard let foot =  phone?.suffix(4) else { return cell! }
+            guard let head =  phone?.prefix(3) else { return cell! }
+            cell?.subNameL.text = String(head) + "····" + String(foot)
+            
+            return cell!
+        }
+        else if index == 2 {//微信
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.moreImgV.isHidden = true
+            cell?.nameL.text = "微信"
+            if declare.isBindWechat == 1 {
+                cell?.subNameL.text = declare.wechatName
+            } else {
+                cell?.subNameL.text = "未绑定"
             }
-            else if index == 2 {//微信
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.moreImgV.isHidden = true
-                cell?.nameL.text = "微信"
-                if declare.isBindWechat == 1 {
-                    cell?.subNameL.text = declare.wechatName
-                } else {
-                    cell?.subNameL.text = "未绑定"
-                }
-                return cell!
-            }else if index == 3 {//新浪微博
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "新浪微博"
-                if declare.isBindWeibo == 1 {
-                    cell?.subNameL.text = declare.weiboName
-                } else {
-                    cell?.subNameL.text = "未绑定"
-                }
-                
-                cell?.moreImgV.isHidden = true
-                return cell!
+            return cell!
+        }else if index == 3 {//新浪微博
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.nameL.text = "新浪微博"
+            if declare.isBindWeibo == 1 {
+                cell?.subNameL.text = declare.weiboName
+            } else {
+                cell?.subNameL.text = "未绑定"
             }
-            else if index == 4 {//QQ
-                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
-                cell?.nameL.text = "QQ"
-                if declare.isBindWeibo == 1 {
-                    cell?.subNameL.text = declare.QQName
-                } else {
-                    cell?.subNameL.text = "未绑定"
-                }
-                cell?.moreImgV.isHidden = true
-                return cell!
+            
+            cell?.moreImgV.isHidden = true
+            return cell!
+        }
+        else if index == 4 {//QQ
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.nameL.text = "QQ"
+            if declare.isBindWeibo == 1 {
+                cell?.subNameL.text = declare.QQName
+            } else {
+                cell?.subNameL.text = "未绑定"
             }
+            cell?.moreImgV.isHidden = true
+            return cell!
+        }
+        else if index == 5 {//QQ
+            let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+            cell?.nameL.text = "Apple"
+            if declare.isBindApple == 1 {
+                cell?.subNameL.text = "已绑定"
+            } else {
+                cell?.subNameL.text = "未绑定"
+            }
+            cell?.moreImgV.isHidden = true
+            return cell!
+        }
         return UITableViewCell.init()
     }
     
@@ -153,6 +168,12 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     self.getAuthWithUserInfoWithType(type: .QQ)
                 }
+            } else if index == 5 {//Apple
+                if declare.isBindApple == 1 {
+                    self.cancelBindThird(b_from: "apple")
+                } else {
+                    self.handleAuthorizationAppleIDButtonPress()
+                }
             }
         }
     }
@@ -171,7 +192,7 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
         }else if type == .sina {
             from = "wb"
         }
-    
+        
         UMSocialManager.default().getUserInfo(with: type, currentViewController: self) { (result, error) in
             if error != nil {
                 LOG("\(String(describing: error?.localizedDescription))")
@@ -180,6 +201,29 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                 let resp:UMSocialUserInfoResponse = result as! UMSocialUserInfoResponse
                 self.thirdLoginRequestWithInfo(resp: resp, from: from)
             }
+        }
+    }
+    
+    func handleAuthorizationAppleIDButtonPress() {
+        if #available(iOS 13.0, *) {
+            // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            // 创建新的AppleID 授权请求\
+            let appleIDRequest = appleIDProvider.createRequest()
+            appleIDRequest.requestedScopes = [.fullName, .email]
+            // 在用户授权期间请求的联系信息
+            //            appleIDRequest.requestedScopes =  [email] @[ASAuthorizationScopeFullName, ASAuthorizationScopeEmail];
+            // 由ASAuthorizationAppleIDProvider创建的授权请求 管理授权请求的控制器
+            let authorizationController = ASAuthorizationController.init(authorizationRequests: [appleIDRequest])
+            // 设置授权控制器通知授权请求的成功与失败的代理
+            authorizationController.delegate = self;
+            
+            authorizationController.presentationContextProvider = self
+            // 在控制器初始化期间启动授权流
+            authorizationController.performRequests()
+        }else{
+            // 处理不支持系统版本
+            //                   NSLog(@"该系统版本不可用Apple登录");
         }
     }
     
@@ -195,9 +239,9 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
                                      "api_token": api_token,
-                                     ]
+        ]
         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .bindThirdAccount(params: params), showHud: true, loadingVC: self, success: { (result) in
-             
+            
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
             LOG(" dic ： \(String(describing: dic))")
             guard let data : Int = dic!["data"] as? Int else {
@@ -237,6 +281,9 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
         if b_from == "qq" {
             bindString = "QQ"
         }
+        if b_from == "apple" {
+            bindString = "苹果"
+        }
         if kWindow != nil {
             let logoutTip:HDLY_LogoutTip_View = HDLY_LogoutTip_View.createViewFromNib() as! HDLY_LogoutTip_View
             logoutTip.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
@@ -263,6 +310,9 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
                     if b_from == "qq" {
                         self.declare.isBindQQ = 0
                     }
+                    if b_from == "apple" {
+                        self.declare.isBindApple = 0
+                    }
                     self.myTableView.reloadData()
                 }) { (error, msg) in
                     HDAlert.showAlertTipWith(type: .onlyText, text: "解除绑定失败")
@@ -274,3 +324,61 @@ extension HDLY_AccountBind_VC: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+extension HDLY_AccountBind_VC : ASAuthorizationControllerDelegate {
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let user = appleIDCredential.user // 授权的用户唯一标识
+            let identityToken = appleIDCredential.identityToken // 授权用户的JWT凭证
+            let str = String(data:identityToken!, encoding: String.Encoding.utf8)!
+            let array = user.components(separatedBy:".")
+            print("字符串转数组:\(array)")
+            let name = array[1]
+            let index = name.index(name.startIndex, offsetBy:6)//获取字符d的索引
+            let nickname = String(name[..<index])
+            HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkApple(userId: user, identityToken: str), showHud: true, loadingVC: self, success: { (result) in
+                
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                LOG(" dic ： \(String(describing: dic))")
+                let api_token = HDDeclare.shared.api_token ?? ""
+                let deviceno = HDLY_UserModel.shared.getDeviceNum()
+                let params: [String: Any] = ["openid": user,
+                                             "b_from": "apple",
+                                             "deviceno": deviceno,
+                                             "b_nickname": "apple用户\(nickname)",
+                                             "api_token": api_token,
+                ]
+                HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .bindThirdAccount(params: params), showHud: true, loadingVC: self, success: { (result) in
+                    
+                    let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                    LOG(" dic ： \(String(describing: dic))")
+                    guard let data : Int = dic!["data"] as? Int else {
+                        return
+                    }
+                    
+                    if data == 1 {
+                        HDAlert.showAlertTipWith(type: .onlyText, text: "绑定成功")
+                    }
+                    self.declare.isBindApple = 1
+                    self.myTableView.reloadData()
+                }) { (errorCode, msg) in
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "绑定失败")
+                }
+            }) { (errorCode, msg) in
+                HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+            }
+        }
+    }
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+@available(iOS 13.0, *)
+extension HDLY_AccountBind_VC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+}

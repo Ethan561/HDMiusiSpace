@@ -207,13 +207,17 @@ extension HDLY_RecmdMore_VC {
                 cell?.typeImgV.image = UIImage.init(named: "xinzhi_icon_video_black_default")
             }
             cell?.setPriceLabel1(model: model)
-            if model.is_top?.int  == 1 {
+            if model.course_top?.int  == 1 {
+                cell?.newTipL.text = "新课程"
                 cell?.newTipL.isHidden = false
             }else {
-                cell?.newTipL.isHidden = true
-            }
-            cell?.newTipL.text = "新课时"
-            
+               if model.is_top?.int  == 1 {
+                    cell?.newTipL.isHidden = false
+                }else {
+                    cell?.newTipL.isHidden = true
+                }
+                cell?.newTipL.text = "新课时"
+            }       
             return cell!
         }
         

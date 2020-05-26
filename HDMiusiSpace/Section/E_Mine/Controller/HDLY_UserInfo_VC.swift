@@ -41,13 +41,13 @@ class HDLY_UserInfo_VC: HDItemBaseVC , UIImagePickerControllerDelegate,UINavigat
         nicknameL.text = declare.nickname
         signatureL.text = declare.profile
         var s = ""
-        declare.labStr?.forEach({ (str) in
+        declare.labStr.forEach({ (str) in
             s = s + str
         })
         labStrs.removeAllSubviews()
          var recordLab: UILabel? = nil
-        for i in 0..<declare.labStr!.count {
-            let tagTitle = declare.labStr![i] as NSString
+        for i in 0..<declare.labStr.count {
+            let tagTitle = declare.labStr[i] as NSString
             let lab = UILabel()
             lab.backgroundColor = UIColor.white
             lab.textColor = UIColor.HexColor(0x9b9b9b)

@@ -74,12 +74,13 @@ final class HDDeclare: NSObject {
     var isVip : Int?   //微博昵称
     var isBindWechat : Int?  //是否绑定微信
     var isBindWeibo : Int?   //是否绑定微博
+    var isBindApple : Int?  //是否绑定微信
     var isBindQQ : Int?  //是否绑定QQ
     var wechatName : String?  //微信昵称
     var weiboName : String?   //微博昵称
     var QQName : String?  //QQ昵称
     var profile : String?   //个人简介
-    var labStr : [String]?   //兴趣标签
+    var labStr = [String]()   //兴趣标签
     var user = UserModel()
     //enum 类型
     var languageType    : Language_Type   = .kLanguage_Type_Chinese
@@ -172,6 +173,7 @@ final class HDDeclare: NSObject {
         self.isVip = self.user.is_vip
         self.isBindWeibo = self.user.bind_wb
         self.isBindWechat = self.user.bind_wx
+        self.isBindApple = self.user.bind_apple
         self.weiboName = self.user.wb_nickname
         self.wechatName = self.user.wx_nickname
         self.isBindQQ = self.user.bind_qq

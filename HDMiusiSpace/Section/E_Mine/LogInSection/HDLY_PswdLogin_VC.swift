@@ -19,13 +19,13 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     @IBOutlet weak var weiboBtn: UIButton!
     @IBOutlet weak var thirdView: UIStackView!
     let declare:HDDeclare = HDDeclare.shared
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "账号密码登录"
         self.isShowNavShadowLayer = false
         loginBtn.layer.cornerRadius = 23
-//        setupBarBtn()
+        //        setupBarBtn()
         phoneTF.keyboardType = .numberPad
         phoneTF.returnKeyType = .done
         phoneTF.delegate = self
@@ -91,8 +91,8 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
-//                    self.backToRootEVC()
-//                    self.navigationController?.popToRootViewController(animated: true)
+                    //                    self.backToRootEVC()
+                    //                    self.navigationController?.popToRootViewController(animated: true)
                     self.navigationController?.popViewController(animated: true)
                     self.navigationController?.popViewController(animated: false)
                 })
@@ -161,9 +161,9 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
                 LOG("\(String(describing: error?.localizedDescription))")
             }else {
                 let resp:UMSocialUserInfoResponse = result as! UMSocialUserInfoResponse
-                LOG("name:\(resp.name)")
-                LOG("uid:\(resp.uid)")
-                LOG("iconurl:\(resp.iconurl)")
+//                LOG("name:\(resp.name)")
+//                LOG("uid:\(resp.uid)")
+//                LOG("iconurl:\(resp.iconurl)")
                 //
                 self.thirdLoginRequestWithInfo(resp: resp, from: from)
             }
@@ -177,14 +177,14 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
         let b_nickname = resp.name!
         let b_avatar = resp.iconurl ?? ""
         let unionid = resp.unionId ?? ""
-
+        
         let params: [String: Any] = ["openid": openid,
                                      "b_from": from,
                                      "unionid": unionid,
                                      "b_nickname": b_nickname,
                                      "b_avatar": b_avatar,
                                      "deviceno": deviceno,
-                                     ]
+        ]
         HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
             
             let dic = HD_LY_NetHelper.dataToDictionary(data: result)
@@ -195,7 +195,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
             self.declare.phone    = dataDic["phone"] as? String
             self.declare.email    = dataDic["email"] as? String
             self.declare.nickname = dataDic["nickname"] as? String
-            self.declare.isVip  =  dataDic["nickname"] as? Int
+            self.declare.isVip  =  dataDic["is_vip"] as? Int
             let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
             self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
             let arr:Array<String> = dataDic["tags"] as! Array<String>
@@ -212,10 +212,10 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
             HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
-//                self.back()
+                //                self.back()
                 self.navigationController?.popViewController(animated: true)
                 self.navigationController?.popViewController(animated: true)
-//                self.navigationController?.popToRootViewController(animated: true)
+                //                self.navigationController?.popToRootViewController(animated: true)
             })
             
         }) { (errorCode, msg) in
@@ -232,7 +232,7 @@ class HDLY_PswdLogin_VC: HDItemBaseVC,UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
@@ -273,18 +273,18 @@ extension HDLY_PswdLogin_VC {
     
     func configUI()  {
         if #available(iOS 13.0, *) {
-            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
-            appleIDBtn.cornerRadius = 10.0
-            appleIDBtn.frame = CGRect.init(x: 0, y:0, width: 65, height: 65)
+            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+            appleIDBtn.cornerRadius = 17.5
+            appleIDBtn.frame = CGRect.init(x: 15, y:0, width: 35, height: 35)
             appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-            self.thirdView.addArrangedSubview(appleIDBtn)
-            
+            let imgV = UIButton()
+            imgV.addSubview(appleIDBtn)
+            imgV.backgroundColor = UIColor.clear
+            self.thirdView.addArrangedSubview(imgV)
         } else {
-           
         }
     }
-     @objc func handleAuthorizationAppleIDButtonPress() {
-        print("00000000000")
+    @objc func handleAuthorizationAppleIDButtonPress() {
         if #available(iOS 13.0, *) {
             // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
             let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -309,38 +309,74 @@ extension HDLY_PswdLogin_VC {
 }
 
 extension HDLY_PswdLogin_VC : ASAuthorizationControllerDelegate {
+    
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
-            let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            
-            // Create an account in your system.
-            // For the purpose of this demo app, store the userIdentifier in the keychain.
-//            do {
-//                try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
-//            } catch {
-//                print("Unable to save userIdentifier to keychain.")
-//            }
-            
-            // For the purpose of this demo app, show the Apple ID credential information in the ResultViewController.
-            
-        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            // For the purpose of this demo app, show the password credential as an alert.
-            DispatchQueue.main.async {
-                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
-                let alertController = UIAlertController(title: "Keychain Credential Received",
-                                                        message: message,
-                                                        preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+            let user = appleIDCredential.user // 授权的用户唯一标识
+            let identityToken = appleIDCredential.identityToken // 授权用户的JWT凭证
+            let str = String(data:identityToken!, encoding: String.Encoding.utf8)!
+            let array = user.components(separatedBy:".")
+            let name = array[1]
+            let index = name.index(name.startIndex, offsetBy:6)//获取字符d的索引
+            let nickname = String(name[..<index])
+            HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkApple(userId: user, identityToken: str), showHud: true, loadingVC: self, success: { (result) in
+                
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                LOG(" dic ： \(String(describing: dic))")
+                let deviceno = HDLY_UserModel.shared.getDeviceNum()
+                let params: [String: Any] = ["openid": user,
+                                             "b_from": "apple",
+                                             "deviceno": deviceno,
+                                             "b_nickname": "apple用户\(nickname)",
+                ]
+                HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
+                    
+                    let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                    LOG(" dic ： \(String(describing: dic))")
+                    let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                    self.declare.api_token = dataDic["api_token"] as? String
+                    self.declare.uid      = dataDic["uid"] as? Int
+                    self.declare.phone    = dataDic["phone"] as? String
+                    self.declare.email    = dataDic["email"] as? String
+                    self.declare.nickname = dataDic["nickname"] as? String
+                    self.declare.isVip  =  dataDic["is_vip"] as? Int
+                    let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
+                    self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+                    let arr:Array<String> = dataDic["tags"] as! Array<String>
+                    if arr.count > 0 {
+                        let tags = NSSet.init(array: arr)
+                        JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+                    }
+                    
+                    self.declare.loginStatus = .kLogin_Status_Login
+                    //
+                    let defaults = UserDefaults.standard
+                    defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+                    HDLY_UserModel.shared.requestUserInfo()
+                    HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
+                        self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    
+                    
+                }) { (errorCode, msg) in
+                    HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+                    if errorCode == 422 {
+                        let vc = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_ThirdBindPhoneVC") as! HDZQ_ThirdBindPhoneVC
+                        vc.params = params
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                }
+                
+            }) { (errorCode, msg) in
+                HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
             }
+            
+            
         }
     }
     @available(iOS 13.0, *)

@@ -213,12 +213,19 @@ extension HDLY_Recommend_SubVC {
             if  model.boutiquelist?.img != nil  {
                 cell?.imgV.kf.setImage(with: URL.init(string: model.boutiquelist!.img!), placeholder: UIImage.grayImage(sourceImageV: (cell?.imgV)!), options: nil, progressBlock: nil, completionHandler: nil)
             }
-            if model.boutiquelist?.is_top?.int  == 1 {
+            
+            if model.boutiquelist?.course_top?.int  == 1 {
+                cell?.newTipL.text = "新课程"
                 cell?.newTipL.isHidden = false
             }else {
-                cell?.newTipL.isHidden = true
+               if model.boutiquelist?.is_top?.int  == 1 {
+                    cell?.newTipL.isHidden = false
+                }else {
+                    cell?.newTipL.isHidden = true
+                }
+                cell?.newTipL.text = "新课时"
             }
-            cell?.newTipL.text = "新课时"
+            
             cell?.titleL.text = model.boutiquelist?.title
             cell?.contentTitle = model.boutiquelist?.title
             cell?.authorL.text = String.init(format: "%@  %@", (model.boutiquelist?.teacher_name)! ,(model.boutiquelist?.teacher_title)!)

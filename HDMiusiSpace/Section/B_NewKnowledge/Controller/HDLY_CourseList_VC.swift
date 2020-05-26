@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate, ChapterListPlayDelegate{
     
@@ -185,7 +186,11 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
         
         // 播放完自动播放下一个
         self.player.playerDidToEnd = {[weak self] (asset) -> () in
-            self?.videoPlayerDidToEnd()
+            self!.controlView.coverImageHidden = true
+            self!.chapterListVC?.isPlaying = false
+            self!.player.currentPlayerManager.pause!()
+            self!.player.currentPlayerManager.seek?(toTime: 0, completionHandler: nil)
+//            self?.videoPlayerDidToEnd()
         }
         
         self.player.playerPlayStateChanged = { (asset,state) -> () in
@@ -236,9 +241,9 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.replaceCurrentPlayerManager(m)
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
-            if video.isEmpty == false && video.contains("http://") {
-                self.controlView.coverImageHidden = false
-            }
+//            if video.isEmpty == false && video.contains("http://") {
+                self.controlView.coverImageHidden = true
+//            }
             self.chapterListVC?.isPlaying = false
             self.player.currentPlayerManager.pause!()
         }
@@ -359,9 +364,22 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             if video.isEmpty == false {
                 self.player.assetURL = NSURL.init(string: video)! as URL
                 print("===============3")
+                
                 if isMp3Course {
+                    
+                    ImageDownloader.default.downloadImage(with: URL.init(string: model.default_img)! , retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
+                        self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
+                        self.controlView.coverImageHidden = false
+                        self.controlView.showCoverImagView()
+                    }
+                }
+                if video.contains(".mp3") {
+                    
+                   ImageDownloader.default.downloadImage(with: URL.init(string: model.default_img)!, retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
+                        self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
                     self.controlView.coverImageHidden = false
                     self.controlView.showCoverImagView()
+                    }
                 }
                 self.chapterListVC?.isPlaying = true
             }
@@ -391,7 +409,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             self.controlView.coverImageHidden = false
             self.controlView.showCoverImagView()
         }
-    }·
+    }
     
     func dataRequest()  {
         guard let idnum = self.courseId else {

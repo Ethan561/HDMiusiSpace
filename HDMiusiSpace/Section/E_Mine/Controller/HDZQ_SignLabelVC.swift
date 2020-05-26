@@ -230,12 +230,12 @@ class HDZQ_SignLabelVC: UIViewController {
                 let tags = NSSet.init(array: arr)
                 JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
             }
-            HDDeclare.shared.labStr?.removeAll()
+            HDDeclare.shared.labStr.removeAll()
 
             //保存个人信息
             if (HDDeclare.shared.funnyTagArray?.count)! > 0 {
                 HDDeclare.shared.funnyTagArray!.forEach({ (m) in
-                    HDDeclare.shared.labStr?.append(m.title!)//个人信息标签只显示兴趣
+                    HDDeclare.shared.labStr.append(m.title!)//个人信息标签只显示兴趣
                 })
             }
             

@@ -226,7 +226,7 @@ class HDLY_SmsLogin_VC: HDItemBaseVC, UITextFieldDelegate {
             self.declare.phone    = dataDic["phone"] as? String
             self.declare.email    = dataDic["email"] as? String
             self.declare.nickname = dataDic["nickname"] as? String
-            self.declare.isVip  =  dataDic["nickname"] as? Int
+            self.declare.isVip  =  dataDic["is_vip"] as? Int
             let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
             self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
             let arr:Array<String> = dataDic["tags"] as! Array<String>
@@ -302,11 +302,9 @@ extension HDLY_SmsLogin_VC {
             appleIDBtn.frame = CGRect.init(x: 15, y:0, width: 35, height: 35)
             appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
             let imgV = UIButton()
-//            imgV.frame = CGRect.init(x: 0, y:0, width: 65, height: 65)
             imgV.addSubview(appleIDBtn)
             imgV.backgroundColor = UIColor.clear
             self.thirdView.addArrangedSubview(imgV)
-            //            self.thirdView.addArrangedSubview(appleIDBtn)
         } else {
 //            let appleIDBtn = UIButton.init(type: .custom)
 //            appleIDBtn.layer.cornerRadius = 17.5
@@ -318,7 +316,6 @@ extension HDLY_SmsLogin_VC {
         }
     }
     @objc func handleAuthorizationAppleIDButtonPress() {
-        print("00000000000")
         if #available(iOS 13.0, *) {
             // 基于用户的Apple ID授权用户，生成用户授权请求的一种机制
             let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -348,41 +345,90 @@ extension HDLY_SmsLogin_VC : ASAuthorizationControllerDelegate {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             let user = appleIDCredential.user // 授权的用户唯一标识
-            let fullName = appleIDCredential.fullName // 授权的用户名称
-            let email = appleIDCredential.email // 授权的用户邮箱
+//            let fullName = appleIDCredential.fullName // 授权的用户名称
+//            let email = appleIDCredential.email // 授权的用户邮箱
             let identityToken = appleIDCredential.identityToken // 授权用户的JWT凭证
-            let authorizationCode = appleIDCredential.authorizationCode // 授权码
+//            let authorizationCode = appleIDCredential.authorizationCode // 授权码
+            let str = String(data:identityToken!, encoding: String.Encoding.utf8)!
+//            let auth = String(data:authorizationCode!, encoding: String.Encoding.utf8)!
             
-            print(user)
-            print(fullName)
-            print(email)
-            print(identityToken!)
-            print(authorizationCode!)
-            // Create an account in your system.
-            // For the purpose of this demo app, store the userIdentifier in the keychain.
-            //            do {
-            //                try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
-            //            } catch {
-            //                print("Unable to save userIdentifier to keychain.")
-            //            }
-            
-            // For the purpose of this demo app, show the Apple ID credential information in the ResultViewController.
-            
-        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            // For the purpose of this demo app, show the password credential as an alert.
-            DispatchQueue.main.async {
-                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
-                let alertController = UIAlertController(title: "Keychain Credential Received",
-                                                        message: message,
-                                                        preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-                self.present(alertController, animated: true, completion: nil)
+
+                   let array = user.components(separatedBy:".")
+                   print("字符串转数组:\(array)")
+            let name = array[1]
+            let index = name.index(name.startIndex, offsetBy:6)//获取字符d的索引
+            let nickname = String(name[..<index])
+            HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .checkApple(userId: user, identityToken: str), showHud: true, loadingVC: self, success: { (result) in
+                
+                let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                LOG(" dic ： \(String(describing: dic))")
+                let deviceno = HDLY_UserModel.shared.getDeviceNum()
+                let params: [String: Any] = ["openid": user,
+                                                   "b_from": "apple",
+                                                   "deviceno": deviceno,
+                                                   "b_nickname": "apple用户\(nickname)",
+                      ]
+                      HD_LY_NetHelper.loadData(API: HD_LY_API.self, target: HD_LY_API.register_bind(params: params), showHud: true, loadingVC: self, success: { (result) in
+                          
+                          let dic = HD_LY_NetHelper.dataToDictionary(data: result)
+                          LOG(" dic ： \(String(describing: dic))")
+                          let dataDic: Dictionary<String,Any> = dic!["data"] as! Dictionary
+                          self.declare.api_token = dataDic["api_token"] as? String
+                          self.declare.uid      = dataDic["uid"] as? Int
+                          self.declare.phone    = dataDic["phone"] as? String
+                          self.declare.email    = dataDic["email"] as? String
+                          self.declare.nickname = dataDic["nickname"] as? String
+                          self.declare.isVip  =  dataDic["is_vip"] as? Int
+                          let avatarStr = dataDic["avatar"] as? String == nil ? "" : dataDic["avatar"] as? String
+                          self.declare.avatar = HDDeclare.IP_Request_Header() + avatarStr!
+                          let arr:Array<String> = dataDic["tags"] as! Array<String>
+                          if arr.count > 0 {
+                              let tags = NSSet.init(array: arr)
+                              JPUSHService.setTags(tags as? Set<String>, completion: nil, seq: 1)
+                          }
+
+                          self.declare.loginStatus = .kLogin_Status_Login
+                          //
+                          let defaults = UserDefaults.standard
+                          defaults.setValue(self.declare.api_token, forKey: userInfoTokenKey)
+                          HDLY_UserModel.shared.requestUserInfo()
+                          HDAlert.showAlertTipWith(type: .onlyText, text: "登录成功")
+                          NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoginSuccess"), object: nil)
+                          DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0, execute: {
+                              self.back()
+                          })
+                          
+                      }) { (errorCode, msg) in
+                          HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
+                          if errorCode == 422 {
+                              let vc = UIStoryboard(name: "LogInSection", bundle: nil).instantiateViewController(withIdentifier: "HDZQ_ThirdBindPhoneVC") as! HDZQ_ThirdBindPhoneVC
+                              vc.params = params
+                              self.navigationController?.pushViewController(vc, animated: true)
+                          }
+                          
+                      }
+                
+            }) { (errorCode, msg) in
+                HDAlert.showAlertTipWith(type: HDAlertType.error, text: msg)
             }
+            
+            
         }
+//        else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            // Sign in using an existing iCloud Keychain credential.
+//            let username = passwordCredential.user
+//            let password = passwordCredential.password
+//
+//            // For the purpose of this demo app, show the password credential as an alert.
+//            DispatchQueue.main.async {
+//                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+//                let alertController = UIAlertController(title: "Keychain Credential Received",
+//                                                        message: message,
+//                                                        preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+//                self.present(alertController, animated: true, completion: nil)
+//            }
+//        }
     }
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {

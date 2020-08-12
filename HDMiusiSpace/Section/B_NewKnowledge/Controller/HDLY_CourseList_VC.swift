@@ -223,7 +223,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 print("===============1")
                 self.controlView.showTitle("", coverURLString: kVideoCover, fullScreenMode: ZFFullScreenMode.landscape)
             }
-            if isMp3Course {
+            if course.video.contains("mp3") {
                 self.controlView.coverImageHidden = false
             }
             self.player.currentPlayerManager.pause!()
@@ -365,21 +365,25 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
                 self.player.assetURL = NSURL.init(string: video)! as URL
                 print("===============3")
                 
-                if isMp3Course {
-                    
-                    ImageDownloader.default.downloadImage(with: URL.init(string: model.default_img)! , retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
-                        self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
-                        self.controlView.coverImageHidden = false
-                        self.controlView.showCoverImagView()
-                    }
-                }
+//                if isMp3Course {
+//                    if let urlurl = URL.init(string: model.default_img) {
+//                        ImageDownloader.default.downloadImage(with: urlurl, retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
+//                            self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
+//                            self.controlView.coverImageHidden = false
+//                            self.controlView.showCoverImagView()
+//                        }
+//                    }
+//
+//                }
                 if video.contains(".mp3") {
-                    
-                   ImageDownloader.default.downloadImage(with: URL.init(string: model.default_img)!, retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
-                        self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
-                    self.controlView.coverImageHidden = false
-                    self.controlView.showCoverImagView()
+                    if let urlurl = URL.init(string: model.default_img) {
+                        ImageDownloader.default.downloadImage(with: urlurl, retrieveImageTask: nil, options: nil, progressBlock: nil) { (image, error, url, _) in
+                            self.controlView.showTitle("", cover: image, fullScreenMode: .landscape)
+                            self.controlView.coverImageHidden = false
+                            self.controlView.showCoverImagView()
+                        }
                     }
+                    
                 }
                 self.chapterListVC?.isPlaying = true
             }
@@ -405,7 +409,7 @@ class HDLY_CourseList_VC: HDItemBaseVC, SPPageMenuDelegate, UIScrollViewDelegate
             self.player.assetURL = NSURL.init(string: video)! as URL
             print("===============4")
         }
-        if isMp3Course {
+        if video.contains("mp3") {
             self.controlView.coverImageHidden = false
             self.controlView.showCoverImagView()
         }

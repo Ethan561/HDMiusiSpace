@@ -297,7 +297,7 @@ extension HDLY_SmsLogin_VC {
     
     func configUI()  {
         if #available(iOS 13.0, *) {
-            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+            let appleIDBtn = ASAuthorizationAppleIDButton.init(authorizationButtonType: .signIn, authorizationButtonStyle: .whiteOutline)
             appleIDBtn.cornerRadius = 17.5
             appleIDBtn.frame = CGRect.init(x: 15, y:0, width: 35, height: 35)
             appleIDBtn.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)

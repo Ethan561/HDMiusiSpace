@@ -349,7 +349,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 6
+            return 7
         }
         if section == 1 {
             return myDynamics.count
@@ -382,6 +382,8 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 }
             }else if index == 5 {//我的动态
                 return declare.loginStatus == .kLogin_Status_Login ? 60 : 0
+            }else if index == 6 {//我的动态
+                return  60
             }
         }
         if section == 1 {
@@ -429,6 +431,11 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 cell?.bottomLine.isHidden = true
                 cell?.moreImgV.isHidden = true
                 cell?.nameL.text = "我的动态"
+                return cell!
+            } else if index == 6 {//我的动态
+                let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
+                cell?.moreImgV.isHidden = false
+                cell?.nameL.text = "我的游戏奖励"
                 return cell!
             }
         }
@@ -537,6 +544,9 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             }
             else if indexPath.row == 3 {
                 self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
+            }
+            else if indexPath.row == 6 {
+                self.performSegue(withIdentifier: "HDMyGamePrizeListVC", sender: nil)
             }
         }
     }

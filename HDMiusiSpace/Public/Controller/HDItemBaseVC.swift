@@ -244,7 +244,10 @@ class HDItemBaseVC: UIViewController {
                 vc.navigationController?.pushViewController(courseDesVC, animated: true)
             }
         }) { (errorCode, msg) in
-            
+            let courseDesVC = UIStoryboard(name: "RootB", bundle: nil).instantiateViewController(withIdentifier: "HDLY_CourseDes_VC") as! HDLY_CourseDes_VC
+                       courseDesVC.courseId = courseId
+                       courseDesVC.hidesBottomBarWhenPushed = true
+                       vc.navigationController?.pushViewController(courseDesVC, animated: true)
         }
     }
     // 跳转到第三方

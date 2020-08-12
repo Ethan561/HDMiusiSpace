@@ -405,7 +405,7 @@ extension HDRootBVC {
     
     //
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//       LOG("*****:\(scrollView.contentOffset.y)")
+       LOG("*****:\(scrollView.contentOffset.y)")
         if self.myTableView == scrollView {
             if self.childVCScrollView != nil {
                 if self.childVCScrollView!.contentOffset.y > 0 {
@@ -416,7 +416,7 @@ extension HDRootBVC {
             if offSetY >= HeaderViewH {
                 self.myTableView.contentOffset = CGPoint.init(x: 0, y: HeaderViewH )// myTableView 不滚动
             } else {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "headerViewToTop"), object: nil)  //子视图不滚动
             }
         }
     }

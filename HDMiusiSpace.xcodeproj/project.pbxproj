@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0EA74B24DCFD7100056326 /* HDMyGamePrizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0EA74924DCFD7100056326 /* HDMyGamePrizeCell.swift */; };
+		1B0EA74C24DCFD7100056326 /* HDMyGamePrizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0EA74A24DCFD7100056326 /* HDMyGamePrizeCell.xib */; };
+		1B0EA74E24DD05A300056326 /* HDMyGamePrizeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0EA74D24DD05A300056326 /* HDMyGamePrizeDetailVC.swift */; };
 		1B1824B521C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */; };
 		1B1A81F621A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */; };
 		1B1A81FA21A934E1001DCC1F /* HDZQ_MyFootprintVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */; };
@@ -56,6 +59,7 @@
 		1B48151F21C7ADCC008C7A65 /* HDZQ_UpdateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48151E21C7ADCC008C7A65 /* HDZQ_UpdateAlertView.swift */; };
 		1B4E777621A7B17900F35590 /* HDZQ_MyCoursesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */; };
 		1B4E777821A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */; };
+		1B4FF09B24DBF0CB007C3C84 /* HDMyGamePrizeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4FF09A24DBF0CB007C3C84 /* HDMyGamePrizeListVC.swift */; };
 		1B6022ED21B5511700BD6DBC /* HDItemBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022EC21B5511700BD6DBC /* HDItemBaseVC.swift */; };
 		1B6022EF21B5513000BD6DBC /* HDZQ_DayCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */; };
 		1B6022F121B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */; };
@@ -656,6 +660,9 @@
 
 /* Begin PBXFileReference section */
 		125577B7AAE30F28F8A55B76 /* Pods_HDMiusiSpace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDMiusiSpace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0EA74924DCFD7100056326 /* HDMyGamePrizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDMyGamePrizeCell.swift; sourceTree = "<group>"; };
+		1B0EA74A24DCFD7100056326 /* HDMyGamePrizeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDMyGamePrizeCell.xib; sourceTree = "<group>"; };
+		1B0EA74D24DD05A300056326 /* HDMyGamePrizeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDMyGamePrizeDetailVC.swift; sourceTree = "<group>"; };
 		1B1824B421C8E7EA00E81838 /* HDZQ_MyCollectCollectionSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCollectCollectionSubVC.swift; sourceTree = "<group>"; };
 		1B1A81F521A8EF70001DCC1F /* HDZQ_ThirdBindPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_ThirdBindPhoneVC.swift; sourceTree = "<group>"; };
 		1B1A81F921A934E1001DCC1F /* HDZQ_MyFootprintVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyFootprintVC.swift; sourceTree = "<group>"; };
@@ -705,6 +712,7 @@
 		1B48151E21C7ADCC008C7A65 /* HDZQ_UpdateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_UpdateAlertView.swift; sourceTree = "<group>"; };
 		1B4E777521A7B17900F35590 /* HDZQ_MyCoursesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesVC.swift; sourceTree = "<group>"; };
 		1B4E777721A7B18B00F35590 /* HDZQ_MyCoursesSubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MyCoursesSubVC.swift; sourceTree = "<group>"; };
+		1B4FF09A24DBF0CB007C3C84 /* HDMyGamePrizeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDMyGamePrizeListVC.swift; sourceTree = "<group>"; };
 		1B6022EC21B5511700BD6DBC /* HDItemBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDItemBaseVC.swift; sourceTree = "<group>"; };
 		1B6022EE21B5512F00BD6DBC /* HDZQ_DayCardVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardVC.swift; sourceTree = "<group>"; };
 		1B6022F021B5513400BD6DBC /* HDZQ_DayCardBrowserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDZQ_DayCardBrowserVC.swift; sourceTree = "<group>"; };
@@ -1452,6 +1460,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B4FF09924DBEE8C007C3C84 /* GameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B4FF09A24DBF0CB007C3C84 /* HDMyGamePrizeListVC.swift */,
+				1B0EA74D24DD05A300056326 /* HDMyGamePrizeDetailVC.swift */,
+				1B0EA74924DCFD7100056326 /* HDMyGamePrizeCell.swift */,
+				1B0EA74A24DCFD7100056326 /* HDMyGamePrizeCell.xib */,
+			);
+			path = GameCenter;
+			sourceTree = "<group>";
+		};
 		1BF949D42429DF02002708BC /* UMSocial */ = {
 			isa = PBXGroup;
 			children = (
@@ -2845,6 +2864,7 @@
 		D6C9FCB4211825DC007C8E56 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1B4FF09924DBEE8C007C3C84 /* GameCenter */,
 				D67F82B521D47AAF00F8941D /* MyCollection */,
 				D67F82B421D47A5A00F8941D /* MyFollow */,
 				A70C686621AD10980033C488 /* MyWallet */,
@@ -3332,6 +3352,7 @@
 				1B2928F121A67A8F00FEF21C /* HDZQ_MyFollowCell.xib in Resources */,
 				A7C59E52219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.xib in Resources */,
 				1B48151B21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.xib in Resources */,
+				1B0EA74C24DCFD7100056326 /* HDMyGamePrizeCell.xib in Resources */,
 				1B7A669121C4A00900DDFE5E /* HDZQ_CommentActionView.xib in Resources */,
 				A79D47B62195545100534AE2 /* HDSSL_worldLocView.xib in Resources */,
 				D66991CA2130EDD5002568B2 /* HDLY_AnswerText_Cell.xib in Resources */,
@@ -3602,6 +3623,7 @@
 				1B1DAB9721F9468C00826951 /* HDZQ_RootDSearchView.swift in Sources */,
 				D614CFBF21D727D700CA13AC /* ESPullToRefresh+Manager.swift in Sources */,
 				D61E94C82192D12400C5299F /* UIImage+WebP.m in Sources */,
+				1B0EA74B24DCFD7100056326 /* HDMyGamePrizeCell.swift in Sources */,
 				A79D9D39219E4AB80081B3AE /* HDSSL_dCommentCell.swift in Sources */,
 				D6C9FCBD211825DC007C8E56 /* HDTabBarVC.swift in Sources */,
 				A7441D3F21A2A0D50064E6A6 /* TZLocationManager.m in Sources */,
@@ -3752,6 +3774,7 @@
 				D68D541B2133D173000CD258 /* HDLY_SmsLogin_VC.swift in Sources */,
 				D6C9FC6821181F54007C8E56 /* NSObject+Extension.swift in Sources */,
 				D6E725CB21C4EA4300C7E714 /* ViewController+Extension.swift in Sources */,
+				1B0EA74E24DD05A300056326 /* HDMyGamePrizeDetailVC.swift in Sources */,
 				D6C9FCC0211825DC007C8E56 /* HDTabBarItem.swift in Sources */,
 				D62277D421368069008F1416 /* MTImagePickerAssetsController.swift in Sources */,
 				A70C686821AD11020033C488 /* HDSSL_MyWalletVC.swift in Sources */,
@@ -3942,6 +3965,7 @@
 				D6115AEE218FD490004A05DA /* ZFReachabilityManager.m in Sources */,
 				A753D10F21B6269F009C14D7 /* HDSSL_defaultAlertView.swift in Sources */,
 				D62277A621367D4D008F1416 /* KingfisherPhotoLoader.swift in Sources */,
+				1B4FF09B24DBF0CB007C3C84 /* HDMyGamePrizeListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4145,7 +4169,7 @@
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: Zhao XinXin (FZ6RJ5Q7Y5)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
@@ -4168,7 +4192,7 @@
 					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "61a4316f-87ec-4c84-b4d9-4eee05cfaff1";
@@ -4190,7 +4214,7 @@
 				CODE_SIGN_ENTITLEMENTS = HDMiusiSpace/HDMiusiSpace.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Beijing Muspace Culture & Technology Co.,Ltd. (KK468Q7DR9)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = KK468Q7DR9;
 				ENABLE_BITCODE = NO;
@@ -4213,7 +4237,7 @@
 					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/HDMiusiSpace/UMSocial/SocialLibraries/QQ",
 				);
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hengdawb.smart.HDMiusiSpace;
 				PRODUCT_NAME = "$(TARGET_NAME)";

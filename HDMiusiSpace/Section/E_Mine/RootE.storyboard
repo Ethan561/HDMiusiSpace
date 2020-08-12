@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -292,6 +292,7 @@
                         <segue destination="xVL-ng-m9N" kind="show" identifier="PushToFootPrintVC" id="wdB-2d-6bT"/>
                         <segue destination="wPN-R3-CIv" kind="push" identifier="PushTo_HDSSL_MyWalletVC_Line" id="oCG-72-XEp"/>
                         <segue destination="eAD-5q-Ujz" kind="push" identifier="PushTo_HDSSL_MyOrderVC_Line" id="vSa-TM-yWw"/>
+                        <segue destination="yuw-wO-fCV" kind="show" identifier="HDMyGamePrizeListVC" id="Yh4-96-dkY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQs-sh-aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -937,7 +938,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCz-ME-Mdt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="-224"/>
+            <point key="canvasLocation" x="2337" y="-214"/>
         </scene>
         <!--Message CenterVC-->
         <scene sceneID="uZS-FD-2vd">
@@ -1213,7 +1214,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wd_icon_yj" translatesAutoresizingMaskIntoConstraints="NO" id="3y0-CJ-zgw">
-                                                            <rect key="frame" x="234" y="102" width="20" height="30"/>
+                                                            <rect key="frame" x="244" y="102" width="10" height="15"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3149,7 +3150,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ikf-uX-4bU">
-                                                    <rect key="frame" x="251" y="-4.5" width="30" height="44.5"/>
+                                                    <rect key="frame" x="251" y="7" width="30" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="FhS-H7-itI"/>
                                                     </constraints>
@@ -3241,6 +3242,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHC-JI-GNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4945" y="-2651"/>
+        </scene>
+        <!--My Game Prize ListVC-->
+        <scene sceneID="Qs6-ox-UAn">
+            <objects>
+                <viewController storyboardIdentifier="HDMyGamePrizeListVC" hidesBottomBarWhenPushed="YES" id="yuw-wO-fCV" customClass="HDMyGamePrizeListVC" customModule="HDMiusiSpace" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3ay-0m-Eoi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LQ6-sS-a2T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yuw-wO-fCV" id="m8K-n4-JAO"/>
+                                    <outlet property="delegate" destination="yuw-wO-fCV" id="pGU-Xt-rYM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CSB-6W-Ngl" firstAttribute="trailing" secondItem="LQ6-sS-a2T" secondAttribute="trailing" id="Cnp-da-ff5"/>
+                            <constraint firstItem="LQ6-sS-a2T" firstAttribute="leading" secondItem="CSB-6W-Ngl" secondAttribute="leading" id="Eef-iJ-b5R"/>
+                            <constraint firstItem="CSB-6W-Ngl" firstAttribute="bottom" secondItem="LQ6-sS-a2T" secondAttribute="bottom" id="sc7-oL-ok5"/>
+                            <constraint firstItem="LQ6-sS-a2T" firstAttribute="top" secondItem="CSB-6W-Ngl" secondAttribute="top" id="uog-ba-9Rd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CSB-6W-Ngl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VBx-Uc-oJk"/>
+                    <connections>
+                        <outlet property="myTableView" destination="LQ6-sS-a2T" id="uW8-Vl-YkU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZfN-wX-S42" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4594" y="-1750"/>
         </scene>
     </scenes>
     <resources>

@@ -10,6 +10,11 @@ import UIKit
 
 class HDMyGamePrizeCell: UITableViewCell {
 
+    @IBOutlet weak var orderSnLabel: UILabel!
+    @IBOutlet weak var positionL: UILabel!
+    @IBOutlet weak var poiL: UILabel!
+    @IBOutlet weak var timeL: UILabel!
+    @IBOutlet weak var getPrizeTimeL: UILabel!
     @IBOutlet weak var gettingStatusL: UILabel!
     @IBOutlet weak var gotPrizeImgV: UIImageView!
     override func awakeFromNib() {

@@ -51,6 +51,7 @@
 		1B38C17121E472FA006F804C /* HDZQ_VoiceSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38C17021E472FA006F804C /* HDZQ_VoiceSearchView.swift */; };
 		1B38C17521E49DC7006F804C /* voiceSearch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1B38C17421E49DC7006F804C /* voiceSearch.gif */; };
 		1B38C17721E4A65A006F804C /* HDGIFImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B38C17621E4A65A006F804C /* HDGIFImageView.swift */; };
+		1B3EB14924F49DB200ED8CB6 /* HDFloatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3EB14824F49DB200ED8CB6 /* HDFloatView.swift */; };
 		1B40457421ABF31A004E203D /* HDZQ_RelatedClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */; };
 		1B40457521ABF31A004E203D /* HDZQ_RelatedClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */; };
 		1B48151A21C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */; };
@@ -72,6 +73,10 @@
 		1B87792B21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */; };
 		1B87792C21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */; };
 		1B90BB4D21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */; };
+		1B929E9324EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B929E9124EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.swift */; };
+		1B929E9424EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B929E9224EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.xib */; };
+		1B929E9724EFC9CC006227BB /* HDMyGamePrizeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B929E9524EFC9CC006227BB /* HDMyGamePrizeInfoCell.swift */; };
+		1B929E9824EFC9CC006227BB /* HDMyGamePrizeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B929E9624EFC9CC006227BB /* HDMyGamePrizeInfoCell.xib */; };
 		1BF949D02429DC9E002708BC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949CF2429DC9E002708BC /* WebKit.framework */; };
 		1BF949D22429DCDB002708BC /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BF949D12429DCDB002708BC /* Photos.framework */; };
 		1BF949E32429DF02002708BC /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BF949D62429DF02002708BC /* UMSocialSDKResources.bundle */; };
@@ -704,6 +709,7 @@
 		1B38C17021E472FA006F804C /* HDZQ_VoiceSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_VoiceSearchView.swift; sourceTree = "<group>"; };
 		1B38C17421E49DC7006F804C /* voiceSearch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = voiceSearch.gif; sourceTree = "<group>"; };
 		1B38C17621E4A65A006F804C /* HDGIFImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDGIFImageView.swift; sourceTree = "<group>"; };
+		1B3EB14824F49DB200ED8CB6 /* HDFloatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDFloatView.swift; sourceTree = "<group>"; };
 		1B40457221ABF31A004E203D /* HDZQ_RelatedClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_RelatedClassCell.swift; sourceTree = "<group>"; };
 		1B40457321ABF31A004E203D /* HDZQ_RelatedClassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_RelatedClassCell.xib; sourceTree = "<group>"; };
 		1B48151821C72FC0008C7A65 /* HDZQ_MoreCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_MoreCommentsCell.swift; sourceTree = "<group>"; };
@@ -725,6 +731,10 @@
 		1B87792921B2806C00850B55 /* HDZQ_FPExhibitPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPExhibitPlayCell.swift; sourceTree = "<group>"; };
 		1B87792A21B2806C00850B55 /* HDZQ_FPExhibitPlayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDZQ_FPExhibitPlayCell.xib; sourceTree = "<group>"; };
 		1B90BB4C21ABCD08008B50C1 /* HDZQ_FPSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDZQ_FPSectionHeaderView.swift; sourceTree = "<group>"; };
+		1B929E9124EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDMyGamePrizeQRCodeCell.swift; sourceTree = "<group>"; };
+		1B929E9224EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDMyGamePrizeQRCodeCell.xib; sourceTree = "<group>"; };
+		1B929E9524EFC9CC006227BB /* HDMyGamePrizeInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDMyGamePrizeInfoCell.swift; sourceTree = "<group>"; };
+		1B929E9624EFC9CC006227BB /* HDMyGamePrizeInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDMyGamePrizeInfoCell.xib; sourceTree = "<group>"; };
 		1BF949CF2429DC9E002708BC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		1BF949D12429DCDB002708BC /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		1BF949D62429DF02002708BC /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
@@ -1467,6 +1477,10 @@
 				1B0EA74D24DD05A300056326 /* HDMyGamePrizeDetailVC.swift */,
 				1B0EA74924DCFD7100056326 /* HDMyGamePrizeCell.swift */,
 				1B0EA74A24DCFD7100056326 /* HDMyGamePrizeCell.xib */,
+				1B929E9124EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.swift */,
+				1B929E9224EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.xib */,
+				1B929E9524EFC9CC006227BB /* HDMyGamePrizeInfoCell.swift */,
+				1B929E9624EFC9CC006227BB /* HDMyGamePrizeInfoCell.xib */,
 			);
 			path = GameCenter;
 			sourceTree = "<group>";
@@ -2649,6 +2663,7 @@
 				D696C3F521A3DCC800B7E3FA /* HDLY_ShareView.xib */,
 				D62B6D0E2268111D000F1017 /* HDZQ_PrivacyView.swift */,
 				D62B6D0D2268111D000F1017 /* HDZQ_PrivacyView.xib */,
+				1B3EB14824F49DB200ED8CB6 /* HDFloatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3397,6 +3412,7 @@
 				A72E30902199799F004E3735 /* HD_searchResultView.xib in Resources */,
 				D6C9FC8D21181FD1007C8E56 /* HDLoadingView.xib in Resources */,
 				D6724626211D1FE300239109 /* HDPagerViewCell.xib in Resources */,
+				1B929E9824EFC9CC006227BB /* HDMyGamePrizeInfoCell.xib in Resources */,
 				A7B8447A21A5269600FC8465 /* HDSSL_commentReplyCell.xib in Resources */,
 				D670D396212586870064750A /* HDLY_CourseComment_Cell.xib in Resources */,
 				D628268421B9324200693DEC /* HDLY_CreateOrderTipView.xib in Resources */,
@@ -3408,6 +3424,7 @@
 				D66C35C3213F805300363D7C /* HDLY_MineHome_Header.xib in Resources */,
 				D670D39A212586D10064750A /* HDLY_BuyNote_Cell.xib in Resources */,
 				D62277E121368069008F1416 /* MTImagePicker.strings in Resources */,
+				1B929E9424EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.xib in Resources */,
 				D696C3F621A3DCC800B7E3FA /* HDLY_ShareView.xib in Resources */,
 				D669473C212FE6610068945A /* HDLY_LeaveQuestion_VC.xib in Resources */,
 				D6C9FCD721183966007C8E56 /* RootC.storyboard in Resources */,
@@ -3600,6 +3617,7 @@
 				D6115AE5218FD490004A05DA /* ZFPlayerGestureControl.m in Sources */,
 				D61E512A21D0CDCE0083BECA /* HDLY_OpenLocServiceTip.swift in Sources */,
 				D62277E021368069008F1416 /* ImagePickerPreviewCell.swift in Sources */,
+				1B929E9324EFC9B3006227BB /* HDMyGamePrizeQRCodeCell.swift in Sources */,
 				D62277A421367D4D008F1416 /* FadePresentationController.swift in Sources */,
 				D6115AF0218FD490004A05DA /* ZFIJKPlayerManager.m in Sources */,
 				A7AA22A321AE25AA00CDA6CE /* HDSSL_TransactionRecordVC.swift in Sources */,
@@ -3844,6 +3862,7 @@
 				1B2928F021A67A8F00FEF21C /* HDZQ_MyFollowCell.swift in Sources */,
 				D66991CD2130EDE9002568B2 /* HDLY_AnswerAudio_Cell.swift in Sources */,
 				D6193B9B21C3842B00367356 /* UIView+Position.swift in Sources */,
+				1B3EB14924F49DB200ED8CB6 /* HDFloatView.swift in Sources */,
 				D6884E61211E7E7400ABDE5E /* HDLY_Listen_CollectionCell.swift in Sources */,
 				D637567F219FFC19004AD093 /* HDLY_MuseumInfoType1Cell.swift in Sources */,
 				D62277AB21367D4D008F1416 /* ScaleAnimator.swift in Sources */,
@@ -3913,6 +3932,7 @@
 				D68D54232133F437000CD258 /* HDLY_UserInfo_VC.swift in Sources */,
 				D62277AA21367D4D008F1416 /* PhotoBrowserCell.swift in Sources */,
 				D61E94CA2192D12400C5299F /* SDWebImageManager.m in Sources */,
+				1B929E9724EFC9CC006227BB /* HDMyGamePrizeInfoCell.swift in Sources */,
 				A7C59E51219C05AF00F67F0C /* HDSSL_Sec0_cellNormal.swift in Sources */,
 				D618E85F21B26D36001C05FC /* HDLY_NotiMsgModel.swift in Sources */,
 				D62277A021367D4D008F1416 /* ProgressView.swift in Sources */,

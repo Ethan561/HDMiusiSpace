@@ -121,8 +121,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="getPrizeTimeL" destination="Gfm-4w-fDq" id="b1f-Dx-Wbs"/>
                 <outlet property="gettingStatusL" destination="cj0-Yj-cAQ" id="R22-LC-OjG"/>
                 <outlet property="gotPrizeImgV" destination="BZw-AW-YmN" id="Ngz-A6-b7M"/>
+                <outlet property="orderSnLabel" destination="cl9-JY-LbE" id="vDk-T3-rQt"/>
+                <outlet property="poiL" destination="DKK-gG-Iay" id="orf-e4-sQm"/>
+                <outlet property="positionL" destination="Hpi-i0-WUq" id="cCd-YO-OrB"/>
+                <outlet property="timeL" destination="k7m-lL-zoN" id="4K0-Ex-UJj"/>
             </connections>
             <point key="canvasLocation" x="252.89855072463769" y="195.20089285714286"/>
         </tableViewCell>

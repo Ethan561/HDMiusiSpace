@@ -462,4 +462,29 @@ struct PlatNewsList: Codable {
 }
 
 
+struct PrizeListData: Codable {
+    var status: Int?
+    var msg: String?
+    var data: PrizeModel?
+}
 
+struct PrizeModel: Codable {
+    var list = [PrizeListModel]()
+    var count: TStrInt
+}
+
+struct PrizeListModel: Codable {
+    var order_sn: String?
+    var museum_name: String?
+    var pos_info: String?
+    var start_time: String?
+    var complete_time: String?
+    var go_status: String?
+    var qrcode:String?
+}
+
+struct PrizeDetailData: Codable {
+    var status: Int?
+    var msg: String?
+    var data: PrizeListModel?
+}

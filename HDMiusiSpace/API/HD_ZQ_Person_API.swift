@@ -39,6 +39,10 @@ enum HD_ZQ_Person_API {
     case thirdBindPhone(params:[String:Any])
     //我的导览足迹
     case getMyFootPrint(api_token: String, skip:Int, take:Int)
+    //我的游戏奖励
+    case getMyGamePrizeList(api_token: String)
+    //我的游戏奖励详情
+    case getMyGamePrizeDetail(api_token: String,id:String)
     //关于缪斯空间
     case getAboutMuseSpaceInfo(versionId:Int)
     //我的动态
@@ -112,7 +116,10 @@ extension HD_ZQ_Person_API: TargetType {
             return "/api/version/check_version"
         case .checkApple(userId: _, identityToken: _):
             return "/api/users/applesign"
-            
+        case .getMyGamePrizeList(api_token: _):
+            return "/api/myclass/rewards_list"
+        case .getMyGamePrizeDetail(api_token:_, id: _):
+            return "/api/myclass/rewards_details"
         }
     }
     
@@ -299,6 +306,16 @@ extension HD_ZQ_Person_API: TargetType {
             let dic2 = ["Sign": signKey]
             params.merge(dic2, uniquingKeysWith: { $1 })
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .getMyGamePrizeList(let api_token):
+            params = params.merging(["api_token": api_token], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
+        case .getMyGamePrizeDetail(let api_token, let id):
+            params = params.merging(["api_token": api_token,"goods_order_id":id], uniquingKeysWith: {$1})
+            let signKey =  HDDeclare.getSignKey(params)
+            let dic2 = ["Sign": signKey]
+            params.merge(dic2, uniquingKeysWith: { $1 })
         }
         
         return .requestParameters(parameters: params, encoding: URLEncoding.default)

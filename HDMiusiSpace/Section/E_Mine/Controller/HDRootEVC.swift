@@ -17,6 +17,7 @@ class HDRootEVC: HDItemBaseVC {
     private var user = UserDynamic()
     private var myDynamics = [MyDynamic]()
     private var courses =  [MyCollectCourseModel]()
+    private var prizeModel: PrizeModel?
     let declare:HDDeclare = HDDeclare.shared
     
     var tabHeader = HDLY_MineHome_Header()
@@ -337,6 +338,16 @@ extension HDRootEVC {
             }
         }
     }
+    
+    func getMyGamePrizeList() {
+        HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyGamePrizeList(api_token: HDDeclare.shared.api_token ?? ""), success: { (result) in
+            let jsonDecoder = JSONDecoder()
+            let model:PrizeListData = try! jsonDecoder.decode(PrizeListData.self, from: result)
+            self.prizeModel = model.data
+        }) { (error, msg) in
+            
+        }
+    }
 }
 
 
@@ -435,6 +446,7 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
             } else if index == 6 {//我的动态
                 let cell = HDLY_MineInfo_Cell.getMyTableCell(tableV: tableView)
                 cell?.moreImgV.isHidden = false
+                cell?.subNameL.text = self.prizeModel?.count.string
                 cell?.nameL.text = "我的游戏奖励"
                 return cell!
             }
@@ -546,7 +558,11 @@ extension HDRootEVC: UITableViewDelegate, UITableViewDataSource {
                 self.performSegue(withIdentifier: "PushTo_HDZQ_MyCoursesVC", sender: nil)
             }
             else if indexPath.row == 6 {
-                self.performSegue(withIdentifier: "HDMyGamePrizeListVC", sender: nil)
+//                let vc = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDMyGamePrizeListVC") as! HDMyGamePrizeListVC
+                let vc = HDMyGamePrizeDetailVC()
+//                vc.list = self.prizeModel?.list
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

@@ -15,7 +15,8 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navbarCons: NSLayoutConstraint!
     @IBOutlet weak var searchBtn: UIButton!
-
+    
+    private var prizeModel: PrizeModel?
     var tabHeader: RootBHeaderView!  //搜索和banner
     var bannerArr =  [BbannerModel]()
     //
@@ -33,6 +34,16 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         let tmp =  Bundle.main.loadNibNamed("HDZQ_VoiceSearchView", owner: nil, options: nil)?.last as? HDZQ_VoiceSearchView
         tmp?.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         return tmp!
+    }()
+    
+    lazy var prizeView: UIView = {
+        let v = UIView.init(frame: CGRect.init(x: ScreenWidth - 76, y: ScreenHeight - CGFloat(kBottomHeight) - 50 - kTopHeight, width: 50, height: 50))
+        let imgV = UIImageView.init(frame: CGRect.init(x: -8,y: -8, width: 66, height: 66))
+        imgV.image = UIImage.init(named: "gamePrize")
+        v.addSubview(imgV)
+        imgV.isUserInteractionEnabled = true
+        v.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(showPrizeDetail)))
+        return v
     }()
     
     //MARK: 隐私政策
@@ -88,7 +99,10 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         }else {
             isNeedRefresh = false
         }
-        
+//        if HDDeclare.shared.loginStatus == .kLogin_Status_Login {
+            getMyGamePrizeList()
+//        }
+         
         //BaiduMobStat.default()?.logEvent("HDMiusiSpace0001", eventLabel: "HDRootAVC viewWillAppear")
         
     }
@@ -130,6 +144,32 @@ class HDRootAVC: HDItemBaseVC,UITableViewDataSource,UITableViewDelegate,FSPagerV
         if infoModel?.data != nil {
             self.viewModel.dataRequestGetMoreNews(deviceno: deviceno, num: "10", myTableView: myTableView, self)
         }
+    }
+    
+    func getMyGamePrizeList() {
+         HD_LY_NetHelper.loadData(API: HD_ZQ_Person_API.self, target: .getMyGamePrizeList(api_token: HDDeclare.shared.api_token ?? ""), success: { (result) in
+             let jsonDecoder = JSONDecoder()
+             let model:PrizeListData = try! jsonDecoder.decode(PrizeListData.self, from: result)
+             self.prizeModel = model.data
+            guard let count = self.prizeModel?.count.int else { return }
+            self.view.addSubview(self.prizeView)
+            if count != 0 {
+              self.prizeView.showBadge(num: 2)
+                self.prizeView.isHidden = false
+            } else {
+                self.prizeView.isHidden = true
+            }
+             
+
+         }) { (error, msg) in
+             
+         }
+     }
+    
+    @objc func showPrizeDetail() {
+        let vc = UIStoryboard.init(name: "RootE", bundle: nil).instantiateViewController(withIdentifier: "HDMyGamePrizeListVC") as! HDMyGamePrizeListVC
+        vc.list = self.prizeModel?.list
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func refreshAction() {
